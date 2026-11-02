@@ -3,7 +3,7 @@ import BloomshireCommand from './components/BloomshireCommand';
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full bg-[#070b14] text-white flex flex-col">
+    <div className="h-screen w-screen overflow-hidden bg-[#070b14] text-white flex flex-col m-0 p-0">
       <BloomshireCommand />
     </div>
   );
