@@ -12,7 +12,6 @@
     "@tailwindcss/postcss": "^4.2.4",
     "clsx": "^2.1.1",
     "lucide-react": "^1.14.0",
-    "moni-bot": "file:../Moni-Bot",
     "postcss": "^8.5.14",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
