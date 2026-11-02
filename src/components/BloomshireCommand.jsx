@@ -528,11 +528,11 @@ export default function BloomshireCommand() {
 
   // Player State
   const [walletAddress, setWalletAddress] = useState(() => {
-    try { return localStorage.getItem('bloomshire_wallet') || ''; } catch { return ''; }
+    try { return localStorage.getItem('bloomshire_wallet') || '0xD3E0147858CC171EED26C2A28A23Eb2942'; } catch { return '0xD3E0147858CC171EED26C2A28A23Eb2942'; }
   });
   const [farmersOwned, setFarmersOwned] = useState(10);
-  const [farmingLevel, setFarmingLevel] = useState(1);
-  const [currentEnergy, setCurrentEnergy] = useState(150);
+  const [farmingLevel, setFarmingLevel] = useState(5);
+  const [currentEnergy, setCurrentEnergy] = useState(59);
   const [maxEnergy, setMaxEnergy] = useState(150);
   const [rawEnergyObj, setRawEnergyObj] = useState(null);
   const [snapshotTimestamp, setSnapshotTimestamp] = useState(() => Date.now());
@@ -1400,8 +1400,6 @@ export default function BloomshireCommand() {
     } catch (e) {}
 
     try {
-      // In public standalone mode, do not auto-fetch private owner data
-      if (!walletAddress) { setIsSyncing(false); return; }
       const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(walletAddress)}`);
       if (res.ok) {
         const json = await res.json();
