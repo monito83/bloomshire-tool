@@ -747,7 +747,9 @@ export default function BloomshireCommand() {
   const [gold, setGold] = useState(2377);
   const [shards, setShards] = useState(145);
   const [avyn, setAvyn] = useState(141);
-  const [activeQuest, setActiveQuest] = useState('Cap. 21: La Laguna (Sylmare) — Pesca 30 peces en la Laguna (fish 0/30)');
+  const [activeQuest, setActiveQuest] = useState(() => {
+    try { return localStorage.getItem('bloomshire_cached_active_quest') || ''; } catch { return ''; }
+  });
   const [activeQuestsList, setActiveQuestsList] = useState([
     {
       id: 'bk21',
@@ -2257,9 +2259,18 @@ export default function BloomshireCommand() {
 
           {/* Nivel & Wallet compacto */}
           <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/70 border border-slate-800 text-slate-400 text-xs font-mono shrink-0">
-            <span className="text-amber-400 font-bold">Nv {farmingLevel}</span>
-            <span className="text-slate-600">•</span>
-            <span title={walletAddress}>{walletAddress.slice(0, 5)}...{walletAddress.slice(-3)}</span>
+            {walletAddress ? (
+              <>
+                <span className="text-amber-400 font-bold">Nv {farmingLevel}</span>
+                <span className="text-slate-600">•</span>
+                <span title={walletAddress}>{walletAddress.slice(0, 5)}...{walletAddress.slice(-3)}</span>
+              </>
+            ) : (
+              <span className="text-slate-500 italic flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/80 animate-pulse"></span>
+                Esperando Companion...
+              </span>
+            )}
           </div>
 
           {/* Shards / Tokens */}

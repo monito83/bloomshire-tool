@@ -3,3 +3,4 @@
     { "source": "/api/bloomshire-sync", "destination": "/api/bloomshire-advisor?action=sync" }
   ]
 }
+
