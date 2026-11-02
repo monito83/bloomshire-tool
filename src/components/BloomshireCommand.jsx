@@ -736,17 +736,29 @@ export default function BloomshireCommand() {
 
   // Player State
   const [walletAddress, setWalletAddress] = useState(() => {
-    try { return localStorage.getItem('bloomshire_wallet') || '0xD3E0147858CC171EED26C2A28A23Eb2942'; } catch { return '0xD3E0147858CC171EED26C2A28A23Eb2942'; }
+    try { return localStorage.getItem('bloomshire_wallet') || null; } catch { return null; }
   });
-  const [farmersOwned, setFarmersOwned] = useState(10);
-  const [farmingLevel, setFarmingLevel] = useState(5);
-  const [currentEnergy, setCurrentEnergy] = useState(59);
+  const [farmersOwned, setFarmersOwned] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_farmers')) || 0; } catch { return 0; }
+  });
+  const [farmingLevel, setFarmingLevel] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_farming_level')) || 0; } catch { return 0; }
+  });
+  const [currentEnergy, setCurrentEnergy] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_energy')) || 0; } catch { return 0; }
+  });
   const [maxEnergy, setMaxEnergy] = useState(150);
   const [rawEnergyObj, setRawEnergyObj] = useState(null);
   const [snapshotTimestamp, setSnapshotTimestamp] = useState(() => Date.now());
-  const [gold, setGold] = useState(2377);
-  const [shards, setShards] = useState(145);
-  const [avyn, setAvyn] = useState(141);
+  const [gold, setGold] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_gold')) || 0; } catch { return 0; }
+  });
+  const [shards, setShards] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_shards')) || 0; } catch { return 0; }
+  });
+  const [avyn, setAvyn] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_avyn')) || 0; } catch { return 0; }
+  });
   const [activeQuest, setActiveQuest] = useState(() => {
     try { return localStorage.getItem('bloomshire_cached_active_quest') || ''; } catch { return ''; }
   });
@@ -2238,7 +2250,7 @@ export default function BloomshireCommand() {
             title={`Oro disponible: ${gold.toLocaleString('es-ES')} Gold`}
           >
             <span className="text-amber-400">🪙</span>
-            <span>{gold >= 1000 ? `${(gold / 1000).toFixed(1)}k Gold` : `${gold} Gold`}</span>
+            <span>{walletAddress ? (gold >= 1000 ? `${(gold / 1000).toFixed(1)}k Gold` : `${gold} Gold`) : '-- Gold'}</span>
           </div>
 
           {/* Píldora de Energía con micro-barra de progreso interna integrada (como en el boceto: 🛏️ 108/150) */}
@@ -2251,7 +2263,7 @@ export default function BloomshireCommand() {
               style={{ width: `${Math.min(100, Math.max(0, (currentEnergy / maxEnergy) * 100))}%` }}
             />
             <span className="relative z-10 text-amber-400">🛏️</span>
-            <span className="relative z-10 font-mono">{Math.floor(currentEnergy)}/{maxEnergy}</span>
+            <span className="relative z-10 font-mono">{walletAddress ? `${Math.floor(currentEnergy)}/${maxEnergy}` : '-- / --'}</span>
             {energyMeta.canRest && (
               <span className="relative z-10 text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">LISTA</span>
             )}
@@ -2276,9 +2288,9 @@ export default function BloomshireCommand() {
           {/* Shards / Tokens */}
           <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/50 border border-slate-800/80 text-indigo-300 text-[11px] font-mono shrink-0">
             <Gem className="w-3 h-3 text-indigo-400" />
-            <span>{shards} AVS</span>
+            <span>{walletAddress ? `${shards} AVS` : '-- AVS'}</span>
             <span className="text-slate-600">|</span>
-            <span className="text-emerald-400">{avyn} $AVYN</span>
+            <span className="text-emerald-400">{walletAddress ? `${avyn} $AVYN` : '-- $AVYN'}</span>
           </div>
         </div>
 
