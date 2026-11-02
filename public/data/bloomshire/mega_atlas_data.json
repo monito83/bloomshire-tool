@@ -1,0 +1,6870 @@
+{
+  "worldCanvasSize": [
+    8650,
+    10650
+  ],
+  "generatedAt": "2026-10-29T20:18:11.237Z",
+  "regions": [
+    {
+      "id": "moonmere",
+      "name": "Lago Moonmere (Norte)",
+      "enName": "Moonmere",
+      "icon": "🌊",
+      "color": "#38bdf8",
+      "fill": "rgba(14, 116, 144, 0.28)",
+      "worldBounds": [
+        4592,
+        2200,
+        2048,
+        1344
+      ],
+      "desc": "Gran lago sagrado del norte. Hogar de la sirena Marven, las 4 sirenas de la laguna, las 12 piedras lunares y el santuario de la Hada Lunar (7 capítulos de Book 1 Part 4).",
+      "subZones": [
+        {
+          "id": "moonmere_sub_2_moonmere",
+          "nameEn": "Moonmere",
+          "nameEs": "Lago Moonmere (Región Norte)",
+          "map": "bloomshire",
+          "isRootBox": true,
+          "localRect": [
+            1792,
+            0,
+            2048,
+            1344
+          ],
+          "worldRect": [
+            4592,
+            2200,
+            2048,
+            1344
+          ],
+          "finds": [
+            "Pez Gato Fantasma (Ghost Catfish - Noche)",
+            "Lucio, Trucha y Salmón",
+            "Agua profunda y 12 Piedras Lunares"
+          ],
+          "desc": "El gran lago sagrado al norte del pueblo. Escenario de los 7 nuevos capítulos de Book One, Part Four.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: The Old Cave",
+              "to": "cave_old_cave",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "marven",
+              "name": "Marven",
+              "inBuilding": false
+            },
+            {
+              "id": "sylmare",
+              "name": "Sylmare",
+              "inBuilding": false
+            },
+            {
+              "id": "elyria",
+              "name": "Elyria",
+              "inBuilding": false
+            },
+            {
+              "id": "virella",
+              "name": "Virella",
+              "inBuilding": false
+            },
+            {
+              "id": "miralys",
+              "name": "Miralys",
+              "inBuilding": false
+            }
+          ],
+          "clues": [
+            {
+              "id": "tide_stone_0",
+              "name": "🪨 Piedra de Marea (Marven's Pool)"
+            },
+            {
+              "id": "grey_cherries_0",
+              "name": "🍒 Cerezos Grises (Pista de Moonmere)"
+            },
+            {
+              "id": "moon_stone_n_0",
+              "name": "🌕 Piedra Lunar Norte (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_e_0",
+              "name": "🌕 Piedra Lunar Este (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_s_0",
+              "name": "🌕 Piedra Lunar Sur (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_w_0",
+              "name": "🌕 Piedra Lunar Oeste (Anillo de Piedras)"
+            },
+            {
+              "id": "grey_wake_0",
+              "name": "🌊 Estela Gris en el Agua Profunda"
+            },
+            {
+              "id": "grey_scale_0",
+              "name": "🐟 Escama Gris en la Orilla"
+            },
+            {
+              "id": "moon_shrine_0",
+              "name": "⛩️ Santuario de la Hada Lunar"
+            },
+            {
+              "id": "verse_falls_0",
+              "name": "🎵 Verso de la Canción (Cascadas)"
+            },
+            {
+              "id": "verse_meadow_0",
+              "name": "🎵 Verso de la Canción (Pradera)"
+            },
+            {
+              "id": "verse_lagoon_0",
+              "name": "🎵 Verso de la Canción (Laguna)"
+            },
+            {
+              "id": "gate_song_0",
+              "name": "🎶 Lugar de la Canción del Portal"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_3_the_lagoon_village",
+          "nameEn": "The lagoon village",
+          "nameEs": "Aldea de la Laguna (Merfolk)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2080,
+            240,
+            544,
+            480
+          ],
+          "worldRect": [
+            4880,
+            2440,
+            544,
+            480
+          ],
+          "finds": [
+            "4 Sirenas/Merfolk: Sylmare, Elyria, Virella y Miralys",
+            "Verso de la Laguna (Verse Lagoon)",
+            "Canción del Portal (Gate Song)"
+          ],
+          "desc": "Aldea flotante sobre las aguas occidentales de Moonmere donde habitan las cuatro sirenas guardianas.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "sylmare",
+              "name": "Sylmare",
+              "inBuilding": false
+            },
+            {
+              "id": "elyria",
+              "name": "Elyria",
+              "inBuilding": false
+            },
+            {
+              "id": "virella",
+              "name": "Virella",
+              "inBuilding": false
+            },
+            {
+              "id": "miralys",
+              "name": "Miralys",
+              "inBuilding": false
+            }
+          ],
+          "clues": [
+            {
+              "id": "verse_lagoon_0",
+              "name": "🎵 Verso de la Canción (Laguna)"
+            },
+            {
+              "id": "gate_song_0",
+              "name": "🎶 Lugar de la Canción del Portal"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_4_the_stone_ring",
+          "nameEn": "The Stone Ring",
+          "nameEs": "El Anillo de Piedras (12 Piedras Lunares)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2720,
+            496,
+            320,
+            256
+          ],
+          "worldRect": [
+            5520,
+            2696,
+            320,
+            256
+          ],
+          "finds": [
+            "Piedras Lunares Norte, Este, Sur y Oeste",
+            "Marcas que solo brillan bajo la luna",
+            "Pesca de aguas profundas"
+          ],
+          "desc": "Círculo místico de doce menhires sumergidos en el centro de Moonmere.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "moon_stone_n_0",
+              "name": "🌕 Piedra Lunar Norte (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_e_0",
+              "name": "🌕 Piedra Lunar Este (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_s_0",
+              "name": "🌕 Piedra Lunar Sur (Anillo de Piedras)"
+            },
+            {
+              "id": "moon_stone_w_0",
+              "name": "🌕 Piedra Lunar Oeste (Anillo de Piedras)"
+            },
+            {
+              "id": "grey_wake_0",
+              "name": "🌊 Estela Gris en el Agua Profunda"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_5_the_moon_fairy_s_island",
+          "nameEn": "The Moon Fairy's island",
+          "nameEs": "Isla de la Hada Lunar (Santuario)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3200,
+            400,
+            352,
+            160
+          ],
+          "worldRect": [
+            6000,
+            2600,
+            352,
+            160
+          ],
+          "finds": [
+            "Santuario de la Hada Lunar (Moon Shrine)",
+            "Bendición del Hada Lunar",
+            "Flores lunares"
+          ],
+          "desc": "Isla oriental en el lago donde se oculta el santuario que custodia una de las doce.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "moon_shrine_0",
+              "name": "⛩️ Santuario de la Hada Lunar"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_6_the_grotto",
+          "nameEn": "The grotto",
+          "nameEs": "La Gruta del Norte & Entrada a The Old Cave",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2752,
+            96,
+            320,
+            256
+          ],
+          "worldRect": [
+            5552,
+            2296,
+            320,
+            256
+          ],
+          "finds": [
+            "Puerta a The Old Cave (requiere Pico de Bronce)",
+            "Perla de la Cueva Vieja",
+            "Arañas Ahogadas (Drowned Spiders)"
+          ],
+          "desc": "Acantilado rocoso al norte del lago que alberga la entrada a The Old Cave.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: The Old Cave",
+              "to": "cave_old_cave",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "moonmere_sub_7_the_meadow_by_the_lake",
+          "nameEn": "The meadow by the lake",
+          "nameEs": "Pradera junto al Lago",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1920,
+            992,
+            1696,
+            352
+          ],
+          "worldRect": [
+            4720,
+            3192,
+            1696,
+            352
+          ],
+          "finds": [
+            "Verso de la Pradera (Verse Meadow)",
+            "Escama Gris (Grey Scale)",
+            "Estela Gris (Grey Wake)",
+            "Forraje de ribera"
+          ],
+          "desc": "Ribera sur de Moonmere que conecta los campos de Bloomshire con la orilla del lago.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "grey_cherries_0",
+              "name": "🍒 Cerezos Grises (Pista de Moonmere)"
+            },
+            {
+              "id": "grey_scale_0",
+              "name": "🐟 Escama Gris en la Orilla"
+            },
+            {
+              "id": "verse_meadow_0",
+              "name": "🎵 Verso de la Canción (Pradera)"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_14_the_falls_shelf",
+          "nameEn": "The falls shelf",
+          "nameEs": "Repisa de las Cascadas",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1824,
+            80,
+            1792,
+            128
+          ],
+          "worldRect": [
+            4624,
+            2280,
+            1792,
+            128
+          ],
+          "finds": [
+            "Verso de las Cascadas (Verse Falls)",
+            "Corriente superior del río",
+            "Truchas y Salmones"
+          ],
+          "desc": "Saliente rocoso junto a las cataratas del norte de Moonmere.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: The Old Cave",
+              "to": "cave_old_cave",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "marven",
+              "name": "Marven",
+              "inBuilding": false
+            }
+          ],
+          "clues": [
+            {
+              "id": "tide_stone_0",
+              "name": "🪨 Piedra de Marea (Marven's Pool)"
+            },
+            {
+              "id": "verse_falls_0",
+              "name": "🎵 Verso de la Canción (Cascadas)"
+            }
+          ]
+        },
+        {
+          "id": "moonmere_sub_38_marven_s_pool",
+          "nameEn": "Marven's pool",
+          "nameEs": "Estanque de Marven (Inicio Parte 4)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3504,
+            32,
+            320,
+            288
+          ],
+          "worldRect": [
+            6304,
+            2232,
+            320,
+            288
+          ],
+          "finds": [
+            "Sirena Marven",
+            "Piedra de Marea (Tide Stone)",
+            "Inicio de los 7 Capítulos de Moonmere"
+          ],
+          "desc": "Esquina noreste del lago. Tras completar el Cap. 17 'Home Changed', acércate aquí para hablar con la sirena Marven.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "marven",
+              "name": "Marven",
+              "inBuilding": false
+            }
+          ],
+          "clues": [
+            {
+              "id": "tide_stone_0",
+              "name": "🪨 Piedra de Marea (Marven's Pool)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloomshire_town",
+      "name": "Pueblo de Bloomshire (Centro)",
+      "enName": "Bloomshire Town",
+      "icon": "🏰",
+      "color": "#fbbf24",
+      "fill": "rgba(180, 83, 9, 0.25)",
+      "worldBounds": [
+        4592,
+        3544,
+        2048,
+        2240
+      ],
+      "desc": "Capital central con 14 edificios interiores, tiendas, forja, carpintería, botica, panadería, banco, Market Hall y los muelles de botes.",
+      "subZones": [
+        {
+          "id": "bloomshire_town_sub_0_the_orchard",
+          "nameEn": "The orchard",
+          "nameEs": "El Huerto de Cerezos (Dara)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2548,
+            1360,
+            340,
+            200
+          ],
+          "worldRect": [
+            5348,
+            3560,
+            340,
+            200
+          ],
+          "finds": [
+            "Dara (Cuidadora del Huerto)",
+            "Gallina Perdida de Hollis (Stray Hen)",
+            "Cerezos Grises (Grey Cherries)"
+          ],
+          "desc": "Huerto frutal al norte del pueblo. ¡Aquí se esconde la gallina perdida de la misión de Hollis!",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "dara",
+              "name": "Dara",
+              "inBuilding": false
+            }
+          ],
+          "clues": [
+            {
+              "id": "stray_hen_0",
+              "name": "🐔 Gallina Perdida de Hollis (Misión Ganadería)"
+            },
+            {
+              "id": "grey_cherries_0",
+              "name": "🍒 Cerezos Grises (Pista de Moonmere)"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_1_bloomshire",
+          "nameEn": "Bloomshire",
+          "nameEs": "Pueblo de Bloomshire (Casco Urbano)",
+          "map": "bloomshire",
+          "isRootBox": true,
+          "localRect": [
+            1792,
+            1344,
+            2048,
+            1536
+          ],
+          "worldRect": [
+            4592,
+            3544,
+            2048,
+            1536
+          ],
+          "finds": [
+            "14 Edificios y Tiendas",
+            "Tablón de 6 Pedidos de Odette (+25% Oro)",
+            "Fuente Central, Banco, Herrería y Carpintería"
+          ],
+          "desc": "El corazón comercial y social de Bloomshire.",
+          "doors": [
+            {
+              "name": "🏠 Carpenter Workshop",
+              "to": "interior_carpenter",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Bank",
+              "to": "interior_bank",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Storehouse",
+              "to": "interior_storehouse",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Exchange",
+              "to": "interior_exchange",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 General Store",
+              "to": "interior_general_store",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Bakery",
+              "to": "interior_bakery",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Apothecary",
+              "to": "interior_apothecary",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Seed and Tool Shop",
+              "to": "interior_seed_and_tool",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Market Hall",
+              "to": "interior_market_hall",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Tailor",
+              "to": "interior_tailor",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 School",
+              "to": "interior_school",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 Fisherman's cottage",
+              "to": "interior_fisherman",
+              "kind": "interior"
+            },
+            {
+              "name": "🚪 Paso a Home Island",
+              "to": "home_island",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🏠 Blacksmith",
+              "to": "interior_blacksmith",
+              "kind": "interior"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "stonepeak",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "maren",
+              "name": "Maren",
+              "inBuilding": false
+            },
+            {
+              "id": "hollis",
+              "name": "Hollis",
+              "inBuilding": false
+            },
+            {
+              "id": "nixie",
+              "name": "Nixie",
+              "inBuilding": false
+            },
+            {
+              "id": "jory",
+              "name": "Jory",
+              "inBuilding": false
+            },
+            {
+              "id": "greta",
+              "name": "Greta",
+              "inBuilding": false
+            },
+            {
+              "id": "mabel",
+              "name": "Mabel",
+              "inBuilding": false
+            },
+            {
+              "id": "ansel",
+              "name": "Ansel",
+              "inBuilding": false
+            },
+            {
+              "id": "dara",
+              "name": "Dara",
+              "inBuilding": false
+            },
+            {
+              "id": "cole",
+              "name": "Cole",
+              "inBuilding": false
+            },
+            {
+              "id": "fenwick",
+              "name": "Fenwick",
+              "inBuilding": false
+            },
+            {
+              "id": "ivy",
+              "name": "Ivy",
+              "inBuilding": false
+            },
+            {
+              "id": "otto",
+              "name": "Otto",
+              "inBuilding": false
+            },
+            {
+              "id": "lena",
+              "name": "Lena",
+              "inBuilding": false
+            },
+            {
+              "id": "hugo",
+              "name": "Hugo",
+              "inBuilding": false
+            },
+            {
+              "id": "rosa",
+              "name": "Rosa",
+              "inBuilding": false
+            },
+            {
+              "id": "jasper",
+              "name": "Jasper",
+              "inBuilding": false
+            },
+            {
+              "id": "felix",
+              "name": "Felix",
+              "inBuilding": false
+            },
+            {
+              "id": "rhys",
+              "name": "Rhys",
+              "inBuilding": false
+            },
+            {
+              "id": "clara",
+              "name": "Clara",
+              "inBuilding": false
+            },
+            {
+              "id": "elsie",
+              "name": "Elsie",
+              "inBuilding": false
+            },
+            {
+              "id": "willa",
+              "name": "Willa",
+              "inBuilding": false
+            },
+            {
+              "id": "pell",
+              "name": "Pell",
+              "inBuilding": "Carpenter Workshop"
+            },
+            {
+              "id": "farthing",
+              "name": "Farthing",
+              "inBuilding": "Bank"
+            },
+            {
+              "id": "quill",
+              "name": "Quill",
+              "inBuilding": "Exchange"
+            },
+            {
+              "id": "odette",
+              "name": "Odette",
+              "inBuilding": "General Store"
+            },
+            {
+              "id": "tamsin",
+              "name": "Tamsin",
+              "inBuilding": "Bakery"
+            },
+            {
+              "id": "juniper",
+              "name": "Juniper",
+              "inBuilding": "Apothecary"
+            },
+            {
+              "id": "hazel",
+              "name": "Hazel",
+              "inBuilding": "Seed and Tool Shop"
+            },
+            {
+              "id": "rowan",
+              "name": "Rowan",
+              "inBuilding": "Market Hall"
+            },
+            {
+              "id": "tilly",
+              "name": "Tilly",
+              "inBuilding": "Tailor"
+            },
+            {
+              "id": "wren",
+              "name": "Wren",
+              "inBuilding": "Fisherman's cottage"
+            },
+            {
+              "id": "bram",
+              "name": "Bram",
+              "inBuilding": "Blacksmith"
+            }
+          ],
+          "clues": [
+            {
+              "id": "wreck_0",
+              "name": "Restos del Naufragio Fluvial (Cap. 1)"
+            },
+            {
+              "id": "stray_hen_0",
+              "name": "🐔 Gallina Perdida de Hollis (Misión Ganadería)"
+            },
+            {
+              "id": "grey_cherries_0",
+              "name": "🍒 Cerezos Grises (Pista de Moonmere)"
+            },
+            {
+              "id": "lamp_jetty_0",
+              "name": "🏮 Farola del Muelle (Misión Lámparas 1/3)"
+            },
+            {
+              "id": "lamp_chapel_0",
+              "name": "🏮 Farola de la Capilla (Misión Lámparas 2/3)"
+            },
+            {
+              "id": "lamp_west_0",
+              "name": "🏮 Farola del Oeste (Misión Lámparas 3/3)"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_8_the_south_of_the_town",
+          "nameEn": "The south of the town",
+          "nameEs": "Distrito Sur del Pueblo",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1792,
+            2880,
+            2048,
+            704
+          ],
+          "worldRect": [
+            4592,
+            5080,
+            2048,
+            704
+          ],
+          "finds": [
+            "Market Hall (Rowan)",
+            "Puesto de Flores de Ivy",
+            "Cabaña de Pesca de Wren",
+            "Salón de Fundadores"
+          ],
+          "desc": "Sector meridional del pueblo que conecta la plaza con los muelles y el mercado P2P.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "stonepeak",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a The VIP Quarter",
+              "to": "vip_quarter",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🏠 The Founders' Hall",
+              "to": "interior_founders_hall",
+              "kind": "interior"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "founders_walk_0",
+              "name": "🏛️ Inscripción del Paseo de Fundadores"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_9_the_founders_hall",
+          "nameEn": "The Founders' Hall",
+          "nameEs": "Salón de los Fundadores",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2912,
+            2976,
+            288,
+            224
+          ],
+          "worldRect": [
+            5712,
+            5176,
+            288,
+            224
+          ],
+          "finds": [
+            "Interior del Salón de Fundadores",
+            "Monumento de Temporada 0"
+          ],
+          "desc": "Edificio de honor dedicado a los poseedores de Founding Farmers.",
+          "doors": [
+            {
+              "name": "🏠 The Founders' Hall",
+              "to": "interior_founders_hall",
+              "kind": "interior"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "founders_walk_0",
+              "name": "🏛️ Inscripción del Paseo de Fundadores"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_10_the_founders_walk",
+          "nameEn": "The Founders' Walk",
+          "nameEs": "Paseo de los Fundadores",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2944,
+            3200,
+            224,
+            384
+          ],
+          "worldRect": [
+            5744,
+            5400,
+            224,
+            384
+          ],
+          "finds": [
+            "Placa e Inscripción de Fundadores",
+            "Camino directo hacia The Southvale"
+          ],
+          "desc": "Avenida arbolada al sur del Salón de Fundadores.",
+          "doors": [
+            {
+              "name": "🏠 The Founders' Hall",
+              "to": "interior_founders_hall",
+              "kind": "interior"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "founders_walk_0",
+              "name": "🏛️ Inscripción del Paseo de Fundadores"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_11_the_harbour",
+          "nameEn": "The harbour",
+          "nameEs": "El Puerto Fluvial (Muelles)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2400,
+            2976,
+            576,
+            608
+          ],
+          "worldRect": [
+            5200,
+            5176,
+            576,
+            608
+          ],
+          "finds": [
+            "Bote a Home Island (Tu Cabaña)",
+            "Bote Dorado al Barrio VIP & Dungeon",
+            "Farola del Muelle (Lamp Jetty)"
+          ],
+          "desc": "Embarcadero principal en la ribera sur del pueblo.",
+          "doors": [
+            {
+              "name": "🚪 Paso a The VIP Quarter",
+              "to": "vip_quarter",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "founders_walk_0",
+              "name": "🏛️ Inscripción del Paseo de Fundadores"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_town_sub_12_the_west_bank",
+          "nameEn": "The west bank",
+          "nameEs": "La Orilla Occidental",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1792,
+            2912,
+            640,
+            672
+          ],
+          "worldRect": [
+            4592,
+            5112,
+            640,
+            672
+          ],
+          "finds": [
+            "Sastrería de Tilly (Telar)",
+            "Panadería de Tamsin (Estufa)",
+            "Botica de Juniper (Semillas Nv 5+)",
+            "Salida Oeste a Whisperwood"
+          ],
+          "desc": "Barrio artesanal situado cruzando el puente hacia el oeste del río.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_town_sub_13_the_post_office_lane",
+          "nameEn": "The post office lane",
+          "nameEs": "Callejón del Correo & Almacén",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3200,
+            2976,
+            624,
+            608
+          ],
+          "worldRect": [
+            6000,
+            5176,
+            624,
+            608
+          ],
+          "finds": [
+            "Almacén Público (Cofre Gratis)",
+            "Banco de Farthing",
+            "Corral de Hollis y Cole"
+          ],
+          "desc": "Sector sureste del pueblo donde se ubican el Banco, el Almacén y las pasturas.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "stonepeak",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_town_sub_39_the_woodlot",
+          "nameEn": "The Woodlot",
+          "nameEs": "Bosque de Tala del Pueblo (The Woodlot)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3472,
+            1728,
+            192,
+            160
+          ],
+          "worldRect": [
+            6272,
+            3928,
+            192,
+            160
+          ],
+          "finds": [
+            "Árboles de tala rápida",
+            "Misiones del Gremio de Tala",
+            "Madera (29g con Pell)"
+          ],
+          "desc": "Zona forestal dentro del noreste del pueblo para subir Tala sin viajar lejos.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "whisperwood",
+      "name": "Bosque Whisperwood (Oeste)",
+      "enName": "Whisperwood",
+      "icon": "🌲",
+      "color": "#34d399",
+      "fill": "rgba(6, 95, 70, 0.30)",
+      "worldBounds": [
+        2800,
+        2200,
+        1792,
+        5504
+      ],
+      "desc": "Gran bosque occidental pegado al oeste del pueblo. Contiene 15 sub-zonas, setas Silvercap/Glowcap, el Claro Escondido, Mirror Pond y Glimmer Hollow.",
+      "subZones": [
+        {
+          "id": "whisperwood_sub_0_whisperwood",
+          "nameEn": "Whisperwood",
+          "nameEs": "Bosque Whisperwood (Región Oeste)",
+          "map": "whisperwood",
+          "isRootBox": true,
+          "localRect": [
+            0,
+            0,
+            1792,
+            3584
+          ],
+          "worldRect": [
+            2800,
+            2200,
+            1792,
+            3584
+          ],
+          "finds": [
+            "Madera de Arce, Setas Silvercap/Glowcap",
+            "Lobo Gris de Otto (Cap. 10)",
+            "2 Cuevas y 3 Portales Regionales"
+          ],
+          "desc": "Inmenso bosque antiguo al oeste del río.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: Glimmer Hollow",
+              "to": "cave_glimmer",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: The Grotto under Mirror Pond",
+              "to": "cave_mirror_grotto",
+              "kind": "cave"
+            },
+            {
+              "name": "🚪 Paso a The Dreaming Fields",
+              "to": "dreaming_fields",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a The Everbloom",
+              "to": "everbloom",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a The Barrowmire",
+              "to": "barrowmire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "wild_seeds_0",
+              "name": "🌱 Semillas Silvestres de Hazel"
+            },
+            {
+              "id": "grey_ground_0",
+              "name": "🌑 Tierra Gris Marchita"
+            },
+            {
+              "id": "glade_arch_0",
+              "name": "🌿 Arco de Raíces (Misión 'El Claro Escondido')"
+            },
+            {
+              "id": "glade_altar_0",
+              "name": "🌿 Segundo Arco / Altar de Raíces ('El Claro Escondido')"
+            }
+          ]
+        },
+        {
+          "id": "whisperwood_sub_1_the_hidden_glade",
+          "nameEn": "The hidden glade",
+          "nameEs": "El Claro Escondido (The Hidden Glade)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            192,
+            544,
+            384,
+            352
+          ],
+          "worldRect": [
+            2992,
+            2744,
+            384,
+            352
+          ],
+          "finds": [
+            "2x Arcos de Raíces (Glade Arch - Misión Cap. 13)",
+            "Altar del Claro (Glade Altar)",
+            "Forraje mágico"
+          ],
+          "desc": "¡Objetivo exacto de la misión 'El Claro Escondido'! Aquí están los 2 arcos de raíces que debes examinar.",
+          "doors": [
+            {
+              "name": "🚪 Paso a The Everbloom",
+              "to": "everbloom",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "glade_arch_0",
+              "name": "🌿 Arco de Raíces (Misión 'El Claro Escondido')"
+            },
+            {
+              "id": "glade_altar_0",
+              "name": "🌿 Segundo Arco / Altar de Raíces ('El Claro Escondido')"
+            }
+          ]
+        },
+        {
+          "id": "whisperwood_sub_2_the_woodcutters_clearing",
+          "nameEn": "The woodcutters' clearing",
+          "nameEs": "Claro de los Leñadores",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1280,
+            1696,
+            384,
+            320
+          ],
+          "worldRect": [
+            4080,
+            3896,
+            384,
+            320
+          ],
+          "finds": [
+            "Árboles densos de Arce y Roble",
+            "Tala rápida cerca del puente central"
+          ],
+          "desc": "Explanada de los leñadores justo al cruzar el acceso central desde el pueblo.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_3_the_pond",
+          "nameEn": "The pond",
+          "nameEs": "El Estanque del Espejo (Mirror Pond)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1152,
+            1440,
+            352,
+            224
+          ],
+          "worldRect": [
+            3952,
+            3640,
+            352,
+            224
+          ],
+          "finds": [
+            "Entrada a la Cueva 'Grotto under Mirror Pond'",
+            "Pesca de bosque",
+            "Amuleto de la Gruta (Grotto Charm)"
+          ],
+          "desc": "Estanque cristalino en el centro-este del bosque que oculta una gruta subterránea.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_4_the_deep_wood",
+          "nameEn": "The deep wood",
+          "nameEs": "El Bosque Profundo (Deep Wood)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            960,
+            704,
+            1920
+          ],
+          "worldRect": [
+            2800,
+            3160,
+            704,
+            1920
+          ],
+          "finds": [
+            "Entrada a 'Glimmer Hollow' (Cueva de Cristal)",
+            "Entrada a 'The Barrowmire' (Sealed Stair)",
+            "Tierra Gris (Grey Ground)"
+          ],
+          "desc": "Sector occidental denso y oscuro donde se abren la cueva Glimmer Hollow y la Escalera Sellada.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: Glimmer Hollow",
+              "to": "cave_glimmer",
+              "kind": "cave"
+            },
+            {
+              "name": "🚪 Paso a The Dreaming Fields",
+              "to": "dreaming_fields",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a The Barrowmire",
+              "to": "barrowmire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "grey_ground_0",
+              "name": "🌑 Tierra Gris Marchita"
+            }
+          ]
+        },
+        {
+          "id": "whisperwood_sub_5_the_fallen_giant",
+          "nameEn": "The fallen giant",
+          "nameEs": "El Gigante Caído",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1280,
+            2336,
+            288,
+            192
+          ],
+          "worldRect": [
+            4080,
+            4536,
+            288,
+            192
+          ],
+          "finds": [
+            "Gran tronco ancestral caído",
+            "Setas de corteza y madera dura"
+          ],
+          "desc": "Árbol colosal derribado al sur del estanque.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_6_mushroom_dell",
+          "nameEn": "Mushroom dell",
+          "nameEs": "Hondonada de las Setas (Mushroom Dell)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            160,
+            3008,
+            384,
+            256
+          ],
+          "worldRect": [
+            2960,
+            5208,
+            384,
+            256
+          ],
+          "finds": [
+            "Alta densidad de Setas Silvercap y Glowcap",
+            "¡El mejor lugar para subir Recolección (Foraging) a Nv 3!"
+          ],
+          "desc": "Valle húmedo al suroeste de Whisperwood repleto de hongos recolectables.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_7_the_charcoal_burners_clearing",
+          "nameEn": "The charcoal burners' clearing",
+          "nameEs": "Claro de los Carboneros",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1280,
+            2544,
+            272,
+            240
+          ],
+          "worldRect": [
+            4080,
+            4744,
+            272,
+            240
+          ],
+          "finds": [
+            "Hornos de carbón y leña"
+          ],
+          "desc": "Campamento de producción de carbón vegetal.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_8_the_deer_meadow",
+          "nameEn": "The deer meadow",
+          "nameEs": "Pradera de los Ciervos",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1248,
+            3072,
+            352,
+            352
+          ],
+          "worldRect": [
+            4048,
+            5272,
+            352,
+            352
+          ],
+          "finds": [
+            "Hierbas silvestres, flores y mariposas Wood White"
+          ],
+          "desc": "Pradera tranquila al sureste del bosque.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_9_the_fairy_ring",
+          "nameEn": "The fairy ring",
+          "nameEs": "El Anillo de Hadas (Fairy Ring)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1312,
+            400,
+            208,
+            176
+          ],
+          "worldRect": [
+            4112,
+            2600,
+            208,
+            176
+          ],
+          "finds": [
+            "Círculo de setas mágicas",
+            "Mariposas y polvo feérico"
+          ],
+          "desc": "Claro místico al noreste de Whisperwood rodeado de hongos en círculo.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_10_the_bramble_patch",
+          "nameEn": "The bramble patch",
+          "nameEs": "El Zarzal (Bramble Patch)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            832,
+            32,
+            208,
+            192
+          ],
+          "worldRect": [
+            3632,
+            2232,
+            208,
+            192
+          ],
+          "finds": [
+            "Semillas Silvestres de Hazel (Wild Seeds)",
+            "Moras (Blackberries) para recolectar"
+          ],
+          "desc": "Espesura de zarzas en el extremo norte de Whisperwood.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "wild_seeds_0",
+              "name": "🌱 Semillas Silvestres de Hazel"
+            }
+          ]
+        },
+        {
+          "id": "whisperwood_sub_11_the_south_woods",
+          "nameEn": "The south woods",
+          "nameEs": "Bosques del Sur",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            3584,
+            1792,
+            1920
+          ],
+          "worldRect": [
+            2800,
+            5784,
+            1792,
+            1920
+          ],
+          "finds": [
+            "Madera, bayas y conexión con Southvale"
+          ],
+          "desc": "Extensión meridional de Whisperwood.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_12_the_herbalist_s_cottage",
+          "nameEn": "The herbalist's cottage",
+          "nameEs": "Cabaña de la Herborista",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            1248,
+            3776,
+            368,
+            304
+          ],
+          "worldRect": [
+            4048,
+            5976,
+            368,
+            304
+          ],
+          "finds": [
+            "Hierbas medicinales y misiones de botánica"
+          ],
+          "desc": "Cabaña aislada en el bosque sur.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_13_the_foresters_camp",
+          "nameEn": "The foresters' camp",
+          "nameEs": "Campamento de Guardabosques",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            48,
+            4032,
+            240,
+            176
+          ],
+          "worldRect": [
+            2848,
+            6232,
+            240,
+            176
+          ],
+          "finds": [
+            "Guardabosques y suministros de tala"
+          ],
+          "desc": "Puesto de vigilancia en el extremo suroeste de Whisperwood.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_14_the_goblin_camp",
+          "nameEn": "The Goblin Camp",
+          "nameEs": "Campamento Goblin",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            392,
+            2248,
+            336,
+            248
+          ],
+          "worldRect": [
+            3192,
+            4448,
+            336,
+            248
+          ],
+          "finds": [
+            "Goblins y Slimes de bosque",
+            "Combate y botín"
+          ],
+          "desc": "Campamento hostil oculto en el corazón de Whisperwood.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "whisperwood_sub_15_the_storm_hollow",
+          "nameEn": "The Storm Hollow",
+          "nameEs": "Hondonada de la Tormenta (Storm Hollow)",
+          "map": "whisperwood",
+          "isRootBox": false,
+          "localRect": [
+            570,
+            3592,
+            340,
+            256
+          ],
+          "worldRect": [
+            3370,
+            5792,
+            340,
+            256
+          ],
+          "finds": [
+            "Criaturas de tormenta y recursos raros"
+          ],
+          "desc": "Depresión boscosa azotada por el viento en el sector sur.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "stonepeak",
+      "name": "Montañas de Stonepeak (Este)",
+      "enName": "Stonepeak",
+      "icon": "⛏️",
+      "color": "#f97316",
+      "fill": "rgba(124, 45, 18, 0.30)",
+      "worldBounds": [
+        6640,
+        2200,
+        1792,
+        5504
+      ],
+      "desc": "Cordillera minera oriental pegada al este del pueblo. Alberga 18 sub-zonas y las 5 grandes cuevas mineras (The Old Working, Green Vein, The Gloom, Sunken Vault y Topaz Drift).",
+      "subZones": [
+        {
+          "id": "stonepeak_sub_0_stonepeak",
+          "nameEn": "Stonepeak",
+          "nameEs": "Montañas de Stonepeak (Región Este)",
+          "map": "stonepeak",
+          "isRootBox": true,
+          "localRect": [
+            0,
+            0,
+            1792,
+            3584
+          ],
+          "worldRect": [
+            6640,
+            2200,
+            1792,
+            3584
+          ],
+          "finds": [
+            "5 Cuevas Mineras (Cobre, Hierro, Oro, Zafiro, Topacio)",
+            "Cantera y Campamento Minero"
+          ],
+          "desc": "Cordillera rocosa al este de Bloomshire.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: The Old Working",
+              "to": "cave_old_working",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: The Green Vein",
+              "to": "cave_green_vein",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: The Gloom",
+              "to": "cave_gloom",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: The Sunken Vault",
+              "to": "cave_vault",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: Topaz Drift",
+              "to": "cave_topaz_drift",
+              "kind": "cave"
+            },
+            {
+              "name": "🚪 Paso a Frosthaven",
+              "to": "frosthaven",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: deeps",
+              "to": "deeps",
+              "kind": "cave"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_1_the_miners_camp",
+          "nameEn": "The miners' camp",
+          "nameEs": "Campamento Minero (Dunn)",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            256,
+            1120,
+            640,
+            416
+          ],
+          "worldRect": [
+            6896,
+            3320,
+            640,
+            416
+          ],
+          "finds": [
+            "Capataz Dunn",
+            "Entrada a la Cueva 'The Old Working' (2 Pisos - Cobre y Cuarzo)"
+          ],
+          "desc": "Campamento base de los mineros con acceso directo a la mina The Old Working.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_2_the_quarry",
+          "nameEn": "The quarry",
+          "nameEs": "La Cantera (The Quarry)",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            800,
+            832,
+            256,
+            224
+          ],
+          "worldRect": [
+            7440,
+            3032,
+            256,
+            224
+          ],
+          "finds": [
+            "Nodos de Piedra y Cobre al aire libre",
+            "Entrada cercana a 'The Green Vein'"
+          ],
+          "desc": "Excavación abierta en el centro de Stonepeak.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_3_the_deep_quarry",
+          "nameEn": "The deep quarry",
+          "nameEs": "La Cantera Profunda & The Gloom",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1088,
+            480,
+            320,
+            256
+          ],
+          "worldRect": [
+            7728,
+            2680,
+            320,
+            256
+          ],
+          "finds": [
+            "Entrada a 'The Green Vein' (Arañas Venenosas)",
+            "Entrada a 'The Gloom' (3 Pisos + Jefe Bone Spider)"
+          ],
+          "desc": "Nivel superior de la cantera donde se abren las cuevas de historia.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: The Green Vein",
+              "to": "cave_green_vein",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_4_the_snow_line",
+          "nameEn": "The snow line",
+          "nameEs": "Línea de Nieve",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            832,
+            0,
+            960,
+            480
+          ],
+          "worldRect": [
+            7472,
+            2200,
+            960,
+            480
+          ],
+          "finds": [
+            "Rocas heladas y subida a Frosthaven"
+          ],
+          "desc": "Frontera nevada en la cumbre norte de Stonepeak.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Frosthaven",
+              "to": "frosthaven",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: deeps",
+              "to": "deeps",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_5_the_deeps_door",
+          "nameEn": "The Deeps' door",
+          "nameEs": "La Puerta de las Profundidades & Paso a Frosthaven",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1440,
+            32,
+            352,
+            224
+          ],
+          "worldRect": [
+            8080,
+            2232,
+            352,
+            224
+          ],
+          "finds": [
+            "Entrada a 'The Deeps'",
+            "Paso del Noreste hacia 'Frosthaven'"
+          ],
+          "desc": "Desfiladero en el extremo noreste que conecta con las tierras heladas de Frosthaven.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Frosthaven",
+              "to": "frosthaven",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: deeps",
+              "to": "deeps",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_6_the_cascade",
+          "nameEn": "The cascade",
+          "nameEs": "La Gran Cascada Oriental",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1376,
+            0,
+            288,
+            1760
+          ],
+          "worldRect": [
+            8016,
+            2200,
+            288,
+            1760
+          ],
+          "finds": [
+            "Salto de agua vertical",
+            "Entrada inferior a 'The Sunken Vault' (2 Pisos + Vault Queen)"
+          ],
+          "desc": "Torrente que desciende por el flanco este junto a la Bóveda Hundida.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: The Gloom",
+              "to": "cave_gloom",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: The Sunken Vault",
+              "to": "cave_vault",
+              "kind": "cave"
+            },
+            {
+              "name": "🕳️ Cueva: deeps",
+              "to": "deeps",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_7_the_south_meadows",
+          "nameEn": "The south meadows",
+          "nameEs": "Praderas del Sur de Stonepeak",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            2400,
+            1792,
+            1184
+          ],
+          "worldRect": [
+            6640,
+            4600,
+            1792,
+            1184
+          ],
+          "finds": [
+            "Conexión con el pueblo y recursos de colina"
+          ],
+          "desc": "Laderas suaves al sur del campamento de gemas.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🕳️ Cueva: Topaz Drift",
+              "to": "cave_topaz_drift",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_8_the_stonecutters_yard",
+          "nameEn": "The Stonecutters' Yard",
+          "nameEs": "Patio de los Canteros",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            208,
+            2256,
+            288,
+            272
+          ],
+          "worldRect": [
+            6848,
+            4456,
+            288,
+            272
+          ],
+          "finds": [
+            "Bloques de piedra tallada y granito"
+          ],
+          "desc": "Zona de trabajo de piedra cerca del acceso central desde el pueblo.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_9_the_goat_pastures",
+          "nameEn": "The goat pastures",
+          "nameEs": "Pasturas de Cabras",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            496,
+            2512,
+            464,
+            352
+          ],
+          "worldRect": [
+            7136,
+            4712,
+            464,
+            352
+          ],
+          "finds": [
+            "Cabras montesas y pastores"
+          ],
+          "desc": "Praderas alpinas en la ladera media.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_10_the_old_beacon",
+          "nameEn": "The Old Beacon",
+          "nameEs": "La Vieja Almenara (Old Beacon)",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            720,
+            3136,
+            240,
+            240
+          ],
+          "worldRect": [
+            7360,
+            5336,
+            240,
+            240
+          ],
+          "finds": [
+            "Torre de señales de piedra"
+          ],
+          "desc": "Antigua atalaya en las colinas del sur de Stonepeak.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_11_the_gem_hunters_camp",
+          "nameEn": "The gem hunters' camp",
+          "nameEs": "Campamento de Cazadores de Gemas",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            384,
+            3056,
+            240,
+            160
+          ],
+          "worldRect": [
+            7024,
+            5256,
+            240,
+            160
+          ],
+          "finds": [
+            "Entrada a la Cueva 'Topaz Drift' (Topacio, Zafiro y Cuarzo Rosa)"
+          ],
+          "desc": "Campamento situado justo frente a la entrada de la cueva Topaz Drift.",
+          "doors": [
+            {
+              "name": "🕳️ Cueva: Topaz Drift",
+              "to": "cave_topaz_drift",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_12_the_trout_bend",
+          "nameEn": "The trout bend",
+          "nameEs": "Recodo de las Truchas",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1184,
+            2400,
+            176,
+            144
+          ],
+          "worldRect": [
+            7824,
+            4600,
+            176,
+            144
+          ],
+          "finds": [
+            "Pesca de Trucha de Montaña y Salmón"
+          ],
+          "desc": "Curva del río de montaña rica en truchas.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_13_the_south_foothills",
+          "nameEn": "The south foothills",
+          "nameEs": "Estribaciones del Sur",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            512,
+            3584,
+            1280,
+            1920
+          ],
+          "worldRect": [
+            7152,
+            5784,
+            1280,
+            1920
+          ],
+          "finds": [
+            "Senderos montañosos hacia la costa"
+          ],
+          "desc": "Pie de monte meridional de Stonepeak.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_14_the_shepherd_s_fold",
+          "nameEn": "The shepherd's fold",
+          "nameEs": "Redil del Pastor",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            832,
+            4512,
+            528,
+            304
+          ],
+          "worldRect": [
+            7472,
+            6712,
+            528,
+            304
+          ],
+          "finds": [
+            "Ovejas de montaña y pastores"
+          ],
+          "desc": "Corral de piedra en el sector sur.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_15_the_berry_clearing",
+          "nameEn": "The berry clearing",
+          "nameEs": "Claro de las Bayas",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1344,
+            3680,
+            240,
+            288
+          ],
+          "worldRect": [
+            7984,
+            5880,
+            240,
+            288
+          ],
+          "finds": [
+            "Arbustos de bayas de montaña para Recolección"
+          ],
+          "desc": "Claro fértil en las estribaciones del sur.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_16_the_frozen_tarn",
+          "nameEn": "The frozen tarn",
+          "nameEs": "Laguna Helada de Montaña",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            992,
+            48,
+            256,
+            192
+          ],
+          "worldRect": [
+            7632,
+            2248,
+            256,
+            192
+          ],
+          "finds": [
+            "Estanque glacial de altura"
+          ],
+          "desc": "Pequeño lago congelado en la cima norte.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_17_the_delvers_court",
+          "nameEn": "The Delvers' Court",
+          "nameEs": "Corte de los Excavadores (Delvers' Court)",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            154,
+            412,
+            300,
+            248
+          ],
+          "worldRect": [
+            6794,
+            2612,
+            300,
+            248
+          ],
+          "finds": [
+            "Ruinas mineras antiguas al noroeste"
+          ],
+          "desc": "Plaza de piedra de los antiguos excavadores.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "stonepeak_sub_18_the_warlord_s_camp",
+          "nameEn": "The Warlord's Camp",
+          "nameEs": "Campamento del Señor de la Guerra",
+          "map": "stonepeak",
+          "isRootBox": false,
+          "localRect": [
+            1294,
+            4670,
+            392,
+            292
+          ],
+          "worldRect": [
+            7934,
+            6870,
+            392,
+            292
+          ],
+          "finds": [
+            "Enemigos de élite y botín de combate"
+          ],
+          "desc": "Fortaleza hostil en el extremo sureste de Stonepeak.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "southvale",
+      "name": "Valle del Sur (The Southvale)",
+      "enName": "The Southvale",
+      "icon": "🌾",
+      "color": "#a3e635",
+      "fill": "rgba(63, 98, 18, 0.26)",
+      "worldBounds": [
+        4592,
+        5784,
+        2560,
+        1920
+      ],
+      "desc": "Extenso valle agrícola al sur del pueblo con la Granja de Hollin (Molino y Lechería), la Posada Halfway House, el Molino de Viento y el Huerto de Ashby.",
+      "subZones": [
+        {
+          "id": "southvale_sub_15_the_southvale",
+          "nameEn": "The Southvale",
+          "nameEs": "Valle del Sur (The Southvale)",
+          "map": "bloomshire",
+          "isRootBox": true,
+          "localRect": [
+            1792,
+            3584,
+            2560,
+            1920
+          ],
+          "worldRect": [
+            4592,
+            5784,
+            2560,
+            1920
+          ],
+          "finds": [
+            "Granjas, Molinos de Viento y Agua",
+            "Lechería y Huertos del Sur",
+            "Ruta hacia Bloomshire Bay"
+          ],
+          "desc": "Fértil valle agrícola que se extiende entre el sur del pueblo y la costa marítima.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            },
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "founders_walk_0",
+              "name": "🏛️ Inscripción del Paseo de Fundadores"
+            }
+          ]
+        },
+        {
+          "id": "southvale_sub_19_hollin_s_farm",
+          "nameEn": "Hollin's Farm",
+          "nameEs": "Granja de Hollin (Molino y Lechería)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1808,
+            3616,
+            560,
+            528
+          ],
+          "worldRect": [
+            4608,
+            5816,
+            560,
+            528
+          ],
+          "finds": [
+            "Molino de Agua (Harina)",
+            "Lechería (Dairy)",
+            "Cultivos y ganado del valle"
+          ],
+          "desc": "Gran explotación agrícola al suroeste de Southvale con molino hidráulico.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_20_the_pastures",
+          "nameEn": "The pastures",
+          "nameEs": "Las Pasturas del Valle",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1808,
+            4128,
+            640,
+            672
+          ],
+          "worldRect": [
+            4608,
+            6328,
+            640,
+            672
+          ],
+          "finds": [
+            "Praderas de pastoreo",
+            "Hierbas silvestres y mariposas"
+          ],
+          "desc": "Campos abiertos de pastoreo al sur de la Granja de Hollin.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_21_the_halfway_house",
+          "nameEn": "The Halfway House",
+          "nameEs": "Posada del Medio Camino (Halfway House)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3104,
+            3776,
+            464,
+            304
+          ],
+          "worldRect": [
+            5904,
+            5976,
+            464,
+            304
+          ],
+          "finds": [
+            "Punto de descanso en la ruta sur",
+            "Viajeros del valle"
+          ],
+          "desc": "Posada situada a mitad de camino entre la Plaza Central y la playa de la bahía.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_22_the_windmill_rise",
+          "nameEn": "The windmill rise",
+          "nameEs": "Colina del Molino de Viento",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3552,
+            3904,
+            448,
+            400
+          ],
+          "worldRect": [
+            6352,
+            6104,
+            448,
+            400
+          ],
+          "finds": [
+            "Gran Molino de Viento del Sur",
+            "Trigo y molienda"
+          ],
+          "desc": "Colina elevada al este de Southvale coronada por un molino de viento.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_23_ashby_s_orchard",
+          "nameEn": "Ashby's orchard",
+          "nameEs": "Huerto de Ashby",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3408,
+            4608,
+            928,
+            656
+          ],
+          "worldRect": [
+            6208,
+            6808,
+            928,
+            656
+          ],
+          "finds": [
+            "Árboles frutales del sur",
+            "Forraje y madera"
+          ],
+          "desc": "Extenso huerto frutal en el sector sureste de Southvale.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_24_the_gone_wild_farm",
+          "nameEn": "The gone wild farm",
+          "nameEs": "La Granja Asilvestrada (Gone Wild Farm)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1792,
+            4848,
+            624,
+            608
+          ],
+          "worldRect": [
+            4592,
+            7048,
+            624,
+            608
+          ],
+          "finds": [
+            "Cultivos silvestres abandonados",
+            "Forraje raro y semillas"
+          ],
+          "desc": "Antigua granja cubierta por la naturaleza donde crecen brotes silvestres.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "southvale_sub_25_the_salt_meadows",
+          "nameEn": "The salt meadows",
+          "nameEs": "Praderas de Sal (Salt Meadows)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2240,
+            5056,
+            1056,
+            448
+          ],
+          "worldRect": [
+            5040,
+            7256,
+            1056,
+            448
+          ],
+          "finds": [
+            "Hierbas costeras salinas",
+            "Transición hacia la playa"
+          ],
+          "desc": "Marismas y praderas salobres justo antes de desembocar en Bloomshire Bay.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "bloomshire_bay",
+      "name": "Bahía de Bloomshire (Costa Sur)",
+      "enName": "Bloomshire Bay",
+      "icon": "🏖️",
+      "color": "#2dd4bf",
+      "fill": "rgba(15, 118, 110, 0.28)",
+      "worldBounds": [
+        2800,
+        7704,
+        5632,
+        1920
+      ],
+      "desc": "Franja costera y oceánica en el extremo sur del continente: Playa Soleada, Aldea Costera, Muelle Largo, Naufragio, Pozas de Marea, El Faro y Acantilados.",
+      "subZones": [
+        {
+          "id": "bloomshire_bay_sub_16_bloomshire_bay",
+          "nameEn": "Bloomshire Bay",
+          "nameEs": "Bahía de Bloomshire (Costa Sur)",
+          "map": "bloomshire",
+          "isRootBox": true,
+          "localRect": [
+            1792,
+            5504,
+            2560,
+            1920
+          ],
+          "worldRect": [
+            4592,
+            7704,
+            2560,
+            1920
+          ],
+          "finds": [
+            "Playa, Muelle Largo, Faro y Naufragio",
+            "Pesca Marítima de Costa",
+            "Cangrejos y Conchas"
+          ],
+          "desc": "Gran región costera y marítima en el extremo sur del continente.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "pier_night_0",
+              "name": "🌙 Misterio Nocturno del Muelle Largo"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_bay_sub_17_the_west_cliffs",
+          "nameEn": "The west cliffs",
+          "nameEs": "Acantilados del Oeste",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            5504,
+            1792,
+            1920
+          ],
+          "worldRect": [
+            2800,
+            7704,
+            1792,
+            1920
+          ],
+          "finds": [
+            "Rocas costeras y senderos altos"
+          ],
+          "desc": "Macizo costero occidental de la bahía.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_18_the_east_cliffs",
+          "nameEn": "The east cliffs",
+          "nameEs": "Acantilados del Este",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            4352,
+            5504,
+            1280,
+            1920
+          ],
+          "worldRect": [
+            7152,
+            7704,
+            1280,
+            1920
+          ],
+          "finds": [
+            "Faro, Clifftop Walk y Gull Rocks"
+          ],
+          "desc": "Macizo costero oriental de la bahía.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "stonepeak",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_26_the_hamlet",
+          "nameEn": "The hamlet",
+          "nameEs": "La Aldea Costera (The Hamlet)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3088,
+            5632,
+            800,
+            704
+          ],
+          "worldRect": [
+            5888,
+            7832,
+            800,
+            704
+          ],
+          "finds": [
+            "Casas de pescadores de la bahía",
+            "Comerciantes costeros"
+          ],
+          "desc": "Pequeño poblado marinero antes de bajar a la arena de la playa.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_27_the_sunny_beach",
+          "nameEn": "The Sunny Beach",
+          "nameEs": "La Playa Soleada (Sunny Beach)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1920,
+            6272,
+            544,
+            416
+          ],
+          "worldRect": [
+            4720,
+            8472,
+            544,
+            416
+          ],
+          "finds": [
+            "Conchas marinas, arena y pesca de orilla",
+            "Conecta con el Paseo de Tablas"
+          ],
+          "desc": "Playa principal de aguas cálidas al suroeste de la bahía.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_28_the_old_heads",
+          "nameEn": "The Old Heads",
+          "nameEs": "Los Viejos Cabos (The Old Heads)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            1792,
+            6400,
+            256,
+            224
+          ],
+          "worldRect": [
+            4592,
+            8600,
+            256,
+            224
+          ],
+          "finds": [
+            "Formaciones rocosas del suroeste"
+          ],
+          "desc": "Cabos de piedra frente a la Playa Soleada.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_29_the_lookout",
+          "nameEn": "The Lookout",
+          "nameEs": "El Mirador Occidental (The Lookout)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            608,
+            6048,
+            384,
+            224
+          ],
+          "worldRect": [
+            3408,
+            8248,
+            384,
+            224
+          ],
+          "finds": [
+            "Punto panorámico sobre los acantilados del oeste"
+          ],
+          "desc": "Mirador natural en lo alto de The West Cliffs.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_30_the_lighthouse",
+          "nameEn": "The lighthouse",
+          "nameEs": "El Faro de Bloomshire (The Lighthouse)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3968,
+            6080,
+            640,
+            352
+          ],
+          "worldRect": [
+            6768,
+            8280,
+            640,
+            352
+          ],
+          "finds": [
+            "Torre del Faro",
+            "Vista panorámica del océano"
+          ],
+          "desc": "Faro guardián situado sobre el promontorio oriental de la bahía.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_31_the_tide_pools",
+          "nameEn": "The tide pools",
+          "nameEs": "Pozas de Marea (Tide Pools)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3840,
+            6432,
+            512,
+            224
+          ],
+          "worldRect": [
+            6640,
+            8632,
+            512,
+            224
+          ],
+          "finds": [
+            "Crustáceos, estrellas de mar y forraje marino",
+            "Pesca de arrecife"
+          ],
+          "desc": "Formaciones rocosas intermareales al pie del faro.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_32_gull_rocks",
+          "nameEn": "Gull Rocks",
+          "nameEs": "Rocas de las Gaviotas (Gull Rocks)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            4736,
+            6624,
+            448,
+            224
+          ],
+          "worldRect": [
+            7536,
+            8824,
+            448,
+            224
+          ],
+          "finds": [
+            "Islotes rocosos del sureste",
+            "Pesca extrema de acantilado"
+          ],
+          "desc": "Peñascos marinos en el extremo sureste de la bahía.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_33_the_dock_and_the_long_pier",
+          "nameEn": "The dock and the Long Pier",
+          "nameEs": "El Muelle Largo (The Long Pier)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3264,
+            6496,
+            352,
+            448
+          ],
+          "worldRect": [
+            6064,
+            8696,
+            352,
+            448
+          ],
+          "finds": [
+            "Pesca Marina de Aguas Profundas",
+            "Pista Nocturna del Muelle (Pier Night)",
+            "Peces raros de océano"
+          ],
+          "desc": "El muelle más largo de Bloomshire, ideal para pescar especies marinas y completar misiones nocturnas.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "pier_night_0",
+              "name": "🌙 Misterio Nocturno del Muelle Largo"
+            }
+          ]
+        },
+        {
+          "id": "bloomshire_bay_sub_34_the_beach_boardwalk",
+          "nameEn": "The beach boardwalk",
+          "nameEs": "Paseo Marítimo de Madera",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2512,
+            6256,
+            464,
+            80
+          ],
+          "worldRect": [
+            5312,
+            8456,
+            464,
+            80
+          ],
+          "finds": [
+            "Pasarela costera",
+            "Vistas a la bahía"
+          ],
+          "desc": "Paseo entablado que une la Playa Soleada con la fogata y el muelle.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_35_the_old_wreck",
+          "nameEn": "The old wreck",
+          "nameEs": "El Viejo Naufragio (The Old Wreck)",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            3600,
+            6416,
+            208,
+            160
+          ],
+          "worldRect": [
+            6400,
+            8616,
+            208,
+            160
+          ],
+          "finds": [
+            "Restos de barco hundido",
+            "Tesoros y pistas costeras"
+          ],
+          "desc": "Casco de un antiguo navío encallado al este del Muelle Largo.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_36_the_beach_fire",
+          "nameEn": "The beach fire",
+          "nameEs": "La Fogata de la Playa",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            2976,
+            6464,
+            160,
+            144
+          ],
+          "worldRect": [
+            5776,
+            8664,
+            160,
+            144
+          ],
+          "finds": [
+            "Hoguera de campamento costero",
+            "Punto de reunión nocturno"
+          ],
+          "desc": "Zona de descanso junto al fuego frente al mar.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "bloomshire_bay_sub_37_the_clifftop_walk",
+          "nameEn": "The clifftop walk",
+          "nameEs": "Sendero del Acantilado Este",
+          "map": "bloomshire",
+          "isRootBox": false,
+          "localRect": [
+            4256,
+            6272,
+            1312,
+            192
+          ],
+          "worldRect": [
+            7056,
+            8472,
+            1312,
+            192
+          ],
+          "finds": [
+            "Mirador costero",
+            "Hierbas de viento"
+          ],
+          "desc": "Camino elevado sobre los acantilados orientales.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "everbloom",
+      "name": "The Everbloom (Noroeste Élfico)",
+      "enName": "The Everbloom",
+      "icon": "🌸",
+      "color": "#f472b6",
+      "fill": "rgba(131, 24, 67, 0.28)",
+      "worldBounds": [
+        1550,
+        120,
+        2560,
+        1920
+      ],
+      "desc": "Reino feérico al noroeste de Whisperwood (vía Elfgate): Ciudad Élfica, Árbol Corazón, Piscinas de Cristal, Jardín de la Reina y Cañada de Hongos.",
+      "subZones": [
+        {
+          "id": "everbloom_sub_0_the_everbloom",
+          "nameEn": "The Everbloom",
+          "nameEs": "The Everbloom (Reino Élfico)",
+          "map": "everbloom",
+          "isRootBox": true,
+          "localRect": [
+            0,
+            0,
+            2560,
+            1920
+          ],
+          "worldRect": [
+            1550,
+            120,
+            2560,
+            1920
+          ],
+          "finds": [
+            "Ciudad Élfica, Árbol Corazón y Jardín de la Reina",
+            "Parcelas de cultivo élficas"
+          ],
+          "desc": "Reino de primavera eterna al noroeste de Whisperwood.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "liora",
+              "name": "Liora",
+              "inBuilding": false
+            },
+            {
+              "id": "faelan",
+              "name": "Faelan",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_1_the_gate_terrace",
+          "nameEn": "The Gate Terrace",
+          "nameEs": "Terraza del Portal (The Elfgate)",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            1152,
+            1664,
+            256,
+            256
+          ],
+          "worldRect": [
+            2702,
+            1784,
+            256,
+            256
+          ],
+          "finds": [
+            "Portal de regreso a Whisperwood"
+          ],
+          "desc": "Entrada monumental al sur de The Everbloom.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_2_the_heart_tree",
+          "nameEn": "The Heart Tree",
+          "nameEs": "El Árbol Corazón (Heart Tree)",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            928,
+            -56,
+            704,
+            512
+          ],
+          "worldRect": [
+            2478,
+            64,
+            704,
+            512
+          ],
+          "finds": [
+            "Santuario central del Árbol Sagrado"
+          ],
+          "desc": "Árbol gigantesco que da vida a todo Everbloom en el extremo norte.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_3_the_elf_city",
+          "nameEn": "The elf city",
+          "nameEs": "La Ciudad Élfica",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            864,
+            512,
+            1024,
+            480
+          ],
+          "worldRect": [
+            2414,
+            632,
+            1024,
+            480
+          ],
+          "finds": [
+            "NPCs Liora y Faelan",
+            "Arquitectura y fuentes élficas"
+          ],
+          "desc": "Capital de los elfos en el centro del reino.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "liora",
+              "name": "Liora",
+              "inBuilding": false
+            },
+            {
+              "id": "faelan",
+              "name": "Faelan",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_4_the_market_terrace",
+          "nameEn": "The Market Terrace",
+          "nameEs": "Terraza del Mercado Élfico",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            1088,
+            848,
+            416,
+            128
+          ],
+          "worldRect": [
+            2638,
+            968,
+            416,
+            128
+          ],
+          "finds": [
+            "Puestos e intercambios élficos"
+          ],
+          "desc": "Plaza comercial dentro de la Ciudad Élfica.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "faelan",
+              "name": "Faelan",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_5_the_bloom_queen_s_garden",
+          "nameEn": "The Bloom Queen's garden",
+          "nameEs": "Jardín de la Reina del Florecimiento",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            128,
+            256,
+            608,
+            704
+          ],
+          "worldRect": [
+            1678,
+            376,
+            608,
+            704
+          ],
+          "finds": [
+            "Flores reales y mariposas exóticas"
+          ],
+          "desc": "Jardines imperiales al oeste de la ciudad.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_6_the_crystal_pools",
+          "nameEn": "The Crystal Pools",
+          "nameEs": "Las Piscinas de Cristal",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            32,
+            0,
+            544,
+            288
+          ],
+          "worldRect": [
+            1582,
+            120,
+            544,
+            288
+          ],
+          "finds": [
+            "Aguas cristalinas curativas y pesca feérica"
+          ],
+          "desc": "Estanques luminosos en la esquina noroeste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_7_the_fairy_knight_s_bridge",
+          "nameEn": "The Fairy Knight's bridge",
+          "nameEs": "Puente del Caballero Hada",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            1760,
+            704,
+            512,
+            192
+          ],
+          "worldRect": [
+            3310,
+            824,
+            512,
+            192
+          ],
+          "finds": [
+            "Puente ornamental hacia los prados del este"
+          ],
+          "desc": "Puente que cruza el río interior de Everbloom.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_8_the_east_meadow",
+          "nameEn": "The east meadow",
+          "nameEs": "Pradera Oriental Élfica",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            2064,
+            416,
+            496,
+            608
+          ],
+          "worldRect": [
+            3614,
+            536,
+            496,
+            608
+          ],
+          "finds": [
+            "Forraje y flores luminosas"
+          ],
+          "desc": "Prados al este del puente.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_9_the_mushroom_glen",
+          "nameEn": "The Mushroom Glen",
+          "nameEs": "Cañada de los Hongos + Parcelas Élficas",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            1728,
+            1184,
+            832,
+            736
+          ],
+          "worldRect": [
+            3278,
+            1304,
+            832,
+            736
+          ],
+          "finds": [
+            "Parcelas de Cultivo en Everbloom",
+            "Setas feéricas raras"
+          ],
+          "desc": "Sector sureste con tierra cultivable y hongos gigantes.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_10_the_lake",
+          "nameEn": "The lake",
+          "nameEs": "Lago de Everbloom",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            96,
+            1248,
+            704,
+            576
+          ],
+          "worldRect": [
+            1646,
+            1368,
+            704,
+            576
+          ],
+          "finds": [
+            "Pesca élfica en el suroeste"
+          ],
+          "desc": "Lago sereno al suroeste del reino.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_11_the_orchards",
+          "nameEn": "The orchards",
+          "nameEs": "Huertos Élficos",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            704,
+            1152,
+            512,
+            640
+          ],
+          "worldRect": [
+            2254,
+            1272,
+            512,
+            640
+          ],
+          "finds": [
+            "Frutas doradas y árboles en flor"
+          ],
+          "desc": "Huertos situados entre el lago y el portal.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "everbloom_sub_12_the_falls",
+          "nameEn": "The falls",
+          "nameEs": "Cascadas de Everbloom",
+          "map": "everbloom",
+          "isRootBox": false,
+          "localRect": [
+            2080,
+            0,
+            480,
+            448
+          ],
+          "worldRect": [
+            3630,
+            120,
+            480,
+            448
+          ],
+          "finds": [
+            "Cataratas del noreste"
+          ],
+          "desc": "Nacimiento de agua en el noreste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "frosthaven",
+      "name": "Frosthaven (Noreste Helado)",
+      "enName": "Frosthaven",
+      "icon": "❄️",
+      "color": "#67e8f9",
+      "fill": "rgba(21, 94, 117, 0.30)",
+      "worldBounds": [
+        5850,
+        120,
+        2688,
+        1952
+      ],
+      "desc": "Cumbres congeladas al noreste de Stonepeak (vía The Frost Pass): Lago Congelado, Jardín de Escarcha, Campamento de Cazadores y 9 NPCs nórdicos.",
+      "subZones": [
+        {
+          "id": "frosthaven_sub_0_frosthaven",
+          "nameEn": "Frosthaven",
+          "nameEs": "Frosthaven (Tierras Heladas del Noreste)",
+          "map": "frosthaven",
+          "isRootBox": true,
+          "localRect": [
+            0,
+            0,
+            2688,
+            1952
+          ],
+          "worldRect": [
+            5850,
+            120,
+            2688,
+            1952
+          ],
+          "finds": [
+            "9 NPCs Nórdicos (Hakon, Ylva, Liv, Toke, Inga, Eira, Bjorn, Gunnar, Sigrun)",
+            "Lago Congelado y Parcelas de Escarcha"
+          ],
+          "desc": "Región glacial al noreste de Stonepeak.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "stonepeak",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "hakon",
+              "name": "Hakon",
+              "inBuilding": false
+            },
+            {
+              "id": "ylva",
+              "name": "Ylva",
+              "inBuilding": false
+            },
+            {
+              "id": "liv",
+              "name": "Liv",
+              "inBuilding": false
+            },
+            {
+              "id": "toke",
+              "name": "Toke",
+              "inBuilding": false
+            },
+            {
+              "id": "inga",
+              "name": "Inga",
+              "inBuilding": false
+            },
+            {
+              "id": "eira",
+              "name": "Eira",
+              "inBuilding": false
+            },
+            {
+              "id": "bjorn",
+              "name": "Bjorn",
+              "inBuilding": false
+            },
+            {
+              "id": "gunnar",
+              "name": "Gunnar",
+              "inBuilding": false
+            },
+            {
+              "id": "sigrun",
+              "name": "Sigrun",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "frosthaven_sub_1_the_frozen_lake",
+          "nameEn": "The frozen lake",
+          "nameEs": "El Lago Congelado",
+          "map": "frosthaven",
+          "isRootBox": false,
+          "localRect": [
+            1280,
+            704,
+            864,
+            672
+          ],
+          "worldRect": [
+            7130,
+            824,
+            864,
+            672
+          ],
+          "finds": [
+            "Hakon, Inga, Ylva y Liv en los alrededores",
+            "Pesca en hielo"
+          ],
+          "desc": "Gran lago helado en el corazón de Frosthaven.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "hakon",
+              "name": "Hakon",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "frosthaven_sub_2_the_failing_frost",
+          "nameEn": "The failing frost",
+          "nameEs": "La Escarcha Menguante",
+          "map": "frosthaven",
+          "isRootBox": false,
+          "localRect": [
+            1728,
+            192,
+            736,
+            544
+          ],
+          "worldRect": [
+            7578,
+            312,
+            736,
+            544
+          ],
+          "finds": [
+            "Deshielo del norte y cristales"
+          ],
+          "desc": "Sector norte donde el hielo empieza a ceder.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "frosthaven_sub_3_the_old_frost_garden",
+          "nameEn": "The old frost garden",
+          "nameEs": "El Antiguo Jardín de Escarcha",
+          "map": "frosthaven",
+          "isRootBox": false,
+          "localRect": [
+            2336,
+            480,
+            336,
+            288
+          ],
+          "worldRect": [
+            8186,
+            600,
+            336,
+            288
+          ],
+          "finds": [
+            "Flora invernal ancestral"
+          ],
+          "desc": "Jardín helado en el extremo este.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "frosthaven_sub_4_the_hunters_camp",
+          "nameEn": "The hunters' camp",
+          "nameEs": "Campamento de Cazadores (Eira)",
+          "map": "frosthaven",
+          "isRootBox": false,
+          "localRect": [
+            2288,
+            1440,
+            224,
+            192
+          ],
+          "worldRect": [
+            8138,
+            1560,
+            224,
+            192
+          ],
+          "finds": [
+            "NPC Eira",
+            "Pieles y suministros árticos"
+          ],
+          "desc": "Campamento en el sureste de Frosthaven.",
+          "doors": [],
+          "npcs": [
+            {
+              "id": "eira",
+              "name": "Eira",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "frosthaven_sub_5_the_beds_in_the_wood",
+          "nameEn": "The beds in the wood",
+          "nameEs": "Bancales del Bosque Helado (Parcelas)",
+          "map": "frosthaven",
+          "isRootBox": false,
+          "localRect": [
+            2336,
+            800,
+            304,
+            320
+          ],
+          "worldRect": [
+            8186,
+            920,
+            304,
+            320
+          ],
+          "finds": [
+            "2x Zonas de Cultivo de Invierno"
+          ],
+          "desc": "Parcelas agrícolas protegidas entre los pinos del este.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "barrowmire",
+      "name": "The Barrowmire / Night Court (Oeste)",
+      "enName": "The Barrowmire",
+      "icon": "💀",
+      "color": "#c084fc",
+      "fill": "rgba(88, 28, 135, 0.30)",
+      "worldBounds": [
+        80,
+        2200,
+        2560,
+        1920
+      ],
+      "desc": "Pantano sombrío y necrópolis al oeste de Whisperwood (vía The Sealed Stair): Puerta del Ahorcado, Rotmire, Necrópolis, Yermos de Hueso y Abadía.",
+      "subZones": [
+        {
+          "id": "barrowmire_sub_0_the_hanged_gate",
+          "nameEn": "The Hanged Gate",
+          "nameEs": "La Puerta del Ahorcado (Entrada a Barrowmire)",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            960,
+            1536,
+            672,
+            384
+          ],
+          "worldRect": [
+            1040,
+            3736,
+            672,
+            384
+          ],
+          "finds": [
+            "Portal de regreso a Whisperwood (The Sealed Stair)"
+          ],
+          "desc": "Entrada sureste a la ciénaga de Barrowmire.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_1_the_weeping_field",
+          "nameEn": "The Weeping Field",
+          "nameEs": "El Campo del Llanto",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            800,
+            768,
+            1024,
+            768
+          ],
+          "worldRect": [
+            880,
+            2968,
+            1024,
+            768
+          ],
+          "finds": [
+            "Parcela de cultivo sombría",
+            "Hierbas de pantano"
+          ],
+          "desc": "Llanura central de Barrowmire.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_2_the_rotmire",
+          "nameEn": "The Rotmire",
+          "nameEs": "Ciénaga de la Podredumbre (The Rotmire)",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            896,
+            864,
+            1024
+          ],
+          "worldRect": [
+            80,
+            3096,
+            864,
+            1024
+          ],
+          "finds": [
+            "Alijos del Pantano (Marsh Caches)",
+            "Criaturas de ciénaga"
+          ],
+          "desc": "Pantano tóxico en el sector suroeste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_3_the_thornwood",
+          "nameEn": "The Thornwood",
+          "nameEs": "Bosque de Espinos (Thornwood)",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            0,
+            928,
+            896
+          ],
+          "worldRect": [
+            80,
+            2200,
+            928,
+            896
+          ],
+          "finds": [
+            "Madera espinosa y setas oscuras"
+          ],
+          "desc": "Bosque retorcido al noroeste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_4_the_necropolis",
+          "nameEn": "The Necropolis",
+          "nameEs": "La Necrópolis (Corte Nocturna)",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            928,
+            0,
+            736,
+            480
+          ],
+          "worldRect": [
+            1008,
+            2200,
+            736,
+            480
+          ],
+          "finds": [
+            "Criptas antiguas y la Bóveda Nocturna (Night Vault)"
+          ],
+          "desc": "Ciudadela funeraria en el norte de Barrowmire.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_5_the_terrace",
+          "nameEn": "The Terrace",
+          "nameEs": "La Terraza de Piedra",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            800,
+            416,
+            960,
+            320
+          ],
+          "worldRect": [
+            880,
+            2616,
+            960,
+            320
+          ],
+          "finds": [
+            "Mirador hacia la Necrópolis"
+          ],
+          "desc": "Escalalinata central entre el Campo del Llanto y la Necrópolis.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_6_the_bone_barrens",
+          "nameEn": "The Bone Barrens",
+          "nameEs": "Yermos de Hueso (Bone Barrens)",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            1664,
+            0,
+            896,
+            1056
+          ],
+          "worldRect": [
+            1744,
+            2200,
+            896,
+            1056
+          ],
+          "finds": [
+            "Esqueletos y restos ancestrales"
+          ],
+          "desc": "Desierto de huesos en el noreste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "barrowmire_sub_7_the_mourners_abbey",
+          "nameEn": "The Mourners' Abbey",
+          "nameEs": "Abadía de los Dolientes",
+          "map": "barrowmire",
+          "isRootBox": false,
+          "localRect": [
+            1728,
+            992,
+            832,
+            928
+          ],
+          "worldRect": [
+            1808,
+            3192,
+            832,
+            928
+          ],
+          "finds": [
+            "Ruinas de la abadía y reliquias"
+          ],
+          "desc": "Monasterio gótico en el extremo sureste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "dreaming_fields",
+      "name": "The Dreaming Fields (Suroeste)",
+      "enName": "The Dreaming Fields",
+      "icon": "✨",
+      "color": "#e879f9",
+      "fill": "rgba(112, 26, 117, 0.28)",
+      "worldBounds": [
+        1100,
+        4350,
+        1536,
+        1152
+      ],
+      "desc": "Campos oníricos al oeste de Whisperwood (Capítulos 14-16): Hierba Pálida, Estanque Espejo, Flores de Vidrio y el Antiguo Pavimento con las 12 Sombras.",
+      "subZones": [
+        {
+          "id": "dreaming_fields_sub_0_the_end_of_the_road",
+          "nameEn": "The end of the road",
+          "nameEs": "El Final del Camino (Entrada)",
+          "map": "dreaming_fields",
+          "isRootBox": false,
+          "localRect": [
+            480,
+            800,
+            544,
+            352
+          ],
+          "worldRect": [
+            1580,
+            5150,
+            544,
+            352
+          ],
+          "finds": [
+            "Camino de regreso a Whisperwood"
+          ],
+          "desc": "Llegada del Camino Antiguo al sur de los Campos Soñados.",
+          "doors": [
+            {
+              "name": "🚪 Paso a Bloomshire",
+              "to": "whisperwood",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "dreaming_fields_sub_1_the_pale_grass",
+          "nameEn": "The pale grass",
+          "nameEs": "La Hierba Pálida",
+          "map": "dreaming_fields",
+          "isRootBox": false,
+          "localRect": [
+            0,
+            0,
+            1536,
+            704
+          ],
+          "worldRect": [
+            1100,
+            4350,
+            1536,
+            704
+          ],
+          "finds": [
+            "Praderas oníricas del Cap. 14-16"
+          ],
+          "desc": "Extensa llanura blanca del mundo de los sueños.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "pavement_0",
+              "name": "🏛️ Altar del Pavimento Antiguo"
+            },
+            {
+              "id": "shade_0_0",
+              "name": "✨ Pista: shade 0"
+            },
+            {
+              "id": "shade_1_0",
+              "name": "✨ Pista: shade 1"
+            },
+            {
+              "id": "shade_2_0",
+              "name": "✨ Pista: shade 2"
+            },
+            {
+              "id": "shade_3_0",
+              "name": "✨ Pista: shade 3"
+            },
+            {
+              "id": "shade_4_0",
+              "name": "✨ Pista: shade 4"
+            },
+            {
+              "id": "shade_5_0",
+              "name": "✨ Pista: shade 5"
+            },
+            {
+              "id": "shade_6_0",
+              "name": "✨ Pista: shade 6"
+            },
+            {
+              "id": "shade_7_0",
+              "name": "✨ Pista: shade 7"
+            },
+            {
+              "id": "shade_8_0",
+              "name": "✨ Pista: shade 8"
+            },
+            {
+              "id": "shade_9_0",
+              "name": "✨ Pista: shade 9"
+            },
+            {
+              "id": "shade_10_0",
+              "name": "✨ Pista: shade 10"
+            },
+            {
+              "id": "shade_11_0",
+              "name": "✨ Pista: shade 11"
+            }
+          ]
+        },
+        {
+          "id": "dreaming_fields_sub_2_the_mirror_pool",
+          "nameEn": "The mirror pool",
+          "nameEs": "El Estanque Espejo",
+          "map": "dreaming_fields",
+          "isRootBox": false,
+          "localRect": [
+            192,
+            336,
+            320,
+            208
+          ],
+          "worldRect": [
+            1292,
+            4686,
+            320,
+            208
+          ],
+          "finds": [
+            "Reflejos del sueño y pistas de historia"
+          ],
+          "desc": "Espejo de agua al oeste.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "dreaming_fields_sub_3_the_glass_flowers",
+          "nameEn": "The glass flowers",
+          "nameEs": "Las Flores de Vidrio",
+          "map": "dreaming_fields",
+          "isRootBox": false,
+          "localRect": [
+            928,
+            384,
+            368,
+            208
+          ],
+          "worldRect": [
+            2028,
+            4734,
+            368,
+            208
+          ],
+          "finds": [
+            "Flores cristalinas resonantes"
+          ],
+          "desc": "Jardín de cristal al este de los campos.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        },
+        {
+          "id": "dreaming_fields_sub_4_the_old_pavement",
+          "nameEn": "The old pavement",
+          "nameEs": "El Antiguo Pavimento (Las 12 Sombras)",
+          "map": "dreaming_fields",
+          "isRootBox": false,
+          "localRect": [
+            576,
+            48,
+            368,
+            368
+          ],
+          "worldRect": [
+            1676,
+            4398,
+            368,
+            368
+          ],
+          "finds": [
+            "12 Sombras (Shade 0 a Shade 11)",
+            "Pista central del Pavimento"
+          ],
+          "desc": "Ruina circular en el norte donde aparecen las 12 figuras sombrías.",
+          "doors": [],
+          "npcs": [],
+          "clues": [
+            {
+              "id": "pavement_0",
+              "name": "🏛️ Altar del Pavimento Antiguo"
+            },
+            {
+              "id": "shade_0_0",
+              "name": "✨ Pista: shade 0"
+            },
+            {
+              "id": "shade_1_0",
+              "name": "✨ Pista: shade 1"
+            },
+            {
+              "id": "shade_2_0",
+              "name": "✨ Pista: shade 2"
+            },
+            {
+              "id": "shade_3_0",
+              "name": "✨ Pista: shade 3"
+            },
+            {
+              "id": "shade_4_0",
+              "name": "✨ Pista: shade 4"
+            },
+            {
+              "id": "shade_5_0",
+              "name": "✨ Pista: shade 5"
+            },
+            {
+              "id": "shade_6_0",
+              "name": "✨ Pista: shade 6"
+            },
+            {
+              "id": "shade_7_0",
+              "name": "✨ Pista: shade 7"
+            },
+            {
+              "id": "shade_8_0",
+              "name": "✨ Pista: shade 8"
+            },
+            {
+              "id": "shade_9_0",
+              "name": "✨ Pista: shade 9"
+            },
+            {
+              "id": "shade_10_0",
+              "name": "✨ Pista: shade 10"
+            },
+            {
+              "id": "shade_11_0",
+              "name": "✨ Pista: shade 11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home_island",
+      "name": "Home Island (Tu Isla Privada)",
+      "enName": "Home Island",
+      "icon": "🏡",
+      "color": "#84cc16",
+      "fill": "rgba(54, 83, 20, 0.35)",
+      "worldBounds": [
+        3650,
+        9750,
+        768,
+        512
+      ],
+      "desc": "Tu isla personal en el mar del sur (conectada en bote): Cabaña con Cama (450⚡/día UTC), Estufa de cocina, Cofre de 40 slots y tus parcelas de cultivo.",
+      "subZones": [
+        {
+          "id": "home_cottage_sub",
+          "nameEn": "Your Cottage & Dock",
+          "nameEs": "Tu Cabaña, Cama (450⚡) y Cofre (40 slots)",
+          "map": "home_island",
+          "isRootBox": false,
+          "localRect": [
+            280,
+            180,
+            220,
+            220
+          ],
+          "worldRect": [
+            3930,
+            9930,
+            220,
+            220
+          ],
+          "finds": [
+            "Cama (450⚡ de sueño por día UTC)",
+            "Estufa gratis para cocinar",
+            "Cofre de Roble de 40 espacios",
+            "Marlow"
+          ],
+          "desc": "Tu hogar en la isla y el muelle de regreso al pueblo.",
+          "doors": [
+            {
+              "name": "🏠 Interior de tu Cabaña",
+              "to": "interior_home",
+              "kind": "interior"
+            },
+            {
+              "name": "⛵ Bote a Bloomshire Town",
+              "to": "bloomshire",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "marlow",
+              "name": "Marlow",
+              "inBuilding": false
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "home_farm_sub",
+          "nameEn": "Island Farm Plots",
+          "nameEs": "Parcelas de Cultivo de la Isla",
+          "map": "home_island",
+          "isRootBox": false,
+          "localRect": [
+            180,
+            150,
+            140,
+            160
+          ],
+          "worldRect": [
+            3830,
+            9900,
+            140,
+            160
+          ],
+          "finds": [
+            "Bancales privados de cultivo (-20% tiempo con 10 Founders)",
+            "Riego y cosecha sin competencia"
+          ],
+          "desc": "Terreno agrícola privado junto a tu cabaña.",
+          "doors": [],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    },
+    {
+      "id": "vip_quarter",
+      "name": "Barrio VIP, Coliseo & The Dungeon",
+      "enName": "The VIP Quarter & Colosseum",
+      "icon": "👑",
+      "color": "#fde047",
+      "fill": "rgba(161, 98, 7, 0.32)",
+      "worldBounds": [
+        5100,
+        9600,
+        2038,
+        928
+      ],
+      "desc": "Isla dorada para portadores de Founding Farmers: Mansión VIP, Biblioteca, Tienda VIP, Invernadero Celestial, El Coliseo y la entrada a The Dungeon (6 Pisos).",
+      "subZones": [
+        {
+          "id": "vip_manor_sub",
+          "nameEn": "VIP Manor, Shop, Library & Greenhouse",
+          "nameEs": "Mansión VIP, Tienda, Biblioteca e Invernadero Celestial",
+          "map": "vip_quarter",
+          "isRootBox": false,
+          "localRect": [
+            20,
+            80,
+            740,
+            540
+          ],
+          "worldRect": [
+            5120,
+            9800,
+            740,
+            540
+          ],
+          "finds": [
+            "Tienda VIP (Celeste): Semillas de Calabaza Dorada, Arándano Zafiro, Fresa Diamante y Pimiento Fuego Solar",
+            "Invernadero VIP (Fern) y 4 Cuadrantes de Cultivo Gratis en Energía",
+            "Mansión VIP (Pemberton - Estufa) y Biblioteca (Sylvie)",
+            "VIP Exchange (Augustin)"
+          ],
+          "desc": "Complejo exclusivo para tenedores de 10 Founding Farmers donde ninguna acción gasta energía.",
+          "doors": [
+            {
+              "name": "🏠 The Manor (Mansión VIP)",
+              "to": "interior_vip_manor",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 The VIP Shop (Semillas VIP)",
+              "to": "interior_vip_shop",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 The Greenhouse (Invernadero)",
+              "to": "interior_vip_greenhouse",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 The Library",
+              "to": "interior_vip_library",
+              "kind": "interior"
+            },
+            {
+              "name": "🏠 The VIP Exchange",
+              "to": "interior_vip_exchange",
+              "kind": "interior"
+            },
+            {
+              "name": "🕳️ Entrada a The Dungeon (6 Pisos)",
+              "to": "dungeon_court",
+              "kind": "cave"
+            }
+          ],
+          "npcs": [
+            {
+              "id": "amelia",
+              "name": "Amelia",
+              "inBuilding": false
+            },
+            {
+              "id": "theo",
+              "name": "Theo",
+              "inBuilding": false
+            },
+            {
+              "id": "iris",
+              "name": "Iris",
+              "inBuilding": false
+            },
+            {
+              "id": "celeste",
+              "name": "Celeste",
+              "inBuilding": "The VIP Shop"
+            },
+            {
+              "id": "fern",
+              "name": "Fern",
+              "inBuilding": "The Greenhouse"
+            },
+            {
+              "id": "pemberton",
+              "name": "Pemberton",
+              "inBuilding": "The Manor"
+            }
+          ],
+          "clues": []
+        },
+        {
+          "id": "colosseum_sub",
+          "nameEn": "The Colosseum & The Dungeon (Floors 1-6)",
+          "nameEs": "El Coliseo & La Mazmorra (6 Pisos)",
+          "map": "colosseum",
+          "isRootBox": false,
+          "localRect": [
+            40,
+            40,
+            1000,
+            840
+          ],
+          "worldRect": [
+            6090,
+            9640,
+            1000,
+            840
+          ],
+          "finds": [
+            "Arena del Coliseo (Combate y Torneos)",
+            "Piso 1: The Crypt Gate (1a, 1b, 1c)",
+            "Piso 2: The Storerooms (2a, 2b, 2c)",
+            "Piso 3: The Flooded Halls (3a, 3b, 3c)",
+            "Piso 4: The Trap Halls (4a, 4b, 4c)",
+            "Piso 5: The Forge (5a, 5b, 5c)",
+            "Piso 6: The Dungeon Lord's Hall (Jefe Final)"
+          ],
+          "desc": "Coliseo oriental del Barrio VIP y estructura completa de los 6 niveles de The Dungeon.",
+          "doors": [
+            {
+              "name": "🚪 Regreso al Barrio VIP",
+              "to": "vip_quarter",
+              "kind": "region_exit"
+            }
+          ],
+          "npcs": [],
+          "clues": []
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "home_island_door_0_interior_home",
+      "map": "home_island",
+      "to": "interior_home",
+      "name": "🏠 Home",
+      "kind": "interior",
+      "localRect": [
+        376,
+        252,
+        16,
+        20
+      ],
+      "worldRect": [
+        4026,
+        10002,
+        32,
+        32
+      ],
+      "wx": 4034,
+      "wy": 10012
+    },
+    {
+      "id": "home_island_door_1_bloomshire",
+      "map": "home_island",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        287,
+        389,
+        48,
+        12
+      ],
+      "worldRect": [
+        3937,
+        10139,
+        48,
+        32
+      ],
+      "wx": 3961,
+      "wy": 10145
+    },
+    {
+      "id": "bloomshire_door_0_whisperwood",
+      "map": "bloomshire",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        3616,
+        16,
+        32
+      ],
+      "worldRect": [
+        4576,
+        5816,
+        32,
+        32
+      ],
+      "wx": 4584,
+      "wy": 5832
+    },
+    {
+      "id": "bloomshire_door_1_whisperwood",
+      "map": "bloomshire",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        5104,
+        16,
+        32
+      ],
+      "worldRect": [
+        4576,
+        7304,
+        32,
+        32
+      ],
+      "wx": 4584,
+      "wy": 7320
+    },
+    {
+      "id": "bloomshire_door_2_stonepeak",
+      "map": "bloomshire",
+      "to": "stonepeak",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        3840,
+        3280,
+        16,
+        32
+      ],
+      "worldRect": [
+        6640,
+        5480,
+        32,
+        32
+      ],
+      "wx": 6648,
+      "wy": 5496
+    },
+    {
+      "id": "bloomshire_door_3_interior_carpenter",
+      "map": "bloomshire",
+      "to": "interior_carpenter",
+      "name": "🏠 Carpenter Workshop",
+      "kind": "interior",
+      "localRect": [
+        3581,
+        2005,
+        32,
+        20
+      ],
+      "worldRect": [
+        6381,
+        4205,
+        32,
+        32
+      ],
+      "wx": 6397,
+      "wy": 4215
+    },
+    {
+      "id": "bloomshire_door_4_interior_bank",
+      "map": "bloomshire",
+      "to": "interior_bank",
+      "name": "🏠 Bank",
+      "kind": "interior",
+      "localRect": [
+        3482,
+        2409,
+        32,
+        20
+      ],
+      "worldRect": [
+        6282,
+        4609,
+        32,
+        32
+      ],
+      "wx": 6298,
+      "wy": 4619
+    },
+    {
+      "id": "bloomshire_door_5_interior_storehouse",
+      "map": "bloomshire",
+      "to": "interior_storehouse",
+      "name": "🏠 Storehouse",
+      "kind": "interior",
+      "localRect": [
+        3465,
+        2583,
+        32,
+        20
+      ],
+      "worldRect": [
+        6265,
+        4783,
+        32,
+        32
+      ],
+      "wx": 6281,
+      "wy": 4793
+    },
+    {
+      "id": "bloomshire_door_6_interior_exchange",
+      "map": "bloomshire",
+      "to": "interior_exchange",
+      "name": "🏠 Exchange",
+      "kind": "interior",
+      "localRect": [
+        3241,
+        2400,
+        32,
+        20
+      ],
+      "worldRect": [
+        6041,
+        4600,
+        32,
+        32
+      ],
+      "wx": 6057,
+      "wy": 4610
+    },
+    {
+      "id": "bloomshire_door_7_interior_general_store",
+      "map": "bloomshire",
+      "to": "interior_general_store",
+      "name": "🏠 General Store",
+      "kind": "interior",
+      "localRect": [
+        2729,
+        2090,
+        32,
+        20
+      ],
+      "worldRect": [
+        5529,
+        4290,
+        32,
+        32
+      ],
+      "wx": 5545,
+      "wy": 4300
+    },
+    {
+      "id": "bloomshire_door_8_interior_bakery",
+      "map": "bloomshire",
+      "to": "interior_bakery",
+      "name": "🏠 Bakery",
+      "kind": "interior",
+      "localRect": [
+        2298,
+        2036,
+        16,
+        20
+      ],
+      "worldRect": [
+        5098,
+        4236,
+        32,
+        32
+      ],
+      "wx": 5106,
+      "wy": 4246
+    },
+    {
+      "id": "bloomshire_door_9_interior_apothecary",
+      "map": "bloomshire",
+      "to": "interior_apothecary",
+      "name": "🏠 Apothecary",
+      "kind": "interior",
+      "localRect": [
+        1986,
+        1780,
+        16,
+        20
+      ],
+      "worldRect": [
+        4786,
+        3980,
+        32,
+        32
+      ],
+      "wx": 4794,
+      "wy": 3990
+    },
+    {
+      "id": "bloomshire_door_10_interior_seed_and_tool",
+      "map": "bloomshire",
+      "to": "interior_seed_and_tool",
+      "name": "🏠 Seed and Tool Shop",
+      "kind": "interior",
+      "localRect": [
+        3185,
+        2129,
+        16,
+        20
+      ],
+      "worldRect": [
+        5985,
+        4329,
+        32,
+        32
+      ],
+      "wx": 5993,
+      "wy": 4339
+    },
+    {
+      "id": "bloomshire_door_11_interior_market_hall",
+      "map": "bloomshire",
+      "to": "interior_market_hall",
+      "name": "🏠 Market Hall",
+      "kind": "interior",
+      "localRect": [
+        3079,
+        2630,
+        32,
+        20
+      ],
+      "worldRect": [
+        5879,
+        4830,
+        32,
+        32
+      ],
+      "wx": 5895,
+      "wy": 4840
+    },
+    {
+      "id": "bloomshire_door_12_interior_tailor",
+      "map": "bloomshire",
+      "to": "interior_tailor",
+      "name": "🏠 Tailor",
+      "kind": "interior",
+      "localRect": [
+        2184,
+        2379,
+        16,
+        20
+      ],
+      "worldRect": [
+        4984,
+        4579,
+        32,
+        32
+      ],
+      "wx": 4992,
+      "wy": 4589
+    },
+    {
+      "id": "bloomshire_door_13_interior_school",
+      "map": "bloomshire",
+      "to": "interior_school",
+      "name": "🏠 School",
+      "kind": "interior",
+      "localRect": [
+        3472,
+        1588,
+        32,
+        20
+      ],
+      "worldRect": [
+        6272,
+        3788,
+        32,
+        32
+      ],
+      "wx": 6288,
+      "wy": 3798
+    },
+    {
+      "id": "bloomshire_door_14_interior_fisherman",
+      "map": "bloomshire",
+      "to": "interior_fisherman",
+      "name": "🏠 Fisherman's cottage",
+      "kind": "interior",
+      "localRect": [
+        2847,
+        2692,
+        16,
+        20
+      ],
+      "worldRect": [
+        5647,
+        4892,
+        32,
+        32
+      ],
+      "wx": 5655,
+      "wy": 4902
+    },
+    {
+      "id": "bloomshire_door_15_home_island",
+      "map": "bloomshire",
+      "to": "home_island",
+      "name": "🚪 Paso a Home Island",
+      "kind": "region_exit",
+      "localRect": [
+        2704,
+        2800,
+        32,
+        12
+      ],
+      "worldRect": [
+        5504,
+        5000,
+        32,
+        32
+      ],
+      "wx": 5520,
+      "wy": 5006
+    },
+    {
+      "id": "bloomshire_door_16_interior_blacksmith",
+      "map": "bloomshire",
+      "to": "interior_blacksmith",
+      "name": "🏠 Blacksmith",
+      "kind": "interior",
+      "localRect": [
+        3318,
+        2035,
+        16,
+        20
+      ],
+      "worldRect": [
+        6118,
+        4235,
+        32,
+        32
+      ],
+      "wx": 6126,
+      "wy": 4245
+    },
+    {
+      "id": "bloomshire_door_17_cave_old_cave",
+      "map": "bloomshire",
+      "to": "cave_old_cave",
+      "name": "🕳️ Cueva: The Old Cave",
+      "kind": "cave",
+      "localRect": [
+        2880,
+        198,
+        48,
+        35
+      ],
+      "worldRect": [
+        5680,
+        2398,
+        48,
+        35
+      ],
+      "wx": 5704,
+      "wy": 2415.5
+    },
+    {
+      "id": "bloomshire_door_18_vip_quarter",
+      "map": "bloomshire",
+      "to": "vip_quarter",
+      "name": "🚪 Paso a The VIP Quarter",
+      "kind": "region_exit",
+      "localRect": [
+        2643,
+        3216,
+        32,
+        14
+      ],
+      "worldRect": [
+        5443,
+        5416,
+        32,
+        32
+      ],
+      "wx": 5459,
+      "wy": 5423
+    },
+    {
+      "id": "bloomshire_door_19_interior_founders_hall",
+      "map": "bloomshire",
+      "to": "interior_founders_hall",
+      "name": "🏠 The Founders' Hall",
+      "kind": "interior",
+      "localRect": [
+        3040,
+        3161,
+        32,
+        36
+      ],
+      "worldRect": [
+        5840,
+        5361,
+        32,
+        36
+      ],
+      "wx": 5856,
+      "wy": 5379
+    },
+    {
+      "id": "bloomshire_door_20_whisperwood",
+      "map": "bloomshire",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        2064,
+        16,
+        64
+      ],
+      "worldRect": [
+        4576,
+        4264,
+        32,
+        64
+      ],
+      "wx": 4584,
+      "wy": 4296
+    },
+    {
+      "id": "bloomshire_door_21_whisperwood",
+      "map": "bloomshire",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1664,
+        5488,
+        32,
+        16
+      ],
+      "worldRect": [
+        4464,
+        7688,
+        32,
+        32
+      ],
+      "wx": 4480,
+      "wy": 7696
+    },
+    {
+      "id": "bloomshire_door_22_stonepeak",
+      "map": "bloomshire",
+      "to": "stonepeak",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        3840,
+        2128,
+        16,
+        64
+      ],
+      "worldRect": [
+        6640,
+        4328,
+        32,
+        64
+      ],
+      "wx": 6648,
+      "wy": 4360
+    },
+    {
+      "id": "bloomshire_door_23_stonepeak",
+      "map": "bloomshire",
+      "to": "stonepeak",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        4736,
+        5488,
+        32,
+        16
+      ],
+      "worldRect": [
+        7536,
+        7688,
+        32,
+        32
+      ],
+      "wx": 7552,
+      "wy": 7696
+    },
+    {
+      "id": "whisperwood_door_0_bloomshire",
+      "map": "whisperwood",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        5104,
+        16,
+        32
+      ],
+      "worldRect": [
+        4576,
+        7304,
+        32,
+        32
+      ],
+      "wx": 4584,
+      "wy": 7320
+    },
+    {
+      "id": "whisperwood_door_1_bloomshire",
+      "map": "whisperwood",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        3616,
+        16,
+        32
+      ],
+      "worldRect": [
+        4576,
+        5816,
+        32,
+        32
+      ],
+      "wx": 4584,
+      "wy": 5832
+    },
+    {
+      "id": "whisperwood_door_2_cave_glimmer",
+      "map": "whisperwood",
+      "to": "cave_glimmer",
+      "name": "🕳️ Cueva: Glimmer Hollow",
+      "kind": "cave",
+      "localRect": [
+        464,
+        1706,
+        48,
+        47
+      ],
+      "worldRect": [
+        3264,
+        3906,
+        48,
+        47
+      ],
+      "wx": 3288,
+      "wy": 3929.5
+    },
+    {
+      "id": "whisperwood_door_3_cave_mirror_grotto",
+      "map": "whisperwood",
+      "to": "cave_mirror_grotto",
+      "name": "🕳️ Cueva: The Grotto under Mirror Pond",
+      "kind": "cave",
+      "localRect": [
+        1104,
+        1130,
+        48,
+        50
+      ],
+      "worldRect": [
+        3904,
+        3330,
+        48,
+        50
+      ],
+      "wx": 3928,
+      "wy": 3355
+    },
+    {
+      "id": "whisperwood_door_4_dreaming_fields",
+      "map": "whisperwood",
+      "to": "dreaming_fields",
+      "name": "🚪 Paso a The Dreaming Fields",
+      "kind": "region_exit",
+      "localRect": [
+        0,
+        2756,
+        16,
+        64
+      ],
+      "worldRect": [
+        2800,
+        4956,
+        32,
+        64
+      ],
+      "wx": 2808,
+      "wy": 4988
+    },
+    {
+      "id": "whisperwood_door_5_everbloom",
+      "map": "whisperwood",
+      "to": "everbloom",
+      "name": "🚪 Paso a The Everbloom",
+      "kind": "region_exit",
+      "localRect": [
+        368,
+        588,
+        28,
+        18
+      ],
+      "worldRect": [
+        3168,
+        2788,
+        32,
+        32
+      ],
+      "wx": 3182,
+      "wy": 2797
+    },
+    {
+      "id": "whisperwood_door_6_barrowmire",
+      "map": "whisperwood",
+      "to": "barrowmire",
+      "name": "🚪 Paso a The Barrowmire",
+      "kind": "region_exit",
+      "localRect": [
+        123,
+        1458,
+        24,
+        16
+      ],
+      "worldRect": [
+        2923,
+        3658,
+        32,
+        32
+      ],
+      "wx": 2935,
+      "wy": 3666
+    },
+    {
+      "id": "whisperwood_door_7_bloomshire",
+      "map": "whisperwood",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        2064,
+        16,
+        64
+      ],
+      "worldRect": [
+        4576,
+        4264,
+        32,
+        64
+      ],
+      "wx": 4584,
+      "wy": 4296
+    },
+    {
+      "id": "whisperwood_door_8_bloomshire",
+      "map": "whisperwood",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1664,
+        5488,
+        32,
+        16
+      ],
+      "worldRect": [
+        4464,
+        7688,
+        32,
+        32
+      ],
+      "wx": 4480,
+      "wy": 7696
+    },
+    {
+      "id": "dreaming_fields_door_0_whisperwood",
+      "map": "dreaming_fields",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        720,
+        1136,
+        48,
+        16
+      ],
+      "worldRect": [
+        1820,
+        5486,
+        48,
+        32
+      ],
+      "wx": 1844,
+      "wy": 5494
+    },
+    {
+      "id": "everbloom_door_0_whisperwood",
+      "map": "everbloom",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1240,
+        1827,
+        80,
+        48
+      ],
+      "worldRect": [
+        2790,
+        1947,
+        80,
+        48
+      ],
+      "wx": 2830,
+      "wy": 1971
+    },
+    {
+      "id": "barrowmire_door_0_whisperwood",
+      "map": "barrowmire",
+      "to": "whisperwood",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        1293,
+        1869,
+        23,
+        22
+      ],
+      "worldRect": [
+        1373,
+        4069,
+        32,
+        32
+      ],
+      "wx": 1384.5,
+      "wy": 4080
+    },
+    {
+      "id": "stonepeak_door_0_bloomshire",
+      "map": "stonepeak",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        0,
+        3280,
+        16,
+        32
+      ],
+      "worldRect": [
+        6640,
+        5480,
+        32,
+        32
+      ],
+      "wx": 6648,
+      "wy": 5496
+    },
+    {
+      "id": "stonepeak_door_1_cave_old_working",
+      "map": "stonepeak",
+      "to": "cave_old_working",
+      "name": "🕳️ Cueva: The Old Working",
+      "kind": "cave",
+      "localRect": [
+        560,
+        922,
+        48,
+        52
+      ],
+      "worldRect": [
+        7200,
+        3122,
+        48,
+        52
+      ],
+      "wx": 7224,
+      "wy": 3148
+    },
+    {
+      "id": "stonepeak_door_2_cave_green_vein",
+      "map": "stonepeak",
+      "to": "cave_green_vein",
+      "name": "🕳️ Cueva: The Green Vein",
+      "kind": "cave",
+      "localRect": [
+        1040,
+        698,
+        48,
+        52
+      ],
+      "worldRect": [
+        7680,
+        2898,
+        48,
+        52
+      ],
+      "wx": 7704,
+      "wy": 2924
+    },
+    {
+      "id": "stonepeak_door_3_cave_gloom",
+      "map": "stonepeak",
+      "to": "cave_gloom",
+      "name": "🕳️ Cueva: The Gloom",
+      "kind": "cave",
+      "localRect": [
+        1296,
+        842,
+        48,
+        52
+      ],
+      "worldRect": [
+        7936,
+        3042,
+        48,
+        52
+      ],
+      "wx": 7960,
+      "wy": 3068
+    },
+    {
+      "id": "stonepeak_door_4_cave_vault",
+      "map": "stonepeak",
+      "to": "cave_vault",
+      "name": "🕳️ Cueva: The Sunken Vault",
+      "kind": "cave",
+      "localRect": [
+        1664,
+        1658,
+        48,
+        50
+      ],
+      "worldRect": [
+        8304,
+        3858,
+        48,
+        50
+      ],
+      "wx": 8328,
+      "wy": 3883
+    },
+    {
+      "id": "stonepeak_door_5_cave_topaz_drift",
+      "map": "stonepeak",
+      "to": "cave_topaz_drift",
+      "name": "🕳️ Cueva: Topaz Drift",
+      "kind": "cave",
+      "localRect": [
+        336,
+        3082,
+        48,
+        50
+      ],
+      "worldRect": [
+        6976,
+        5282,
+        48,
+        50
+      ],
+      "wx": 7000,
+      "wy": 5307
+    },
+    {
+      "id": "stonepeak_door_6_frosthaven",
+      "map": "stonepeak",
+      "to": "frosthaven",
+      "name": "🚪 Paso a Frosthaven",
+      "kind": "region_exit",
+      "localRect": [
+        1776,
+        112,
+        16,
+        64
+      ],
+      "worldRect": [
+        8416,
+        2312,
+        32,
+        64
+      ],
+      "wx": 8424,
+      "wy": 2344
+    },
+    {
+      "id": "stonepeak_door_7_deeps",
+      "map": "stonepeak",
+      "to": "deeps",
+      "name": "🕳️ Cueva: deeps",
+      "kind": "cave",
+      "localRect": [
+        1616,
+        196,
+        36,
+        16
+      ],
+      "worldRect": [
+        8256,
+        2396,
+        36,
+        32
+      ],
+      "wx": 8274,
+      "wy": 2404
+    },
+    {
+      "id": "stonepeak_door_8_bloomshire",
+      "map": "stonepeak",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        0,
+        2128,
+        16,
+        64
+      ],
+      "worldRect": [
+        6640,
+        4328,
+        32,
+        64
+      ],
+      "wx": 6648,
+      "wy": 4360
+    },
+    {
+      "id": "stonepeak_door_9_bloomshire",
+      "map": "stonepeak",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        896,
+        5488,
+        32,
+        16
+      ],
+      "worldRect": [
+        7536,
+        7688,
+        32,
+        32
+      ],
+      "wx": 7552,
+      "wy": 7696
+    },
+    {
+      "id": "frosthaven_door_0_stonepeak",
+      "map": "frosthaven",
+      "to": "stonepeak",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        752,
+        1936,
+        64,
+        16
+      ],
+      "worldRect": [
+        6602,
+        2056,
+        64,
+        32
+      ],
+      "wx": 6634,
+      "wy": 2064
+    },
+    {
+      "id": "vip_quarter_door_0_colosseum",
+      "map": "vip_quarter",
+      "to": "colosseum",
+      "name": "🚪 Paso a The Colosseum",
+      "kind": "region_exit",
+      "localRect": [
+        752,
+        432,
+        16,
+        48
+      ],
+      "worldRect": [
+        5852,
+        10152,
+        32,
+        48
+      ],
+      "wx": 5860,
+      "wy": 10176
+    },
+    {
+      "id": "vip_quarter_door_1_interior_vip_library",
+      "map": "vip_quarter",
+      "to": "interior_vip_library",
+      "name": "🏠 The Library",
+      "kind": "interior",
+      "localRect": [
+        114,
+        252,
+        28,
+        16
+      ],
+      "worldRect": [
+        5214,
+        9972,
+        32,
+        32
+      ],
+      "wx": 5228,
+      "wy": 9980
+    },
+    {
+      "id": "vip_quarter_door_2_interior_vip_manor",
+      "map": "vip_quarter",
+      "to": "interior_vip_manor",
+      "name": "🏠 The Manor",
+      "kind": "interior",
+      "localRect": [
+        370,
+        252,
+        28,
+        16
+      ],
+      "worldRect": [
+        5470,
+        9972,
+        32,
+        32
+      ],
+      "wx": 5484,
+      "wy": 9980
+    },
+    {
+      "id": "vip_quarter_door_3_interior_vip_exchange",
+      "map": "vip_quarter",
+      "to": "interior_vip_exchange",
+      "name": "🏠 The VIP Exchange",
+      "kind": "interior",
+      "localRect": [
+        625,
+        252,
+        28,
+        16
+      ],
+      "worldRect": [
+        5725,
+        9972,
+        32,
+        32
+      ],
+      "wx": 5739,
+      "wy": 9980
+    },
+    {
+      "id": "vip_quarter_door_4_interior_vip_shop",
+      "map": "vip_quarter",
+      "to": "interior_vip_shop",
+      "name": "🏠 The VIP Shop",
+      "kind": "interior",
+      "localRect": [
+        626,
+        428,
+        28,
+        16
+      ],
+      "worldRect": [
+        5726,
+        10148,
+        32,
+        32
+      ],
+      "wx": 5740,
+      "wy": 10156
+    },
+    {
+      "id": "vip_quarter_door_5_interior_vip_greenhouse",
+      "map": "vip_quarter",
+      "to": "interior_vip_greenhouse",
+      "name": "🏠 The Greenhouse",
+      "kind": "interior",
+      "localRect": [
+        296,
+        492,
+        28,
+        16
+      ],
+      "worldRect": [
+        5396,
+        10212,
+        32,
+        32
+      ],
+      "wx": 5410,
+      "wy": 10220
+    },
+    {
+      "id": "vip_quarter_door_6_bloomshire",
+      "map": "vip_quarter",
+      "to": "bloomshire",
+      "name": "🚪 Paso a Bloomshire",
+      "kind": "region_exit",
+      "localRect": [
+        368,
+        609,
+        32,
+        14
+      ],
+      "worldRect": [
+        5468,
+        10329,
+        32,
+        32
+      ],
+      "wx": 5484,
+      "wy": 10336
+    },
+    {
+      "id": "vip_quarter_door_7_dungeon_court",
+      "map": "vip_quarter",
+      "to": "dungeon_court",
+      "name": "🕳️ Cueva: The Dungeon Steps",
+      "kind": "cave",
+      "localRect": [
+        0,
+        268,
+        12,
+        28
+      ],
+      "worldRect": [
+        5100,
+        9988,
+        32,
+        32
+      ],
+      "wx": 5106,
+      "wy": 10002
+    },
+    {
+      "id": "colosseum_door_0_vip_quarter",
+      "map": "colosseum",
+      "to": "vip_quarter",
+      "name": "🚪 Paso a The VIP Quarter",
+      "kind": "region_exit",
+      "localRect": [
+        544,
+        912,
+        64,
+        16
+      ],
+      "worldRect": [
+        6594,
+        10512,
+        64,
+        32
+      ],
+      "wx": 6626,
+      "wy": 10520
+    }
+  ],
+  "npcs": [
+    {
+      "id": "marlow",
+      "name": "Marlow",
+      "map": "home_island",
+      "inBuilding": false,
+      "localRect": [
+        392,
+        282,
+        16,
+        16
+      ],
+      "wx": 4042,
+      "wy": 10032
+    },
+    {
+      "id": "maren",
+      "name": "Maren",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2208,
+        1808,
+        16,
+        16
+      ],
+      "wx": 5008,
+      "wy": 4008
+    },
+    {
+      "id": "hollis",
+      "name": "Hollis",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3626,
+        2332,
+        16,
+        16
+      ],
+      "wx": 6426,
+      "wy": 4532
+    },
+    {
+      "id": "nixie",
+      "name": "Nixie",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3102,
+        2778,
+        16,
+        16
+      ],
+      "wx": 5902,
+      "wy": 4978
+    },
+    {
+      "id": "jory",
+      "name": "Jory",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2482,
+        2430,
+        16,
+        16
+      ],
+      "wx": 5282,
+      "wy": 4630
+    },
+    {
+      "id": "greta",
+      "name": "Greta",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3522,
+        1602,
+        16,
+        16
+      ],
+      "wx": 6322,
+      "wy": 3802
+    },
+    {
+      "id": "mabel",
+      "name": "Mabel",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3142,
+        2730,
+        16,
+        16
+      ],
+      "wx": 5942,
+      "wy": 4930
+    },
+    {
+      "id": "ansel",
+      "name": "Ansel",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2254,
+        1522,
+        16,
+        16
+      ],
+      "wx": 5054,
+      "wy": 3722
+    },
+    {
+      "id": "dara",
+      "name": "Dara",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2742,
+        1506,
+        16,
+        16
+      ],
+      "wx": 5542,
+      "wy": 3706
+    },
+    {
+      "id": "cole",
+      "name": "Cole",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3082,
+        1546,
+        16,
+        16
+      ],
+      "wx": 5882,
+      "wy": 3746
+    },
+    {
+      "id": "fenwick",
+      "name": "Fenwick",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2930,
+        2030,
+        16,
+        16
+      ],
+      "wx": 5730,
+      "wy": 4230
+    },
+    {
+      "id": "ivy",
+      "name": "Ivy",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2962,
+        2442,
+        16,
+        16
+      ],
+      "wx": 5762,
+      "wy": 4642
+    },
+    {
+      "id": "otto",
+      "name": "Otto",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3262,
+        2146,
+        16,
+        16
+      ],
+      "wx": 6062,
+      "wy": 4346
+    },
+    {
+      "id": "lena",
+      "name": "Lena",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2162,
+        2670,
+        16,
+        16
+      ],
+      "wx": 4962,
+      "wy": 4870
+    },
+    {
+      "id": "hugo",
+      "name": "Hugo",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2614,
+        1690,
+        16,
+        16
+      ],
+      "wx": 5414,
+      "wy": 3890
+    },
+    {
+      "id": "rosa",
+      "name": "Rosa",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2382,
+        2770,
+        16,
+        16
+      ],
+      "wx": 5182,
+      "wy": 4970
+    },
+    {
+      "id": "marven",
+      "name": "Marven",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3640,
+        224,
+        16,
+        16
+      ],
+      "wx": 6440,
+      "wy": 2424
+    },
+    {
+      "id": "jasper",
+      "name": "Jasper",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2752,
+        2760,
+        16,
+        16
+      ],
+      "wx": 5552,
+      "wy": 4960
+    },
+    {
+      "id": "felix",
+      "name": "Felix",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2932,
+        2184,
+        16,
+        16
+      ],
+      "wx": 5732,
+      "wy": 4384
+    },
+    {
+      "id": "rhys",
+      "name": "Rhys",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        3082,
+        1650,
+        16,
+        16
+      ],
+      "wx": 5882,
+      "wy": 3850
+    },
+    {
+      "id": "clara",
+      "name": "Clara",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2322,
+        2056,
+        16,
+        16
+      ],
+      "wx": 5122,
+      "wy": 4256
+    },
+    {
+      "id": "elsie",
+      "name": "Elsie",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2552,
+        2198,
+        16,
+        16
+      ],
+      "wx": 5352,
+      "wy": 4398
+    },
+    {
+      "id": "willa",
+      "name": "Willa",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2960,
+        1450,
+        16,
+        16
+      ],
+      "wx": 5760,
+      "wy": 3650
+    },
+    {
+      "id": "sylmare",
+      "name": "Sylmare",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2352,
+        498,
+        16,
+        16
+      ],
+      "wx": 5152,
+      "wy": 2698
+    },
+    {
+      "id": "elyria",
+      "name": "Elyria",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2318,
+        448,
+        16,
+        16
+      ],
+      "wx": 5118,
+      "wy": 2648
+    },
+    {
+      "id": "virella",
+      "name": "Virella",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2168,
+        436,
+        16,
+        16
+      ],
+      "wx": 4968,
+      "wy": 2636
+    },
+    {
+      "id": "miralys",
+      "name": "Miralys",
+      "map": "bloomshire",
+      "inBuilding": false,
+      "localRect": [
+        2500,
+        488,
+        16,
+        16
+      ],
+      "wx": 5300,
+      "wy": 2688
+    },
+    {
+      "id": "liora",
+      "name": "Liora",
+      "map": "everbloom",
+      "inBuilding": false,
+      "localRect": [
+        1133,
+        741,
+        16,
+        16
+      ],
+      "wx": 2683,
+      "wy": 861
+    },
+    {
+      "id": "faelan",
+      "name": "Faelan",
+      "map": "everbloom",
+      "inBuilding": false,
+      "localRect": [
+        1496,
+        880,
+        16,
+        16
+      ],
+      "wx": 3046,
+      "wy": 1000
+    },
+    {
+      "id": "hakon",
+      "name": "Hakon",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        1499,
+        974,
+        16,
+        16
+      ],
+      "wx": 7349,
+      "wy": 1094
+    },
+    {
+      "id": "ylva",
+      "name": "Ylva",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        971,
+        837,
+        16,
+        16
+      ],
+      "wx": 6821,
+      "wy": 957
+    },
+    {
+      "id": "liv",
+      "name": "Liv",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        834,
+        824,
+        16,
+        16
+      ],
+      "wx": 6684,
+      "wy": 944
+    },
+    {
+      "id": "toke",
+      "name": "Toke",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        1150,
+        402,
+        16,
+        16
+      ],
+      "wx": 7000,
+      "wy": 522
+    },
+    {
+      "id": "inga",
+      "name": "Inga",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        1118,
+        914,
+        16,
+        16
+      ],
+      "wx": 6968,
+      "wy": 1034
+    },
+    {
+      "id": "eira",
+      "name": "Eira",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        2408,
+        1586,
+        16,
+        16
+      ],
+      "wx": 8258,
+      "wy": 1706
+    },
+    {
+      "id": "bjorn",
+      "name": "Bjorn",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        508,
+        1467,
+        16,
+        16
+      ],
+      "wx": 6358,
+      "wy": 1587
+    },
+    {
+      "id": "gunnar",
+      "name": "Gunnar",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        712,
+        899,
+        16,
+        16
+      ],
+      "wx": 6562,
+      "wy": 1019
+    },
+    {
+      "id": "sigrun",
+      "name": "Sigrun",
+      "map": "frosthaven",
+      "inBuilding": false,
+      "localRect": [
+        263,
+        1101,
+        16,
+        16
+      ],
+      "wx": 6113,
+      "wy": 1221
+    },
+    {
+      "id": "pell",
+      "name": "Pell",
+      "map": "bloomshire",
+      "inBuilding": "Carpenter Workshop",
+      "localRect": [
+        3581,
+        2005,
+        32,
+        20
+      ],
+      "wx": 6397,
+      "wy": 4215
+    },
+    {
+      "id": "farthing",
+      "name": "Farthing",
+      "map": "bloomshire",
+      "inBuilding": "Bank",
+      "localRect": [
+        3482,
+        2409,
+        32,
+        20
+      ],
+      "wx": 6298,
+      "wy": 4619
+    },
+    {
+      "id": "quill",
+      "name": "Quill",
+      "map": "bloomshire",
+      "inBuilding": "Exchange",
+      "localRect": [
+        3241,
+        2400,
+        32,
+        20
+      ],
+      "wx": 6057,
+      "wy": 4610
+    },
+    {
+      "id": "odette",
+      "name": "Odette",
+      "map": "bloomshire",
+      "inBuilding": "General Store",
+      "localRect": [
+        2729,
+        2090,
+        32,
+        20
+      ],
+      "wx": 5545,
+      "wy": 4300
+    },
+    {
+      "id": "tamsin",
+      "name": "Tamsin",
+      "map": "bloomshire",
+      "inBuilding": "Bakery",
+      "localRect": [
+        2298,
+        2036,
+        16,
+        20
+      ],
+      "wx": 5106,
+      "wy": 4246
+    },
+    {
+      "id": "juniper",
+      "name": "Juniper",
+      "map": "bloomshire",
+      "inBuilding": "Apothecary",
+      "localRect": [
+        1986,
+        1780,
+        16,
+        20
+      ],
+      "wx": 4794,
+      "wy": 3990
+    },
+    {
+      "id": "hazel",
+      "name": "Hazel",
+      "map": "bloomshire",
+      "inBuilding": "Seed and Tool Shop",
+      "localRect": [
+        3185,
+        2129,
+        16,
+        20
+      ],
+      "wx": 5993,
+      "wy": 4339
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "map": "bloomshire",
+      "inBuilding": "Market Hall",
+      "localRect": [
+        3079,
+        2630,
+        32,
+        20
+      ],
+      "wx": 5895,
+      "wy": 4840
+    },
+    {
+      "id": "tilly",
+      "name": "Tilly",
+      "map": "bloomshire",
+      "inBuilding": "Tailor",
+      "localRect": [
+        2184,
+        2379,
+        16,
+        20
+      ],
+      "wx": 4992,
+      "wy": 4589
+    },
+    {
+      "id": "wren",
+      "name": "Wren",
+      "map": "bloomshire",
+      "inBuilding": "Fisherman's cottage",
+      "localRect": [
+        2847,
+        2692,
+        16,
+        20
+      ],
+      "wx": 5655,
+      "wy": 4902
+    },
+    {
+      "id": "bram",
+      "name": "Bram",
+      "map": "bloomshire",
+      "inBuilding": "Blacksmith",
+      "localRect": [
+        3318,
+        2035,
+        16,
+        20
+      ],
+      "wx": 6126,
+      "wy": 4245
+    },
+    {
+      "id": "amelia",
+      "name": "Amelia",
+      "map": "vip_quarter",
+      "inBuilding": false,
+      "localRect": [
+        420,
+        372,
+        16,
+        16
+      ],
+      "wx": 5520,
+      "wy": 10092
+    },
+    {
+      "id": "theo",
+      "name": "Theo",
+      "map": "vip_quarter",
+      "inBuilding": false,
+      "localRect": [
+        400,
+        566,
+        16,
+        16
+      ],
+      "wx": 5500,
+      "wy": 10286
+    },
+    {
+      "id": "iris",
+      "name": "Iris",
+      "map": "vip_quarter",
+      "inBuilding": false,
+      "localRect": [
+        376,
+        108,
+        16,
+        16
+      ],
+      "wx": 5476,
+      "wy": 9828
+    },
+    {
+      "id": "sylvie",
+      "name": "Sylvie",
+      "map": "vip_quarter",
+      "inBuilding": "The Library",
+      "localRect": [
+        114,
+        252,
+        28,
+        16
+      ],
+      "wx": 5228,
+      "wy": 9980
+    },
+    {
+      "id": "pemberton",
+      "name": "Pemberton",
+      "map": "vip_quarter",
+      "inBuilding": "The Manor",
+      "localRect": [
+        370,
+        252,
+        28,
+        16
+      ],
+      "wx": 5484,
+      "wy": 9980
+    },
+    {
+      "id": "augustin",
+      "name": "Augustin",
+      "map": "vip_quarter",
+      "inBuilding": "The VIP Exchange",
+      "localRect": [
+        625,
+        252,
+        28,
+        16
+      ],
+      "wx": 5739,
+      "wy": 9980
+    },
+    {
+      "id": "celeste",
+      "name": "Celeste",
+      "map": "vip_quarter",
+      "inBuilding": "The VIP Shop",
+      "localRect": [
+        626,
+        428,
+        28,
+        16
+      ],
+      "wx": 5740,
+      "wy": 10156
+    },
+    {
+      "id": "fern",
+      "name": "Fern",
+      "map": "vip_quarter",
+      "inBuilding": "The Greenhouse",
+      "localRect": [
+        296,
+        492,
+        28,
+        16
+      ],
+      "wx": 5410,
+      "wy": 10220
+    }
+  ],
+  "clues": [
+    {
+      "id": "wreck_0",
+      "clueKey": "wreck",
+      "name": "Restos del Naufragio Fluvial (Cap. 1)",
+      "map": "bloomshire",
+      "localRect": [
+        2302,
+        1772,
+        28,
+        24
+      ],
+      "wx": 5116,
+      "wy": 3984
+    },
+    {
+      "id": "stray_hen_0",
+      "clueKey": "stray_hen",
+      "name": "🐔 Gallina Perdida de Hollis (Misión Ganadería)",
+      "map": "bloomshire",
+      "localRect": [
+        2627,
+        1469,
+        24,
+        24
+      ],
+      "wx": 5439,
+      "wy": 3681
+    },
+    {
+      "id": "tide_stone_0",
+      "clueKey": "tide_stone",
+      "name": "🪨 Piedra de Marea (Marven's Pool)",
+      "map": "bloomshire",
+      "localRect": [
+        3581,
+        38,
+        48,
+        64
+      ],
+      "wx": 6405,
+      "wy": 2270
+    },
+    {
+      "id": "founders_walk_0",
+      "clueKey": "founders_walk",
+      "name": "🏛️ Inscripción del Paseo de Fundadores",
+      "map": "bloomshire",
+      "localRect": [
+        3024,
+        3248,
+        64,
+        320
+      ],
+      "wx": 5856,
+      "wy": 5608
+    },
+    {
+      "id": "grey_cherries_0",
+      "clueKey": "grey_cherries",
+      "name": "🍒 Cerezos Grises (Pista de Moonmere)",
+      "map": "bloomshire",
+      "localRect": [
+        2560,
+        1376,
+        64,
+        48
+      ],
+      "wx": 5392,
+      "wy": 3600
+    },
+    {
+      "id": "lamp_jetty_0",
+      "clueKey": "lamp_jetty",
+      "name": "🏮 Farola del Muelle (Misión Lámparas 1/3)",
+      "map": "bloomshire",
+      "localRect": [
+        2920,
+        2744,
+        32,
+        24
+      ],
+      "wx": 5736,
+      "wy": 4956
+    },
+    {
+      "id": "lamp_chapel_0",
+      "clueKey": "lamp_chapel",
+      "name": "🏮 Farola de la Capilla (Misión Lámparas 2/3)",
+      "map": "bloomshire",
+      "localRect": [
+        2200,
+        1560,
+        32,
+        24
+      ],
+      "wx": 5016,
+      "wy": 3772
+    },
+    {
+      "id": "lamp_west_0",
+      "clueKey": "lamp_west",
+      "name": "🏮 Farola del Oeste (Misión Lámparas 3/3)",
+      "map": "bloomshire",
+      "localRect": [
+        2056,
+        1880,
+        32,
+        24
+      ],
+      "wx": 4872,
+      "wy": 4092
+    },
+    {
+      "id": "pier_night_0",
+      "clueKey": "pier_night",
+      "name": "🌙 Misterio Nocturno del Muelle Largo",
+      "map": "bloomshire",
+      "localRect": [
+        3424,
+        6864,
+        64,
+        64
+      ],
+      "wx": 6256,
+      "wy": 9096
+    },
+    {
+      "id": "moon_stone_n_0",
+      "clueKey": "moon_stone_n",
+      "name": "🌕 Piedra Lunar Norte (Anillo de Piedras)",
+      "map": "bloomshire",
+      "localRect": [
+        2878,
+        548,
+        36,
+        36
+      ],
+      "wx": 5696,
+      "wy": 2766
+    },
+    {
+      "id": "moon_stone_e_0",
+      "clueKey": "moon_stone_e",
+      "name": "🌕 Piedra Lunar Este (Anillo de Piedras)",
+      "map": "bloomshire",
+      "localRect": [
+        2936,
+        590,
+        36,
+        36
+      ],
+      "wx": 5754,
+      "wy": 2808
+    },
+    {
+      "id": "moon_stone_s_0",
+      "clueKey": "moon_stone_s",
+      "name": "🌕 Piedra Lunar Sur (Anillo de Piedras)",
+      "map": "bloomshire",
+      "localRect": [
+        2888,
+        671,
+        36,
+        36
+      ],
+      "wx": 5706,
+      "wy": 2889
+    },
+    {
+      "id": "moon_stone_w_0",
+      "clueKey": "moon_stone_w",
+      "name": "🌕 Piedra Lunar Oeste (Anillo de Piedras)",
+      "map": "bloomshire",
+      "localRect": [
+        2788,
+        631,
+        36,
+        36
+      ],
+      "wx": 5606,
+      "wy": 2849
+    },
+    {
+      "id": "grey_wake_0",
+      "clueKey": "grey_wake",
+      "name": "🌊 Estela Gris en el Agua Profunda",
+      "map": "bloomshire",
+      "localRect": [
+        2856,
+        800,
+        56,
+        40
+      ],
+      "wx": 5684,
+      "wy": 3020
+    },
+    {
+      "id": "grey_scale_0",
+      "clueKey": "grey_scale",
+      "name": "🐟 Escama Gris en la Orilla",
+      "map": "bloomshire",
+      "localRect": [
+        2600,
+        990,
+        48,
+        32
+      ],
+      "wx": 5424,
+      "wy": 3206
+    },
+    {
+      "id": "moon_shrine_0",
+      "clueKey": "moon_shrine",
+      "name": "⛩️ Santuario de la Hada Lunar",
+      "map": "bloomshire",
+      "localRect": [
+        3281,
+        476,
+        54,
+        34
+      ],
+      "wx": 6108,
+      "wy": 2693
+    },
+    {
+      "id": "verse_falls_0",
+      "clueKey": "verse_falls",
+      "name": "🎵 Verso de la Canción (Cascadas)",
+      "map": "bloomshire",
+      "localRect": [
+        2300,
+        140,
+        40,
+        40
+      ],
+      "wx": 5120,
+      "wy": 2360
+    },
+    {
+      "id": "verse_meadow_0",
+      "clueKey": "verse_meadow",
+      "name": "🎵 Verso de la Canción (Pradera)",
+      "map": "bloomshire",
+      "localRect": [
+        2400,
+        1150,
+        40,
+        40
+      ],
+      "wx": 5220,
+      "wy": 3370
+    },
+    {
+      "id": "verse_lagoon_0",
+      "clueKey": "verse_lagoon",
+      "name": "🎵 Verso de la Canción (Laguna)",
+      "map": "bloomshire",
+      "localRect": [
+        2060,
+        450,
+        32,
+        44
+      ],
+      "wx": 4876,
+      "wy": 2672
+    },
+    {
+      "id": "gate_song_0",
+      "clueKey": "gate_song",
+      "name": "🎶 Lugar de la Canción del Portal",
+      "map": "bloomshire",
+      "localRect": [
+        2298,
+        392,
+        140,
+        140
+      ],
+      "wx": 5168,
+      "wy": 2662
+    },
+    {
+      "id": "wild_seeds_0",
+      "clueKey": "wild_seeds",
+      "name": "🌱 Semillas Silvestres de Hazel",
+      "map": "whisperwood",
+      "localRect": [
+        912,
+        112,
+        64,
+        48
+      ],
+      "wx": 3744,
+      "wy": 2336
+    },
+    {
+      "id": "grey_ground_0",
+      "clueKey": "grey_ground",
+      "name": "🌑 Tierra Gris Marchita",
+      "map": "whisperwood",
+      "localRect": [
+        80,
+        1376,
+        224,
+        176
+      ],
+      "wx": 2992,
+      "wy": 3664
+    },
+    {
+      "id": "glade_arch_0",
+      "clueKey": "glade_arch",
+      "name": "🌿 Arco de Raíces (Misión 'El Claro Escondido')",
+      "map": "whisperwood",
+      "localRect": [
+        354,
+        557,
+        56,
+        48
+      ],
+      "wx": 3182,
+      "wy": 2781
+    },
+    {
+      "id": "glade_altar_0",
+      "clueKey": "glade_altar",
+      "name": "🌿 Segundo Arco / Altar de Raíces ('El Claro Escondido')",
+      "map": "whisperwood",
+      "localRect": [
+        362,
+        622,
+        45,
+        35
+      ],
+      "wx": 3184.5,
+      "wy": 2839.5
+    },
+    {
+      "id": "pavement_0",
+      "clueKey": "pavement",
+      "name": "🏛️ Altar del Pavimento Antiguo",
+      "map": "dreaming_fields",
+      "localRect": [
+        704,
+        192,
+        96,
+        80
+      ],
+      "wx": 1852,
+      "wy": 4582
+    },
+    {
+      "id": "shade_0_0",
+      "clueKey": "shade_0",
+      "name": "✨ Pista: shade 0",
+      "map": "dreaming_fields",
+      "localRect": [
+        778,
+        56,
+        36,
+        50
+      ],
+      "wx": 1896,
+      "wy": 4431
+    },
+    {
+      "id": "shade_1_0",
+      "clueKey": "shade_1",
+      "name": "✨ Pista: shade 1",
+      "map": "dreaming_fields",
+      "localRect": [
+        842,
+        93,
+        36,
+        50
+      ],
+      "wx": 1960,
+      "wy": 4468
+    },
+    {
+      "id": "shade_2_0",
+      "clueKey": "shade_2",
+      "name": "✨ Pista: shade 2",
+      "map": "dreaming_fields",
+      "localRect": [
+        878,
+        156,
+        36,
+        50
+      ],
+      "wx": 1996,
+      "wy": 4531
+    },
+    {
+      "id": "shade_3_0",
+      "clueKey": "shade_3",
+      "name": "✨ Pista: shade 3",
+      "map": "dreaming_fields",
+      "localRect": [
+        878,
+        229,
+        36,
+        50
+      ],
+      "wx": 1996,
+      "wy": 4604
+    },
+    {
+      "id": "shade_4_0",
+      "clueKey": "shade_4",
+      "name": "✨ Pista: shade 4",
+      "map": "dreaming_fields",
+      "localRect": [
+        842,
+        292,
+        36,
+        50
+      ],
+      "wx": 1960,
+      "wy": 4667
+    },
+    {
+      "id": "shade_5_0",
+      "clueKey": "shade_5",
+      "name": "✨ Pista: shade 5",
+      "map": "dreaming_fields",
+      "localRect": [
+        778,
+        328,
+        36,
+        50
+      ],
+      "wx": 1896,
+      "wy": 4703
+    },
+    {
+      "id": "shade_6_0",
+      "clueKey": "shade_6",
+      "name": "✨ Pista: shade 6",
+      "map": "dreaming_fields",
+      "localRect": [
+        706,
+        328,
+        36,
+        50
+      ],
+      "wx": 1824,
+      "wy": 4703
+    },
+    {
+      "id": "shade_7_0",
+      "clueKey": "shade_7",
+      "name": "✨ Pista: shade 7",
+      "map": "dreaming_fields",
+      "localRect": [
+        642,
+        292,
+        36,
+        50
+      ],
+      "wx": 1760,
+      "wy": 4667
+    },
+    {
+      "id": "shade_8_0",
+      "clueKey": "shade_8",
+      "name": "✨ Pista: shade 8",
+      "map": "dreaming_fields",
+      "localRect": [
+        606,
+        229,
+        36,
+        50
+      ],
+      "wx": 1724,
+      "wy": 4604
+    },
+    {
+      "id": "shade_9_0",
+      "clueKey": "shade_9",
+      "name": "✨ Pista: shade 9",
+      "map": "dreaming_fields",
+      "localRect": [
+        606,
+        156,
+        36,
+        50
+      ],
+      "wx": 1724,
+      "wy": 4531
+    },
+    {
+      "id": "shade_10_0",
+      "clueKey": "shade_10",
+      "name": "✨ Pista: shade 10",
+      "map": "dreaming_fields",
+      "localRect": [
+        642,
+        93,
+        36,
+        50
+      ],
+      "wx": 1760,
+      "wy": 4468
+    },
+    {
+      "id": "shade_11_0",
+      "clueKey": "shade_11",
+      "name": "✨ Pista: shade 11",
+      "map": "dreaming_fields",
+      "localRect": [
+        706,
+        56,
+        36,
+        50
+      ],
+      "wx": 1824,
+      "wy": 4431
+    }
+  ]
+}

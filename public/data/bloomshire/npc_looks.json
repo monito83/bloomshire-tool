@@ -1,0 +1,748 @@
+{
+  "hazel": {
+    "id": "hazel",
+    "name": "Hazel",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Brown",
+      "hairStyle": "Iridessa",
+      "hairColour": "Brown",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "odette": {
+    "id": "odette",
+    "name": "Odette",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Green",
+      "hairStyle": "Lyria",
+      "hairColour": "Ginger",
+      "clothes": "Pink",
+      "acc": ""
+    }
+  },
+  "pell": {
+    "id": "pell",
+    "name": "Pell",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Brown",
+      "hairStyle": "Josh",
+      "hairColour": "Black",
+      "clothes": "Red",
+      "acc": "Beard/Black"
+    }
+  },
+  "wren": {
+    "id": "wren",
+    "name": "Wren",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Black",
+      "hairStyle": "Silvermist",
+      "hairColour": "Blonde",
+      "clothes": "Blue",
+      "acc": "Pirate"
+    }
+  },
+  "juniper": {
+    "id": "juniper",
+    "name": "Juniper",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Green",
+      "hairStyle": "Iridessa",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": "Wizard"
+    }
+  },
+  "rowan": {
+    "id": "rowan",
+    "name": "Rowan",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Blue",
+      "hairStyle": "Fawn",
+      "hairColour": "Brown",
+      "clothes": "Red",
+      "acc": ""
+    }
+  },
+  "farthing": {
+    "id": "farthing",
+    "name": "Farthing",
+    "look": {
+      "skin": "4",
+      "eyes": "Male/Black",
+      "hairStyle": "Standard",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "quill": {
+    "id": "quill",
+    "name": "Quill",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Sebastian",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": "Beret"
+    }
+  },
+  "tilly": {
+    "id": "tilly",
+    "name": "Tilly",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Lyria",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": "Beret"
+    }
+  },
+  "maren": {
+    "id": "maren",
+    "name": "Maren",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Silvermist",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "marlow": {
+    "id": "marlow",
+    "name": "Marlow",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Brown",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "hollis": {
+    "id": "hollis",
+    "name": "Hollis",
+    "look": {
+      "skin": "4",
+      "eyes": "Male/Green",
+      "hairStyle": "Josh",
+      "hairColour": "Brown",
+      "clothes": "Green",
+      "acc": "Beard/Brown"
+    }
+  },
+  "dunn": {
+    "id": "dunn",
+    "name": "Dunn",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Green",
+      "hairStyle": "Standard",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": "Beard/Ginger"
+    }
+  },
+  "silas": {
+    "id": "silas",
+    "name": "Silas",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Black",
+      "hairStyle": "Sebastian",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": "Beard/Black"
+    }
+  },
+  "wick": {
+    "id": "wick",
+    "name": "Wick",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": "Beard/Blonde"
+    }
+  },
+  "sable": {
+    "id": "sable",
+    "name": "Sable",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Black",
+      "hairStyle": "Silvermist",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "vesper": {
+    "id": "vesper",
+    "name": "Vesper",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Lyria",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": "Wizard"
+    }
+  },
+  "greta": {
+    "id": "greta",
+    "name": "Greta",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Brown",
+      "hairStyle": "Lyria",
+      "hairColour": "Brown",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "mabel": {
+    "id": "mabel",
+    "name": "Mabel",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Silvermist",
+      "hairColour": "Brown",
+      "clothes": "Pink",
+      "acc": ""
+    }
+  },
+  "ansel": {
+    "id": "ansel",
+    "name": "Ansel",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Blue",
+      "acc": "Beard/Blonde"
+    }
+  },
+  "dara": {
+    "id": "dara",
+    "name": "Dara",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Green",
+      "hairStyle": "Fawn",
+      "hairColour": "Black",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "cole": {
+    "id": "cole",
+    "name": "Cole",
+    "look": {
+      "skin": "4",
+      "eyes": "Male/Brown",
+      "hairStyle": "Josh",
+      "hairColour": "Black",
+      "clothes": "Green",
+      "acc": ""
+    }
+  },
+  "fenwick": {
+    "id": "fenwick",
+    "name": "Fenwick",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Black",
+      "hairStyle": "Sebastian",
+      "hairColour": "Brown",
+      "clothes": "Red",
+      "acc": "Beret"
+    }
+  },
+  "ivy": {
+    "id": "ivy",
+    "name": "Ivy",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Green",
+      "hairStyle": "Iridessa",
+      "hairColour": "Ginger",
+      "clothes": "Pink",
+      "acc": "Butterfly/Pink"
+    }
+  },
+  "otto": {
+    "id": "otto",
+    "name": "Otto",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "lena": {
+    "id": "lena",
+    "name": "Lena",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Black",
+      "hairStyle": "Fawn",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": ""
+    }
+  },
+  "hugo": {
+    "id": "hugo",
+    "name": "Hugo",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Green",
+      "hairStyle": "Josh",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": "Beard/Ginger"
+    }
+  },
+  "rosa": {
+    "id": "rosa",
+    "name": "Rosa",
+    "look": {
+      "skin": "4",
+      "eyes": "Female/Brown",
+      "hairStyle": "Silvermist",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "jasper": {
+    "id": "jasper",
+    "name": "Jasper",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Brown",
+      "hairStyle": "Standard",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "felix": {
+    "id": "felix",
+    "name": "Felix",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Sebastian",
+      "hairColour": "Blonde",
+      "clothes": "Red",
+      "acc": "Beret"
+    }
+  },
+  "rhys": {
+    "id": "rhys",
+    "name": "Rhys",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Green",
+      "hairStyle": "Josh",
+      "hairColour": "Brown",
+      "clothes": "Red",
+      "acc": "Farm"
+    }
+  },
+  "clara": {
+    "id": "clara",
+    "name": "Clara",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Fawn",
+      "hairColour": "Blonde",
+      "clothes": "Pink",
+      "acc": ""
+    }
+  },
+  "elsie": {
+    "id": "elsie",
+    "name": "Elsie",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Brown",
+      "hairStyle": "Iridessa",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "willa": {
+    "id": "willa",
+    "name": "Willa",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Green",
+      "hairStyle": "Lyria",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "faelan": {
+    "id": "faelan",
+    "name": "Faelan",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Green",
+      "hairStyle": "Josh",
+      "hairColour": "Blonde",
+      "hairTint": "silver",
+      "clothes": "Green",
+      "acc": "Elf/1"
+    }
+  },
+  "liora": {
+    "id": "liora",
+    "name": "Liora",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Silvermist",
+      "hairColour": "Blonde",
+      "hairTint": "silver",
+      "clothes": "Blue",
+      "acc": "Elf/1"
+    }
+  },
+  "aurel": {
+    "id": "aurel",
+    "name": "Aurel",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Brown",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": "Beard/Blonde"
+    }
+  },
+  "nella": {
+    "id": "nella",
+    "name": "Nella",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Brown",
+      "hairStyle": "Lyria",
+      "hairColour": "Black",
+      "clothes": "Red",
+      "acc": ""
+    }
+  },
+  "teodor": {
+    "id": "teodor",
+    "name": "Teodor",
+    "look": {
+      "skin": "4",
+      "eyes": "Male/Brown",
+      "hairStyle": "Josh",
+      "hairColour": "Brown",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "brenna": {
+    "id": "brenna",
+    "name": "Brenna",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Green",
+      "hairStyle": "Fawn",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "sefa": {
+    "id": "sefa",
+    "name": "Sefa",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Brown",
+      "hairStyle": "Silvermist",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "corin": {
+    "id": "corin",
+    "name": "Corin",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Green",
+      "hairStyle": "Sebastian",
+      "hairColour": "Brown",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "pim": {
+    "id": "pim",
+    "name": "Pim",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "oriel": {
+    "id": "oriel",
+    "name": "Oriel",
+    "look": {
+      "skin": "4",
+      "eyes": "Female/Blue",
+      "hairStyle": "Lyria",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "aldous": {
+    "id": "aldous",
+    "name": "Aldous",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": "Beret"
+    }
+  },
+  "hakon": {
+    "id": "hakon",
+    "name": "Hakon",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Ginger",
+      "clothes": "Blue",
+      "acc": "Beard/Ginger"
+    }
+  },
+  "sigrun": {
+    "id": "sigrun",
+    "name": "Sigrun",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Green",
+      "hairStyle": "Fawn",
+      "hairColour": "Black",
+      "clothes": "Red",
+      "acc": ""
+    }
+  },
+  "bjorn": {
+    "id": "bjorn",
+    "name": "Bjorn",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Brown",
+      "hairStyle": "Josh",
+      "hairColour": "Blonde",
+      "clothes": "Green",
+      "acc": "Beard/Blonde"
+    }
+  },
+  "ylva": {
+    "id": "ylva",
+    "name": "Ylva",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Silvermist",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "gunnar": {
+    "id": "gunnar",
+    "name": "Gunnar",
+    "look": {
+      "skin": "4",
+      "eyes": "Male/Black",
+      "hairStyle": "Standard",
+      "hairColour": "Blonde",
+      "clothes": "Blue",
+      "acc": "Beard/Blonde"
+    }
+  },
+  "liv": {
+    "id": "liv",
+    "name": "Liv",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Brown",
+      "hairStyle": "Lyria",
+      "hairColour": "Ginger",
+      "clothes": "Pink",
+      "acc": ""
+    }
+  },
+  "toke": {
+    "id": "toke",
+    "name": "Toke",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Green",
+      "hairStyle": "Sebastian",
+      "hairColour": "Brown",
+      "clothes": "Green",
+      "acc": "Beard/Brown"
+    }
+  },
+  "inga": {
+    "id": "inga",
+    "name": "Inga",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Green",
+      "hairStyle": "Iridessa",
+      "hairColour": "Brown",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "eira": {
+    "id": "eira",
+    "name": "Eira",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Green",
+      "hairStyle": "Fawn",
+      "hairColour": "Black",
+      "clothes": "Green",
+      "acc": ""
+    }
+  },
+  "celeste": {
+    "id": "celeste",
+    "name": "Celeste",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Blue",
+      "hairStyle": "Lyria",
+      "hairColour": "Blonde",
+      "clothes": "Blue",
+      "acc": ""
+    }
+  },
+  "augustin": {
+    "id": "augustin",
+    "name": "Augustin",
+    "look": {
+      "skin": "2",
+      "eyes": "Male/Black",
+      "hairStyle": "Sebastian",
+      "hairColour": "Black",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "sylvie": {
+    "id": "sylvie",
+    "name": "Sylvie",
+    "look": {
+      "skin": "3",
+      "eyes": "Female/Brown",
+      "hairStyle": "Silvermist",
+      "hairColour": "Black",
+      "clothes": "Green",
+      "acc": ""
+    }
+  },
+  "pemberton": {
+    "id": "pemberton",
+    "name": "Pemberton",
+    "look": {
+      "skin": "1",
+      "eyes": "Male/Blue",
+      "hairStyle": "Standard",
+      "hairColour": "Black",
+      "clothes": "Blue",
+      "acc": "Beard/Black"
+    }
+  },
+  "fern": {
+    "id": "fern",
+    "name": "Fern",
+    "look": {
+      "skin": "4",
+      "eyes": "Female/Green",
+      "hairStyle": "Fawn",
+      "hairColour": "Ginger",
+      "clothes": "Green",
+      "acc": "Farm"
+    }
+  },
+  "theo": {
+    "id": "theo",
+    "name": "Theo",
+    "look": {
+      "skin": "3",
+      "eyes": "Male/Brown",
+      "hairStyle": "Josh",
+      "hairColour": "Brown",
+      "clothes": "Blue",
+      "acc": "Beret"
+    }
+  },
+  "iris": {
+    "id": "iris",
+    "name": "Iris",
+    "look": {
+      "skin": "2",
+      "eyes": "Female/Blue",
+      "hairStyle": "Iridessa",
+      "hairColour": "Blonde",
+      "clothes": "Purple",
+      "acc": ""
+    }
+  },
+  "amelia": {
+    "id": "amelia",
+    "name": "Lady Amelia",
+    "look": {
+      "skin": "1",
+      "eyes": "Female/Green",
+      "hairStyle": "Lyria",
+      "hairColour": "Ginger",
+      "clothes": "Pink",
+      "acc": ""
+    }
+  }
+}

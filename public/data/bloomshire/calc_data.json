@@ -1,0 +1,314 @@
+{
+  "farming": [
+    {
+      "name": "Zanahoria (Carrot) 🥕",
+      "grow": 2,
+      "growTxt": "2 min",
+      "level": 1,
+      "cost": 5,
+      "sell": 10,
+      "net": 5,
+      "xp": 5,
+      "xpMin": 2.5,
+      "goldMin": 2.5,
+      "tip": "⭐ ¡La mejor y más barata para subir Cultivo a Lv 5!"
+    },
+    {
+      "name": "Chirivía (Parsnip) 🥔",
+      "grow": 5,
+      "growTxt": "5 min",
+      "level": 1,
+      "cost": 10,
+      "sell": 20,
+      "net": 10,
+      "xp": 10,
+      "xpMin": 2,
+      "goldMin": 2,
+      "tip": "Excelente rendimiento para arrancar"
+    },
+    {
+      "name": "Cebollín (Spring Onion) 🧅",
+      "grow": 6,
+      "growTxt": "6 min",
+      "level": 2,
+      "cost": 12,
+      "sell": 25,
+      "net": 13,
+      "xp": 12,
+      "xpMin": 2,
+      "goldMin": 2.16,
+      "tip": "Útil para recetas de pescado con Wren"
+    },
+    {
+      "name": "Patata (Potato) 🥔",
+      "grow": 8,
+      "growTxt": "8 min",
+      "level": 3,
+      "cost": 15,
+      "sell": 32,
+      "net": 17,
+      "xp": 16,
+      "xpMin": 2,
+      "goldMin": 2.12,
+      "tip": "Pide poco tiempo y equilibra oro y XP"
+    },
+    {
+      "name": "Trigo (Wheat) 🌾",
+      "grow": 15,
+      "growTxt": "15 min",
+      "level": 2,
+      "cost": 25,
+      "sell": 60,
+      "net": 35,
+      "xp": 28,
+      "xpMin": 1.86,
+      "goldMin": 2.33,
+      "tip": "Muele en harina o entrega en pedidos caros"
+    },
+    {
+      "name": "Caléndula (Marigold) 🌼",
+      "grow": 20,
+      "growTxt": "20 min",
+      "level": 5,
+      "cost": 40,
+      "sell": 95,
+      "net": 55,
+      "xp": 45,
+      "xpMin": 2.25,
+      "goldMin": 2.75,
+      "tip": "⭐ Misión de Otto 'Día de Mercado' (Apothecary)"
+    },
+    {
+      "name": "Repollo (Cabbage) 🥬",
+      "grow": 20,
+      "growTxt": "20 min",
+      "level": 3,
+      "cost": 35,
+      "sell": 85,
+      "net": 50,
+      "xp": 40,
+      "xpMin": 2,
+      "goldMin": 2.5,
+      "tip": "Gran valor en el tablón diario de Odette"
+    },
+    {
+      "name": "Tomate (Tomato) 🍅",
+      "grow": 45,
+      "growTxt": "45 min",
+      "level": 7,
+      "cost": 65,
+      "sell": 160,
+      "net": 95,
+      "xp": 75,
+      "xpMin": 1.66,
+      "goldMin": 2.11,
+      "tip": "Rebrota varias veces después de cosechar"
+    },
+    {
+      "name": "Semilla Premium (VIP) 💎",
+      "grow": 15,
+      "growTxt": "15 min",
+      "level": 99,
+      "cost": 0,
+      "sell": 1800,
+      "net": 1800,
+      "xp": 120,
+      "xpMin": 8,
+      "goldMin": 120,
+      "tip": "👑 ¡EL REY! Cosecha Calabazas Doradas y Arándanos Zafiro"
+    }
+  ],
+  "mining": [
+    {
+      "name": "Piedra Común (Stone) 🪨",
+      "tool": "Pico Hierro",
+      "where": "Rocas lisas en todo el mapa",
+      "cost": "1⚡",
+      "sell": 14,
+      "xp": 1,
+      "xpMin": 1,
+      "goldMin": 14,
+      "tip": "10 piedras para la misión de Bram"
+    },
+    {
+      "name": "Cobre (Copper Ore) 🧱",
+      "tool": "Pico Hierro",
+      "where": "The Old Working (Stonepeak)",
+      "cost": "2⚡",
+      "sell": 81,
+      "xp": 8,
+      "xpMin": 4,
+      "goldMin": 40.5,
+      "tip": "Veta con chispas naranjas (respawn 20 min)"
+    },
+    {
+      "name": "Cuarzo (Quartz) 🤍",
+      "tool": "Pico Hierro",
+      "where": "The Old Working y Glimmer",
+      "cost": "2⚡",
+      "sell": 81,
+      "xp": 8,
+      "xpMin": 4,
+      "goldMin": 40.5,
+      "tip": "Cristal blanco común"
+    },
+    {
+      "name": "Cuarzo Rosa (Rose Quartz) 🌸",
+      "tool": "Pico Hierro",
+      "where": "The Old Working",
+      "cost": "2⚡",
+      "sell": 97,
+      "xp": 9,
+      "xpMin": 4.5,
+      "goldMin": 48.5,
+      "tip": "⭐ ¡Tu pico de hierro ya puede picarlo para pedidos!"
+    },
+    {
+      "name": "Topacio (Topaz) 💛",
+      "tool": "Pico Bronce",
+      "where": "Topaz Drift (Stonepeak)",
+      "cost": "2⚡",
+      "sell": 210,
+      "xp": 15,
+      "xpMin": 7.5,
+      "goldMin": 105,
+      "tip": "Gema amarilla brillante"
+    },
+    {
+      "name": "Zafiro (Sapphire) 💙",
+      "tool": "Pico Bronce",
+      "where": "Topaz Drift / Old Cave",
+      "cost": "2⚡",
+      "sell": 210,
+      "xp": 15,
+      "xpMin": 7.5,
+      "goldMin": 105,
+      "tip": "⭐ ¡Obligatorio Pico de Bronce! (5.000g en Bram)"
+    },
+    {
+      "name": "Esmeralda / Rubí 💚",
+      "tool": "Pico Oro",
+      "where": "The Green Vein y The Gloom",
+      "cost": "2⚡",
+      "sell": 475,
+      "xp": 30,
+      "xpMin": 15,
+      "goldMin": 237,
+      "tip": "Nivel alto en zonas de arañas venenosas"
+    },
+    {
+      "name": "Oro & Diamante 👑",
+      "tool": "Pico Amatista",
+      "where": "Sunken Vault y The Gloom",
+      "cost": "2⚡",
+      "sell": 1150,
+      "xp": 60,
+      "xpMin": 30,
+      "goldMin": 575,
+      "tip": "Minerales del endgame más valiosos"
+    }
+  ],
+  "foraging": [
+    {
+      "name": "Madera de Arce (Wood) 🪵",
+      "tool": "Hacha",
+      "where": "Whisperwood (Oeste)",
+      "cost": "4⚡ (4 golpes)",
+      "sell": 29,
+      "xp": 6,
+      "xpMin": 1.5,
+      "goldMin": 7.25,
+      "tip": "Respawn en 10 min. Base de todo el crafteo"
+    },
+    {
+      "name": "Seta Silvercap 🍄",
+      "tool": "Mano (E)",
+      "where": "Whisperwood (Mushroom Hollow)",
+      "cost": "1⚡",
+      "sell": 160,
+      "xp": 12,
+      "xpMin": 12,
+      "goldMin": 160,
+      "tip": "⭐ ¡Recoge 4 o 5 para subir Recolección a Lv 2!"
+    },
+    {
+      "name": "Seta Glowcap 🔮",
+      "tool": "Mano (E)",
+      "where": "Whisperwood y Moonmere",
+      "cost": "1⚡",
+      "sell": 210,
+      "xp": 18,
+      "xpMin": 18,
+      "goldMin": 210,
+      "tip": "Seta violeta brillante. Más rara y valiosa"
+    },
+    {
+      "name": "Mariposas (Butterfly) 🦋",
+      "tool": "Red (Bugnet)",
+      "where": "Praderas soleadas",
+      "cost": "1⚡",
+      "sell": 15,
+      "xp": 8,
+      "xpMin": 8,
+      "goldMin": 15,
+      "tip": "Fáciles de atrapar durante el día"
+    }
+  ],
+  "fishing": [
+    {
+      "name": "Carpa / Perca (Carp/Perch) 🐟",
+      "tool": "Caña básica",
+      "where": "Río del pueblo",
+      "cost": "1⚡",
+      "sell": 14,
+      "xp": 6,
+      "xpMin": 6,
+      "goldMin": 14,
+      "tip": "Peces comunes para cocinar o vender a Wren"
+    },
+    {
+      "name": "Pez Sol (Sunfish) 🐠",
+      "tool": "Caña básica",
+      "where": "Río del pueblo",
+      "cost": "1⚡",
+      "sell": 14,
+      "xp": 7,
+      "xpMin": 7,
+      "goldMin": 14,
+      "tip": "Fácil de pescar a la luz del día"
+    },
+    {
+      "name": "Trucha Tigre (Tiger Trout) 🐯",
+      "tool": "Cualquier caña",
+      "where": "Río y Lago Moonmere",
+      "cost": "1⚡",
+      "sell": 30,
+      "xp": 15,
+      "xpMin": 15,
+      "goldMin": 30,
+      "tip": "Rara. Wren pide una para su misión especial"
+    },
+    {
+      "name": "Pez Dorado (Golden Fish) ✨",
+      "tool": "Caña mejorada",
+      "where": "Río del pueblo",
+      "cost": "1⚡",
+      "sell": 80,
+      "xp": 40,
+      "xpMin": 40,
+      "goldMin": 80,
+      "tip": "Muy raro. ¡Nixie la sirena te pide uno!"
+    },
+    {
+      "name": "Bagre Fantasma (Ghost Catfish) 👻",
+      "tool": "Cualquier caña",
+      "where": "Lago Moonmere (De Noche)",
+      "cost": "1⚡",
+      "sell": 55,
+      "xp": 35,
+      "xpMin": 35,
+      "goldMin": 55,
+      "tip": "⭐ Solo pica de NOCHE en Moonmere. Ingrediente Founder"
+    }
+  ]
+}

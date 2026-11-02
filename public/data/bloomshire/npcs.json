@@ -1,0 +1,605 @@
+[
+  {
+    "id": "hollis",
+    "name": "Hollis",
+    "title": "Animal Keeper",
+    "loc": "Paddock Este de Bloomshire",
+    "schedule": "07:00 a 20:00 (Duerme de noche)",
+    "desc": "Cuidador del ganado, cabras y gallinas. Otorga misiones de animales y sube Ganadería.",
+    "quote": "Easy there. The goats don't know you yet. Move slowly round them."
+  },
+  {
+    "id": "greta",
+    "name": "Greta",
+    "title": "Schoolteacher",
+    "loc": "Escuela del Pueblo (Norte de los campos)",
+    "schedule": "07:00 a 18:00 (Horario escolar)",
+    "desc": "Maestra del pueblo. Enseña a los niños letras y números en el patio de la escuela.",
+    "quote": "Hello! Walking, not running, I hope. I teach the children letters and good manners."
+  },
+  {
+    "id": "cole",
+    "name": "Cole",
+    "title": "Farmhand",
+    "loc": "Paddock de Hollis (Borde Este)",
+    "schedule": "07:00 a 20:00",
+    "desc": "Ayudante del corral. Alimenta las vacas y da misiones de tala de madera.",
+    "quote": "I work the paddock for Hollis. Feeding, mucking out, the lot."
+  },
+  {
+    "id": "dara",
+    "name": "Dara",
+    "title": "Orchard Keeper",
+    "loc": "Huerto de Cerezos (Norte de Bloomshire)",
+    "schedule": "De día",
+    "desc": "Cuidadora del huerto de frutas. Donde se esconde la gallina traviesa de Hollis.",
+    "quote": "Cherries, oranges, and apricots. Don't climb the trees, I know you want to."
+  },
+  {
+    "id": "fern",
+    "name": "Fern",
+    "title": "The Greenhouse",
+    "loc": "Invernadero de Cristal (Norte de la plaza)",
+    "schedule": "08:00 a 19:00",
+    "desc": "Cuida las plantas exóticas dentro del invernadero.",
+    "quote": "Mind the glass! The soil in here stays warm all year."
+  },
+  {
+    "id": "hugo",
+    "name": "Hugo",
+    "title": "The Miller",
+    "loc": "Molino de Viento (Norte de Bloomshire)",
+    "schedule": "De día",
+    "desc": "Muele el trigo cultivado para producir harina para la panadería.",
+    "quote": "Wind's good today. Bring me wheat and I'll keep the stones turning."
+  },
+  {
+    "id": "bram",
+    "name": "Bram",
+    "title": "The Forge",
+    "loc": "Herrería (Este de la plaza)",
+    "schedule": "Siempre en mostrador",
+    "desc": "Vende picos de bronce, oro y amatista. Compra minerales y metales.",
+    "quote": "Afternoon. You look like you could swing a pick."
+  },
+  {
+    "id": "odette",
+    "name": "Odette",
+    "title": "General Store",
+    "loc": "Tienda General (Junto al puente)",
+    "schedule": "Siempre en mostrador",
+    "desc": "Compra casi todo. Administra los 6 pedidos diarios (+25% oro y XP).",
+    "quote": "Oh, it's you. Wood, stone, a loaf for the road? What will it be?"
+  },
+  {
+    "id": "hazel",
+    "name": "Hazel",
+    "title": "Seed & Tool",
+    "loc": "Tienda de Semillas (Este de la plaza)",
+    "schedule": "Siempre en mostrador",
+    "desc": "Venta de semillas agrícolas y herramientas estándar.",
+    "quote": "Seeds, hoe, watering can... What are you planting today?"
+  },
+  {
+    "id": "pell",
+    "name": "Pell",
+    "title": "Carpenter",
+    "loc": "Taller de Carpintería (Noreste)",
+    "schedule": "Siempre en taller",
+    "desc": "Vende madera y compra excedentes. Da misiones de puentes.",
+    "quote": "Hang on, let me put this down. Bring me wood!"
+  },
+  {
+    "id": "wren",
+    "name": "Wren",
+    "title": "Fisher",
+    "loc": "Cabaña del Pescador (Suroeste del puente)",
+    "schedule": "En el muelle",
+    "desc": "Vende cañas de pescar y compra todo tipo de peces por oro.",
+    "quote": "Got a minute? Sit. I want to tell you about a fish."
+  },
+  {
+    "id": "tamsin",
+    "name": "Tamsin",
+    "title": "The Bakery",
+    "loc": "Panadería (Noroeste del puente)",
+    "schedule": "En mostrador",
+    "desc": "Estufa pública para cocinar recetas y recuperar energía.",
+    "quote": "Fresh from the oven! Come by tomorrow and there'll be soup."
+  },
+  {
+    "id": "juniper",
+    "name": "Juniper",
+    "title": "The Apothecary",
+    "loc": "Botica (Extremo Oeste, techo verde)",
+    "schedule": "En botica",
+    "desc": "Vende semillas de hierbas y flores (Caléndula req. Cultivo 5).",
+    "quote": "Don't touch the blue jars. If a jar starts humming, tell me."
+  },
+  {
+    "id": "rowan",
+    "name": "Rowan",
+    "title": "The Market Hall",
+    "loc": "Mercado Cubierto (Sureste)",
+    "schedule": "24 horas",
+    "desc": "Puestos libres para vender cultivos a otros jugadores y comprar cofres.",
+    "quote": "The stalls are yours. Set your own price in Gold or Shards."
+  },
+  {
+    "id": "farthing",
+    "name": "Farthing",
+    "title": "The Bank",
+    "loc": "Banco (Sureste de la plaza)",
+    "schedule": "24 horas",
+    "desc": "Bóveda para guardar tu oro de forma segura.",
+    "quote": "Safe and sound. Not a single coin has ever gone missing here."
+  },
+  {
+    "id": "quill",
+    "name": "Quill",
+    "title": "The Exchange",
+    "loc": "Casa de Cambios (Este)",
+    "schedule": "24 horas",
+    "desc": "Intercambio de recursos y monedas entre jugadores.",
+    "quote": "Swaps, rates and trades. Everything has its balance."
+  },
+  {
+    "id": "ivy",
+    "name": "Ivy",
+    "title": "Flower Seller",
+    "loc": "Sur de la plaza central",
+    "schedule": "En su puesto",
+    "desc": "Vendedora de flores y receptora de la misión 'Día de Mercado'.",
+    "quote": "Fresh flowers! Grown right here in Bloomshire."
+  },
+  {
+    "id": "maren",
+    "name": "Maren",
+    "title": "The Elder",
+    "loc": "Casa en orilla oeste del río",
+    "schedule": "En su porche",
+    "desc": "La anciana líder del pueblo. Da las misiones principales de la historia.",
+    "quote": "Welcome, newcomer. The river brought you to us for a reason."
+  },
+  {
+    "id": "marlow",
+    "name": "Marlow",
+    "title": "The Old Farmer",
+    "loc": "Huertos del oeste / Entrada de isla",
+    "schedule": "Siempre fuera (sin importar lluvia)",
+    "desc": "El granjero veterano. Te enseña a cultivar y regalar herramientas.",
+    "quote": "Soil's like me. Slow, but it gets there."
+  },
+  {
+    "id": "dunn",
+    "name": "Dunn",
+    "title": "Head Miner",
+    "loc": "Campamento Minero (Stonepeak)",
+    "schedule": "Junto al fuego de campamento",
+    "desc": "Jefe de los mineros en Stonepeak. Desbloquea misiones de cuevas.",
+    "quote": "Watch your step in the deep levels. The spiders bite hard."
+  },
+  {
+    "id": "nixie",
+    "name": "Nixie",
+    "title": "The Mermaid",
+    "loc": "Estanque del Sureste de Bloomshire",
+    "schedule": "En el agua (todo clima)",
+    "desc": "Sirena del pueblo. Pide un Pez Dorado en su cadena de favores.",
+    "quote": "Cold water, warm heart. Have you seen the river glitter?"
+  },
+  {
+    "id": "marven",
+    "name": "Marven",
+    "title": "The Lake Mermaid",
+    "loc": "Piscina en Moonmere (Noroeste)",
+    "schedule": "En el lago",
+    "desc": "Sirena guardiana del lago. Pide el estuche de los Fundadores.",
+    "quote": "The Founders remember me. Bring me what was taken."
+  },
+  {
+    "id": "celeste",
+    "name": "Celeste",
+    "title": "The VIP Shop",
+    "loc": "Tienda VIP (Barrio VIP)",
+    "schedule": "En mostrador VIP",
+    "desc": "Vende el Cofre VIP decorativo por 150.000 de oro.",
+    "quote": "Nexus! Lovely to see you. I polish this counter twice a day."
+  },
+  {
+    "id": "augustin",
+    "name": "Augustin",
+    "title": "The VIP Exchange",
+    "loc": "Barrio VIP",
+    "schedule": "24 horas",
+    "desc": "Intercambios exclusivos para miembros VIP y Fundadores.",
+    "quote": "Only the finest rates for our distinguished patrons."
+  },
+  {
+    "id": "silas",
+    "name": "Silas",
+    "title": "The Gravedigger",
+    "loc": "Cementerio (Noreste)",
+    "schedule": "Siempre fuera",
+    "desc": "Sepulturero. Conoce secretos de las tumbas antiguas.",
+    "quote": "Quiet work. The ground remembers everyone."
+  },
+  {
+    "id": "mabel",
+    "name": "Mabel",
+    "title": "Pond Keeper",
+    "loc": "Estanques del Norte",
+    "schedule": "De día",
+    "desc": "Cuida los estanques y lirios de agua.",
+    "quote": "Keep an eye on the bridge, the planks get slippery."
+  },
+  {
+    "id": "ansel",
+    "name": "Ansel",
+    "title": "Chapel Keeper",
+    "loc": "Capilla del pueblo",
+    "schedule": "De día",
+    "desc": "Guardián de la capilla y campanas.",
+    "quote": "Peace to you, friend. Take a moment to rest."
+  },
+  {
+    "id": "fenwick",
+    "name": "Fenwick",
+    "title": "Postmaster",
+    "loc": "Oficina Postal (Este)",
+    "schedule": "De día",
+    "desc": "Cartero de Bloomshire. Entrega cartas y correspondencia.",
+    "quote": "Letters! Always moving, always on time."
+  },
+  {
+    "id": "otto",
+    "name": "Otto",
+    "title": "Lamplighter",
+    "loc": "Plaza Central / Farolas",
+    "schedule": "Atardecer / Noche",
+    "desc": "Enciende las farolas y da la misión 'Día de Mercado'.",
+    "quote": "A light for every corner before the dark comes."
+  },
+  {
+    "id": "lena",
+    "name": "Lena",
+    "title": "Gardener",
+    "loc": "Jardines de la Plaza",
+    "schedule": "De día",
+    "desc": "Cuida los macizos de flores en el centro del pueblo.",
+    "quote": "The roses are blooming early this season!"
+  },
+  {
+    "id": "rosa",
+    "name": "Rosa",
+    "title": "Reader",
+    "loc": "Banco de la plaza",
+    "schedule": "De día",
+    "desc": "Lectora apasionada de las historias de los Fundadores.",
+    "quote": "Reading the old logbook... It's fascinating."
+  },
+  {
+    "id": "jasper",
+    "name": "Jasper",
+    "title": "Boatwright",
+    "loc": "Muelle Sur de barcos",
+    "schedule": "En el muelle",
+    "desc": "Carpintero de barcos y muelles.",
+    "quote": "Keep the timber dry and the seams caulked."
+  },
+  {
+    "id": "felix",
+    "name": "Felix",
+    "title": "Fiddler",
+    "loc": "Plaza / Taberna",
+    "schedule": "Tardes y noches",
+    "desc": "Músico ambulante que toca melodías folclóricas.",
+    "quote": "A tune for a coin? It keeps the spirits high."
+  },
+  {
+    "id": "rhys",
+    "name": "Rhys",
+    "title": "Farmhand",
+    "loc": "Campos del Norte",
+    "schedule": "07:00 a 19:00",
+    "desc": "Ayudante en la cosecha de patatas y trigo.",
+    "quote": "Hard work, but the earth gives back what you put in."
+  },
+  {
+    "id": "clara",
+    "name": "Clara",
+    "title": "Baker",
+    "loc": "Panadería",
+    "schedule": "Madrugadas y mañanas",
+    "desc": "Segunda panadera de tartas y pasteles.",
+    "quote": "The pies are hot, careful with your hands!"
+  },
+  {
+    "id": "elsie",
+    "name": "Elsie",
+    "title": "Painter",
+    "loc": "Colina de la vista",
+    "schedule": "Días soleados",
+    "desc": "Pinta paisajes de Bloomshire.",
+    "quote": "The light over the river at dusk is perfection."
+  },
+  {
+    "id": "willa",
+    "name": "Willa",
+    "title": "Beekeeper",
+    "loc": "Huerto y Colmenas Norte",
+    "schedule": "De día",
+    "desc": "Apicultora encargada de la miel y colmenas.",
+    "quote": "Listen closely... they're humming in tune."
+  },
+  {
+    "id": "faelan",
+    "name": "Faelan",
+    "title": "Bloom Warden",
+    "loc": "Límite del Bosque Whisperwood",
+    "schedule": "Guardia",
+    "desc": "Guardián de los límites salvajes del bosque.",
+    "quote": "Don't wander too deep into the hollow without a blade."
+  },
+  {
+    "id": "liora",
+    "name": "Liora",
+    "title": "Fountain Singer",
+    "loc": "Fuente de la Plaza",
+    "schedule": "Mediodía",
+    "desc": "Canta junto a la fuente de la plaza.",
+    "quote": "Water has memory, if you know how to listen."
+  },
+  {
+    "id": "aurel",
+    "name": "Aurel",
+    "title": "Tomb Keeper",
+    "loc": "Criptas del Cementerio",
+    "schedule": "Todo el día",
+    "desc": "Custodio de los monumentos funerarios.",
+    "quote": "Respect the quiet. The founders rest here."
+  },
+  {
+    "id": "nella",
+    "name": "Nella",
+    "title": "Stallkeeper",
+    "loc": "Mercado Exterior",
+    "schedule": "Días de mercado",
+    "desc": "Vendedora ambulante de especias y frutos secos.",
+    "quote": "Try a sample! Sweet and salty."
+  },
+  {
+    "id": "teodor",
+    "name": "Teodor",
+    "title": "Fruit Seller",
+    "loc": "Puestos del mercado",
+    "schedule": "Mañanas",
+    "desc": "Comerciante de manzanas y frutas de temporada.",
+    "quote": "Picked this morning, sweet as honey."
+  },
+  {
+    "id": "brenna",
+    "name": "Brenna",
+    "title": "Mason",
+    "loc": "Cantera de Stonepeak",
+    "schedule": "De día",
+    "desc": "Cantera y talladora de piedra.",
+    "quote": "Good stone rings true when struck with a mallet."
+  },
+  {
+    "id": "sefa",
+    "name": "Sefa",
+    "title": "Shepherd",
+    "loc": "Colinas del Este",
+    "schedule": "De día",
+    "desc": "Pastora de ovejas y lana.",
+    "quote": "Mind the sheep, they startle easily."
+  },
+  {
+    "id": "corin",
+    "name": "Corin",
+    "title": "Vintner",
+    "loc": "Viñedos del Sur",
+    "schedule": "De día",
+    "desc": "Productor de jugos y bebidas fermentadas.",
+    "quote": "The grapes need another week of warm sun."
+  },
+  {
+    "id": "pim",
+    "name": "Pim",
+    "title": "Fisher",
+    "loc": "Riberas del río",
+    "schedule": "Madrugadas",
+    "desc": "Joven pescador de percas.",
+    "quote": "I swear I saw a golden tail under the bridge!"
+  },
+  {
+    "id": "oriel",
+    "name": "Oriel",
+    "title": "Pilgrim",
+    "loc": "Santuario del Bosque",
+    "schedule": "Viajero",
+    "desc": "Viajero que busca los altares sagrados.",
+    "quote": "May your harvests be peaceful and plentiful."
+  },
+  {
+    "id": "aldous",
+    "name": "Aldous",
+    "title": "Scholar",
+    "loc": "Biblioteca",
+    "schedule": "De día",
+    "desc": "Historiador de los primeros colonos de Bloomshire.",
+    "quote": "The scrolls hold truths long forgotten by most."
+  },
+  {
+    "id": "hakon",
+    "name": "Hakon",
+    "title": "Ice Fisher",
+    "loc": "Moonmere",
+    "schedule": "Invierno",
+    "desc": "Pescador sobre hielo en aguas profundas.",
+    "quote": "The cold preserves the bite of the biggest trout."
+  },
+  {
+    "id": "sigrun",
+    "name": "Sigrun",
+    "title": "Smith",
+    "loc": "Forja de Bram",
+    "schedule": "De día",
+    "desc": "Aprendiz de forja y afiladora de herramientas.",
+    "quote": "Keep the coals breathing, keep the steel true."
+  },
+  {
+    "id": "bjorn",
+    "name": "Bjorn",
+    "title": "Woodcutter",
+    "loc": "Campamento maderero",
+    "schedule": "De día",
+    "desc": "Leñador de troncos gruesos de arce.",
+    "quote": "Timber! Clear the path!"
+  },
+  {
+    "id": "ylva",
+    "name": "Ylva",
+    "title": "Path Keeper",
+    "loc": "Caminos de Stonepeak",
+    "schedule": "De día",
+    "desc": "Mantiene los senderos de montaña libres de derrumbes.",
+    "quote": "Watch the loose gravel near the gorge."
+  },
+  {
+    "id": "gunnar",
+    "name": "Gunnar",
+    "title": "Elder",
+    "loc": "Stonepeak Miners",
+    "schedule": "Campamento",
+    "desc": "Minero veterano jubilado.",
+    "quote": "I remember when the Green Vein was first struck."
+  },
+  {
+    "id": "liv",
+    "name": "Liv",
+    "title": "Musician",
+    "loc": "Muelles",
+    "schedule": "Noches",
+    "desc": "Flautista nocturna junto al agua.",
+    "quote": "The fish rise to the surface when the song is gentle."
+  },
+  {
+    "id": "toke",
+    "name": "Toke",
+    "title": "Watchman",
+    "loc": "Puerta Este",
+    "schedule": "Guardia nocturna",
+    "desc": "Vigilante de la entrada a las montañas.",
+    "quote": "All clear on the eastern trail tonight."
+  },
+  {
+    "id": "inga",
+    "name": "Inga",
+    "title": "Fishmonger",
+    "loc": "Mercado",
+    "schedule": "Mañanas",
+    "desc": "Venta de pescado fresco del día.",
+    "quote": "Caught at dawn, on your plate by noon!"
+  },
+  {
+    "id": "eira",
+    "name": "Eira",
+    "title": "Hunter",
+    "loc": "Campamento del Cazador (Whisperwood)",
+    "schedule": "En el bosque",
+    "desc": "Cazadora de Whisperwood.",
+    "quote": "Forty years hunting this wood. Deer at the glade, boar in the south."
+  },
+  {
+    "id": "sylvie",
+    "name": "Sylvie",
+    "title": "The Library",
+    "loc": "Biblioteca del Pueblo",
+    "schedule": "10:00 a 17:00",
+    "desc": "Archivera y bibliotecaria oficial.",
+    "quote": "Silence, please. Every book has a soul."
+  },
+  {
+    "id": "pemberton",
+    "name": "Pemberton",
+    "title": "The Manor",
+    "loc": "Mansión de Bloomshire",
+    "schedule": "En la mansión",
+    "desc": "Mayordomo de la mansión señorial.",
+    "quote": "Good day. Do you have an appointment with her ladyship?"
+  },
+  {
+    "id": "theo",
+    "name": "Theo",
+    "title": "The Golden Boat",
+    "loc": "Muelle especial",
+    "schedule": "Ocasional",
+    "desc": "Navegante de las islas lejanas.",
+    "quote": "Beyond the mist, new shores await."
+  },
+  {
+    "id": "iris",
+    "name": "Iris",
+    "title": "The Celestial Garden",
+    "loc": "Jardín de las Estrellas",
+    "schedule": "Noches de luna llena",
+    "desc": "Cuidadora de las flores nocturnas.",
+    "quote": "The moonflower opens only when the world sleeps."
+  },
+  {
+    "id": "amelia",
+    "name": "Lady Amelia",
+    "title": "Resident",
+    "loc": "Mansión",
+    "schedule": "Tardes",
+    "desc": "Noble benefactora de Bloomshire.",
+    "quote": "A delightful afternoon for a stroll through the village."
+  },
+  {
+    "id": "wick",
+    "name": "Wick",
+    "title": "The Ferryman",
+    "loc": "Cruce del río",
+    "schedule": "Siempre fuera",
+    "desc": "Barquero de los canales secundarios.",
+    "quote": "Step aboard carefully, the river runs deep."
+  },
+  {
+    "id": "sable",
+    "name": "Sable",
+    "title": "The Night Market",
+    "loc": "Mercado Nocturno (Callejón)",
+    "schedule": "22:00 a 04:00 (Solo noche)",
+    "desc": "Comerciante misteriosa de objetos raros.",
+    "quote": "Looking for something the daylight merchants don't sell?"
+  },
+  {
+    "id": "vesper",
+    "name": "Vesper",
+    "title": "The Lamplighter",
+    "loc": "Calles del Sur",
+    "schedule": "Atardeceres",
+    "desc": "Farolero de los muelles.",
+    "quote": "Keeping the fog at bay, one flame at a time."
+  },
+  {
+    "id": "jory",
+    "name": "Jory",
+    "title": "Old Sailor",
+    "loc": "Cabaña de pescadores",
+    "schedule": "De día",
+    "desc": "Marinero retirado que narra historias de monstruos marinos.",
+    "quote": "Ahoy! Sit down, sit down. Let me tell you about the storm of '14."
+  },
+  {
+    "id": "tilly",
+    "name": "Tilly",
+    "title": "The Tailor",
+    "loc": "Sastrería (Junto al mercado)",
+    "schedule": "De día",
+    "desc": "Teje telas en el telar y confecciona ropas y capas.",
+    "quote": "A stitch in time! Wool, cloth and thread for every season."
+  }
+]

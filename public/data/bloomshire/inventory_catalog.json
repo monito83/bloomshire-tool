@@ -1,0 +1,531 @@
+[
+  {
+    "id": "Golden Pumpkin",
+    "matchKeys": [
+      "golden pumpkin",
+      "calabaza",
+      "pumpkin_vip"
+    ],
+    "name": "Calabaza Dorada (VIP)",
+    "unit": 2350,
+    "seller": "Rowan (Market Hall)",
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🎃"
+  },
+  {
+    "id": "Sapphire Blueberry",
+    "matchKeys": [
+      "sapphire blueberry",
+      "blueberry",
+      "arándano",
+      "blueberry_vip"
+    ],
+    "name": "Arándano Zafiro (VIP)",
+    "unit": 1150,
+    "seller": "Rowan (Market Hall)",
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🫐"
+  },
+  {
+    "id": "Diamond Strawberry",
+    "matchKeys": [
+      "diamond strawberry",
+      "strawberry",
+      "fresa",
+      "strawberry_vip"
+    ],
+    "name": "Fresa Diamante (VIP)",
+    "unit": 990,
+    "seller": "Rowan (Market Hall)",
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🍓"
+  },
+  {
+    "id": "Sunfire Pepper",
+    "matchKeys": [
+      "sunfire pepper",
+      "pepper",
+      "pimiento",
+      "pepper_vip"
+    ],
+    "name": "Pimiento Fuego Solar",
+    "unit": 740,
+    "seller": "Rowan (Market Hall)",
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🌶️"
+  },
+  {
+    "id": "Wood",
+    "matchKeys": [
+      "wood",
+      "madera"
+    ],
+    "name": "Madera de Arce",
+    "unit": 29,
+    "seller": "Pell (Carpintería)",
+    "qty": 0,
+    "cat": "resource",
+    "icon": "🪵"
+  },
+  {
+    "id": "Stone",
+    "matchKeys": [
+      "stone",
+      "piedra"
+    ],
+    "name": "Piedra",
+    "unit": 14,
+    "seller": "Pell / Bram",
+    "qty": 0,
+    "cat": "resource",
+    "icon": "🪨"
+  },
+  {
+    "id": "Wooden Plank",
+    "matchKeys": [
+      "wooden plank",
+      "wood plank",
+      "tablón",
+      "tablon"
+    ],
+    "name": "Tablón de Madera",
+    "unit": 35,
+    "seller": "Pell (Carpintería)",
+    "qty": 0,
+    "cat": "resource",
+    "icon": "🪵"
+  },
+  {
+    "id": "Copper Bar",
+    "matchKeys": [
+      "copper bar",
+      "copper",
+      "lingote de cobre",
+      "lingote"
+    ],
+    "name": "Lingote de Cobre",
+    "unit": 45,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "resource",
+    "icon": "🧱"
+  },
+  {
+    "id": "Quartz",
+    "matchKeys": [
+      "quartz",
+      "cuarzo"
+    ],
+    "name": "Cuarzo (Gema)",
+    "unit": 60,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "💎"
+  },
+  {
+    "id": "Rose Quartz",
+    "matchKeys": [
+      "rose quartz",
+      "cuarzo rosa"
+    ],
+    "name": "Cuarzo Rosa (Gema)",
+    "unit": 97,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "💎"
+  },
+  {
+    "id": "Silvercap Mushroom",
+    "matchKeys": [
+      "silvercap mushroom",
+      "silvercap"
+    ],
+    "name": "Seta Silvercap",
+    "unit": 160,
+    "seller": "Odette (General)",
+    "qty": 0,
+    "cat": "forage",
+    "icon": "🍄"
+  },
+  {
+    "id": "Glowcap Mushroom",
+    "matchKeys": [
+      "glowcap mushroom",
+      "glowcap"
+    ],
+    "name": "Seta Glowcap",
+    "unit": 120,
+    "seller": "Odette (General)",
+    "qty": 0,
+    "cat": "forage",
+    "icon": "🍄"
+  },
+  {
+    "id": "Carrot",
+    "matchKeys": [
+      "carrot",
+      "zanahoria"
+    ],
+    "name": "Zanahorias",
+    "unit": 40,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥕"
+  },
+  {
+    "id": "Parsnip",
+    "matchKeys": [
+      "parsnip",
+      "chirivía",
+      "chirivia"
+    ],
+    "name": "Chirivías",
+    "unit": 73,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥔"
+  },
+  {
+    "id": "Spring Onion",
+    "matchKeys": [
+      "spring onion",
+      "cebollín",
+      "cebollin"
+    ],
+    "name": "Cebollín",
+    "unit": 89,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🧅"
+  },
+  {
+    "id": "Wheat",
+    "matchKeys": [
+      "wheat",
+      "trigo"
+    ],
+    "name": "Trigo Cosechado",
+    "unit": 185,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌾"
+  },
+  {
+    "id": "Potato",
+    "matchKeys": [
+      "potato",
+      "patata",
+      "papa"
+    ],
+    "name": "Patatas / Papas",
+    "unit": 105,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥔"
+  },
+  {
+    "id": "Cabbage",
+    "matchKeys": [
+      "cabbage",
+      "repollo"
+    ],
+    "name": "Repollo",
+    "unit": 240,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥬"
+  },
+  {
+    "id": "Onion",
+    "matchKeys": [
+      "onion",
+      "cebolla"
+    ],
+    "name": "Cebollas",
+    "unit": 150,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🧅"
+  },
+  {
+    "id": "Marigold",
+    "matchKeys": [
+      "marigold",
+      "caléndula",
+      "calendula"
+    ],
+    "name": "Caléndula (Marigold)",
+    "unit": 240,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌼"
+  },
+  {
+    "id": "Rice",
+    "matchKeys": [
+      "rice",
+      "arroz"
+    ],
+    "name": "Arroz (Rice)",
+    "unit": 355,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌾"
+  },
+  {
+    "id": "Broccoli",
+    "matchKeys": [
+      "broccoli",
+      "brócoli",
+      "brocoli"
+    ],
+    "name": "Brócoli",
+    "unit": 355,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥦"
+  },
+  {
+    "id": "Sunflower",
+    "matchKeys": [
+      "sunflower",
+      "girasol"
+    ],
+    "name": "Girasol",
+    "unit": 420,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌻"
+  },
+  {
+    "id": "Cucumber",
+    "matchKeys": [
+      "cucumber",
+      "pepino"
+    ],
+    "name": "Pepino",
+    "unit": 490,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥒"
+  },
+  {
+    "id": "Tomato",
+    "matchKeys": [
+      "tomato",
+      "tomate"
+    ],
+    "name": "Tomates",
+    "unit": 545,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍅"
+  },
+  {
+    "id": "Adzuki Bean",
+    "matchKeys": [
+      "adzuki bean",
+      "adzuki",
+      "frijol adzuki"
+    ],
+    "name": "Frijol Adzuki",
+    "unit": 545,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫘"
+  },
+  {
+    "id": "Green Beans",
+    "matchKeys": [
+      "green beans",
+      "judías verdes",
+      "judias verdes"
+    ],
+    "name": "Judías Verdes",
+    "unit": 605,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫛"
+  },
+  {
+    "id": "Eggplant",
+    "matchKeys": [
+      "eggplant",
+      "berenjena"
+    ],
+    "name": "Berenjena",
+    "unit": 740,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍆"
+  },
+  {
+    "id": "Star Fruit",
+    "matchKeys": [
+      "star fruit",
+      "carambola"
+    ],
+    "name": "Fruta Estrella (Star Fruit)",
+    "unit": 4150,
+    "seller": "Odette / Moonlight Stew",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "⭐"
+  },
+  {
+    "id": "Corn",
+    "matchKeys": [
+      "corn",
+      "maíz",
+      "maiz"
+    ],
+    "name": "Maíz",
+    "unit": 490,
+    "seller": "Odette / Hazel",
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌽"
+  },
+  {
+    "id": "Parsnip Soup",
+    "matchKeys": [
+      "parsnip soup",
+      "sopa de chirivía",
+      "sopa"
+    ],
+    "name": "Sopa de Chirivía",
+    "unit": 50,
+    "seller": "Tamsin / Consumo",
+    "qty": 0,
+    "cat": "food",
+    "icon": "🍲"
+  },
+  {
+    "id": "Carp",
+    "matchKeys": [
+      "carp",
+      "carpa"
+    ],
+    "name": "Carpa Común",
+    "unit": 16,
+    "seller": "Wren (Pesquería)",
+    "qty": 0,
+    "cat": "fish",
+    "icon": "🐟"
+  },
+  {
+    "id": "Pike Fish",
+    "matchKeys": [
+      "pike fish",
+      "lucio"
+    ],
+    "name": "Lucio (Pike Fish)",
+    "unit": 24,
+    "seller": "Wren (Pesquería)",
+    "qty": 0,
+    "cat": "fish",
+    "icon": "🐟"
+  },
+  {
+    "id": "Golden Fish",
+    "matchKeys": [
+      "golden fish",
+      "pez dorado"
+    ],
+    "name": "Pez Dorado Raro",
+    "unit": 905,
+    "seller": "Wren (Pesquería)",
+    "qty": 0,
+    "cat": "fish",
+    "icon": "🐠"
+  },
+  {
+    "id": "Wood White",
+    "matchKeys": [
+      "wood white",
+      "blanca de madera",
+      "butterfly"
+    ],
+    "name": "Mariposa Blanca de Madera",
+    "unit": 40,
+    "seller": "Odette (General)",
+    "qty": 0,
+    "cat": "forage",
+    "icon": "🦋"
+  },
+  {
+    "id": "Topaz",
+    "matchKeys": [
+      "topaz",
+      "topacio"
+    ],
+    "name": "Topacio (Gema)",
+    "unit": 210,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "💛"
+  },
+  {
+    "id": "Sapphire",
+    "matchKeys": [
+      "sapphire",
+      "zafiro"
+    ],
+    "name": "Zafiro (Gema)",
+    "unit": 320,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "💙"
+  },
+  {
+    "id": "Emerald",
+    "matchKeys": [
+      "emerald",
+      "esmeralda"
+    ],
+    "name": "Esmeralda (Gema)",
+    "unit": 480,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "💚"
+  },
+  {
+    "id": "Ruby",
+    "matchKeys": [
+      "ruby",
+      "rubí",
+      "rubi"
+    ],
+    "name": "Rubí (Gema)",
+    "unit": 750,
+    "seller": "Bram (Herrería)",
+    "qty": 0,
+    "cat": "ore",
+    "icon": "❤️"
+  }
+]

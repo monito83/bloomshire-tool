@@ -1,0 +1,141 @@
+{
+  "everbloom": {
+    "mapId": "everbloom",
+    "url": "/data/bloomshire/maps/everbloom.webp",
+    "pixelWidth": 2560,
+    "pixelHeight": 1920,
+    "scale": 0.5,
+    "fishingSpots": [
+      {
+        "x": 144,
+        "y": 1136,
+        "w": 768,
+        "h": 672
+      }
+    ]
+  },
+  "home_island": {
+    "mapId": "home_island",
+    "url": "/data/bloomshire/maps/home_island.webp",
+    "pixelWidth": 768,
+    "pixelHeight": 512,
+    "scale": 0.75,
+    "fishingSpots": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 512
+      }
+    ]
+  },
+  "bloomshire": {
+    "mapId": "bloomshire",
+    "url": "/data/bloomshire/maps/bloomshire.webp",
+    "pixelWidth": 5632,
+    "pixelHeight": 7424,
+    "scale": 0.375,
+    "fishingSpots": [
+      {
+        "x": 2112,
+        "y": 208,
+        "w": 1440,
+        "h": 896
+      },
+      {
+        "x": 2992,
+        "y": 6560,
+        "w": 1120,
+        "h": 864
+      },
+      {
+        "x": 2416,
+        "y": 2960,
+        "w": 496,
+        "h": 608
+      }
+    ]
+  },
+  "stonepeak": {
+    "mapId": "stonepeak",
+    "url": "/data/bloomshire/maps/stonepeak.webp",
+    "pixelWidth": 1792,
+    "pixelHeight": 5504,
+    "scale": 0.5,
+    "fishingSpots": []
+  },
+  "whisperwood": {
+    "mapId": "whisperwood",
+    "url": "/data/bloomshire/maps/whisperwood.webp",
+    "pixelWidth": 1792,
+    "pixelHeight": 5504,
+    "scale": 0.5,
+    "fishingSpots": [
+      {
+        "x": 1200,
+        "y": 1472,
+        "w": 256,
+        "h": 160
+      }
+    ]
+  },
+  "vip_quarter": {
+    "mapId": "vip_quarter",
+    "url": "/data/bloomshire/maps/vip_quarter.webp",
+    "pixelWidth": 768,
+    "pixelHeight": 672,
+    "scale": 0.75,
+    "fishingSpots": []
+  },
+  "frosthaven": {
+    "mapId": "frosthaven",
+    "url": "/data/bloomshire/maps/frosthaven.webp",
+    "pixelWidth": 2688,
+    "pixelHeight": 1952,
+    "scale": 0.5,
+    "fishingSpots": [
+      {
+        "x": 1750,
+        "y": 1238,
+        "w": 64,
+        "h": 64
+      },
+      {
+        "x": 1510,
+        "y": 950,
+        "w": 64,
+        "h": 64
+      },
+      {
+        "x": 1814,
+        "y": 934,
+        "w": 64,
+        "h": 64
+      }
+    ]
+  },
+  "barrowmire": {
+    "mapId": "barrowmire",
+    "url": "/data/bloomshire/maps/barrowmire.webp",
+    "pixelWidth": 2560,
+    "pixelHeight": 1920,
+    "scale": 0.5,
+    "fishingSpots": []
+  },
+  "dreaming_fields": {
+    "mapId": "dreaming_fields",
+    "url": "/data/bloomshire/maps/dreaming_fields.webp",
+    "pixelWidth": 1536,
+    "pixelHeight": 1152,
+    "scale": 0.75,
+    "fishingSpots": []
+  },
+  "colosseum": {
+    "mapId": "colosseum",
+    "url": "/data/bloomshire/maps/colosseum.webp",
+    "pixelWidth": 1152,
+    "pixelHeight": 928,
+    "scale": 0.75,
+    "fishingSpots": []
+  }
+}

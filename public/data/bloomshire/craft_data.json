@@ -1,0 +1,162 @@
+{
+  "bench": [
+    {
+      "item": "Tablón de Madera (Wooden Plank) 🪵",
+      "level": "Artesanía Lv 1",
+      "mats": "Madera x3",
+      "place": "Banco de Trabajo (Carpintero)",
+      "desc": "Material base para construir puentes, vallas y cajas de herramientas."
+    },
+    {
+      "item": "Cuerda de Enredadera (Rope) 🪢",
+      "level": "Artesanía Lv 2",
+      "mats": "Trigo x3",
+      "place": "Banco de Trabajo",
+      "desc": "Indispensable para amuletos, arcos y cañas avanzadas."
+    },
+    {
+      "item": "Kit de Reparación (Repair Kit) 🧰",
+      "level": "Artesanía Lv 3",
+      "mats": "Tablón x2 + Barra de Cobre x1",
+      "place": "Banco de Trabajo",
+      "desc": "Restaura usos de herramientas desgastadas."
+    },
+    {
+      "item": "Anillo de Enredadera (Vine Ring) 💍",
+      "level": "Artesanía Lv 7",
+      "mats": "Cuerda x1 + Tablón x2",
+      "place": "Banco de Trabajo",
+      "desc": "Joyería natural con pequeña bonificación de estamina."
+    },
+    {
+      "item": "Tela (Cloth) 🧵",
+      "level": "Artesanía Lv 9",
+      "mats": "Lana x2",
+      "place": "Telar de Tilly (Sastrería)",
+      "desc": "Se teje en el telar de Tilly para capas, bolsas y amuletos."
+    }
+  ],
+  "forge": [
+    {
+      "item": "Barra de Cobre (Copper Bar) 🧱",
+      "level": "Artesanía Lv 1",
+      "mats": "Mineral de Cobre x2",
+      "place": "La Forja (Bram)",
+      "desc": "Lingote fundido para forjar útiles de bronce y kits."
+    },
+    {
+      "item": "Cuarzo Rosa Pulido (Cut Rose Quartz) 🌸",
+      "level": "Artesanía Lv 4",
+      "mats": "Cuarzo Rosa x2",
+      "place": "Yunque de Herrería",
+      "desc": "Gema tallada para el Amuleto de Escoba."
+    },
+    {
+      "item": "Amuleto de Escoba (Broom Charm) 🧹",
+      "level": "Artesanía Lv 5",
+      "mats": "Cuerda x1 + Cuarzo Rosa Pulido x1 + Caléndula x1",
+      "place": "La Forja",
+      "desc": "Permite encantar o mejorar la montura de escoba."
+    },
+    {
+      "item": "Topacio Pulido (Cut Topaz) 💛",
+      "level": "Artesanía Lv 6",
+      "mats": "Topacio x2",
+      "place": "La Forja",
+      "desc": "Gema tallada para joyería de cobre y oro."
+    },
+    {
+      "item": "Zafiro Pulido (Cut Sapphire) 💙",
+      "level": "Artesanía Lv 8",
+      "mats": "Zafiro x2",
+      "place": "La Forja",
+      "desc": "Gema de alta resistencia para el Amuleto de Zafiro."
+    },
+    {
+      "item": "Anillo de Topacio (Topaz Ring) 💍",
+      "level": "Artesanía Lv 10",
+      "mats": "Barra de Cobre x1 + Topacio Pulido x1",
+      "place": "La Forja",
+      "desc": "Joyería fina que incrementa la suerte en minas."
+    },
+    {
+      "item": "Barra de Oro (Gold Bar) 👑",
+      "level": "Artesanía Lv 13",
+      "mats": "Mineral de Oro x2",
+      "place": "La Forja",
+      "desc": "Metal precioso para la forja de herramientas de oro y anillos reales."
+    },
+    {
+      "item": "Amuleto de Zafiro (Sapphire Amulet) 📿",
+      "level": "Artesanía Lv 18",
+      "mats": "Barra Oro x1 + Zafiro Pulido x1 + Tela x1",
+      "place": "La Forja",
+      "desc": "Protección elemental en las profundidades de la mazmorra."
+    }
+  ],
+  "cook": [
+    {
+      "item": "Plato de Verduras (Vegetable Plate) 🥗",
+      "level": "Cocina Lv 1",
+      "mats": "Zanahoria x2 + Chirivía x1",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+2 Energía. Plato inicial rápido y barato."
+    },
+    {
+      "item": "Ensalada del Huerto (Garden Salad) 🥬",
+      "level": "Cocina Lv 1",
+      "mats": "Repollo x2 + Cebolla x1",
+      "place": "Estufa",
+      "desc": "+3 Energía. Ideal para largas jornadas de tala."
+    },
+    {
+      "item": "Pan Casero (Bread) 🍞",
+      "level": "Cocina Lv 2",
+      "mats": "Trigo x3",
+      "place": "Estufa",
+      "desc": "+4 Energía. El alimento más rendidor con trigo propio."
+    },
+    {
+      "item": "Pescado Frito (Fried Fish) 🐟",
+      "level": "Cocina Lv 2",
+      "mats": "Carpa o Perca x1",
+      "place": "Estufa",
+      "desc": "+5 Energía. Fácil de hacer con cualquier pez del río."
+    },
+    {
+      "item": "Chile Fuego Solar (Sunfire Chili) 🌶️",
+      "level": "Cocina Lv 3 (VIP)",
+      "mats": "Pimiento Fuego Solar x2",
+      "place": "Estufa",
+      "desc": "+6 Energía + Buff de velocidad temporal."
+    },
+    {
+      "item": "Mermelada de Zafiro (Sapphire Jam) 🫐",
+      "level": "Cocina Lv 3 (VIP)",
+      "mats": "Arándano Zafiro x2",
+      "place": "Estufa",
+      "desc": "+6 Energía + Reducción de coste de energía al minar."
+    },
+    {
+      "item": "Tarta Diamante (Diamond Tart) 🍓",
+      "level": "Cocina Lv 3 (VIP)",
+      "mats": "Fresa Diamante x2",
+      "place": "Estufa",
+      "desc": "+6 Energía + Buff de recarga de estamina."
+    },
+    {
+      "item": "Pastel Dorado (Golden Pie) 👑",
+      "level": "Cocina Lv 5 (VIP)",
+      "mats": "Calabaza Dorada x2 + Trigo x2",
+      "place": "Estufa",
+      "desc": "⚡ +50 DE ENERGÍA (Llena la barra casi entera de golpe)."
+    },
+    {
+      "item": "Estofado de los Fundadores (Moonlight Stew) 🍲",
+      "level": "Misión Marven",
+      "mats": "Bagre Fantasma x1 + Star Fruit x1 + Silvercap x2",
+      "place": "Estufa Cabaña",
+      "desc": "+25 Energía. La receta milenaria de los Fundadores."
+    }
+  ]
+}
