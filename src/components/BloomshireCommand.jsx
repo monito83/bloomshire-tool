@@ -1645,11 +1645,15 @@ export default function BloomshireCommand() {
     const handleCompanionMessage = (event) => {
       if (event.data?.type === 'MONIOS_COMPANION_SYNC' && event.data.game === 'bloomshire') {
         applyIncomingSync(event.data.data, 'extension');
+        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
+        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
     const handleCompanionCustomEvent = (event) => {
       if (event.detail?.game === 'bloomshire') {
         applyIncomingSync(event.detail.data, 'extension');
+        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
+        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
 
@@ -6135,16 +6139,31 @@ export default function BloomshireCommand() {
                             onClick={() => {
                               window.postMessage({ type: 'FORCE_SYNC_ALL', force: true }, '*');
                               document.dispatchEvent(new CustomEvent('monios_force_sync', { detail: { force: true } }));
-                              setConnectFeedback({ type: 'info', text: '📡 Transmitiendo señal de enlace a la extensión...' });
+                              setConnectFeedback({ type: 'info', text: '📡 Señal emitida. Buscando extensión Bloomshire Companion...' });
                               setTimeout(() => {
+                                const snap = localStorage.getItem('bloomshire_cached_snapshot');
                                 const w = localStorage.getItem('bloomshire_wallet');
+                                if (snap) {
+                                  try {
+                                    const parsed = JSON.parse(snap);
+                                    if (parsed && (parsed.gold > 0 || (parsed.inventory && parsed.inventory.length > 0))) {
+                                      applyIncomingSync(parsed, 'cache');
+                                      setConnectFeedback({ type: 'success', text: '¡Partida vinculada desde la caché de la extensión!' });
+                                      setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                                      return;
+                                    }
+                                  } catch (_) {}
+                                }
                                 if (w && w.startsWith('0x')) {
-                                  setConnectFeedback({ type: 'success', text: `¡Partida sincronizada con éxito! (${w.slice(0, 6)}...)` });
+                                  setConnectFeedback({ type: 'success', text: `¡Partida vinculada a ${w.slice(0, 6)}...!` });
                                   setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
                                 } else {
-                                  setConnectFeedback({ type: 'info', text: 'Señal emitida. Si tienes Bloomshire abierto en el navegador, haz clic en "Forzar Sincronización" en el popup de la extensión o ingresa tu wallet abajo.' });
+                                  setConnectFeedback({ 
+                                    type: 'info', 
+                                    text: '⚠️ Señal enviada. Si estás en Incógnito, recuerda habilitar la extensión en chrome://extensions. O abre bloomshire.xyz/play en otra pestaña y pulsa "Forzar Sincronización" en el icono de la extensión.' 
+                                  });
                                 }
-                              }, 1200);
+                              }, 1500);
                             }}
                             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all active:scale-[0.98]"
                           >
