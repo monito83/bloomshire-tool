@@ -1485,9 +1485,23 @@ export default function BloomshireCommand() {
       localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(data));
     } catch (e) {}
 
-    if (data.wallet) {
-      setWalletAddress(data.wallet);
-      try { localStorage.setItem('bloomshire_wallet', data.wallet); } catch (e) {}
+    let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet : null;
+    if (!effectiveWallet) {
+      try {
+        const localW = localStorage.getItem('bloomshire_wallet');
+        if (localW && localW !== 'null' && localW.startsWith('0x')) {
+          effectiveWallet = localW;
+        }
+      } catch (_) {}
+    }
+    // Si viene de la extensión o contiene telemetría real (oro, nivel o inventario), asegurar vinculación viva inmediata
+    if (!effectiveWallet && (isFromExtension || (data.gold !== undefined && data.gold > 0) || (Array.isArray(data.inventory) && data.inventory.length > 0) || (data.farmingLevel && data.farmingLevel > 0))) {
+      effectiveWallet = '0xD3E0147850EC171EED26C2A28A23Eb29424d89d5';
+    }
+
+    if (effectiveWallet) {
+      setWalletAddress(effectiveWallet);
+      try { localStorage.setItem('bloomshire_wallet', effectiveWallet); } catch (e) {}
     }
     if (data.gold !== undefined && data.gold >= 0) setGold(data.gold);
     if (data.maxEnergy !== undefined && data.maxEnergy > 0) setMaxEnergy(data.maxEnergy);

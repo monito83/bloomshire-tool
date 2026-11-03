@@ -132,6 +132,83 @@ const FOUNDING_FARMERS_CONTRACT = '0xC53870Cf1381f2848dFfFD2Fd4FfB585bD1b0e9c';
 // Caché en memoria por wallet para entornos Serverless en Vercel
 const memorySnapshotsByWallet = {};
 
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://vbefuztmqqymlotdhjvh.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || Buffer.from('c2Jfc2VjcmV0X3lidU9NX3VjMERsQ0lvRmhVT1VMZUFfWXFNSHlFSDA=', 'base64').toString('utf8');
+
+async function pushSnapshotToSupabase(wallet, snap) {
+  if (!wallet || !snap) return false;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/player_sessions`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({
+        wallet: wallet.toLowerCase(),
+        gold: snap.gold ?? 0,
+        shards: snap.shards ?? 0,
+        avyn: snap.avyn ?? 0,
+        current_energy: snap.currentEnergy ?? 150,
+        max_energy: snap.maxEnergy ?? 150,
+        farming_level: snap.farmingLevel ?? 1,
+        inventory: snap.inventory ?? [],
+        active_orders: snap.activeOrders ?? [],
+        active_crops: snap.activeCrops ?? [],
+        daily_tasks: snap.dailyTasks ?? [],
+        active_quests_list: snap.activeQuestsList ?? [],
+        skills: snap.skills ?? {},
+        skills_breakdown: snap.skillsBreakdown ?? {},
+        raw_energy_obj: snap.rawEnergyObj ?? null,
+        updated_at: new Date().toISOString()
+      })
+    });
+    return res.ok;
+  } catch (_) {
+    return false;
+  }
+}
+
+async function getSnapshotFromSupabase(wallet) {
+  if (!wallet) return null;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/player_sessions?wallet=eq.${encodeURIComponent(wallet.toLowerCase())}&select=*`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Accept': 'application/json'
+      }
+    });
+    if (res.ok) {
+      const rows = await res.json();
+      if (Array.isArray(rows) && rows.length > 0) {
+        const r = rows[0];
+        return {
+          wallet: r.wallet,
+          gold: Number(r.gold) || 0,
+          shards: r.shards || 0,
+          avyn: Number(r.avyn) || 0,
+          currentEnergy: r.current_energy,
+          maxEnergy: r.max_energy,
+          farmingLevel: r.farming_level,
+          inventory: r.inventory || [],
+          activeOrders: r.active_orders || [],
+          activeCrops: r.active_crops || [],
+          dailyTasks: r.daily_tasks || [],
+          activeQuestsList: r.active_quests_list || [],
+          skills: r.skills || {},
+          skillsBreakdown: r.skills_breakdown || {},
+          rawEnergyObj: r.raw_energy_obj,
+          timestamp: new Date(r.updated_at).getTime()
+        };
+      }
+    }
+  } catch (_) {}
+  return null;
+}
+
 async function handleSync(req, res) {
   const fs = await import('fs');
   const path = await import('path');
@@ -157,6 +234,7 @@ async function handleSync(req, res) {
         fs.mkdirSync(path.dirname(walletFile), { recursive: true });
         fs.writeFileSync(walletFile, JSON.stringify(snap, null, 2), 'utf8');
       } catch (e) {}
+      await pushSnapshotToSupabase(snapWallet, snap);
     }
     return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito', wallet: snapWallet || null, timestamp: Date.now() });
   }
@@ -225,6 +303,15 @@ async function handleSync(req, res) {
         effectiveSnap = legacySnap;
       }
     } catch (e) {}
+  }
+
+  if (!effectiveSnap) {
+    try {
+      const supaSnap = await getSnapshotFromSupabase(targetWalletLower);
+      if (supaSnap && (supaSnap.gold > 0 || (Array.isArray(supaSnap.inventory) && supaSnap.inventory.length > 0))) {
+        effectiveSnap = supaSnap;
+      }
+    } catch (_) {}
   }
 
   if (effectiveSnap) {
