@@ -129,8 +129,8 @@ const ROBINHOOD_RPCS = [
 ];
 const FOUNDING_FARMERS_CONTRACT = '0xC53870Cf1381f2848dFfFD2Fd4FfB585bD1b0e9c';
 
-// Caché en memoria para entornos Serverless en Vercel
-let memorySnapshotCache = null;
+// Caché en memoria por wallet para entornos Serverless en Vercel
+const memorySnapshotsByWallet = {};
 
 async function handleSync(req, res) {
   const fs = await import('fs');
@@ -143,27 +143,42 @@ async function handleSync(req, res) {
   // Push Snapshot from MoniOS Companion Extension
   if (req.method === 'POST' && (req.query?.action === 'push_snapshot' || req.body?.action === 'push_snapshot' || req.body?.snapshot)) {
     const snap = req.body?.snapshot || req.body;
+    const snapWallet = (snap?.wallet || req.body?.wallet || req.query?.wallet || '').trim().toLowerCase();
     // Guard: Nunca persistir estados vacíos o ceros que rompan la sesión
     const hasRealSnapData = snap && (snap.gold > 0 || (Array.isArray(snap.inventory) && snap.inventory.length > 0));
     if (!hasRealSnapData) {
       return res.status(200).json({ ok: false, message: 'Snapshot ignorado: no contiene inventario ni oro real', timestamp: Date.now() });
     }
-    memorySnapshotCache = snap;
-    try {
-      fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
-      fs.writeFileSync(snapshotPath, JSON.stringify(snap, null, 2), 'utf8');
-      return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito', timestamp: Date.now() });
-    } catch (e) {
-      // Si el sistema de archivos es de solo lectura, respondemos OK ya que se guardó en memoria
-      return res.status(200).json({ ok: true, message: 'Snapshot guardado en memoria serverless', inMemory: true, timestamp: Date.now() });
+    if (snapWallet && snapWallet.startsWith('0x')) {
+      snap.wallet = snapWallet;
+      memorySnapshotsByWallet[snapWallet] = snap;
+      try {
+        const walletFile = path.resolve(isVercel ? '/tmp' : path.resolve(process.cwd(), 'scratch'), `bloomshire_player_state_${snapWallet}.json`);
+        fs.mkdirSync(path.dirname(walletFile), { recursive: true });
+        fs.writeFileSync(walletFile, JSON.stringify(snap, null, 2), 'utf8');
+      } catch (e) {}
     }
+    return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito', wallet: snapWallet || null, timestamp: Date.now() });
   }
 
-  const wallet = (req.query?.wallet || req.body?.wallet || '').trim();
+  const rawWallet = (req.query?.wallet || req.body?.wallet || '').trim();
+  const wallet = (rawWallet === 'null' || rawWallet === 'undefined' || !rawWallet.startsWith('0x')) ? null : rawWallet;
   const sessionCookie = (req.body?.cookie || req.query?.cookie || '').trim();
 
+  // MODO PÚBLICO: Si no hay wallet válida, responder como guía comunitaria libre sin filtrar datos privados
+  if (!wallet) {
+    return res.status(200).json({
+      ok: true,
+      timestamp: new Date().toISOString(),
+      isPublicGuide: true,
+      onChain: null,
+      inGame: null,
+      message: 'Modo Guía Comunitaria: Sin wallet ni companion conectado.'
+    });
+  }
+
   let onChainData = {
-    wallet: wallet || null,
+    wallet: wallet,
     farmersCount: 0,
     ethBalance: 0,
     hasSpeedBonus: false,
@@ -187,21 +202,33 @@ async function handleSync(req, res) {
     details: 'Esperando conexión con el servidor del juego'
   };
 
-  // Merge saved snapshot if available y con datos válidos
-  let effectiveSnap = memorySnapshotCache;
-  if (!effectiveSnap && fs.existsSync(snapshotPath)) {
+  // Merge saved snapshot if available y solo si pertenece estrictamente a esta wallet
+  let effectiveSnap = null;
+  const targetWalletLower = wallet.toLowerCase();
+  const walletFile = path.resolve(isVercel ? '/tmp' : path.resolve(process.cwd(), 'scratch'), `bloomshire_player_state_${targetWalletLower}.json`);
+  
+  if (memorySnapshotsByWallet[targetWalletLower]) {
+    effectiveSnap = memorySnapshotsByWallet[targetWalletLower];
+  } else if (fs.existsSync(walletFile)) {
     try {
-      const savedSnap = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
-      if (savedSnap && typeof savedSnap === 'object') {
+      const savedSnap = JSON.parse(fs.readFileSync(walletFile, 'utf8'));
+      if (savedSnap && typeof savedSnap === 'object' && savedSnap.wallet && savedSnap.wallet.toLowerCase() === targetWalletLower) {
         const hasValidSnap = (savedSnap.gold > 0) || (Array.isArray(savedSnap.inventory) && savedSnap.inventory.length > 0);
-        if (hasValidSnap) {
-          effectiveSnap = savedSnap;
-        }
+        if (hasValidSnap) effectiveSnap = savedSnap;
+      }
+    } catch (e) {}
+  } else if (fs.existsSync(snapshotPath)) {
+    // Fallback legado si coincide la wallet
+    try {
+      const legacySnap = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
+      if (legacySnap && typeof legacySnap === 'object' && legacySnap.wallet && legacySnap.wallet.toLowerCase() === targetWalletLower) {
+        effectiveSnap = legacySnap;
       }
     } catch (e) {}
   }
+
   if (effectiveSnap) {
-    inGameData = { ...inGameData, ...effectiveSnap, signedIn: true, serverOnline: true, details: 'Sincronizado vía MoniOS Companion' };
+    inGameData = { ...inGameData, ...effectiveSnap, signedIn: true, serverOnline: true, details: 'Sincronizado vía Companion' };
   }
 
   try {

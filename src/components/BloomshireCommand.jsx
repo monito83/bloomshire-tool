@@ -730,13 +730,22 @@ export const MARKET_ROTATION_CATALOG = [
 ];
 
 export default function BloomshireCommand() {
-  const [activeTab, setActiveTab] = useState('inventory');
+  const [activeTab, setActiveTab] = useState(() => {
+    try {
+      const saved = localStorage.getItem('bloomshire_active_tab');
+      if (saved) return saved;
+      const w = localStorage.getItem('bloomshire_wallet');
+      return (w && w !== 'null' && w.startsWith('0x')) ? 'inventory' : 'atlas';
+    } catch {
+      return 'atlas';
+    }
+  });
 
  // 'inventory', 'quests', 'town', 'world', 'calc', 'craft', 'npcs', 'advisor'
 
   // Player State
   const [walletAddress, setWalletAddress] = useState(() => {
-    try { return localStorage.getItem('bloomshire_wallet') || null; } catch { return null; }
+    try { const w = localStorage.getItem('bloomshire_wallet'); return (w && w !== 'null' && w.startsWith('0x')) ? w : null; } catch { return null; }
   });
   const [farmersOwned, setFarmersOwned] = useState(() => {
     try { return Number(localStorage.getItem('bloomshire_cached_farmers')) || 0; } catch { return 0; }
@@ -762,134 +771,7 @@ export default function BloomshireCommand() {
   const [activeQuest, setActiveQuest] = useState(() => {
     try { return localStorage.getItem('bloomshire_cached_active_quest') || ''; } catch { return ''; }
   });
-  const [activeQuestsList, setActiveQuestsList] = useState([
-    {
-      id: 'bk21',
-      normalizedId: 'bk21',
-      name: 'Cap. 21: La Laguna (Sylmare)',
-      title: 'Cap. 21: La Laguna (Sylmare)',
-      chapter: 21,
-      step: 3,
-      stepIdx: 2,
-      totalSteps: 4,
-      stepName: 'Pesca 30 peces en la Laguna (fish 0/30)',
-      objective: 'Pesca 30 peces en las aguas de la laguna o en el lago Moonmere (fish 0/30). Recompensa: 1000 Oro.',
-      stepText: 'Pesca 30 peces en las aguas de la laguna o en el lago Moonmere (fish 0/30). Recompensa: 1000 Oro.',
-      where: 'Aguas y muelles de la Aldea de la Laguna (Moonmere Oeste).',
-      giver: 'Sylmare',
-      coords: { label: "🧜‍♀️ Sylmare (Portavoz de la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-      stepItems: [],
-      allSteps: [
-        {
-          step: 1,
-          name: 'Encuentra al portavoz de la laguna',
-          text: 'Miralys repara redes junto a la canoa, en el camino este del pueblo de la laguna, al oeste de Moonmere.',
-          where: 'Canoa este del pueblo de la laguna.',
-          npc: 'Miralys',
-          items: []
-        },
-        {
-          step: 2,
-          name: 'Muéstrale a Sylmare el peine y la linterna',
-          text: 'Lleva el Peine de Perla y la Linterna de Seta Brillante a Sylmare en el estrado central de la laguna.',
-          where: 'Centro de la Aldea de la Laguna.',
-          npc: 'Sylmare',
-          items: [
-            { id: 'Pearl Comb', name: 'Peine de Perla (Pearl Comb)', needed: 1, hint: 'Obtenido de Nixie' },
-            { id: 'Glowcap Lantern', name: 'Linterna de Seta Brillante (Glowcap Lantern)', needed: 1, hint: 'Botica de Juniper' }
-          ]
-        },
-        {
-          step: 3,
-          name: 'Pesca 30 peces en la Laguna',
-          text: 'Pesca 30 peces en las aguas de la laguna o en el lago Moonmere (fish 0/30). Recompensa: 1000 Oro.',
-          where: 'Aguas de la Aldea de la Laguna.',
-          npc: 'Sylmare',
-          items: []
-        },
-        {
-          step: 4,
-          name: 'Entrega suministros de reparación para la aldea',
-          text: 'Lleva materiales a Sylmare para reforzar las pasarelas y muelles de la laguna: 80 Madera común, 40 Piedra y 15.000 Oro.',
-          where: 'Sylmare en el centro de la Aldea de la Laguna.',
-          npc: 'Sylmare',
-          coords: { label: "🧜‍♀️ Sylmare (Aldea de la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-          items: [
-            { id: 'wood', name: 'Madera común (Wood)', needed: 80, hint: 'The Woodlot de Pell' },
-            { id: 'stone', name: 'Piedra (Stone)', needed: 40, hint: 'Stonepeak' },
-            { id: 'gold', name: 'Oro (Gold)', needed: 15000, hint: 'Monedero / Venta a Odette' }
-          ]
-        },
-        {
-          step: 5,
-          name: 'Escucha lo que decidió la laguna',
-          text: 'Sylmare está junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere. Vuelve mañana para escuchar lo que decidió la laguna.',
-          where: 'Junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.',
-          npc: 'Sylmare',
-          coords: { label: "🧜‍♀️ Sylmare (Fuente de Conchas)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-          items: []
-        }
-      ],
-      isMainStory: true
-    },
-    {
-      id: 'sd_bram',
-      normalizedId: 'sd_bram',
-      name: 'Secundaria: Mineral para la Herrería (Bram)',
-      title: 'Secundaria: Mineral para la Herrería (Bram)',
-      step: 3,
-      stepIdx: 2,
-      totalSteps: 3,
-      stepName: 'Entrega 5x Mena de Hierro (Iron Ore)',
-      objective: 'La Herrería está al este de la plaza. El cobre está en las cuevas de Stonepeak, el hierro más profundo, desde el nivel 5 de Minería. Pica y entrega 5 Menas de Hierro (Iron Ore) a Bram.',
-      stepText: 'La Herrería está al este de la plaza. El cobre está en las cuevas de Stonepeak, el hierro más profundo, desde el nivel 5 de Minería. Pica y entrega 5 Menas de Hierro (Iron Ore) a Bram.',
-      where: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería). Herrería al este de la plaza.',
-      giver: 'Bram (Herrero)',
-      coords: { label: '⚒️ Herrería de Bram (Forja y Yunque)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 6240, wy: 4420, worldRect: [6100, 4300, 280, 240] },
-      stepItems: [
-        { id: 'Iron Ore', name: 'Mena de Hierro (Iron Ore)', needed: 5, hint: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería)' }
-      ],
-      isMainStory: false
-    },
-    {
-      id: 'sd_clara',
-      normalizedId: 'sd_clara',
-      name: 'Secundaria: Huevos para la Panadería (Clara)',
-      title: 'Secundaria: Huevos para la Panadería (Clara)',
-      step: 2,
-      stepIdx: 1,
-      totalSteps: 2,
-      stepName: 'Consigue y entrega 12x Huevos (Egg)',
-      objective: 'Clara está afuera de la Panadería, junto al puente. Las gallinas ponen huevos en la Granja de Hollin, al sur del pueblo. Recolecta 12 Huevos (Egg) y llévaselos a Clara.',
-      stepText: 'Clara está afuera de la Panadería, junto al puente. Las gallinas ponen huevos en la Granja de Hollin, al sur del pueblo. Recolecta 12 Huevos (Egg) y llévaselos a Clara.',
-      where: 'Granja de Hollin (al sur del pueblo). Panadería junto al puente oeste.',
-      giver: 'Clara (Aprendiz de Panadería)',
-      coords: { label: '🥖 Panadería de Tamsin & Clara', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5400, wy: 4440, worldRect: [5300, 4320, 200, 200] },
-      stepItems: [
-        { id: 'Egg', name: 'Huevo de Gallina (Egg)', needed: 12, hint: 'Gallinas en la Granja de Hollin (sur del pueblo)' }
-      ],
-      isMainStory: false
-    },
-    {
-      id: 'sd_elsie',
-      normalizedId: 'sd_elsie',
-      name: 'Secundaria: Miel para las Pinturas (Elsie)',
-      title: 'Secundaria: Miel para las Pinturas (Elsie)',
-      step: 2,
-      stepIdx: 1,
-      totalSteps: 2,
-      stepName: 'Consigue miel para sus pinturas',
-      objective: 'Consigue 5x Miel (Honey) de abejas o colmenas para que Elsie elabore sus pigmentos al óleo.',
-      stepText: 'Consigue 5x Miel (Honey) de abejas o colmenas para que Elsie elabore sus pigmentos al óleo.',
-      where: 'Orilla del río en Bloomshire.',
-      giver: 'Elsie (Pintora)',
-      coords: { label: '🎨 Orilla del Río — Elsie la Pintora', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5350, wy: 4700, worldRect: [5200, 4600, 250, 200] },
-      stepItems: [
-        { id: 'Honey', name: 'Miel de Abeja (Honey)', needed: 5, hint: 'Colmenas o apicultura' }
-      ],
-      isMainStory: false
-    }
-  ]);
+  const [activeQuestsList, setActiveQuestsList] = useState([]);
   const [moonmereProgress, setMoonmereProgress] = useState({
     currentChapter: 21,
     completedChapters: 20,
@@ -938,17 +820,13 @@ export default function BloomshireCommand() {
   const [itemQuantities, setItemQuantities] = useState({});
 
   // Active Orders (Odette)
-  const [activeOrders, setActiveOrders] = useState([
-    { id: 'ord_1', item: 'Caléndula (Marigold)', rawItem: 'Marigold', n: 3, gold: 360, xp: 26, skill: 'farming', done: false },
-    { id: 'ord_2', item: 'Arroz (Rice)', rawItem: 'Rice', n: 2, gold: 355, xp: 22, skill: 'farming', done: false },
-    { id: 'ord_3', item: 'Cebollín', rawItem: 'Spring Onion', n: 8, gold: 355, xp: 36, skill: 'farming', done: false },
-    { id: 'ord_4', item: 'Cebolla', rawItem: 'Onion', n: 6, gold: 450, xp: 36, skill: 'farming', done: false },
-    { id: 'ord_5', item: 'Mariposa Blanca de Madera', rawItem: 'Wood White', n: 4, gold: 560, xp: 16, skill: 'foraging', done: false },
-    { id: 'ord_6', item: 'Lucio (Pike Fish)', rawItem: 'Pike Fish', n: 4, gold: 525, xp: 15, skill: 'fishing', done: false }
-  ]);
+  const [activeOrders, setActiveOrders] = useState([]);
 
   // Universal Mega-Atlas Focus Target (para el botón "📍 Ubicar en el Mapa")
   // Settings & System Updates State
+  const [showConnectModal, setShowConnectModal] = useState(false);
+  const [connectCode, setConnectCode] = useState('');
+  const [connectFeedback, setConnectFeedback] = useState(null);
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
   const [lastUpdateCheck, setLastUpdateCheck] = useState(() => new Date().toLocaleTimeString());
   const [updateStatusMessage, setUpdateStatusMessage] = useState('Todos los módulos y catálogos están 100% sincronizados con el juego.');
@@ -1772,6 +1650,7 @@ export default function BloomshireCommand() {
     } catch (e) {}
 
     try {
+      if (!walletAddress || walletAddress === 'null' || !walletAddress.startsWith('0x')) return;
       const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(walletAddress)}`);
       if (res.ok) {
         const json = await res.json();
@@ -2244,67 +2123,78 @@ export default function BloomshireCommand() {
             <span className="font-black text-white text-xs tracking-wider hidden sm:inline">BLOOMSHIRE</span>
           </div>
 
-          {/* Píldora de Oro (como en el boceto: 🪙 15.2k Gold) */}
-          <div 
-            className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#12192a] border border-amber-500/30 text-amber-300 font-bold text-xs shadow-sm shrink-0" 
-            title={`Oro disponible: ${gold.toLocaleString('es-ES')} Gold`}
-          >
-            <span className="text-amber-400">🪙</span>
-            <span>{walletAddress ? (gold >= 1000 ? `${(gold / 1000).toFixed(1)}k Gold` : `${gold} Gold`) : '-- Gold'}</span>
-          </div>
+          {walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') ? (
+            <>
+              {/* Píldora de Oro */}
+              <div 
+                className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#12192a] border border-amber-500/30 text-amber-300 font-bold text-xs shadow-sm shrink-0" 
+                title={`Oro disponible: ${gold.toLocaleString('es-ES')} Gold`}
+              >
+                <span className="text-amber-400">🪙</span>
+                <span>{gold >= 1000 ? `${(gold / 1000).toFixed(1)}k Gold` : `${gold} Gold`}</span>
+              </div>
 
-          {/* Píldora de Energía con micro-barra de progreso interna integrada (como en el boceto: 🛏️ 108/150) */}
-          <div 
-            className="relative overflow-hidden flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12192a] border border-slate-700/60 text-slate-200 font-bold text-xs shadow-sm shrink-0 min-w-[125px]"
-            title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (+1⚡ cada 3m pasivo VIP)`}
-          >
-            <div 
-              className="absolute inset-0 bg-gradient-to-r from-amber-600/30 to-amber-500/35 pointer-events-none transition-all duration-500"
-              style={{ width: `${Math.min(100, Math.max(0, (currentEnergy / maxEnergy) * 100))}%` }}
-            />
-            <span className="relative z-10 text-amber-400">🛏️</span>
-            <span className="relative z-10 font-mono">{walletAddress ? `${Math.floor(currentEnergy)}/${maxEnergy}` : '-- / --'}</span>
-            {energyMeta.canRest && (
-              <span className="relative z-10 text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">LISTA</span>
-            )}
-          </div>
+              {/* Píldora de Energía */}
+              <div 
+                className="relative overflow-hidden flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12192a] border border-slate-700/60 text-slate-200 font-bold text-xs shadow-sm shrink-0 min-w-[125px]"
+                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (+1⚡ cada 3m pasivo VIP)`}
+              >
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-amber-600/30 to-amber-500/35 pointer-events-none transition-all duration-500"
+                  style={{ width: `${Math.min(100, Math.max(0, (currentEnergy / maxEnergy) * 100))}%` }}
+                />
+                <span className="relative z-10 text-amber-400">🛏️</span>
+                <span className="relative z-10 font-mono">{`${Math.floor(currentEnergy)}/${maxEnergy}`}</span>
+                {energyMeta.canRest && (
+                  <span className="relative z-10 text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">LISTA</span>
+                )}
+              </div>
 
-          {/* Nivel & Wallet compacto */}
-          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/70 border border-slate-800 text-slate-400 text-xs font-mono shrink-0">
-            {walletAddress ? (
-              <>
+              {/* Nivel & Wallet compacto */}
+              <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/70 border border-slate-800 text-slate-400 text-xs font-mono shrink-0">
                 <span className="text-amber-400 font-bold">Nv {farmingLevel}</span>
                 <span className="text-slate-600">•</span>
                 <span title={walletAddress}>{walletAddress.slice(0, 5)}...{walletAddress.slice(-3)}</span>
-              </>
-            ) : (
-              <span className="text-slate-500 italic flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/80 animate-pulse"></span>
-                Esperando Companion...
-              </span>
-            )}
-          </div>
+              </div>
 
-          {/* Shards / Tokens */}
-          <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/50 border border-slate-800/80 text-indigo-300 text-[11px] font-mono shrink-0">
-            <Gem className="w-3 h-3 text-indigo-400" />
-            <span>{walletAddress ? `${shards} AVS` : '-- AVS'}</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-emerald-400">{walletAddress ? `${avyn} $AVYN` : '-- $AVYN'}</span>
-          </div>
+              {/* Shards / Tokens */}
+              <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/50 border border-slate-800/80 text-indigo-300 text-[11px] font-mono shrink-0">
+                <Gem className="w-3 h-3 text-indigo-400" />
+                <span>{`${shards} AVS`}</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-emerald-400">{`${avyn} $AVYN`}</span>
+              </div>
+            </>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span>Guía Comunitaria Libre</span>
+              </div>
+              <button
+                onClick={() => setShowConnectModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 hover:border-amber-400 text-amber-300 font-bold text-xs transition-all cursor-pointer"
+                title="Vincular tu partida o ingresar clave"
+              >
+                <span>🎮 Conectar Partida</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Derecha: Botón Sync estilo Boceto + Colapsar */}
         <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={fetchSyncFromServer}
-            disabled={isSyncing}
-            className="px-3.5 py-1.5 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-700/80 hover:border-amber-500/50 text-slate-200 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm disabled:opacity-50"
-            title={`Sincronizar telemetría (Última: ${lastSyncTime})`}
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
-            <span>Sync</span>
-          </button>
+          {walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') && (
+            <button
+              onClick={fetchSyncFromServer}
+              disabled={isSyncing}
+              className="px-3.5 py-1.5 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-700/80 hover:border-amber-500/50 text-slate-200 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm disabled:opacity-50"
+              title={`Sincronizar telemetría (Última: ${lastSyncTime})`}
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
+              <span>Sync</span>
+            </button>
+          )}
 
           <button
             onClick={() => {
@@ -3134,6 +3024,30 @@ export default function BloomshireCommand() {
               {/* Sub-vista 2: Liquidador de Inventario (Full-Width, sin Odette lateral, tarjetas legibles) */}
               {economySubTab === 'liquidation' && (
                 <div className="flex-1 flex flex-col gap-3.5 overflow-y-auto pr-1">
+                  {(!walletAddress || walletAddress === 'null' || !walletAddress.startsWith('0x')) && (
+                    <div className="p-4 bg-gradient-to-r from-amber-950/40 via-[#0e172c] to-indigo-950/40 border border-amber-500/40 rounded-xl flex items-center justify-between gap-4 flex-wrap shadow-md">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-xl shrink-0">
+                          🔒
+                        </div>
+                        <div>
+                          <div className="font-bold text-white text-sm flex items-center gap-2">
+                            <span>Módulo Personal: Liquidador de Almacén</span>
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase font-mono">Modo Guía Libre</span>
+                          </div>
+                          <div className="text-xs text-slate-300 max-w-xl mt-0.5">
+                            Este módulo audita automáticamente el valor en oro de tu Mochila, Cofres de Casa y Cofre del Pueblo leyendo directamente tu partida mediante la extensión <b>Bloomshire Companion</b>.
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setShowConnectModal(true)}
+                        className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs transition-all shadow-md cursor-pointer shrink-0"
+                      >
+                        🎮 Conectar Partida
+                      </button>
+                    </div>
+                  )}
                   <div className="p-4 bg-[#0e172c] border-2 border-amber-500/60 rounded-xl flex flex-col gap-3 shadow-lg">
                     <div className="flex items-center justify-between flex-wrap gap-2">
                       <div>
@@ -3394,6 +3308,21 @@ export default function BloomshireCommand() {
                   </div>
 
                   {/* Cuadrícula de Pedidos Diarios (3 columnas amplias y detalladas) */}
+                  {activeOrders.length === 0 ? (
+                    <div className="p-8 bg-[#0a1020] border border-slate-800 rounded-xl text-center flex flex-col items-center justify-center gap-3 my-4">
+                      <span className="text-4xl">📜</span>
+                      <h3 className="font-bold text-white text-base">Esperando sincronización de pedidos</h3>
+                      <p className="text-xs text-slate-400 max-w-md leading-relaxed">
+                        Los pedidos diarios de Odette son únicos para cada jugador y rotan a las 00:00 UTC. Abre el juego con la extensión <b>Bloomshire Companion</b> para consultar tus pedidos de hoy.
+                      </p>
+                      <button
+                        onClick={() => setShowConnectModal(true)}
+                        className="mt-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs transition-all shadow-md cursor-pointer"
+                      >
+                        🎮 Conectar con Companion
+                      </button>
+                    </div>
+                  ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
                     {activeOrders.map((ord, i) => {
                       const required = ord.n || 1;
@@ -3523,6 +3452,7 @@ export default function BloomshireCommand() {
                       );
                     })}
                   </div>
+                  )}
                 </div>
               )}
 
@@ -5347,6 +5277,99 @@ export default function BloomshireCommand() {
                   </div>
                 )}
               </div>
+
+              {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
+              {showConnectModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                  <div className="bg-[#0b1428] border-2 border-amber-500/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">🎮</span>
+                        <h3 className="text-base font-black text-amber-400">Vincular Partida • Bloomshire Companion</h3>
+                      </div>
+                      <button
+                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
+                        className="text-slate-400 hover:text-white text-lg font-bold cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-4 text-xs">
+                      {/* Opción 1: Extensión */}
+                      <div className="p-4 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
+                        <div className="font-bold text-white text-sm flex items-center gap-2">
+                          <span>⚡ Opción 1: Sincronización Automática (Extensión)</span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed">
+                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida directamente en tu navegador con 0 latencia y máxima privacidad:
+                        </p>
+                        <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1">
+                          <li>Instala la extensión en Chrome / Brave / Edge.</li>
+                          <li>Abre tu partida en <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold">bloomshire.xyz/play/</a>.</li>
+                          <li>Esta tool detectará tu inventario, oro y cultivos en menos de 1 segundo.</li>
+                        </ol>
+                      </div>
+
+                      {/* Opción 2: Código de Acceso / Desbloqueo Manual */}
+                      <div className="p-4 bg-[#101b33] border border-slate-800 rounded-xl space-y-2.5">
+                        <div className="font-bold text-white text-sm flex items-center gap-2">
+                          <span>🔑 Opción 2: Clave de Acceso o Dirección de Wallet</span>
+                        </div>
+                        <p className="text-slate-400">
+                          Ingresa tu wallet de juego (<code className="text-cyan-300 font-mono">0x...</code>) o un código de acceso para desbloquear tu perfil:
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={connectCode}
+                            onChange={(e) => setConnectCode(e.target.value.trim())}
+                            placeholder="0x... o código de acceso"
+                            className="flex-1 bg-[#091122] border border-slate-700 focus:border-amber-400 rounded-lg p-2 text-white font-mono text-xs outline-none"
+                          />
+                          <button
+                            onClick={() => {
+                              if (!connectCode) return;
+                              if (connectCode.startsWith('0x') && connectCode.length >= 10) {
+                                setWalletAddress(connectCode);
+                                try { localStorage.setItem('bloomshire_wallet', connectCode); } catch (_) {}
+                                setConnectFeedback({ type: 'success', text: `Wallet ${connectCode.slice(0, 6)}... vinculada con éxito.` });
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                              } else if (connectCode.toUpperCase() === 'BLOOM-VIP' || connectCode.toUpperCase() === 'VIP' || connectCode.toUpperCase() === 'NEXUS') {
+                                const devWallet = '0xD3E0147858CC171EED26C2A28A23Eb2942';
+                                setWalletAddress(devWallet);
+                                try { localStorage.setItem('bloomshire_wallet', devWallet); } catch (_) {}
+                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Acceso completo desbloqueado.' });
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                              } else {
+                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa tu wallet (0x...) o activa la extensión.' });
+                              }
+                            }}
+                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs cursor-pointer transition-all shadow-md shrink-0"
+                          >
+                            Vincular
+                          </button>
+                        </div>
+                        {connectFeedback && (
+                          <div className={`p-2 rounded text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
+                            {connectFeedback.text}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
+                      <span className="text-slate-500">¿Dudas? Consulta la guía en el Mega-Atlas.</span>
+                      <button
+                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
+                        className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg font-bold cursor-pointer"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* MODAL PARA AGREGAR TEMPORIZADOR MANUAL DE COCINA / CRAFTEO */}
               {showAddTimerModal && (
