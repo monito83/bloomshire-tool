@@ -107,13 +107,14 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
   const isHolder = count > 0;
   // VIP estricto: pase VIP o 10+ Founding Farmers (rules.js:49)
   const isVip = Boolean(options.isVip || count >= 10);
+  const isHolderOrVip = isHolder || isVip;
 
   // 100 de base; 150 solo con Founding Farmer (>= 1) o pase VIP (rules.js:46-57)
-  const maxE = (isHolder || isVip) ? 150 : 100;
+  const maxE = isHolderOrVip ? 150 : 100;
   // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
   const regenRate = isVip ? 1 / (3 * 60000) : 0;
   // 450 energía de descanso por día UTC para holders (3 barras), 200 para jugadores base (2 barras)
-  const sleepADay = (isHolder || isVip) ? 450 : 200;
+  const sleepADay = isHolderOrVip ? 450 : 200;
 
   const utcDay = Math.floor(now / 86400000);
   const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;
@@ -191,7 +192,7 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
   }
 
   // Fallback si no hay rawEnergyObj completo
-  const baseVal = typeof baseEnergy === 'number' ? baseEnergy : (isVipOrHolder ? 115 : 80);
+  const baseVal = typeof baseEnergy === 'number' ? baseEnergy : (isHolderOrVip ? 115 : 80);
   const elapsedMs = snapshotTimestamp ? Math.max(0, now - snapshotTimestamp) : 0;
   const gained = elapsedMs * regenRate;
   const currentEnergy = Math.floor(Math.min(maxE, Math.max(0, baseVal + gained)));

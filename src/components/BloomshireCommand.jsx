@@ -699,7 +699,7 @@ export default function BloomshireCommand() {
     setWalletAddress(null);
     setGold(0);
     setCurrentEnergy(0);
-    setMaxEnergy(150);
+    setMaxEnergy(100);
     setShards(0);
     setAvyn(0);
     setFarmersOwned(0);
@@ -6993,7 +6993,7 @@ export default function BloomshireCommand() {
                               const resetSessionState = () => {
                                 setGold(0);
                                 setCurrentEnergy(0);
-                                setMaxEnergy(150);
+                                setMaxEnergy(100);
                                 setShards(0);
                                 setAvyn(0);
                                 setFarmersOwned(0);
