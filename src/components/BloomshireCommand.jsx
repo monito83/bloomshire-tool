@@ -46,6 +46,7 @@ import inventoryCatalogData from '../../public/data/bloomshire/inventory_catalog
 import itemEncyclopediaData from '../../public/data/bloomshire/item_encyclopedia.json';
 import itemIconsMap from '../../public/data/bloomshire/item_icons_map.json';
 import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
+import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
 import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
 
 // Importar lógica y fórmulas de bloomshireEngine
@@ -235,10 +236,12 @@ export const QUEST_REQUIRED_ITEMS = {
     { id: 'Glowcap', name: 'Seta Brillante (Glowcap)', needed: 20, questName: 'Cap. 24: El Canto de la Puerta', targetStep: 1, hint: 'Whisperwood / Moonmere' }
   ],
   sd_bram: [
-    { id: 'Iron Ore', name: 'Mena de Hierro (Iron Ore)', needed: 5, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 3, hint: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería)' }
+    { id: 'Copper Ore', name: 'Mena de Cobre (Copper Ore)', needed: 20, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 2, hint: 'Cuevas de Stonepeak' },
+    { id: 'Iron Ore', name: 'Mineral de Hierro (Iron Ore)', needed: 5, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 2, hint: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería)' }
   ],
   s_bram: [
-    { id: 'Iron Ore', name: 'Mena de Hierro (Iron Ore)', needed: 5, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 3, hint: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería)' }
+    { id: 'Copper Ore', name: 'Mena de Cobre (Copper Ore)', needed: 20, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 2, hint: 'Cuevas de Stonepeak' },
+    { id: 'Iron Ore', name: 'Mineral de Hierro (Iron Ore)', needed: 5, questName: 'Secundaria: Mineral para la Herrería (Bram)', targetStep: 2, hint: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería)' }
   ],
   sd_clara: [
     { id: 'Egg', name: 'Huevo de Gallina (Egg)', needed: 12, questName: 'Secundaria: Huevos para la Panadería (Clara)', targetStep: 2, hint: 'Granja de Hollin (sur del pueblo)' }
@@ -277,6 +280,12 @@ export const QUEST_REQUIRED_ITEMS = {
   ],
   s_pell: [
     { id: 'Wood', name: 'Madera', needed: 10, questName: 'Secundaria: Madera para Pell', targetStep: 2 }
+  ],
+  sd_lena_winter: [
+    { id: 'Winter Kale', name: 'Col de Invierno (Winter Kale)', needed: 15, questName: 'Secundaria: El Jardín de Invierno (Lena)', targetStep: 3, hint: 'Semillas de Hazel' }
+  ],
+  s_lena_winter: [
+    { id: 'Winter Kale', name: 'Col de Invierno (Winter Kale)', needed: 15, questName: 'Secundaria: El Jardín de Invierno (Lena)', targetStep: 3, hint: 'Semillas de Hazel' }
   ],
   sd_hazel: [
     { id: 'Wild Seeds', name: 'Semillas Silvestres', needed: 1, questName: 'Secundaria: Semillas de Hazel', targetStep: 2 }
@@ -390,223 +399,7 @@ export function CraftMaterialsBadge({ mats = '' }) {
 }
 
 
-export const DASHBOARD_QUEST_CATALOG = {
-  bk18: {
-    name: 'Cap. 18: Estanque de Marven (Moonmere)',
-    chain: 'book1',
-    chapter: 18,
-    giver: 'Marven',
-    location: 'Esquina noreste de Moonmere, debajo de las cataratas',
-    coords: { label: "🌊 Estanque de Marven (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_7_marven_s_pool', wx: 6416, wy: 3636, worldRect: [6144, 3480, 544, 312] },
-    steps: [
-      { step: 1, name: 'Pesca en las orillas lejanas', text: 'Pesca en las orillas lejanas de Moonmere, sesenta más.', where: 'Lago Moonmere, orillas lejanas.', npc: 'Marven', items: [] },
-      { step: 2, name: 'Llévale a Marven tres Bagres Fantasma', text: 'Pesca en Moonmere de noche y lleva a Marven 3 Bagres Fantasma (Ghost Catfish).', where: 'Estanque de Marven en Moonmere.', npc: 'Marven', items: [{ id: 'Ghost Catfish', name: 'Bagre Fantasma (Ghost Catfish)', needed: 3, hint: 'Pesca nocturna en Lago Moonmere' }] },
-      { step: 3, name: 'Escucha a Marven mañana', text: 'El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas. Pidió un día para pensarlo.', where: 'Esquina noreste de Moonmere.', npc: 'Marven', items: [] }
-    ]
-  },
-  bk19: {
-    name: 'Cap. 19: Las Piedras de Moonmere (Marven)',
-    chain: 'book1',
-    chapter: 19,
-    giver: 'Marven',
-    location: 'Lago Moonmere (Orillas Cardinales)',
-    coords: { label: "🌊 Cap. 19: Piedras de Moonmere", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5800, wy: 2400, worldRect: [5200, 2000, 1600, 1200] },
-    steps: [
-      { step: 1, name: 'Leer las 4 piedras cardinales del lago', text: 'Leer la piedra del norte, sur, este y oeste alrededor del Lago Moonmere.', where: 'Orillas de Moonmere.', npc: 'Marven', items: [] },
-      { step: 2, name: 'Regresa al estanque con Marven', text: 'Vuelve con Marven en su estanque bajo la cascada para revelarle el mensaje.', where: 'Estanque de Marven.', npc: 'Marven', items: [] }
-    ]
-  },
-  bk20: {
-    name: 'Cap. 20: El Camino de la Niebla (The Mist Path)',
-    chain: 'book1',
-    chapter: 20,
-    giver: 'Nixie / Marven',
-    location: 'Orilla oeste de Moonmere / Camino hacia la Laguna',
-    coords: { label: "🌫️ Cap. 20: Camino de la Niebla", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5400, wy: 2800, worldRect: [5200, 2600, 400, 400] },
-    steps: [
-      { step: 1, name: 'Cruza la orilla brumosa al oeste de Moonmere', text: 'Atraviesa las aguas poco profundas guiándote por las piedras antiguas y habla con Nixie.', where: 'Orilla oeste del Lago Moonmere.', npc: 'Nixie', items: [] },
-      { step: 2, name: 'Sigue las linternas flotantes hacia el pueblo de la laguna', text: 'Sigue el sendero iluminado por linternas hacia la entrada del pueblo acuático de las sirenas.', where: 'Camino este de la Aldea de la Laguna.', npc: 'Miralys', items: [] }
-    ]
-  },
-  bk21: {
-    name: 'Cap. 21: La Laguna (Sylmare)',
-    chain: 'book1',
-    chapter: 21,
-    giver: 'Sylmare',
-    location: 'Aldea de la Laguna (Moonmere Oeste)',
-    coords: { label: "🧜‍♀️ Sylmare (Portavoz de la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-    steps: [
-      {
-        step: 1,
-        name: 'Encuentra al portavoz de la laguna',
-        text: 'Miralys repara redes junto a la canoa, en el camino este del pueblo de la laguna, al oeste de Moonmere. Habla con ella para acceder a la aldea.',
-        where: 'Canoa este del pueblo de la laguna, al oeste de Moonmere.',
-        npc: 'Miralys',
-        coords: { label: "🛶 Canoa de Miralys (Entrada a la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5300, wy: 2688, worldRect: [5200, 2600, 200, 160] },
-        items: []
-      },
-      {
-        step: 2,
-        name: 'Muéstrale a Sylmare el peine y la linterna',
-        text: 'Lleva el Peine de Perla (Pearl Comb) y la Linterna de Seta Brillante (Glowcap Lantern) a Sylmare en el estrado central de la laguna.',
-        where: 'Estrado circular central de la Aldea de la Laguna.',
-        npc: 'Sylmare',
-        coords: { label: "🧜‍♀️ Sylmare (Portavoz de la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-        items: [
-          { id: 'Pearl Comb', name: 'Peine de Perla (Pearl Comb)', needed: 1, hint: 'Obtenido de Nixie en la orilla' },
-          { id: 'Glowcap Lantern', name: 'Linterna de Seta Brillante (Glowcap Lantern)', needed: 1, hint: 'Botica de Juniper' }
-        ]
-      },
-      {
-        step: 3,
-        name: 'Pesca 30 peces en la Laguna (fish 0/30)',
-        text: 'Demuestra tu destreza marina pescando 30 peces de cualquier especie en las aguas de la laguna o en el lago Moonmere (fish 0/30). Recompensa: 1000 Oro.',
-        where: 'Aguas y muelles de la Aldea de la Laguna.',
-        npc: 'Sylmare',
-        coords: { label: "🎣 Zona de Pesca de la Laguna (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5000, 2500, 300, 300] },
-        items: []
-      },
-      {
-        step: 4,
-        name: 'Entrega suministros de reparación para la aldea',
-        text: 'Lleva materiales a Sylmare para reforzar las pasarelas y muelles de la laguna: 80 Madera común, 40 Piedra y 15.000 Oro.',
-        where: 'Sylmare en el centro de la Aldea de la Laguna.',
-        npc: 'Sylmare',
-        coords: { label: "🧜‍♀️ Sylmare (Aldea de la Laguna)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-        items: [
-          { id: 'wood', name: 'Madera común (Wood)', needed: 80, hint: 'The Woodlot de Pell' },
-          { id: 'stone', name: 'Piedra (Stone)', needed: 40, hint: 'Stonepeak' },
-          { id: 'gold', name: 'Oro (Gold)', needed: 15000, hint: 'Monedero / Venta a Odette' }
-        ]
-      },
-      {
-        step: 5,
-        name: 'Escucha lo que decidió la laguna',
-        text: 'Sylmare está junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere. Vuelve mañana para escuchar lo que decidió la laguna.',
-        where: 'Junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.',
-        npc: 'Sylmare',
-        coords: { label: "🧜‍♀️ Sylmare (Fuente de Conchas)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5050, 2600, 200, 200] },
-        items: []
-      }
-    ]
-  },
-  bk22: {
-    name: 'Cap. 22: El Agua Gris (Grey Water)',
-    chain: 'book1',
-    chapter: 22,
-    giver: 'Virella',
-    location: 'Muelle largo al oeste de Moonmere',
-    coords: { label: "🌊 Virella (Muelle Oeste de Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
-    reward: { gold: 1000 },
-    steps: [
-      {
-        step: 1,
-        name: 'Sigue al gris',
-        text: 'Investiga las aguas de Moonmere y sigue el rastro misterioso de la corriente gris.',
-        where: 'Aguas de Moonmere junto al muelle largo.',
-        npc: 'Virella',
-        coords: { label: "🌊 Muelle de Moonmere", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
-        items: []
-      },
-      {
-        step: 2,
-        name: 'Muéstrale a Marven la escama gris',
-        text: 'Lleva la escama gris descubierta al estanque de Marven al noroeste de Moonmere.',
-        where: 'Estanque de Marven (Noroeste de Moonmere).',
-        npc: 'Marven',
-        coords: { label: "🌊 Estanque de Marven (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_7_marven_s_pool', wx: 6416, wy: 3636, worldRect: [6144, 3480, 544, 312] },
-        items: []
-      },
-      {
-        step: 3,
-        name: 'Dile a Virella lo que dijo Marven',
-        text: 'Virella vigila junto al muelle largo que lleva al pueblo de la laguna, al oeste de Moonmere. Vuelve y dile lo que dijo Marven.',
-        where: 'Muelle largo al oeste de Moonmere.',
-        npc: 'Virella',
-        coords: { label: "🌊 Virella (Muelle Oeste de Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
-        items: []
-      }
-    ]
-  },
-  bk23: {
-    name: 'Cap. 23: Visión Lunar (Moonsight)',
-    chain: 'book1',
-    chapter: 23,
-    giver: 'Sylmare / Hada Lunar',
-    location: 'Santuario de la Hada Lunar (Moonmere)',
-    coords: { label: "✨ Cap. 23: Santuario Lunar (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5600, wy: 2200, worldRect: [5400, 2000, 400, 400] },
-    steps: [
-      { step: 1, name: 'Reúne ofrendas lunares', text: 'Reúne 25 Caléndulas y 25 Setas Brillantes (Glowcap) para el ritual de visión de la luna.', where: 'Parcelas de cultivo y zonas oscuras de Whisperwood/Moonmere.', npc: 'Sylmare', items: [{ id: 'Marigold', name: 'Caléndula (Marigold)', needed: 25, hint: 'Cultivo Nv 1' }, { id: 'Glowcap', name: 'Seta Brillante (Glowcap)', needed: 25, hint: 'Whisperwood / Moonmere' }] },
-      { step: 2, name: 'Activa los pedestales del Santuario', text: 'Coloca las ofrendas en los pedestales lunares para despertar el poder de la Hada Lunar.', where: 'Santuario de la Hada Lunar en Moonmere.', npc: 'Hada Lunar', items: [] }
-    ]
-  },
-  bk24: {
-    name: 'Cap. 24: El Canto de la Puerta (The Gate Song)',
-    chain: 'book1',
-    chapter: 24,
-    giver: 'Sylmare & Marven',
-    location: 'Puerta de los Fundadores (Moonmere)',
-    coords: { label: "🚪 Cap. 24: Puerta de los Fundadores (Final Libro 1)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5800, wy: 2100, worldRect: [5600, 1900, 400, 400] },
-    steps: [
-      { step: 1, name: 'Aporta materiales para el ritual final', text: 'Entrega 60 Madera común, 40 Caléndulas y 20 Setas Brillantes a las sirenas para reparar el arco de la Puerta.', where: 'Puerta de los Fundadores al norte de Moonmere.', npc: 'Sylmare', items: [{ id: 'wood', name: 'Madera común (Wood)', needed: 60, hint: 'The Woodlot' }, { id: 'Marigold', name: 'Caléndula (Marigold)', needed: 40, hint: 'Cultivo Nv 1' }, { id: 'Glowcap', name: 'Seta Brillante (Glowcap)', needed: 20, hint: 'Whisperwood / Moonmere' }] },
-      { step: 2, name: 'Entona el Verso de la Canción y abre la Puerta', text: 'Canta el verso junto a Sylmare y Marven para desbloquear el sello final y culminar el Libro 1.', where: 'Puerta de los Fundadores.', npc: 'Sylmare & Marven', items: [] }
-    ]
-  },
-  sd_bram: {
-    name: 'Secundaria: Mineral para la Herrería (Bram)',
-    chain: 'side',
-    giver: 'Bram (Herrero)',
-    location: 'Herrería al este de la plaza central',
-    coords: { label: '⚒️ Herrería de Bram (Forja y Yunque)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 6240, wy: 4420, worldRect: [6100, 4300, 280, 240] },
-    steps: [
-      { step: 1, name: 'Habla con Bram', text: 'Habla con Bram en la Herrería al este de la plaza.', where: 'Herrería al este de la plaza.', npc: 'Bram', items: [] },
-      { step: 2, name: 'Entrega Mena de Cobre', text: 'Pica menas de cobre en las cuevas de Stonepeak y llévalas a Bram.', where: 'Cuevas de Stonepeak.', npc: 'Bram', items: [{ id: 'Copper Ore', name: 'Mena de Cobre (Copper Ore)', needed: 5, hint: 'Vetas en Stonepeak' }] },
-      { step: 3, name: 'Entrega 5x Mena de Hierro', text: 'Pica y entrega 5 Menas de Hierro (Iron Ore) a Bram en la Herrería.', where: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería).', npc: 'Bram', items: [{ id: 'Iron Ore', name: 'Mena de Hierro (Iron Ore)', needed: 5, hint: 'Cuevas de Stonepeak' }] }
-    ]
-  },
-  sd_clara: {
-    name: 'Secundaria: Huevos para la Panadería',
-    chain: 'side',
-    giver: 'Clara / Tamsin',
-    location: 'Panadería junto al puente oeste',
-    coords: { label: '🥖 Panadería de Tamsin & Clara', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5400, wy: 4440, worldRect: [5300, 4320, 200, 200] },
-    steps: [
-      { step: 1, name: 'Habla en la Panadería', text: 'Habla con Clara o Tamsin en la Panadería.', where: 'Panadería junto al puente.', npc: 'Tamsin', items: [] },
-      { step: 2, name: 'Consigue y entrega 12x Huevos', text: 'Las gallinas ponen huevos en la Granja de Hollis al sur. Recolecta 12 Huevos y llévaselos a la panadería.', where: 'Granja de Hollis al sur del pueblo.', npc: 'Clara', items: [{ id: 'Egg', name: 'Huevo (Egg)', needed: 12, hint: 'Gallinas en Granja de Hollis' }] }
-    ]
-  },
-  sd_lena: {
-    name: 'Secundaria: El Jardín de Invierno (Lena)',
-    chain: 'side',
-    giver: 'Lena',
-    location: 'Jardín de Invierno al sur de Bloomshire',
-    coords: { label: '❄️ Lena (Jardín de Invierno)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 4962, wy: 4870, worldRect: [4900, 4800, 150, 150] },
-    steps: [
-      { step: 1, name: 'Habla con Lena', text: 'Habla con Lena sobre la conservación de cultivos durante el invierno.', where: 'Jardín al sur de Bloomshire.', npc: 'Lena', items: [] },
-      { step: 2, name: 'Cosecha cultivos de invierno', text: 'Siembra y cosecha cultivos invernales (Winter Kale o Snow Turnip) y llévale las muestras a Lena.', where: 'Parcelas de cultivo.', npc: 'Lena', items: [{ id: 'Winter Kale', name: 'Col de Invierno (Winter Kale)', needed: 4, hint: 'Semillas de Hazel' }] }
-    ]
-  },
-  sd_elsie: {
-    name: 'Secundaria: Miel para las Pinturas (Elsie)',
-    chain: 'side',
-    giver: 'Elsie (Pintora)',
-    location: 'Orilla del río Bloomshire',
-    coords: { label: '🎨 Orilla del Río — Elsie la Pintora', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5350, wy: 4700, worldRect: [5200, 4600, 250, 200] },
-    steps: [
-      { step: 1, name: 'Habla con Elsie', text: 'Habla con Elsie mientras pinta junto al río.', where: 'Orilla del río.', npc: 'Elsie', items: [] },
-      { step: 2, name: 'Consigue miel para sus pinturas', text: 'Consigue 5x Miel de abejas para que Elsie elabore sus pigmentos al óleo.', where: 'Orilla del río.', npc: 'Elsie', items: [{ id: 'Honey', name: 'Miel de Abeja (Honey)', needed: 5, hint: 'Colmenas o flores' }] }
-    ]
-  }
-};
-// Aliases for ff*
-[18, 19, 20, 21, 22, 23, 24].forEach(n => {
-  DASHBOARD_QUEST_CATALOG['ff' + n] = DASHBOARD_QUEST_CATALOG['bk' + n];
-});
-DASHBOARD_QUEST_CATALOG['s_bram'] = DASHBOARD_QUEST_CATALOG['sd_bram'];
-DASHBOARD_QUEST_CATALOG['s_tamsin'] = DASHBOARD_QUEST_CATALOG['sd_clara'];
-DASHBOARD_QUEST_CATALOG['s_clara'] = DASHBOARD_QUEST_CATALOG['sd_clara'];
-DASHBOARD_QUEST_CATALOG['s_lena'] = DASHBOARD_QUEST_CATALOG['sd_lena'];
-DASHBOARD_QUEST_CATALOG['s_elsie'] = DASHBOARD_QUEST_CATALOG['sd_elsie'];
+export const DASHBOARD_QUEST_CATALOG = { ...CANONICAL_QUEST_CATALOG };
 
 export const MARKET_ROTATION_CATALOG = [
   {
@@ -1959,9 +1752,19 @@ export default function BloomshireCommand() {
       const qId = (q.id || '').toLowerCase().trim();
       const currentStepNum = q.step !== undefined ? q.step : ((q.stepIdx || 0) + 1);
 
-      // Si la misión provee stepItems para su paso actual desde content_bridge:
-      if (Array.isArray(q.stepItems)) {
-        q.stepItems.forEach(itemDef => {
+      const catDef = DASHBOARD_QUEST_CATALOG[qId]
+        || DASHBOARD_QUEST_CATALOG[qId.replace(/^sd_/, 's_')]
+        || DASHBOARD_QUEST_CATALOG[qId.replace(/^s_/, 'sd_')];
+
+      // Obtener items canónicos del paso actual (de telemetría o del catálogo)
+      const rawStepItems = (Array.isArray(q.stepItems) && q.stepItems.length > 0)
+        ? q.stepItems
+        : (catDef?.steps && catDef.steps[currentStepNum - 1]?.items && catDef.steps[currentStepNum - 1].items.length > 0
+          ? catDef.steps[currentStepNum - 1].items
+          : []);
+
+      if (rawStepItems.length > 0) {
+        rawStepItems.forEach(itemDef => {
           const manualKey = `${q.id}_${itemDef.id}`;
           const isManualDelivered = !!deliveredItemsManual[manualKey];
           // REGLA ESTRICTA: Si ya fue entregado, NO aparece en materiales para no estorbar visualmente
@@ -1972,11 +1775,11 @@ export default function BloomshireCommand() {
             name: itemDef.name || itemDef.id,
             needed: itemDef.needed || 1,
             questId: q.id,
-            questTitle: q.title || q.name,
-            stepText: q.stepText || q.objective,
+            questTitle: q.title || q.name || catDef?.name,
+            stepText: q.stepText || q.objective || (catDef?.steps && catDef.steps[currentStepNum - 1]?.name),
             targetStep: currentStepNum,
             isCurrentStep: true,
-            hint: itemDef.hint || '',
+            hint: itemDef.hint || catDef?.location || '',
             delivered: false
           });
         });
