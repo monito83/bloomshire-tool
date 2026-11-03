@@ -3351,6 +3351,11 @@ export default function BloomshireCommand() {
                                 </div>
                                 <div className="flex items-center gap-1.5 text-[10px] text-slate-400 mt-0.5 font-mono flex-wrap">
                                   <span className="text-amber-400 font-bold">🪙 {item.unit}g/u</span>
+                                  {item.seller && (
+                                    <span className={`px-1 py-0.2 rounded text-[8.5px] font-sans font-bold ${item.cat === 'vip' ? 'bg-purple-950/80 text-purple-300 border border-purple-500/40' : 'bg-slate-800 text-slate-300'}`}>
+                                      {item.seller.replace(' (NPC)', '').replace(' (Odette)', '')}
+                                    </span>
+                                  )}
                                   {bd.total > 0 && (
                                     <div className="flex items-center gap-1">
                                       <span className="text-slate-600">•</span>

@@ -1,63 +1,123 @@
 [
   {
-    "id": "Pumpkin",
+    "id": "Golden Pumpkin",
+    "name": "Calabaza Dorada (VIP)",
+    "unit": 750,
+    "seller": "Mercado Rowan (P2P)",
     "matchKeys": [
-      "pumpkin",
-      "calabaza",
       "golden pumpkin",
-      "calabaza dorada"
+      "calabaza dorada",
+      "golden_pumpkin",
+      "calabaza_dorada"
     ],
-    "name": "Calabaza (Pumpkin)",
-    "unit": 2300,
-    "seller": "Tienda General (NPC)",
     "qty": 0,
-    "cat": "crop",
-    "icon": "🎃"
+    "cat": "vip",
+    "icon": "🎃",
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~750g) o cocínala en Pastel Dorado (+50⚡)."
   },
   {
-    "id": "Blueberry",
+    "id": "Sunfire Pepper",
+    "name": "Pimiento Fuego Solar (VIP)",
+    "unit": 450,
+    "seller": "Mercado Rowan (P2P)",
     "matchKeys": [
-      "blueberry",
-      "arándano",
-      "arandano",
-      "sapphire blueberry"
+      "sunfire pepper",
+      "pimiento fuego solar",
+      "sunfire_pepper"
     ],
-    "name": "Arándano (Blueberry)",
-    "unit": 1120,
-    "seller": "Tienda General (NPC)",
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🌶️",
+    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Chile Fuego Solar (+30% vel. y ataque)."
+  },
+  {
+    "id": "Diamond Strawberry",
+    "name": "Fresa Diamante (VIP)",
+    "unit": 500,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "diamond strawberry",
+      "fresa diamante",
+      "diamond_strawberry"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🍓",
+    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Tarta Diamante (+30% XP)."
+  },
+  {
+    "id": "Sapphire Blueberry",
+    "name": "Arándano Zafiro (VIP)",
+    "unit": 550,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "sapphire blueberry",
+      "arándano zafiro",
+      "arandano zafiro",
+      "sapphire_blueberry"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🫐",
+    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Mermelada Zafiro (Regen estamina x2)."
+  },
+  {
+    "id": "Pumpkin",
+    "name": "Calabaza Común (Pumpkin)",
+    "unit": 2300,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "pumpkin",
+      "calabaza"
+    ],
     "qty": 0,
     "cat": "crop",
-    "icon": "🫐"
+    "icon": "🎃",
+    "desc": "Cultivo estándar de 3 horas. Odette te paga 2.300g por unidad en la Tienda General."
   },
   {
     "id": "Strawberry",
+    "name": "Fresa Común (Strawberry)",
+    "unit": 990,
+    "seller": "Tienda General (Odette)",
     "matchKeys": [
       "strawberry",
-      "fresa",
-      "diamond strawberry"
+      "fresa"
     ],
-    "name": "Fresa (Strawberry)",
-    "unit": 990,
-    "seller": "Tienda General (NPC)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🍓"
+    "icon": "🍓",
+    "desc": "Cultivo estándar. Odette te paga 990g por unidad en la Tienda General."
+  },
+  {
+    "id": "Blueberry",
+    "name": "Arándano Común (Blueberry)",
+    "unit": 1120,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "blueberry",
+      "arándano",
+      "arandano"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫐",
+    "desc": "Cultivo estándar. Odette te paga 1.120g por unidad en la Tienda General."
   },
   {
     "id": "Hot Pepper",
-    "matchKeys": [
-      "hot pepper",
-      "pepper",
-      "chile",
-      "pimiento",
-      "sunfire pepper"
-    ],
     "name": "Chile Picante (Hot Pepper)",
     "unit": 750,
-    "seller": "Tienda General (NPC)",
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "hot pepper",
+      "chile picante",
+      "chile"
+    ],
     "qty": 0,
     "cat": "crop",
-    "icon": "🌶️"
+    "icon": "🌶️",
+    "desc": "Cultivo estándar. Odette te paga 750g por unidad en la Tienda General."
   },
   {
     "id": "Wood",
