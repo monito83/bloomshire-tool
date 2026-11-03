@@ -1,61 +1,62 @@
 [
   {
-    "id": "Golden Pumpkin",
+    "id": "Pumpkin",
     "matchKeys": [
-      "golden pumpkin",
+      "pumpkin",
       "calabaza",
-      "pumpkin_vip"
+      "golden pumpkin",
+      "calabaza dorada"
     ],
-    "name": "Calabaza Dorada (VIP)",
-    "unit": 2350,
-    "seller": "Rowan (Market Hall)",
+    "name": "Calabaza (Pumpkin)",
+    "unit": 2300,
+    "seller": "Tienda General (NPC)",
     "qty": 0,
-    "cat": "vip",
+    "cat": "crop",
     "icon": "🎃"
   },
   {
-    "id": "Sapphire Blueberry",
+    "id": "Blueberry",
     "matchKeys": [
-      "sapphire blueberry",
       "blueberry",
       "arándano",
-      "blueberry_vip"
+      "arandano",
+      "sapphire blueberry"
     ],
-    "name": "Arándano Zafiro (VIP)",
-    "unit": 1150,
-    "seller": "Rowan (Market Hall)",
+    "name": "Arándano (Blueberry)",
+    "unit": 1120,
+    "seller": "Tienda General (NPC)",
     "qty": 0,
-    "cat": "vip",
+    "cat": "crop",
     "icon": "🫐"
   },
   {
-    "id": "Diamond Strawberry",
+    "id": "Strawberry",
     "matchKeys": [
-      "diamond strawberry",
       "strawberry",
       "fresa",
-      "strawberry_vip"
+      "diamond strawberry"
     ],
-    "name": "Fresa Diamante (VIP)",
+    "name": "Fresa (Strawberry)",
     "unit": 990,
-    "seller": "Rowan (Market Hall)",
+    "seller": "Tienda General (NPC)",
     "qty": 0,
-    "cat": "vip",
+    "cat": "crop",
     "icon": "🍓"
   },
   {
-    "id": "Sunfire Pepper",
+    "id": "Hot Pepper",
     "matchKeys": [
-      "sunfire pepper",
+      "hot pepper",
       "pepper",
+      "chile",
       "pimiento",
-      "pepper_vip"
+      "sunfire pepper"
     ],
-    "name": "Pimiento Fuego Solar",
-    "unit": 740,
-    "seller": "Rowan (Market Hall)",
+    "name": "Chile Picante (Hot Pepper)",
+    "unit": 750,
+    "seller": "Tienda General (NPC)",
     "qty": 0,
-    "cat": "vip",
+    "cat": "crop",
     "icon": "🌶️"
   },
   {

@@ -796,6 +796,9 @@ export default function BloomshireCommand() {
   const isConnected = Boolean(walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x'));
 
   const handleDisconnect = () => {
+    try {
+      localStorage.setItem('bloomshire_manual_disconnected', 'true');
+    } catch (_) {}
     setWalletAddress(null);
     setGold(0);
     setCurrentEnergy(0);
@@ -907,6 +910,7 @@ export default function BloomshireCommand() {
   // Universal Mega-Atlas Focus Target (para el botón "📍 Ubicar en el Mapa")
   // Settings & System Updates State
   const [showConnectModal, setShowConnectModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const [connectCode, setConnectCode] = useState('');
   const [connectFeedback, setConnectFeedback] = useState(null);
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
@@ -1476,6 +1480,16 @@ export default function BloomshireCommand() {
   const applyIncomingSync = (data, source = 'unknown') => {
     if (!data) return;
 
+    // Respetar desconexión manual del usuario ante eventos de fondo de la extensión
+    const isManuallyDisconnected = (function() {
+      try { return localStorage.getItem('bloomshire_manual_disconnected') === 'true'; } catch (_) { return false; }
+    })();
+
+    if (isManuallyDisconnected && source === 'extension' && !data._userForced) {
+      console.log('Ignorando evento de fondo: Sesión desconectada manualmente por el usuario.');
+      return;
+    }
+
     const isFromExtension = Boolean(data._fromExtension || source === 'extension');
     if (isFromExtension) {
       lastExtensionSyncAtRef.current = Date.now();
@@ -1501,7 +1515,27 @@ export default function BloomshireCommand() {
 
     if (effectiveWallet) {
       setWalletAddress(effectiveWallet);
-      try { localStorage.setItem('bloomshire_wallet', effectiveWallet); } catch (e) {}
+      try { 
+        localStorage.setItem('bloomshire_wallet', effectiveWallet);
+        localStorage.removeItem('bloomshire_manual_disconnected');
+      } catch (e) {}
+
+      // Respaldo asíncrono inmediato en Supabase (Nube)
+      try {
+        fetch('/api/bloomshire-advisor?action=push_snapshot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'push_snapshot',
+            wallet: effectiveWallet.toLowerCase(),
+            snapshot: {
+              ...data,
+              wallet: effectiveWallet.toLowerCase(),
+              timestamp: Date.now()
+            }
+          })
+        }).catch(() => {});
+      } catch (_) {}
     }
     if (data.gold !== undefined && data.gold >= 0) setGold(data.gold);
     if (data.maxEnergy !== undefined && data.maxEnergy > 0) setMaxEnergy(data.maxEnergy);
@@ -2257,12 +2291,19 @@ export default function BloomshireCommand() {
                 )}
               </div>
 
-              {/* Nivel & Wallet compacto */}
-              <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/70 border border-slate-800 text-slate-400 text-xs font-mono shrink-0">
+              {/* Nivel & Wallet interactivo -> Abre Modal de Perfil de Granjero */}
+              <button 
+                type="button"
+                onClick={() => setShowProfileModal(true)}
+                className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-amber-500/40 hover:border-amber-400/80 text-amber-300 hover:text-white text-xs font-mono shrink-0 cursor-pointer transition-all shadow-sm active:scale-[0.98]"
+                title="Abrir Perfil de Granjero, NFTs y Estado On-Chain"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-amber-400 font-bold">Nv {farmingLevel}</span>
                 <span className="text-slate-600">•</span>
                 <span title={walletAddress}>{walletAddress.slice(0, 5)}...{walletAddress.slice(-3)}</span>
-              </div>
+                <span className="text-[10px] font-sans text-amber-400/90 ml-0.5">👤</span>
+              </button>
 
               {/* Shards / Tokens */}
               <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a]/50 border border-slate-800/80 text-indigo-300 text-[11px] font-mono shrink-0">
@@ -6122,7 +6163,156 @@ export default function BloomshireCommand() {
         )}
 
         {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
-              {showConnectModal && (
+      
+        {/* MODAL DE PERFIL DE GRANJERO, NFTS Y BOOSTS */}
+        {showProfileModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-[#0b1428] border-2 border-amber-500/70 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">👨‍🌾</span>
+                  <div>
+                    <h3 className="text-base font-black text-amber-400">Perfil de Granjero • Bloomshire</h3>
+                    <div className="text-[11px] text-slate-400 font-mono">Robinhood Chain • Season 0</div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowProfileModal(false)}
+                  className="text-slate-400 hover:text-white text-lg font-bold cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Wallet Info Box */}
+              <div className="p-3.5 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
+                <div className="flex items-center justify-between text-xs font-bold">
+                  <span className="text-slate-400 uppercase tracking-wider">Wallet Vinculada:</span>
+                  <span className="text-emerald-400 font-mono flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Conectado
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-2 bg-[#080d17] p-2 rounded-lg border border-slate-700/80 font-mono text-xs text-amber-200 break-all select-all">
+                  <span>{walletAddress || '0x...'}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (walletAddress) navigator.clipboard.writeText(walletAddress);
+                    }}
+                    className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] shrink-0 cursor-pointer"
+                    title="Copiar dirección"
+                  >
+                    Copiar
+                  </button>
+                </div>
+              </div>
+
+              {/* Perks & NFTs Oficiales */}
+              <div className="space-y-2">
+                <div className="text-xs font-black text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>💎 Tus NFTs & Boosts Activos:</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="p-2.5 bg-[#0f172a] border border-amber-500/30 rounded-xl flex items-center gap-2.5">
+                    <span className="text-xl">👨‍🌾</span>
+                    <div>
+                      <div className="font-bold text-white text-[11px]">Founding Farmers</div>
+                      <div className="text-[10px] text-amber-300 font-mono font-bold">10 NFTs Poseídos</div>
+                    </div>
+                  </div>
+                  <div className="p-2.5 bg-[#0f172a] border border-emerald-500/30 rounded-xl flex items-center gap-2.5">
+                    <span className="text-xl">⚡</span>
+                    <div>
+                      <div className="font-bold text-white text-[11px]">Bono de Velocidad</div>
+                      <div className="text-[10px] text-emerald-300 font-mono font-bold">+20% Crecimiento</div>
+                    </div>
+                  </div>
+                  <div className="p-2.5 bg-[#0f172a] border border-purple-500/30 rounded-xl flex items-center gap-2.5">
+                    <span className="text-xl">🐾</span>
+                    <div>
+                      <div className="font-bold text-white text-[11px]">Mascota de Granja</div>
+                      <div className="text-[10px] text-purple-300 font-mono font-bold">Perro Activo (+10% Drop)</div>
+                    </div>
+                  </div>
+                  <div className="p-2.5 bg-[#0f172a] border border-cyan-500/30 rounded-xl flex items-center gap-2.5">
+                    <span className="text-xl">🔋</span>
+                    <div>
+                      <div className="font-bold text-white text-[11px]">Estamina VIP</div>
+                      <div className="text-[10px] text-cyan-300 font-mono font-bold">150⚡ (Regen +1 / 3m)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Estado de Supabase */}
+              <div className="p-2.5 bg-[#0a1222] border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="text-base">☁️</span>
+                  <div>
+                    <div className="font-bold text-slate-300 text-[11px]">Respaldo en Supabase</div>
+                    <div className="text-[10px] text-slate-400">Tabla: player_sessions</div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (walletAddress) {
+                      fetch('/api/bloomshire-advisor?action=push_snapshot', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          action: 'push_snapshot',
+                          wallet: walletAddress.toLowerCase(),
+                          snapshot: {
+                            gold,
+                            shards,
+                            avyn,
+                            currentEnergy,
+                            maxEnergy,
+                            farmingLevel,
+                            inventory: rawInventory,
+                            activeOrders,
+                            activeCrops,
+                            dailyTasks,
+                            skills: skillsBreakdown,
+                            timestamp: Date.now()
+                          }
+                        })
+                      }).then(() => alert('¡Partida respaldada exitosamente en Supabase!')).catch(() => {});
+                    }
+                  }}
+                  className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[10.5px] font-bold cursor-pointer transition-all shadow-sm"
+                >
+                  Guardar en Nube
+                </button>
+              </div>
+
+              {/* Botones de Acción: Cerrar y Desconectar */}
+              <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-3 text-xs">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleDisconnect();
+                    setShowProfileModal(false);
+                  }}
+                  className="px-3.5 py-1.5 rounded-xl bg-rose-950/60 hover:bg-rose-900 border border-rose-500/50 hover:border-rose-400 text-rose-300 hover:text-white font-bold flex items-center gap-1.5 cursor-pointer transition-all shadow-sm"
+                >
+                  <span>🔴 Desconectar Sesión</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowProfileModal(false)}
+                  className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold cursor-pointer"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showConnectModal && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
                   <div className="bg-[#0b1428] border-2 border-amber-500/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
                     <div className="flex items-center justify-between border-b border-slate-800 pb-3">
