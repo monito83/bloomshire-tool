@@ -34,7 +34,8 @@ import {
   Filter,
   CheckCircle2,
   AlertCircle,
-  Settings
+  Settings,
+  LogOut
 } from 'lucide-react';
 
 // Importar datos canónicos JSON
@@ -729,15 +730,53 @@ export const MARKET_ROTATION_CATALOG = [
   }
 ];
 
+
+// Componente de Bloqueo Elegante para Módulos Personales en Modo Guía Libre
+function LockedModuleScreen({ title, description, onConnect, onBack }) {
+  return (
+    <div className="flex-1 flex flex-col items-center justify-center p-6 text-center min-h-[460px]">
+      <div className="max-w-md w-full bg-[#0a1224] border-2 border-amber-500/40 rounded-2xl p-7 shadow-2xl flex flex-col items-center gap-4 animate-in fade-in zoom-in-95 duration-150">
+        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-3xl shadow-inner">
+          🔒
+        </div>
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 font-mono text-[10px] font-bold uppercase mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            Modo Guía Libre Activo
+          </div>
+          <h2 className="text-base font-black text-white">{title}</h2>
+          <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+            {description}
+          </p>
+        </div>
+        <div className="w-full pt-3 border-t border-slate-800/80 flex flex-col gap-2">
+          <button
+            onClick={onConnect}
+            className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>🎮 Conectar Partida / Companion</span>
+          </button>
+          <button
+            onClick={onBack}
+            className="w-full py-2 bg-slate-800/60 hover:bg-slate-800 text-slate-400 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer"
+          >
+            ← Volver al Mega-Atlas HD
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BloomshireCommand() {
   const [activeTab, setActiveTab] = useState(() => {
     try {
       const saved = localStorage.getItem('bloomshire_active_tab');
-      if (saved) return saved;
+      if (saved && saved !== 'atlas') return saved;
       const w = localStorage.getItem('bloomshire_wallet');
-      return (w && w !== 'null' && w.startsWith('0x')) ? 'inventory' : 'atlas';
+      return (w && w !== 'null' && w.startsWith('0x')) ? 'inventory' : 'mega_atlas';
     } catch {
-      return 'atlas';
+      return 'mega_atlas';
     }
   });
 
@@ -747,6 +786,40 @@ export default function BloomshireCommand() {
   const [walletAddress, setWalletAddress] = useState(() => {
     try { const w = localStorage.getItem('bloomshire_wallet'); return (w && w !== 'null' && w.startsWith('0x')) ? w : null; } catch { return null; }
   });
+  const isConnected = Boolean(walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x'));
+
+  const handleDisconnect = () => {
+    setWalletAddress(null);
+    setGold(0);
+    setCurrentEnergy(0);
+    setMaxEnergy(150);
+    setShards(0);
+    setAvyn(0);
+    setFarmersOwned(0);
+    setFarmingLevel(0);
+    setSkillsBreakdown({});
+    setActiveQuestsList([]);
+    setActiveOrders([]);
+    setActiveCrops([]);
+    setProductionTimers([]);
+    setRawEnergyObj(null);
+    setRawInventory([]);
+    setItemQuantities({});
+    setActiveTab('mega_atlas');
+    try {
+      localStorage.removeItem('bloomshire_wallet');
+      localStorage.removeItem('bloomshire_cached_gold');
+      localStorage.removeItem('bloomshire_cached_shards');
+      localStorage.removeItem('bloomshire_cached_avyn');
+      localStorage.removeItem('bloomshire_cached_energy');
+      localStorage.removeItem('bloomshire_cached_farming_level');
+      localStorage.removeItem('bloomshire_cached_farmers');
+      localStorage.removeItem('bloomshire_cached_active_quest');
+      localStorage.removeItem('bloomshire_prod_timers');
+      localStorage.removeItem('bloomshire_daily_tasks');
+      localStorage.setItem('bloomshire_active_tab', 'mega_atlas');
+    } catch (_) {}
+  };
   const [farmersOwned, setFarmersOwned] = useState(() => {
     try { return Number(localStorage.getItem('bloomshire_cached_farmers')) || 0; } catch { return 0; }
   });
@@ -773,15 +846,15 @@ export default function BloomshireCommand() {
   });
   const [activeQuestsList, setActiveQuestsList] = useState([]);
   const [moonmereProgress, setMoonmereProgress] = useState({
-    currentChapter: 21,
-    completedChapters: 20,
+    currentChapter: 0,
+    completedChapters: 0,
     targetChapter: 24,
     totalChaptersRequired: 24,
-    homeChangedDone: true,
-    moonmereUnlocked: true,
-    moonmereIndex: 4,
+    homeChangedDone: false,
+    moonmereUnlocked: false,
+    moonmereIndex: 0,
     totalMoonmereChapters: 7,
-    unlocked: true
+    unlocked: false
   });
   const [energyMeta, setEnergyMeta] = useState(() => {
     const init = computeClientLiveEnergyAndBed(null, 59, Date.now(), { sleepExhausted: true, sleepLeft: 0 });
@@ -1020,7 +1093,14 @@ export default function BloomshireCommand() {
   const [craftSortBy, setCraftSortBy] = useState('level_asc'); // 'level_asc' | 'xp_desc' | 'value_desc' | 'name_asc'
   const [craftViewMode, setCraftViewMode] = useState('grid'); // 'grid' | 'list'
   const [npcViewMode, setNpcViewMode] = useState('grid'); // 'grid' | 'list'
-  const [economySubTab, setEconomySubTab] = useState('liquidation');
+  const [economySubTab, setEconomySubTab] = useState(() => {
+    try {
+      const w = localStorage.getItem('bloomshire_wallet');
+      return (w && w !== 'null' && w.startsWith('0x')) ? 'liquidation' : 'arbitrage';
+    } catch {
+      return 'arbitrage';
+    }
+  });
     const [liveMarketOffers, setLiveMarketOffers] = useState(() => {
     try {
       const c = localStorage.getItem('bloomshire_cached_market_offers');
@@ -1445,7 +1525,7 @@ export default function BloomshireCommand() {
       setGameBuildStatus(data.activeGameBuild === '2c7e9a3532e5' ? 'synced' : 'patch_detected');
     }
 
-    if (Array.isArray(data.activeQuestsList) && data.activeQuestsList.length > 0) {
+    if (Array.isArray(data.activeQuestsList)) {
       setActiveQuestsList(data.activeQuestsList);
     }
     if (Array.isArray(data.dailyTasks) && data.dailyTasks.length > 0) {
@@ -1514,12 +1594,12 @@ export default function BloomshireCommand() {
       setMoonmereProgress(prev => ({ ...prev, ...data.moonmereProgress }));
     }
 
-    if (Array.isArray(data.inventory) && data.inventory.length > 0) {
+    if (Array.isArray(data.inventory)) {
       setRawInventory(data.inventory);
       setItemQuantities(calculateQuantitiesFromRaw(data.inventory, inventoryScope));
     }
 
-    if (Array.isArray(data.activeOrders) && data.activeOrders.length > 0) {
+    if (Array.isArray(data.activeOrders)) {
       setActiveOrders(data.activeOrders.map(o => ({
         id: o.id,
         item: o.item,
@@ -2184,16 +2264,27 @@ export default function BloomshireCommand() {
 
         {/* Derecha: Botón Sync estilo Boceto + Colapsar */}
         <div className="flex items-center gap-2 shrink-0">
-          {walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') && (
-            <button
-              onClick={fetchSyncFromServer}
-              disabled={isSyncing}
-              className="px-3.5 py-1.5 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-700/80 hover:border-amber-500/50 text-slate-200 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm disabled:opacity-50"
-              title={`Sincronizar telemetría (Última: ${lastSyncTime})`}
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
-              <span>Sync</span>
-            </button>
+          {isConnected && (
+            <>
+              <button
+                onClick={fetchSyncFromServer}
+                disabled={isSyncing}
+                className="px-3.5 py-1.5 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-700/80 hover:border-amber-500/50 text-slate-200 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm disabled:opacity-50"
+                title={`Sincronizar telemetría (Última: ${lastSyncTime})`}
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
+                <span>Sync</span>
+              </button>
+
+              <button
+                onClick={handleDisconnect}
+                className="px-3 py-1.5 rounded-xl bg-rose-950/30 hover:bg-rose-900/50 border border-rose-500/30 hover:border-rose-400/60 text-rose-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+                title="Desconectar wallet y volver al Modo Guía Libre"
+              >
+                <LogOut className="w-3.5 h-3.5 text-rose-400" />
+                <span className="hidden sm:inline">Desconectar</span>
+              </button>
+            </>
           )}
 
           <button
@@ -2221,7 +2312,7 @@ export default function BloomshireCommand() {
               { key: 'craft', label: 'CRAFTEO & COCINA' },
               { key: 'npcs', label: 'ALDEANOS & REGALOS' },
               { key: 'calc', label: 'CALCULADORA XP' },
-              { key: 'monitors', label: 'TEMPORIZADORES' }
+              { key: 'monitors', label: isConnected ? 'TEMPORIZADORES' : 'TEMPORIZADORES 🔒' }
             ].map(t => {
               const isActive = activeTab === t.key;
               return (
@@ -2252,6 +2343,7 @@ export default function BloomshireCommand() {
               title="Libro de Misiones y Progresión"
             >
               <span>Misiones</span>
+              {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
 
             <button
@@ -2264,6 +2356,7 @@ export default function BloomshireCommand() {
               title="Copilot IA"
             >
               <span>Copilot</span>
+              {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
 
             <button
@@ -2711,7 +2804,7 @@ export default function BloomshireCommand() {
                       : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <span>📦 Liquidador de Inventario</span>
+                  <span>📦 Liquidador de Inventario</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
                 </button>
                 <button
                   onClick={() => setEconomySubTab('odette')}
@@ -2721,7 +2814,7 @@ export default function BloomshireCommand() {
                       : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <span>📜 Pedidos Diarios de Odette (+25% Oro)</span>
+                  <span>📜 Pedidos Diarios de Odette (+25% Oro)</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
                   {readyOrdersCount > 0 && (
                     <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-emerald-500 text-slate-950">
                       {readyOrdersCount} Listo
@@ -3023,6 +3116,14 @@ export default function BloomshireCommand() {
 
               {/* Sub-vista 2: Liquidador de Inventario (Full-Width, sin Odette lateral, tarjetas legibles) */}
               {economySubTab === 'liquidation' && (
+                !isConnected ? (
+                  <LockedModuleScreen
+                    title="Liquidador de Inventario & Almacenes"
+                    description="Audita en tiempo real el valor de liquidación en oro de tu Mochila, Cofres de Casa y Cofre del Pueblo leyendo automáticamente tus existencias con la extensión Bloomshire Companion."
+                    onConnect={() => setShowConnectModal(true)}
+                    onBack={() => setEconomySubTab('arbitrage')}
+                  />
+                ) : (
                 <div className="flex-1 flex flex-col gap-3.5 overflow-y-auto pr-1">
                   {(!walletAddress || walletAddress === 'null' || !walletAddress.startsWith('0x')) && (
                     <div className="p-4 bg-gradient-to-r from-amber-950/40 via-[#0e172c] to-indigo-950/40 border border-amber-500/40 rounded-xl flex items-center justify-between gap-4 flex-wrap shadow-md">
@@ -3239,10 +3340,19 @@ export default function BloomshireCommand() {
                     })}
                   </div>
                 </div>
+                )
               )}
 
               {/* Sub-vista 3: Pedidos Diarios de Odette (Módulo Propio y Dedicado) */}
               {economySubTab === 'odette' && (
+                !isConnected ? (
+                  <LockedModuleScreen
+                    title="Pedidos Diarios de Odette (+25% Oro)"
+                    description="Consulta tus 6 encargos diarios exclusivos de hoy, su recompensa en oro con bonificación del +25% y entrega directa en tienda vinculando tu partida con la extensión Bloomshire Companion."
+                    onConnect={() => setShowConnectModal(true)}
+                    onBack={() => setEconomySubTab('arbitrage')}
+                  />
+                ) : (
                 <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-1">
                   {/* Hero Banner de Odette con Retrato Oficial y Estadísticas */}
                   <div className="p-4 bg-[#0d162b] border-2 border-amber-500/60 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
@@ -3454,6 +3564,7 @@ export default function BloomshireCommand() {
                   </div>
                   )}
                 </div>
+                )
               )}
 
               {/* Sub-vista 4: Radar de Rotación de Mercado (Market Hall / Rowan) */}
@@ -3708,6 +3819,14 @@ export default function BloomshireCommand() {
             TAB: LIBRO DE LAS 10 HABILIDADES, MISIONES ACTIVAS & RUTA A MOONMERE (CAJAS COLAPSABLES)
             ============================================================== */}
         {activeTab === 'quests' && (
+          !isConnected ? (
+            <LockedModuleScreen
+              title="Misiones Activas & Progresión"
+              description="Consulta el árbol de requisitos de tus misiones activas en curso, progreso del libro de Moonmere y materiales pendientes conectando tu partida con la extensión Bloomshire Companion."
+              onConnect={() => setShowConnectModal(true)}
+              onBack={() => setActiveTab('mega_atlas')}
+            />
+          ) : (
           <div className="h-full overflow-y-auto p-5 space-y-4 custom-scrollbar">
             {/* Barra de Control Visual: Expandir / Colapsar Todo + Toggles Rápidos */}
             <div className="p-3 bg-[#0a1020] border border-indigo-950/90 rounded-xl flex flex-wrap items-center justify-between gap-2 shadow-md shrink-0">
@@ -4662,6 +4781,7 @@ export default function BloomshireCommand() {
               </div>
             </div>
           </div>
+          )
         )}
 
         {activeTab === 'craft' && (
@@ -5108,6 +5228,14 @@ export default function BloomshireCommand() {
               TAB NUEVO: MONITORES & ALERTAS DE COSECHAS Y CAMA
               ============================================================== */}
           {activeTab === 'monitors' && (
+            !isConnected ? (
+              <LockedModuleScreen
+                title="Temporizadores & Producción en Vivo"
+                description="Monitorea tus parcelas sembradas, cuentas regresivas de cocina/crafteo y tareas diarias en vivo conectando tu partida con la extensión Bloomshire Companion."
+                onConnect={() => setShowConnectModal(true)}
+                onBack={() => setActiveTab('mega_atlas')}
+              />
+            ) : (
             <div className="h-full overflow-y-auto p-5 space-y-4 max-w-5xl mx-auto w-full custom-scrollbar">
               <div className="p-3.5 bg-[#0c1220] border border-slate-800/80 rounded-xl shadow-sm">
                 <div className="text-sm font-bold text-white flex items-center gap-2">
@@ -5328,19 +5456,76 @@ export default function BloomshireCommand() {
                             className="flex-1 bg-[#091122] border border-slate-700 focus:border-amber-400 rounded-lg p-2 text-white font-mono text-xs outline-none"
                           />
                           <button
-                            onClick={() => {
+                            onClick={async () => {
                               if (!connectCode) return;
-                              if (connectCode.startsWith('0x') && connectCode.length >= 10) {
-                                setWalletAddress(connectCode);
-                                try { localStorage.setItem('bloomshire_wallet', connectCode); } catch (_) {}
-                                setConnectFeedback({ type: 'success', text: `Wallet ${connectCode.slice(0, 6)}... vinculada con éxito.` });
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
-                              } else if (connectCode.toUpperCase() === 'BLOOM-VIP' || connectCode.toUpperCase() === 'VIP' || connectCode.toUpperCase() === 'NEXUS') {
+                              const cleanCode = connectCode.trim();
+
+                              const resetSessionState = () => {
+                                setGold(0);
+                                setCurrentEnergy(0);
+                                setMaxEnergy(150);
+                                setShards(0);
+                                setAvyn(0);
+                                setFarmersOwned(0);
+                                setFarmingLevel(0);
+                                setSkillsBreakdown({});
+                                setActiveQuestsList([]);
+                                setActiveOrders([]);
+                                setActiveCrops([]);
+                                setProductionTimers([]);
+                                setRawEnergyObj(null);
+                                setRawInventory([]);
+                                setItemQuantities({});
+                              };
+
+                              if (cleanCode.startsWith('0x') && cleanCode.length >= 10) {
+                                resetSessionState();
+                                setWalletAddress(cleanCode);
+                                try { localStorage.setItem('bloomshire_wallet', cleanCode); } catch (_) {}
+
+                                try {
+                                  setConnectFeedback({ type: 'loading', text: 'Verificando telemetría en el servidor...' });
+                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(cleanCode)}`);
+                                  if (res.ok) {
+                                    const json = await res.json();
+                                    if (json.inGame && (json.inGame.gold > 0 || (Array.isArray(json.inGame.inventory) && json.inGame.inventory.length > 0))) {
+                                      applyIncomingSync({
+                                        ...json.inGame,
+                                        wallet: json.onChain?.wallet || cleanCode,
+                                        farmersCount: json.onChain?.farmersCount || 10
+                                      }, 'server');
+                                      setConnectFeedback({ type: 'success', text: `¡Partida vinculada y sincronizada! (${cleanCode.slice(0, 6)}...)` });
+                                    } else {
+                                      setConnectFeedback({
+                                        type: 'info',
+                                        text: `Wallet ${cleanCode.slice(0, 6)}... vinculada. Aún no tiene datos en el servidor: abre bloomshire.xyz con la extensión Companion para transmitir tu partida.`
+                                      });
+                                    }
+                                  }
+                                } catch (_) {
+                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada. Abre el juego con Bloomshire Companion para transmitir datos.` });
+                                }
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2200);
+                              } else if (cleanCode.toUpperCase() === 'BLOOM-VIP' || cleanCode.toUpperCase() === 'VIP' || cleanCode.toUpperCase() === 'NEXUS') {
                                 const devWallet = '0xD3E0147858CC171EED26C2A28A23Eb2942';
+                                resetSessionState();
                                 setWalletAddress(devWallet);
                                 try { localStorage.setItem('bloomshire_wallet', devWallet); } catch (_) {}
-                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Acceso completo desbloqueado.' });
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Cargando datos...' });
+                                try {
+                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(devWallet)}`);
+                                  if (res.ok) {
+                                    const json = await res.json();
+                                    if (json.inGame) {
+                                      applyIncomingSync({
+                                        ...json.inGame,
+                                        wallet: json.onChain?.wallet || devWallet,
+                                        farmersCount: json.onChain?.farmersCount || 10
+                                      }, 'server');
+                                    }
+                                  }
+                                } catch (_) {}
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
                               } else {
                                 setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa tu wallet (0x...) o activa la extensión.' });
                               }
@@ -5652,8 +5837,18 @@ export default function BloomshireCommand() {
                 </div>
               </div>
             </div>
-          )}
-{activeTab === 'advisor' && (
+          )
+        )}
+
+        {activeTab === 'advisor' && (
+          !isConnected ? (
+            <LockedModuleScreen
+              title="Copilot IA & Estratega"
+              description="Recibe consejos estratégicos en tiempo real sobre qué plantar, vender o entregar según las existencias de tu mochila y cofres conectando tu partida con la extensión Bloomshire Companion."
+              onConnect={() => setShowConnectModal(true)}
+              onBack={() => setActiveTab('mega_atlas')}
+            />
+          ) : (
           <div className="flex flex-col h-full overflow-hidden p-5 max-w-4xl mx-auto w-full">
             <div className="flex-1 bg-[#0a1226] border border-indigo-950/70 rounded-t-xl p-4 overflow-y-auto flex flex-col gap-3 shadow-inner">
               {advisorMessages.map(msg => (
@@ -5695,6 +5890,7 @@ export default function BloomshireCommand() {
               </button>
             </form>
           </div>
+          )
         )}
 
         {/* TAB: MEGA-ATLAS INTERACTIVO UNIFICADO (CON FOCO UNIVERSAL Y PIN DE RADAR) */}
