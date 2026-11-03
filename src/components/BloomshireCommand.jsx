@@ -769,10 +769,17 @@ function LockedModuleScreen({ title, description, onConnect, onBack }) {
 }
 
 export default function BloomshireCommand() {
+  const VALID_TABS = ['mega_atlas', 'inventory', 'items', 'craft', 'npcs', 'calc', 'monitors', 'quests', 'advisor', 'system'];
   const [activeTab, setActiveTab] = useState(() => {
     try {
       const saved = localStorage.getItem('bloomshire_active_tab');
-      if (saved && saved !== 'atlas') return saved;
+      if (saved && VALID_TABS.includes(saved)) {
+        const isPrivate = ['quests', 'advisor', 'monitors'].includes(saved);
+        const w = localStorage.getItem('bloomshire_wallet');
+        const hasWallet = Boolean(w && w !== 'null' && w.startsWith('0x'));
+        if (isPrivate && !hasWallet) return 'mega_atlas';
+        return saved;
+      }
       const w = localStorage.getItem('bloomshire_wallet');
       return (w && w !== 'null' && w.startsWith('0x')) ? 'inventory' : 'mega_atlas';
     } catch {
@@ -817,6 +824,8 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_cached_active_quest');
       localStorage.removeItem('bloomshire_prod_timers');
       localStorage.removeItem('bloomshire_daily_tasks');
+      localStorage.removeItem('bloomshire_cached_snapshot');
+      localStorage.removeItem('bloomshire_cached_market_offers');
       localStorage.setItem('bloomshire_active_tab', 'mega_atlas');
     } catch (_) {}
   };
@@ -2004,8 +2013,8 @@ export default function BloomshireCommand() {
     let list = [...(calcData[calcSkill] || [])];
 
     if (calcLevelFilter !== 'all') {
-      if (calcLevelFilter === 'vip') {
-        list = list.filter(x => x.level === 99 || (x.tip && x.tip.includes('VIP')));
+      if (calcLevelFilter === 'vip' || calcLevelFilter === 'special') {
+        list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misión'))));
       } else {
         const targetLv = parseInt(calcLevelFilter, 10);
         list = list.filter(x => (x.level ?? 1) <= targetLv || targetLv >= 10);
@@ -2690,9 +2699,13 @@ export default function BloomshireCommand() {
                     <option value="1">Nivel 1 (Principiante)</option>
                     <option value="2">Nivel 2</option>
                     <option value="3">Nivel 3</option>
-                    <option value="5">Nivel 5 (Tu Nivel Actual - Botica)</option>
+                    <option value="4">Nivel 4</option>
+                    <option value="5">Nivel 5 (Botica){isConnected && farmingLevel === 5 ? ' (Tu Nivel)' : ''}</option>
+                    <option value="6">Nivel 6</option>
+                    <option value="7">Nivel 7</option>
+                    <option value="8">Nivel 8+</option>
                     <option value="10">Nivel 10+ (Avanzado)</option>
-                    <option value="vip">Isla VIP (Semillas Raras)</option>
+                    <option value="special">Misiones / Especiales</option>
                   </select>
                 </div>
 
@@ -2842,7 +2855,7 @@ export default function BloomshireCommand() {
                       : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <span>📈 Radar de Rotación de Mercado (Rowan)</span>
+                  <span>📈 Radar de Rotación de Mercado (Rowan)</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
                   <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-emerald-500 text-slate-950">
                     HOT
                   </span>
@@ -3569,6 +3582,14 @@ export default function BloomshireCommand() {
 
               {/* Sub-vista 4: Radar de Rotación de Mercado (Market Hall / Rowan) */}
               {economySubTab === 'market_radar' && (
+                !isConnected ? (
+                  <LockedModuleScreen
+                    title="Radar de Rotación de Mercado (Rowan)"
+                    description="Cruza tus existencias unificadas (Mochila, Cofres de Casa y Pueblo) con los productos de mayor demanda conectando tu partida con Bloomshire Companion."
+                    onConnect={() => setShowConnectModal(true)}
+                    onBack={() => setEconomySubTab('arbitrage')}
+                  />
+                ) : (
                 <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-1">
                   {/* Hero Banner de Rowan */}
                   <div className="p-4 bg-[#0d162b] border-2 border-emerald-500/60 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
@@ -3811,6 +3832,7 @@ export default function BloomshireCommand() {
                       })}
                   </div>
                 </div>
+                )
               )}
             </div>
           )}
@@ -5406,156 +5428,6 @@ export default function BloomshireCommand() {
                 )}
               </div>
 
-              {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
-              {showConnectModal && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                  <div className="bg-[#0b1428] border-2 border-amber-500/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xl">🎮</span>
-                        <h3 className="text-base font-black text-amber-400">Vincular Partida • Bloomshire Companion</h3>
-                      </div>
-                      <button
-                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
-                        className="text-slate-400 hover:text-white text-lg font-bold cursor-pointer"
-                      >
-                        ✕
-                      </button>
-                    </div>
-
-                    <div className="space-y-4 text-xs">
-                      {/* Opción 1: Extensión */}
-                      <div className="p-4 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
-                        <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>⚡ Opción 1: Sincronización Automática (Extensión)</span>
-                        </div>
-                        <p className="text-slate-300 leading-relaxed">
-                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida directamente en tu navegador con 0 latencia y máxima privacidad:
-                        </p>
-                        <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1">
-                          <li>Instala la extensión en Chrome / Brave / Edge.</li>
-                          <li>Abre tu partida en <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold">bloomshire.xyz/play/</a>.</li>
-                          <li>Esta tool detectará tu inventario, oro y cultivos en menos de 1 segundo.</li>
-                        </ol>
-                      </div>
-
-                      {/* Opción 2: Código de Acceso / Desbloqueo Manual */}
-                      <div className="p-4 bg-[#101b33] border border-slate-800 rounded-xl space-y-2.5">
-                        <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>🔑 Opción 2: Clave de Acceso o Dirección de Wallet</span>
-                        </div>
-                        <p className="text-slate-400">
-                          Ingresa tu wallet de juego (<code className="text-cyan-300 font-mono">0x...</code>) o un código de acceso para desbloquear tu perfil:
-                        </p>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="text"
-                            value={connectCode}
-                            onChange={(e) => setConnectCode(e.target.value.trim())}
-                            placeholder="0x... o código de acceso"
-                            className="flex-1 bg-[#091122] border border-slate-700 focus:border-amber-400 rounded-lg p-2 text-white font-mono text-xs outline-none"
-                          />
-                          <button
-                            onClick={async () => {
-                              if (!connectCode) return;
-                              const cleanCode = connectCode.trim();
-
-                              const resetSessionState = () => {
-                                setGold(0);
-                                setCurrentEnergy(0);
-                                setMaxEnergy(150);
-                                setShards(0);
-                                setAvyn(0);
-                                setFarmersOwned(0);
-                                setFarmingLevel(0);
-                                setSkillsBreakdown({});
-                                setActiveQuestsList([]);
-                                setActiveOrders([]);
-                                setActiveCrops([]);
-                                setProductionTimers([]);
-                                setRawEnergyObj(null);
-                                setRawInventory([]);
-                                setItemQuantities({});
-                              };
-
-                              if (cleanCode.startsWith('0x') && cleanCode.length >= 10) {
-                                resetSessionState();
-                                setWalletAddress(cleanCode);
-                                try { localStorage.setItem('bloomshire_wallet', cleanCode); } catch (_) {}
-
-                                try {
-                                  setConnectFeedback({ type: 'loading', text: 'Verificando telemetría en el servidor...' });
-                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(cleanCode)}`);
-                                  if (res.ok) {
-                                    const json = await res.json();
-                                    if (json.inGame && (json.inGame.gold > 0 || (Array.isArray(json.inGame.inventory) && json.inGame.inventory.length > 0))) {
-                                      applyIncomingSync({
-                                        ...json.inGame,
-                                        wallet: json.onChain?.wallet || cleanCode,
-                                        farmersCount: json.onChain?.farmersCount || 10
-                                      }, 'server');
-                                      setConnectFeedback({ type: 'success', text: `¡Partida vinculada y sincronizada! (${cleanCode.slice(0, 6)}...)` });
-                                    } else {
-                                      setConnectFeedback({
-                                        type: 'info',
-                                        text: `Wallet ${cleanCode.slice(0, 6)}... vinculada. Aún no tiene datos en el servidor: abre bloomshire.xyz con la extensión Companion para transmitir tu partida.`
-                                      });
-                                    }
-                                  }
-                                } catch (_) {
-                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada. Abre el juego con Bloomshire Companion para transmitir datos.` });
-                                }
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2200);
-                              } else if (cleanCode.toUpperCase() === 'BLOOM-VIP' || cleanCode.toUpperCase() === 'VIP' || cleanCode.toUpperCase() === 'NEXUS') {
-                                const devWallet = '0xD3E0147858CC171EED26C2A28A23Eb2942';
-                                resetSessionState();
-                                setWalletAddress(devWallet);
-                                try { localStorage.setItem('bloomshire_wallet', devWallet); } catch (_) {}
-                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Cargando datos...' });
-                                try {
-                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(devWallet)}`);
-                                  if (res.ok) {
-                                    const json = await res.json();
-                                    if (json.inGame) {
-                                      applyIncomingSync({
-                                        ...json.inGame,
-                                        wallet: json.onChain?.wallet || devWallet,
-                                        farmersCount: json.onChain?.farmersCount || 10
-                                      }, 'server');
-                                    }
-                                  }
-                                } catch (_) {}
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
-                              } else {
-                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa tu wallet (0x...) o activa la extensión.' });
-                              }
-                            }}
-                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs cursor-pointer transition-all shadow-md shrink-0"
-                          >
-                            Vincular
-                          </button>
-                        </div>
-                        {connectFeedback && (
-                          <div className={`p-2 rounded text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
-                            {connectFeedback.text}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
-                      <span className="text-slate-500">¿Dudas? Consulta la guía en el Mega-Atlas.</span>
-                      <button
-                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
-                        className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg font-bold cursor-pointer"
-                      >
-                        Cerrar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* MODAL PARA AGREGAR TEMPORIZADOR MANUAL DE COCINA / CRAFTEO */}
               {showAddTimerModal && (
                 <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -6230,6 +6102,178 @@ export default function BloomshireCommand() {
             onClearFocusTarget={() => setAtlasFocusTarget(null)}
           />
         )}
+
+        {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
+              {showConnectModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                  <div className="bg-[#0b1428] border-2 border-amber-500/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">🎮</span>
+                        <h3 className="text-base font-black text-amber-400">Vincular Partida • Bloomshire Companion</h3>
+                      </div>
+                      <button
+                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
+                        className="text-slate-400 hover:text-white text-lg font-bold cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="space-y-4 text-xs">
+                      {/* Opción 1: Extensión */}
+                      <div className="p-4 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
+                        <div className="font-bold text-white text-sm flex items-center gap-2">
+                          <span>⚡ Opción 1: Sincronización Automática (Extensión)</span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed">
+                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida directamente en tu navegador con 0 latencia y máxima privacidad:
+                        </p>
+                        <div className="pt-1 pb-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              window.postMessage({ type: 'FORCE_SYNC_ALL', force: true }, '*');
+                              document.dispatchEvent(new CustomEvent('monios_force_sync', { detail: { force: true } }));
+                              setConnectFeedback({ type: 'info', text: '📡 Transmitiendo señal de enlace a la extensión...' });
+                              setTimeout(() => {
+                                const w = localStorage.getItem('bloomshire_wallet');
+                                if (w && w.startsWith('0x')) {
+                                  setConnectFeedback({ type: 'success', text: `¡Partida sincronizada con éxito! (${w.slice(0, 6)}...)` });
+                                  setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
+                                } else {
+                                  setConnectFeedback({ type: 'info', text: 'Señal emitida. Si tienes Bloomshire abierto en el navegador, haz clic en "Forzar Sincronización" en el popup de la extensión o ingresa tu wallet abajo.' });
+                                }
+                              }, 1200);
+                            }}
+                            className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all active:scale-[0.98]"
+                          >
+                            <span>⚡ Detectar / Sincronizar Extensión Companion</span>
+                          </button>
+                        </div>
+                        <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1">
+                          <li>Instala la extensión en Chrome / Brave / Edge.</li>
+                          <li>Abre tu partida en <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold">bloomshire.xyz/play/</a>.</li>
+                          <li>Esta tool detectará tu inventario, oro y cultivos en menos de 1 segundo.</li>
+                        </ol>
+                      </div>
+
+                      {/* Opción 2: Código de Acceso / Desbloqueo Manual */}
+                      <div className="p-4 bg-[#101b33] border border-slate-800 rounded-xl space-y-2.5">
+                        <div className="font-bold text-white text-sm flex items-center gap-2">
+                          <span>🔑 Opción 2: Clave de Acceso o Dirección de Wallet</span>
+                        </div>
+                        <p className="text-slate-400">
+                          Ingresa tu wallet de juego (<code className="text-cyan-300 font-mono">0x...</code>) o un código de acceso para desbloquear tu perfil:
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={connectCode}
+                            onChange={(e) => setConnectCode(e.target.value.trim())}
+                            placeholder="0x... o código de acceso"
+                            className="flex-1 bg-[#091122] border border-slate-700 focus:border-amber-400 rounded-lg p-2 text-white font-mono text-xs outline-none"
+                          />
+                          <button
+                            onClick={async () => {
+                              if (!connectCode) return;
+                              const cleanCode = connectCode.trim();
+
+                              const resetSessionState = () => {
+                                setGold(0);
+                                setCurrentEnergy(0);
+                                setMaxEnergy(150);
+                                setShards(0);
+                                setAvyn(0);
+                                setFarmersOwned(0);
+                                setFarmingLevel(0);
+                                setSkillsBreakdown({});
+                                setActiveQuestsList([]);
+                                setActiveOrders([]);
+                                setActiveCrops([]);
+                                setProductionTimers([]);
+                                setRawEnergyObj(null);
+                                setRawInventory([]);
+                                setItemQuantities({});
+                              };
+
+                              if (cleanCode.startsWith('0x') && cleanCode.length >= 10) {
+                                resetSessionState();
+                                setWalletAddress(cleanCode);
+                                try { localStorage.setItem('bloomshire_wallet', cleanCode); } catch (_) {}
+
+                                try {
+                                  setConnectFeedback({ type: 'loading', text: 'Verificando telemetría en el servidor...' });
+                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(cleanCode)}`);
+                                  if (res.ok) {
+                                    const json = await res.json();
+                                    if (json.inGame && (json.inGame.gold > 0 || (Array.isArray(json.inGame.inventory) && json.inGame.inventory.length > 0))) {
+                                      applyIncomingSync({
+                                        ...json.inGame,
+                                        wallet: json.onChain?.wallet || cleanCode,
+                                        farmersCount: json.onChain?.farmersCount || 10
+                                      }, 'server');
+                                      setConnectFeedback({ type: 'success', text: `¡Partida vinculada y sincronizada! (${cleanCode.slice(0, 6)}...)` });
+                                    } else {
+                                      setConnectFeedback({
+                                        type: 'info',
+                                        text: `Wallet ${cleanCode.slice(0, 6)}... vinculada. Aún no tiene datos en el servidor: abre bloomshire.xyz con la extensión Companion para transmitir tu partida.`
+                                      });
+                                    }
+                                  }
+                                } catch (_) {
+                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada. Abre el juego con Bloomshire Companion para transmitir datos.` });
+                                }
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2200);
+                              } else if (cleanCode.toUpperCase() === 'BLOOM-VIP' || cleanCode.toUpperCase() === 'VIP' || cleanCode.toUpperCase() === 'NEXUS') {
+                                const devWallet = '0xD3E0147858CC171EED26C2A28A23Eb2942';
+                                resetSessionState();
+                                setWalletAddress(devWallet);
+                                try { localStorage.setItem('bloomshire_wallet', devWallet); } catch (_) {}
+                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Cargando datos...' });
+                                try {
+                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(devWallet)}`);
+                                  if (res.ok) {
+                                    const json = await res.json();
+                                    if (json.inGame) {
+                                      applyIncomingSync({
+                                        ...json.inGame,
+                                        wallet: json.onChain?.wallet || devWallet,
+                                        farmersCount: json.onChain?.farmersCount || 10
+                                      }, 'server');
+                                    }
+                                  }
+                                } catch (_) {}
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
+                              } else {
+                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa tu wallet (0x...) o activa la extensión.' });
+                              }
+                            }}
+                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs cursor-pointer transition-all shadow-md shrink-0"
+                          >
+                            Vincular
+                          </button>
+                        </div>
+                        {connectFeedback && (
+                          <div className={`p-2 rounded text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
+                            {connectFeedback.text}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
+                      <span className="text-slate-500">¿Dudas? Consulta la guía en el Mega-Atlas.</span>
+                      <button
+                        onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
+                        className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg font-bold cursor-pointer"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
       </div>
     </div>

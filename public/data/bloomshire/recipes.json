@@ -1,127 +1,75 @@
 {
-  "workbench": [
-    {
-      "name": "Tablas de Madera (Planks)",
-      "cost": "Madera de Arce x3",
-      "result": "Planks x2",
-      "xp": "15 XP Artesanía",
-      "tip": "Material básico de construcción para vallas y cofres."
-    },
-    {
-      "name": "Cuerda Resistente (Rope)",
-      "cost": "Trigo Cosechado x3",
-      "result": "Rope x1",
-      "xp": "10 XP Artesanía",
-      "tip": "Necesaria para amarrar monturas y fabricar herramientas."
-    },
-    {
-      "name": "Kit de Reparación (Repair Kit)",
-      "cost": "Tablas x2 + Lingote de Cobre x1",
-      "result": "Kit x1",
-      "xp": "30 XP Artesanía",
-      "tip": "Restaura la durabilidad de herramientas y bicicletas."
-    },
-    {
-      "name": "Amuleto de Escoba (Broom Charm)",
-      "cost": "Cuerda x1 + Cuarzo Rosa x1 + Caléndula x2",
-      "result": "Charm x1",
-      "xp": "60 XP Artesanía",
-      "tip": "Otorga +50 de estamina para volar con la escoba mágica sobre ríos."
-    }
-  ],
-  "forge": [
-    {
-      "name": "Lingote de Cobre (Copper Bar)",
-      "cost": "Mena de Cobre x5 + Carbón x1",
-      "result": "1x Barra de Cobre",
-      "xp": "25 XP Herrería",
-      "tip": "Base para herramientas de bronce y kits de reparación."
-    },
-    {
-      "name": "Lingote de Hierro (Iron Bar)",
-      "cost": "Mena de Hierro x5 + Carbón x2",
-      "result": "1x Barra de Hierro",
-      "xp": "45 XP Herrería",
-      "tip": "Requiere Pico de Bronce para extraer menas en cuevas."
-    },
-    {
-      "name": "Lingote de Oro Puro (Gold Bar)",
-      "cost": "Mena de Oro x5 + Carbón x3",
-      "result": "1x Barra de Oro",
-      "xp": "90 XP Herrería",
-      "tip": "Para herramientas de oro y anillos de prestigio."
-    },
-    {
-      "name": "Cuarzo Rosa Tallado (Cut Rose Quartz)",
-      "cost": "Gema en bruto x1 + Cincel",
-      "result": "1x Gema Tallada (140g)",
-      "xp": "50 XP Joyería",
-      "tip": "Se vende caro con Bram o se engarza en joyas."
-    },
-    {
-      "name": "Zafiro Facetado (Cut Sapphire)",
-      "cost": "Zafiro en bruto x1 (Grave Cave)",
-      "result": "1x Zafiro Real (450g)",
-      "xp": "120 XP Joyería",
-      "tip": "Piedra preciosa de alto valor en Stonepeak."
-    },
-    {
-      "name": "Anillo de Cobre con Cuarzo",
-      "cost": "Lingote Cobre x2 + Cuarzo Rosa x1",
-      "result": "1x Anillo Protector",
-      "xp": "150 XP Joyería",
-      "tip": "Equipo que aumenta stats de resistencia en cuevas."
-    }
-  ],
   "kitchen": [
     {
-      "name": "Plato de Verduras (Vegetable Plate)",
-      "ingr": "Zanahoria x1 + Patata x1",
-      "energy": "+2 ⚡ Energía",
-      "time": "Instantáneo",
-      "tip": "Receta inicial barata para no agotar la energía matutina."
-    },
-    {
-      "name": "Ensalada del Huerto (Garden Salad)",
-      "ingr": "Repollo x1 + Tomate x1",
-      "energy": "+3 ⚡ Energía",
-      "time": "Instantáneo",
-      "tip": "Excelente rendimiento para jornadas de tala en Whisperwood."
-    },
-    {
-      "name": "Pan Casero (Loaf of Bread)",
-      "ingr": "Harina de Trigo x2 (Moler con Hugo)",
-      "energy": "+4 ⚡ Energía",
-      "time": "Instantáneo",
-      "tip": "Comida densa ideal para llevar a las cuevas de Stonepeak."
-    },
-    {
       "name": "Pescado Frito (Fried Fish)",
-      "ingr": "Carp / Pez Común x1 + Aceite",
-      "energy": "+5 ⚡ Energía",
+      "ingr": "Carpa (Carp) x1",
+      "energy": "+5 ⚡ Energía, +10 ❤️ Vida",
       "time": "Instantáneo",
       "tip": "Cocina el pescado capturado en vez de venderlo crudo."
     },
     {
-      "name": "Estofado Contundente (Hearty Stew)",
-      "ingr": "Lucio (Pike) x1 + Patata x1 + Cebolla x1",
-      "energy": "+22 ⚡ Energía",
-      "time": "1 min",
-      "tip": "Plato intermedio de alto poder restaurador."
+      "name": "Plato de Verduras (Vegetable Plate)",
+      "ingr": "Zanahoria x1 + Patata x1",
+      "energy": "+2 ⚡ Energía, +4 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "Receta inicial barata para no agotar la energía matutina."
     },
     {
-      "name": "Tarta Dorada (Golden Pie)",
-      "ingr": "Calabaza Dorada x2 + Trigo x2",
-      "energy": "+50 ⚡ y +40 Vida",
-      "time": "2 min",
-      "tip": "¡EL MEJOR BUFF DEL JUEGO! Otorga bono de combate y energía masiva."
+      "name": "Pan Casero (Loaf of Bread)",
+      "ingr": "Trigo (Wheat) x2",
+      "energy": "+4 ⚡ Energía, +8 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "Comida densa ideal para llevar a las cuevas de Stonepeak."
+    },
+    {
+      "name": "Ensalada del Huerto (Garden Salad)",
+      "ingr": "Repollo x1 + Tomate x1",
+      "energy": "+3 ⚡ Energía, +6 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "Excelente rendimiento para jornadas de recolección en Whisperwood."
+    },
+    {
+      "name": "Mermelada de Fresa (Fruit Jam)",
+      "ingr": "Fresa (Strawberry) x2",
+      "energy": "+6 ⚡ Energía, +12 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "Conserva dulce de alta calidad."
+    },
+    {
+      "name": "Estofado Contundente (Hearty Stew)",
+      "ingr": "Lucio (Pike Fish) x1 + Patata x1 + Cebolla x1",
+      "energy": "+22 ⚡ Energía, +44 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "Plato intermedio de alto poder restaurador."
     },
     {
       "name": "Estofado Luz de Luna (Moonlight Stew)",
       "ingr": "Ghost Catfish x1 + Star Fruit x1 + Silvercap x2",
-      "energy": "+25 ⚡ (Sin tope diario)",
-      "time": "5 min",
-      "tip": "¡Único plato que se puede consumir sin límite diario de 60⚡!"
+      "energy": "+25 ⚡ Energía, +50 ❤️ Vida",
+      "time": "Instantáneo",
+      "tip": "¡Plato legendario de los Fundadores!"
+    }
+  ],
+  "workbench": [
+    {
+      "name": "Tablón de Madera (Wooden Plank)",
+      "ingr": "Madera (Wood) x3",
+      "time": "Instantáneo",
+      "tip": "Material estructural básico."
+    },
+    {
+      "name": "Cofre de Almacén (Chest)",
+      "ingr": "Tablón de Madera x12 + Lingote de Cobre x4",
+      "time": "Instantáneo",
+      "tip": "Almacenamiento permanente extra."
+    }
+  ],
+  "forge": [
+    {
+      "name": "Barra de Cobre (Copper Bar)",
+      "ingr": "Mineral de Cobre x2",
+      "time": "Instantáneo",
+      "tip": "Lingote fundido para forja."
     }
   ]
 }

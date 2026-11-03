@@ -1,162 +1,145 @@
 {
+  "cook": [
+    {
+      "item": "Pescado Frito (Fried Fish) 🐟",
+      "level": "Cocina • Común (Valor: 4.500g)",
+      "mats": "Carpa (Carp) x1",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+5 ⚡ Energía, +10 ❤️ Vida. Plato inicial básico y rendidor."
+    },
+    {
+      "item": "Plato de Verduras (Vegetable Plate) 🥗",
+      "level": "Cocina • Común (Valor: 3.000g)",
+      "mats": "Zanahoria (Carrot) x1 + Patata (Potato) x1",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+2 ⚡ Energía, +4 ❤️ Vida. Preparación rápida con cultivos de la huerta."
+    },
+    {
+      "item": "Pan Casero (Bread) 🍞",
+      "level": "Cocina • Común (Valor: 4.000g)",
+      "mats": "Trigo (Wheat) x2",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+4 ⚡ Energía, +8 ❤️ Vida. El alimento cotidiano más rendidor."
+    },
+    {
+      "item": "Ensalada del Huerto (Garden Salad) 🥬",
+      "level": "Cocina • Común (Valor: 3.500g)",
+      "mats": "Repollo (Cabbage) x1 + Tomate (Tomato) x1",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+3 ⚡ Energía, +6 ❤️ Vida. Fresco y nutritivo para el trabajo rural."
+    },
+    {
+      "item": "Mermelada de Fresa (Fruit Jam) 🍓",
+      "level": "Cocina • Poco Común (Valor: 6.000g)",
+      "mats": "Fresa (Strawberry) x2",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+6 ⚡ Energía, +12 ❤️ Vida. Deliciosa conserva dulce."
+    },
+    {
+      "item": "Estofado Contundente (Hearty Stew) 🍲",
+      "level": "Cocina • Épico (Valor: 20.000g)",
+      "mats": "Lucio (Pike Fish) x1 + Patata (Potato) x1 + Cebolla (Onion) x1",
+      "place": "Estufa (Tamsin / Cabaña)",
+      "desc": "+22 ⚡ Energía, +44 ❤️ Vida. ¡Recupera casi toda la barra de energía!"
+    },
+    {
+      "item": "Estofado de los Fundadores (Moonlight Stew) 🌌",
+      "level": "Cocina • Legendario (Valor: 35.000g)",
+      "mats": "Bagre Fantasma x1 + Fruta Estrella x1 + Hongo Plateado x2",
+      "place": "Estufa Cabaña / Hearth",
+      "desc": "+25 ⚡ Energía, +50 ❤️ Vida. La receta milenaria de los Fundadores."
+    }
+  ],
   "bench": [
     {
       "item": "Tablón de Madera (Wooden Plank) 🪵",
       "level": "Artesanía Lv 1",
-      "mats": "Madera x3",
-      "place": "Banco de Trabajo (Carpintero)",
-      "desc": "Material base para construir puentes, vallas y cajas de herramientas."
+      "mats": "Madera (Wood) x3",
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "desc": "Material base para construir puentes, vallas y cofres."
     },
     {
-      "item": "Cuerda de Enredadera (Rope) 🪢",
-      "level": "Artesanía Lv 2",
-      "mats": "Trigo x3",
-      "place": "Banco de Trabajo",
-      "desc": "Indispensable para amuletos, arcos y cañas avanzadas."
+      "item": "Cofre de Almacén (Chest) 📦",
+      "level": "Carpintería • Valor: 150.000g",
+      "mats": "Tablón de Madera x12 + Lingote de Cobre x4",
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "desc": "Almacenamiento permanente extra para tu cabaña o pueblo."
     },
     {
       "item": "Kit de Reparación (Repair Kit) 🧰",
       "level": "Artesanía Lv 3",
       "mats": "Tablón x2 + Barra de Cobre x1",
-      "place": "Banco de Trabajo",
-      "desc": "Restaura usos de herramientas desgastadas."
-    },
-    {
-      "item": "Anillo de Enredadera (Vine Ring) 💍",
-      "level": "Artesanía Lv 7",
-      "mats": "Cuerda x1 + Tablón x2",
-      "place": "Banco de Trabajo",
-      "desc": "Joyería natural con pequeña bonificación de estamina."
-    },
-    {
-      "item": "Tela (Cloth) 🧵",
-      "level": "Artesanía Lv 9",
-      "mats": "Lana x2",
-      "place": "Telar de Tilly (Sastrería)",
-      "desc": "Se teje en el telar de Tilly para capas, bolsas y amuletos."
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "desc": "Restaura usos de herramientas de recolección desgastadas."
     }
   ],
   "forge": [
     {
       "item": "Barra de Cobre (Copper Bar) 🧱",
-      "level": "Artesanía Lv 1",
-      "mats": "Mineral de Cobre x2",
+      "level": "Herrería Lv 1",
+      "mats": "Mineral de Cobre (Copper Ore) x2",
       "place": "La Forja (Bram)",
-      "desc": "Lingote fundido para forjar útiles de bronce y kits."
+      "desc": "Lingote fundido para forjar útiles de bronce y componentes mecánicos."
     },
     {
-      "item": "Cuarzo Rosa Pulido (Cut Rose Quartz) 🌸",
-      "level": "Artesanía Lv 4",
-      "mats": "Cuarzo Rosa x2",
-      "place": "Yunque de Herrería",
-      "desc": "Gema tallada para el Amuleto de Escoba."
+      "item": "Pico de Hierro (Iron Pickaxe) ⛏️",
+      "level": "Herrería • Tier 1 (300 usos)",
+      "mats": "Comprado en Forja o Reparado",
+      "place": "La Forja (Bram)",
+      "desc": "Rompe vetas de Cobre, Cuarzo y Cuarzo Rosa (3 golpes)."
     },
     {
-      "item": "Amuleto de Escoba (Broom Charm) 🧹",
-      "level": "Artesanía Lv 5",
-      "mats": "Cuerda x1 + Cuarzo Rosa Pulido x1 + Caléndula x1",
-      "place": "La Forja",
-      "desc": "Permite encantar o mejorar la montura de escoba."
+      "item": "Pico de Bronce (Bronze Pickaxe) ⛏️",
+      "level": "Herrería • Tier 2 (1.000 usos)",
+      "mats": "Comprado en Forja (5.000g)",
+      "place": "La Forja (Bram)",
+      "desc": "Rompe vetas de Topacio, Zafiro y Piedra Lunar (4 golpes)."
     },
     {
-      "item": "Topacio Pulido (Cut Topaz) 💛",
-      "level": "Artesanía Lv 6",
-      "mats": "Topacio x2",
-      "place": "La Forja",
-      "desc": "Gema tallada para joyería de cobre y oro."
+      "item": "Pico de Oro (Gold Pickaxe) ⛏️",
+      "level": "Herrería • Tier 3 (4.000 usos)",
+      "mats": "Comprado en Forja (35.000g)",
+      "place": "La Forja (Bram)",
+      "desc": "Rompe vetas de Esmeralda, Amatista y Rubí (5 golpes)."
     },
     {
-      "item": "Zafiro Pulido (Cut Sapphire) 💙",
-      "level": "Artesanía Lv 8",
-      "mats": "Zafiro x2",
-      "place": "La Forja",
-      "desc": "Gema de alta resistencia para el Amuleto de Zafiro."
-    },
-    {
-      "item": "Anillo de Topacio (Topaz Ring) 💍",
-      "level": "Artesanía Lv 10",
-      "mats": "Barra de Cobre x1 + Topacio Pulido x1",
-      "place": "La Forja",
-      "desc": "Joyería fina que incrementa la suerte en minas."
-    },
-    {
-      "item": "Barra de Oro (Gold Bar) 👑",
-      "level": "Artesanía Lv 13",
-      "mats": "Mineral de Oro x2",
-      "place": "La Forja",
-      "desc": "Metal precioso para la forja de herramientas de oro y anillos reales."
-    },
-    {
-      "item": "Amuleto de Zafiro (Sapphire Amulet) 📿",
-      "level": "Artesanía Lv 18",
-      "mats": "Barra Oro x1 + Zafiro Pulido x1 + Tela x1",
-      "place": "La Forja",
-      "desc": "Protección elemental en las profundidades de la mazmorra."
+      "item": "Pico de Amatista (Amethyst Pickaxe) ⛏️",
+      "level": "Herrería • Tier 4 (10.000 usos)",
+      "mats": "Comprado en Forja (120.000g)",
+      "place": "La Forja (Bram)",
+      "desc": "Rompe Mena de Oro y Diamante (6 golpes)."
     }
   ],
-  "cook": [
+  "mill": [
     {
-      "item": "Plato de Verduras (Vegetable Plate) 🥗",
-      "level": "Cocina Lv 1",
-      "mats": "Zanahoria x2 + Chirivía x1",
-      "place": "Estufa (Tamsin / Cabaña)",
-      "desc": "+2 Energía. Plato inicial rápido y barato."
+      "item": "Harina de Trigo (Wheat Flour) 🌾",
+      "level": "Molienda (Hollin)",
+      "mats": "Trigo (Wheat) x2",
+      "place": "Molino de Agua (Granja de Hollin - Southvale)",
+      "desc": "Harina fina para la elaboración de pan y masa en la panadería."
     },
     {
-      "item": "Ensalada del Huerto (Garden Salad) 🥬",
-      "level": "Cocina Lv 1",
-      "mats": "Repollo x2 + Cebolla x1",
-      "place": "Estufa",
-      "desc": "+3 Energía. Ideal para largas jornadas de tala."
+      "item": "Queso Añejo (Cheese) 🧀",
+      "level": "Lechería (Hollin)",
+      "mats": "Leche de Vaca (Milk) x2",
+      "place": "Lechería (Granja de Hollin - Southvale)",
+      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Queso madurado en despensa."
     },
     {
-      "item": "Pan Casero (Bread) 🍞",
-      "level": "Cocina Lv 2",
-      "mats": "Trigo x3",
-      "place": "Estufa",
-      "desc": "+4 Energía. El alimento más rendidor con trigo propio."
-    },
+      "item": "Queso de Cabra (Goat Cheese) 🐐",
+      "level": "Lechería (Hollin)",
+      "mats": "Leche de Cabra (Goat Milk) x1",
+      "place": "Lechería (Granja de Hollin - Southvale)",
+      "desc": "Queso gourmet de alto valor comercial para pedidos."
+    }
+  ],
+  "loom": [
     {
-      "item": "Pescado Frito (Fried Fish) 🐟",
-      "level": "Cocina Lv 2",
-      "mats": "Carpa o Perca x1",
-      "place": "Estufa",
-      "desc": "+5 Energía. Fácil de hacer con cualquier pez del río."
-    },
-    {
-      "item": "Chile Fuego Solar (Sunfire Chili) 🌶️",
-      "level": "Cocina Lv 3 (VIP)",
-      "mats": "Pimiento Fuego Solar x2",
-      "place": "Estufa",
-      "desc": "+6 Energía + Buff de velocidad temporal."
-    },
-    {
-      "item": "Mermelada de Zafiro (Sapphire Jam) 🫐",
-      "level": "Cocina Lv 3 (VIP)",
-      "mats": "Arándano Zafiro x2",
-      "place": "Estufa",
-      "desc": "+6 Energía + Reducción de coste de energía al minar."
-    },
-    {
-      "item": "Tarta Diamante (Diamond Tart) 🍓",
-      "level": "Cocina Lv 3 (VIP)",
-      "mats": "Fresa Diamante x2",
-      "place": "Estufa",
-      "desc": "+6 Energía + Buff de recarga de estamina."
-    },
-    {
-      "item": "Pastel Dorado (Golden Pie) 👑",
-      "level": "Cocina Lv 5 (VIP)",
-      "mats": "Calabaza Dorada x2 + Trigo x2",
-      "place": "Estufa",
-      "desc": "⚡ +50 DE ENERGÍA (Llena la barra casi entera de golpe)."
-    },
-    {
-      "item": "Estofado de los Fundadores (Moonlight Stew) 🍲",
-      "level": "Misión Marven",
-      "mats": "Bagre Fantasma x1 + Star Fruit x1 + Silvercap x2",
-      "place": "Estufa Cabaña",
-      "desc": "+25 Energía. La receta milenaria de los Fundadores."
+      "item": "Tela (Cloth) 🧵",
+      "level": "Sastrería (Tilly)",
+      "mats": "Lana (Wool) x2",
+      "place": "Telar de Tilly (Sastrería)",
+      "desc": "Se teje en el telar de la Sastrería de Tilly para capas, bolsas y amuletos."
     }
   ]
 }
