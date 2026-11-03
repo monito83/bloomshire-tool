@@ -17,7 +17,7 @@ export const CANONICAL_SKILLS = [
 export const SKILL_GAP = 3;
 
 // Fórmula exacta del motor en vivo (https://bloomshire.xyz/play/js/game/catalog.js)
-export const xpForLevel = (L) => (L <= 1 ? 0 : Math.round(100 * (L - 1) ** 2.7));
+export const xpForLevel = (L) => (L <= 1 ? 0 : Math.round(40 * (L - 1) ** 1.9));
 
 export function computeCanonicalSkillsFromRaw(rawSkillsObj, fallbackBreak = null) {
   const breakdown = {};

@@ -860,7 +860,7 @@
           _activeGameBuild: getDetectedGameBuild(),
           _serverTimeOffset: serverTimeOffset
         }
-      }, '*');
+      }, window.location.origin);
     } catch (e) { }
   }
 

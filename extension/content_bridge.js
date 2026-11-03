@@ -12163,8 +12163,9 @@
     }
   }
 
-  // Escuchar mensajes de content_hook.js
+  // Escuchar mensajes de content_hook.js asegurando mismo contexto de ventana
   window.addEventListener('message', (event) => {
+    if (event.source !== window) return;
     if (event.data?.type === '__BLOOMSHIRE_RAW_STATE' && event.data.payload) {
       const parsed = parseSave(event.data.payload);
       if (parsed) {
@@ -12189,13 +12190,12 @@
           try { const _ = chrome.runtime?.lastError; } catch (_) {}
         });
       } catch (err) { }
-      // Piggyback sobre BLOOMSHIRE_STATE_UPDATE para que funcione incluso sin recargar background.js
+      // Notificar actualización de mapa de forma desacoplada sin inflar el snapshot general
       if (latestBloomshireState) {
         sendSnapshotToBackground({
           ...latestBloomshireState,
-          _renderedMap: mapPayload,
           timestamp: Date.now()
-        }, true);
+        }, false);
       }
     }
   });

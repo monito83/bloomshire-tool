@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-11-03T21:47:03.708Z",
+    "generatedAt": "2026-11-03T22:25:19.638Z",
     "buildHash": "4212f5dc495a",
     "rulesHash": "a70eb5dd5113",
     "sourceDate": "2026-10-28",
@@ -426,7 +426,7 @@
       "cropSellValue": 1150,
       "farmingXp": 47,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -472,11 +472,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 1250,
+      "seedPrice": 495,
       "cropSellValue": 990,
       "farmingXp": 43,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -528,11 +528,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 680,
+      "seedPrice": 275,
       "cropSellValue": 545,
       "farmingXp": 29,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -632,7 +632,7 @@
       "cropSellValue": 420,
       "farmingXp": 24,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -684,11 +684,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 615,
+      "seedPrice": 245,
       "cropSellValue": 490,
       "farmingXp": 27,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -734,11 +734,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 755,
+      "seedPrice": 305,
       "cropSellValue": 605,
       "farmingXp": 31,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -794,7 +794,7 @@
       "cropSellValue": 1250,
       "farmingXp": 50,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -888,7 +888,7 @@
       "cropSellValue": 870,
       "farmingXp": 39,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -932,7 +932,7 @@
       "cropSellValue": 3250,
       "farmingXp": 94,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -988,7 +988,7 @@
       "cropSellValue": 4150,
       "farmingXp": 111,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "cv2/Enviroment/Crops/Crops.png",
@@ -1038,7 +1038,7 @@
       "cropSellValue": 150,
       "farmingXp": 12,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1084,11 +1084,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 925,
+      "seedPrice": 370,
       "cropSellValue": 740,
       "farmingXp": 35,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1150,7 +1150,7 @@
       "cropSellValue": 1400,
       "farmingXp": 54,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1200,7 +1200,7 @@
       "cropSellValue": 1550,
       "farmingXp": 57,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1250,7 +1250,7 @@
       "cropSellValue": 2350,
       "farmingXp": 76,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1296,11 +1296,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 2450,
+      "seedPrice": 975,
       "cropSellValue": 1950,
       "farmingXp": 67,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1352,11 +1352,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 925,
+      "seedPrice": 370,
       "cropSellValue": 740,
       "farmingXp": 35,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1400,7 +1400,7 @@
       "cropSellValue": 1550,
       "farmingXp": 57,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1446,11 +1446,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 1450,
+      "seedPrice": 575,
       "cropSellValue": 1150,
       "farmingXp": 47,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1494,7 +1494,7 @@
       "cropSellValue": 355,
       "farmingXp": 22,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1588,7 +1588,7 @@
       "cropSellValue": 355,
       "farmingXp": 22,
       "seasons": [
-        "all"
+        "Spring"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1690,11 +1690,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 680,
+      "seedPrice": 275,
       "cropSellValue": 545,
       "farmingXp": 29,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1740,11 +1740,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 925,
+      "seedPrice": 370,
       "cropSellValue": 740,
       "farmingXp": 35,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1790,11 +1790,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 925,
+      "seedPrice": 370,
       "cropSellValue": 740,
       "farmingXp": 35,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1840,11 +1840,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 925,
+      "seedPrice": 370,
       "cropSellValue": 740,
       "farmingXp": 35,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1896,11 +1896,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 755,
+      "seedPrice": 305,
       "cropSellValue": 605,
       "farmingXp": 31,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -1946,11 +1946,11 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": 615,
+      "seedPrice": 245,
       "cropSellValue": 490,
       "farmingXp": 27,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -2000,7 +2000,7 @@
       "cropSellValue": 3250,
       "farmingXp": 94,
       "seasons": [
-        "all"
+        "Summer"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -2050,7 +2050,7 @@
       "cropSellValue": 1950,
       "farmingXp": 67,
       "seasons": [
-        "all"
+        "Fall"
       ],
       "icon": [
         "Crops/All Crops.png",
@@ -2090,13 +2090,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        0,
+        0
+      ]
     },
     {
       "index": 37,
@@ -2130,13 +2134,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        16,
+        0
+      ]
     },
     {
       "index": 38,
@@ -2170,13 +2178,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        32,
+        0
+      ]
     },
     {
       "index": 39,
@@ -2210,13 +2222,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        48,
+        0
+      ]
     },
     {
       "index": 40,
@@ -2250,13 +2266,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        64,
+        0
+      ]
     },
     {
       "index": 41,
@@ -2290,13 +2310,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        80,
+        0
+      ]
     },
     {
       "index": 42,
@@ -2330,13 +2354,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        96,
+        0
+      ]
     },
     {
       "index": 43,
@@ -2370,13 +2398,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 93,
+      "cropSellValue": 185,
+      "farmingXp": 14,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "vip/Crops/Premium Items.png",
+        112,
+        0
+      ]
     },
     {
       "index": 44,
@@ -2410,13 +2442,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 120,
+      "cropSellValue": 240,
+      "farmingXp": 17,
       "seasons": [
-        "all"
+        "Winter"
       ],
-      "icon": null
+      "icon": [
+        "art:winter-crops.png",
+        112,
+        16
+      ]
     },
     {
       "index": 45,
@@ -2450,13 +2486,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 275,
+      "cropSellValue": 545,
+      "farmingXp": 29,
       "seasons": [
-        "all"
+        "Winter"
       ],
-      "icon": null
+      "icon": [
+        "art:winter-crops.png",
+        112,
+        48
+      ]
     },
     {
       "index": 46,
@@ -2496,13 +2536,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 575,
+      "cropSellValue": 1150,
+      "farmingXp": 47,
       "seasons": [
-        "all"
+        "Winter"
       ],
-      "icon": null
+      "icon": [
+        "art:winter-crops.png",
+        112,
+        80
+      ]
     },
     {
       "index": 47,
@@ -2542,13 +2586,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 975,
+      "cropSellValue": 1950,
+      "farmingXp": 67,
       "seasons": [
-        "all"
+        "Winter"
       ],
-      "icon": null
+      "icon": [
+        "art:winter-crops.png",
+        144,
+        112
+      ]
     },
     {
       "index": 48,
@@ -2594,13 +2642,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 1200,
+      "cropSellValue": 2350,
+      "farmingXp": 76,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "art:region-crops.png",
+        144,
+        16
+      ]
     },
     {
       "index": 49,
@@ -2640,13 +2692,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 700,
+      "cropSellValue": 1400,
+      "farmingXp": 54,
       "seasons": [
         "all"
       ],
-      "icon": null
+      "icon": [
+        "art:region-crops.png",
+        144,
+        48
+      ]
     },
     {
       "index": 50,
@@ -2686,13 +2742,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 1850,
+      "cropSellValue": 3700,
+      "farmingXp": 103,
       "seasons": [
-        "all"
+        "Summer"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        144,
+        208
+      ]
     },
     {
       "index": 51,
@@ -2732,13 +2792,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 2100,
+      "cropSellValue": 4150,
+      "farmingXp": 111,
       "seasons": [
-        "all"
+        "Spring"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        112,
+        16
+      ]
     },
     {
       "index": 52,
@@ -2784,13 +2848,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 2300,
+      "cropSellValue": 4600,
+      "farmingXp": 119,
       "seasons": [
-        "all"
+        "Winter"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        144,
+        48
+      ]
     },
     {
       "index": 53,
@@ -2830,13 +2898,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 2550,
+      "cropSellValue": 5100,
+      "farmingXp": 127,
       "seasons": [
-        "all"
+        "Spring"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        112,
+        80
+      ]
     },
     {
       "index": 54,
@@ -2882,13 +2954,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 2800,
+      "cropSellValue": 5550,
+      "farmingXp": 134,
       "seasons": [
-        "all"
+        "Summer"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        144,
+        112
+      ]
     },
     {
       "index": 55,
@@ -2940,13 +3016,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 3000,
+      "cropSellValue": 6000,
+      "farmingXp": 142,
       "seasons": [
-        "all"
+        "Fall"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        144,
+        144
+      ]
     },
     {
       "index": 56,
@@ -2986,13 +3066,17 @@
         ]
       ],
       "seedDear": false,
-      "seedPrice": null,
-      "cropSellValue": null,
-      "farmingXp": 1,
+      "seedPrice": 3500,
+      "cropSellValue": 7000,
+      "farmingXp": 157,
       "seasons": [
-        "all"
+        "Summer"
       ],
-      "icon": null
+      "icon": [
+        "art:rare-crops.png",
+        128,
+        176
+      ]
     }
   ],
   "shops": {
@@ -3028,6 +3112,10 @@
           "level": 4
         },
         {
+          "id": "seed:44",
+          "level": 4
+        },
+        {
           "id": "seed:26",
           "level": 5
         },
@@ -3053,6 +3141,10 @@
         },
         {
           "id": "seed:28",
+          "level": 8
+        },
+        {
+          "id": "seed:45",
           "level": 8
         },
         {
@@ -3096,6 +3188,10 @@
           "level": 12
         },
         {
+          "id": "seed:46",
+          "level": 12
+        },
+        {
           "id": "seed:10",
           "level": 13
         },
@@ -3120,8 +3216,40 @@
           "level": 16
         },
         {
+          "id": "seed:47",
+          "level": 16
+        },
+        {
           "id": "seed:34",
           "level": 17
+        },
+        {
+          "id": "seed:50",
+          "level": 18
+        },
+        {
+          "id": "seed:51",
+          "level": 20
+        },
+        {
+          "id": "seed:52",
+          "level": 22
+        },
+        {
+          "id": "seed:53",
+          "level": 24
+        },
+        {
+          "id": "seed:54",
+          "level": 26
+        },
+        {
+          "id": "seed:55",
+          "level": 28
+        },
+        {
+          "id": "seed:56",
+          "level": 30
         },
         {
           "id": "tool:hoe"

@@ -6,18 +6,18 @@
  */
 
 const BLOOMSHIRE_MATH_SYSTEM_PROMPT = `
-Eres "Antigravity / MoniOS Copilot", el copiloto, amigo y estratega personal del jugador (Nexus) en el juego "Bloomshire" en Robinhood Chain.
+Eres "Bloomshire Advisor", el copiloto y estratega cuantitativo del jugador en el juego "Bloomshire" en Robinhood Chain.
 Hablas con tono natural, cercano, lúcido y humano (como un compañero de cooperativo experto, programador y gamer de alto nivel). NO hables como un robot ni como un burócrata rígido.
 
 ========================
 DIRECTRICES DE CONVERSACIÓN:
 ========================
 1. 🗣️ CONVERSACIÓN NATURAL Y HUMANA:
-   • Si el usuario te saluda ("hola", "buenas", "hola bro", "¿cómo estás?"), salúdalo con calidez y naturalidad: ej. "¡Hola Nexus! ¿Cómo estás? ¿Cómo va todo hoy por Bloomshire? ¿Qué necesitas consultar o planificar?".
+   • Si el usuario te saluda ("hola", "buenas", "hola bro", "¿cómo estás?"), salúdalo con calidez y naturalidad: ej. "¡Hola! ¿Cómo estás? ¿Cómo va todo hoy por Bloomshire? ¿Qué necesitas consultar o planificar?".
    • NUNCA le dispares un informe ejecutivo gigantesco con cálculos no pedidos ante un simple saludo. Habla con él de tú a tú.
 2. 🎯 PRECISIÓN Y CERTEZA TOTAL ANTE CONSULTAS:
    • Cuando el usuario te pregunte algo específico (estrategia, precios, dónde vender, cultivos, cuevas, energía, tablón de Odette, NPCs, misiones, Moonmere, el lobo de Otto, etc.), responde de forma directa, certera y con conocimiento absoluto del juego y de su partida.
-   • Usa los datos en tiempo real de su sesión (su Nivel actual de Farming, sus 10 Founding Farmers, su Oro, su Energía exacta, sus Misiones activas y sus Pedidos de Odette).
+   • Usa los datos en tiempo real de su sesión (su Nivel actual de Farming, sus Founding Farmers en posesión, su Oro, su Energía exacta, sus Misiones activas y sus Pedidos de Odette). Si no hay datos vinculados, indícaselo amablemente.
 3. 🚫 CERO LATEX: Prohibido usar LaTeX ($$, \\text, etc.). Escribe siempre en texto plano legible.
 4. 🚫 ESTRICTA ADAPTACIÓN AL NIVEL ACTUAL DEL JUGADOR:
    • Adapta tus recomendaciones de cultivo estrictamente al Nivel actual de Farming reportado en el ESTADO EN TIEMPO REAL DEL JUGADOR (ej. si es Nivel 5 tiene desbloqueados Zanahoria L1, Chirivía L1, Cebollín L2, Trigo L2, Papa L3, Repollo L3, Cebolla L4, Caléndula/Marigold L5, Brócoli L5 y Arroz/Rice L5).
@@ -133,10 +133,10 @@ const FOUNDING_FARMERS_CONTRACT = '0xC53870Cf1381f2848dFfFD2Fd4FfB585bD1b0e9c';
 const memorySnapshotsByWallet = {};
 
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://vbefuztmqqymlotdhjvh.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || Buffer.from('c2Jfc2VjcmV0X3lidU9NX3VjMERsQ0lvRmhVT1VMZUFfWXFNSHlFSDA=', 'base64').toString('utf8');
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || '';
 
 async function pushSnapshotToSupabase(wallet, snap) {
-  if (!wallet || !snap) return false;
+  if (!wallet || !snap || !SUPABASE_KEY) return false;
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/player_sessions`, {
       method: 'POST',
@@ -172,7 +172,7 @@ async function pushSnapshotToSupabase(wallet, snap) {
 }
 
 async function getSnapshotFromSupabase(wallet) {
-  if (!wallet) return null;
+  if (!wallet || !SUPABASE_KEY) return null;
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/player_sessions?wallet=eq.${encodeURIComponent(wallet.toLowerCase())}&select=*`, {
       headers: {
@@ -209,42 +209,30 @@ async function getSnapshotFromSupabase(wallet) {
   return null;
 }
 
-async function handleSync(req, res) {
-  const fs = await import('fs');
-  const path = await import('path');
-  const isVercel = Boolean(process.env.VERCEL);
-  const snapshotPath = isVercel
-    ? path.resolve('/tmp', 'bloomshire_player_state.json')
-    : path.resolve(process.cwd(), 'scratch', 'bloomshire_player_state.json');
+const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
 
-  // Push Snapshot from MoniOS Companion Extension
+async function handleSync(req, res) {
+  // Push Snapshot from MoniOS / Bloomshire Companion Extension
   if (req.method === 'POST' && (req.query?.action === 'push_snapshot' || req.body?.action === 'push_snapshot' || req.body?.snapshot)) {
     const snap = req.body?.snapshot || req.body;
-    const snapWallet = (snap?.wallet || req.body?.wallet || req.query?.wallet || '').trim().toLowerCase();
-    // Guard: Nunca persistir estados vacíos o ceros que rompan la sesión
-    const hasRealSnapData = snap && (snap.gold > 0 || (Array.isArray(snap.inventory) && snap.inventory.length > 0));
-    if (!hasRealSnapData) {
-      return res.status(200).json({ ok: false, message: 'Snapshot ignorado: no contiene inventario ni oro real', timestamp: Date.now() });
+    const snapWallet = (snap?.wallet || req.body?.wallet || req.query?.wallet || '').trim();
+    
+    if (!snapWallet || !WALLET_REGEX.test(snapWallet)) {
+      return res.status(400).json({ ok: false, error: 'Wallet inválida o faltante. Formato esperado: 0x seguido de 40 caracteres hex.', timestamp: Date.now() });
     }
-    if (snapWallet && snapWallet.startsWith('0x')) {
-      snap.wallet = snapWallet;
-      memorySnapshotsByWallet[snapWallet] = snap;
-      try {
-        const walletFile = path.resolve(isVercel ? '/tmp' : path.resolve(process.cwd(), 'scratch'), `bloomshire_player_state_${snapWallet}.json`);
-        fs.mkdirSync(path.dirname(walletFile), { recursive: true });
-        fs.writeFileSync(walletFile, JSON.stringify(snap, null, 2), 'utf8');
-      } catch (e) {}
-      await pushSnapshotToSupabase(snapWallet, snap);
-    }
-    return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito', wallet: snapWallet || null, timestamp: Date.now() });
+
+    const targetWallet = snapWallet.toLowerCase();
+    snap.wallet = targetWallet;
+    memorySnapshotsByWallet[targetWallet] = snap;
+    
+    await pushSnapshotToSupabase(targetWallet, snap);
+    return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito en la nube', wallet: targetWallet, timestamp: Date.now() });
   }
 
   const rawWallet = (req.query?.wallet || req.body?.wallet || '').trim();
-  const wallet = (rawWallet === 'null' || rawWallet === 'undefined' || !rawWallet.startsWith('0x')) ? null : rawWallet;
-  const sessionCookie = (req.body?.cookie || req.query?.cookie || '').trim();
 
-  // MODO PÚBLICO: Si no hay wallet válida, responder como guía comunitaria libre sin filtrar datos privados
-  if (!wallet) {
+  // MODO PÚBLICO: Si no hay wallet, responder como guía comunitaria libre sin filtrar datos privados
+  if (!rawWallet) {
     return res.status(200).json({
       ok: true,
       timestamp: new Date().toISOString(),
@@ -254,6 +242,13 @@ async function handleSync(req, res) {
       message: 'Modo Guía Comunitaria: Sin wallet ni companion conectado.'
     });
   }
+
+  if (!WALLET_REGEX.test(rawWallet)) {
+    return res.status(400).json({ ok: false, error: 'Formato de wallet inválido. Formato esperado: 0x seguido de 40 caracteres hex.' });
+  }
+
+  const wallet = rawWallet;
+  const targetWalletLower = wallet.toLowerCase();
 
   let onChainData = {
     wallet: wallet,
@@ -280,36 +275,15 @@ async function handleSync(req, res) {
     details: 'Esperando conexión con el servidor del juego'
   };
 
-  // Merge saved snapshot if available y solo si pertenece estrictamente a esta wallet
-  let effectiveSnap = null;
-  const targetWalletLower = wallet.toLowerCase();
-  const walletFile = path.resolve(isVercel ? '/tmp' : path.resolve(process.cwd(), 'scratch'), `bloomshire_player_state_${targetWalletLower}.json`);
-  
-  if (memorySnapshotsByWallet[targetWalletLower]) {
-    effectiveSnap = memorySnapshotsByWallet[targetWalletLower];
-  } else if (fs.existsSync(walletFile)) {
-    try {
-      const savedSnap = JSON.parse(fs.readFileSync(walletFile, 'utf8'));
-      if (savedSnap && typeof savedSnap === 'object' && savedSnap.wallet && savedSnap.wallet.toLowerCase() === targetWalletLower) {
-        const hasValidSnap = (savedSnap.gold > 0) || (Array.isArray(savedSnap.inventory) && savedSnap.inventory.length > 0);
-        if (hasValidSnap) effectiveSnap = savedSnap;
-      }
-    } catch (e) {}
-  } else if (fs.existsSync(snapshotPath)) {
-    // Fallback legado si coincide la wallet
-    try {
-      const legacySnap = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
-      if (legacySnap && typeof legacySnap === 'object' && legacySnap.wallet && legacySnap.wallet.toLowerCase() === targetWalletLower) {
-        effectiveSnap = legacySnap;
-      }
-    } catch (e) {}
-  }
+  // Prioridad de persistencia: memoria viva -> Supabase (Nube)
+  let effectiveSnap = memorySnapshotsByWallet[targetWalletLower] || null;
 
   if (!effectiveSnap) {
     try {
       const supaSnap = await getSnapshotFromSupabase(targetWalletLower);
-      if (supaSnap && (supaSnap.gold > 0 || (Array.isArray(supaSnap.inventory) && supaSnap.inventory.length > 0))) {
+      if (supaSnap) {
         effectiveSnap = supaSnap;
+        memorySnapshotsByWallet[targetWalletLower] = supaSnap;
       }
     } catch (_) {}
   }
@@ -322,15 +296,6 @@ async function handleSync(req, res) {
     if (wallet && wallet.startsWith('0x')) {
       const clean = wallet.replace('0x', '').toLowerCase().padStart(64, '0');
       const balanceOfData = '0x70a08231' + clean;
-
-      // Si es la wallet confirmada del jugador, garantizar sus 10 Founders
-      if (wallet.toLowerCase().startsWith('0xd3e0') || wallet.toLowerCase().startsWith('0x41fe')) {
-        onChainData.farmersCount = 10;
-        onChainData.hasSpeedBonus = true;
-        onChainData.hasPet = true;
-        onChainData.maxEnergy = 150;
-        onChainData.chainConnected = true;
-      }
 
       if (wallet.length === 42) {
         const rpcPayload = [
@@ -445,9 +410,20 @@ async function handleSync(req, res) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const ALLOWED_ORIGINS = [
+    'https://bloomshire-tool.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173'
+  ];
+  const reqOrigin = req.headers.origin;
+  if (reqOrigin && (ALLOWED_ORIGINS.includes(reqOrigin) || reqOrigin.endsWith('.vercel.app'))) {
+    res.setHeader('Access-Control-Allow-Origin', reqOrigin);
+  } else if (!reqOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://bloomshire-tool.vercel.app');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-goog-api-key');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -465,14 +441,27 @@ export default async function handler(req, res) {
   }
 
   const prompt = (req.body?.prompt || req.body?.message || '').trim();
-  const conversation = req.body?.conversation || [];
-  const playerSnapshot = req.body?.playerSnapshot || {};
-  const marketContext = req.body?.marketContext || {};
-  const imageBase64 = req.body?.imageBase64 || null;
-
   if (!prompt || typeof prompt !== 'string') {
     return res.status(400).json({ error: 'Prompt or message is required' });
   }
+  if (prompt.length > 2000) {
+    return res.status(400).json({ error: 'Prompt too long (max 2000 characters)' });
+  }
+
+  const rawConv = req.body?.conversation;
+  const conversation = Array.isArray(rawConv)
+    ? rawConv
+        .filter(m => m && typeof m.content === 'string')
+        .slice(-10)
+        .map(m => ({
+          role: m.role === 'assistant' ? 'assistant' : 'user',
+          content: m.content.slice(0, 2000)
+        }))
+    : [];
+
+  const playerSnapshot = req.body?.playerSnapshot || {};
+  const marketContext = req.body?.marketContext || {};
+  const imageBase64 = req.body?.imageBase64 || null;
 
   const farmingLvl = Math.max(1, Math.min(30, playerSnapshot.farmingLevel || 5));
   const farmersCount = playerSnapshot.farmersCount ?? playerSnapshot.farmersOwned ?? 10;
@@ -483,15 +472,16 @@ export default async function handler(req, res) {
   const avyn = playerSnapshot.avyn ?? 0;
 
   // Generar contexto dinámico del jugador
+  const playerName = playerSnapshot.playerName || playerSnapshot.name || 'Farmer';
   let contextDescription = '\n================ ESTADO EN TIEMPO REAL DEL JUGADOR ================\n';
-  contextDescription += `Nombre del jugador: Nexus\n`;
-  contextDescription += `Nivel Actual de Farming: Nivel ${farmingLvl} (¡ESTRICTO!: Solo puede plantar cultivos hasta Nivel ${farmingLvl}; en Nivel 5 ya tiene desbloqueados Marigold, Rice y Broccoli)\n`;
+  contextDescription += `Nombre del jugador: ${playerName}\n`;
+  contextDescription += `Nivel Actual de Farming: Nivel ${farmingLvl}\n`;
   contextDescription += `Energía Actual: ${currentEnergy} / ${maxEnergy}⚡\n`;
   contextDescription += `Gold en Cartera: ${gold.toLocaleString('es-ES')} Gold\n`;
   contextDescription += `Averyn Shards (AVS): ${shards} Shards\n`;
   contextDescription += `$AVYN: ${avyn} $AVYN\n`;
-  contextDescription += `Founding Farmers en posesión: ${farmersCount} NFTs (Beneficios activos: Energía máxima 150⚡, recarga en cama cada 6h, -20% tiempo en cultivos, Mascota, Montura, 8 ofertas en Market Hall)\n`;
-  contextDescription += `Misión Principal Activa: ${playerSnapshot.activeQuest || 'La Ronda de Otto / Día de Mercado'}\n`;
+  contextDescription += `Founding Farmers en posesión: ${farmersCount} NFTs\n`;
+  contextDescription += `Misión Principal Activa: ${playerSnapshot.activeQuest || 'Ninguna activa'}\n`;
 
   if (playerSnapshot.moonmereProgress) {
     const mp = playerSnapshot.moonmereProgress;
@@ -567,7 +557,7 @@ export default async function handler(req, res) {
 
   for (const model of modelCandidates) {
     try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
       const payload = {
         contents: formattedContents,
         systemInstruction: {
@@ -581,7 +571,10 @@ export default async function handler(req, res) {
 
       const geminiRes = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': apiKey
+        },
         body: JSON.stringify(payload)
       });
 
@@ -643,15 +636,16 @@ function cleanLatex(text = '') {
  */
 function generateAlgorithmicAdvice(prompt = '', player = {}) {
   const p = prompt.toLowerCase().trim();
-  const lvl = Math.max(1, Math.min(30, player.farmingLevel || 4));
+  const lvl = Math.max(1, Math.min(30, player.farmingLevel || 1));
   const energy = Math.round(player.energy || 100);
   const gold = (player.gold || 0).toLocaleString('es-ES');
-  const farmers = player.farmersCount ?? player.farmersOwned ?? 10;
+  const farmers = player.farmersCount ?? player.farmersOwned ?? 0;
+  const playerName = player.playerName || player.name || 'Farmer';
 
   if (p === 'hola' || p === 'hola bro' || p === 'buenas' || p === 'hey' || p.startsWith('hola ') || p.startsWith('buenas ')) {
-    return `¡Hola Nexus! ¿Cómo estás? ¿Cómo va todo hoy por Bloomshire?
+    return `¡Hola ${playerName}! ¿Cómo estás? ¿Cómo va todo hoy por Bloomshire?
 
-Veo tu partida lista: **${gold} Gold**, **${energy}⚡ de energía**, **Nivel ${lvl} de Farming** y tus **${farmers} Founding Farmers** activos con el -20% de tiempo en cultivos.
+Veo tu partida lista: **${gold} Gold**, **${energy}⚡ de energía**, **Nivel ${lvl} de Farming** y **${farmers} Founding Farmers** en cartera.
 
 ¿Qué necesitas consultar o calcular hoy? (pedidos de Odette, qué sembrar, energía, crafteo o precios)`;
   }

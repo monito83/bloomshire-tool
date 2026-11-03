@@ -1246,7 +1246,7 @@ export default function BloomshireCommand() {
     {
       id: 'init',
       role: 'assistant',
-      content: '¡Hola Nexus! Soy **Antigravity / MoniOS Copilot** para Bloomshire.\n\nVeo tu sesión con **10 Founding Farmers**, Cultivo **Nivel 5** y tu progreso hacia Moonmere. ¿En qué puedo ayudarte hoy?'
+      content: '¡Hola Farmer! Soy el **Asesor IA** de Bloomshire Tool.\n\nPuedo ayudarte a optimizar tu energía, pedidos de Odette, cosechas y estrategias de economía. Conecta tu partida con la extensión Companion o ingresa tu wallet para sincronizar tus datos reales.'
     }
   ]);
   const messagesEndRef = useRef(null);
@@ -1631,10 +1631,6 @@ export default function BloomshireCommand() {
         }
       } catch (_) {}
     }
-    // Si viene de la extensión o contiene telemetría real (oro, nivel o inventario), asegurar vinculación viva inmediata
-    if (!effectiveWallet && (isFromExtension || (data.gold !== undefined && data.gold > 0) || (Array.isArray(data.inventory) && data.inventory.length > 0) || (data.farmingLevel && data.farmingLevel > 0))) {
-      effectiveWallet = '0xD3E0147850EC171EED26C2A28A23Eb29424d89d5';
-    }
 
     if (effectiveWallet) {
       setWalletAddress(effectiveWallet);
@@ -1814,6 +1810,7 @@ export default function BloomshireCommand() {
     } catch (e) {}
 
     const handleCompanionMessage = (event) => {
+      if (event.source !== window) return;
       if (event.data?.type === 'MONIOS_COMPANION_SYNC' && event.data.game === 'bloomshire') {
         applyIncomingSync(event.data.data, 'extension');
         setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
@@ -7024,28 +7021,8 @@ export default function BloomshireCommand() {
                                   setConnectFeedback({ type: 'info', text: `Wallet vinculada. Abre el juego con Bloomshire Companion para transmitir datos.` });
                                 }
                                 setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2200);
-                              } else if (cleanCode.toUpperCase() === 'BLOOM-VIP' || cleanCode.toUpperCase() === 'VIP' || cleanCode.toUpperCase() === 'NEXUS') {
-                                const devWallet = '0xD3E0147858CC171EED26C2A28A23Eb2942';
-                                resetSessionState();
-                                setWalletAddress(devWallet);
-                                try { localStorage.setItem('bloomshire_wallet', devWallet); } catch (_) {}
-                                setConnectFeedback({ type: 'success', text: '¡Código VIP aceptado! Cargando datos...' });
-                                try {
-                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(devWallet)}`);
-                                  if (res.ok) {
-                                    const json = await res.json();
-                                    if (json.inGame) {
-                                      applyIncomingSync({
-                                        ...json.inGame,
-                                        wallet: json.onChain?.wallet || devWallet,
-                                        farmersCount: json.onChain?.farmersCount || 10
-                                      }, 'server');
-                                    }
-                                  }
-                                } catch (_) {}
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
                               } else {
-                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa tu wallet (0x...) o activa la extensión.' });
+                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa una wallet válida (0x...) o activa la extensión.' });
                               }
                             }}
                             className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs cursor-pointer transition-all shadow-md shrink-0"

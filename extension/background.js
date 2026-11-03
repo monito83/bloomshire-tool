@@ -1,10 +1,15 @@
 // background.js - Service Worker exclusivo para Bloomshire Companion
 console.log('[Bloomshire Companion BG] Service Worker iniciado');
 
-function isMoniosUrl(url) {
+function isToolUrl(url) {
   if (!url) return false;
-  const u = url.toLowerCase();
-  return u.includes('localhost') || u.includes('127.0.0.1') || u.includes('vercel.app') || u.includes('moni');
+  try {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase();
+    return host === 'bloomshire-tool.vercel.app' || host === 'localhost' || host === '127.0.0.1';
+  } catch (_) {
+    return false;
+  }
 }
 
 function isBloomshireUrl(url) {
@@ -29,7 +34,7 @@ function rebindAllTabs() {
       if (!tab.id || !tab.url) return;
       if (isBloomshireUrl(tab.url)) {
         ensureBloomshireInjected(tab.id);
-      } else if (isMoniosUrl(tab.url)) {
+      } else if (isToolUrl(tab.url)) {
         ensureMoniosInjected(tab.id);
       }
     });
@@ -61,7 +66,7 @@ function broadcastToMonios(data, force = false) {
     tabs.forEach(tab => {
       if (!tab.id) return;
       const url = tab.url || '';
-      if (isMoniosUrl(url)) {
+      if (isToolUrl(url)) {
         chrome.tabs.sendMessage(tab.id, {
           type: 'BLOOMSHIRE_INJECT_DATA',
           force: Boolean(force),
@@ -81,9 +86,7 @@ async function pushToBackend(data, force = false) {
   lastBackendPushAt = now;
 
   const endpoints = [
-    'https://bloomshire-tool.vercel.app/api/bloomshire-advisor?action=push_snapshot',
-    'https://moni-os.vercel.app/api/bloomshire-advisor?action=push_snapshot',
-    'http://localhost:5173/api/bloomshire-advisor?action=push_snapshot'
+    'https://bloomshire-tool.vercel.app/api/bloomshire-advisor?action=push_snapshot'
   ];
   for (const ep of endpoints) {
     try {

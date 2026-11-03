@@ -54,7 +54,17 @@ async function main() {
   const detailedCrops = rules.SEEDS.map((s, index) => {
     const itemData = catalog.ITEMS[s.name] || {};
     const seedData = catalog.ITEMS[`seed:${index}`] || {};
-    
+
+    const cropSeasons = [];
+    if (rules.CROP_SEASONS) {
+      for (const [season, list] of Object.entries(rules.CROP_SEASONS)) {
+        if (Array.isArray(list) && list.includes(s.name)) {
+          cropSeasons.push(season);
+        }
+      }
+    }
+    const finalSeasons = cropSeasons.length > 0 ? cropSeasons : (s.seasons || ['all']);
+
     return {
       index,
       name: s.name,
@@ -65,7 +75,7 @@ async function main() {
       seedPrice: seedData.price ?? null,
       cropSellValue: itemData.value ?? null,
       farmingXp: itemData.xp ?? 1,
-      seasons: rules.CROP_SEASONS?.[s.name] ?? ['all'],
+      seasons: finalSeasons,
       icon: itemData.icon ?? null,
     };
   });

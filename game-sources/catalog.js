@@ -13,7 +13,7 @@
 //   * finite tools cost a little less per use the better the metal
 //   * Farming experience: half a harvested crop's worth; level L needs 40 x (L-1)^1.9 experience in all
 
-import { SEEDS, FOOD, TOOL_TIERS, SEED_SOURCES, ORES } from './rules.js';
+import { SEEDS, FOOD, TOOL_TIERS, SEED_SOURCES, ORES } from './game/rules.js';
 import { QUEST_ITEMS, useKinds } from './quests.js';
 
 /* ------------------------------------------------------------ the goods */
@@ -99,10 +99,12 @@ ITEMS.Stone = { name: 'Stone', cat: 'resource', value: steep(5), price: nice(ste
 // heavy work: COST.heavyOre a blow), the rarest a little more. Icons: the pack's ore piles (Mine/Miners
 // props.png: metals in the top row, gems below it), the diamond the Caves sheet's white crystal. TEMP.
 const ORE_ICON = 'Objects/Exterior/Mine and Dungeon/Mine/Miners props.png';
-const ORE_WORTH = { copper: [16, [ORE_ICON, 0, 0]], quartz: [16, [ORE_ICON, 16, 16]], rose: [18, [ORE_ICON, 144, 16]],
+const ORE_WORTH = {
+  copper: [16, [ORE_ICON, 0, 0]], quartz: [16, [ORE_ICON, 16, 16]], rose: [18, [ORE_ICON, 144, 16]],
   topaz: [30, [ORE_ICON, 32, 16]], sapphire: [30, [ORE_ICON, 112, 16]], moonstone: [34, [ORE_ICON, 48, 16]],
   emerald: [52, [ORE_ICON, 96, 16]], amethyst: [52, [ORE_ICON, 64, 16]], ruby: [60, [ORE_ICON, 80, 16]],
-  gold: [95, [ORE_ICON, 32, 0]], diamond: [150, ['Tileset/Caves.png', 208, 704]] };
+  gold: [95, [ORE_ICON, 32, 0]], diamond: [150, ['Tileset/Caves.png', 208, 704]]
+};
 for (const [k, o] of Object.entries(ORES)) ITEMS[o.item] = { name: o.item, cat: 'ore', value: steep(ORE_WORTH[k][0]), icon: ORE_WORTH[k][1] };
 ITEMS.Butterfly = { name: 'Butterfly', cat: 'bug', value: steep(15), icon: ['Animals/Forest/Bugs/Butterfly/Butterflies.png', 0, 0] };
 for (const [dish, energy] of Object.entries(FOOD.dishes)) {
@@ -115,9 +117,11 @@ ITEMS['Moonlight Stew'].noLimit = true;
 // wild (a Silvercap), which is an ordinary find
 // (readable: a book or a note -- Space reads it, and the game says so: 2026-09-29)
 for (const [id, q] of Object.entries(QUEST_ITEMS)) ITEMS[id] = { name: id, cat: q.cat ?? 'quest', value: q.value ? steep(q.value) : 0, icon: q.icon, about: q.about, readable: !!q.read };
-useKinds({ food: new Set(Object.keys(FOOD.dishes)), fish: new Set(FISH), crop: new Set(SEEDS.map((s) => s.name)),
+useKinds({
+  food: new Set(Object.keys(FOOD.dishes)), fish: new Set(FISH), crop: new Set(SEEDS.map((s) => s.name)),
   farmLevel: (save) => levelOf(save?.skills?.farming ?? 0),
-  cropLevel: (name) => (SEED_SOURCES.shopFromStart.includes(name) ? 1 : SEED_SOURCES.shopAtFarmingLevel[name] ?? 1) });
+  cropLevel: (name) => (SEED_SOURCES.shopFromStart.includes(name) ? 1 : SEED_SOURCES.shopAtFarmingLevel[name] ?? 1)
+});
 for (const t of ['axe', 'pickaxe', 'rod']) ITEMS[`tool:${t}`] = { name: t, cat: 'tool', value: 0, finite: true };
 for (const t of ['hoe', 'can', 'sickle', 'bugnet', 'flute', 'shovel']) ITEMS[`tool:${t}`] = { name: t, cat: 'tool', value: 0 };
 // THE SHOVEL (2026-10-04, the designer: "around fifteen thousand gold"): at the Seed & Tool shop, one a farmer
@@ -131,8 +135,10 @@ for (const t of ['sword', 'bow', 'staff']) ITEMS[`tool:${t}`] = { name: t, cat: 
 /** A CHEST (2026-09-27, the designer: "player can also buy chests from the market. A chest will cost 150,000 gold"):
  *  bought at the Market Hall, set down at home (commands.js place), forty slots. Not sold back, nor at the stalls. */
 export const CHEST_ART = { file: 'Objects/Exterior/chest.png', sx: 40, sy: 0, openSy: 16 };
-ITEMS.Chest = { name: 'Chest', cat: 'furniture', value: 0, price: 150000, icon: [CHEST_ART.file, CHEST_ART.sx, CHEST_ART.sy],
-  about: 'Forty slots to keep things in. Hold it at home, on your island or in your cottage, and press Space to set it down.' };
+ITEMS.Chest = {
+  name: 'Chest', cat: 'furniture', value: 0, price: 150000, icon: [CHEST_ART.file, CHEST_ART.sx, CHEST_ART.sy],
+  about: 'Forty slots to keep things in. Hold it at home, on your island or in your cottage, and press Space to set it down.'
+};
 
 export const itemOf = (id) => ITEMS[id] ?? null;
 /** Anything a buyer takes: a thing of worth that is not a tool. */
@@ -165,14 +171,14 @@ const tools = (kind, tiers) => tiers.map((tier) => ({ id: `tool:${kind}`, tier }
  * worth. Every buyer pays an item's `value`.
  */
 export const SHOPS = {
-  seedtool:   { name: 'Seed & Tool', sells: [...seedStock((n) => !HERBS.has(n)), { id: 'tool:hoe' }, { id: 'tool:can' }, { id: 'tool:sickle' }, { id: 'tool:shovel' }, ...tools('axe', [1]), ...tools('pickaxe', [1])], buys: ['seed', 'crop'] },
-  general:    { name: 'General Store', sells: [{ id: 'Wood' }, { id: 'Stone' }], buys: 'all' },
+  seedtool: { name: 'Seed & Tool', sells: [...seedStock((n) => !HERBS.has(n)), { id: 'tool:hoe' }, { id: 'tool:can' }, { id: 'tool:sickle' }, { id: 'tool:shovel' }, ...tools('axe', [1]), ...tools('pickaxe', [1])], buys: ['seed', 'crop'] },
+  general: { name: 'General Store', sells: [{ id: 'Wood' }, { id: 'Stone' }], buys: 'all' },
   blacksmith: { name: 'The Forge', sells: [...tools('axe', [1, 2, 3, 4]), ...tools('pickaxe', [1, 2, 3, 4])], buys: ['resource', 'ore'] },
-  carpenter:  { name: 'Carpenter\'s Workshop', sells: [{ id: 'Wood' }], buys: ['resource'] },
-  fisherman:  { name: 'The Fisherman', sells: tools('rod', [1, 2, 3, 4]), buys: ['fish'] },
-  bakery:     { name: 'The Bakery', sells: BAKERY_DISHES.map((id) => ({ id })), buys: ['crop'] },
+  carpenter: { name: 'Carpenter\'s Workshop', sells: [{ id: 'Wood' }], buys: ['resource'] },
+  fisherman: { name: 'The Fisherman', sells: tools('rod', [1, 2, 3, 4]), buys: ['fish'] },
+  bakery: { name: 'The Bakery', sells: BAKERY_DISHES.map((id) => ({ id })), buys: ['crop'] },
   apothecary: { name: 'The Apothecary', sells: seedStock((n) => HERBS.has(n)), buys: ['crop', 'bug'] },
-  market:     { name: 'The Market Hall', sells: [{ id: 'Chest' }], buys: [] },                 // (Rowan: chests; the stalls are the farmers')
+  market: { name: 'The Market Hall', sells: [{ id: 'Chest' }], buys: [] },                 // (Rowan: chests; the stalls are the farmers')
 };
 /** What a shop asks for an entry (a tool's tier sets its price). */
 export const priceOf = (entry) => (ITEMS[entry.id]?.finite ? TOOL_PRICE[entry.tier ?? 1] : ITEMS[entry.id]?.price ?? 0);

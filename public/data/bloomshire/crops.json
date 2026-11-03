@@ -1,1 +1,2858 @@
-[]
+[
+  {
+    "index": 0,
+    "name": "Carrot",
+    "seedName": "Carrot seeds",
+    "growMinutes": 2,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 20,
+    "cropSellValue": 40,
+    "farmingXp": 5,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      96
+    ]
+  },
+  {
+    "index": 1,
+    "name": "Potato",
+    "seedName": "Potato seeds",
+    "growMinutes": 8,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 53,
+    "cropSellValue": 105,
+    "farmingXp": 10,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      64
+    ]
+  },
+  {
+    "index": 2,
+    "name": "Cabbage",
+    "seedName": "Cabbage seeds",
+    "growMinutes": 20,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 120,
+    "cropSellValue": 240,
+    "farmingXp": 17,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      144
+    ]
+  },
+  {
+    "index": 3,
+    "name": "Cauliflower",
+    "seedName": "Cauliflower seeds",
+    "growMinutes": 90,
+    "waterStages": [
+      [
+        32,
+        32,
+        16,
+        32
+      ],
+      [
+        48,
+        32,
+        16,
+        32
+      ],
+      [
+        64,
+        32,
+        16,
+        32
+      ],
+      [
+        80,
+        32,
+        16,
+        32
+      ],
+      [
+        96,
+        32,
+        16,
+        32
+      ],
+      [
+        112,
+        32,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 575,
+    "cropSellValue": 1150,
+    "farmingXp": 47,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      128,
+      48
+    ]
+  },
+  {
+    "index": 4,
+    "name": "Strawberry",
+    "seedName": "Strawberry seeds",
+    "growMinutes": 80,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 495,
+    "cropSellValue": 990,
+    "farmingXp": 43,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      32
+    ]
+  },
+  {
+    "index": 5,
+    "name": "Tomato",
+    "seedName": "Tomato seeds",
+    "growMinutes": 45,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 275,
+    "cropSellValue": 545,
+    "farmingXp": 29,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      64
+    ]
+  },
+  {
+    "index": 6,
+    "name": "Wheat",
+    "seedName": "Wheat seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      272
+    ]
+  },
+  {
+    "index": 7,
+    "name": "Sunflower",
+    "seedName": "Sunflower seeds",
+    "growMinutes": 35,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 210,
+    "cropSellValue": 420,
+    "farmingXp": 24,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      80
+    ]
+  },
+  {
+    "index": 8,
+    "name": "Corn",
+    "seedName": "Corn seeds",
+    "growMinutes": 40,
+    "waterStages": [
+      [
+        224,
+        64,
+        16,
+        32
+      ],
+      [
+        240,
+        64,
+        16,
+        32
+      ],
+      [
+        256,
+        64,
+        16,
+        32
+      ],
+      [
+        272,
+        64,
+        16,
+        32
+      ],
+      [
+        288,
+        64,
+        16,
+        32
+      ],
+      [
+        304,
+        64,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 245,
+    "cropSellValue": 490,
+    "farmingXp": 27,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      320,
+      80
+    ]
+  },
+  {
+    "index": 9,
+    "name": "Green Beans",
+    "seedName": "Green Beans seeds",
+    "growMinutes": 50,
+    "waterStages": [
+      [
+        224,
+        32,
+        16,
+        32
+      ],
+      [
+        240,
+        32,
+        16,
+        32
+      ],
+      [
+        256,
+        32,
+        16,
+        32
+      ],
+      [
+        272,
+        32,
+        16,
+        32
+      ],
+      [
+        288,
+        32,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 305,
+    "cropSellValue": 605,
+    "farmingXp": 31,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      320,
+      48
+    ]
+  },
+  {
+    "index": 10,
+    "name": "Cantaloupe",
+    "seedName": "Cantaloupe seeds",
+    "growMinutes": 100,
+    "waterStages": [
+      [
+        32,
+        192,
+        16,
+        32
+      ],
+      [
+        48,
+        192,
+        16,
+        32
+      ],
+      [
+        64,
+        192,
+        16,
+        32
+      ],
+      [
+        80,
+        192,
+        16,
+        32
+      ],
+      [
+        96,
+        192,
+        16,
+        32
+      ],
+      [
+        112,
+        192,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 625,
+    "cropSellValue": 1250,
+    "farmingXp": 50,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      128,
+      208
+    ]
+  },
+  {
+    "index": 11,
+    "name": "Marigold",
+    "seedName": "Marigold seeds",
+    "growMinutes": 20,
+    "waterStages": [
+      [
+        32,
+        256,
+        16,
+        32
+      ],
+      [
+        48,
+        256,
+        16,
+        32
+      ],
+      [
+        64,
+        256,
+        16,
+        32
+      ],
+      [
+        80,
+        256,
+        16,
+        32
+      ],
+      [
+        96,
+        256,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 120,
+    "cropSellValue": 240,
+    "farmingXp": 17,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      128,
+      272
+    ]
+  },
+  {
+    "index": 12,
+    "name": "Sweet Potato",
+    "seedName": "Sweet Potato seeds",
+    "growMinutes": 70,
+    "waterStages": [
+      [
+        224,
+        160,
+        16,
+        32
+      ],
+      [
+        240,
+        160,
+        16,
+        32
+      ],
+      [
+        256,
+        160,
+        16,
+        32
+      ],
+      [
+        272,
+        160,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 435,
+    "cropSellValue": 870,
+    "farmingXp": 39,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      320,
+      176
+    ]
+  },
+  {
+    "index": 13,
+    "name": "Saffron",
+    "seedName": "Saffron seeds",
+    "growMinutes": 240,
+    "waterStages": [
+      [
+        224,
+        96,
+        16,
+        32
+      ],
+      [
+        240,
+        96,
+        16,
+        32
+      ],
+      [
+        256,
+        96,
+        16,
+        32
+      ],
+      [
+        272,
+        96,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 1650,
+    "cropSellValue": 3250,
+    "farmingXp": 94,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      320,
+      112
+    ]
+  },
+  {
+    "index": 14,
+    "name": "Star Fruit",
+    "seedName": "Star Fruit seeds",
+    "growMinutes": 300,
+    "waterStages": [
+      [
+        224,
+        224,
+        16,
+        32
+      ],
+      [
+        240,
+        224,
+        16,
+        32
+      ],
+      [
+        256,
+        224,
+        16,
+        32
+      ],
+      [
+        272,
+        224,
+        16,
+        32
+      ],
+      [
+        288,
+        224,
+        16,
+        32
+      ],
+      [
+        304,
+        224,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 2100,
+    "cropSellValue": 4150,
+    "farmingXp": 111,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "cv2/Enviroment/Crops/Crops.png",
+      320,
+      240
+    ]
+  },
+  {
+    "index": 15,
+    "name": "Onion",
+    "seedName": "Onion seeds",
+    "growMinutes": 12,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 75,
+    "cropSellValue": 150,
+    "farmingXp": 12,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      80
+    ]
+  },
+  {
+    "index": 16,
+    "name": "Eggplant",
+    "seedName": "Eggplant seeds",
+    "growMinutes": 60,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 370,
+    "cropSellValue": 740,
+    "farmingXp": 35,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      320,
+      80
+    ]
+  },
+  {
+    "index": 17,
+    "name": "Watermelon",
+    "seedName": "Watermelon seeds",
+    "growMinutes": 110,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ],
+      [
+        112,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 700,
+    "cropSellValue": 1400,
+    "farmingXp": 54,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      176
+    ]
+  },
+  {
+    "index": 18,
+    "name": "Beetroot",
+    "seedName": "Beetroot seeds",
+    "growMinutes": 120,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 775,
+    "cropSellValue": 1550,
+    "farmingXp": 57,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      320,
+      16
+    ]
+  },
+  {
+    "index": 19,
+    "name": "Pumpkin",
+    "seedName": "Pumpkin seeds",
+    "growMinutes": 180,
+    "waterStages": [
+      [
+        0,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 1200,
+    "cropSellValue": 2350,
+    "farmingXp": 76,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      320,
+      32
+    ]
+  },
+  {
+    "index": 20,
+    "name": "Grapes",
+    "seedName": "Grapes seeds",
+    "growMinutes": 150,
+    "waterStages": [
+      [
+        0,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 975,
+    "cropSellValue": 1950,
+    "farmingXp": 67,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      320,
+      48
+    ]
+  },
+  {
+    "index": 21,
+    "name": "Hot Pepper",
+    "seedName": "Hot Pepper seeds",
+    "growMinutes": 60,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 370,
+    "cropSellValue": 740,
+    "farmingXp": 35,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      96
+    ]
+  },
+  {
+    "index": 22,
+    "name": "Asparagus",
+    "seedName": "Asparagus seeds",
+    "growMinutes": 120,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 775,
+    "cropSellValue": 1550,
+    "farmingXp": 57,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      208
+    ]
+  },
+  {
+    "index": 23,
+    "name": "Blueberry",
+    "seedName": "Blueberry seeds",
+    "growMinutes": 90,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 575,
+    "cropSellValue": 1150,
+    "farmingXp": 47,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      112
+    ]
+  },
+  {
+    "index": 24,
+    "name": "Broccoli",
+    "seedName": "Broccoli seeds",
+    "growMinutes": 30,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 180,
+    "cropSellValue": 355,
+    "farmingXp": 22,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      192
+    ]
+  },
+  {
+    "index": 25,
+    "name": "Parsnip",
+    "seedName": "Parsnip seeds",
+    "growMinutes": 5,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 37,
+    "cropSellValue": 73,
+    "farmingXp": 8,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      128
+    ]
+  },
+  {
+    "index": 26,
+    "name": "Rice",
+    "seedName": "Rice seeds",
+    "growMinutes": 30,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 180,
+    "cropSellValue": 355,
+    "farmingXp": 22,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      176
+    ]
+  },
+  {
+    "index": 27,
+    "name": "Spring Onion",
+    "seedName": "Spring Onion seeds",
+    "growMinutes": 6,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 45,
+    "cropSellValue": 89,
+    "farmingXp": 9,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      32,
+      48
+    ]
+  },
+  {
+    "index": 28,
+    "name": "Adzuki Bean",
+    "seedName": "Adzuki Bean seeds",
+    "growMinutes": 45,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ],
+      [
+        96,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 275,
+    "cropSellValue": 545,
+    "farmingXp": 29,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      240
+    ]
+  },
+  {
+    "index": 29,
+    "name": "Green Bell Pepper",
+    "seedName": "Green Bell Pepper seeds",
+    "growMinutes": 60,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        112,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 370,
+    "cropSellValue": 740,
+    "farmingXp": 35,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      112
+    ]
+  },
+  {
+    "index": 30,
+    "name": "Red Bell Pepper",
+    "seedName": "Red Bell Pepper seeds",
+    "growMinutes": 60,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 370,
+    "cropSellValue": 740,
+    "farmingXp": 35,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      128
+    ]
+  },
+  {
+    "index": 31,
+    "name": "Yellow Bell Pepper",
+    "seedName": "Yellow Bell Pepper seeds",
+    "growMinutes": 60,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 370,
+    "cropSellValue": 740,
+    "farmingXp": 35,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      144
+    ]
+  },
+  {
+    "index": 32,
+    "name": "Blackberry",
+    "seedName": "Blackberry seeds",
+    "growMinutes": 50,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ],
+      [
+        96,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 305,
+    "cropSellValue": 605,
+    "farmingXp": 31,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      256
+    ]
+  },
+  {
+    "index": 33,
+    "name": "Cucumber",
+    "seedName": "Cucumber seeds",
+    "growMinutes": 40,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 245,
+    "cropSellValue": 490,
+    "farmingXp": 27,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      192
+    ]
+  },
+  {
+    "index": 34,
+    "name": "Pineapple",
+    "seedName": "Pineapple seeds",
+    "growMinutes": 240,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ],
+      [
+        64,
+        0,
+        16,
+        32
+      ],
+      [
+        80,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 1650,
+    "cropSellValue": 3250,
+    "farmingXp": 94,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      176,
+      208
+    ]
+  },
+  {
+    "index": 35,
+    "name": "Aloe",
+    "seedName": "Aloe seeds",
+    "growMinutes": 150,
+    "waterStages": [
+      [
+        16,
+        0,
+        16,
+        16
+      ],
+      [
+        32,
+        0,
+        16,
+        16
+      ],
+      [
+        48,
+        0,
+        16,
+        16
+      ],
+      [
+        64,
+        0,
+        16,
+        16
+      ],
+      [
+        80,
+        0,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 975,
+    "cropSellValue": 1950,
+    "farmingXp": 67,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "Crops/All Crops.png",
+      320,
+      96
+    ]
+  },
+  {
+    "index": 36,
+    "name": "Premium Seed",
+    "seedName": "Premium Seed seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        0,
+        16,
+        32
+      ],
+      [
+        16,
+        0,
+        16,
+        32
+      ],
+      [
+        32,
+        0,
+        16,
+        32
+      ],
+      [
+        48,
+        0,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      0,
+      0
+    ]
+  },
+  {
+    "index": 37,
+    "name": "Sunfire Pepper",
+    "seedName": "Sunfire Pepper seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        32,
+        16,
+        32
+      ],
+      [
+        16,
+        32,
+        16,
+        32
+      ],
+      [
+        32,
+        32,
+        16,
+        32
+      ],
+      [
+        48,
+        32,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      16,
+      0
+    ]
+  },
+  {
+    "index": 38,
+    "name": "Diamond Strawberry",
+    "seedName": "Diamond Strawberry seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        64,
+        16,
+        32
+      ],
+      [
+        16,
+        64,
+        16,
+        32
+      ],
+      [
+        32,
+        64,
+        16,
+        32
+      ],
+      [
+        48,
+        64,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      32,
+      0
+    ]
+  },
+  {
+    "index": 39,
+    "name": "Sapphire Blueberry",
+    "seedName": "Sapphire Blueberry seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        96,
+        16,
+        32
+      ],
+      [
+        16,
+        96,
+        16,
+        32
+      ],
+      [
+        32,
+        96,
+        16,
+        32
+      ],
+      [
+        48,
+        96,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      48,
+      0
+    ]
+  },
+  {
+    "index": 40,
+    "name": "Golden Pumpkin",
+    "seedName": "Golden Pumpkin seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        128,
+        16,
+        32
+      ],
+      [
+        16,
+        128,
+        16,
+        32
+      ],
+      [
+        32,
+        128,
+        16,
+        32
+      ],
+      [
+        48,
+        128,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      64,
+      0
+    ]
+  },
+  {
+    "index": 41,
+    "name": "Crystal Grapes",
+    "seedName": "Crystal Grapes seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        160,
+        16,
+        32
+      ],
+      [
+        16,
+        160,
+        16,
+        32
+      ],
+      [
+        32,
+        160,
+        16,
+        32
+      ],
+      [
+        48,
+        160,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      80,
+      0
+    ]
+  },
+  {
+    "index": 42,
+    "name": "Starbloom",
+    "seedName": "Starbloom seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        192,
+        16,
+        32
+      ],
+      [
+        16,
+        192,
+        16,
+        32
+      ],
+      [
+        32,
+        192,
+        16,
+        32
+      ],
+      [
+        48,
+        192,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      96,
+      0
+    ]
+  },
+  {
+    "index": 43,
+    "name": "Celestial Pineapple",
+    "seedName": "Celestial Pineapple seeds",
+    "growMinutes": 15,
+    "waterStages": [
+      [
+        0,
+        224,
+        16,
+        32
+      ],
+      [
+        16,
+        224,
+        16,
+        32
+      ],
+      [
+        32,
+        224,
+        16,
+        32
+      ],
+      [
+        48,
+        224,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 93,
+    "cropSellValue": 185,
+    "farmingXp": 14,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "vip/Crops/Premium Items.png",
+      112,
+      0
+    ]
+  },
+  {
+    "index": 44,
+    "name": "Winter Kale",
+    "seedName": "Winter Kale seeds",
+    "growMinutes": 20,
+    "waterStages": [
+      [
+        16,
+        16,
+        16,
+        16
+      ],
+      [
+        32,
+        16,
+        16,
+        16
+      ],
+      [
+        48,
+        16,
+        16,
+        16
+      ],
+      [
+        64,
+        16,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 120,
+    "cropSellValue": 240,
+    "farmingXp": 17,
+    "seasons": [
+      "Winter"
+    ],
+    "icon": [
+      "art:winter-crops.png",
+      112,
+      16
+    ]
+  },
+  {
+    "index": 45,
+    "name": "Snow Turnip",
+    "seedName": "Snow Turnip seeds",
+    "growMinutes": 45,
+    "waterStages": [
+      [
+        16,
+        48,
+        16,
+        16
+      ],
+      [
+        32,
+        48,
+        16,
+        16
+      ],
+      [
+        48,
+        48,
+        16,
+        16
+      ],
+      [
+        64,
+        48,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 275,
+    "cropSellValue": 545,
+    "farmingXp": 29,
+    "seasons": [
+      "Winter"
+    ],
+    "icon": [
+      "art:winter-crops.png",
+      112,
+      48
+    ]
+  },
+  {
+    "index": 46,
+    "name": "Frostberry",
+    "seedName": "Frostberry seeds",
+    "growMinutes": 90,
+    "waterStages": [
+      [
+        16,
+        64,
+        16,
+        32
+      ],
+      [
+        32,
+        64,
+        16,
+        32
+      ],
+      [
+        48,
+        64,
+        16,
+        32
+      ],
+      [
+        64,
+        64,
+        16,
+        32
+      ],
+      [
+        80,
+        64,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 575,
+    "cropSellValue": 1150,
+    "farmingXp": 47,
+    "seasons": [
+      "Winter"
+    ],
+    "icon": [
+      "art:winter-crops.png",
+      112,
+      80
+    ]
+  },
+  {
+    "index": 47,
+    "name": "Ice Melon",
+    "seedName": "Ice Melon seeds",
+    "growMinutes": 150,
+    "waterStages": [
+      [
+        16,
+        112,
+        16,
+        16
+      ],
+      [
+        32,
+        112,
+        16,
+        16
+      ],
+      [
+        48,
+        112,
+        16,
+        16
+      ],
+      [
+        64,
+        112,
+        16,
+        16
+      ],
+      [
+        80,
+        112,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 975,
+    "cropSellValue": 1950,
+    "farmingXp": 67,
+    "seasons": [
+      "Winter"
+    ],
+    "icon": [
+      "art:winter-crops.png",
+      144,
+      112
+    ]
+  },
+  {
+    "index": 48,
+    "name": "Fireheart Pepper",
+    "seedName": "Fireheart Pepper seeds",
+    "growMinutes": 180,
+    "waterStages": [
+      [
+        16,
+        16,
+        16,
+        16
+      ],
+      [
+        32,
+        16,
+        16,
+        16
+      ],
+      [
+        48,
+        16,
+        16,
+        16
+      ],
+      [
+        64,
+        16,
+        16,
+        16
+      ],
+      [
+        80,
+        16,
+        16,
+        16
+      ],
+      [
+        96,
+        16,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 1200,
+    "cropSellValue": 2350,
+    "farmingXp": 76,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "art:region-crops.png",
+      144,
+      16
+    ]
+  },
+  {
+    "index": 49,
+    "name": "Fairy Rose",
+    "seedName": "Fairy Rose seeds",
+    "growMinutes": 110,
+    "waterStages": [
+      [
+        16,
+        32,
+        16,
+        32
+      ],
+      [
+        32,
+        32,
+        16,
+        32
+      ],
+      [
+        48,
+        32,
+        16,
+        32
+      ],
+      [
+        64,
+        32,
+        16,
+        32
+      ],
+      [
+        80,
+        32,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 700,
+    "cropSellValue": 1400,
+    "farmingXp": 54,
+    "seasons": [
+      "all"
+    ],
+    "icon": [
+      "art:region-crops.png",
+      144,
+      48
+    ]
+  },
+  {
+    "index": 50,
+    "name": "Honeydew Melon",
+    "seedName": "Honeydew Melon seeds",
+    "growMinutes": 270,
+    "waterStages": [
+      [
+        16,
+        208,
+        16,
+        16
+      ],
+      [
+        32,
+        208,
+        16,
+        16
+      ],
+      [
+        48,
+        208,
+        16,
+        16
+      ],
+      [
+        64,
+        208,
+        16,
+        16
+      ],
+      [
+        80,
+        208,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 1850,
+    "cropSellValue": 3700,
+    "farmingXp": 103,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      144,
+      208
+    ]
+  },
+  {
+    "index": 51,
+    "name": "Purple Cauliflower",
+    "seedName": "Purple Cauliflower seeds",
+    "growMinutes": 300,
+    "waterStages": [
+      [
+        16,
+        16,
+        16,
+        16
+      ],
+      [
+        32,
+        16,
+        16,
+        16
+      ],
+      [
+        48,
+        16,
+        16,
+        16
+      ],
+      [
+        64,
+        16,
+        16,
+        16
+      ],
+      [
+        80,
+        16,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 2100,
+    "cropSellValue": 4150,
+    "farmingXp": 111,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      112,
+      16
+    ]
+  },
+  {
+    "index": 52,
+    "name": "Snow Pea",
+    "seedName": "Snow Pea seeds",
+    "growMinutes": 330,
+    "waterStages": [
+      [
+        16,
+        32,
+        16,
+        32
+      ],
+      [
+        32,
+        32,
+        16,
+        32
+      ],
+      [
+        48,
+        32,
+        16,
+        32
+      ],
+      [
+        64,
+        32,
+        16,
+        32
+      ],
+      [
+        80,
+        32,
+        16,
+        32
+      ],
+      [
+        96,
+        32,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 2300,
+    "cropSellValue": 4600,
+    "farmingXp": 119,
+    "seasons": [
+      "Winter"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      144,
+      48
+    ]
+  },
+  {
+    "index": 53,
+    "name": "Golden Beet",
+    "seedName": "Golden Beet seeds",
+    "growMinutes": 360,
+    "waterStages": [
+      [
+        16,
+        80,
+        16,
+        16
+      ],
+      [
+        32,
+        80,
+        16,
+        16
+      ],
+      [
+        48,
+        80,
+        16,
+        16
+      ],
+      [
+        64,
+        80,
+        16,
+        16
+      ],
+      [
+        80,
+        80,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 2550,
+    "cropSellValue": 5100,
+    "farmingXp": 127,
+    "seasons": [
+      "Spring"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      112,
+      80
+    ]
+  },
+  {
+    "index": 54,
+    "name": "Black Tomato",
+    "seedName": "Black Tomato seeds",
+    "growMinutes": 390,
+    "waterStages": [
+      [
+        16,
+        112,
+        16,
+        16
+      ],
+      [
+        32,
+        112,
+        16,
+        16
+      ],
+      [
+        48,
+        112,
+        16,
+        16
+      ],
+      [
+        64,
+        112,
+        16,
+        16
+      ],
+      [
+        80,
+        112,
+        16,
+        16
+      ],
+      [
+        96,
+        112,
+        16,
+        16
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 2800,
+    "cropSellValue": 5550,
+    "farmingXp": 134,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      144,
+      112
+    ]
+  },
+  {
+    "index": 55,
+    "name": "Blue Corn",
+    "seedName": "Blue Corn seeds",
+    "growMinutes": 420,
+    "waterStages": [
+      [
+        16,
+        128,
+        16,
+        32
+      ],
+      [
+        32,
+        128,
+        16,
+        32
+      ],
+      [
+        48,
+        128,
+        16,
+        32
+      ],
+      [
+        64,
+        128,
+        16,
+        32
+      ],
+      [
+        80,
+        128,
+        16,
+        32
+      ],
+      [
+        96,
+        128,
+        16,
+        32
+      ],
+      [
+        112,
+        128,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 3000,
+    "cropSellValue": 6000,
+    "farmingXp": 142,
+    "seasons": [
+      "Fall"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      144,
+      144
+    ]
+  },
+  {
+    "index": 56,
+    "name": "Dragon Fruit",
+    "seedName": "Dragon Fruit seeds",
+    "growMinutes": 480,
+    "waterStages": [
+      [
+        16,
+        160,
+        16,
+        32
+      ],
+      [
+        32,
+        160,
+        16,
+        32
+      ],
+      [
+        48,
+        160,
+        16,
+        32
+      ],
+      [
+        64,
+        160,
+        16,
+        32
+      ],
+      [
+        80,
+        160,
+        16,
+        32
+      ]
+    ],
+    "seedDear": false,
+    "seedPrice": 3500,
+    "cropSellValue": 7000,
+    "farmingXp": 157,
+    "seasons": [
+      "Summer"
+    ],
+    "icon": [
+      "art:rare-crops.png",
+      128,
+      176
+    ]
+  }
+]
