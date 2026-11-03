@@ -1,0 +1,2366 @@
+{
+  "bk01": {
+    "id": "bk01",
+    "name": "Sopa",
+    "rawName": "Soup",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Despertaste en una cama que no es tuya. Hay olor a sopa, y alguien moviéndose por la casa.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con el hombre en la casa",
+        "desc": "El anciano está aquí en la casa contigo. Acércate a él y presiona E para hablar.",
+        "items": []
+      }
+    ],
+    "reward": {}
+  },
+  "bk02": {
+    "id": "bk02",
+    "name": "Zanahorias",
+    "rawName": "Carrots",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Marlow quiere verte cultivar algo antes de dejarte la isla.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Encuentra a Marlow afuera de la puerta",
+        "desc": "Marlow está parado junto al camino, justo afuera de tu puerta. El campo es el terreno de tierra desnuda al oeste de la casa.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Remueve la tierra del campo",
+        "desc": "El campo es el terreno de tierra desnuda al oeste de la casa. Toma la azada y presiona Space. Un golpe voltea toda una hilera.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Planta las semillas de zanahoria",
+        "desc": "Toma las semillas en tu mano desde la barra rápida, párate sobre la tierra removida y presiona Space.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Dile a Marlow que las semillas ya están sembradas",
+        "desc": "Marlow está parado junto al camino, justo afuera de tu puerta.",
+        "items": []
+      }
+    ],
+    "reward": {}
+  },
+  "bk03": {
+    "id": "bk03",
+    "name": "Primera Cosecha",
+    "rawName": "First Harvest",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Las zanahorias están sembradas. Mientras crecen, Marlow te enseña el resto de lo que sabe.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Riega las zanahorias",
+        "desc": "Lleva la regadera a tus zanahorias al oeste de la casa y presiona Space. Si ha llovido, eso también cuenta.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pregúntale a Marlow qué hacer mientras crecen",
+        "desc": "Marlow está parado junto al camino, justo afuera de tu puerta.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pesca un pez cerca de la isla",
+        "desc": "Párate en la orilla de la isla, de cara al agua, con la caña en mano. Mantén presionado Space para lanzar.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Cosecha una zanahoria con la hoz",
+        "desc": "Cuando las zanahorias hayan crecido, párate junto a ellas con la hoz en la mano y presiona Space.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Guarda algo en un cofre en la casa",
+        "desc": "Los cofres están en la casa, dos junto a la chimenea, un cajón, y uno junto a la cama. Presiona E en uno y arrastra algo adentro.",
+        "items": []
+      },
+      {
+        "index": 5,
+        "title": "Siéntate con Marlow",
+        "desc": "Marlow está parado junto al camino, justo afuera de tu puerta.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 60
+    }
+  },
+  "bk04": {
+    "id": "bk04",
+    "name": "El Cruce",
+    "rawName": "The Crossing",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Marlow te ha enseñado todo lo que puede en la isla. Bloomshire está al otro lado del agua, y él irá contigo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Marlow",
+        "desc": "Marlow está parado junto al camino, justo afuera de tu puerta.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Rema hasta Bloomshire",
+        "desc": "El bote de remos está amarrado en la orilla sur de la isla, debajo de la casa. Párate junto a él y presiona E.",
+        "items": []
+      }
+    ],
+    "reward": {}
+  },
+  "bk05": {
+    "id": "bk05",
+    "name": "Al Que Marlow Sacó",
+    "rawName": "The One Marlow Pulled Out",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Bloomshire. Parece que todos ya saben quién eres.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Marlow en el muelle",
+        "desc": "Marlow está en el muelle donde llegó el bote, en el extremo sur del pueblo, junto al río.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Conoce a Maren, Fenwick y Tamsin",
+        "desc": "Maren vive al oeste del río, al norte del puente. El puesto de Fenwick está al norte de la plaza. La Panadería está junto al puente.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Encuentra la nueva casa de Marlow",
+        "desc": "La nueva casa de Marlow está al oeste del río, al sur del camino principal, cerca de los huertos.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 100
+    }
+  },
+  "bk06": {
+    "id": "bk06",
+    "name": "Pan y Aserrín",
+    "rawName": "Bread and Sawdust",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Marlow dice que necesitas una rutina. Conoce a los tenderos, cultiva algo en el pueblo y véndelo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Pregúntale a Marlow sobre un día de trabajo",
+        "desc": "La nueva casa de Marlow está al oeste del río, al sur del camino principal, cerca de los huertos.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Conoce a los tenderos",
+        "desc": "Hazel, Bram y Pell están al este de la plaza. Odette está al oeste. La cabaña de Wren está junto a los muelles del sur.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Un día de trabajo en el pueblo",
+        "desc": "La tienda de Hazel está justo al este de la plaza. Los campos del pueblo están al norte de la plaza, junto al invernadero.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Cuéntale a Marlow cómo te fue",
+        "desc": "La nueva casa de Marlow está al oeste del río, al sur del camino principal, cerca de los huertos.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 200
+    }
+  },
+  "bk07": {
+    "id": "bk07",
+    "name": "El Paseo de los Fundadores",
+    "rawName": "The Founders' Walk",
+    "chain": "story",
+    "giver": "ansel",
+    "summary": "Ansel, el guardián de la capilla, quiere mostrarte las doce estatuas junto al puerto.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Ansel en la capilla",
+        "desc": "Ansel cuida la vieja capilla, al noroeste de la plaza, pasando el huerto.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Recorre el Paseo de los Fundadores",
+        "desc": "El Paseo de los Fundadores va hacia el sur desde el Salón de los Fundadores, junto al puerto, en el extremo sur del pueblo.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pregúntale a Rosa sobre los doce",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 150
+    }
+  },
+  "bk08": {
+    "id": "bk08",
+    "name": "Rima de Saltar la Cuerda",
+    "rawName": "Skipping Rhyme",
+    "chain": "story",
+    "giver": "greta",
+    "summary": "Los niños de la escuela tienen una rima de saltar la cuerda sobre una estrella roja. A Greta no le gusta.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Greta en la escuela",
+        "desc": "La escuela de Greta está al noreste del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pregúntale a Mabel sobre la rima",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Habla con Nixie en el estanque",
+        "desc": "Nixie está en el estanque, justo al sur de la plaza. Párate junto al agua y presiona E.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Llévale a Nixie un trozo de Cuarzo",
+        "desc": "El Cuarzo está en la Mina Vieja, la mina en Stonepeak al este del pueblo, rompe las vetas pálidas. Nixie está en el estanque al sur de la plaza.",
+        "items": [
+          {
+            "id": "Quartz",
+            "name": "Cuarzo",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 300
+    }
+  },
+  "bk09": {
+    "id": "bk09",
+    "name": "La Bahía",
+    "rawName": "The Bay",
+    "chain": "story",
+    "giver": "jory",
+    "summary": "El viejo Jory dice que hay un pez en la bahía tan grande como un bote. Nadie le cree.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Jory",
+        "desc": "Jory se sienta junto al río, al suroeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pesca cinco peces en la bahía",
+        "desc": "La bahía está en el extremo sur del mapa, pasando el sur del pueblo y el Valle del Sur. Pesca desde el muelle o el Muelle Largo.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Observa el agua desde el final del muelle por la noche",
+        "desc": "El final del Muelle Largo, en la bahía, en el extremo sur. Solo de noche.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Cuéntale a Jory lo que viste",
+        "desc": "Jory se sienta junto al río, al suroeste de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 400,
+      "shards": 5
+    }
+  },
+  "bk10": {
+    "id": "bk10",
+    "name": "Día de Mercado",
+    "rawName": "Market Day",
+    "chain": "story",
+    "giver": "otto",
+    "summary": "Otto el farolero necesita un favor, pero es demasiado tímido para decir cuál.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Otto",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Dale a Ivy una caléndula que cultivaste, de parte de Otto",
+        "desc": "Cultiva una caléndula y llévasela a Ivy. Ivy vende flores justo al sur de la plaza.",
+        "items": [
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 1,
+            "grown": true
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "title": "Cuéntale a Otto lo que dijo Ivy",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 300
+    }
+  },
+  "bk11": {
+    "id": "bk11",
+    "name": "Cerezas Grises",
+    "rawName": "Grey Cherries",
+    "chain": "story",
+    "giver": "dara",
+    "summary": "Algo anda mal en el huerto de Dara.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Dara en el huerto",
+        "desc": "Dara cuida el huerto al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Mira los árboles grises",
+        "desc": "El huerto está al norte de la plaza. El rincón gris está al noroeste de este.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pregúntale a Hollis sobre lo gris",
+        "desc": "Hollis cuida a los animales en el lado este del pueblo.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Dile a Maren",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Lleva a Ansel y a Hugo con Maren",
+        "desc": "Ansel cuida la vieja capilla, al noroeste de la plaza, pasando el huerto. Hugo está junto al huerto, al noroeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 5,
+        "title": "Vuelve con Maren",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 300
+    }
+  },
+  "bk12": {
+    "id": "bk12",
+    "name": "La Ronda de Otto",
+    "rawName": "Otto's Round",
+    "chain": "story",
+    "giver": "otto",
+    "summary": "Las tardes llegan temprano. Otto pide ayuda con las lámparas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Otto",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Enciende tres lámparas después del anochecer",
+        "desc": "La lámpara del camino del muelle está en el extremo sur del pueblo, la de la capilla al noroeste, la del camino del oeste donde el camino sale hacia el bosque.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Ahuyenta al lobo gris en Whisperwood",
+        "desc": "Los lobos grises cazan en Whisperwood, al oeste del pueblo. Espada en mano, Space para atacar.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Cuéntale a Otto sobre el lobo",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 500,
+      "shards": 10
+    }
+  },
+  "bk13": {
+    "id": "bk13",
+    "name": "Whisperwood",
+    "rawName": "Whisperwood",
+    "chain": "story",
+    "giver": "cole",
+    "summary": "El gris viene del bosque. Cole conoce Whisperwood mejor que nadie, y te acompañará, parte del camino.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Cole",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Tala cinco árboles en el Lote de Madera",
+        "desc": "El Lote de Madera es la arboleda cercada justo al norte del taller de Pell, en el pueblo.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Encuentra al gris en el Bosque Profundo",
+        "desc": "El Bosque Profundo es la parte oscura al oeste de Whisperwood. El claro gris está a mitad de camino, al oeste del claro de los leñadores.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Cuéntale a Cole lo que encontraste",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 400
+    }
+  },
+  "bk14": {
+    "id": "bk14",
+    "name": "El Claro Escondido",
+    "rawName": "The Hidden Glade",
+    "chain": "story",
+    "giver": "cole",
+    "summary": "El gris avanza hacia el norte por el Bosque Profundo, hacia un lugar antiguo que el padre de Cole llamaba el claro escondido.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Busca en el claro escondido",
+        "desc": "El claro escondido está al norte del Bosque Profundo, al noroeste de Whisperwood, un anillo de columnas antiguas alrededor de un suelo de piedra.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Muéstrale el calco a Rosa",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Pregúntale a Juniper sobre el claro",
+        "desc": "La Botica está en el extremo oeste del pueblo, en el camino principal antes del bosque.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 400
+    }
+  },
+  "bk15": {
+    "id": "bk15",
+    "name": "El Mapa Viejo",
+    "rawName": "The Old Map",
+    "chain": "story",
+    "giver": "rosa",
+    "summary": "Rosa encontró el mapa. Marlow y Maren discuten sobre qué significa. Alguien tiene que ir a ver.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Ve qué encontró Rosa",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Muéstrale el mapa a Marlow",
+        "desc": "La nueva casa de Marlow está al oeste del río, al sur del camino principal, cerca de los huertos.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Muéstrale el mapa a Maren",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Seguir con la historia",
+        "desc": "Nada que hacer aquí, sigue tu camino.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Cocina cinco platillos para el camino",
+        "desc": "Cualquier estufa sirve, la Panadería está junto al puente, o la tuya en la casa de la isla.",
+        "items": []
+      },
+      {
+        "index": 5,
+        "title": "Dile a Tamsin que estás listo",
+        "desc": "La Panadería está en la orilla oeste, justo junto al puente, al norte del camino principal.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 300
+    }
+  },
+  "bk16": {
+    "id": "bk16",
+    "name": "Todos los Colores",
+    "rawName": "Every Colour",
+    "chain": "story",
+    "giver": "maren",
+    "summary": "El Camino Viejo va hacia el oeste durante días, hasta un círculo de piedras en un mapa antiguo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Toma el Camino Viejo hacia el oeste",
+        "desc": "El Camino Viejo sale por el extremo oeste de Whisperwood, al final del camino principal que atraviesa el bosque.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Despierta las doce figuras pálidas",
+        "desc": "Se alzan alrededor del viejo empedrado. «La estrella roja asciende»: primero la roja, y luego en el orden en que corren los colores del círculo.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Entra al centro del círculo",
+        "desc": "Los doce están despiertos, y el centro del viejo empedrado brilla. Párate en él y presiona E.",
+        "items": []
+      }
+    ],
+    "reward": {}
+  },
+  "bk17": {
+    "id": "bk17",
+    "name": "Cambio de Hogar",
+    "rawName": "Home Changed",
+    "chain": "story",
+    "giver": "marlow",
+    "summary": "Caminas a casa sin saber qué te pasó en el círculo de piedras.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Camina a casa, a Bloomshire",
+        "desc": "El Camino Viejo lleva de vuelta desde el sur de los Campos del Sueño hacia Whisperwood, y el pueblo más allá.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Ve con Marlow",
+        "desc": "La nueva casa de Marlow está al oeste del río, al sur del camino principal, cerca de los huertos.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Ve con Maren",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 1000,
+      "shards": 25
+    }
+  },
+  "bk18": {
+    "id": "bk18",
+    "name": "Estanque de Marven",
+    "rawName": "Marven's Pool",
+    "chain": "story",
+    "giver": "marven",
+    "summary": "Río arriba hacia el lago. La sirena de Moonmere preguntó por ti por tu nombre, y los peces del lago están saliendo grises.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Sube a Moonmere",
+        "desc": "Moonmere es el lago al norte del pueblo. Camina hacia el norte desde la plaza hasta llegar al agua.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Encuentra a Marven en su estanque",
+        "desc": "El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pesca cuarenta peces en Moonmere",
+        "desc": "Pesca en cualquier parte de Moonmere. El muelle largo de la laguna y la orilla del prado son buenos lugares.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Pesca en las orillas lejanas, sesenta más",
+        "desc": "Marven quiere que se pesque en cada rincón del lago. Prueba en la cornisa de las cataratas, el Círculo de Piedra y la orilla del prado.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Llévale a Marven tres Bagres Fantasma",
+        "desc": "El Bagre Fantasma solo pica en Moonmere, de noche. El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas.",
+        "items": [
+          {
+            "id": "Ghost Catfish",
+            "name": "Bagre Fantasma",
+            "needed": 3,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "title": "Escucha a Marven mañana",
+        "desc": "El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas. Pidió un día para pensarlo.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 600
+    }
+  },
+  "bk19": {
+    "id": "bk19",
+    "name": "Las Piedras en el Lago",
+    "rawName": "The Stones in the Lake",
+    "chain": "story",
+    "giver": "marven",
+    "summary": "Doce piedras forman un círculo en el lago. Marven dice que sus marcas solo se ven de noche.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Lee las cuatro piedras marcadas de noche",
+        "desc": "Una piedra marcada en cada lado del Círculo de Piedra, en medio de Moonmere. Hay piedras de paso que salen desde el prado. De noche.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Dale a Rosa los cuatro calcos",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": [
+          {
+            "id": "Stone Rubbing",
+            "name": "Calco de Piedra",
+            "needed": 4,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "title": "Vuelve a ver a Rosa mañana",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal. Pidió un día entero con los calcos.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Recolecta cuarenta cosas que crecen silvestres",
+        "desc": "Hay hongos en el bosque y alrededor del lago. Juniper quiere saber que puedes encontrar cosas antes de hacerte una linterna.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Llévale a Juniper veinte Hongos Casquete Luminoso",
+        "desc": "Los Casquetes Luminosos crecen alrededor de Moonmere y en Whisperwood. La Botica está en el extremo oeste del pueblo, en el camino principal antes del bosque.",
+        "items": [
+          {
+            "id": "Glowcap Mushroom",
+            "name": "Hongo Casquete Luminoso",
+            "needed": 20,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 700
+    }
+  },
+  "bk20": {
+    "id": "bk20",
+    "name": "Nixie",
+    "rawName": "Nixie",
+    "chain": "story",
+    "giver": "nixie",
+    "summary": "Nixie ha vivido en el estanque del pueblo desde antes de que nadie recuerde. Nunca nadie le dijo de dónde venía.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Nixie quiere hablar contigo",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pregúntale a Marven sobre Nixie",
+        "desc": "El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Cocina veinte platillos",
+        "desc": "Cocina en cualquier estufa. La Panadería está junto al puente, o usa la tuya en la isla.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Llévale a Nixie diez platillos que cocinaste",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": [
+          {
+            "id": "food:*",
+            "name": "food:*",
+            "needed": 10,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "title": "Toma lo que Nixie te dé",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 700
+    }
+  },
+  "bk21": {
+    "id": "bk21",
+    "name": "La Laguna",
+    "rawName": "The Lagoon",
+    "chain": "story",
+    "giver": "sylmare",
+    "summary": "Los sirénidos del pueblo de la laguna son educados con los extraños, y nada más. Llevas un peine que podría cambiar eso.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Encuentra al portavoz de la laguna",
+        "desc": "Sylmare está junto a la fuente de conchas, en el pueblo de la laguna, en el lado oeste de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Muéstrale a Sylmare el peine y la linterna",
+        "desc": "Sylmare está junto a la fuente de conchas, en el pueblo de la laguna, en el lado oeste de Moonmere.",
+        "items": [
+          {
+            "id": "Pearl Comb",
+            "name": "Peine de Perlas",
+            "needed": 1,
+            "grown": false
+          },
+          {
+            "id": "Glowcap Lantern",
+            "name": "Farol de Casquete Luminoso",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "title": "Llévale a Miralys treinta pescados para los secaderos",
+        "desc": "Miralys repara redes junto a la canoa, en el camino este del pueblo de la laguna, al oeste de Moonmere.",
+        "items": [
+          {
+            "id": "fish:*",
+            "name": "fish:*",
+            "needed": 30,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "title": "Llévale caléndulas a Elyria para la fuente",
+        "desc": "Elyria canta junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.",
+        "items": [
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 20,
+            "grown": true
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "title": "Ahuyenta a los slimes y atrapamoscas de la orilla",
+        "desc": "Están a lo largo de las orillas de Moonmere, más densas en el prado del lado sur.",
+        "items": []
+      },
+      {
+        "index": 5,
+        "title": "Dile a Virella que la orilla está despejada",
+        "desc": "Virella vigila junto al muelle largo que va hacia el pueblo de la laguna, al oeste de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 6,
+        "title": "Llévale a Sylmare lo que necesitan los senderos",
+        "desc": "Sylmare está junto a la fuente de conchas, en el pueblo de la laguna, en el lado oeste de Moonmere.",
+        "items": [
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 80,
+            "grown": false
+          },
+          {
+            "id": "Stone",
+            "name": "Piedra",
+            "needed": 40,
+            "grown": false
+          },
+          {
+            "id": "gold",
+            "name": "gold",
+            "needed": 15000,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "title": "Escucha lo que decidió la laguna",
+        "desc": "Sylmare está junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere. Vuelve mañana.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 1000,
+      "shards": 10
+    }
+  },
+  "bk22": {
+    "id": "bk22",
+    "name": "Agua gris",
+    "rawName": "Grey Water",
+    "chain": "story",
+    "giver": "virella",
+    "summary": "Algo grande y gris se mueve en las aguas profundas del lago. Se llevó dos de las redes de Miralys, y una canoa.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Virella",
+        "desc": "Virella vigila junto al muelle largo que va hacia el pueblo de la laguna, al oeste de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Vigila las aguas profundas de noche",
+        "desc": "Vigila desde las piedras de paso que llevan al Círculo de Piedra desde el prado de la orilla sur. De noche.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pesca en el agua profunda, sesenta más",
+        "desc": "Para estar listo para algo tan grande necesitas horas en el agua. En cualquier parte de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Sigue al gris",
+        "desc": "Alrededor de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Muéstrale a Marven la escama gris",
+        "desc": "El Bagre Fantasma solo pica en Moonmere, de noche. El estanque de Marven está en la esquina noreste de Moonmere, debajo de las cataratas.",
+        "items": [
+          {
+            "id": "Grey Scale",
+            "name": "Escama Gris",
+            "needed": 1,
+            "grown": false
+          },
+          {
+            "id": "Ghost Catfish",
+            "name": "Bagre Fantasma",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "title": "Dile a Virella lo que dijo Marven",
+        "desc": "Virella vigila junto al muelle largo que lleva al pueblo de la laguna, al oeste de Moonmere. Vuelve mañana.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 1000
+    }
+  },
+  "bk23": {
+    "id": "bk23",
+    "name": "Visión Lunar",
+    "rawName": "Moonsight",
+    "chain": "story",
+    "giver": "elyria",
+    "summary": "El Hada de la Luna cuidaba el lago antes de que llegaran los sirénidos. Su santuario está en la isla al este del lago, y solo se muestra ante quien ella elige.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Elyria",
+        "desc": "Elyria canta junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Recolecta cincuenta cosas que crecen silvestres",
+        "desc": "Cualquier cosa que crezca silvestre, en cualquier lugar. Le gusta la gente que se fija.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale la ofrenda a Elyria",
+        "desc": "Elyria canta junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.",
+        "items": [
+          {
+            "id": "Glowcap Mushroom",
+            "name": "Hongo Casquete Luminoso",
+            "needed": 25,
+            "grown": false
+          },
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 25,
+            "grown": true
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "title": "Lleva la ofrenda al santuario de noche",
+        "desc": "El santuario del Hada de la Luna es el pequeño cenador en la isla del lado este de Moonmere. Nada hasta allí.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Descubre qué te muestra la luna",
+        "desc": "De noche, con la bendición del Hada de la Luna. Tres lugares alrededor del lago brillan ahora para ti.",
+        "items": []
+      },
+      {
+        "index": 5,
+        "title": "Llévale a Elyria los tres versos",
+        "desc": "Elyria canta junto a la fuente de conchas en el pueblo de la laguna, al oeste de Moonmere.",
+        "items": [
+          {
+            "id": "Gate Song Verse",
+            "name": "Verso de la Canción de la Puerta",
+            "needed": 3,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1200
+    }
+  },
+  "bk24": {
+    "id": "bk24",
+    "name": "La Canción de la Puerta",
+    "rawName": "The Gate Song",
+    "chain": "story",
+    "giver": "elyria",
+    "summary": "Una canción que nadie ha cantado en cien años. Para cantarla, todo el lago debe escuchar, el pueblo y la laguna juntos.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Escucha cantar a Elyria",
+        "desc": "Elyria canta junto a la fuente de conchas, en el pueblo de la laguna, al oeste de Moonmere. Vuelve mañana.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pregúntale a Maren sobre un festival",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale a Tamsin veinte platillos para el banquete",
+        "desc": "La Panadería está en la orilla oeste, justo junto al puente, al norte del camino principal.",
+        "items": [
+          {
+            "id": "food:*",
+            "name": "food:*",
+            "needed": 20,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "title": "Llévale cuarenta caléndulas a Ivy",
+        "desc": "Ivy vende flores justo al sur de la plaza.",
+        "items": [
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 40,
+            "grown": true
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "title": "Llévale a Hugo sesenta trigos para el pan",
+        "desc": "Hugo está junto al huerto, al noroeste de la plaza.",
+        "items": [
+          {
+            "id": "Wheat",
+            "name": "Trigo",
+            "needed": 60,
+            "grown": true
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "title": "Llévale a Otto casquetes luminosos y Oro para los faroles",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": [
+          {
+            "id": "Glowcap Mushroom",
+            "name": "Hongo Casquete Luminoso",
+            "needed": 20,
+            "grown": false
+          },
+          {
+            "id": "gold",
+            "name": "gold",
+            "needed": 10000,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "title": "Dile a Sylmare que el pueblo ya viene",
+        "desc": "Sylmare está junto a la fuente de conchas, en el pueblo de la laguna, en el lado oeste de Moonmere.",
+        "items": []
+      },
+      {
+        "index": 7,
+        "title": "Encuentra a Elyria antes del festival",
+        "desc": "Elyria canta junto a la fuente de conchas, en el pueblo de la laguna, al oeste de Moonmere. Vuelve mañana.",
+        "items": []
+      },
+      {
+        "index": 8,
+        "title": "Ve al festival en la fuente de noche",
+        "desc": "La fuente de conchas está en medio del pueblo de la laguna, en el lado oeste de Moonmere. De noche.",
+        "items": []
+      },
+      {
+        "index": 9,
+        "title": "Habla con Maren después del festival",
+        "desc": "La casa de Maren está en la ribera oeste del río, al norte del puente.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 2500,
+      "shards": 30
+    }
+  },
+  "g_storehouse": {
+    "id": "g_storehouse",
+    "name": "El Almacén",
+    "rawName": "The Storehouse",
+    "chain": "game",
+    "giver": "marlow",
+    "summary": "Marlow dice que el Almacén en el pueblo guarda un cofre para ti, para cuando tengas las manos llenas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Pon algo en tu cofre del Almacén",
+        "desc": "El Almacén está en el lado este del pueblo, al sur del Banco. Adentro, presiona E junto a tu cofre y arrastra algo hacia él.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 50
+    }
+  },
+  "g_fish": {
+    "id": "g_fish",
+    "name": "Una Línea en el Agua",
+    "rawName": "A Line in the Water",
+    "chain": "game",
+    "giver": "wren",
+    "summary": "Wren, el pescador, te enseñará a pescar de verdad.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Wren",
+        "desc": "La cabaña de Wren está junto a los muelles del sur.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pesca diez peces",
+        "desc": "Cualquier agua con peces, el río que cruza el pueblo, el estanque, la bahía al sur.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale tres peces a Wren",
+        "desc": "La cabaña de Wren está junto a los muelles del sur.",
+        "items": [
+          {
+            "id": "fish:*",
+            "name": "fish:*",
+            "needed": 3,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 150
+    }
+  },
+  "g_cook": {
+    "id": "g_cook",
+    "name": "La Cocina de Tamsin",
+    "rawName": "Tamsin's Kitchen",
+    "chain": "game",
+    "giver": "tamsin",
+    "summary": "Tamsin dice que cualquiera puede cocinar si se queda frente a una estufa el tiempo suficiente.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Tamsin",
+        "desc": "La Panadería está en la orilla oeste, justo junto al puente, al norte del camino principal.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Cocina tres platos",
+        "desc": "Párate junto a la estufa en la Panadería y presiona E. El Pescado Frito necesita una Carpa.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale a Tamsin algo que hayas cocinado",
+        "desc": "La Panadería está en la orilla oeste, justo junto al puente, al norte del camino principal.",
+        "items": [
+          {
+            "id": "food:*",
+            "name": "food:*",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 120
+    }
+  },
+  "g_forage": {
+    "id": "g_forage",
+    "name": "Lo Que Crece Silvestre",
+    "rawName": "What Grows Wild",
+    "chain": "game",
+    "giver": "juniper",
+    "summary": "Juniper, en la Botica, conoce todo lo que crece silvestre en el valle.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Juniper",
+        "desc": "La Botica está en el extremo oeste del pueblo, en el camino principal antes del bosque.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Recoge cinco hongos silvestres",
+        "desc": "A la sombra de Whisperwood, al oeste del pueblo. Presiona E junto a un hongo.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale tres sombrerillos plateados a Juniper",
+        "desc": "La Botica está en el extremo oeste del pueblo.",
+        "items": [
+          {
+            "id": "Silvercap Mushroom",
+            "name": "Hongo Sombrerillo Plateado",
+            "needed": 3,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 180
+    }
+  },
+  "g_wood": {
+    "id": "g_wood",
+    "name": "Madera",
+    "rawName": "Timber",
+    "chain": "game",
+    "giver": "cole",
+    "summary": "Cole, el peón de granja, te enseñará a talar un árbol sin que te caiga encima.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Cole",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Tala cinco árboles en el Lote de Madera",
+        "desc": "El Lote de Madera es la arboleda cercada justo al norte del taller de Pell, en el pueblo. Con el hacha en mano, presiona Space junto a un árbol.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale quince maderas a Cole",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": [
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 15,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 150
+    }
+  },
+  "g_woodlot": {
+    "id": "g_woodlot",
+    "name": "El Lote de Madera",
+    "rawName": "The Woodlot",
+    "chain": "game",
+    "giver": "pell",
+    "summary": "Pell cuida los únicos árboles de Bloomshire que cualquiera puede talar. Vuelven a crecer, si les das tiempo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Pell",
+        "desc": "El taller de Pell está en el camino del este, pasando la Herrería.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Tala los seis árboles del Lote de Madera",
+        "desc": "El Lote de Madera es la arboleda cercada justo al norte del taller de Pell, en el pueblo.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Vuelve cuando hayan crecido, y tálalos todos de nuevo",
+        "desc": "El Lote de Madera es la arboleda cercada justo al norte del taller de Pell, en el pueblo. Un árbol talado ahí vuelve a ser árbol en seis horas.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Llévale veinte maderas a Pell",
+        "desc": "El taller de Pell está en el camino del este, pasando la Herrería.",
+        "items": [
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 20,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 350
+    }
+  },
+  "g_mine": {
+    "id": "g_mine",
+    "name": "Piedra y Mineral",
+    "rawName": "Stone and Ore",
+    "chain": "game",
+    "giver": "bram",
+    "summary": "Bram, en la Herrería, te enseñará a usar un pico.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Bram en la Herrería",
+        "desc": "La Herrería está al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Rompe cinco rocas",
+        "desc": "Stonepeak, al este del pueblo. Pico en mano, presiona Space junto a una roca.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale diez piedras a Bram",
+        "desc": "La Herrería está al este de la plaza.",
+        "items": [
+          {
+            "id": "Stone",
+            "name": "Piedra",
+            "needed": 10,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 150
+    }
+  },
+  "g_combat": {
+    "id": "g_combat",
+    "name": "Espada y Arco",
+    "rawName": "Blade and Bow",
+    "chain": "game",
+    "giver": "bram",
+    "summary": "Bram dice que un granjero que camina por lo salvaje más vale que sepa usar una espada.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Bram sobre el combate",
+        "desc": "La Herrería está al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Derrota a tres criaturas salvajes",
+        "desc": "Allá afuera, en lo salvaje, Whisperwood al oeste, Stonepeak al este.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Vuelve con Bram",
+        "desc": "La Herrería está al este de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 200
+    }
+  },
+  "g_market": {
+    "id": "g_market",
+    "name": "Las Reglas de Rowan",
+    "rawName": "Rowan's Rules",
+    "chain": "game",
+    "giver": "rowan",
+    "summary": "Rowan dirige el Mercado Cubierto, donde los granjeros se venden entre sí. Hay reglas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Rowan en el Mercado Cubierto",
+        "desc": "El Mercado Cubierto está justo al sur de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pon algo a la venta en un puesto",
+        "desc": "En el Mercado Cubierto, al sur de la plaza. Habla con Rowan y elige algo para vender.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 100
+    }
+  },
+  "g_orders": {
+    "id": "g_orders",
+    "name": "El Tablón de Pedidos",
+    "rawName": "The Order Board",
+    "chain": "game",
+    "giver": "odette",
+    "summary": "Odette lleva un tablero de pedidos en la Tienda General, seis al día.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Odette",
+        "desc": "La Tienda General está justo al oeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Entrega un pedido en la Tienda General",
+        "desc": "En la Tienda General, al oeste de la plaza, habla con Odette y abre la pestaña de Pedidos.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 100
+    }
+  },
+  "g_bank": {
+    "id": "g_bank",
+    "name": "Dinero en el Banco",
+    "rawName": "Money in the Bank",
+    "chain": "game",
+    "giver": "farthing",
+    "summary": "Farthing, en el Banco, mantiene tu Oro a salvo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Farthing en el Banco",
+        "desc": "El Banco está en el lado este del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pon algo de Oro en el Banco",
+        "desc": "En el Banco, al este del pueblo, habla con Farthing.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 50
+    }
+  },
+  "g_explore": {
+    "id": "g_explore",
+    "name": "El Paisaje de la Tierra",
+    "rawName": "The Lay of the Land",
+    "chain": "game",
+    "giver": "rosa",
+    "summary": "Rosa quiere que veas el valle con tus propios ojos, todo él, y que le cuentes cómo es de verdad.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Rosa",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Recorre cada rincón del valle",
+        "desc": "Whisperwood está al oeste, Moonmere río arriba al norte, Stonepeak al este, el Valle del Sur y la bahía al sur.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Cuéntale a Rosa lo que viste",
+        "desc": "Rosa lee en la orilla oeste, junto al río, al sur del camino principal.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 250
+    }
+  },
+  "sd_fenwick": {
+    "id": "sd_fenwick",
+    "name": "Cartas para el Valle",
+    "rawName": "Letters for the Valley",
+    "chain": "sidequest",
+    "giver": "fenwick",
+    "summary": "A Fenwick le duelen las rodillas y su bolsa está llena.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Fenwick en el correo",
+        "desc": "Fenwick lleva el correo justo al norte de la plaza del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Dale su carta a Greta",
+        "desc": "La escuela de Greta está al noreste del pueblo.",
+        "items": [
+          {
+            "id": "Letter for Greta",
+            "name": "Carta para Greta",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "title": "Dale su carta a Hugo",
+        "desc": "Hugo está junto al huerto, al noroeste de la plaza.",
+        "items": [
+          {
+            "id": "Letter for Hugo",
+            "name": "Carta para Hugo",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "title": "Dale su carta a Lena",
+        "desc": "Lena cuida los jardines al suroeste del pueblo, cerca de la casa de Marlow.",
+        "items": [
+          {
+            "id": "Letter for Lena",
+            "name": "Carta para Lena",
+            "needed": 1,
+            "grown": false
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "title": "Vuelve con Fenwick",
+        "desc": "Fenwick lleva el correo justo al norte de la plaza del pueblo.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 200
+    }
+  },
+  "sd_hugo": {
+    "id": "sd_hugo",
+    "name": "Grano para el Molino",
+    "rawName": "Grist for the Mill",
+    "chain": "sidequest",
+    "giver": "hugo",
+    "summary": "El molino de Hugo ha estado inactivo toda la temporada por falta de trigo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Hugo",
+        "desc": "Hugo está junto al huerto, al noroeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale veinte trigos a Hugo",
+        "desc": "Hugo está junto al huerto, al noroeste de la plaza.",
+        "items": [
+          {
+            "id": "Wheat",
+            "name": "Trigo",
+            "needed": 20,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 600
+    }
+  },
+  "sd_lena": {
+    "id": "sd_lena",
+    "name": "El Jardín de Lena",
+    "rawName": "Lena's Garden",
+    "chain": "sidequest",
+    "giver": "lena",
+    "summary": "Lena quiere llenar los parterres del pueblo de repollos antes de la escarcha.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Lena",
+        "desc": "Lena cuida los jardines al suroeste del pueblo, cerca de la casa de Marlow.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Lena doce repollos que hayas cultivado",
+        "desc": "Lena cuida los jardines al suroeste del pueblo, cerca de la casa de Marlow.",
+        "items": [
+          {
+            "id": "Cabbage",
+            "name": "Repollo",
+            "needed": 12,
+            "grown": true
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 900,
+      "items": [
+        [
+          "seed:24",
+          5
+        ]
+      ]
+    }
+  },
+  "sd_mabel": {
+    "id": "sd_mabel",
+    "name": "El Estanque Menguante",
+    "rawName": "The Shrinking Pond",
+    "chain": "sidequest",
+    "giver": "mabel",
+    "summary": "El estanque de Mabel se está secando, y su orilla se está derrumbando.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Mabel",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Mabel quince piedras y diez maderas",
+        "desc": "El estanque está justo al sur de la plaza, junto al Mercado Cubierto.",
+        "items": [
+          {
+            "id": "Stone",
+            "name": "Piedra",
+            "needed": 15,
+            "grown": false
+          },
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 10,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 300
+    }
+  },
+  "sd_ivy": {
+    "id": "sd_ivy",
+    "name": "Una Flor para Cada Mesa",
+    "rawName": "A Flower for Every Table",
+    "chain": "sidequest",
+    "giver": "ivy",
+    "summary": "Ivy quiere una caléndula en cada mesa de la plaza para el baile de verano.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Ivy",
+        "desc": "Ivy vende flores justo al sur de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale quince caléndulas a Ivy",
+        "desc": "Ivy vende flores justo al sur de la plaza.",
+        "items": [
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 15,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1000
+    }
+  },
+  "sd_wren": {
+    "id": "sd_wren",
+    "name": "Redes para el Puerto",
+    "rawName": "Nets for the Harbour",
+    "chain": "sidequest",
+    "giver": "wren",
+    "summary": "Wren está reparando las redes del puerto y necesita pescado para vender por el hilo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Wren",
+        "desc": "La cabaña de Wren está junto a los muelles del sur.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Wren diez pescados y cinco maderas",
+        "desc": "La cabaña de Wren está junto a los muelles del sur.",
+        "items": [
+          {
+            "id": "fish:*",
+            "name": "fish:*",
+            "needed": 10,
+            "grown": false
+          },
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 500
+    }
+  },
+  "sd_cole": {
+    "id": "sd_cole",
+    "name": "La Pila de Leña de Cole",
+    "rawName": "Cole's Woodpile",
+    "chain": "sidequest",
+    "giver": "cole",
+    "summary": "Se acerca el invierno y la leña del pueblo escasea.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Cole",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale cuarenta maderas a Cole",
+        "desc": "Cole trabaja junto a los campos del invernadero, al norte de la plaza.",
+        "items": [
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 40,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 600
+    }
+  },
+  "sd_juniper": {
+    "id": "sd_juniper",
+    "name": "Los Estantes de Juniper",
+    "rawName": "Juniper's Shelves",
+    "chain": "sidequest",
+    "giver": "juniper",
+    "summary": "Los estantes de Juniper están vacíos de hongos, y la gente está tosiendo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Juniper",
+        "desc": "La Botica está en el extremo oeste del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Juniper diez sombrerillos plateados y cinco casquetes luminosos",
+        "desc": "La Botica está en el extremo oeste del pueblo.",
+        "items": [
+          {
+            "id": "Silvercap Mushroom",
+            "name": "Hongo Sombrerillo Plateado",
+            "needed": 10,
+            "grown": false
+          },
+          {
+            "id": "Glowcap Mushroom",
+            "name": "Hongo Casquete Luminoso",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 900
+    }
+  },
+  "sd_dara": {
+    "id": "sd_dara",
+    "name": "Reparando la Cerca",
+    "rawName": "Mending the Fence",
+    "chain": "sidequest",
+    "giver": "dara",
+    "summary": "Dara quiere una cerca alrededor del rincón gris del huerto, para mantener afuera a las cabras y a los niños.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Dara",
+        "desc": "Dara cuida el huerto al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Dara veinticinco maderas y quince piedras",
+        "desc": "Dara cuida el huerto al norte de la plaza.",
+        "items": [
+          {
+            "id": "Wood",
+            "name": "Madera",
+            "needed": 25,
+            "grown": false
+          },
+          {
+            "id": "Stone",
+            "name": "Piedra",
+            "needed": 15,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 700
+    }
+  },
+  "sd_colour": {
+    "id": "sd_colour",
+    "name": "El color ha vuelto",
+    "rawName": "Colour Back",
+    "chain": "sidequest",
+    "giver": "dara",
+    "summary": "El rincón gris del huerto de Dara no ha cambiado desde que te fuiste. Tú sí.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Dara",
+        "desc": "Dara cuida el huerto al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pon tus manos sobre los árboles grises",
+        "desc": "El rincón gris está al noroeste del huerto, al norte de la plaza.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Dile a Dara",
+        "desc": "Dara cuida el huerto al norte de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {}
+  },
+  "sd_greta": {
+    "id": "sd_greta",
+    "name": "La Mesa de la Naturaleza",
+    "rawName": "The Nature Table",
+    "chain": "sidequest",
+    "giver": "greta",
+    "summary": "Greta quiere mariposas para la mesa de naturaleza del aula.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Greta",
+        "desc": "La escuela de Greta está al noreste del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Atrapa tres mariposas con una red para insectos",
+        "desc": "Hazel vende una red para insectos. Las mariposas salen por los prados en los días buenos.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Vuelve con Greta",
+        "desc": "La escuela de Greta está al noreste del pueblo.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 700
+    }
+  },
+  "sd_otto": {
+    "id": "sd_otto",
+    "name": "Sopa para el Farolero",
+    "rawName": "Soup for the Lamplighter",
+    "chain": "sidequest",
+    "giver": "otto",
+    "summary": "Otto enciende cada farol del pueblo, cada noche, y las noches se están poniendo frías.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Otto",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Cocina cinco tazones de Sopa de Chirivía",
+        "desc": "Cualquier estufa sirve, la de la Panadería o la tuya. Cada tazón lleva cuatro chirivías.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale a Otto cinco tazones de Sopa de Chirivía",
+        "desc": "Otto está junto a Semillas y Útiles, justo al este de la plaza.",
+        "items": [
+          {
+            "id": "Parsnip Soup",
+            "name": "Sopa de Chirivía",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 800
+    }
+  },
+  "sd_jory": {
+    "id": "sd_jory",
+    "name": "La Gran Pesca",
+    "rawName": "The Big Catch",
+    "chain": "sidequest",
+    "giver": "jory",
+    "summary": "Jory dice que una vez pescó un pez tan largo como un bote. Quiere ver de qué eres capaz.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Jory",
+        "desc": "Jory se sienta junto al río, al suroeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pesca quince peces",
+        "desc": "Cualquier agua con peces sirve: el río, el estanque, la bahía o el lago.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale cinco pescados a Jory",
+        "desc": "Jory se sienta junto al río, al suroeste de la plaza.",
+        "items": [
+          {
+            "id": "fish:*",
+            "name": "fish:*",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 900
+    }
+  },
+  "sd_bram": {
+    "id": "sd_bram",
+    "name": "Mineral para la Herrería",
+    "rawName": "Ore for the Forge",
+    "chain": "sidequest",
+    "giver": "bram",
+    "summary": "Bram tiene más pedidos de herramientas que mineral para hacerlas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Bram",
+        "desc": "La Herrería está al este de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Bram veinte Mena de Cobre y cinco Mineral de Hierro",
+        "desc": "La Herrería está al este de la plaza. El cobre está en las cuevas de Stonepeak, el hierro más profundo, desde el nivel 5 de Minería.",
+        "items": [
+          {
+            "id": "Copper Ore",
+            "name": "Mena de Cobre",
+            "needed": 20,
+            "grown": false
+          },
+          {
+            "id": "Iron Ore",
+            "name": "Mineral de Hierro",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1000,
+      "items": [
+        [
+          "Repair Kit",
+          1
+        ]
+      ]
+    }
+  },
+  "sd_rhys": {
+    "id": "sd_rhys",
+    "name": "Plagas en los Campos",
+    "rawName": "Pests in the Fields",
+    "chain": "sidequest",
+    "giver": "rhys",
+    "summary": "Algo ha estado rondando los campos del pueblo por la noche, y Rhys ya está harto.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Rhys",
+        "desc": "Rhys trabaja los campos del invernadero al norte de la plaza, junto a Cole.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Derrota a quince criaturas salvajes",
+        "desc": "Allá afuera, en lo salvaje, Whisperwood al oeste, Stonepeak al este.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Vuelve con Rhys",
+        "desc": "Rhys trabaja los campos del invernadero al norte de la plaza, junto a Cole.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 900
+    }
+  },
+  "sd_clara": {
+    "id": "sd_clara",
+    "name": "Huevos para la Panadería",
+    "rawName": "Eggs for the Bakery",
+    "chain": "sidequest",
+    "giver": "clara",
+    "summary": "Clara tiene que hornear un pastel para la cena de la cosecha y no le queda ni un huevo en casa.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Clara",
+        "desc": "Clara está afuera de la Panadería, en la orilla oeste junto al puente.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale doce huevos a Clara",
+        "desc": "Clara está afuera de la Panadería, junto al puente. Las gallinas ponen huevos en la Granja de Hollin, al sur del pueblo.",
+        "items": [
+          {
+            "id": "Egg",
+            "name": "Huevo",
+            "needed": 12,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1000
+    }
+  },
+  "sd_jasper": {
+    "id": "sd_jasper",
+    "name": "Tablones para los Botes",
+    "rawName": "Planks for the Boats",
+    "chain": "sidequest",
+    "giver": "jasper",
+    "summary": "Jasper tiene tres botes que reparar antes de las tormentas de invierno.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Jasper",
+        "desc": "Jasper repara botes en los muelles del sur, cerca de la desembocadura del río.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Jasper quince tablones y cinco cuerdas",
+        "desc": "Jasper está en los muelles del sur. Haz tablones y cuerda en la mesa de trabajo de Pell, en la Carpintería del camino del este.",
+        "items": [
+          {
+            "id": "Wooden Plank",
+            "name": "Tabla de Madera",
+            "needed": 15,
+            "grown": false
+          },
+          {
+            "id": "Rope",
+            "name": "Cuerda",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1200
+    }
+  },
+  "sd_farthing": {
+    "id": "sd_farthing",
+    "name": "El Libro Mayor Perdido",
+    "rawName": "The Missing Ledger",
+    "chain": "sidequest",
+    "giver": "farthing",
+    "summary": "Tres páginas desaparecieron del libro de cuentas de Farthing, y Farthing no pierde cosas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Farthing",
+        "desc": "El Banco está en el lado este del pueblo.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Pregúntale a Odette en la Tienda General",
+        "desc": "La Tienda General está justo al oeste de la plaza.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Pregúntale a Quill en la Casa de Cambio",
+        "desc": "La Casa de Cambio está al sureste de la plaza, al oeste del Banco.",
+        "items": []
+      },
+      {
+        "index": 3,
+        "title": "Pregúntale a Fenwick en el correo",
+        "desc": "Fenwick lleva el correo justo al norte de la plaza del pueblo.",
+        "items": []
+      },
+      {
+        "index": 4,
+        "title": "Llévale a Farthing las tres páginas",
+        "desc": "El Banco está en el lado este del pueblo.",
+        "items": [
+          {
+            "id": "Ledger Page",
+            "name": "Página del Libro Mayor",
+            "needed": 3,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 800
+    }
+  },
+  "sd_rowan": {
+    "id": "sd_rowan",
+    "name": "Día de Mercado",
+    "rawName": "Market Day",
+    "chain": "sidequest",
+    "giver": "rowan",
+    "summary": "Rowan quiere el Mercado Cubierto lleno de gente, y ha estado muy tranquilo.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Rowan",
+        "desc": "El Mercado Cubierto está justo al sur de la plaza.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Monta tres puestos en el Mercado Cubierto",
+        "desc": "En el Mercado Cubierto, al sur de la plaza. Habla con Rowan y elige algo para vender.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Vuelve con Rowan",
+        "desc": "El Mercado Cubierto está justo al sur de la plaza.",
+        "items": []
+      }
+    ],
+    "reward": {
+      "gold": 600
+    }
+  },
+  "sd_willa": {
+    "id": "sd_willa",
+    "name": "Flores para las Abejas",
+    "rawName": "Flowers for the Bees",
+    "chain": "sidequest",
+    "giver": "willa",
+    "summary": "Las abejas de Willa han agotado todas las flores del pueblo, y la miel es escasa.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Willa",
+        "desc": "Willa tiene sus colmenas en la parte alta del pueblo, al este del huerto.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale a Willa quince caléndulas que cultivaste",
+        "desc": "Willa tiene sus colmenas en la parte alta del pueblo, al este del huerto.",
+        "items": [
+          {
+            "id": "Marigold",
+            "name": "Caléndula",
+            "needed": 15,
+            "grown": true
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 900,
+      "items": [
+        [
+          "Honey",
+          2
+        ]
+      ]
+    }
+  },
+  "sd_lena_winter": {
+    "id": "sd_lena_winter",
+    "name": "El Jardín de Invierno",
+    "rawName": "The Winter Garden",
+    "chain": "sidequest",
+    "giver": "lena",
+    "summary": "Lena quiere los parterres del pueblo verdes todo el invierno.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Lena",
+        "desc": "Lena cuida los jardines al suroeste del pueblo, cerca de la casa de Marlow.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Alcanza el nivel 4 de Cultivo",
+        "desc": "Cosecha cultivos de cualquier tipo para subir Cultivo. La col rizada de invierno requiere Cultivo nivel 4.",
+        "items": []
+      },
+      {
+        "index": 2,
+        "title": "Llévale a Lena quince coles rizadas de invierno que cultivaste",
+        "desc": "Lena cuida los jardines al suroeste del pueblo, cerca de la casa de Marlow.",
+        "items": [
+          {
+            "id": "Winter Kale",
+            "name": "Col de Invierno",
+            "needed": 15,
+            "grown": true
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1200
+    }
+  },
+  "sd_elsie": {
+    "id": "sd_elsie",
+    "name": "Miel para las Pinturas",
+    "rawName": "Honey for the Paints",
+    "chain": "sidequest",
+    "giver": "elsie",
+    "summary": "Elsie pinta el valle, y se le secaron las pinturas.",
+    "steps": [
+      {
+        "index": 0,
+        "title": "Habla con Elsie",
+        "desc": "Elsie pinta junto al camino principal, al oeste de la Tienda General.",
+        "items": []
+      },
+      {
+        "index": 1,
+        "title": "Llévale cinco miel a Elsie",
+        "desc": "Elsie pinta junto al camino principal, al oeste de la Tienda General. Las colmenas se guardan en la Granja de Hollin.",
+        "items": [
+          {
+            "id": "Honey",
+            "name": "Miel",
+            "needed": 5,
+            "grown": false
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "gold": 1000
+    }
+  }
+}

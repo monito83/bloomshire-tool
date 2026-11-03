@@ -3,703 +3,769 @@
     {
       "id": "boiled_egg",
       "dish": "Boiled Egg",
-      "item": "Huevo Cocido (Boiled Egg) 🍲",
-      "level": "Cocina Lv 1 • Common (Valor: 6.000g)",
+      "item": "Boiled Egg (Boiled Egg) 🍲",
+      "level": "Cocina Lv 1 • Common (Valor: 3.000g)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Huevo (Egg) x1",
+      "mats": "Huevo (Egg) x2",
       "needs": [
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 5,
+      "energyRestore": 9,
       "healthRestore": 10,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 6000,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 8,
+      "goldPerMin": 2900,
       "xp": 25,
       "mealKind": "breakfast",
-      "desc": "+5 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 1 min."
+      "desc": "+9 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 1 min."
     },
     {
       "id": "fried_fish",
       "dish": "Fried Fish",
-      "item": "Pescado Frito (Fried Fish) 🍲",
+      "item": "Fried Fish (Fried Fish) 🍲",
       "level": "Cocina Lv 1 • Common (Valor: 4.500g)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Carpa (Carp) x1",
+      "mats": "Carpa (Carp) x2",
       "needs": [
         {
           "item": "Carp",
           "nameEs": "Carpa",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 5,
+      "energyRestore": 6,
       "healthRestore": 10,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
       "sellPrice": 4500,
+      "netGold": 4400,
+      "netEnergy": 5,
+      "goldPerMin": 4400,
       "xp": 25,
       "mealKind": "fish",
-      "desc": "+5 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 1 min."
+      "desc": "+6 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 1 min."
     },
     {
       "id": "parsnip_soup",
       "dish": "Parsnip Soup",
-      "item": "Sopa de Chirivía (Parsnip Soup) 🍲",
-      "level": "Cocina Lv 1 • Common (Valor: 5.300g)",
+      "item": "Parsnip Soup (Parsnip Soup) 🍲",
+      "level": "Cocina Lv 1 • Common (Valor: 3.000g)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Parsnip (Parsnip) x2",
+      "mats": "Chirivía (Parsnip) x4",
       "needs": [
         {
           "item": "Parsnip",
-          "nameEs": "Parsnip",
-          "qty": 2
+          "nameEs": "Chirivía",
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 4,
+      "energyRestore": 12,
       "healthRestore": 8,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 5300,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 11,
+      "goldPerMin": 2900,
       "xp": 25,
       "mealKind": "garden",
-      "desc": "+4 ⚡ Energía, +8 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+12 ⚡ Energía, +8 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "vegetable_plate",
       "dish": "Vegetable Plate",
-      "item": "Plato de Verduras (Vegetable Plate) 🍲",
+      "item": "Vegetable Plate (Vegetable Plate) 🍲",
       "level": "Cocina Lv 1 • Common (Valor: 3.000g)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Zanahoria (Carrot) x1 + Patata (Potato) x1",
+      "mats": "Zanahoria (Carrot) x2 + Patata (Potato) x2",
       "needs": [
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 5,
+      "energyRestore": 12,
       "healthRestore": 10,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
       "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 11,
+      "goldPerMin": 2900,
       "xp": 25,
       "mealKind": "garden",
-      "desc": "+5 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+12 ⚡ Energía, +10 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "baked_potato",
       "dish": "Baked Potato",
-      "item": "Patata Asada (Baked Potato) 🍲",
-      "level": "Cocina Lv 2 • Common (Valor: 6.700g)",
+      "item": "Baked Potato (Baked Potato) 🍲",
+      "level": "Cocina Lv 2 • Common (Valor: 3.000g)",
       "levelNum": 2,
       "tier": "Common",
-      "mats": "Patata (Potato) x2 + Cebollín (Spring Onion) x1",
+      "mats": "Patata (Potato) x4 + Cebollín (Spring Onion) x2",
       "needs": [
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Spring Onion",
           "nameEs": "Cebollín",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 6,
+      "energyRestore": 18,
       "healthRestore": 12,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 6700,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 17,
+      "goldPerMin": 2900,
+      "xp": 30,
       "mealKind": "garden",
-      "desc": "+6 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+18 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "bread",
       "dish": "Bread",
-      "item": "Pan Casero (Bread) 🍲",
+      "item": "Bread (Bread) 🍲",
       "level": "Cocina Lv 2 • Common (Valor: 4.000g)",
       "levelNum": 2,
       "tier": "Common",
-      "mats": "Harina (Flour) x1",
+      "mats": "Harina (Flour) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 6,
+      "energyRestore": 15,
       "healthRestore": 12,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
       "sellPrice": 4000,
-      "xp": 25,
+      "netGold": 3900,
+      "netEnergy": 14,
+      "goldPerMin": 3900,
+      "xp": 30,
       "mealKind": "sweet",
-      "desc": "+6 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 1 min."
+      "desc": "+15 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 1 min."
     },
     {
       "id": "fried_egg",
       "dish": "Fried Egg",
-      "item": "Huevo Frito (Fried Egg) 🍲",
-      "level": "Cocina Lv 2 • Common (Valor: 6.700g)",
+      "item": "Fried Egg (Fried Egg) 🍲",
+      "level": "Cocina Lv 2 • Common (Valor: 3.000g)",
       "levelNum": 2,
       "tier": "Common",
-      "mats": "Huevo (Egg) x1 + Cebollín (Spring Onion) x1",
+      "mats": "Huevo (Egg) x2 + Cebollín (Spring Onion) x2",
       "needs": [
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Spring Onion",
           "nameEs": "Cebollín",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 6,
+      "energyRestore": 15,
       "healthRestore": 12,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 6700,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 14,
+      "goldPerMin": 2900,
+      "xp": 30,
       "mealKind": "breakfast",
-      "desc": "+6 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 1 min."
+      "desc": "+15 ⚡ Energía, +12 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 1 min."
     },
     {
       "id": "corn_on_the_cob",
       "dish": "Corn on the Cob",
-      "item": "Mazorca de Maíz Asada (Corn on the Cob) 🍲",
-      "level": "Cocina Lv 3 • Common (Valor: 7.400g)",
+      "item": "Corn on the Cob (Corn on the Cob) 🍲",
+      "level": "Cocina Lv 3 • Common (Valor: 3.000g)",
       "levelNum": 3,
       "tier": "Common",
-      "mats": "Maíz (Corn) x2",
+      "mats": "Maíz (Corn) x4",
       "needs": [
         {
           "item": "Corn",
           "nameEs": "Maíz",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 7,
+      "energyRestore": 12,
       "healthRestore": 14,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 7400,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 11,
+      "goldPerMin": 2900,
+      "xp": 35,
       "mealKind": "garden",
-      "desc": "+7 ⚡ Energía, +14 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+12 ⚡ Energía, +14 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "fried_mushrooms",
       "dish": "Fried Mushrooms",
-      "item": "Setas Salteadas (Fried Mushrooms) 🍲",
-      "level": "Cocina Lv 3 • Common (Valor: 7.400g)",
+      "item": "Fried Mushrooms (Fried Mushrooms) 🍲",
+      "level": "Cocina Lv 3 • Common (Valor: 3.000g)",
       "levelNum": 3,
       "tier": "Common",
-      "mats": "Seta Silvercap (Silvercap Mushroom) x2",
+      "mats": "Seta Silvercap (Silvercap Mushroom) x4",
       "needs": [
         {
           "item": "Silvercap Mushroom",
           "nameEs": "Seta Silvercap",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 7,
+      "energyRestore": 6,
       "healthRestore": 14,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 7400,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 5,
+      "goldPerMin": 2900,
+      "xp": 35,
       "mealKind": "forage",
-      "desc": "+7 ⚡ Energía, +14 ❤️ Vida. Tipo de plato: forage. Se cocina en la estufa en 1 min."
+      "desc": "+6 ⚡ Energía, +14 ❤️ Vida. Tipo de plato: forage. Se prepara en la estufa en 1 min."
     },
     {
       "id": "garden_salad",
       "dish": "Garden Salad",
-      "item": "Ensalada del Huerto (Garden Salad) 🍲",
+      "item": "Garden Salad (Garden Salad) 🍲",
       "level": "Cocina Lv 4 • Common (Valor: 3.500g)",
       "levelNum": 4,
       "tier": "Common",
-      "mats": "Repollo (Cabbage) x1 + Tomate (Tomato) x1",
+      "mats": "Repollo (Cabbage) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Cabbage",
           "nameEs": "Repollo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 8,
+      "energyRestore": 12,
       "healthRestore": 16,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
       "sellPrice": 3500,
-      "xp": 25,
+      "netGold": 3400,
+      "netEnergy": 11,
+      "goldPerMin": 3400,
+      "xp": 40,
       "mealKind": "garden",
-      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+12 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "hash_browns",
       "dish": "Hash Browns",
-      "item": "Röstis de Patata (Hash Browns) 🍲",
-      "level": "Cocina Lv 4 • Common (Valor: 8.100g)",
+      "item": "Hash Browns (Hash Browns) 🍲",
+      "level": "Cocina Lv 4 • Uncommon (Valor: 3.000g)",
       "levelNum": 4,
-      "tier": "Common",
-      "mats": "Patata (Potato) x3 + Cebolla (Onion) x1",
+      "tier": "Uncommon",
+      "mats": "Patata (Potato) x6 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 8,
+      "energyRestore": 24,
       "healthRestore": 16,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 8100,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 23,
+      "goldPerMin": 2900,
+      "xp": 40,
       "mealKind": "breakfast",
-      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 1 min."
+      "desc": "+24 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 1 min."
     },
     {
       "id": "kale_chips",
       "dish": "Kale Chips",
-      "item": "Chips de Col Rizada (Kale Chips) 🍲",
-      "level": "Cocina Lv 4 • Common (Valor: 8.100g)",
+      "item": "Kale Chips (Kale Chips) 🍲",
+      "level": "Cocina Lv 4 • Uncommon (Valor: 3.000g)",
       "levelNum": 4,
-      "tier": "Common",
-      "mats": "Col de Invierno (Kale) (Winter Kale) x2",
+      "tier": "Uncommon",
+      "mats": "Col de Invierno (Winter Kale) x4",
       "needs": [
         {
           "item": "Winter Kale",
-          "nameEs": "Col de Invierno (Kale)",
-          "qty": 2
+          "nameEs": "Col de Invierno",
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 8,
+      "energyRestore": 12,
       "healthRestore": 16,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 8100,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 11,
+      "goldPerMin": 2900,
+      "xp": 40,
       "mealKind": "garden",
-      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 1 min."
+      "desc": "+12 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 1 min."
     },
     {
       "id": "omelette",
       "dish": "Omelette",
-      "item": "Tortilla Francesa (Omelette) 🍲",
-      "level": "Cocina Lv 4 • Common (Valor: 8.100g)",
+      "item": "Omelette (Omelette) 🍲",
+      "level": "Cocina Lv 4 • Uncommon (Valor: 3.000g)",
       "levelNum": 4,
-      "tier": "Common",
-      "mats": "Huevo (Egg) x2 + Cebolla (Onion) x1 + Tomate (Tomato) x1",
+      "tier": "Uncommon",
+      "mats": "Huevo (Egg) x4 + Cebolla (Onion) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 8,
+      "energyRestore": 30,
       "healthRestore": 16,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 8100,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 29,
+      "goldPerMin": 2900,
+      "xp": 40,
       "mealKind": "breakfast",
-      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 1 min."
+      "desc": "+30 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 1 min."
     },
     {
       "id": "popcorn",
       "dish": "Popcorn",
-      "item": "Palomitas de Maíz (Popcorn) 🍲",
-      "level": "Cocina Lv 4 • Common (Valor: 8.100g)",
+      "item": "Popcorn (Popcorn) 🍲",
+      "level": "Cocina Lv 4 • Uncommon (Valor: 3.000g)",
       "levelNum": 4,
-      "tier": "Common",
-      "mats": "Maíz (Corn) x3 + Mantequilla (Butter) x1",
+      "tier": "Uncommon",
+      "mats": "Maíz (Corn) x6 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Corn",
           "nameEs": "Maíz",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 8,
+      "energyRestore": 50,
       "healthRestore": 16,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
-      "sellPrice": 8100,
-      "xp": 25,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 49,
+      "goldPerMin": 2900,
+      "xp": 40,
       "mealKind": "sweet",
-      "desc": "+8 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 1 min."
+      "desc": "+50 ⚡ Energía, +16 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 1 min."
     },
     {
       "id": "pancakes",
       "dish": "Pancakes",
-      "item": "Tortitas con Leche (Pancakes) 🍲",
-      "level": "Cocina Lv 5 • Uncommon (Valor: 8.800g)",
+      "item": "Pancakes (Pancakes) 🍲",
+      "level": "Cocina Lv 5 • Uncommon (Valor: 3.000g)",
       "levelNum": 5,
       "tier": "Uncommon",
-      "mats": "Harina (Flour) x1 + Huevo (Egg) x1 + Leche (Milk) x1",
+      "mats": "Harina (Flour) x2 + Huevo (Egg) x2 + Leche (Milk) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Milk",
           "nameEs": "Leche",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 9,
+      "energyRestore": 50,
       "healthRestore": 18,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 8800,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 45,
       "mealKind": "breakfast",
-      "desc": "+9 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 3 min."
     },
     {
       "id": "rice_ball",
       "dish": "Rice Ball",
-      "item": "Bola de Arroz (Onigiri) (Rice Ball) 🍲",
-      "level": "Cocina Lv 5 • Uncommon (Valor: 8.800g)",
+      "item": "Rice Ball (Rice Ball) 🍲",
+      "level": "Cocina Lv 5 • Uncommon (Valor: 3.000g)",
       "levelNum": 5,
       "tier": "Uncommon",
-      "mats": "Arroz (Rice) x2 + Cacho (Chub) x1",
+      "mats": "Arroz (Rice) x4 + Chub (Chub) x2",
       "needs": [
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Chub",
-          "nameEs": "Cacho",
-          "qty": 1
+          "nameEs": "Chub",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 9,
+      "energyRestore": 20,
       "healthRestore": 18,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 8800,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 19,
+      "goldPerMin": 867,
+      "xp": 45,
       "mealKind": "fish",
-      "desc": "+9 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 3 min."
+      "desc": "+20 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 3 min."
     },
     {
       "id": "rice_bowl",
       "dish": "Rice Bowl",
-      "item": "Cuenco de Arroz y Verduras (Rice Bowl) 🍲",
-      "level": "Cocina Lv 5 • Uncommon (Valor: 9.500g)",
+      "item": "Rice Bowl (Rice Bowl) 🍲",
+      "level": "Cocina Lv 5 • Uncommon (Valor: 3.000g)",
       "levelNum": 5,
       "tier": "Uncommon",
-      "mats": "Arroz (Rice) x2 + Brócoli (Broccoli) x1 + Cebollín (Spring Onion) x1",
+      "mats": "Arroz (Rice) x4 + Broccoli (Broccoli) x2 + Cebollín (Spring Onion) x2",
       "needs": [
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Broccoli",
-          "nameEs": "Brócoli",
-          "qty": 1
+          "nameEs": "Broccoli",
+          "qty": 2
         },
         {
           "item": "Spring Onion",
           "nameEs": "Cebollín",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 10,
+      "energyRestore": 26,
       "healthRestore": 20,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 9500,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 25,
+      "goldPerMin": 867,
+      "xp": 45,
       "mealKind": "garden",
-      "desc": "+10 ⚡ Energía, +20 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+26 ⚡ Energía, +20 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
       "id": "coleslaw",
       "dish": "Coleslaw",
-      "item": "Ensalada de Repollo (Coleslaw) (Coleslaw) 🍲",
-      "level": "Cocina Lv 6 • Uncommon (Valor: 10.200g)",
+      "item": "Coleslaw (Coleslaw) 🍲",
+      "level": "Cocina Lv 6 • Uncommon (Valor: 3.000g)",
       "levelNum": 6,
       "tier": "Uncommon",
-      "mats": "Repollo (Cabbage) x2 + Zanahoria (Carrot) x1 + Cebolla (Onion) x1",
+      "mats": "Repollo (Cabbage) x4 + Zanahoria (Carrot) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Cabbage",
           "nameEs": "Repollo",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
-        },
-        {
-          "item": "Onion",
-          "nameEs": "Cebolla",
-          "qty": 1
-        }
-      ],
-      "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 11,
-      "healthRestore": 22,
-      "energyCost": 1,
-      "goldCost": 400,
-      "minutes": 3,
-      "sellPrice": 10200,
-      "xp": 50,
-      "mealKind": "garden",
-      "desc": "+11 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
-    },
-    {
-      "id": "cucumber_salad",
-      "dish": "Cucumber Salad",
-      "item": "Ensalada de Pepino (Cucumber Salad) 🍲",
-      "level": "Cocina Lv 6 • Uncommon (Valor: 10.200g)",
-      "levelNum": 6,
-      "tier": "Uncommon",
-      "mats": "Cucumber (Cucumber) x2 + Cebolla (Onion) x1",
-      "needs": [
-        {
-          "item": "Cucumber",
-          "nameEs": "Cucumber",
           "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 11,
+      "energyRestore": 26,
       "healthRestore": 22,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 10200,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 25,
+      "goldPerMin": 867,
       "xp": 50,
       "mealKind": "garden",
-      "desc": "+11 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+26 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
-      "id": "fish_tacos",
-      "dish": "Fish Tacos",
-      "item": "Tacos de Pescado (Fish Tacos) 🍲",
-      "level": "Cocina Lv 6 • Uncommon (Valor: 10.900g)",
+      "id": "cucumber_salad",
+      "dish": "Cucumber Salad",
+      "item": "Cucumber Salad (Cucumber Salad) 🍲",
+      "level": "Cocina Lv 6 • Uncommon (Valor: 3.000g)",
       "levelNum": 6,
       "tier": "Uncommon",
-      "mats": "Perca (Perch) x1 + Maíz (Corn) x1 + Tomate (Tomato) x1",
+      "mats": "Pepino (Cucumber) x4 + Cebolla (Onion) x2",
       "needs": [
         {
-          "item": "Perch",
-          "nameEs": "Perca",
-          "qty": 1
-        },
-        {
-          "item": "Corn",
-          "nameEs": "Maíz",
-          "qty": 1
-        },
-        {
-          "item": "Tomato",
-          "nameEs": "Tomate",
-          "qty": 1
-        }
-      ],
-      "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 12,
-      "healthRestore": 24,
-      "energyCost": 1,
-      "goldCost": 400,
-      "minutes": 3,
-      "sellPrice": 10900,
-      "xp": 50,
-      "mealKind": "fish",
-      "desc": "+12 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 3 min."
-    },
-    {
-      "id": "hearty_stew",
-      "dish": "Hearty Stew",
-      "item": "Estofado Contundente (Hearty Stew) 🍲",
-      "level": "Cocina Lv 6 • Epic (Valor: 20.000g)",
-      "levelNum": 6,
-      "tier": "Epic",
-      "mats": "Lucio (Pike Fish) x1 + Patata (Potato) x1 + Cebolla (Onion) x1",
-      "needs": [
-        {
-          "item": "Pike Fish",
-          "nameEs": "Lucio",
-          "qty": 1
-        },
-        {
-          "item": "Potato",
-          "nameEs": "Patata",
-          "qty": 1
+          "item": "Cucumber",
+          "nameEs": "Pepino",
+          "qty": 4
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 12,
+      "energyRestore": 20,
+      "healthRestore": 22,
+      "energyCost": 1,
+      "goldCost": 400,
+      "minutes": 3,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 19,
+      "goldPerMin": 867,
+      "xp": 50,
+      "mealKind": "garden",
+      "desc": "+20 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
+    },
+    {
+      "id": "fish_tacos",
+      "dish": "Fish Tacos",
+      "item": "Fish Tacos (Fish Tacos) 🍲",
+      "level": "Cocina Lv 6 • Uncommon (Valor: 3.000g)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Perca (Perch) x2 + Maíz (Corn) x2 + Tomate (Tomato) x2",
+      "needs": [
+        {
+          "item": "Perch",
+          "nameEs": "Perca",
+          "qty": 2
+        },
+        {
+          "item": "Corn",
+          "nameEs": "Maíz",
+          "qty": 2
+        },
+        {
+          "item": "Tomato",
+          "nameEs": "Tomate",
+          "qty": 2
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 20,
+      "healthRestore": 24,
+      "energyCost": 1,
+      "goldCost": 400,
+      "minutes": 3,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 19,
+      "goldPerMin": 867,
+      "xp": 50,
+      "mealKind": "fish",
+      "desc": "+20 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 3 min."
+    },
+    {
+      "id": "hearty_stew",
+      "dish": "Hearty Stew",
+      "item": "Hearty Stew (Hearty Stew) 🍲",
+      "level": "Cocina Lv 6 • Epic (Valor: 20.000g)",
+      "levelNum": 6,
+      "tier": "Epic",
+      "mats": "Lucio (Pike Fish) x2 + Patata (Potato) x2 + Cebolla (Onion) x2",
+      "needs": [
+        {
+          "item": "Pike Fish",
+          "nameEs": "Lucio",
+          "qty": 2
+        },
+        {
+          "item": "Potato",
+          "nameEs": "Patata",
+          "qty": 2
+        },
+        {
+          "item": "Onion",
+          "nameEs": "Cebolla",
+          "qty": 2
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 20,
       "healthRestore": 24,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
       "sellPrice": 20000,
+      "netGold": 19600,
+      "netEnergy": 19,
+      "goldPerMin": 6533,
       "xp": 50,
       "mealKind": "fish",
-      "desc": "+12 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 3 min."
+      "desc": "+20 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 3 min."
     },
     {
       "id": "honey_toast",
       "dish": "Honey Toast",
-      "item": "Tostada con Miel y Mantequilla (Honey Toast) 🍲",
-      "level": "Cocina Lv 6 • Uncommon (Valor: 10.200g)",
+      "item": "Honey Toast (Honey Toast) 🍲",
+      "level": "Cocina Lv 6 • Uncommon (Valor: 3.000g)",
       "levelNum": 6,
       "tier": "Uncommon",
-      "mats": "Harina (Flour) x1 + Miel (Honey) x1 + Mantequilla (Butter) x1",
+      "mats": "Harina (Flour) x2 + Miel (Honey) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 11,
+      "energyRestore": 50,
       "healthRestore": 22,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 10200,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
       "xp": 50,
       "mealKind": "sweet",
-      "desc": "+11 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "roast_drumstick",
       "dish": "Roast Drumstick",
-      "item": "Muslo de Pollo Asado (Roast Drumstick) 🍲",
+      "item": "Roast Drumstick (Roast Drumstick) 🍲",
       "level": "Cocina Lv 6 • Uncommon (Valor: 7.500g)",
       "levelNum": 6,
       "tier": "Uncommon",
-      "mats": "Carne de Pollo (Chicken Meat) x1 + Patata (Potato) x1",
+      "mats": "Chicken Meat (Chicken Meat) x2 + Patata (Potato) x2",
       "needs": [
         {
           "item": "Chicken Meat",
-          "nameEs": "Carne de Pollo",
-          "qty": 1
+          "nameEs": "Chicken Meat",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
@@ -709,254 +775,275 @@
       "goldCost": 400,
       "minutes": 3,
       "sellPrice": 7500,
+      "netGold": 7100,
+      "netEnergy": 10,
+      "goldPerMin": 2367,
       "xp": 50,
       "mealKind": "meat",
-      "desc": "+11 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 3 min."
+      "desc": "+11 ⚡ Energía, +22 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 3 min."
     },
     {
       "id": "bean_hotpot",
       "dish": "Bean Hotpot",
-      "item": "Cazuela de Judías y Tomate (Bean Hotpot) 🍲",
-      "level": "Cocina Lv 7 • Uncommon (Valor: 11.600g)",
+      "item": "Bean Hotpot (Bean Hotpot) 🍲",
+      "level": "Cocina Lv 7 • Uncommon (Valor: 3.000g)",
       "levelNum": 7,
       "tier": "Uncommon",
-      "mats": "Judías Verdes (Green Beans) x1 + Judía Adzuki (Adzuki Bean) x1 + Tomate (Tomato) x1 + Cebolla (Onion) x1",
+      "mats": "Judías Verdes (Green Beans) x2 + Adzuki Bean (Adzuki Bean) x2 + Tomate (Tomato) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Green Beans",
           "nameEs": "Judías Verdes",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Adzuki Bean",
-          "nameEs": "Judía Adzuki",
-          "qty": 1
+          "nameEs": "Adzuki Bean",
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 13,
+      "energyRestore": 26,
       "healthRestore": 26,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 11600,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 25,
+      "goldPerMin": 867,
+      "xp": 55,
       "mealKind": "garden",
-      "desc": "+13 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+26 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
       "id": "cheese_toast",
       "dish": "Cheese Toast",
-      "item": "Tostada con Queso Fundido (Cheese Toast) 🍲",
-      "level": "Cocina Lv 7 • Uncommon (Valor: 10.900g)",
+      "item": "Cheese Toast (Cheese Toast) 🍲",
+      "level": "Cocina Lv 7 • Uncommon (Valor: 3.000g)",
       "levelNum": 7,
       "tier": "Uncommon",
-      "mats": "Harina (Flour) x1 + Queso (Cheese) x1 + Tomate (Tomato) x1",
+      "mats": "Harina (Flour) x2 + Queso (Cheese) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 12,
+      "energyRestore": 50,
       "healthRestore": 24,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 10900,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 55,
       "mealKind": "breakfast",
-      "desc": "+12 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 3 min."
     },
     {
       "id": "chicken_soup",
       "dish": "Chicken Soup",
-      "item": "Sopa de Pollo de la Abuela (Chicken Soup) 🍲",
-      "level": "Cocina Lv 7 • Uncommon (Valor: 10.900g)",
+      "item": "Chicken Soup (Chicken Soup) 🍲",
+      "level": "Cocina Lv 7 • Uncommon (Valor: 3.000g)",
       "levelNum": 7,
       "tier": "Uncommon",
-      "mats": "Carne de Pollo (Chicken Meat) x1 + Zanahoria (Carrot) x1 + Cebolla (Onion) x1 + Parsnip (Parsnip) x1",
+      "mats": "Chicken Meat (Chicken Meat) x2 + Zanahoria (Carrot) x2 + Cebolla (Onion) x2 + Chirivía (Parsnip) x2",
       "needs": [
         {
           "item": "Chicken Meat",
-          "nameEs": "Carne de Pollo",
-          "qty": 1
+          "nameEs": "Chicken Meat",
+          "qty": 2
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Parsnip",
-          "nameEs": "Parsnip",
-          "qty": 1
+          "nameEs": "Chirivía",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 12,
+      "energyRestore": 23,
       "healthRestore": 24,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 10900,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 22,
+      "goldPerMin": 867,
+      "xp": 55,
       "mealKind": "meat",
-      "desc": "+12 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 3 min."
+      "desc": "+23 ⚡ Energía, +24 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 3 min."
     },
     {
       "id": "vegetable_stir_fry",
       "dish": "Vegetable Stir Fry",
-      "item": "Salteado de Verduras con Arroz (Vegetable Stir Fry) 🍲",
-      "level": "Cocina Lv 7 • Uncommon (Valor: 11.600g)",
+      "item": "Vegetable Stir Fry (Vegetable Stir Fry) 🍲",
+      "level": "Cocina Lv 7 • Uncommon (Valor: 3.000g)",
       "levelNum": 7,
       "tier": "Uncommon",
-      "mats": "Brócoli (Broccoli) x1 + Judías Verdes (Green Beans) x1 + Zanahoria (Carrot) x1 + Arroz (Rice) x1",
+      "mats": "Broccoli (Broccoli) x2 + Judías Verdes (Green Beans) x2 + Zanahoria (Carrot) x2 + Arroz (Rice) x2",
       "needs": [
         {
           "item": "Broccoli",
-          "nameEs": "Brócoli",
-          "qty": 1
+          "nameEs": "Broccoli",
+          "qty": 2
         },
         {
           "item": "Green Beans",
           "nameEs": "Judías Verdes",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 13,
+      "energyRestore": 26,
       "healthRestore": 26,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 11600,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 25,
+      "goldPerMin": 867,
+      "xp": 55,
       "mealKind": "garden",
-      "desc": "+13 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+26 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
       "id": "bacon_and_eggs",
       "dish": "Bacon and Eggs",
-      "item": "Huevos con Panceta (Bacon and Eggs) 🍲",
-      "level": "Cocina Lv 8 • Uncommon (Valor: 11.600g)",
+      "item": "Bacon and Eggs (Bacon and Eggs) 🍲",
+      "level": "Cocina Lv 8 • Rare (Valor: 3.000g)",
       "levelNum": 8,
-      "tier": "Uncommon",
-      "mats": "Panceta / Cerdo (Pork) x1 + Huevo (Egg) x2",
+      "tier": "Rare",
+      "mats": "Pork (Pork) x2 + Huevo (Egg) x4",
       "needs": [
         {
           "item": "Pork",
-          "nameEs": "Panceta / Cerdo",
-          "qty": 1
+          "nameEs": "Pork",
+          "qty": 2
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 13,
+      "energyRestore": 23,
       "healthRestore": 26,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 11600,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 22,
+      "goldPerMin": 867,
+      "xp": 60,
       "mealKind": "breakfast",
-      "desc": "+13 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 3 min."
+      "desc": "+23 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 3 min."
     },
     {
       "id": "carrot_cake",
       "dish": "Carrot Cake",
-      "item": "Tarta de Zanahoria (Carrot Cake) 🍲",
-      "level": "Cocina Lv 8 • Uncommon (Valor: 12.300g)",
+      "item": "Carrot Cake (Carrot Cake) 🍲",
+      "level": "Cocina Lv 8 • Rare (Valor: 3.000g)",
       "levelNum": 8,
-      "tier": "Uncommon",
-      "mats": "Zanahoria (Carrot) x3 + Harina (Flour) x1 + Huevo (Egg) x1 + Azúcar (Sugar) x1",
+      "tier": "Rare",
+      "mats": "Zanahoria (Carrot) x6 + Harina (Flour) x2 + Huevo (Egg) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 14,
+      "energyRestore": 48,
       "healthRestore": 28,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 12300,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 47,
+      "goldPerMin": 867,
+      "xp": 60,
       "mealKind": "sweet",
-      "desc": "+14 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+48 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "fruit_jam",
       "dish": "Fruit Jam",
-      "item": "Mermelada de Fresa (Fruit Jam) 🍲",
+      "item": "Fruit Jam (Fruit Jam) 🍲",
       "level": "Cocina Lv 8 • Uncommon (Valor: 6.000g)",
       "levelNum": 8,
       "tier": "Uncommon",
-      "mats": "Fresa (Strawberry) x2",
+      "mats": "Fresa (Strawberry) x4",
       "needs": [
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
@@ -966,434 +1053,470 @@
       "goldCost": 400,
       "minutes": 3,
       "sellPrice": 6000,
-      "xp": 50,
+      "netGold": 5600,
+      "netEnergy": 13,
+      "goldPerMin": 1867,
+      "xp": 60,
       "mealKind": "sweet",
-      "desc": "+14 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+14 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "strawberry_milkshake",
       "dish": "Strawberry Milkshake",
-      "item": "Batido de Fresa (Strawberry Milkshake) 🍲",
-      "level": "Cocina Lv 8 • Uncommon (Valor: 11.600g)",
+      "item": "Strawberry Milkshake (Strawberry Milkshake) 🍲",
+      "level": "Cocina Lv 8 • Rare (Valor: 3.000g)",
       "levelNum": 8,
-      "tier": "Uncommon",
-      "mats": "Leche (Milk) x1 + Fresa (Strawberry) x1 + Azúcar (Sugar) x1",
+      "tier": "Rare",
+      "mats": "Leche (Milk) x2 + Fresa (Strawberry) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Milk",
           "nameEs": "Leche",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 13,
+      "energyRestore": 45,
       "healthRestore": 26,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 11600,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 44,
+      "goldPerMin": 867,
+      "xp": 60,
       "mealKind": "sweet",
-      "desc": "+13 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+45 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "turnip_mash",
       "dish": "Turnip Mash",
-      "item": "Puré de Nabo Invernal (Turnip Mash) 🍲",
-      "level": "Cocina Lv 8 • Uncommon (Valor: 11.600g)",
+      "item": "Turnip Mash (Turnip Mash) 🍲",
+      "level": "Cocina Lv 8 • Rare (Valor: 3.000g)",
       "levelNum": 8,
-      "tier": "Uncommon",
-      "mats": "Nabo de Nieve (Snow Turnip) x2 + Mantequilla (Butter) x1",
+      "tier": "Rare",
+      "mats": "Snow Turnip (Snow Turnip) x4 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Snow Turnip",
-          "nameEs": "Nabo de Nieve",
-          "qty": 2
+          "nameEs": "Snow Turnip",
+          "qty": 4
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 13,
+      "energyRestore": 50,
       "healthRestore": 26,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 11600,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 60,
       "mealKind": "garden",
-      "desc": "+13 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +26 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
       "id": "blackberry_cobbler",
       "dish": "Blackberry Cobbler",
-      "item": "Pastel de Moras (Blackberry Cobbler) 🍲",
-      "level": "Cocina Lv 9 • Uncommon (Valor: 13.700g)",
+      "item": "Blackberry Cobbler (Blackberry Cobbler) 🍲",
+      "level": "Cocina Lv 9 • Rare (Valor: 3.000g)",
       "levelNum": 9,
-      "tier": "Uncommon",
-      "mats": "Mora (Blackberry) x3 + Harina (Flour) x1 + Mantequilla (Butter) x1",
+      "tier": "Rare",
+      "mats": "Mora (Blackberry) x6 + Harina (Flour) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Blackberry",
           "nameEs": "Mora",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 16,
+      "energyRestore": 50,
       "healthRestore": 32,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 13700,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 65,
       "mealKind": "sweet",
-      "desc": "+16 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "butter_cookies",
       "dish": "Butter Cookies",
-      "item": "Galletas de Mantequilla (Butter Cookies) 🍲",
-      "level": "Cocina Lv 9 • Uncommon (Valor: 12.300g)",
+      "item": "Butter Cookies (Butter Cookies) 🍲",
+      "level": "Cocina Lv 9 • Rare (Valor: 3.000g)",
       "levelNum": 9,
-      "tier": "Uncommon",
-      "mats": "Harina (Flour) x1 + Mantequilla (Butter) x1 + Azúcar (Sugar) x1",
+      "tier": "Rare",
+      "mats": "Harina (Flour) x2 + Mantequilla (Butter) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 14,
+      "energyRestore": 50,
       "healthRestore": 28,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 12300,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 65,
       "mealKind": "sweet",
-      "desc": "+14 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +28 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "duck_egg_custard",
       "dish": "Duck Egg Custard",
-      "item": "Flan de Huevo de Pato (Duck Egg Custard) 🍲",
-      "level": "Cocina Lv 9 • Uncommon (Valor: 13.000g)",
+      "item": "Duck Egg Custard (Duck Egg Custard) 🍲",
+      "level": "Cocina Lv 9 • Rare (Valor: 3.000g)",
       "levelNum": 9,
-      "tier": "Uncommon",
-      "mats": "Huevo de Pato (Duck Egg) x1 + Leche (Milk) x1 + Azúcar (Sugar) x1",
+      "tier": "Rare",
+      "mats": "Huevo de Pato (Duck Egg) x2 + Leche (Milk) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Duck Egg",
           "nameEs": "Huevo de Pato",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Milk",
           "nameEs": "Leche",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 15,
+      "energyRestore": 48,
       "healthRestore": 30,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 13000,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 47,
+      "goldPerMin": 867,
+      "xp": 65,
       "mealKind": "sweet",
-      "desc": "+15 ⚡ Energía, +30 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 3 min."
+      "desc": "+48 ⚡ Energía, +30 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 3 min."
     },
     {
       "id": "eggplant_parmigiana",
       "dish": "Eggplant Parmigiana",
-      "item": "Berenjena a la Parmesana (Eggplant Parmigiana) 🍲",
-      "level": "Cocina Lv 9 • Uncommon (Valor: 13.700g)",
+      "item": "Eggplant Parmigiana (Eggplant Parmigiana) 🍲",
+      "level": "Cocina Lv 9 • Rare (Valor: 3.000g)",
       "levelNum": 9,
-      "tier": "Uncommon",
-      "mats": "Berenjena (Eggplant) x2 + Tomate (Tomato) x2 + Queso (Cheese) x1",
+      "tier": "Rare",
+      "mats": "Berenjena (Eggplant) x4 + Tomate (Tomato) x4 + Queso (Cheese) x2",
       "needs": [
         {
           "item": "Eggplant",
           "nameEs": "Berenjena",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 16,
+      "energyRestore": 50,
       "healthRestore": 32,
       "energyCost": 1,
       "goldCost": 400,
       "minutes": 3,
-      "sellPrice": 13700,
-      "xp": 50,
+      "sellPrice": 3000,
+      "netGold": 2600,
+      "netEnergy": 49,
+      "goldPerMin": 867,
+      "xp": 65,
       "mealKind": "garden",
-      "desc": "+16 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 3 min."
+      "desc": "+50 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 3 min."
     },
     {
       "id": "goat_cheese_salad",
       "dish": "Goat Cheese Salad",
-      "item": "Ensalada con Queso de Cabra (Goat Cheese Salad) 🍲",
-      "level": "Cocina Lv 10 • Rare (Valor: 13.700g)",
+      "item": "Goat Cheese Salad (Goat Cheese Salad) 🍲",
+      "level": "Cocina Lv 10 • Rare (Valor: 3.000g)",
       "levelNum": 10,
       "tier": "Rare",
-      "mats": "Queso de Cabra (Goat Cheese) x1 + Repollo (Cabbage) x1 + Tomate (Tomato) x1 + Cucumber (Cucumber) x1",
+      "mats": "Queso de Cabra (Goat Cheese) x2 + Repollo (Cabbage) x2 + Tomate (Tomato) x2 + Pepino (Cucumber) x2",
       "needs": [
         {
           "item": "Goat Cheese",
           "nameEs": "Queso de Cabra",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cabbage",
           "nameEs": "Repollo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cucumber",
-          "nameEs": "Cucumber",
-          "qty": 1
+          "nameEs": "Pepino",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 16,
+      "energyRestore": 50,
       "healthRestore": 32,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 13700,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 70,
       "mealKind": "garden",
-      "desc": "+16 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 8 min."
     },
     {
       "id": "ice_cream",
       "dish": "Ice Cream",
-      "item": "Helado de Frutos Helados (Ice Cream) 🍲",
-      "level": "Cocina Lv 10 • Rare (Valor: 13.700g)",
+      "item": "Ice Cream (Ice Cream) 🍲",
+      "level": "Cocina Lv 10 • Rare (Valor: 3.000g)",
       "levelNum": 10,
       "tier": "Rare",
-      "mats": "Crema / Nata (Cream) x1 + Azúcar (Sugar) x1 + Baya Helada (Frostberry) (Frostberry) x1",
+      "mats": "Crema / Nata (Cream) x2 + Azúcar (Sugar) x2 + Frostberry (Frostberry) x2",
       "needs": [
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Frostberry",
-          "nameEs": "Baya Helada (Frostberry)",
-          "qty": 1
+          "nameEs": "Frostberry",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 16,
+      "energyRestore": 50,
       "healthRestore": 32,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 13700,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 70,
       "mealKind": "sweet",
-      "desc": "+16 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "spicy_tacos",
       "dish": "Spicy Tacos",
-      "item": "Tacos Picantes de Trucha (Spicy Tacos) 🍲",
-      "level": "Cocina Lv 10 • Rare (Valor: 15.100g)",
+      "item": "Spicy Tacos (Spicy Tacos) 🍲",
+      "level": "Cocina Lv 10 • Rare (Valor: 3.000g)",
       "levelNum": 10,
       "tier": "Rare",
-      "mats": "Pimiento Picante (Hot Pepper) x2 + Maíz (Corn) x1 + Trucha Tigre (Tiger Trout) x1",
+      "mats": "Hot Pepper (Hot Pepper) x4 + Maíz (Corn) x2 + Tiger Trout (Tiger Trout) x2",
       "needs": [
         {
           "item": "Hot Pepper",
-          "nameEs": "Pimiento Picante",
-          "qty": 2
+          "nameEs": "Hot Pepper",
+          "qty": 4
         },
         {
           "item": "Corn",
           "nameEs": "Maíz",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tiger Trout",
-          "nameEs": "Trucha Tigre",
-          "qty": 1
-        }
-      ],
-      "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 18,
-      "healthRestore": 36,
-      "energyCost": 2,
-      "goldCost": 1000,
-      "minutes": 8,
-      "sellPrice": 15100,
-      "xp": 90,
-      "mealKind": "fish",
-      "desc": "+18 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 8 min."
-    },
-    {
-      "id": "stuffed_peppers",
-      "dish": "Stuffed Peppers",
-      "item": "Pimientos Rellenos con Arroz (Stuffed Peppers) 🍲",
-      "level": "Cocina Lv 10 • Rare (Valor: 15.100g)",
-      "levelNum": 10,
-      "tier": "Rare",
-      "mats": "Pimiento Verde (Green Bell Pepper) x1 + Pimiento Rojo (Red Bell Pepper) x1 + Pimiento Amarillo (Yellow Bell Pepper) x1 + Arroz (Rice) x2",
-      "needs": [
-        {
-          "item": "Green Bell Pepper",
-          "nameEs": "Pimiento Verde",
-          "qty": 1
-        },
-        {
-          "item": "Red Bell Pepper",
-          "nameEs": "Pimiento Rojo",
-          "qty": 1
-        },
-        {
-          "item": "Yellow Bell Pepper",
-          "nameEs": "Pimiento Amarillo",
-          "qty": 1
-        },
-        {
-          "item": "Rice",
-          "nameEs": "Arroz",
+          "nameEs": "Tiger Trout",
           "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 18,
+      "energyRestore": 27,
       "healthRestore": 36,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 15100,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 25,
+      "goldPerMin": 250,
+      "xp": 70,
+      "mealKind": "fish",
+      "desc": "+27 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 8 min."
+    },
+    {
+      "id": "stuffed_peppers",
+      "dish": "Stuffed Peppers",
+      "item": "Stuffed Peppers (Stuffed Peppers) 🍲",
+      "level": "Cocina Lv 10 • Rare (Valor: 3.000g)",
+      "levelNum": 10,
+      "tier": "Rare",
+      "mats": "Green Bell Pepper (Green Bell Pepper) x2 + Red Bell Pepper (Red Bell Pepper) x2 + Yellow Bell Pepper (Yellow Bell Pepper) x2 + Arroz (Rice) x4",
+      "needs": [
+        {
+          "item": "Green Bell Pepper",
+          "nameEs": "Green Bell Pepper",
+          "qty": 2
+        },
+        {
+          "item": "Red Bell Pepper",
+          "nameEs": "Red Bell Pepper",
+          "qty": 2
+        },
+        {
+          "item": "Yellow Bell Pepper",
+          "nameEs": "Yellow Bell Pepper",
+          "qty": 2
+        },
+        {
+          "item": "Rice",
+          "nameEs": "Arroz",
+          "qty": 4
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 33,
+      "healthRestore": 36,
+      "energyCost": 2,
+      "goldCost": 1000,
+      "minutes": 8,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 31,
+      "goldPerMin": 250,
+      "xp": 70,
       "mealKind": "garden",
-      "desc": "+18 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 8 min."
+      "desc": "+33 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 8 min."
     },
     {
       "id": "berry_pie",
       "dish": "Berry Pie",
-      "item": "Tarta de Arándanos (Berry Pie) 🍲",
+      "item": "Berry Pie (Berry Pie) 🍲",
       "level": "Cocina Lv 11 • Uncommon (Valor: 9.000g)",
       "levelNum": 11,
       "tier": "Uncommon",
-      "mats": "Arándano (Blueberry) x3 + Harina (Flour) x1 + Mantequilla (Butter) x1 + Azúcar (Sugar) x1",
+      "mats": "Arándano (Blueberry) x6 + Harina (Flour) x2 + Mantequilla (Butter) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Blueberry",
           "nameEs": "Arándano",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 19,
+      "energyRestore": 50,
       "healthRestore": 38,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
       "sellPrice": 9000,
-      "xp": 90,
+      "netGold": 8000,
+      "netEnergy": 48,
+      "goldPerMin": 1000,
+      "xp": 75,
       "mealKind": "sweet",
-      "desc": "+19 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "fairy_rose_tea",
       "dish": "Fairy Rose Tea",
-      "item": "Té de Rosa de Hada (Fairy Rose Tea) 🍲",
-      "level": "Cocina Lv 11 • Rare (Valor: 15.100g)",
+      "item": "Fairy Rose Tea (Fairy Rose Tea) 🍲",
+      "level": "Cocina Lv 11 • Rare (Valor: 3.000g)",
       "levelNum": 11,
       "tier": "Rare",
-      "mats": "Rosa de Hada (Fairy Rose) x1 + Miel (Honey) x1",
+      "mats": "Rosa de Hada (Fairy Rose) x2 + Miel (Honey) x2",
       "needs": [
         {
           "item": "Fairy Rose",
           "nameEs": "Rosa de Hada",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
@@ -1402,178 +1525,193 @@
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 15100,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 16,
+      "goldPerMin": 250,
+      "xp": 75,
       "mealKind": "region",
-      "desc": "+18 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: region. Se cocina en la estufa en 8 min."
+      "desc": "+18 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: region. Se prepara en la estufa en 8 min."
     },
     {
       "id": "fish_pie",
       "dish": "Fish Pie",
-      "item": "Pastel Rústico de Pescado (Fish Pie) 🍲",
-      "level": "Cocina Lv 11 • Rare (Valor: 15.800g)",
+      "item": "Fish Pie (Fish Pie) 🍲",
+      "level": "Cocina Lv 11 • Rare (Valor: 3.000g)",
       "levelNum": 11,
       "tier": "Rare",
-      "mats": "Lucio (Pike Fish) x1 + Patata (Potato) x2 + Crema / Nata (Cream) x1 + Mantequilla (Butter) x1",
+      "mats": "Lucio (Pike Fish) x2 + Patata (Potato) x4 + Crema / Nata (Cream) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Pike Fish",
           "nameEs": "Lucio",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 19,
+      "energyRestore": 50,
       "healthRestore": 38,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 15800,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 75,
       "mealKind": "fish",
-      "desc": "+19 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 8 min."
     },
     {
       "id": "glazed_yams",
       "dish": "Glazed Yams",
-      "item": "Batatas Glaseadas con Miel (Glazed Yams) 🍲",
-      "level": "Cocina Lv 11 • Rare (Valor: 15.800g)",
+      "item": "Glazed Yams (Glazed Yams) 🍲",
+      "level": "Cocina Lv 11 • Rare (Valor: 3.000g)",
       "levelNum": 11,
       "tier": "Rare",
-      "mats": "Batata (Sweet Potato) x3 + Miel (Honey) x1",
+      "mats": "Sweet Potato (Sweet Potato) x6 + Miel (Honey) x2",
       "needs": [
         {
           "item": "Sweet Potato",
-          "nameEs": "Batata",
-          "qty": 3
+          "nameEs": "Sweet Potato",
+          "qty": 6
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 19,
+      "energyRestore": 30,
       "healthRestore": 38,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 15800,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 28,
+      "goldPerMin": 250,
+      "xp": 75,
       "mealKind": "sweet",
-      "desc": "+19 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+30 ⚡ Energía, +38 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "roast_duck",
       "dish": "Roast Duck",
-      "item": "Pato Asado con Miel (Roast Duck) 🍲",
-      "level": "Cocina Lv 11 • Rare (Valor: 15.100g)",
+      "item": "Roast Duck (Roast Duck) 🍲",
+      "level": "Cocina Lv 11 • Rare (Valor: 3.000g)",
       "levelNum": 11,
       "tier": "Rare",
-      "mats": "Carne de Pato (Duck Meat) x1 + Miel (Honey) x1 + Batata (Sweet Potato) x1",
+      "mats": "Duck Meat (Duck Meat) x2 + Miel (Honey) x2 + Sweet Potato (Sweet Potato) x2",
       "needs": [
         {
           "item": "Duck Meat",
-          "nameEs": "Carne de Pato",
-          "qty": 1
+          "nameEs": "Duck Meat",
+          "qty": 2
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sweet Potato",
-          "nameEs": "Batata",
-          "qty": 1
+          "nameEs": "Sweet Potato",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 18,
+      "energyRestore": 21,
       "healthRestore": 36,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 15100,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 19,
+      "goldPerMin": 250,
+      "xp": 75,
       "mealKind": "meat",
-      "desc": "+18 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 8 min."
+      "desc": "+21 ⚡ Energía, +36 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 8 min."
     },
     {
       "id": "frostberry_tart",
       "dish": "Frostberry Tart",
-      "item": "Tarta de Fruta de Hielo (Frostberry Tart) 🍲",
-      "level": "Cocina Lv 12 • Rare (Valor: 16.500g)",
+      "item": "Frostberry Tart (Frostberry Tart) 🍲",
+      "level": "Cocina Lv 12 • Rare (Valor: 3.000g)",
       "levelNum": 12,
       "tier": "Rare",
-      "mats": "Baya Helada (Frostberry) (Frostberry) x3 + Harina (Flour) x1 + Azúcar (Sugar) x1",
+      "mats": "Frostberry (Frostberry) x6 + Harina (Flour) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Frostberry",
-          "nameEs": "Baya Helada (Frostberry)",
-          "qty": 3
+          "nameEs": "Frostberry",
+          "qty": 6
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 20,
+      "energyRestore": 41,
       "healthRestore": 40,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 16500,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 39,
+      "goldPerMin": 250,
+      "xp": 80,
       "mealKind": "sweet",
-      "desc": "+20 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+41 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "fruit_salad",
       "dish": "Fruit Salad",
-      "item": "Macedonia de Frutas (Fruit Salad) 🍲",
-      "level": "Cocina Lv 12 • Rare (Valor: 17.200g)",
+      "item": "Fruit Salad (Fruit Salad) 🍲",
+      "level": "Cocina Lv 12 • Rare (Valor: 3.000g)",
       "levelNum": 12,
       "tier": "Rare",
-      "mats": "Fresa (Strawberry) x1 + Arándano (Blueberry) x1 + Melón Cantaloupe (Cantaloupe) x1",
+      "mats": "Fresa (Strawberry) x2 + Arándano (Blueberry) x2 + Cantaloupe (Cantaloupe) x2",
       "needs": [
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Blueberry",
           "nameEs": "Arándano",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cantaloupe",
-          "nameEs": "Melón Cantaloupe",
-          "qty": 1
+          "nameEs": "Cantaloupe",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
@@ -1582,1106 +1720,1190 @@
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 17200,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 19,
+      "goldPerMin": 250,
+      "xp": 80,
       "mealKind": "sweet",
-      "desc": "+21 ⚡ Energía, +42 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+21 ⚡ Energía, +42 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "honey_glazed_bacon",
       "dish": "Honey-Glazed Bacon",
-      "item": "Panceta Glaseada con Miel (Honey-Glazed Bacon) 🍲",
+      "item": "Honey-Glazed Bacon (Honey-Glazed Bacon) 🍲",
       "level": "Cocina Lv 12 • Rare (Valor: 13.500g)",
       "levelNum": 12,
       "tier": "Rare",
-      "mats": "Panceta / Cerdo (Pork) x1 + Miel (Honey) x1",
+      "mats": "Pork (Pork) x2 + Miel (Honey) x2",
       "needs": [
         {
           "item": "Pork",
-          "nameEs": "Panceta / Cerdo",
-          "qty": 1
+          "nameEs": "Pork",
+          "qty": 2
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 16,
+      "energyRestore": 15,
       "healthRestore": 32,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
       "sellPrice": 13500,
-      "xp": 90,
+      "netGold": 12500,
+      "netEnergy": 13,
+      "goldPerMin": 1563,
+      "xp": 80,
       "mealKind": "meat",
-      "desc": "+16 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 8 min."
+      "desc": "+15 ⚡ Energía, +32 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 8 min."
     },
     {
       "id": "quiche",
       "dish": "Quiche",
-      "item": "Quiche de Espárragos y Crema (Quiche) 🍲",
-      "level": "Cocina Lv 12 • Rare (Valor: 16.500g)",
+      "item": "Quiche (Quiche) 🍲",
+      "level": "Cocina Lv 12 • Rare (Valor: 3.000g)",
       "levelNum": 12,
       "tier": "Rare",
-      "mats": "Harina (Flour) x1 + Huevo (Egg) x2 + Crema / Nata (Cream) x1 + Espárrago (Asparagus) x1",
+      "mats": "Harina (Flour) x2 + Huevo (Egg) x4 + Crema / Nata (Cream) x2 + Asparagus (Asparagus) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Asparagus",
-          "nameEs": "Espárrago",
-          "qty": 1
+          "nameEs": "Asparagus",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 20,
+      "energyRestore": 50,
       "healthRestore": 40,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 16500,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 80,
       "mealKind": "breakfast",
-      "desc": "+20 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: breakfast. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: breakfast. Se prepara en la estufa en 8 min."
     },
     {
       "id": "strawberry_tart",
       "dish": "Strawberry Tart",
-      "item": "Tarta de Fresas con Crema (Strawberry Tart) 🍲",
-      "level": "Cocina Lv 12 • Rare (Valor: 16.500g)",
+      "item": "Strawberry Tart (Strawberry Tart) 🍲",
+      "level": "Cocina Lv 12 • Rare (Valor: 3.000g)",
       "levelNum": 12,
       "tier": "Rare",
-      "mats": "Fresa (Strawberry) x3 + Harina (Flour) x1 + Mantequilla (Butter) x1 + Crema / Nata (Cream) x1",
+      "mats": "Fresa (Strawberry) x6 + Harina (Flour) x2 + Mantequilla (Butter) x2 + Crema / Nata (Cream) x2",
       "needs": [
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 3
+          "qty": 6
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 20,
+      "energyRestore": 50,
       "healthRestore": 40,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 16500,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 80,
       "mealKind": "sweet",
-      "desc": "+20 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +40 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "honey_cake",
       "dish": "Honey Cake",
-      "item": "Pastel de Miel (Honey Cake) 🍲",
-      "level": "Cocina Lv 13 • Rare (Valor: 17.900g)",
+      "item": "Honey Cake (Honey Cake) 🍲",
+      "level": "Cocina Lv 13 • Rare (Valor: 3.000g)",
       "levelNum": 13,
       "tier": "Rare",
-      "mats": "Harina (Flour) x2 + Miel (Honey) x1 + Huevo (Egg) x1",
+      "mats": "Harina (Flour) x4 + Miel (Honey) x2 + Huevo (Egg) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 22,
+      "energyRestore": 50,
       "healthRestore": 44,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 17900,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 85,
       "mealKind": "sweet",
-      "desc": "+22 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "shepherd_s_pie",
       "dish": "Shepherd's Pie",
-      "item": "Pastel de Pastor (Shepherd's Pie) (Shepherd's Pie) 🍲",
-      "level": "Cocina Lv 13 • Rare (Valor: 17.900g)",
+      "item": "Shepherd's Pie (Shepherd's Pie) 🍲",
+      "level": "Cocina Lv 13 • Rare (Valor: 3.000g)",
       "levelNum": 13,
       "tier": "Rare",
-      "mats": "Carne de Cordero (Mutton) x1 + Patata (Potato) x2 + Zanahoria (Carrot) x1 + Mantequilla (Butter) x1",
+      "mats": "Mutton (Mutton) x2 + Patata (Potato) x4 + Zanahoria (Carrot) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Mutton",
-          "nameEs": "Carne de Cordero",
-          "qty": 1
+          "nameEs": "Mutton",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 22,
+      "energyRestore": 50,
       "healthRestore": 44,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 17900,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 48,
+      "goldPerMin": 250,
+      "xp": 85,
       "mealKind": "meat",
-      "desc": "+22 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 8 min."
     },
     {
       "id": "stuffed_mushrooms",
       "dish": "Stuffed Mushrooms",
-      "item": "Setas Rellenas Gratinadas (Stuffed Mushrooms) 🍲",
-      "level": "Cocina Lv 13 • Rare (Valor: 17.900g)",
+      "item": "Stuffed Mushrooms (Stuffed Mushrooms) 🍲",
+      "level": "Cocina Lv 13 • Rare (Valor: 3.000g)",
       "levelNum": 13,
       "tier": "Rare",
-      "mats": "Seta Silvercap (Silvercap Mushroom) x2 + Seta Glowcap (Glowcap Mushroom) x1 + Tomate (Tomato) x1",
+      "mats": "Seta Silvercap (Silvercap Mushroom) x4 + Glowcap Mushroom (Glowcap Mushroom) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Silvercap Mushroom",
           "nameEs": "Seta Silvercap",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Glowcap Mushroom",
-          "nameEs": "Seta Glowcap",
-          "qty": 1
+          "nameEs": "Glowcap Mushroom",
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 22,
+      "energyRestore": 18,
       "healthRestore": 44,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 17900,
-      "xp": 90,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 16,
+      "goldPerMin": 250,
+      "xp": 85,
       "mealKind": "forage",
-      "desc": "+22 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: forage. Se cocina en la estufa en 8 min."
+      "desc": "+18 ⚡ Energía, +44 ❤️ Vida. Tipo de plato: forage. Se prepara en la estufa en 8 min."
     },
     {
       "id": "beetroot_soup",
       "dish": "Beetroot Soup",
-      "item": "Sopa Rusa de Remolacha (Borsch) (Beetroot Soup) 🍲",
-      "level": "Cocina Lv 14 • Rare (Valor: 18.600g)",
+      "item": "Beetroot Soup (Beetroot Soup) 🍲",
+      "level": "Cocina Lv 14 • Rare (Valor: 3.000g)",
       "levelNum": 14,
       "tier": "Rare",
-      "mats": "Remolacha (Beetroot) x2 + Cebolla (Onion) x1 + Zanahoria (Carrot) x1",
+      "mats": "Remolacha (Beetroot) x4 + Cebolla (Onion) x2 + Zanahoria (Carrot) x2",
       "needs": [
         {
           "item": "Beetroot",
           "nameEs": "Remolacha",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 23,
+      "energyRestore": 27,
       "healthRestore": 46,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 18600,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 25,
+      "goldPerMin": 250,
       "xp": 90,
       "mealKind": "garden",
-      "desc": "+23 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 8 min."
+      "desc": "+27 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 8 min."
     },
     {
       "id": "cake",
       "dish": "Cake",
-      "item": "Tarta de Cumpleaños (Cake) 🍲",
+      "item": "Cake (Cake) 🍲",
       "level": "Cocina Lv 14 • Rare (Valor: 11.000g)",
       "levelNum": 14,
       "tier": "Rare",
-      "mats": "Harina (Flour) x2 + Huevo (Egg) x1 + Leche (Milk) x1 + Azúcar (Sugar) x1 + Fresa (Strawberry) x1",
+      "mats": "Harina (Flour) x4 + Huevo (Egg) x2 + Leche (Milk) x2 + Azúcar (Sugar) x2 + Fresa (Strawberry) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Milk",
           "nameEs": "Leche",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 24,
+      "energyRestore": 50,
       "healthRestore": 48,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
       "sellPrice": 11000,
+      "netGold": 10000,
+      "netEnergy": 48,
+      "goldPerMin": 1250,
       "xp": 90,
       "mealKind": "sweet",
-      "desc": "+24 ⚡ Energía, +48 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 8 min."
+      "desc": "+50 ⚡ Energía, +48 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 8 min."
     },
     {
       "id": "fireheart_chili",
       "dish": "Fireheart Chili",
-      "item": "Chili Picante de Carne y Fuego (Fireheart Chili) 🍲",
-      "level": "Cocina Lv 14 • Rare (Valor: 18.600g)",
+      "item": "Fireheart Chili (Fireheart Chili) 🍲",
+      "level": "Cocina Lv 14 • Rare (Valor: 3.000g)",
       "levelNum": 14,
       "tier": "Rare",
-      "mats": "Pimiento Corazón de Fuego (Fireheart Pepper) x1 + Carne de Ternera (Beef) x1 + Judía Adzuki (Adzuki Bean) x1 + Tomate (Tomato) x1",
+      "mats": "Fireheart Pepper (Fireheart Pepper) x2 + Beef (Beef) x2 + Adzuki Bean (Adzuki Bean) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Fireheart Pepper",
-          "nameEs": "Pimiento Corazón de Fuego",
-          "qty": 1
+          "nameEs": "Fireheart Pepper",
+          "qty": 2
         },
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Adzuki Bean",
-          "nameEs": "Judía Adzuki",
-          "qty": 1
+          "nameEs": "Adzuki Bean",
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 23,
+      "energyRestore": 24,
       "healthRestore": 46,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 18600,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 22,
+      "goldPerMin": 250,
       "xp": 90,
       "mealKind": "region",
-      "desc": "+23 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: region. Se cocina en la estufa en 8 min."
+      "desc": "+24 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: region. Se prepara en la estufa en 8 min."
     },
     {
       "id": "mutton_stew",
       "dish": "Mutton Stew",
-      "item": "Estofado de Cordero y Hortalizas (Mutton Stew) 🍲",
-      "level": "Cocina Lv 14 • Rare (Valor: 18.600g)",
+      "item": "Mutton Stew (Mutton Stew) 🍲",
+      "level": "Cocina Lv 14 • Rare (Valor: 3.000g)",
       "levelNum": 14,
       "tier": "Rare",
-      "mats": "Carne de Cordero (Mutton) x1 + Nabo de Nieve (Snow Turnip) x1 + Zanahoria (Carrot) x1 + Cebolla (Onion) x1",
+      "mats": "Mutton (Mutton) x2 + Snow Turnip (Snow Turnip) x2 + Zanahoria (Carrot) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Mutton",
-          "nameEs": "Carne de Cordero",
-          "qty": 1
+          "nameEs": "Mutton",
+          "qty": 2
         },
         {
           "item": "Snow Turnip",
-          "nameEs": "Nabo de Nieve",
-          "qty": 1
+          "nameEs": "Snow Turnip",
+          "qty": 2
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 23,
+      "energyRestore": 24,
       "healthRestore": 46,
       "energyCost": 2,
       "goldCost": 1000,
       "minutes": 8,
-      "sellPrice": 18600,
+      "sellPrice": 3000,
+      "netGold": 2000,
+      "netEnergy": 22,
+      "goldPerMin": 250,
       "xp": 90,
       "mealKind": "meat",
-      "desc": "+23 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 8 min."
+      "desc": "+24 ⚡ Energía, +46 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 8 min."
     },
     {
       "id": "casserole",
       "dish": "Casserole",
-      "item": "Gratinado de Coliflor y Brócoli (Casserole) 🍲",
-      "level": "Cocina Lv 15 • Epic (Valor: 20.700g)",
+      "item": "Casserole (Casserole) 🍲",
+      "level": "Cocina Lv 15 • Epic (Valor: 3.000g)",
       "levelNum": 15,
       "tier": "Epic",
-      "mats": "Coliflor (Cauliflower) x1 + Brócoli (Broccoli) x1 + Patata (Potato) x2 + Espárrago (Asparagus) x1",
+      "mats": "Cauliflower (Cauliflower) x2 + Broccoli (Broccoli) x2 + Patata (Potato) x4 + Asparagus (Asparagus) x2",
       "needs": [
         {
           "item": "Cauliflower",
-          "nameEs": "Coliflor",
-          "qty": 1
+          "nameEs": "Cauliflower",
+          "qty": 2
         },
         {
           "item": "Broccoli",
-          "nameEs": "Brócoli",
-          "qty": 1
+          "nameEs": "Broccoli",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Asparagus",
-          "nameEs": "Espárrago",
-          "qty": 1
+          "nameEs": "Asparagus",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 26,
+      "energyRestore": 35,
       "healthRestore": 52,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 20700,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 32,
+      "goldPerMin": 25,
+      "xp": 95,
       "mealKind": "garden",
-      "desc": "+26 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 20 min."
+      "desc": "+35 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 20 min."
     },
     {
       "id": "goat_curry",
       "dish": "Goat Curry",
-      "item": "Curry de Cabra con Arroz (Goat Curry) 🍲",
-      "level": "Cocina Lv 15 • Epic (Valor: 20.700g)",
+      "item": "Goat Curry (Goat Curry) 🍲",
+      "level": "Cocina Lv 15 • Epic (Valor: 3.000g)",
       "levelNum": 15,
       "tier": "Epic",
-      "mats": "Carne de Cabra (Goat Meat) x1 + Arroz (Rice) x2 + Pimiento Picante (Hot Pepper) x1 + Cebolla (Onion) x1",
+      "mats": "Goat Meat (Goat Meat) x2 + Arroz (Rice) x4 + Hot Pepper (Hot Pepper) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Goat Meat",
-          "nameEs": "Carne de Cabra",
-          "qty": 1
+          "nameEs": "Goat Meat",
+          "qty": 2
         },
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Hot Pepper",
-          "nameEs": "Pimiento Picante",
-          "qty": 1
+          "nameEs": "Hot Pepper",
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 26,
+      "energyRestore": 32,
       "healthRestore": 52,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 20700,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 29,
+      "goldPerMin": 25,
+      "xp": 95,
       "mealKind": "meat",
-      "desc": "+26 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 20 min."
+      "desc": "+32 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 20 min."
     },
     {
       "id": "pumpkin_soup",
       "dish": "Pumpkin Soup",
-      "item": "Crema de Calabaza Asada (Pumpkin Soup) 🍲",
-      "level": "Cocina Lv 15 • Epic (Valor: 20.700g)",
+      "item": "Pumpkin Soup (Pumpkin Soup) 🍲",
+      "level": "Cocina Lv 15 • Epic (Valor: 3.000g)",
       "levelNum": 15,
       "tier": "Epic",
-      "mats": "Calabaza (Pumpkin) x1 + Cebolla (Onion) x1 + Zanahoria (Carrot) x1",
+      "mats": "Pumpkin (Pumpkin) x2 + Cebolla (Onion) x2 + Zanahoria (Carrot) x2",
       "needs": [
         {
           "item": "Pumpkin",
-          "nameEs": "Calabaza",
-          "qty": 1
+          "nameEs": "Pumpkin",
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 26,
+      "energyRestore": 23,
       "healthRestore": 52,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 20700,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 20,
+      "goldPerMin": 25,
+      "xp": 95,
       "mealKind": "garden",
-      "desc": "+26 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: garden. Se cocina en la estufa en 20 min."
+      "desc": "+23 ⚡ Energía, +52 ❤️ Vida. Tipo de plato: garden. Se prepara en la estufa en 20 min."
     },
     {
       "id": "ice_melon_sorbet",
       "dish": "Ice Melon Sorbet",
-      "item": "Sorbete de Melón de Hielo (Ice Melon Sorbet) 🍲",
-      "level": "Cocina Lv 16 • Epic (Valor: 22.100g)",
+      "item": "Ice Melon Sorbet (Ice Melon Sorbet) 🍲",
+      "level": "Cocina Lv 16 • Epic (Valor: 3.000g)",
       "levelNum": 16,
       "tier": "Epic",
-      "mats": "Melón de Hielo (Ice Melon) x1 + Azúcar (Sugar) x1 + Crema / Nata (Cream) x1",
+      "mats": "Melón de Hielo (Ice Melon) x2 + Azúcar (Sugar) x2 + Crema / Nata (Cream) x2",
       "needs": [
         {
           "item": "Ice Melon",
           "nameEs": "Melón de Hielo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 28,
+      "energyRestore": 50,
       "healthRestore": 56,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 22100,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 100,
       "mealKind": "sweet",
-      "desc": "+28 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "pork_roast",
       "dish": "Pork Roast",
-      "item": "Asado de Cerdo con Batata (Pork Roast) 🍲",
-      "level": "Cocina Lv 16 • Epic (Valor: 22.100g)",
+      "item": "Pork Roast (Pork Roast) 🍲",
+      "level": "Cocina Lv 16 • Epic (Valor: 3.000g)",
       "levelNum": 16,
       "tier": "Epic",
-      "mats": "Panceta / Cerdo (Pork) x1 + Batata (Sweet Potato) x1 + Repollo (Cabbage) x1 + Cebolla (Onion) x1",
+      "mats": "Pork (Pork) x2 + Sweet Potato (Sweet Potato) x2 + Repollo (Cabbage) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Pork",
-          "nameEs": "Panceta / Cerdo",
-          "qty": 1
+          "nameEs": "Pork",
+          "qty": 2
         },
         {
           "item": "Sweet Potato",
-          "nameEs": "Batata",
-          "qty": 1
+          "nameEs": "Sweet Potato",
+          "qty": 2
         },
         {
           "item": "Cabbage",
           "nameEs": "Repollo",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 28,
+      "energyRestore": 26,
       "healthRestore": 56,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 22100,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 23,
+      "goldPerMin": 25,
+      "xp": 100,
       "mealKind": "meat",
-      "desc": "+28 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 20 min."
+      "desc": "+26 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 20 min."
     },
     {
       "id": "roast_dinner",
       "dish": "Roast Dinner",
-      "item": "Banquete de Trucha y Hortalizas (Roast Dinner) 🍲",
+      "item": "Roast Dinner (Roast Dinner) 🍲",
       "level": "Cocina Lv 16 • Rare (Valor: 16.000g)",
       "levelNum": 16,
       "tier": "Rare",
-      "mats": "Trucha Tigre (Tiger Trout) x1 + Patata (Potato) x2 + Espárrago (Asparagus) x1 + Remolacha (Beetroot) x1",
+      "mats": "Tiger Trout (Tiger Trout) x2 + Patata (Potato) x4 + Asparagus (Asparagus) x2 + Remolacha (Beetroot) x2",
       "needs": [
         {
           "item": "Tiger Trout",
-          "nameEs": "Trucha Tigre",
-          "qty": 1
+          "nameEs": "Tiger Trout",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Asparagus",
-          "nameEs": "Espárrago",
-          "qty": 1
+          "nameEs": "Asparagus",
+          "qty": 2
         },
         {
           "item": "Beetroot",
           "nameEs": "Remolacha",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 28,
+      "energyRestore": 35,
       "healthRestore": 56,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
       "sellPrice": 16000,
-      "xp": 150,
+      "netGold": 13500,
+      "netEnergy": 32,
+      "goldPerMin": 675,
+      "xp": 100,
       "mealKind": "fish",
-      "desc": "+28 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 20 min."
+      "desc": "+35 ⚡ Energía, +56 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 20 min."
     },
     {
       "id": "beef_stew",
       "dish": "Beef Stew",
-      "item": "Estofado de Ternera Tradicional (Beef Stew) 🍲",
-      "level": "Cocina Lv 17 • Epic (Valor: 22.800g)",
+      "item": "Beef Stew (Beef Stew) 🍲",
+      "level": "Cocina Lv 17 • Epic (Valor: 3.000g)",
       "levelNum": 17,
       "tier": "Epic",
-      "mats": "Carne de Ternera (Beef) x1 + Patata (Potato) x2 + Zanahoria (Carrot) x1 + Cebolla (Onion) x1",
+      "mats": "Beef (Beef) x2 + Patata (Potato) x4 + Zanahoria (Carrot) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 29,
+      "energyRestore": 32,
       "healthRestore": 58,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 22800,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 29,
+      "goldPerMin": 25,
+      "xp": 105,
       "mealKind": "meat",
-      "desc": "+29 ⚡ Energía, +58 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 20 min."
+      "desc": "+32 ⚡ Energía, +58 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 20 min."
     },
     {
       "id": "pumpkin_pie",
       "dish": "Pumpkin Pie",
-      "item": "Pastel de Calabaza Especiada (Pumpkin Pie) 🍲",
-      "level": "Cocina Lv 17 • Epic (Valor: 22.800g)",
+      "item": "Pumpkin Pie (Pumpkin Pie) 🍲",
+      "level": "Cocina Lv 17 • Epic (Valor: 3.000g)",
       "levelNum": 17,
       "tier": "Epic",
-      "mats": "Calabaza (Pumpkin) x2 + Harina (Flour) x1 + Mantequilla (Butter) x1 + Azúcar (Sugar) x1",
+      "mats": "Pumpkin (Pumpkin) x4 + Harina (Flour) x2 + Mantequilla (Butter) x2 + Azúcar (Sugar) x2",
       "needs": [
         {
           "item": "Pumpkin",
-          "nameEs": "Calabaza",
-          "qty": 2
+          "nameEs": "Pumpkin",
+          "qty": 4
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 29,
+      "energyRestore": 50,
       "healthRestore": 58,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 22800,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 105,
       "mealKind": "sweet",
-      "desc": "+29 ⚡ Energía, +58 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +58 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "fruit_smoothie",
       "dish": "Fruit Smoothie",
-      "item": "Batido Tropical de Piña y Bayas (Fruit Smoothie) 🍲",
-      "level": "Cocina Lv 18 • Epic (Valor: 23.500g)",
+      "item": "Fruit Smoothie (Fruit Smoothie) 🍲",
+      "level": "Cocina Lv 18 • Epic (Valor: 3.000g)",
       "levelNum": 18,
       "tier": "Epic",
-      "mats": "Piña (Pineapple) x1 + Fresa (Strawberry) x1 + Arándano (Blueberry) x1",
+      "mats": "Pineapple (Pineapple) x2 + Fresa (Strawberry) x2 + Arándano (Blueberry) x2",
       "needs": [
         {
           "item": "Pineapple",
-          "nameEs": "Piña",
-          "qty": 1
+          "nameEs": "Pineapple",
+          "qty": 2
         },
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Blueberry",
           "nameEs": "Arándano",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 30,
+      "energyRestore": 23,
       "healthRestore": 60,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 23500,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 20,
+      "goldPerMin": 25,
+      "xp": 110,
       "mealKind": "sweet",
-      "desc": "+30 ⚡ Energía, +60 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+23 ⚡ Energía, +60 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "hamburger",
       "dish": "Hamburger",
-      "item": "Hamburguesa con Queso y Tomate (Hamburger) 🍲",
-      "level": "Cocina Lv 18 • Epic (Valor: 23.500g)",
+      "item": "Hamburger (Hamburger) 🍲",
+      "level": "Cocina Lv 18 • Epic (Valor: 3.000g)",
       "levelNum": 18,
       "tier": "Epic",
-      "mats": "Carne de Ternera (Beef) x1 + Harina (Flour) x1 + Queso (Cheese) x1 + Tomate (Tomato) x1",
+      "mats": "Beef (Beef) x2 + Harina (Flour) x2 + Queso (Cheese) x2 + Tomate (Tomato) x2",
       "needs": [
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 30,
+      "energyRestore": 50,
       "healthRestore": 60,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 23500,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 110,
       "mealKind": "meat",
-      "desc": "+30 ⚡ Energía, +60 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +60 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 20 min."
     },
     {
       "id": "sweet_berry_cake",
       "dish": "Sweet Berry Cake",
-      "item": "Tarta de Tres Bayas (Sweet Berry Cake) 🍲",
-      "level": "Cocina Lv 18 • Epic (Valor: 24.200g)",
+      "item": "Sweet Berry Cake (Sweet Berry Cake) 🍲",
+      "level": "Cocina Lv 18 • Epic (Valor: 3.000g)",
       "levelNum": 18,
       "tier": "Epic",
-      "mats": "Fresa (Strawberry) x1 + Arándano (Blueberry) x1 + Mora (Blackberry) x1 + Harina (Flour) x2 + Huevo (Egg) x1",
+      "mats": "Fresa (Strawberry) x2 + Arándano (Blueberry) x2 + Mora (Blackberry) x2 + Harina (Flour) x4 + Huevo (Egg) x2",
       "needs": [
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Blueberry",
           "nameEs": "Arándano",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Blackberry",
           "nameEs": "Mora",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Egg",
           "nameEs": "Huevo",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 31,
+      "energyRestore": 50,
       "healthRestore": 62,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 24200,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 110,
       "mealKind": "sweet",
-      "desc": "+31 ⚡ Energía, +62 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +62 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "cheesecake",
       "dish": "Cheesecake",
-      "item": "Tarta de Queso con Fresas (Cheesecake) (Cheesecake) 🍲",
-      "level": "Cocina Lv 19 • Epic (Valor: 24.900g)",
+      "item": "Cheesecake (Cheesecake) 🍲",
+      "level": "Cocina Lv 19 • Epic (Valor: 3.000g)",
       "levelNum": 19,
       "tier": "Epic",
-      "mats": "Queso (Cheese) x1 + Crema / Nata (Cream) x1 + Azúcar (Sugar) x1 + Fresa (Strawberry) x1 + Harina (Flour) x1",
+      "mats": "Queso (Cheese) x2 + Crema / Nata (Cream) x2 + Azúcar (Sugar) x2 + Fresa (Strawberry) x2 + Harina (Flour) x2",
       "needs": [
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Cream",
           "nameEs": "Crema / Nata",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Sugar",
           "nameEs": "Azúcar",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 32,
+      "energyRestore": 50,
       "healthRestore": 64,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 24900,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 115,
       "mealKind": "sweet",
-      "desc": "+32 ⚡ Energía, +64 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +64 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "sashimi",
       "dish": "Sashimi",
-      "item": "Sashimi de Pez Dorado (Sashimi) 🍲",
-      "level": "Cocina Lv 19 • Epic (Valor: 24.900g)",
+      "item": "Sashimi (Sashimi) 🍲",
+      "level": "Cocina Lv 19 • Epic (Valor: 3.000g)",
       "levelNum": 19,
       "tier": "Epic",
-      "mats": "Pez Dorado (Golden Fish) x1 + Cucumber (Cucumber) x1",
+      "mats": "Golden Fish (Golden Fish) x2 + Pepino (Cucumber) x2",
       "needs": [
         {
           "item": "Golden Fish",
-          "nameEs": "Pez Dorado",
-          "qty": 1
+          "nameEs": "Golden Fish",
+          "qty": 2
         },
         {
           "item": "Cucumber",
-          "nameEs": "Cucumber",
-          "qty": 1
+          "nameEs": "Pepino",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 32,
+      "energyRestore": 17,
       "healthRestore": 64,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 24900,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 14,
+      "goldPerMin": 25,
+      "xp": 115,
       "mealKind": "fish",
-      "desc": "+32 ⚡ Energía, +64 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 20 min."
+      "desc": "+17 ⚡ Energía, +64 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 20 min."
     },
     {
       "id": "tropical_salad",
       "dish": "Tropical Salad",
-      "item": "Ensalada Tropical Exótica (Tropical Salad) 🍲",
-      "level": "Cocina Lv 19 • Epic (Valor: 25.600g)",
+      "item": "Tropical Salad (Tropical Salad) 🍲",
+      "level": "Cocina Lv 19 • Epic (Valor: 3.000g)",
       "levelNum": 19,
       "tier": "Epic",
-      "mats": "Piña (Pineapple) x1 + Sandía (Watermelon) x1 + Melón Cantaloupe (Cantaloupe) x1 + Uvas (Grapes) x1",
+      "mats": "Pineapple (Pineapple) x2 + Watermelon (Watermelon) x2 + Cantaloupe (Cantaloupe) x2 + Grapes (Grapes) x2",
       "needs": [
         {
           "item": "Pineapple",
-          "nameEs": "Piña",
-          "qty": 1
+          "nameEs": "Pineapple",
+          "qty": 2
         },
         {
           "item": "Watermelon",
-          "nameEs": "Sandía",
-          "qty": 1
+          "nameEs": "Watermelon",
+          "qty": 2
         },
         {
           "item": "Cantaloupe",
-          "nameEs": "Melón Cantaloupe",
-          "qty": 1
+          "nameEs": "Cantaloupe",
+          "qty": 2
         },
         {
           "item": "Grapes",
-          "nameEs": "Uvas",
-          "qty": 1
+          "nameEs": "Grapes",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 33,
+      "energyRestore": 29,
       "healthRestore": 66,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 25600,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 26,
+      "goldPerMin": 25,
+      "xp": 115,
       "mealKind": "sweet",
-      "desc": "+33 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+29 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "grape_juice",
       "dish": "Grape Juice",
-      "item": "Zumo Concentrado de Uva y Aloe (Grape Juice) 🍲",
-      "level": "Cocina Lv 20 • Epic (Valor: 25.600g)",
+      "item": "Grape Juice (Grape Juice) 🍲",
+      "level": "Cocina Lv 20 • Legendary (Valor: 3.000g)",
       "levelNum": 20,
-      "tier": "Epic",
-      "mats": "Uvas (Grapes) x3 + Aloe Vera (Aloe) x1",
+      "tier": "Legendary",
+      "mats": "Grapes (Grapes) x6 + Aloe (Aloe) x2",
       "needs": [
         {
           "item": "Grapes",
-          "nameEs": "Uvas",
-          "qty": 3
+          "nameEs": "Grapes",
+          "qty": 6
         },
         {
           "item": "Aloe",
-          "nameEs": "Aloe Vera",
-          "qty": 1
+          "nameEs": "Aloe",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 33,
+      "energyRestore": 29,
       "healthRestore": 66,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 25600,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 26,
+      "goldPerMin": 25,
+      "xp": 120,
       "mealKind": "sweet",
-      "desc": "+33 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: sweet. Se cocina en la estufa en 20 min."
+      "desc": "+29 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: sweet. Se prepara en la estufa en 20 min."
     },
     {
       "id": "lasagne",
       "dish": "Lasagne",
-      "item": "Lasaña Casera de Ternera y Queso (Lasagne) 🍲",
-      "level": "Cocina Lv 20 • Epic (Valor: 25.600g)",
+      "item": "Lasagne (Lasagne) 🍲",
+      "level": "Cocina Lv 20 • Legendary (Valor: 3.000g)",
       "levelNum": 20,
-      "tier": "Epic",
-      "mats": "Carne de Ternera (Beef) x1 + Harina (Flour) x2 + Queso (Cheese) x1 + Tomate (Tomato) x2",
+      "tier": "Legendary",
+      "mats": "Beef (Beef) x2 + Harina (Flour) x4 + Queso (Cheese) x2 + Tomate (Tomato) x4",
       "needs": [
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 33,
+      "energyRestore": 50,
       "healthRestore": 66,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 25600,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 47,
+      "goldPerMin": 25,
+      "xp": 120,
       "mealKind": "meat",
-      "desc": "+33 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 20 min."
+      "desc": "+50 ⚡ Energía, +66 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 20 min."
     },
     {
       "id": "maki_sushi",
       "dish": "Maki Sushi",
-      "item": "Maki Sushi de Trucha y Pepino (Maki Sushi) 🍲",
-      "level": "Cocina Lv 20 • Epic (Valor: 26.300g)",
+      "item": "Maki Sushi (Maki Sushi) 🍲",
+      "level": "Cocina Lv 20 • Legendary (Valor: 3.000g)",
       "levelNum": 20,
-      "tier": "Epic",
-      "mats": "Arroz (Rice) x2 + Trucha Tigre (Tiger Trout) x1 + Cucumber (Cucumber) x1 + Cebollín (Spring Onion) x1",
+      "tier": "Legendary",
+      "mats": "Arroz (Rice) x4 + Tiger Trout (Tiger Trout) x2 + Pepino (Cucumber) x2 + Cebollín (Spring Onion) x2",
       "needs": [
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Tiger Trout",
-          "nameEs": "Trucha Tigre",
-          "qty": 1
+          "nameEs": "Tiger Trout",
+          "qty": 2
         },
         {
           "item": "Cucumber",
-          "nameEs": "Cucumber",
-          "qty": 1
+          "nameEs": "Pepino",
+          "qty": 2
         },
         {
           "item": "Spring Onion",
           "nameEs": "Cebollín",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 34,
+      "energyRestore": 35,
       "healthRestore": 68,
       "energyCost": 3,
       "goldCost": 2500,
       "minutes": 20,
-      "sellPrice": 26300,
-      "xp": 150,
+      "sellPrice": 3000,
+      "netGold": 500,
+      "netEnergy": 32,
+      "goldPerMin": 25,
+      "xp": 120,
       "mealKind": "fish",
-      "desc": "+34 ⚡ Energía, +68 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 20 min."
+      "desc": "+35 ⚡ Energía, +68 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 20 min."
     },
     {
       "id": "cioppino",
       "dish": "Cioppino",
-      "item": "Cioppino (Guiso Marinero) (Cioppino) 🍲",
-      "level": "Cocina Lv 21 • Legendary (Valor: 27.700g)",
+      "item": "Cioppino (Cioppino) 🍲",
+      "level": "Cocina Lv 21 • Legendary (Valor: 3.000g)",
       "levelNum": 21,
       "tier": "Legendary",
-      "mats": "Trucha Tigre (Tiger Trout) x1 + Lucio (Pike Fish) x1 + Perca (Perch) x1 + Tomate (Tomato) x1 + Cebolla (Onion) x1",
+      "mats": "Tiger Trout (Tiger Trout) x2 + Lucio (Pike Fish) x2 + Perca (Perch) x2 + Tomate (Tomato) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Tiger Trout",
-          "nameEs": "Trucha Tigre",
-          "qty": 1
+          "nameEs": "Tiger Trout",
+          "qty": 2
         },
         {
           "item": "Pike Fish",
           "nameEs": "Lucio",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Perch",
           "nameEs": "Perca",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Tomato",
           "nameEs": "Tomate",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
@@ -2690,316 +2912,340 @@
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 27700,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 32,
+      "goldPerMin": 0,
+      "xp": 125,
       "mealKind": "fish",
-      "desc": "+36 ⚡ Energía, +72 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 45 min."
+      "desc": "+36 ⚡ Energía, +72 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 45 min."
     },
     {
       "id": "sunday_roast",
       "dish": "Sunday Roast",
-      "item": "Asado Dominical de Pollo y Patatas (Sunday Roast) 🍲",
-      "level": "Cocina Lv 21 • Legendary (Valor: 27.700g)",
+      "item": "Sunday Roast (Sunday Roast) 🍲",
+      "level": "Cocina Lv 21 • Legendary (Valor: 3.000g)",
       "levelNum": 21,
       "tier": "Legendary",
-      "mats": "Carne de Pollo (Chicken Meat) x1 + Patata (Potato) x2 + Zanahoria (Carrot) x1 + Mantequilla (Butter) x1",
+      "mats": "Chicken Meat (Chicken Meat) x2 + Patata (Potato) x4 + Zanahoria (Carrot) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Chicken Meat",
-          "nameEs": "Carne de Pollo",
-          "qty": 1
+          "nameEs": "Chicken Meat",
+          "qty": 2
         },
         {
           "item": "Potato",
           "nameEs": "Patata",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Carrot",
           "nameEs": "Zanahoria",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 36,
+      "energyRestore": 50,
       "healthRestore": 72,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 27700,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 46,
+      "goldPerMin": 0,
+      "xp": 125,
       "mealKind": "meat",
-      "desc": "+36 ⚡ Energía, +72 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 45 min."
+      "desc": "+50 ⚡ Energía, +72 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 45 min."
     },
     {
       "id": "mushroom_risotto",
       "dish": "Mushroom Risotto",
-      "item": "Risotto de Setas del Bosque (Mushroom Risotto) 🍲",
-      "level": "Cocina Lv 22 • Legendary (Valor: 29.100g)",
+      "item": "Mushroom Risotto (Mushroom Risotto) 🍲",
+      "level": "Cocina Lv 22 • Legendary (Valor: 3.000g)",
       "levelNum": 22,
       "tier": "Legendary",
-      "mats": "Arroz (Rice) x2 + Espárrago (Asparagus) x1 + Seta Silvercap (Silvercap Mushroom) x1 + Seta Glowcap (Glowcap Mushroom) x1",
+      "mats": "Arroz (Rice) x4 + Asparagus (Asparagus) x2 + Seta Silvercap (Silvercap Mushroom) x2 + Glowcap Mushroom (Glowcap Mushroom) x2",
       "needs": [
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Asparagus",
-          "nameEs": "Espárrago",
-          "qty": 1
+          "nameEs": "Asparagus",
+          "qty": 2
         },
         {
           "item": "Silvercap Mushroom",
           "nameEs": "Seta Silvercap",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Glowcap Mushroom",
-          "nameEs": "Seta Glowcap",
-          "qty": 1
+          "nameEs": "Glowcap Mushroom",
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 38,
+      "energyRestore": 30,
       "healthRestore": 76,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 29100,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 26,
+      "goldPerMin": 0,
+      "xp": 130,
       "mealKind": "forage",
-      "desc": "+38 ⚡ Energía, +76 ❤️ Vida. Tipo de plato: forage. Se cocina en la estufa en 45 min."
+      "desc": "+30 ⚡ Energía, +76 ❤️ Vida. Tipo de plato: forage. Se prepara en la estufa en 45 min."
     },
     {
       "id": "beef_wellington",
       "dish": "Beef Wellington",
-      "item": "Solomillo Wellington con Setas (Beef Wellington) 🍲",
-      "level": "Cocina Lv 23 • Legendary (Valor: 29.800g)",
+      "item": "Beef Wellington (Beef Wellington) 🍲",
+      "level": "Cocina Lv 23 • Legendary (Valor: 3.000g)",
       "levelNum": 23,
       "tier": "Legendary",
-      "mats": "Carne de Ternera (Beef) x1 + Harina (Flour) x1 + Mantequilla (Butter) x1 + Seta Silvercap (Silvercap Mushroom) x2",
+      "mats": "Beef (Beef) x2 + Harina (Flour) x2 + Mantequilla (Butter) x2 + Seta Silvercap (Silvercap Mushroom) x4",
       "needs": [
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Silvercap Mushroom",
           "nameEs": "Seta Silvercap",
-          "qty": 2
+          "qty": 4
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 39,
+      "energyRestore": 50,
       "healthRestore": 78,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 29800,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 46,
+      "goldPerMin": 0,
+      "xp": 135,
       "mealKind": "meat",
-      "desc": "+39 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: meat. Se cocina en la estufa en 45 min."
+      "desc": "+50 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: meat. Se prepara en la estufa en 45 min."
     },
     {
       "id": "truffle_risotto",
       "dish": "Truffle Risotto",
-      "item": "Risotto Gourmet con Trufa Negra (Truffle Risotto) 🍲",
-      "level": "Cocina Lv 23 • Legendary (Valor: 29.800g)",
+      "item": "Truffle Risotto (Truffle Risotto) 🍲",
+      "level": "Cocina Lv 23 • Legendary (Valor: 3.000g)",
       "levelNum": 23,
       "tier": "Legendary",
-      "mats": "Arroz (Rice) x2 + Trufa Negra (Truffle) x1 + Queso (Cheese) x1 + Mantequilla (Butter) x1",
+      "mats": "Arroz (Rice) x4 + Truffle (Truffle) x2 + Queso (Cheese) x2 + Mantequilla (Butter) x2",
       "needs": [
         {
           "item": "Rice",
           "nameEs": "Arroz",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Truffle",
-          "nameEs": "Trufa Negra",
-          "qty": 1
+          "nameEs": "Truffle",
+          "qty": 2
         },
         {
           "item": "Cheese",
           "nameEs": "Queso",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Butter",
           "nameEs": "Mantequilla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 39,
+      "energyRestore": 50,
       "healthRestore": 78,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 29800,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 46,
+      "goldPerMin": 0,
+      "xp": 135,
       "mealKind": "forage",
-      "desc": "+39 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: forage. Se cocina en la estufa en 45 min."
+      "desc": "+50 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: forage. Se prepara en la estufa en 45 min."
     },
     {
       "id": "harvest_cake",
       "dish": "Harvest Cake",
-      "item": "Pastel Real de la Cosecha (Harvest Cake) 🍲",
-      "level": "Cocina Lv 24 • Legendary (Valor: 29.800g)",
+      "item": "Harvest Cake (Harvest Cake) 🍲",
+      "level": "Cocina Lv 24 • Legendary (Valor: 3.000g)",
       "levelNum": 24,
       "tier": "Legendary",
-      "mats": "Harina (Flour) x2 + Piña (Pineapple) x1 + Uvas (Grapes) x1 + Fresa (Strawberry) x1 + Miel (Honey) x1",
+      "mats": "Harina (Flour) x4 + Pineapple (Pineapple) x2 + Grapes (Grapes) x2 + Fresa (Strawberry) x2 + Miel (Honey) x2",
       "needs": [
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 2
+          "qty": 4
         },
         {
           "item": "Pineapple",
-          "nameEs": "Piña",
-          "qty": 1
+          "nameEs": "Pineapple",
+          "qty": 2
         },
         {
           "item": "Grapes",
-          "nameEs": "Uvas",
-          "qty": 1
+          "nameEs": "Grapes",
+          "qty": 2
         },
         {
           "item": "Strawberry",
           "nameEs": "Fresa",
-          "qty": 1
+          "qty": 2
         },
         {
           "item": "Honey",
           "nameEs": "Miel",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 39,
+      "energyRestore": 50,
       "healthRestore": 78,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 29800,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 46,
+      "goldPerMin": 0,
+      "xp": 140,
       "mealKind": "feast",
-      "desc": "+39 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: feast. Se cocina en la estufa en 45 min."
+      "desc": "+50 ⚡ Energía, +78 ❤️ Vida. Tipo de plato: feast. Se prepara en la estufa en 45 min."
     },
     {
       "id": "golden_bisque",
       "dish": "Golden Bisque",
-      "item": "Bisque Dorado de Alta Cocina (Golden Bisque) 🍲",
-      "level": "Cocina Lv 25 • Legendary (Valor: 30.500g)",
+      "item": "Golden Bisque (Golden Bisque) 🍲",
+      "level": "Cocina Lv 25 • Legendary (Valor: 3.000g)",
       "levelNum": 25,
       "tier": "Legendary",
-      "mats": "Pez Dorado (Golden Fish) x1 + Calabaza (Pumpkin) x1 + Espárrago (Asparagus) x1 + Cebolla (Onion) x1",
+      "mats": "Golden Fish (Golden Fish) x2 + Pumpkin (Pumpkin) x2 + Asparagus (Asparagus) x2 + Cebolla (Onion) x2",
       "needs": [
         {
           "item": "Golden Fish",
-          "nameEs": "Pez Dorado",
-          "qty": 1
+          "nameEs": "Golden Fish",
+          "qty": 2
         },
         {
           "item": "Pumpkin",
-          "nameEs": "Calabaza",
-          "qty": 1
+          "nameEs": "Pumpkin",
+          "qty": 2
         },
         {
           "item": "Asparagus",
-          "nameEs": "Espárrago",
-          "qty": 1
+          "nameEs": "Asparagus",
+          "qty": 2
         },
         {
           "item": "Onion",
           "nameEs": "Cebolla",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 40,
+      "energyRestore": 30,
       "healthRestore": 80,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 30500,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 26,
+      "goldPerMin": 0,
+      "xp": 145,
       "mealKind": "feast",
-      "desc": "+40 ⚡ Energía, +80 ❤️ Vida. Tipo de plato: feast. Se cocina en la estufa en 45 min."
+      "desc": "+30 ⚡ Energía, +80 ❤️ Vida. Tipo de plato: feast. Se prepara en la estufa en 45 min."
     },
     {
       "id": "the_harvest_feast",
       "dish": "The Harvest Feast",
-      "item": "El Gran Banquete de la Cosecha (The Harvest Feast) 🍲",
-      "level": "Cocina Lv 25 • Legendary (Valor: 34.000g)",
+      "item": "The Harvest Feast (The Harvest Feast) 🍲",
+      "level": "Cocina Lv 25 • Legendary (Valor: 3.000g)",
       "levelNum": 25,
       "tier": "Legendary",
-      "mats": "Carne de Ternera (Beef) x1 + Carne de Pollo (Chicken Meat) x1 + Calabaza (Pumpkin) x1 + Uvas (Grapes) x1 + Harina (Flour) x1",
+      "mats": "Beef (Beef) x2 + Chicken Meat (Chicken Meat) x2 + Pumpkin (Pumpkin) x2 + Grapes (Grapes) x2 + Harina (Flour) x2",
       "needs": [
         {
           "item": "Beef",
-          "nameEs": "Carne de Ternera",
-          "qty": 1
+          "nameEs": "Beef",
+          "qty": 2
         },
         {
           "item": "Chicken Meat",
-          "nameEs": "Carne de Pollo",
-          "qty": 1
+          "nameEs": "Chicken Meat",
+          "qty": 2
         },
         {
           "item": "Pumpkin",
-          "nameEs": "Calabaza",
-          "qty": 1
+          "nameEs": "Pumpkin",
+          "qty": 2
         },
         {
           "item": "Grapes",
-          "nameEs": "Uvas",
-          "qty": 1
+          "nameEs": "Grapes",
+          "qty": 2
         },
         {
           "item": "Flour",
           "nameEs": "Harina",
-          "qty": 1
+          "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 45,
+      "energyRestore": 39,
       "healthRestore": 90,
       "energyCost": 4,
       "goldCost": 6000,
       "minutes": 45,
-      "sellPrice": 34000,
-      "xp": 250,
+      "sellPrice": 3000,
+      "netGold": 0,
+      "netEnergy": 35,
+      "goldPerMin": 0,
+      "xp": 145,
       "mealKind": "feast",
-      "desc": "+45 ⚡ Energía, +90 ❤️ Vida. Tipo de plato: feast. Se cocina en la estufa en 45 min."
+      "desc": "+39 ⚡ Energía, +90 ❤️ Vida. Tipo de plato: feast. Se prepara en la estufa en 45 min."
     },
     {
       "id": "moonlight_stew",
       "dish": "Moonlight Stew",
-      "item": "Estofado de los Fundadores (Moonlight Stew) (Moonlight Stew) 🍲",
+      "item": "Moonlight Stew (Moonlight Stew) 🍲",
       "level": "Cocina Lv 1 • Legendary (Valor: 35.000g)",
       "levelNum": 1,
       "tier": "Legendary",
-      "mats": "Bagre Fantasma (Ghost Catfish) x1 + Fruta Estelar (Star Fruit) x1 + Seta Silvercap (Silvercap Mushroom) x2",
+      "mats": "Bagre Fantasma (Ghost Catfish) x1 + Fruta Estrella (Star Fruit) x1 + Seta Silvercap (Silvercap Mushroom) x2",
       "needs": [
         {
           "item": "Ghost Catfish",
@@ -3008,7 +3254,7 @@
         },
         {
           "item": "Star Fruit",
-          "nameEs": "Fruta Estelar",
+          "nameEs": "Fruta Estrella",
           "qty": 1
         },
         {
@@ -3018,49 +3264,177 @@
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 25,
+      "energyRestore": 9,
       "healthRestore": 50,
-      "energyCost": 0,
+      "energyCost": 1,
       "goldCost": 100,
       "minutes": 1,
       "sellPrice": 35000,
+      "netGold": 34900,
+      "netEnergy": 8,
+      "goldPerMin": 34900,
       "xp": 25,
       "mealKind": "feast",
-      "desc": "+25 ⚡ Energía, +50 ❤️ Vida. Tipo de plato: feast. Se cocina en la estufa en 1 min."
+      "desc": "+9 ⚡ Energía, +50 ❤️ Vida. Tipo de plato: feast. Se prepara en la estufa en 1 min."
     },
     {
       "id": "smoked_eel",
       "dish": "Smoked Eel",
-      "item": "Anguila Ahumada de la Laguna (Smoked Eel) 🍲",
-      "level": "Cocina Lv 1 • Common (Valor: 8.800g)",
+      "item": "Smoked Eel (Smoked Eel) 🍲",
+      "level": "Cocina Lv 1 • Common (Valor: 3.000g)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Anguila de la Ciénaga (Marsh Eel) x2",
+      "mats": "Marsh Eel (Marsh Eel) x4",
       "needs": [
         {
           "item": "Marsh Eel",
-          "nameEs": "Anguila de la Ciénaga",
+          "nameEs": "Marsh Eel",
+          "qty": 4
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 12,
+      "healthRestore": 18,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 1,
+      "sellPrice": 3000,
+      "netGold": 2900,
+      "netEnergy": 11,
+      "goldPerMin": 2900,
+      "xp": 25,
+      "mealKind": "fish",
+      "desc": "+12 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: fish. Se prepara en la estufa en 1 min."
+    },
+    {
+      "id": "sunfire_chili",
+      "dish": "Sunfire Chili",
+      "item": "Sunfire Chili (Sunfire Chili) 🍲",
+      "level": "Cocina Lv 3 • VIP (Valor: 6.500g)",
+      "levelNum": 3,
+      "tier": "Rare",
+      "mats": "Pimiento (Pepper) x2",
+      "needs": [
+        {
+          "item": "Pepper",
+          "nameEs": "Pimiento",
           "qty": 2
         }
       ],
       "place": "Estufa (Panadería Tamsin / Cabaña)",
-      "energyRestore": 9,
-      "healthRestore": 18,
-      "energyCost": 0,
+      "energyRestore": 6,
+      "healthRestore": 12,
+      "energyCost": 2,
+      "goldCost": 80,
+      "minutes": 2,
+      "sellPrice": 6500,
+      "netGold": 6420,
+      "netEnergy": 4,
+      "goldPerMin": 3210,
+      "xp": 40,
+      "mealKind": "vip",
+      "desc": "+6 ⚡ Energía + Buff de velocidad temporal."
+    },
+    {
+      "id": "sapphire_jam",
+      "dish": "Sapphire Jam",
+      "item": "Sapphire Jam (Sapphire Jam) 🍲",
+      "level": "Cocina Lv 3 • VIP (Valor: 6.500g)",
+      "levelNum": 3,
+      "tier": "Rare",
+      "mats": "Arándano (Blueberry) x2",
+      "needs": [
+        {
+          "item": "Blueberry",
+          "nameEs": "Arándano",
+          "qty": 2
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 6,
+      "healthRestore": 12,
+      "energyCost": 2,
+      "goldCost": 80,
+      "minutes": 2,
+      "sellPrice": 6500,
+      "netGold": 6420,
+      "netEnergy": 4,
+      "goldPerMin": 3210,
+      "xp": 40,
+      "mealKind": "vip",
+      "desc": "+6 ⚡ Energía + Reducción de coste al minar."
+    },
+    {
+      "id": "diamond_tart",
+      "dish": "Diamond Tart",
+      "item": "Diamond Tart (Diamond Tart) 🍲",
+      "level": "Cocina Lv 3 • VIP (Valor: 7.500g)",
+      "levelNum": 3,
+      "tier": "Rare",
+      "mats": "Fresa (Strawberry) x2",
+      "needs": [
+        {
+          "item": "Strawberry",
+          "nameEs": "Fresa",
+          "qty": 2
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 6,
+      "healthRestore": 12,
+      "energyCost": 2,
       "goldCost": 100,
-      "minutes": 1,
-      "sellPrice": 8800,
-      "xp": 25,
-      "mealKind": "fish",
-      "desc": "+9 ⚡ Energía, +18 ❤️ Vida. Tipo de plato: fish. Se cocina en la estufa en 1 min."
+      "minutes": 2,
+      "sellPrice": 7500,
+      "netGold": 7400,
+      "netEnergy": 4,
+      "goldPerMin": 3700,
+      "xp": 40,
+      "mealKind": "vip",
+      "desc": "+6 ⚡ Energía + Recarga de estamina."
+    },
+    {
+      "id": "golden_pie",
+      "dish": "Golden Pie",
+      "item": "Golden Pie (Golden Pie) 🍲",
+      "level": "Cocina Lv 5 • VIP (Valor: 25.000g)",
+      "levelNum": 5,
+      "tier": "Rare",
+      "mats": "Maíz (Corn) x2 + Trigo (Wheat) x2",
+      "needs": [
+        {
+          "item": "Corn",
+          "nameEs": "Maíz",
+          "qty": 2
+        },
+        {
+          "item": "Wheat",
+          "nameEs": "Trigo",
+          "qty": 2
+        }
+      ],
+      "place": "Estufa (Panadería Tamsin / Cabaña)",
+      "energyRestore": 50,
+      "healthRestore": 100,
+      "energyCost": 2,
+      "goldCost": 500,
+      "minutes": 10,
+      "sellPrice": 25000,
+      "netGold": 24500,
+      "netEnergy": 48,
+      "goldPerMin": 2450,
+      "xp": 40,
+      "mealKind": "vip",
+      "desc": "⚡ +50 DE ENERGÍA. Llena la barra casi entera de golpe."
     }
   ],
   "bench": [
     {
       "id": "wooden_plank",
       "craftItem": "Wooden Plank",
+      "dish": "Wooden Plank",
       "item": "Tablón de Madera (Wooden Plank) 🪵",
-      "level": "Artesanía Lv 1 • Common (+18 XP)",
+      "level": "Artesanía Lv 1 (+18 XP)",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Madera (Wood) x3",
@@ -3077,40 +3451,19 @@
       "energyCost": 1,
       "goldCost": 20,
       "minutes": 1,
-      "sellPrice": 1400,
+      "sellPrice": 110,
+      "netGold": 90,
+      "netEnergy": -1,
+      "goldPerMin": 90,
       "xp": 18,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 1. Coste: 20g y 1⚡."
-    },
-    {
-      "id": "copper_bar",
-      "craftItem": "Copper Bar",
-      "item": "Barra de Cobre (Copper Bar) 🪵",
-      "level": "Artesanía Lv 1 • Common (+18 XP)",
-      "levelNum": 1,
-      "tier": "Common",
-      "mats": "Mena de Cobre (Copper Ore) x2",
-      "needs": [
-        {
-          "item": "Copper Ore",
-          "nameEs": "Mena de Cobre",
-          "qty": 2
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 1,
-      "goldCost": 20,
-      "minutes": 1,
-      "sellPrice": 1400,
-      "xp": 18,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 1. Coste: 20g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 20g en 1 min."
     },
     {
       "id": "rope",
       "craftItem": "Rope",
+      "dish": "Rope",
       "item": "Cuerda de Enredadera (Rope) 🪵",
-      "level": "Artesanía Lv 2 • Common (+24 XP)",
+      "level": "Artesanía Lv 2 (+24 XP)",
       "levelNum": 2,
       "tier": "Common",
       "mats": "Trigo (Wheat) x3",
@@ -3127,15 +3480,19 @@
       "energyCost": 1,
       "goldCost": 20,
       "minutes": 1,
-      "sellPrice": 2300,
+      "sellPrice": 160,
+      "netGold": 140,
+      "netEnergy": -1,
+      "goldPerMin": 140,
       "xp": 24,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 2. Coste: 20g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 20g en 1 min."
     },
     {
       "id": "repair_kit",
       "craftItem": "Repair Kit",
+      "dish": "Repair Kit",
       "item": "Kit de Reparación (Repair Kit) 🪵",
-      "level": "Artesanía Lv 3 • Common (+30 XP)",
+      "level": "Artesanía Lv 3 (+30 XP)",
       "levelNum": 3,
       "tier": "Common",
       "mats": "Tablón de Madera (Wooden Plank) x2 + Barra de Cobre (Copper Bar) x1",
@@ -3157,43 +3514,22 @@
       "energyCost": 1,
       "goldCost": 20,
       "minutes": 1,
-      "sellPrice": 3200,
+      "sellPrice": 210,
+      "netGold": 190,
+      "netEnergy": -1,
+      "goldPerMin": 190,
       "xp": 30,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 3. Coste: 20g y 1⚡."
-    },
-    {
-      "id": "cut_rose_quartz",
-      "craftItem": "Cut Rose Quartz",
-      "item": "Cuarzo Rosa Tallado (Cut Rose Quartz) 🪵",
-      "level": "Artesanía Lv 4 • Common (+36 XP)",
-      "levelNum": 4,
-      "tier": "Common",
-      "mats": "Cuarzo Rosa (Rose Quartz) x2",
-      "needs": [
-        {
-          "item": "Rose Quartz",
-          "nameEs": "Cuarzo Rosa",
-          "qty": 2
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 1,
-      "goldCost": 20,
-      "minutes": 1,
-      "sellPrice": 4100,
-      "xp": 36,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 4. Coste: 20g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 20g en 1 min."
     },
     {
       "id": "broom_charm",
       "craftItem": "Broom Charm",
-      "item": "Amuleto de la Escoba (Broom Charm) 🪵",
-      "level": "Artesanía Lv 5 • Uncommon (+42 XP)",
+      "dish": "Broom Charm",
+      "item": "Broom Charm (Broom Charm) 🪵",
+      "level": "Artesanía Lv 5 (+42 XP)",
       "levelNum": 5,
       "tier": "Uncommon",
-      "mats": "Cuerda de Enredadera (Rope) x1 + Cuarzo Rosa Tallado (Cut Rose Quartz) x1 + Caléndula (Marigold) x1",
+      "mats": "Cuerda de Enredadera (Rope) x1 + Cut Rose Quartz (Cut Rose Quartz) x1 + Marigold (Marigold) x1",
       "needs": [
         {
           "item": "Rope",
@@ -3202,12 +3538,12 @@
         },
         {
           "item": "Cut Rose Quartz",
-          "nameEs": "Cuarzo Rosa Tallado",
+          "nameEs": "Cut Rose Quartz",
           "qty": 1
         },
         {
           "item": "Marigold",
-          "nameEs": "Caléndula",
+          "nameEs": "Marigold",
           "qty": 1
         }
       ],
@@ -3217,22 +3553,36 @@
       "energyCost": 1,
       "goldCost": 100,
       "minutes": 2,
-      "sellPrice": 5000,
+      "sellPrice": 550,
+      "netGold": 450,
+      "netEnergy": -1,
+      "goldPerMin": 225,
       "xp": 42,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 5. Coste: 100g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 100g en 2 min."
     },
     {
-      "id": "cut_topaz",
-      "craftItem": "Cut Topaz",
-      "item": "Topacio Tallado (Cut Topaz) 🪵",
-      "level": "Artesanía Lv 6 • Uncommon (+48 XP)",
+      "id": "iron_bow",
+      "craftItem": "Iron Bow",
+      "dish": "Iron Bow",
+      "item": "Iron Bow (Iron Bow) 🪵",
+      "level": "Artesanía Lv 6 (+48 XP)",
       "levelNum": 6,
       "tier": "Uncommon",
-      "mats": "Topacio (Topaz) x2",
+      "mats": "Barra de Hierro (Iron Bar) x3 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
       "needs": [
         {
-          "item": "Topaz",
-          "nameEs": "Topacio",
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 3
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
           "qty": 2
         }
       ],
@@ -3242,15 +3592,58 @@
       "energyCost": 1,
       "goldCost": 100,
       "minutes": 2,
-      "sellPrice": 5900,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
       "xp": 48,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 6. Coste: 100g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "iron_staff",
+      "craftItem": "Iron Staff",
+      "dish": "Iron Staff",
+      "item": "Iron Staff (Iron Staff) 🪵",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Barra de Hierro (Iron Bar) x3 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 3
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 100g en 2 min."
     },
     {
       "id": "vine_ring",
       "craftItem": "Vine Ring",
-      "item": "Anillo de Enredaderas (Vine Ring) 🪵",
-      "level": "Artesanía Lv 7 • Uncommon (+54 XP)",
+      "dish": "Vine Ring",
+      "item": "Vine Ring (Vine Ring) 🪵",
+      "level": "Artesanía Lv 7 (+54 XP)",
       "levelNum": 7,
       "tier": "Uncommon",
       "mats": "Cuerda de Enredadera (Rope) x1 + Tablón de Madera (Wooden Plank) x2",
@@ -3272,43 +3665,22 @@
       "energyCost": 1,
       "goldCost": 100,
       "minutes": 2,
-      "sellPrice": 6800,
+      "sellPrice": 650,
+      "netGold": 550,
+      "netEnergy": -1,
+      "goldPerMin": 275,
       "xp": 54,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 7. Coste: 100g y 1⚡."
-    },
-    {
-      "id": "cut_sapphire",
-      "craftItem": "Cut Sapphire",
-      "item": "Zafiro Tallado (Cut Sapphire) 🪵",
-      "level": "Artesanía Lv 8 • Uncommon (+60 XP)",
-      "levelNum": 8,
-      "tier": "Uncommon",
-      "mats": "Zafiro (Sapphire) x2",
-      "needs": [
-        {
-          "item": "Sapphire",
-          "nameEs": "Zafiro",
-          "qty": 2
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 1,
-      "goldCost": 100,
-      "minutes": 2,
-      "sellPrice": 7700,
-      "xp": 60,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 8. Coste: 100g y 1⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 1⚡ y 100g en 2 min."
     },
     {
       "id": "topaz_ring",
       "craftItem": "Topaz Ring",
-      "item": "Anillo de Topacio (Topaz Ring) 🪵",
-      "level": "Artesanía Lv 10 • Rare (+72 XP)",
+      "dish": "Topaz Ring",
+      "item": "Topaz Ring (Topaz Ring) 🪵",
+      "level": "Artesanía Lv 10 (+72 XP)",
       "levelNum": 10,
       "tier": "Rare",
-      "mats": "Barra de Cobre (Copper Bar) x1 + Topacio Tallado (Cut Topaz) x1",
+      "mats": "Barra de Cobre (Copper Bar) x1 + Cut Topaz (Cut Topaz) x1",
       "needs": [
         {
           "item": "Copper Bar",
@@ -3317,7 +3689,7 @@
         },
         {
           "item": "Cut Topaz",
-          "nameEs": "Topacio Tallado",
+          "nameEs": "Cut Topaz",
           "qty": 1
         }
       ],
@@ -3327,22 +3699,41 @@
       "energyCost": 2,
       "goldCost": 300,
       "minutes": 5,
-      "sellPrice": 9500,
+      "sellPrice": 1400,
+      "netGold": 1100,
+      "netEnergy": -2,
+      "goldPerMin": 220,
       "xp": 72,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 10. Coste: 300g y 2⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 300g en 5 min."
     },
     {
-      "id": "cut_emerald",
-      "craftItem": "Cut Emerald",
-      "item": "Esmeralda Tallada (Cut Emerald) 🪵",
-      "level": "Artesanía Lv 12 • Rare (+84 XP)",
-      "levelNum": 12,
+      "id": "bronze_bow",
+      "craftItem": "Bronze Bow",
+      "dish": "Bronze Bow",
+      "item": "Bronze Bow (Bronze Bow) 🪵",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
       "tier": "Rare",
-      "mats": "Esmeralda (Emerald) x2",
+      "mats": "Barra de Cobre (Copper Bar) x6 + Barra de Hierro (Iron Bar) x2 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
       "needs": [
         {
-          "item": "Emerald",
-          "nameEs": "Esmeralda",
+          "item": "Copper Bar",
+          "nameEs": "Barra de Cobre",
+          "qty": 6
+        },
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
           "qty": 2
         }
       ],
@@ -3352,23 +3743,42 @@
       "energyCost": 2,
       "goldCost": 300,
       "minutes": 5,
-      "sellPrice": 11300,
-      "xp": 84,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 12. Coste: 300g y 2⚡."
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 300g en 5 min."
     },
     {
-      "id": "gold_bar",
-      "craftItem": "Gold Bar",
-      "item": "Barra de Oro (Gold Bar) 🪵",
-      "level": "Artesanía Lv 13 • Rare (+90 XP)",
-      "levelNum": 13,
+      "id": "bronze_staff",
+      "craftItem": "Bronze Staff",
+      "dish": "Bronze Staff",
+      "item": "Bronze Staff (Bronze Staff) 🪵",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
       "tier": "Rare",
-      "mats": "Mena de Oro (Gold Ore) x2",
+      "mats": "Barra de Cobre (Copper Bar) x6 + Barra de Hierro (Iron Bar) x2 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
       "needs": [
         {
-          "item": "Gold Ore",
-          "nameEs": "Mena de Oro",
+          "item": "Copper Bar",
+          "nameEs": "Barra de Cobre",
+          "qty": 6
+        },
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
           "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
         }
       ],
       "place": "Banco de Trabajo (Carpintería de Pell)",
@@ -3377,43 +3787,22 @@
       "energyCost": 2,
       "goldCost": 300,
       "minutes": 5,
-      "sellPrice": 12200,
-      "xp": 90,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 13. Coste: 300g y 2⚡."
-    },
-    {
-      "id": "cut_amethyst",
-      "craftItem": "Cut Amethyst",
-      "item": "Amatista Tallada (Cut Amethyst) 🪵",
-      "level": "Artesanía Lv 14 • Rare (+96 XP)",
-      "levelNum": 14,
-      "tier": "Rare",
-      "mats": "Amatista (Amethyst) x2",
-      "needs": [
-        {
-          "item": "Amethyst",
-          "nameEs": "Amatista",
-          "qty": 2
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 2,
-      "goldCost": 300,
-      "minutes": 5,
-      "sellPrice": 13100,
-      "xp": 96,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 14. Coste: 300g y 2⚡."
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 300g en 5 min."
     },
     {
       "id": "amethyst_ring",
       "craftItem": "Amethyst Ring",
-      "item": "Anillo de Amatista (Amethyst Ring) 🪵",
-      "level": "Artesanía Lv 15 • Epic (+102 XP)",
+      "dish": "Amethyst Ring",
+      "item": "Amethyst Ring (Amethyst Ring) 🪵",
+      "level": "Artesanía Lv 15 (+102 XP)",
       "levelNum": 15,
       "tier": "Epic",
-      "mats": "Barra de Oro (Gold Bar) x1 + Amatista Tallada (Cut Amethyst) x1",
+      "mats": "Barra de Oro (Gold Bar) x1 + Cut Amethyst (Cut Amethyst) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3422,7 +3811,7 @@
         },
         {
           "item": "Cut Amethyst",
-          "nameEs": "Amatista Tallada",
+          "nameEs": "Cut Amethyst",
           "qty": 1
         }
       ],
@@ -3432,22 +3821,46 @@
       "energyCost": 2,
       "goldCost": 800,
       "minutes": 12,
-      "sellPrice": 14000,
+      "sellPrice": 3150,
+      "netGold": 2350,
+      "netEnergy": -2,
+      "goldPerMin": 196,
       "xp": 102,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 15. Coste: 800g y 2⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 800g en 12 min."
     },
     {
-      "id": "cut_ruby",
-      "craftItem": "Cut Ruby",
-      "item": "Rubí Tallado (Cut Ruby) 🪵",
-      "level": "Artesanía Lv 17 • Epic (+114 XP)",
+      "id": "gold_bow",
+      "craftItem": "Gold Bow",
+      "dish": "Gold Bow",
+      "item": "Gold Bow (Gold Bow) 🪵",
+      "level": "Artesanía Lv 17 (+114 XP)",
       "levelNum": 17,
       "tier": "Epic",
-      "mats": "Rubí (Ruby) x2",
+      "mats": "Barra de Oro (Gold Bar) x4 + Barra de Platino (Platinum Bar) x2 + Cut Emerald (Cut Emerald) x1 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
       "needs": [
         {
-          "item": "Ruby",
-          "nameEs": "Rubí",
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 4
+        },
+        {
+          "item": "Platinum Bar",
+          "nameEs": "Barra de Platino",
+          "qty": 2
+        },
+        {
+          "item": "Cut Emerald",
+          "nameEs": "Cut Emerald",
+          "qty": 1
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
           "qty": 2
         }
       ],
@@ -3457,18 +3870,71 @@
       "energyCost": 2,
       "goldCost": 800,
       "minutes": 12,
-      "sellPrice": 15800,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
       "xp": 114,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 17. Coste: 800g y 2⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "gold_staff",
+      "craftItem": "Gold Staff",
+      "dish": "Gold Staff",
+      "item": "Gold Staff (Gold Staff) 🪵",
+      "level": "Artesanía Lv 17 (+114 XP)",
+      "levelNum": 17,
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x4 + Barra de Platino (Platinum Bar) x2 + Cut Emerald (Cut Emerald) x1 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 4
+        },
+        {
+          "item": "Platinum Bar",
+          "nameEs": "Barra de Platino",
+          "qty": 2
+        },
+        {
+          "item": "Cut Emerald",
+          "nameEs": "Cut Emerald",
+          "qty": 1
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
+      "xp": 114,
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 800g en 12 min."
     },
     {
       "id": "sapphire_amulet",
       "craftItem": "Sapphire Amulet",
-      "item": "Amuleto de Zafiro (Sapphire Amulet) 🪵",
-      "level": "Artesanía Lv 18 • Epic (+120 XP)",
+      "dish": "Sapphire Amulet",
+      "item": "Sapphire Amulet (Sapphire Amulet) 🪵",
+      "level": "Artesanía Lv 18 (+120 XP)",
       "levelNum": 18,
       "tier": "Epic",
-      "mats": "Barra de Oro (Gold Bar) x1 + Zafiro Tallado (Cut Sapphire) x1 + Tela de Algodón/Lana (Cloth) x1",
+      "mats": "Barra de Oro (Gold Bar) x1 + Cut Sapphire (Cut Sapphire) x1 + Tela (Cloth) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3477,12 +3943,12 @@
         },
         {
           "item": "Cut Sapphire",
-          "nameEs": "Zafiro Tallado",
+          "nameEs": "Cut Sapphire",
           "qty": 1
         },
         {
           "item": "Cloth",
-          "nameEs": "Tela de Algodón/Lana",
+          "nameEs": "Tela",
           "qty": 1
         }
       ],
@@ -3492,18 +3958,22 @@
       "energyCost": 2,
       "goldCost": 800,
       "minutes": 12,
-      "sellPrice": 16700,
+      "sellPrice": 3300,
+      "netGold": 2500,
+      "netEnergy": -2,
+      "goldPerMin": 208,
       "xp": 120,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 18. Coste: 800g y 2⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 800g en 12 min."
     },
     {
       "id": "ruby_ring",
       "craftItem": "Ruby Ring",
-      "item": "Anillo de Rubí (Ruby Ring) 🪵",
-      "level": "Artesanía Lv 20 • Epic (+132 XP)",
+      "dish": "Ruby Ring",
+      "item": "Ruby Ring (Ruby Ring) 🪵",
+      "level": "Artesanía Lv 20 (+132 XP)",
       "levelNum": 20,
       "tier": "Epic",
-      "mats": "Barra de Oro (Gold Bar) x1 + Rubí Tallado (Cut Ruby) x1",
+      "mats": "Barra de Oro (Gold Bar) x1 + Cut Ruby (Cut Ruby) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3512,7 +3982,7 @@
         },
         {
           "item": "Cut Ruby",
-          "nameEs": "Rubí Tallado",
+          "nameEs": "Cut Ruby",
           "qty": 1
         }
       ],
@@ -3522,43 +3992,22 @@
       "energyCost": 2,
       "goldCost": 800,
       "minutes": 12,
-      "sellPrice": 18500,
+      "sellPrice": 3400,
+      "netGold": 2600,
+      "netEnergy": -2,
+      "goldPerMin": 217,
       "xp": 132,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 20. Coste: 800g y 2⚡."
-    },
-    {
-      "id": "cut_diamond",
-      "craftItem": "Cut Diamond",
-      "item": "Diamante Tallado (Cut Diamond) 🪵",
-      "level": "Artesanía Lv 22 • Legendary (+144 XP)",
-      "levelNum": 22,
-      "tier": "Legendary",
-      "mats": "Diamante (Diamond) x2",
-      "needs": [
-        {
-          "item": "Diamond",
-          "nameEs": "Diamante",
-          "qty": 2
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 3,
-      "goldCost": 2000,
-      "minutes": 25,
-      "sellPrice": 20300,
-      "xp": 144,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 22. Coste: 2000g y 3⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 2⚡ y 800g en 12 min."
     },
     {
       "id": "emerald_amulet",
       "craftItem": "Emerald Amulet",
-      "item": "Amuleto de Esmeralda (Emerald Amulet) 🪵",
-      "level": "Artesanía Lv 24 • Legendary (+156 XP)",
+      "dish": "Emerald Amulet",
+      "item": "Emerald Amulet (Emerald Amulet) 🪵",
+      "level": "Artesanía Lv 24 (+156 XP)",
       "levelNum": 24,
-      "tier": "Legendary",
-      "mats": "Barra de Oro (Gold Bar) x1 + Esmeralda Tallada (Cut Emerald) x1 + Cuerda de Enredadera (Rope) x1",
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x1 + Cut Emerald (Cut Emerald) x1 + Cuerda de Enredadera (Rope) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3567,7 +4016,7 @@
         },
         {
           "item": "Cut Emerald",
-          "nameEs": "Esmeralda Tallada",
+          "nameEs": "Cut Emerald",
           "qty": 1
         },
         {
@@ -3582,18 +4031,120 @@
       "energyCost": 3,
       "goldCost": 2000,
       "minutes": 25,
-      "sellPrice": 22100,
+      "sellPrice": 7200,
+      "netGold": 5200,
+      "netEnergy": -3,
+      "goldPerMin": 208,
       "xp": 156,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 24. Coste: 2000g y 3⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "amethyst_bow",
+      "craftItem": "Amethyst Bow",
+      "dish": "Amethyst Bow",
+      "item": "Amethyst Bow (Amethyst Bow) 🪵",
+      "level": "Artesanía Lv 25 (+162 XP)",
+      "levelNum": 25,
+      "tier": "Epic",
+      "mats": "Shadow Bar (Shadow Bar) x4 + Barra de Oro (Gold Bar) x2 + Cut Amethyst (Cut Amethyst) x2 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
+      "needs": [
+        {
+          "item": "Shadow Bar",
+          "nameEs": "Shadow Bar",
+          "qty": 4
+        },
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 2
+        },
+        {
+          "item": "Cut Amethyst",
+          "nameEs": "Cut Amethyst",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
+          "qty": 2
+        }
+      ],
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7250,
+      "netGold": 5250,
+      "netEnergy": -3,
+      "goldPerMin": 210,
+      "xp": 162,
+      "desc": "Crafteado en el Banco de Pell. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "amethyst_staff",
+      "craftItem": "Amethyst Staff",
+      "dish": "Amethyst Staff",
+      "item": "Amethyst Staff (Amethyst Staff) 🪵",
+      "level": "Artesanía Lv 25 (+162 XP)",
+      "levelNum": 25,
+      "tier": "Epic",
+      "mats": "Shadow Bar (Shadow Bar) x4 + Barra de Oro (Gold Bar) x2 + Cut Amethyst (Cut Amethyst) x2 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Shadow Bar",
+          "nameEs": "Shadow Bar",
+          "qty": 4
+        },
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 2
+        },
+        {
+          "item": "Cut Amethyst",
+          "nameEs": "Cut Amethyst",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "Banco de Trabajo (Carpintería de Pell)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7250,
+      "netGold": 5250,
+      "netEnergy": -3,
+      "goldPerMin": 210,
+      "xp": 162,
+      "desc": "Crafteado en el Banco de Pell. Consume 3⚡ y 2000g en 25 min."
     },
     {
       "id": "diamond_ring",
       "craftItem": "Diamond Ring",
-      "item": "Anillo de Diamante (Diamond Ring) 🪵",
-      "level": "Artesanía Lv 26 • Legendary (+168 XP)",
+      "dish": "Diamond Ring",
+      "item": "Diamond Ring (Diamond Ring) 🪵",
+      "level": "Artesanía Lv 26 (+168 XP)",
       "levelNum": 26,
-      "tier": "Legendary",
-      "mats": "Barra de Oro (Gold Bar) x1 + Diamante Tallado (Cut Diamond) x1",
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x1 + Cut Diamond (Cut Diamond) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3602,7 +4153,7 @@
         },
         {
           "item": "Cut Diamond",
-          "nameEs": "Diamante Tallado",
+          "nameEs": "Cut Diamond",
           "qty": 1
         }
       ],
@@ -3612,18 +4163,22 @@
       "energyCost": 3,
       "goldCost": 2000,
       "minutes": 25,
-      "sellPrice": 23900,
+      "sellPrice": 7300,
+      "netGold": 5300,
+      "netEnergy": -3,
+      "goldPerMin": 212,
       "xp": 168,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 26. Coste: 2000g y 3⚡."
+      "desc": "Crafteado en el Banco de Pell. Consume 3⚡ y 2000g en 25 min."
     },
     {
       "id": "royal_amulet",
       "craftItem": "Royal Amulet",
-      "item": "Amuleto Real de los Fundadores (Royal Amulet) 🪵",
-      "level": "Artesanía Lv 28 • Legendary (+180 XP)",
+      "dish": "Royal Amulet",
+      "item": "Royal Amulet (Royal Amulet) 🪵",
+      "level": "Artesanía Lv 28 (+180 XP)",
       "levelNum": 28,
-      "tier": "Legendary",
-      "mats": "Barra de Oro (Gold Bar) x2 + Diamante Tallado (Cut Diamond) x1 + Rubí Tallado (Cut Ruby) x1 + Tela de Algodón/Lana (Cloth) x1",
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x2 + Cut Diamond (Cut Diamond) x1 + Cut Ruby (Cut Ruby) x1 + Tela (Cloth) x1",
       "needs": [
         {
           "item": "Gold Bar",
@@ -3632,17 +4187,17 @@
         },
         {
           "item": "Cut Diamond",
-          "nameEs": "Diamante Tallado",
+          "nameEs": "Cut Diamond",
           "qty": 1
         },
         {
           "item": "Cut Ruby",
-          "nameEs": "Rubí Tallado",
+          "nameEs": "Cut Ruby",
           "qty": 1
         },
         {
           "item": "Cloth",
-          "nameEs": "Tela de Algodón/Lana",
+          "nameEs": "Tela",
           "qty": 1
         }
       ],
@@ -3652,250 +4207,140 @@
       "energyCost": 3,
       "goldCost": 2000,
       "minutes": 25,
-      "sellPrice": 25700,
+      "sellPrice": 7400,
+      "netGold": 5400,
+      "netEnergy": -3,
+      "goldPerMin": 216,
       "xp": 180,
-      "desc": "Refinado en el banco de trabajo de Pell. Requiere Artesanía Nivel 28. Coste: 2000g y 3⚡."
-    },
-    {
-      "id": "chest_wooden",
-      "craftItem": "Chest",
-      "item": "Cofre de Almacén (Chest) 📦",
-      "level": "Carpintería • Valor: 150.000g",
-      "levelNum": 5,
-      "tier": "Uncommon",
-      "mats": "Tablón de Madera (Wooden Plank) x12 + Barra de Cobre (Copper Bar) x4",
-      "needs": [
-        {
-          "item": "Wooden Plank",
-          "nameEs": "Tablón de Madera",
-          "qty": 12
-        },
-        {
-          "item": "Copper Bar",
-          "nameEs": "Barra de Cobre",
-          "qty": 4
-        }
-      ],
-      "place": "Banco de Trabajo (Carpintería de Pell)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 3,
-      "goldCost": 500,
-      "minutes": 5,
-      "sellPrice": 150000,
-      "xp": 75,
-      "desc": "Almacenamiento permanente extra para colocar dentro de tu cabaña en Home Island."
+      "desc": "Crafteado en el Banco de Pell. Consume 3⚡ y 2000g en 25 min."
     }
   ],
   "forge": [
     {
-      "id": "iron_bar",
-      "craftItem": "Iron Bar",
-      "item": "Barra de Hierro (Iron Bar) 🧱",
-      "level": "Herrería Lv 6 • Uncommon (+48 XP)",
-      "levelNum": 6,
-      "tier": "Uncommon",
-      "mats": "Mena de Hierro (Iron Ore) x2",
-      "needs": [
-        {
-          "item": "Iron Ore",
-          "nameEs": "Mena de Hierro",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 1,
-      "goldCost": 100,
-      "minutes": 2,
-      "sellPrice": 8000,
-      "xp": 48,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 6."
-    },
-    {
-      "id": "platinum_bar",
-      "craftItem": "Platinum Bar",
-      "item": "Barra de Platino (Platinum Bar) 🧱",
-      "level": "Herrería Lv 11 • Rare (+78 XP)",
-      "levelNum": 11,
-      "tier": "Rare",
-      "mats": "Mena de Platino (Platinum Ore) x2",
-      "needs": [
-        {
-          "item": "Platinum Ore",
-          "nameEs": "Mena de Platino",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 2,
-      "goldCost": 300,
-      "minutes": 5,
-      "sellPrice": 14000,
-      "xp": 78,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 11."
-    },
-    {
-      "id": "crimson_bar",
-      "craftItem": "Crimson Bar",
-      "item": "Barra Carmesí (Crimson Bar) 🧱",
-      "level": "Herrería Lv 16 • Epic (+108 XP)",
-      "levelNum": 16,
-      "tier": "Epic",
-      "mats": "Mena Carmesí (Crimson Ore) x2",
-      "needs": [
-        {
-          "item": "Crimson Ore",
-          "nameEs": "Mena Carmesí",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 2,
-      "goldCost": 800,
-      "minutes": 12,
-      "sellPrice": 20000,
-      "xp": 108,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 16."
-    },
-    {
-      "id": "frost_bar",
-      "craftItem": "Frost Bar",
-      "item": "Barra de Escarcha (Frost Bar) 🧱",
-      "level": "Herrería Lv 19 • Epic (+126 XP)",
-      "levelNum": 19,
-      "tier": "Epic",
-      "mats": "Mena de Escarcha (Frost Ore) x2",
-      "needs": [
-        {
-          "item": "Frost Ore",
-          "nameEs": "Mena de Escarcha",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 2,
-      "goldCost": 800,
-      "minutes": 12,
-      "sellPrice": 23600,
-      "xp": 126,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 19."
-    },
-    {
-      "id": "shadow_bar",
-      "craftItem": "Shadow Bar",
-      "item": "Barra de Sombras (Shadow Bar) 🧱",
-      "level": "Herrería Lv 23 • Legendary (+150 XP)",
-      "levelNum": 23,
-      "tier": "Legendary",
-      "mats": "Mena de Sombras (Shadow Ore) x2",
-      "needs": [
-        {
-          "item": "Shadow Ore",
-          "nameEs": "Mena de Sombras",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 3,
-      "goldCost": 2000,
-      "minutes": 25,
-      "sellPrice": 28400,
-      "xp": 150,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 23."
-    },
-    {
-      "id": "obsidian_bar",
-      "craftItem": "Obsidian Bar",
-      "item": "Barra de Obsidiana (Obsidian Bar) 🧱",
-      "level": "Herrería Lv 27 • Legendary (+174 XP)",
-      "levelNum": 27,
-      "tier": "Legendary",
-      "mats": "Mena de Obsidiana (Obsidian Ore) x2",
-      "needs": [
-        {
-          "item": "Obsidian Ore",
-          "nameEs": "Mena de Obsidiana",
-          "qty": 2
-        }
-      ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 3,
-      "goldCost": 2000,
-      "minutes": 25,
-      "sellPrice": 33200,
-      "xp": 174,
-      "desc": "Fundición en la forja de Bram. Requiere Minería y Herrería Nivel 27."
-    },
-    {
-      "id": "copper_bar_forge",
+      "id": "copper_bar",
       "craftItem": "Copper Bar",
+      "dish": "Copper Bar",
       "item": "Barra de Cobre (Copper Bar) 🧱",
-      "level": "Herrería Lv 1 • Común (+18 XP)",
+      "level": "Artesanía Lv 1 (+18 XP)",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Mena de Cobre (Copper Ore) x2",
+      "mats": "Mineral de Cobre (Copper Ore) x2",
       "needs": [
         {
           "item": "Copper Ore",
-          "nameEs": "Mena de Cobre",
+          "nameEs": "Mineral de Cobre",
           "qty": 2
         }
       ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
+      "place": "La Forja (Bram)",
       "energyRestore": 0,
       "healthRestore": 0,
       "energyCost": 1,
       "goldCost": 20,
       "minutes": 1,
-      "sellPrice": 800,
+      "sellPrice": 110,
+      "netGold": 90,
+      "netEnergy": -1,
+      "goldPerMin": 90,
       "xp": 18,
-      "desc": "Fundido en la forja de Bram para fabricar componentes y útiles mecánicos."
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 20g en 1 min."
     },
     {
-      "id": "gold_bar_forge",
-      "craftItem": "Gold Bar",
-      "item": "Barra de Oro (Gold Bar) 🧱",
-      "level": "Herrería Lv 13 • Raro (+90 XP)",
-      "levelNum": 13,
-      "tier": "Rare",
-      "mats": "Mena de Oro (Gold Ore) x2",
+      "id": "cut_rose_quartz",
+      "craftItem": "Cut Rose Quartz",
+      "dish": "Cut Rose Quartz",
+      "item": "Cut Rose Quartz (Cut Rose Quartz) 🧱",
+      "level": "Artesanía Lv 4 (+36 XP)",
+      "levelNum": 4,
+      "tier": "Common",
+      "mats": "Cuarzo Rosa (Rose Quartz) x2",
       "needs": [
         {
-          "item": "Gold Ore",
-          "nameEs": "Mena de Oro",
+          "item": "Rose Quartz",
+          "nameEs": "Cuarzo Rosa",
           "qty": 2
         }
       ],
-      "place": "La Forja y Yunque (Herrería de Bram)",
+      "place": "La Forja (Bram)",
       "energyRestore": 0,
       "healthRestore": 0,
-      "energyCost": 2,
-      "goldCost": 300,
-      "minutes": 5,
-      "sellPrice": 15000,
-      "xp": 90,
-      "desc": "Fundido de oro para orfebrería fina, anillos y componentes legendarios."
+      "energyCost": 1,
+      "goldCost": 20,
+      "minutes": 1,
+      "sellPrice": 260,
+      "netGold": 240,
+      "netEnergy": -1,
+      "goldPerMin": 240,
+      "xp": 36,
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 20g en 1 min."
     },
     {
-      "id": "iron_pickaxe",
-      "craftItem": "Iron Pickaxe",
-      "item": "Pico de Hierro (Iron Pickaxe) ⛏️",
-      "level": "Herrería • Tier 1 (300 usos)",
-      "levelNum": 1,
-      "tier": "Common",
-      "mats": "Barra de Hierro (Iron Bar) x3 + Madera (Wood) x2",
+      "id": "cut_topaz",
+      "craftItem": "Cut Topaz",
+      "dish": "Cut Topaz",
+      "item": "Cut Topaz (Cut Topaz) 🧱",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Topacio (Topaz) x2",
+      "needs": [
+        {
+          "item": "Topaz",
+          "nameEs": "Topacio",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "iron_bar",
+      "craftItem": "Iron Bar",
+      "dish": "Iron Bar",
+      "item": "Barra de Hierro (Iron Bar) 🧱",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Mineral de Hierro (Iron Ore) x2",
+      "needs": [
+        {
+          "item": "Iron Ore",
+          "nameEs": "Mineral de Hierro",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "iron_sword",
+      "craftItem": "Iron Sword",
+      "dish": "Iron Sword",
+      "item": "Iron Sword (Iron Sword) 🧱",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Barra de Hierro (Iron Bar) x3 + Tablón de Madera (Wooden Plank) x1",
       "needs": [
         {
           "item": "Iron Bar",
@@ -3903,8 +4348,66 @@
           "qty": 3
         },
         {
-          "item": "Wood",
-          "nameEs": "Madera",
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "cut_sapphire",
+      "craftItem": "Cut Sapphire",
+      "dish": "Cut Sapphire",
+      "item": "Cut Sapphire (Cut Sapphire) 🧱",
+      "level": "Artesanía Lv 8 (+60 XP)",
+      "levelNum": 8,
+      "tier": "Uncommon",
+      "mats": "Zafiro (Sapphire) x2",
+      "needs": [
+        {
+          "item": "Sapphire",
+          "nameEs": "Zafiro",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 700,
+      "netGold": 600,
+      "netEnergy": -1,
+      "goldPerMin": 300,
+      "xp": 60,
+      "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "platinum_bar",
+      "craftItem": "Platinum Bar",
+      "dish": "Platinum Bar",
+      "item": "Barra de Platino (Platinum Bar) 🧱",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
+      "tier": "Rare",
+      "mats": "Mineral de Platino (Platinum Ore) x2",
+      "needs": [
+        {
+          "item": "Platinum Ore",
+          "nameEs": "Mineral de Platino",
           "qty": 2
         }
       ],
@@ -3912,86 +4415,282 @@
       "energyRestore": 0,
       "healthRestore": 0,
       "energyCost": 2,
-      "goldCost": 500,
-      "minutes": 2,
-      "sellPrice": 2500,
-      "xp": 35,
-      "desc": "Rompe vetas de Cobre, Cuarzo y Cuarzo Rosa (3 golpes por mena)."
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
     },
     {
-      "id": "bronze_pickaxe",
-      "craftItem": "Bronze Pickaxe",
-      "item": "Pico de Bronce (Bronze Pickaxe) ⛏️",
-      "level": "Herrería • Tier 2 (1.000 usos)",
-      "levelNum": 5,
-      "tier": "Uncommon",
-      "mats": "Barra de Cobre (Copper Bar) x5 + Barra de Hierro (Iron Bar) x2",
+      "id": "bronze_sword",
+      "craftItem": "Bronze Sword",
+      "dish": "Bronze Sword",
+      "item": "Bronze Sword (Bronze Sword) 🧱",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
+      "tier": "Rare",
+      "mats": "Barra de Cobre (Copper Bar) x6 + Barra de Hierro (Iron Bar) x2 + Tablón de Madera (Wooden Plank) x1",
       "needs": [
         {
           "item": "Copper Bar",
           "nameEs": "Barra de Cobre",
-          "qty": 5
+          "qty": 6
         },
         {
           "item": "Iron Bar",
           "nameEs": "Barra de Hierro",
           "qty": 2
-        }
-      ],
-      "place": "La Forja (Bram)",
-      "energyRestore": 0,
-      "healthRestore": 0,
-      "energyCost": 3,
-      "goldCost": 1500,
-      "minutes": 5,
-      "sellPrice": 5000,
-      "xp": 75,
-      "desc": "Rompe vetas de Topacio, Zafiro y Piedra Lunar (4 golpes por mena)."
-    },
-    {
-      "id": "gold_pickaxe",
-      "craftItem": "Gold Pickaxe",
-      "item": "Pico de Oro (Gold Pickaxe) ⛏️",
-      "level": "Herrería • Tier 3 (4.000 usos)",
-      "levelNum": 13,
-      "tier": "Rare",
-      "mats": "Barra de Oro (Gold Bar) x5 + Esmeralda (Emerald) x1",
-      "needs": [
-        {
-          "item": "Gold Bar",
-          "nameEs": "Barra de Oro",
-          "qty": 5
         },
         {
-          "item": "Emerald",
-          "nameEs": "Esmeralda",
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
           "qty": 1
         }
       ],
       "place": "La Forja (Bram)",
       "energyRestore": 0,
       "healthRestore": 0,
-      "energyCost": 4,
-      "goldCost": 5000,
-      "minutes": 15,
-      "sellPrice": 35000,
-      "xp": 150,
-      "desc": "Rompe vetas de Esmeralda, Amatista y Rubí (5 golpes por mena)."
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
     },
     {
-      "id": "amethyst_pickaxe",
-      "craftItem": "Amethyst Pickaxe",
-      "item": "Pico de Amatista (Amethyst Pickaxe) ⛏️",
-      "level": "Herrería • Tier 4 (10.000 usos)",
-      "levelNum": 25,
-      "tier": "Legendary",
-      "mats": "Barra de Sombras (Shadow Bar) x5 + Diamante (Diamond) x2",
+      "id": "cut_emerald",
+      "craftItem": "Cut Emerald",
+      "dish": "Cut Emerald",
+      "item": "Cut Emerald (Cut Emerald) 🧱",
+      "level": "Artesanía Lv 12 (+84 XP)",
+      "levelNum": 12,
+      "tier": "Rare",
+      "mats": "Esmeralda (Emerald) x2",
       "needs": [
         {
-          "item": "Shadow Bar",
-          "nameEs": "Barra de Sombras",
-          "qty": 5
+          "item": "Emerald",
+          "nameEs": "Esmeralda",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1500,
+      "netGold": 1200,
+      "netEnergy": -2,
+      "goldPerMin": 240,
+      "xp": 84,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
+    },
+    {
+      "id": "gold_bar",
+      "craftItem": "Gold Bar",
+      "dish": "Gold Bar",
+      "item": "Barra de Oro (Gold Bar) 🧱",
+      "level": "Artesanía Lv 13 (+90 XP)",
+      "levelNum": 13,
+      "tier": "Rare",
+      "mats": "Mineral de Oro (Gold Ore) x2",
+      "needs": [
+        {
+          "item": "Gold Ore",
+          "nameEs": "Mineral de Oro",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1550,
+      "netGold": 1250,
+      "netEnergy": -2,
+      "goldPerMin": 250,
+      "xp": 90,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
+    },
+    {
+      "id": "cut_amethyst",
+      "craftItem": "Cut Amethyst",
+      "dish": "Cut Amethyst",
+      "item": "Cut Amethyst (Cut Amethyst) 🧱",
+      "level": "Artesanía Lv 14 (+96 XP)",
+      "levelNum": 14,
+      "tier": "Rare",
+      "mats": "Amatista (Amethyst) x2",
+      "needs": [
+        {
+          "item": "Amethyst",
+          "nameEs": "Amatista",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1600,
+      "netGold": 1300,
+      "netEnergy": -2,
+      "goldPerMin": 260,
+      "xp": 96,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
+    },
+    {
+      "id": "crimson_bar",
+      "craftItem": "Crimson Bar",
+      "dish": "Crimson Bar",
+      "item": "Barra Carmesí (Crimson Bar) 🧱",
+      "level": "Artesanía Lv 16 (+108 XP)",
+      "levelNum": 16,
+      "tier": "Epic",
+      "mats": "Mineral Carmesí (Crimson Ore) x2",
+      "needs": [
+        {
+          "item": "Crimson Ore",
+          "nameEs": "Mineral Carmesí",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3200,
+      "netGold": 2400,
+      "netEnergy": -2,
+      "goldPerMin": 200,
+      "xp": 108,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "cut_ruby",
+      "craftItem": "Cut Ruby",
+      "dish": "Cut Ruby",
+      "item": "Cut Ruby (Cut Ruby) 🧱",
+      "level": "Artesanía Lv 17 (+114 XP)",
+      "levelNum": 17,
+      "tier": "Epic",
+      "mats": "Rubí (Ruby) x2",
+      "needs": [
+        {
+          "item": "Ruby",
+          "nameEs": "Rubí",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
+      "xp": 114,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "gold_sword",
+      "craftItem": "Gold Sword",
+      "dish": "Gold Sword",
+      "item": "Gold Sword (Gold Sword) 🧱",
+      "level": "Artesanía Lv 17 (+114 XP)",
+      "levelNum": 17,
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x4 + Barra de Platino (Platinum Bar) x2 + Cut Emerald (Cut Emerald) x1 + Tablón de Madera (Wooden Plank) x1",
+      "needs": [
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 4
         },
+        {
+          "item": "Platinum Bar",
+          "nameEs": "Barra de Platino",
+          "qty": 2
+        },
+        {
+          "item": "Cut Emerald",
+          "nameEs": "Cut Emerald",
+          "qty": 1
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
+      "xp": 114,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "frost_bar",
+      "craftItem": "Frost Bar",
+      "dish": "Frost Bar",
+      "item": "Frost Bar (Frost Bar) 🧱",
+      "level": "Artesanía Lv 19 (+126 XP)",
+      "levelNum": 19,
+      "tier": "Epic",
+      "mats": "Frost Ore (Frost Ore) x2",
+      "needs": [
+        {
+          "item": "Frost Ore",
+          "nameEs": "Frost Ore",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3350,
+      "netGold": 2550,
+      "netEnergy": -2,
+      "goldPerMin": 213,
+      "xp": 126,
+      "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "cut_diamond",
+      "craftItem": "Cut Diamond",
+      "dish": "Cut Diamond",
+      "item": "Cut Diamond (Cut Diamond) 🧱",
+      "level": "Artesanía Lv 22 (+144 XP)",
+      "levelNum": 22,
+      "tier": "Epic",
+      "mats": "Diamante (Diamond) x2",
+      "needs": [
         {
           "item": "Diamond",
           "nameEs": "Diamante",
@@ -4001,20 +4700,126 @@
       "place": "La Forja (Bram)",
       "energyRestore": 0,
       "healthRestore": 0,
-      "energyCost": 5,
-      "goldCost": 15000,
-      "minutes": 30,
-      "sellPrice": 120000,
-      "xp": 300,
-      "desc": "Rompe Mena de Oro y Diamante de máxima dureza (6 golpes por mena)."
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7100,
+      "netGold": 5100,
+      "netEnergy": -3,
+      "goldPerMin": 204,
+      "xp": 144,
+      "desc": "Crafteado en la Forja de Bram. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "shadow_bar",
+      "craftItem": "Shadow Bar",
+      "dish": "Shadow Bar",
+      "item": "Shadow Bar (Shadow Bar) 🧱",
+      "level": "Artesanía Lv 23 (+150 XP)",
+      "levelNum": 23,
+      "tier": "Epic",
+      "mats": "Shadow Ore (Shadow Ore) x2",
+      "needs": [
+        {
+          "item": "Shadow Ore",
+          "nameEs": "Shadow Ore",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7150,
+      "netGold": 5150,
+      "netEnergy": -3,
+      "goldPerMin": 206,
+      "xp": 150,
+      "desc": "Crafteado en la Forja de Bram. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "amethyst_sword",
+      "craftItem": "Amethyst Sword",
+      "dish": "Amethyst Sword",
+      "item": "Amethyst Sword (Amethyst Sword) 🧱",
+      "level": "Artesanía Lv 25 (+162 XP)",
+      "levelNum": 25,
+      "tier": "Epic",
+      "mats": "Shadow Bar (Shadow Bar) x4 + Barra de Oro (Gold Bar) x2 + Cut Amethyst (Cut Amethyst) x2 + Tablón de Madera (Wooden Plank) x1",
+      "needs": [
+        {
+          "item": "Shadow Bar",
+          "nameEs": "Shadow Bar",
+          "qty": 4
+        },
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 2
+        },
+        {
+          "item": "Cut Amethyst",
+          "nameEs": "Cut Amethyst",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7250,
+      "netGold": 5250,
+      "netEnergy": -3,
+      "goldPerMin": 210,
+      "xp": 162,
+      "desc": "Crafteado en la Forja de Bram. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "obsidian_bar",
+      "craftItem": "Obsidian Bar",
+      "dish": "Obsidian Bar",
+      "item": "Obsidian Bar (Obsidian Bar) 🧱",
+      "level": "Artesanía Lv 27 (+174 XP)",
+      "levelNum": 27,
+      "tier": "Epic",
+      "mats": "Obsidian Ore (Obsidian Ore) x2",
+      "needs": [
+        {
+          "item": "Obsidian Ore",
+          "nameEs": "Obsidian Ore",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7350,
+      "netGold": 5350,
+      "netEnergy": -3,
+      "goldPerMin": 214,
+      "xp": 174,
+      "desc": "Crafteado en la Forja de Bram. Consume 3⚡ y 2000g en 25 min."
     }
   ],
   "mill": [
     {
       "id": "flour",
       "craftItem": "Flour",
+      "dish": "Flour",
       "item": "Harina (Flour) 🌾",
-      "level": "Molino (Granja Hollin) • Gratis",
+      "level": "Molino (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Trigo (Wheat) x2",
@@ -4031,15 +4836,19 @@
       "energyCost": 1,
       "goldCost": 50,
       "minutes": 2,
-      "sellPrice": 1200,
+      "sellPrice": 200,
+      "netGold": 150,
+      "netEnergy": -1,
+      "goldPerMin": 75,
       "xp": 20,
-      "desc": "Harina de trigo para panes, pasteles, masas y recetas de cocina."
+      "desc": "Procesado en el Molino de Agua de Hollin. Produce 1 unidad(es)."
     },
     {
       "id": "sugar",
       "craftItem": "Sugar",
+      "dish": "Sugar",
       "item": "Azúcar (Sugar) 🌾",
-      "level": "Molino (Granja Hollin) • Gratis",
+      "level": "Molino (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Remolacha (Beetroot) x1",
@@ -4056,15 +4865,19 @@
       "energyCost": 1,
       "goldCost": 50,
       "minutes": 3,
-      "sellPrice": 1200,
+      "sellPrice": 200,
+      "netGold": 150,
+      "netEnergy": -1,
+      "goldPerMin": 50,
       "xp": 20,
-      "desc": "Azúcar refinada a partir de remolacha. Indispensable para mermeladas y dulces."
+      "desc": "Procesado en el Molino de Agua de Hollin. Produce 2 unidad(es)."
     },
     {
       "id": "cream",
       "craftItem": "Cream",
+      "dish": "Cream",
       "item": "Crema / Nata (Cream) 🥛",
-      "level": "Lechería (Granja Hollin) • Gratis",
+      "level": "Lechería (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Leche (Milk) x1",
@@ -4081,15 +4894,19 @@
       "energyCost": 2,
       "goldCost": 150,
       "minutes": 5,
-      "sellPrice": 1200,
-      "xp": 20,
-      "desc": "Crema espesa batida en la lechería de Hollin para postres y salsas."
+      "sellPrice": 600,
+      "netGold": 450,
+      "netEnergy": -2,
+      "goldPerMin": 90,
+      "xp": 30,
+      "desc": "Elaborado en la Lechería de Hollin. Produce 1 unidad(es)."
     },
     {
       "id": "butter",
       "craftItem": "Butter",
+      "dish": "Butter",
       "item": "Mantequilla (Butter) 🥛",
-      "level": "Lechería (Granja Hollin) • Gratis",
+      "level": "Lechería (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Leche (Milk) x1",
@@ -4106,15 +4923,19 @@
       "energyCost": 2,
       "goldCost": 150,
       "minutes": 10,
-      "sellPrice": 1200,
-      "xp": 20,
-      "desc": "Mantequilla fresca para repostería, tartas y asados."
+      "sellPrice": 600,
+      "netGold": 450,
+      "netEnergy": -2,
+      "goldPerMin": 45,
+      "xp": 30,
+      "desc": "Elaborado en la Lechería de Hollin. Produce 1 unidad(es)."
     },
     {
       "id": "cheese",
       "craftItem": "Cheese",
+      "dish": "Cheese",
       "item": "Queso (Cheese) 🥛",
-      "level": "Lechería (Granja Hollin) • Gratis",
+      "level": "Lechería (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Leche (Milk) x2",
@@ -4126,27 +4947,31 @@
         }
       ],
       "place": "Lechería (Granja de Hollin - Southvale)",
-      "energyRestore": 8,
-      "healthRestore": 16,
+      "energyRestore": 0,
+      "healthRestore": 0,
       "energyCost": 2,
       "goldCost": 300,
       "minutes": 120,
       "sellPrice": 7500,
-      "xp": 20,
-      "desc": "Queso madurado artesanal para estofados, tablas y pedidos."
+      "netGold": 7200,
+      "netEnergy": -2,
+      "goldPerMin": 60,
+      "xp": 30,
+      "desc": "Elaborado en la Lechería de Hollin. Produce 1 unidad(es)."
     },
     {
       "id": "goat_cheese",
       "craftItem": "Goat Cheese",
+      "dish": "Goat Cheese",
       "item": "Queso de Cabra (Goat Cheese) 🥛",
-      "level": "Lechería (Granja Hollin) • Gratis",
+      "level": "Lechería (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
-      "mats": "Goat Milk (Goat Milk) x2",
+      "mats": "Leche de Cabra (Goat Milk) x2",
       "needs": [
         {
           "item": "Goat Milk",
-          "nameEs": "Goat Milk",
+          "nameEs": "Leche de Cabra",
           "qty": 2
         }
       ],
@@ -4156,15 +4981,19 @@
       "energyCost": 2,
       "goldCost": 300,
       "minutes": 120,
-      "sellPrice": 7500,
-      "xp": 20,
-      "desc": "Queso de cabra gourmet de alto valor gastronómico."
+      "sellPrice": 1200,
+      "netGold": 900,
+      "netEnergy": -2,
+      "goldPerMin": 8,
+      "xp": 30,
+      "desc": "Elaborado en la Lechería de Hollin. Produce 1 unidad(es)."
     },
     {
       "id": "hay",
       "craftItem": "Hay",
-      "item": "Hay (Hay) 🌾",
-      "level": "Molino (Granja Hollin) • Gratis",
+      "dish": "Hay",
+      "item": "Heno (Hay) 🌾",
+      "level": "Molino (Hollin) • Lv 1",
       "levelNum": 1,
       "tier": "Common",
       "mats": "Trigo (Wheat) x2",
@@ -4181,17 +5010,21 @@
       "energyCost": 1,
       "goldCost": 20,
       "minutes": 1,
-      "sellPrice": 1200,
+      "sellPrice": 80,
+      "netGold": 60,
+      "netEnergy": -1,
+      "goldPerMin": 60,
       "xp": 20,
-      "desc": "Heno procesado en el molino para alimentar y recuperar estamina de monturas."
+      "desc": "Procesado en el Molino de Agua de Hollin. Produce 1 unidad(es)."
     }
   ],
   "loom": [
     {
-      "id": "cloth_loom",
+      "id": "cloth",
       "craftItem": "Cloth",
+      "dish": "Cloth",
       "item": "Tela (Cloth) 🧵",
-      "level": "Sastrería Lv 9 (+66 XP)",
+      "level": "Artesanía Lv 9 (+66 XP)",
       "levelNum": 9,
       "tier": "Uncommon",
       "mats": "Lana de Oveja (Wool) x2",
@@ -4202,15 +5035,18 @@
           "qty": 2
         }
       ],
-      "place": "Telar de Tilly (Sastrería - Oeste del Pueblo)",
+      "place": "Telar de Tilly (Sastrería)",
       "energyRestore": 0,
       "healthRestore": 0,
       "energyCost": 1,
       "goldCost": 100,
       "minutes": 2,
-      "sellPrice": 3200,
+      "sellPrice": 750,
+      "netGold": 650,
+      "netEnergy": -1,
+      "goldPerMin": 325,
       "xp": 66,
-      "desc": "Se teje en el telar de la Sastrería de Tilly. Esencial para capas, bolsas y amuletos."
+      "desc": "Crafteado en el Telar de Tilly. Consume 1⚡ y 100g en 2 min."
     }
   ]
 }

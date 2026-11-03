@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "Bloomshire Master Companion",
+  "version": "1.0.0",
+  "description": "Extensión dedicada exclusiva para Bloomshire (Season 0) y sincronización viva con MoniOS.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://bloomshire.xyz/*",
+    "*://*.bloomshire.xyz/*",
+    "*://bloomshire.io/*",
+    "*://*.bloomshire.io/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://*.vercel.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://bloomshire.xyz/*",
+        "*://*.bloomshire.xyz/*",
+        "*://bloomshire.io/*",
+        "*://*.bloomshire.io/*"
+      ],
+      "all_frames": false,
+      "js": ["content_hook.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://bloomshire.xyz/*",
+        "*://*.bloomshire.xyz/*",
+        "*://bloomshire.io/*",
+        "*://*.bloomshire.io/*"
+      ],
+      "all_frames": false,
+      "js": ["content_bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*",
+        "https://*.vercel.app/*"
+      ],
+      "all_frames": false,
+      "js": ["content_monios.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Bloomshire Companion"
+  }
+}

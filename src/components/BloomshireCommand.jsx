@@ -1257,6 +1257,7 @@ export default function BloomshireCommand() {
     if (!itemObj) return { total: 0, m: 0, cc: 0, cp: 0 };
     const idLower = (itemObj.id || '').toLowerCase().trim();
     const nameLower = (itemObj.name || itemObj.nameEs || '').toLowerCase().trim();
+    const idClean = idLower.replace(/_/g, ' ');
 
     let m = 0;
     let cc = 0;
@@ -1265,10 +1266,14 @@ export default function BloomshireCommand() {
     rawInventory.forEach(it => {
       const itId = (it.id || '').toLowerCase().trim();
       const itName = (it.name || '').toLowerCase().trim();
-      if (
-        (idLower && (itId === idLower || itName === idLower)) || 
-        (nameLower && (itId === nameLower || itName === nameLower))
-      ) {
+      const itClean = itId.replace(/_/g, ' ');
+      
+      const isMatch = 
+        (idLower && (itId === idLower || itName === idLower || itClean === idClean)) || 
+        (nameLower && (itId === nameLower || itName === nameLower || itName.includes(nameLower))) ||
+        (idLower && (itName.includes(idLower) || itId.includes(idLower)));
+
+      if (isMatch) {
         const qty = Number(it.qty) || Number(it.n) || 0;
         const type = getStorageType(it.area);
         if (type === 'M') m += qty;
@@ -1361,6 +1366,7 @@ export default function BloomshireCommand() {
   };
 
   // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas de rendimiento
+  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas multi-variables
   const filteredAndSortedCrafts = useMemo(() => {
     let list = (craftData && craftData[craftCategory]) ? [...craftData[craftCategory]] : [];
 
@@ -1378,11 +1384,11 @@ export default function BloomshireCommand() {
 
     const enriched = list.map(r => {
       const craftability = getRecipeCraftability(r);
-      const energyCost = typeof r.energyCost === 'number' ? r.energyCost : (craftCategory === 'cook' ? 2 : craftCategory === 'forge' ? 3 : 2);
+      const energyCost = typeof r.energyCost === 'number' ? r.energyCost : (craftCategory === 'cook' ? 1 : craftCategory === 'forge' ? 3 : 2);
       const energyRestore = typeof r.energyRestore === 'number' ? r.energyRestore : 0;
       const netEnergy = energyRestore - energyCost;
 
-      const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 100;
+      const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 50;
       const sellPrice = typeof r.sellPrice === 'number' ? r.sellPrice : 3000;
       const netGold = Math.max(0, sellPrice - goldCost);
 
@@ -1390,6 +1396,10 @@ export default function BloomshireCommand() {
       const goldPerMin = Math.round(netGold / minutes);
       const xp = typeof r.xp === 'number' ? r.xp : 25;
       const levelNum = typeof r.levelNum === 'number' ? r.levelNum : (parseInt((r.level || '').replace(/[^0-9]/g, '')) || 1);
+      
+      const goldPerEnergy = energyCost > 0 ? Math.round(netGold / energyCost) : netGold;
+      const xpPerEnergy = energyCost > 0 ? Number((xp / energyCost).toFixed(1)) : xp;
+      const xpPerMin = Math.round(xp / minutes);
 
       return {
         ...r,
@@ -1402,6 +1412,9 @@ export default function BloomshireCommand() {
         netGold,
         minutes,
         goldPerMin,
+        goldPerEnergy,
+        xpPerEnergy,
+        xpPerMin,
         xp,
         levelNum
       };
@@ -1413,17 +1426,23 @@ export default function BloomshireCommand() {
     }
 
     finalFiltered.sort((a, b) => {
-      if (craftSortBy === 'profit_desc') {
-        return (b.netGold || 0) - (a.netGold || 0);
-      }
       if (craftSortBy === 'energy_desc') {
         return (b.netEnergy || 0) - (a.netEnergy || 0);
       }
-      if (craftSortBy === 'time_asc') {
-        return (a.minutes || 0) - (b.minutes || 0);
+      if (craftSortBy === 'energy_eff_desc') {
+        return (b.goldPerEnergy || 0) - (a.goldPerEnergy || 0);
+      }
+      if (craftSortBy === 'energy_xp_desc') {
+        return (b.xpPerEnergy || 0) - (a.xpPerEnergy || 0);
+      }
+      if (craftSortBy === 'profit_desc') {
+        return (b.netGold || 0) - (a.netGold || 0);
       }
       if (craftSortBy === 'rate_desc') {
         return (b.goldPerMin || 0) - (a.goldPerMin || 0);
+      }
+      if (craftSortBy === 'time_asc') {
+        return (a.minutes || 0) - (b.minutes || 0);
       }
       if (craftSortBy === 'xp_desc') {
         return (b.xp || 0) - (a.xp || 0);
@@ -1441,6 +1460,47 @@ export default function BloomshireCommand() {
     const list = (craftData && craftData[craftCategory]) || [];
     return list.filter(r => getRecipeCraftability(r).canCraft).length;
   }, [craftCategory, craftData, rawInventory]);
+
+  // Conteo de crafteables en vivo por cada una de las 5 estaciones
+  const craftableCountsByCategory = useMemo(() => {
+    const counts = {};
+    if (!craftData) return counts;
+    ['bench', 'forge', 'cook', 'mill', 'loom'].forEach(k => {
+      const list = craftData[k] || [];
+      counts[k] = list.filter(r => getRecipeCraftability(r).canCraft).length;
+    });
+    return counts;
+  }, [craftData, rawInventory]);
+
+  // Resumen táctico de la estación actual
+  const stationSummary = useMemo(() => {
+    const list = (craftData && craftData[craftCategory]) || [];
+    let bestEnergyDish = null;
+    let bestProfitCraft = null;
+    let fastestItem = null;
+
+    list.forEach(r => {
+      const eRestore = r.energyRestore || 0;
+      if (!bestEnergyDish || eRestore > (bestEnergyDish.energyRestore || 0)) {
+        bestEnergyDish = r;
+      }
+      const netG = (r.sellPrice || 0) - (r.goldCost || 0);
+      if (!bestProfitCraft || netG > ((bestProfitCraft.sellPrice || 0) - (bestProfitCraft.goldCost || 0))) {
+        bestProfitCraft = r;
+      }
+      const mins = r.minutes || 1;
+      if (!fastestItem || mins < (fastestItem.minutes || 1)) {
+        fastestItem = r;
+      }
+    });
+
+    return {
+      total: list.length,
+      bestEnergyDish,
+      bestProfitCraft,
+      fastestItem
+    };
+  }, [craftCategory, craftData]);
 
   // Helper: Desglose para órdenes de Odette (con coincidencia estricta para evitar confundir Madera con Blanca de Madera)
   const getOrderBreakdown = (ord) => {
@@ -5232,58 +5292,94 @@ export default function BloomshireCommand() {
 
         {activeTab === 'craft' && (
           <div className="h-full overflow-y-auto p-5 space-y-4 custom-scrollbar">
-            {/* Selector de Estaciones de Trabajo */}
+            {/* Selector de Estaciones de Trabajo con Badges de Crafteables Ahora */}
             <div className="flex flex-wrap items-center gap-2">
               {[
-                { key: 'bench', label: '🪵 Banco de Trabajo (Carpintería de Pell)' },
-                { key: 'forge', label: '⚒️ Forja de Bram (Herrería)' },
-                { key: 'cook', label: '🍲 Estufa de Cocina (Panadería Tamsin / Cabaña)' },
-                { key: 'mill', label: '🌊 Molino & Lechería (Granja de Hollin - Southvale)' },
-                { key: 'loom', label: '🧵 Telar de Tilly (Sastrería)' }
-              ].map(sub => (
-                <button
-                  key={sub.key}
-                  onClick={() => setCraftCategory(sub.key)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    craftCategory === sub.key 
-                      ? 'bg-purple-600 text-white font-black shadow-md border border-purple-400' 
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
-                  }`}
-                >
-                  {sub.label}
-                </button>
-              ))}
+                { key: 'cook', label: '🍲 Estufa de Cocina (Panadería / Cabaña)', badgeKey: 'cook' },
+                { key: 'bench', label: '🪵 Banco de Trabajo (Carpintería Pell)', badgeKey: 'bench' },
+                { key: 'forge', label: '⚒️ Forja de Bram (Herrería)', badgeKey: 'forge' },
+                { key: 'mill', label: '🌊 Molino & Lechería (Granja Hollin)', badgeKey: 'mill' },
+                { key: 'loom', label: '🧵 Telar de Tilly (Sastrería)', badgeKey: 'loom' }
+              ].map(sub => {
+                const readyCount = craftableCountsByCategory[sub.badgeKey] || 0;
+                return (
+                  <button
+                    key={sub.key}
+                    onClick={() => setCraftCategory(sub.key)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      craftCategory === sub.key 
+                        ? 'bg-purple-600 text-white font-black shadow-md border border-purple-400' 
+                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
+                    }`}
+                  >
+                    <span>{sub.label}</span>
+                    {readyCount > 0 && (
+                      <span className="px-1.5 py-0.2 rounded-full text-[9.5px] font-mono font-bold bg-emerald-950 border border-emerald-400 text-emerald-300 shadow-sm animate-pulse">
+                        {readyCount} listos
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Banner de la Estación Seleccionada con Botón "📍 Ubicar Estación en el Mapa" */}
+            {/* Banner Táctico de la Estación con Analíticas de Rendimiento Global */}
             {CRAFT_STATION_LOCATIONS[craftCategory] && (
-              <div className="p-4 bg-gradient-to-r from-[#131d38] via-[#17254a] to-[#111a33] border-2 border-purple-500/50 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <div className="text-sm font-black text-amber-300 flex items-center gap-2">
-                    <span>{CRAFT_STATION_LOCATIONS[craftCategory].stationName}</span>
+              <div className="p-4 bg-gradient-to-r from-[#131d38] via-[#17254a] to-[#111a33] border-2 border-purple-500/50 rounded-xl shadow-lg flex flex-col gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <div className="text-sm font-black text-amber-300 flex items-center gap-2">
+                      <span>{CRAFT_STATION_LOCATIONS[craftCategory].stationName}</span>
+                    </div>
+                    <div className="text-xs text-slate-300 mt-0.5">
+                      🧭 {CRAFT_STATION_LOCATIONS[craftCategory].stationDesc}
+                    </div>
                   </div>
-                  <div className="text-xs text-slate-300 mt-0.5">
-                    🧭 {CRAFT_STATION_LOCATIONS[craftCategory].stationDesc}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                      onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory])}
+                      className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-sm"
+                      title="Ubicar Estación de Trabajo en el Mega-Atlas"
+                    >
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>Ubicar Estación</span>
+                    </button>
+                    {CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation && (
+                      <button
+                        onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation)}
+                        className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all"
+                        title="Ubicar Estufa en Tu Cabaña"
+                      >
+                        <span>🏡 Cabaña</span>
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <button
-                    onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory])}
-                    className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-sm"
-                    title="Ubicar Estación de Trabajo en el Mega-Atlas"
-                  >
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>Ubicar Estación</span>
-                  </button>
-                  {CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation && (
-                    <button
-                      onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation)}
-                      className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all"
-                      title="Ubicar Estufa en Tu Cabaña"
-                    >
-                      <span>🏡 Cabaña</span>
-                    </button>
-                  )}
+
+                {/* Radar Táctico de Alto Rendimiento */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-700/60 font-mono text-xs">
+                  <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
+                    <span className="text-[9px] text-slate-400 uppercase font-sans font-bold">Catálogo Estación</span>
+                    <span className="text-white font-black text-sm">{stationSummary.total} recetas</span>
+                  </div>
+                  <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
+                    <span className="text-[9px] text-emerald-400 uppercase font-sans font-bold">Crafteables Ahora</span>
+                    <span className="text-emerald-300 font-black text-sm">
+                      {totalCraftableInCurrentCategory > 0 ? `✓ ${totalCraftableInCurrentCategory} Listas` : '0 Listas'}
+                    </span>
+                  </div>
+                  <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
+                    <span className="text-[9px] text-amber-400 uppercase font-sans font-bold">Mayor Ganancia Oro</span>
+                    <span className="text-amber-300 font-bold text-xs truncate">
+                      {stationSummary.bestProfitCraft ? `+${((stationSummary.bestProfitCraft.sellPrice || 0) - (stationSummary.bestProfitCraft.goldCost || 0)).toLocaleString()}g` : '-'}
+                    </span>
+                  </div>
+                  <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
+                    <span className="text-[9px] text-cyan-400 uppercase font-sans font-bold">Mayor Recarga Energía</span>
+                    <span className="text-cyan-300 font-bold text-xs truncate">
+                      {stationSummary.bestEnergyDish && stationSummary.bestEnergyDish.energyRestore > 0 ? `+${stationSummary.bestEnergyDish.energyRestore}⚡` : 'Gasto Oficio'}
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
@@ -5294,7 +5390,7 @@ export default function BloomshireCommand() {
                 <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Buscar receta o plato (ej: tarta, guiso, lingote, tela, pan)..."
+                  placeholder="Buscar receta o plato (ej: tarta, guiso, lingote, tela, pan, col)..."
                   value={craftSearchQuery}
                   onChange={(e) => setCraftSearchQuery(e.target.value)}
                   className="bg-transparent border-none text-white text-xs outline-none w-full placeholder:text-slate-500 font-medium"
@@ -5335,13 +5431,15 @@ export default function BloomshireCommand() {
                     onChange={(e) => setCraftSortBy(e.target.value)}
                     className="bg-[#14203d] border border-slate-700 text-amber-300 rounded-lg px-2 py-1 text-xs font-bold outline-none cursor-pointer"
                   >
-                    <option value="profit_desc">💰 Mayor beneficio de Oro (Gold neto)</option>
-                    <option value="energy_desc">⚡ Mayor ganancia de Energía (+⚡ neta)</option>
-                    <option value="time_asc">⏱️ Más rápido (Menor tiempo)</option>
-                    <option value="rate_desc">📈 Mayor rendimiento (Oro / Minuto)</option>
-                    <option value="level_asc">⭐ Nivel requerido (Menor a Mayor)</option>
-                    <option value="xp_desc">⭐ Mayor XP obtenida</option>
-                    <option value="name_asc">🔤 Nombre (A-Z)</option>
+                    <option value="energy_desc">⚡ Mayor Ganancia Energía (+⚡ netos)</option>
+                    <option value="profit_desc">💰 Mayor Beneficio Oro (Gold neto)</option>
+                    <option value="rate_desc">📈 Mayor Rendimiento (Oro / Minuto)</option>
+                    <option value="energy_eff_desc">⚡ Mayor Eficiencia Oro / Energía (Gold/⚡)</option>
+                    <option value="energy_xp_desc">⚡ Mayor Eficiencia XP / Energía (XP/⚡)</option>
+                    <option value="time_asc">⏱️ Más Rápido (Menor tiempo)</option>
+                    <option value="xp_desc">⭐ Mayor XP Obtenida</option>
+                    <option value="level_asc">⭐ Nivel Requerido (Menor a Mayor)</option>
+                    <option value="name_asc">🔤 Nombre Alfabético (A-Z)</option>
                   </select>
                 </div>
 
@@ -5454,20 +5552,30 @@ export default function BloomshireCommand() {
                             </span>
                           </div>
 
-                          {/* Tiempo de fuego/banco */}
+                          {/* Tiempo y Ratio Oro/Energía */}
                           <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
-                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Tiempo:</span>
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Tiempo / Ratio:</span>
                             <span className="text-cyan-300 font-bold">
                               ⏱️ {minutes} {minutes === 1 ? 'min' : 'mins'}
                             </span>
+                            {goldPerEnergy > 0 && (
+                              <span className="text-[8.5px] text-emerald-400 font-bold">
+                                +{goldPerEnergy.toLocaleString()}g / ⚡
+                              </span>
+                            )}
                           </div>
 
-                          {/* XP de oficio */}
+                          {/* XP y Ratio XP/Energía */}
                           <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
                             <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Experiencia:</span>
                             <span className="text-purple-300 font-bold">
                               ⭐ +{xp} XP
                             </span>
+                            {xpPerEnergy > 0 && (
+                              <span className="text-[8.5px] text-purple-300 font-bold">
+                                +{xpPerEnergy} XP / ⚡
+                              </span>
+                            )}
                           </div>
                         </div>
 
@@ -5561,9 +5669,9 @@ export default function BloomshireCommand() {
                       </div>
 
                       {/* Bloque de Rendimiento Táctico Compacto */}
-                      <div className="flex items-center gap-2 shrink-0 flex-wrap justify-end">
+                      <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
                         {/* Ganancia de Oro */}
-                        <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Venta: ${sellPrice.toLocaleString()}g - Coste: ${goldCost}g (${goldPerMin} g/min)`}>
+                        <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Beneficio Neto: +${netGold.toLocaleString()}g (Venta: ${sellPrice.toLocaleString()}g - Coste: ${goldCost}g) | Ritmo: ${goldPerMin.toLocaleString()}g/min`}>
                           💰 +{netGold.toLocaleString()}g
                         </span>
 
@@ -5572,17 +5680,24 @@ export default function BloomshireCommand() {
                           energyRestore > 0 
                             ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' 
                             : 'bg-blue-950/60 border-blue-500/30 text-blue-300'
-                        }`} title={energyRestore > 0 ? `Restaura +${energyRestore}⚡ menos ${energyCost}⚡ de preparación` : `Gasto de energía: -${energyCost}⚡`}>
-                          ⚡ {energyRestore > 0 ? `+${netEnergy}⚡` : `-${energyCost}⚡`}
+                        }`} title={energyRestore > 0 ? `Restaura +${energyRestore}⚡ al comer | Gasto de estufa: -${energyCost}⚡ | Balance: +${netEnergy}⚡ netos` : `Gasto de oficio: -${energyCost}⚡`}>
+                          ⚡ {energyRestore > 0 ? `+${netEnergy}⚡ netos` : `-${energyCost}⚡`}
                         </span>
 
+                        {/* Ratio Oro / Energía */}
+                        {goldPerEnergy > 0 && (
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={`Oro ganado por cada punto de energía invertido: +${goldPerEnergy.toLocaleString()}g/⚡`}>
+                            +{goldPerEnergy}g/⚡
+                          </span>
+                        )}
+
                         {/* Tiempo */}
-                        <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono font-bold" title={`Tiempo en estación: ${minutes} minutos`}>
+                        <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono font-bold" title={`Tiempo en estación: ${minutes} minutos (${goldPerMin}g/min)`}>
                           ⏱️ {minutes}m
                         </span>
 
                         {/* Experiencia */}
-                        <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] font-mono font-bold" title="Experiencia obtenida">
+                        <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] font-mono font-bold" title={`Experiencia obtenida: +${xp} XP (${xpPerEnergy} XP/⚡)`}>
                           ⭐ +{xp} XP
                         </span>
 
