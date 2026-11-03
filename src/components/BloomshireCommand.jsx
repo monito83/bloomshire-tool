@@ -1140,6 +1140,7 @@ export default function BloomshireCommand() {
 
   // Calculator State
   const [calcSkill, setCalcSkill] = useState('farming');
+  const [calcSeasonFilter, setCalcSeasonFilter] = useState('all');
   const [calcLevelFilter, setCalcLevelFilter] = useState('all');
   const [calcSort, setCalcSort] = useState('xpMin_desc');
   const [availablePlots, setAvailablePlots] = useState(10);
@@ -2064,6 +2065,11 @@ export default function BloomshireCommand() {
   const filteredCalcList = useMemo(() => {
     let list = [...(calcData[calcSkill] || [])];
 
+    // Filtro de Temporada / Época (solo para cultivo)
+    if (calcSkill === 'farming' && calcSeasonFilter !== 'all') {
+      list = list.filter(x => x.season === 'all' || x.season === calcSeasonFilter);
+    }
+
     if (calcLevelFilter !== 'all') {
       if (calcLevelFilter === 'vip' || calcLevelFilter === 'special') {
         list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misión'))));
@@ -2085,7 +2091,7 @@ export default function BloomshireCommand() {
     });
 
     return list;
-  }, [calcSkill, calcLevelFilter, calcSort]);
+  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort]);
 
   // Filtro de NPCs
   const filteredNpcs = useMemo(() => {
@@ -2747,6 +2753,24 @@ export default function BloomshireCommand() {
                   </select>
                 </div>
 
+                {/* Selector de Época del Año (Solo Cultivo) */}
+                {calcSkill === 'farming' && (
+                  <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
+                    <span className="text-amber-400">🍂</span> Época:
+                    <select 
+                      value={calcSeasonFilter} 
+                      onChange={(e) => setCalcSeasonFilter(e.target.value)}
+                      className="bg-[#14203d] border border-slate-700 text-white rounded px-2.5 py-1 text-xs font-semibold"
+                    >
+                      <option value="all">🌐 Todas las Épocas</option>
+                      <option value="Winter">❄️ Invierno (Temporada Actual)</option>
+                      <option value="Spring">🌸 Primavera (Spring)</option>
+                      <option value="Summer">☀️ Verano (Summer)</option>
+                      <option value="Fall">🍂 Otoño (Fall)</option>
+                    </select>
+                  </div>
+                )}
+
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
                   Nivel Requerido:
                   <select 
@@ -2759,7 +2783,7 @@ export default function BloomshireCommand() {
                     <option value="2">Nivel 2</option>
                     <option value="3">Nivel 3</option>
                     <option value="4">Nivel 4</option>
-                    <option value="5">Nivel 5 (Botica){isConnected && farmingLevel === 5 ? ' (Tu Nivel)' : ''}</option>
+                    <option value="5">Nivel 5 (Botica)</option>
                     <option value="6">Nivel 6</option>
                     <option value="7">Nivel 7</option>
                     <option value="8">Nivel 8+</option>
@@ -2804,6 +2828,7 @@ export default function BloomshireCommand() {
                 <thead>
                   <tr className="bg-[#121d38] border-b border-slate-800 text-slate-300 uppercase tracking-wider text-[11px] font-black">
                     <th className="p-3">Recurso / Cultivo</th>
+                    {calcSkill === 'farming' && <th className="p-3">Época / Siembra</th>}
                     <th className="p-3">Tiempo / Coste</th>
                     <th className="p-3">Nivel Requerido</th>
                     <th className="p-3">Coste Semilla</th>
@@ -2829,6 +2854,19 @@ export default function BloomshireCommand() {
                         <td className="p-3 font-bold text-white flex items-center gap-1.5">
                           {item.name}
                         </td>
+                        {calcSkill === 'farming' && (
+                          <td className="p-3">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                              item.season === 'Winter' ? 'bg-cyan-950/80 text-cyan-300 border border-cyan-700/50' :
+                              item.season === 'Spring' ? 'bg-pink-950/80 text-pink-300 border border-pink-700/50' :
+                              item.season === 'Summer' ? 'bg-amber-950/80 text-amber-300 border border-amber-700/50' :
+                              item.season === 'Fall' ? 'bg-orange-950/80 text-orange-300 border border-orange-700/50' :
+                              'bg-emerald-950/80 text-emerald-300 border border-emerald-700/50'
+                            }`}>
+                              {item.seasonLabel || 'Todo el Año 🌐'}
+                            </span>
+                          </td>
+                        )}
                         <td className="p-3 font-mono text-cyan-300">
                           {item.growTxt || `${adjustedTime} min`}
                           {hasFoundersTimeBonus && <span className="text-[10px] text-emerald-400 ml-1">(-20%)</span>}
