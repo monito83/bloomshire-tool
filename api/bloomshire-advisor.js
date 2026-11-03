@@ -5,6 +5,22 @@
  * y los modelos Gemini 3.6/1.5 Flash con fallback algorítmico offline.
  */
 
+import { jwtVerify } from 'jose';
+
+export async function getAuthenticatedWallet(req) {
+  const authHeader = req.headers.authorization || '';
+  if (!authHeader.startsWith('Bearer ')) return null;
+  const token = authHeader.slice(7).trim();
+  if (!token) return null;
+  try {
+    const secretKey = new TextEncoder().encode(process.env.SESSION_SECRET || 'bloomshire-super-secret-session-salt-2026');
+    const { payload } = await jwtVerify(token, secretKey);
+    return payload?.wallet ? payload.wallet.toLowerCase() : null;
+  } catch (_) {
+    return null;
+  }
+}
+
 const BLOOMSHIRE_MATH_SYSTEM_PROMPT = `
 Eres "Bloomshire Advisor", el copiloto y estratega cuantitativo del jugador en el juego "Bloomshire" en Robinhood Chain.
 Hablas con tono natural, cercano, lúcido y humano (como un compañero de cooperativo experto, programador y gamer de alto nivel). NO hables como un robot ni como un burócrata rígido.
@@ -222,11 +238,29 @@ async function handleSync(req, res) {
     }
 
     const targetWallet = snapWallet.toLowerCase();
+
+    // Verificación criptográfica de firma
+    const authedWallet = await getAuthenticatedWallet(req);
+    if (!authedWallet) {
+      return res.status(401).json({
+        ok: false,
+        error: 'No autorizado. Se requiere firma criptográfica de wallet para guardar partidas en la nube.',
+        requiresAuth: true
+      });
+    }
+
+    if (authedWallet !== targetWallet) {
+      return res.status(403).json({
+        ok: false,
+        error: `Prohibido. No puedes modificar la partida de otra wallet (${targetWallet.slice(0, 6)}...).`
+      });
+    }
+
     snap.wallet = targetWallet;
     memorySnapshotsByWallet[targetWallet] = snap;
     
     await pushSnapshotToSupabase(targetWallet, snap);
-    return res.status(200).json({ ok: true, message: 'Snapshot del juego guardado con éxito en la nube', wallet: targetWallet, timestamp: Date.now() });
+    return res.status(200).json({ ok: true, message: 'Snapshot autenticado y guardado con éxito en la nube', wallet: targetWallet, timestamp: Date.now() });
   }
 
   const rawWallet = (req.query?.wallet || req.body?.wallet || '').trim();
@@ -398,11 +432,17 @@ async function handleSync(req, res) {
       inGameData.details = 'Servidor temporalmente no accesible';
     }
 
+    // Comprobación de propiedad autenticada para lectura de partida in-game privada
+    const authedWallet = await getAuthenticatedWallet(req);
+    const isOwner = Boolean(authedWallet && authedWallet === targetWalletLower);
+
     return res.status(200).json({
       ok: true,
       timestamp: new Date().toISOString(),
+      authenticated: isOwner,
       onChain: onChainData,
-      inGame: inGameData
+      inGame: isOwner ? inGameData : null,
+      message: isOwner ? 'Sincronización autenticada con éxito' : 'Modo lectura pública. Para sincronizar tu oro, inventario y pedidos privados, firma con tu wallet.'
     });
   } catch (error) {
     return res.status(500).json({ ok: false, error: error.message });

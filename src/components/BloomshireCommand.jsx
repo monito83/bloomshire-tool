@@ -690,13 +690,19 @@ export default function BloomshireCommand() {
   const [walletAddress, setWalletAddress] = useState(() => {
     try { const w = localStorage.getItem('bloomshire_wallet'); return (w && w !== 'null' && w.startsWith('0x')) ? w : null; } catch { return null; }
   });
+  const [sessionToken, setSessionToken] = useState(() => {
+    try { return localStorage.getItem('bloomshire_session_token') || null; } catch { return null; }
+  });
   const isConnected = Boolean(walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x'));
 
   const handleDisconnect = () => {
     try {
       localStorage.setItem('bloomshire_manual_disconnected', 'true');
+      localStorage.removeItem('bloomshire_session_token');
+      localStorage.removeItem('bloomshire_wallet');
     } catch (_) {}
     setWalletAddress(null);
+    setSessionToken(null);
     setGold(0);
     setCurrentEnergy(0);
     setMaxEnergy(100);
@@ -820,6 +826,77 @@ export default function BloomshireCommand() {
     { id: 3, time: new Date().toLocaleTimeString(), text: 'Mega-Atlas HD: 10 mapas oficiales disponibles en caché local.', type: 'success' },
     { id: 4, time: new Date().toLocaleTimeString(), text: 'Registro de aldeanos: 67 NPCs indexados con tabla de regalos y horarios.', type: 'info' }
   ]);
+
+  const handleConnectAndSignWallet = async () => {
+    if (typeof window.ethereum === 'undefined') {
+      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Rabby, etc.) en este navegador.' });
+      return;
+    }
+    try {
+      setConnectFeedback({ type: 'loading', text: 'Solicitando conexión con tu billetera Web3...' });
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const account = accounts && accounts[0] ? accounts[0].toLowerCase() : null;
+      if (!account) {
+        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta.' });
+        return;
+      }
+
+      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma...' });
+      const nonceRes = await fetch(`/api/auth?action=nonce&wallet=${encodeURIComponent(account)}`);
+      if (!nonceRes.ok) {
+        const errJson = await nonceRes.json().catch(() => ({}));
+        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener nonce de firma.' });
+        return;
+      }
+      const { nonce, message } = await nonceRes.json();
+
+      setConnectFeedback({ type: 'loading', text: 'Firma el mensaje en tu billetera para verificar tu identidad (sin costo de gas)...' });
+      const signature = await window.ethereum.request({
+        method: 'personal_sign',
+        params: [message, account]
+      });
+
+      setConnectFeedback({ type: 'loading', text: 'Verificando firma con el servidor...' });
+      const verifyRes = await fetch('/api/auth?action=verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify', wallet: account, signature, nonce })
+      });
+
+      if (!verifyRes.ok) {
+        const errJson = await verifyRes.json().catch(() => ({}));
+        setConnectFeedback({ type: 'error', text: errJson.error || 'Firma inválida.' });
+        return;
+      }
+
+      const { token } = await verifyRes.json();
+      localStorage.setItem('bloomshire_session_token', token);
+      localStorage.setItem('bloomshire_wallet', account);
+      localStorage.removeItem('bloomshire_manual_disconnected');
+      setWalletAddress(account);
+      setSessionToken(token);
+
+      setConnectFeedback({ type: 'success', text: `¡Sesión autenticada con éxito! (${account.slice(0, 6)}...)` });
+
+      // Cargar partida privada sincronizada
+      const syncRes = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(account)}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (syncRes.ok) {
+        const syncJson = await syncRes.json();
+        if (syncJson.inGame) {
+          applyIncomingSync({
+            ...syncJson.inGame,
+            wallet: syncJson.onChain?.wallet || account,
+            farmersCount: syncJson.onChain?.farmersCount ?? 0
+          }, 'server');
+        }
+      }
+      setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
+    } catch (err) {
+      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada.' });
+    }
+  };
 
   const handleCheckUpdates = async () => {
     setIsCheckingUpdates(true);
@@ -1639,22 +1716,28 @@ export default function BloomshireCommand() {
         localStorage.removeItem('bloomshire_manual_disconnected');
       } catch (e) {}
 
-      // Respaldo asíncrono inmediato en Supabase (Nube)
-      try {
-        fetch('/api/bloomshire-advisor?action=push_snapshot', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'push_snapshot',
-            wallet: effectiveWallet.toLowerCase(),
-            snapshot: {
-              ...data,
+      // Respaldo asíncrono inmediato en Supabase (Nube) si está autenticado con firma
+      const currentToken = localStorage.getItem('bloomshire_session_token') || sessionToken;
+      if (currentToken) {
+        try {
+          fetch('/api/bloomshire-advisor?action=push_snapshot', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${currentToken}`
+            },
+            body: JSON.stringify({
+              action: 'push_snapshot',
               wallet: effectiveWallet.toLowerCase(),
-              timestamp: Date.now()
-            }
-          })
-        }).catch(() => {});
-      } catch (_) {}
+              snapshot: {
+                ...data,
+                wallet: effectiveWallet.toLowerCase(),
+                timestamp: Date.now()
+              }
+            })
+          }).catch(() => {});
+        } catch (_) {}
+      }
     }
     if (data.gold !== undefined && data.gold >= 0) setGold(data.gold);
     if (data.maxEnergy !== undefined && data.maxEnergy > 0) setMaxEnergy(data.maxEnergy);
@@ -1927,7 +2010,9 @@ export default function BloomshireCommand() {
 
     try {
       if (!walletAddress || walletAddress === 'null' || !walletAddress.startsWith('0x')) return;
-      const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(walletAddress)}`);
+      const currentToken = localStorage.getItem('bloomshire_session_token') || sessionToken;
+      const headers = currentToken ? { 'Authorization': `Bearer ${currentToken}` } : {};
+      const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(walletAddress)}`, { headers });
       if (res.ok) {
         const json = await res.json();
         const msSinceExt = Date.now() - lastExtensionSyncAtRef.current;
@@ -6845,9 +6930,18 @@ export default function BloomshireCommand() {
                   type="button"
                   onClick={() => {
                     if (walletAddress) {
+                      const currentToken = localStorage.getItem('bloomshire_session_token') || sessionToken;
+                      if (!currentToken) {
+                        alert('Para guardar tu partida en la nube necesitas autenticar tu wallet con tu firma.');
+                        setShowConnectModal(true);
+                        return;
+                      }
                       fetch('/api/bloomshire-advisor?action=push_snapshot', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'Authorization': `Bearer ${currentToken}`
+                        },
                         body: JSON.stringify({
                           action: 'push_snapshot',
                           wallet: walletAddress.toLowerCase(),
@@ -6866,7 +6960,10 @@ export default function BloomshireCommand() {
                             timestamp: Date.now()
                           }
                         })
-                      }).then(() => alert('¡Partida respaldada exitosamente en Supabase!')).catch(() => {});
+                      }).then(res => {
+                        if (res.ok) alert('¡Partida respaldada exitosamente en Supabase con firma!');
+                        else alert('Error de autorización al respaldar en la nube.');
+                      }).catch(() => {});
                     }
                   }}
                   className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[10.5px] font-bold cursor-pointer transition-all shadow-sm"
@@ -6917,13 +7014,40 @@ export default function BloomshireCommand() {
                     </div>
 
                     <div className="space-y-4 text-xs">
-                      {/* Opción 1: Extensión */}
+                      {/* Opción 1: Firma Web3 Segura (SIWE) */}
+                      <div className="p-4 bg-gradient-to-br from-[#101b33] to-[#0a1426] border border-cyan-500/40 rounded-xl space-y-2.5 shadow-lg relative overflow-hidden">
+                        <div className="absolute top-2 right-2 px-2 py-0.5 bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold rounded-full border border-cyan-500/30">
+                          RECOMENDADO
+                        </div>
+                        <div className="font-bold text-white text-sm flex items-center gap-2">
+                          <span>🛡️ Opción 1: Autenticación Criptográfica Web3</span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed text-[11px]">
+                          Firma un mensaje criptográfico con tu billetera (MetaMask, Rabby o navegador) para verificar tu propiedad. <b>Sin costo de gas</b>. Protege tu partida en la nube para que nadie más pueda ver ni sobrescribir tus datos en Supabase.
+                        </p>
+                        <div className="pt-1">
+                          <button
+                            type="button"
+                            onClick={handleConnectAndSignWallet}
+                            className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-900/30 transition-all active:scale-[0.98]"
+                          >
+                            <span>🔐 Conectar y Firmar con Billetera (Web3)</span>
+                          </button>
+                        </div>
+                        <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
+                          <span>✓ Compatible con EVM (Ethereum / Arbitrum)</span>
+                          <span>•</span>
+                          <span>✓ Sesión JWT segura de 7 días</span>
+                        </div>
+                      </div>
+
+                      {/* Opción 2: Extensión */}
                       <div className="p-4 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
                         <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>⚡ Opción 1: Sincronización Automática (Extensión)</span>
+                          <span>⚡ Opción 2: Sincronización Automática (Extensión)</span>
                         </div>
-                        <p className="text-slate-300 leading-relaxed">
-                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida directamente en tu navegador con 0 latencia y máxima privacidad:
+                        <p className="text-slate-300 leading-relaxed text-[11px]">
+                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida localmente en tu navegador con 0 latencia:
                         </p>
                         <div className="pt-1 pb-1">
                           <button
@@ -6962,27 +7086,27 @@ export default function BloomshireCommand() {
                             <span>⚡ Detectar / Sincronizar Extensión Companion</span>
                           </button>
                         </div>
-                        <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1">
+                        <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1 text-[11px]">
                           <li>Instala la extensión en Chrome / Brave / Edge.</li>
                           <li>Abre tu partida en <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold">bloomshire.xyz/play/</a>.</li>
                           <li>Esta tool detectará tu inventario, oro y cultivos en menos de 1 segundo.</li>
                         </ol>
                       </div>
 
-                      {/* Opción 2: Código de Acceso / Desbloqueo Manual */}
+                      {/* Opción 3: Modo Lectura Pública */}
                       <div className="p-4 bg-[#101b33] border border-slate-800 rounded-xl space-y-2.5">
                         <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>🔑 Opción 2: Clave de Acceso o Dirección de Wallet</span>
+                          <span>🔍 Opción 3: Modo Lectura Pública (Manual)</span>
                         </div>
-                        <p className="text-slate-400">
-                          Ingresa tu wallet de juego (<code className="text-cyan-300 font-mono">0x...</code>) o un código de acceso para desbloquear tu perfil:
+                        <p className="text-slate-400 text-[11px]">
+                          Ingresa una wallet (<code className="text-cyan-300 font-mono">0x...</code>) para ver sus NFTs on-chain públicos en modo solo lectura (sin modificar datos):
                         </p>
                         <div className="flex items-center gap-2">
                           <input
                             type="text"
                             value={connectCode}
                             onChange={(e) => setConnectCode(e.target.value.trim())}
-                            placeholder="0x... o código de acceso"
+                            placeholder="0x..."
                             className="flex-1 bg-[#091122] border border-slate-700 focus:border-amber-400 rounded-lg p-2 text-white font-mono text-xs outline-none"
                           />
                           <button
@@ -7008,49 +7132,43 @@ export default function BloomshireCommand() {
                                 setItemQuantities({});
                               };
 
-                              if (cleanCode.startsWith('0x') && cleanCode.length >= 10) {
+                              if (/^0x[0-9a-fA-F]{40}$/.test(cleanCode)) {
                                 resetSessionState();
                                 setWalletAddress(cleanCode);
                                 try { localStorage.setItem('bloomshire_wallet', cleanCode); } catch (_) {}
 
                                 try {
-                                  setConnectFeedback({ type: 'loading', text: 'Verificando telemetría en el servidor...' });
+                                  setConnectFeedback({ type: 'loading', text: 'Consultando perfil on-chain en el servidor...' });
                                   const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(cleanCode)}`);
                                   if (res.ok) {
                                     const json = await res.json();
-                                    if (json.inGame && (json.inGame.gold > 0 || (Array.isArray(json.inGame.inventory) && json.inGame.inventory.length > 0))) {
-                                      applyIncomingSync({
-                                        ...json.inGame,
-                                        wallet: json.onChain?.wallet || cleanCode,
-                                        farmersCount: json.onChain?.farmersCount || 10
-                                      }, 'server');
-                                      setConnectFeedback({ type: 'success', text: `¡Partida vinculada y sincronizada! (${cleanCode.slice(0, 6)}...)` });
+                                    if (json.onChain) {
+                                      setFarmersOwned(json.onChain.farmersCount ?? 0);
+                                      setConnectFeedback({ type: 'success', text: `Perfil público cargado (${cleanCode.slice(0, 6)}... - ${json.onChain.farmersCount ?? 0} Farmers).` });
                                     } else {
-                                      setConnectFeedback({
-                                        type: 'info',
-                                        text: `Wallet ${cleanCode.slice(0, 6)}... vinculada. Aún no tiene datos en el servidor: abre bloomshire.xyz con la extensión Companion para transmitir tu partida.`
-                                      });
+                                      setConnectFeedback({ type: 'info', text: `Wallet vinculada en modo lectura.` });
                                     }
                                   }
                                 } catch (_) {
-                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada. Abre el juego con Bloomshire Companion para transmitir datos.` });
+                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada en modo lectura.` });
                                 }
-                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2200);
+                                setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2000);
                               } else {
-                                setConnectFeedback({ type: 'error', text: 'Código no reconocido. Ingresa una wallet válida (0x...) o activa la extensión.' });
+                                setConnectFeedback({ type: 'error', text: 'Dirección inválida. Debe ser una dirección de Ethereum válida de 42 caracteres (0x...).' });
                               }
                             }}
-                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs cursor-pointer transition-all shadow-md shrink-0"
+                            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg text-xs cursor-pointer transition-all border border-slate-700 shrink-0"
                           >
-                            Vincular
+                            Ver Perfil
                           </button>
                         </div>
-                        {connectFeedback && (
-                          <div className={`p-2 rounded text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
-                            {connectFeedback.text}
-                          </div>
-                        )}
                       </div>
+
+                      {connectFeedback && (
+                        <div className={`p-2.5 rounded-lg text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : connectFeedback.type === 'loading' ? 'bg-amber-950/60 text-amber-300 border border-amber-500/40 animate-pulse' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
+                          {connectFeedback.text}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">

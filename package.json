@@ -11,12 +11,14 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "clsx": "^2.1.1",
+    "jose": "^6.2.15",
     "lucide-react": "^1.14.0",
     "postcss": "^8.5.14",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.2.4",
+    "viem": "^2.57.16"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
