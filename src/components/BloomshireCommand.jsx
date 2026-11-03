@@ -494,12 +494,38 @@ export const DASHBOARD_QUEST_CATALOG = {
     name: 'Cap. 22: El Agua Gris (Grey Water)',
     chain: 'book1',
     chapter: 22,
-    giver: 'Sylmare / Nixie',
-    location: 'Profundidades del Lago Moonmere',
-    coords: { label: "🌊 Cap. 22: Aguas Grises (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 5152, wy: 2698, worldRect: [5000, 2500, 300, 300] },
+    giver: 'Virella',
+    location: 'Muelle largo al oeste de Moonmere',
+    coords: { label: "🌊 Virella (Muelle Oeste de Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
+    reward: { gold: 1000 },
     steps: [
-      { step: 1, name: 'Investiga las corrientes oscuras de Moonmere', text: 'Habla con Sylmare sobre las aguas turbias que descienden desde el norte del lago.', where: 'Aldea de la Laguna.', npc: 'Sylmare', items: [] },
-      { step: 2, name: 'Pesca 5 Bagres Fantasma nocturnos', text: 'Pesca 5 Bagres Fantasma (Ghost Catfish) en las horas oscuras (20:00 a 06:00) y entrégalos a Sylmare.', where: 'Lago Moonmere de noche.', npc: 'Sylmare', items: [{ id: 'Ghost Catfish', name: 'Bagre Fantasma (Ghost Catfish)', needed: 5, hint: 'Pesca nocturna en Lago Moonmere' }] }
+      {
+        step: 1,
+        name: 'Sigue al gris',
+        text: 'Investiga las aguas de Moonmere y sigue el rastro misterioso de la corriente gris.',
+        where: 'Aguas de Moonmere junto al muelle largo.',
+        npc: 'Virella',
+        coords: { label: "🌊 Muelle de Moonmere", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
+        items: []
+      },
+      {
+        step: 2,
+        name: 'Muéstrale a Marven la escama gris',
+        text: 'Lleva la escama gris descubierta al estanque de Marven al noroeste de Moonmere.',
+        where: 'Estanque de Marven (Noroeste de Moonmere).',
+        npc: 'Marven',
+        coords: { label: "🌊 Estanque de Marven (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_7_marven_s_pool', wx: 6416, wy: 3636, worldRect: [6144, 3480, 544, 312] },
+        items: []
+      },
+      {
+        step: 3,
+        name: 'Dile a Virella lo que dijo Marven',
+        text: 'Virella vigila junto al muelle largo que lleva al pueblo de la laguna, al oeste de Moonmere. Vuelve y dile lo que dijo Marven.',
+        where: 'Muelle largo al oeste de Moonmere.',
+        npc: 'Virella',
+        coords: { label: "🌊 Virella (Muelle Oeste de Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_1_lagoon_village', wx: 4968, wy: 2636, worldRect: [4900, 2550, 200, 200] },
+        items: []
+      }
     ]
   },
   bk23: {
@@ -525,12 +551,62 @@ export const DASHBOARD_QUEST_CATALOG = {
       { step: 1, name: 'Aporta materiales para el ritual final', text: 'Entrega 60 Madera común, 40 Caléndulas y 20 Setas Brillantes a las sirenas para reparar el arco de la Puerta.', where: 'Puerta de los Fundadores al norte de Moonmere.', npc: 'Sylmare', items: [{ id: 'wood', name: 'Madera común (Wood)', needed: 60, hint: 'The Woodlot' }, { id: 'Marigold', name: 'Caléndula (Marigold)', needed: 40, hint: 'Cultivo Nv 1' }, { id: 'Glowcap', name: 'Seta Brillante (Glowcap)', needed: 20, hint: 'Whisperwood / Moonmere' }] },
       { step: 2, name: 'Entona el Verso de la Canción y abre la Puerta', text: 'Canta el verso junto a Sylmare y Marven para desbloquear el sello final y culminar el Libro 1.', where: 'Puerta de los Fundadores.', npc: 'Sylmare & Marven', items: [] }
     ]
+  },
+  sd_bram: {
+    name: 'Secundaria: Mineral para la Herrería (Bram)',
+    chain: 'side',
+    giver: 'Bram (Herrero)',
+    location: 'Herrería al este de la plaza central',
+    coords: { label: '⚒️ Herrería de Bram (Forja y Yunque)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 6240, wy: 4420, worldRect: [6100, 4300, 280, 240] },
+    steps: [
+      { step: 1, name: 'Habla con Bram', text: 'Habla con Bram en la Herrería al este de la plaza.', where: 'Herrería al este de la plaza.', npc: 'Bram', items: [] },
+      { step: 2, name: 'Entrega Mena de Cobre', text: 'Pica menas de cobre en las cuevas de Stonepeak y llévalas a Bram.', where: 'Cuevas de Stonepeak.', npc: 'Bram', items: [{ id: 'Copper Ore', name: 'Mena de Cobre (Copper Ore)', needed: 5, hint: 'Vetas en Stonepeak' }] },
+      { step: 3, name: 'Entrega 5x Mena de Hierro', text: 'Pica y entrega 5 Menas de Hierro (Iron Ore) a Bram en la Herrería.', where: 'Cuevas profundas de Stonepeak (Nivel 5+ Minería).', npc: 'Bram', items: [{ id: 'Iron Ore', name: 'Mena de Hierro (Iron Ore)', needed: 5, hint: 'Cuevas de Stonepeak' }] }
+    ]
+  },
+  sd_clara: {
+    name: 'Secundaria: Huevos para la Panadería',
+    chain: 'side',
+    giver: 'Clara / Tamsin',
+    location: 'Panadería junto al puente oeste',
+    coords: { label: '🥖 Panadería de Tamsin & Clara', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5400, wy: 4440, worldRect: [5300, 4320, 200, 200] },
+    steps: [
+      { step: 1, name: 'Habla en la Panadería', text: 'Habla con Clara o Tamsin en la Panadería.', where: 'Panadería junto al puente.', npc: 'Tamsin', items: [] },
+      { step: 2, name: 'Consigue y entrega 12x Huevos', text: 'Las gallinas ponen huevos en la Granja de Hollis al sur. Recolecta 12 Huevos y llévaselos a la panadería.', where: 'Granja de Hollis al sur del pueblo.', npc: 'Clara', items: [{ id: 'Egg', name: 'Huevo (Egg)', needed: 12, hint: 'Gallinas en Granja de Hollis' }] }
+    ]
+  },
+  sd_lena: {
+    name: 'Secundaria: El Jardín de Invierno (Lena)',
+    chain: 'side',
+    giver: 'Lena',
+    location: 'Jardín de Invierno al sur de Bloomshire',
+    coords: { label: '❄️ Lena (Jardín de Invierno)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 4962, wy: 4870, worldRect: [4900, 4800, 150, 150] },
+    steps: [
+      { step: 1, name: 'Habla con Lena', text: 'Habla con Lena sobre la conservación de cultivos durante el invierno.', where: 'Jardín al sur de Bloomshire.', npc: 'Lena', items: [] },
+      { step: 2, name: 'Cosecha cultivos de invierno', text: 'Siembra y cosecha cultivos invernales (Winter Kale o Snow Turnip) y llévale las muestras a Lena.', where: 'Parcelas de cultivo.', npc: 'Lena', items: [{ id: 'Winter Kale', name: 'Col de Invierno (Winter Kale)', needed: 4, hint: 'Semillas de Hazel' }] }
+    ]
+  },
+  sd_elsie: {
+    name: 'Secundaria: Miel para las Pinturas (Elsie)',
+    chain: 'side',
+    giver: 'Elsie (Pintora)',
+    location: 'Orilla del río Bloomshire',
+    coords: { label: '🎨 Orilla del Río — Elsie la Pintora', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5350, wy: 4700, worldRect: [5200, 4600, 250, 200] },
+    steps: [
+      { step: 1, name: 'Habla con Elsie', text: 'Habla con Elsie mientras pinta junto al río.', where: 'Orilla del río.', npc: 'Elsie', items: [] },
+      { step: 2, name: 'Consigue miel para sus pinturas', text: 'Consigue 5x Miel de abejas para que Elsie elabore sus pigmentos al óleo.', where: 'Orilla del río.', npc: 'Elsie', items: [{ id: 'Honey', name: 'Miel de Abeja (Honey)', needed: 5, hint: 'Colmenas o flores' }] }
+    ]
   }
 };
 // Aliases for ff*
 [18, 19, 20, 21, 22, 23, 24].forEach(n => {
   DASHBOARD_QUEST_CATALOG['ff' + n] = DASHBOARD_QUEST_CATALOG['bk' + n];
 });
+DASHBOARD_QUEST_CATALOG['s_bram'] = DASHBOARD_QUEST_CATALOG['sd_bram'];
+DASHBOARD_QUEST_CATALOG['s_tamsin'] = DASHBOARD_QUEST_CATALOG['sd_clara'];
+DASHBOARD_QUEST_CATALOG['s_clara'] = DASHBOARD_QUEST_CATALOG['sd_clara'];
+DASHBOARD_QUEST_CATALOG['s_lena'] = DASHBOARD_QUEST_CATALOG['sd_lena'];
+DASHBOARD_QUEST_CATALOG['s_elsie'] = DASHBOARD_QUEST_CATALOG['sd_elsie'];
 
 export const MARKET_ROTATION_CATALOG = [
   {
@@ -857,6 +933,7 @@ export default function BloomshireCommand() {
     try { return localStorage.getItem('bloomshire_cached_active_quest') || ''; } catch { return ''; }
   });
   const [activeQuestsList, setActiveQuestsList] = useState([]);
+  const [selectedQuestId, setSelectedQuestId] = useState(null);
   const [moonmereProgress, setMoonmereProgress] = useState({
     currentChapter: 0,
     completedChapters: 0,
@@ -4179,17 +4256,16 @@ export default function BloomshireCommand() {
               )}
             </div>
 
-{/* CAJA 1 (COLAPSABLE): Progreso hacia Moonmere (Book One, Part Four) - 100% DINÁMICO */}
+{/* ==============================================================
+    CENTRO UNIFICADO DE MISIONES Y AVANCE DE HISTORIA (STEPPER HORIZONTAL)
+    ============================================================== */}
             {(() => {
               const activeMainStoryQuest = activeQuestsList.find(q =>
                 q.isMainStory ||
                 (q.id && (q.id.toLowerCase().startsWith('bk') || q.id.toLowerCase().startsWith('ff') || q.id.toLowerCase().startsWith('q')))
               ) || activeQuestsList[0];
 
-              const normId = (activeMainStoryQuest?.id || '').toLowerCase();
-              const catDef = DASHBOARD_QUEST_CATALOG[normId] || DASHBOARD_QUEST_CATALOG[normId.replace(/^s_/, 'sd_')];
-
-              const activeChapNum = activeMainStoryQuest?.chapter || catDef?.chapter || (
+              const activeChapNum = activeMainStoryQuest?.chapter || (
                 activeMainStoryQuest?.id ? parseInt(activeMainStoryQuest.id.replace(/^(bk|ff|q)/i, ''), 10) : 21
               ) || 21;
 
@@ -4198,166 +4274,341 @@ export default function BloomshireCommand() {
                 activeChapNum > 0 ? (activeChapNum - 1) : 20
               );
 
-              const isMoonmere = activeChapNum >= 18;
-              const moonmereIndex = isMoonmere ? (activeChapNum - 17) : 0;
               const totalChapters = 24;
               const progressPct = Math.min(100, Math.round((completedChapCount / totalChapters) * 100));
+              const isMoonmere = activeChapNum >= 18;
+              const moonmereIndex = isMoonmere ? (activeChapNum - 17) : 0;
 
-              const questTitle = catDef?.name || activeMainStoryQuest?.name || activeMainStoryQuest?.title || `Capítulo ${activeChapNum}`;
-              const questSteps = (activeMainStoryQuest?.allSteps && activeMainStoryQuest.allSteps.length > 0)
-                ? activeMainStoryQuest.allSteps
-                : (catDef?.steps || []);
+              // Misión seleccionada actual
+              const targetQuest = (selectedQuestId && activeQuestsList.find(q => q.id === selectedQuestId || (q.normalizedId && q.normalizedId === selectedQuestId.toLowerCase())))
+                || activeMainStoryQuest
+                || activeQuestsList[0]
+                || null;
 
-              const curStepNum = activeMainStoryQuest?.step !== undefined ? activeMainStoryQuest.step : ((activeMainStoryQuest?.stepIdx || 0) + 1);
+              const normId = (targetQuest?.id || '').toLowerCase();
+              const catDef = DASHBOARD_QUEST_CATALOG[normId] ||
+                DASHBOARD_QUEST_CATALOG[normId.replace(/^s_/, 'sd_')] ||
+                DASHBOARD_QUEST_CATALOG[normId.replace(/^sd_/, 's_')];
 
-              const questLoc = activeMainStoryQuest?.coords || catDef?.coords || {
-                label: "🧜‍♀️ Sylmare (Portavoz de la Laguna)",
-                regionId: 'moonmere',
-                subZoneId: 'moonmere_sub_1_lagoon_village',
-                wx: 5152,
-                wy: 2698,
-                worldRect: [5050, 2600, 200, 200]
-              };
+              const qTitle = catDef?.name || targetQuest?.name || targetQuest?.title || (targetQuest?.id ? `Misión ${targetQuest.id.toUpperCase()}` : 'Sin misión activa');
+              const isMain = targetQuest?.isMainStory || normId.startsWith('bk') || normId.startsWith('ff');
+              
+              // Pasos canónicos
+              const rawSteps = (catDef?.steps && catDef.steps.length > 0)
+                ? catDef.steps
+                : ((targetQuest?.allSteps && targetQuest.allSteps.length > 0) ? targetQuest.allSteps : []);
+              
+              const curStepNum = targetQuest?.step !== undefined ? targetQuest.step : ((targetQuest?.stepIdx || 0) + 1);
+              const totalSteps = Math.max(rawSteps.length, curStepNum, 1);
 
-              let objText = activeMainStoryQuest?.objective || activeMainStoryQuest?.stepText;
-              if (!objText || objText === 'Paso 3' || objText === 'Paso 3 (0/30)') {
-                objText = 'Pesca 30 peces en las aguas de la laguna o en el lago Moonmere (fish 0/30). Recompensa: 1000 Oro.';
+              // Asegurar que stepsList tenga todos los pasos
+              const stepsList = [...rawSteps];
+              while (stepsList.length < totalSteps) {
+                const sN = stepsList.length + 1;
+                stepsList.push({
+                  step: sN,
+                  name: `Paso ${sN}`,
+                  text: targetQuest?.objective || targetQuest?.stepText || 'Continúa la misión en el juego.',
+                  where: targetQuest?.where || catDef?.location || 'Ver indicador en el mapa',
+                  npc: targetQuest?.giver || catDef?.giver || 'Vecino',
+                  items: []
+                });
               }
 
-              return (
-                <div className="bg-gradient-to-r from-[#0e1933] via-[#112244] to-[#0d1b36] border-2 border-cyan-500/50 rounded-xl shadow-lg overflow-hidden shrink-0">
-                  <button
-                    onClick={() => toggleQuestSection('moonmereBanner')}
-                    className="w-full p-4 flex flex-wrap items-center justify-between gap-2 text-left cursor-pointer hover:bg-white/[0.02] transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      {questSectionsOpen.moonmereBanner ? (
-                        <ChevronDown className="w-4 h-4 text-cyan-400 shrink-0" />
-                      ) : (
-                        <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0" />
-                      )}
-                      <div>
-                        <div className="text-xs font-black text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
-                          🌊 EXPANSIÓN BOOK ONE, PART FOUR: MOONMERE (7 CAPÍTULOS NUEVOS)
-                        </div>
-                        <div className="text-xs font-bold text-slate-200 mt-0.5">
-                          Requisito de Acceso: Completar el Capítulo 17 (&quot;Home Changed&quot;) de la Historia Principal
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-xs font-black">
-                        Progreso Book One: {completedChapCount} / {totalChapters} Capítulos (Moonmere: Cap. {activeChapNum} de 24)
-                      </div>
-                      <span className="text-[11px] text-slate-400 font-mono">
-                        {questSectionsOpen.moonmereBanner ? 'Ocultar ▲' : 'Mostrar ▼'}
-                      </span>
-                    </div>
-                  </button>
+              const curStepDef = stepsList[curStepNum - 1] || stepsList[stepsList.length - 1] || null;
+              const curStepName = curStepDef?.name || targetQuest?.stepName || `Paso ${curStepNum}`;
+              const curStepText = curStepDef?.text || targetQuest?.objective || targetQuest?.stepText || 'Consulta el panel de misiones en el juego (M) o habla con el personaje.';
+              const curWhere = curStepDef?.where || targetQuest?.where || catDef?.location || 'Ver en el mapa';
+              const curNpc = curStepDef?.npc || targetQuest?.giver || catDef?.giver || 'Vecino de Bloomshire';
+              const questReward = targetQuest?.reward || catDef?.reward || null;
 
-                  {questSectionsOpen.moonmereBanner && (
-                    <div className="px-4 pb-4 pt-2 flex flex-col gap-3.5 border-t border-cyan-500/20">
-                      {/* Barra de progreso interactiva */}
-                      <div className="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
+              const questLoc = curStepDef?.coords || targetQuest?.coords || catDef?.coords || {
+                label: `🎯 ${qTitle}`,
+                regionId: isMoonmere ? 'moonmere' : 'bloomshire_town',
+                subZoneId: isMoonmere ? 'moonmere_sub_1_lagoon_village' : 'bloomshire_town_sub_1_bloomshire',
+                wx: 4968,
+                wy: 2636,
+                worldRect: [4900, 2550, 200, 200]
+              };
+
+              return (
+                <div className="bg-gradient-to-b from-[#0d1733] to-[#091024] border-2 border-indigo-900/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col shrink-0">
+                  {/* Cabecera superior: Progreso de Book One */}
+                  <div className="p-4 bg-gradient-to-r from-[#0d1b3d] via-[#122452] to-[#0d1b3d] border-b border-indigo-950/80 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🌊</span>
+                      <div>
+                        <div className="text-xs font-black text-cyan-300 uppercase tracking-wider flex items-center gap-2 flex-wrap">
+                          <span>EXPANSIÓN BOOK ONE: MOONMERE &amp; MISIONES</span>
+                          <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-[10px] font-mono font-bold">
+                            Capítulo {activeChapNum} de 24
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-300 mt-0.5">
+                          Progreso de Historia: <b>{completedChapCount} / {totalChapters} Capítulos Completados</b> ({progressPct}%)
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <div className="w-36 sm:w-48 h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
                         <div
                           className="h-full bg-gradient-to-r from-amber-500 via-cyan-400 to-emerald-400 transition-all duration-500"
                           style={{ width: `${progressPct}%` }}
                         />
                       </div>
+                      <span className="text-xs font-mono font-black text-emerald-400">{progressPct}%</span>
+                    </div>
+                  </div>
 
-                      {/* Banner Desbloqueo y Estado */}
-                      <div className="p-3 bg-[#0a152e] border border-cyan-500/30 rounded-xl text-xs text-slate-200 leading-relaxed flex flex-wrap items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-base">🎉</span>
-                          <span>
-                            <b>¡Acceso a Moonmere Desbloqueado!</b> Has completado los 17 capítulos de la historia base. Tu misión activa ahora es el <b>{questTitle}</b> (Moonmere • {moonmereIndex} de 7).
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => locateInMegaAtlas(questLoc)}
-                          className="w-8 h-8 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 flex items-center justify-center cursor-pointer shadow-sm transition-all shrink-0"
-                          title="Ubicar objetivo activo en el Mega-Atlas"
-                        >
-                          <MapPin className="w-4 h-4" />
-                        </button>
+                  {/* Contenido Modular: Lista de Misiones (Izquierda) + Ficha Dinámica con Stepper (Derecha) */}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[440px]">
+                    {/* Columna Izquierda (4/12): Lista de Misiones Activas (como el panel del juego) */}
+                    <div className="lg:col-span-4 border-r border-indigo-950/80 p-3.5 bg-[#080f22] flex flex-col gap-2">
+                      <div className="text-[11px] font-black uppercase tracking-wider text-slate-400 px-2 py-1 flex items-center justify-between border-b border-slate-800 pb-2">
+                        <span className="flex items-center gap-1.5">
+                          <span>📜</span> Misiones Activas ({activeQuestsList.length})
+                        </span>
+                        <span className="text-[10px] font-mono text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/30">
+                          En Progreso
+                        </span>
                       </div>
 
-                      {/* Misión Activa de la Expansión (100% Dinámica) */}
-                      <div className="p-3.5 bg-[#0a152e] border-2 border-amber-500/50 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-md">
-                        <div className="flex flex-col gap-1.5 flex-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono text-[11px] font-bold">
-                              Capítulo {activeChapNum} de 24 (Moonmere • {moonmereIndex} de 7)
-                            </span>
-                            <span className="font-black text-white text-sm">
-                              🌟 {questTitle}
-                            </span>
+                      <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] custom-scrollbar pr-1">
+                        {activeQuestsList.length === 0 ? (
+                          <div className="p-4 bg-[#0d162d] rounded-xl border border-slate-800 text-xs text-slate-400 text-center">
+                            ✨ No tienes misiones activas en este momento.
                           </div>
-                          <div className="text-xs text-slate-300 leading-relaxed">
-                            <b>Objetivo actual:</b> {objText}
+                        ) : (
+                          activeQuestsList.map((q, idx) => {
+                            const norm = (q.id || '').toLowerCase();
+                            const qCat = DASHBOARD_QUEST_CATALOG[norm] ||
+                              DASHBOARD_QUEST_CATALOG[norm.replace(/^s_/, 'sd_')] ||
+                              DASHBOARD_QUEST_CATALOG[norm.replace(/^sd_/, 's_')];
+                            const isSelected = targetQuest && (targetQuest.id === q.id || (targetQuest.normalizedId && targetQuest.normalizedId === q.normalizedId));
+                            const isMainQ = q.isMainStory || norm.startsWith('bk') || norm.startsWith('ff');
+                            const title = qCat?.name || q.name || q.title || `Misión ${q.id.toUpperCase()}`;
+                            const giverName = qCat?.giver || q.giver || 'Vecino';
+                            const stepNum = q.step !== undefined ? q.step : ((q.stepIdx || 0) + 1);
+                            const qSteps = (qCat?.steps && qCat.steps.length > 0) ? qCat.steps : (q.allSteps || []);
+                            const qTotal = Math.max(qSteps.length, stepNum);
+
+                            return (
+                              <button
+                                key={q.id || idx}
+                                onClick={() => setSelectedQuestId(q.id)}
+                                className={`p-3 rounded-xl border text-left transition-all cursor-pointer flex flex-col gap-1.5 ${
+                                  isSelected
+                                    ? 'bg-gradient-to-r from-[#172752] to-[#121f42] border-amber-400 text-white shadow-lg shadow-amber-950/40 ring-1 ring-amber-400/50'
+                                    : 'bg-[#0d162d] border-slate-800 text-slate-300 hover:bg-[#111c38] hover:border-slate-700'
+                                }`}
+                              >
+                                <div className="flex items-center justify-between gap-1.5">
+                                  <div className="flex items-center gap-1.5 font-bold text-xs truncate">
+                                    <span>{isMainQ ? '⭐' : '❗'}</span>
+                                    <span className={isSelected ? 'text-amber-300' : 'text-slate-200'}>{title}</span>
+                                  </div>
+                                  <span className={`text-[9.5px] font-mono px-1.5 py-0.5 rounded font-bold shrink-0 ${
+                                    isSelected
+                                      ? 'bg-amber-500 text-slate-950'
+                                      : 'bg-slate-800 text-slate-400'
+                                  }`}>
+                                    Paso {stepNum}/{qTotal}
+                                  </span>
+                                </div>
+
+                                <div className="flex items-center justify-between text-[11px] text-slate-400">
+                                  <span>De <b>{giverName}</b></span>
+                                  {isSelected && (
+                                    <span className="text-[10px] text-amber-300 font-bold flex items-center gap-1">
+                                      <span>Siguiendo</span> <span>▶</span>
+                                    </span>
+                                  )}
+                                </div>
+                              </button>
+                            );
+                          })
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Columna Derecha (8/12): Ficha Dinámica y Stepper Horizontal */}
+                    <div className="lg:col-span-8 p-5 bg-[#0b1428] flex flex-col gap-4">
+                      {targetQuest ? (
+                        <>
+                          {/* Cabecera de la Misión */}
+                          <div className="p-4 bg-gradient-to-r from-[#101b38] to-[#0c1630] border border-slate-800 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-md">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase">
+                                  {isMain ? '⭐ Historia Principal' : '📜 Misión Secundaria'}
+                                </span>
+                                {targetQuest.chapter && (
+                                  <span className="px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-300 border border-cyan-500/30 text-[10.5px] font-mono font-bold">
+                                    Capítulo {targetQuest.chapter}
+                                  </span>
+                                )}
+                                <h3 className="font-black text-white text-base">
+                                  {qTitle}
+                                </h3>
+                              </div>
+                              <div className="text-xs text-slate-300 mt-0.5 flex items-center gap-3 flex-wrap">
+                                <span>Otorgada por: <b className="text-amber-200">{curNpc}</b></span>
+                                <span>•</span>
+                                <span>Ubicación: <b className="text-slate-200">{curWhere}</b></span>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => locateInMegaAtlas(questLoc)}
+                                className="px-3.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm hover:scale-105"
+                                title="Ubicar objetivo en el Mega-Atlas"
+                              >
+                                <MapPin className="w-4 h-4" />
+                                <span>Ver en Mega-Atlas</span>
+                              </button>
+                            </div>
                           </div>
 
-                          {/* Checklist de pasos */}
-                          {questSteps.length > 0 && (
-                            <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px]">
-                              {questSteps.map((st, idx) => {
-                                const sNum = st.step || (idx + 1);
-                                const isDone = sNum < curStepNum;
-                                const isCur = sNum === curStepNum;
+                          {/* STEPPER HORIZONTAL (COMO LA IMAGEN 5 DE CHECKOUT) */}
+                          <div className="p-5 bg-[#080f22] border border-slate-800 rounded-xl relative overflow-x-auto custom-scrollbar shadow-inner">
+                            <div className="min-w-[440px] py-3 px-8 relative flex items-center justify-between">
+                              {/* Línea conectora base */}
+                              <div className="absolute top-[28px] left-12 right-12 h-1 bg-slate-800 -translate-y-1/2 z-0" />
+                              
+                              {/* Línea conectora de progreso completado */}
+                              <div 
+                                className="absolute top-[28px] left-12 h-1 bg-gradient-to-r from-emerald-500 to-amber-400 -translate-y-1/2 z-0 transition-all duration-500"
+                                style={{
+                                  width: `${Math.max(0, Math.min(100, ((curStepNum - 1) / Math.max(1, totalSteps - 1)) * 100))}%`
+                                }}
+                              />
+
+                              {stepsList.map((st, sIdx) => {
+                                const stepNum = st.step || (sIdx + 1);
+                                const isDone = stepNum < curStepNum;
+                                const isCur = stepNum === curStepNum;
+
                                 return (
-                                  <span
-                                    key={idx}
-                                    className={`px-2 py-0.5 rounded border font-medium flex items-center gap-1 ${
+                                  <div key={sIdx} className="relative z-10 flex flex-col items-center max-w-[130px] text-center">
+                                    {/* Círculo del Paso */}
+                                    <div className={`w-11 h-11 rounded-full flex items-center justify-center font-black transition-all ${
                                       isCur
-                                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold'
+                                        ? 'bg-amber-500 border-2 border-amber-200 text-slate-950 ring-4 ring-amber-400/30 shadow-lg shadow-amber-500/30 scale-110'
                                         : isDone
-                                          ? 'bg-emerald-950/30 text-emerald-400 border-emerald-500/30'
-                                          : 'bg-slate-900/60 text-slate-500 border-slate-800'
-                                    }`}
-                                  >
-                                    <span>{isDone ? '✓' : isCur ? '▶' : '🔒'}</span>
-                                    <span>Paso {sNum}: {st.name}</span>
-                                  </span>
+                                          ? 'bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 shadow-md'
+                                          : 'bg-[#0d162c] border-2 border-slate-700 text-slate-500'
+                                    }`}>
+                                      {isDone ? (
+                                        <Check className="w-5 h-5 text-emerald-400 stroke-[3]" />
+                                      ) : isCur ? (
+                                        <span className="text-sm font-black">{stepNum}</span>
+                                      ) : (
+                                        <span className="text-xs font-mono">{stepNum}</span>
+                                      )}
+                                    </div>
+
+                                    {/* Etiqueta de Estado */}
+                                    <span className={`mt-2.5 text-[10px] font-black uppercase tracking-wider ${
+                                      isCur ? 'text-amber-300' : isDone ? 'text-emerald-400' : 'text-slate-500'
+                                    }`}>
+                                      {isCur ? '⚡ En Curso' : isDone ? '✓ Hecho' : `Paso ${stepNum}`}
+                                    </span>
+
+                                    {/* Nombre del Paso */}
+                                    <span className={`text-[11px] font-bold mt-0.5 line-clamp-2 leading-tight ${
+                                      isCur ? 'text-white' : isDone ? 'text-slate-300' : 'text-slate-500'
+                                    }`}>
+                                      {st.name}
+                                    </span>
+                                  </div>
                                 );
                               })}
                             </div>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => locateInMegaAtlas(questLoc)}
-                          className="w-9 h-9 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 flex items-center justify-center shadow cursor-pointer shrink-0 transition-all"
-                          title={`Ubicar ${questTitle} en el Mega-Atlas`}
-                        >
-                          <MapPin className="w-4 h-4" />
-                        </button>
-                      </div>
+                          </div>
 
-                      {/* Historial Plegable de Capítulos Terminados */}
-                      <details className="p-2 bg-[#081024] border border-slate-800 rounded-lg text-slate-400">
-                        <summary className="cursor-pointer text-[11px] font-bold text-slate-300 hover:text-white flex items-center gap-1.5">
-                          <span>📜</span> <span>Ver historial de {completedChapCount} capítulos completados del Libro 1</span>
-                        </summary>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2 pt-2 border-t border-slate-800/80">
-                          {[
-                            { ch: 12, name: "La Ronda de Otto", desc: 'Ronda de Otto por Bloomshire' },
-                            { ch: 13, name: 'Entrada a Whisperwood', desc: 'Puente oeste hacia Whisperwood con Reed' },
-                            { ch: 14, name: 'El Claro Escondido', desc: 'Losa y Arco de Raíces con Greta' },
-                            { ch: 15, name: 'El Mapa Antiguo', desc: 'Mapa antiguo en la Escuela' },
-                            { ch: 16, name: 'Todos los Colores', desc: 'Flores y tintes con Ivy y Fern' },
-                            { ch: 17, name: 'Home Changed (Llave)', desc: 'The Dreaming Fields y acceso a Moonmere' },
-                            { ch: 18, name: 'El Estanque de Marven', desc: 'Marven y peces fantasma' },
-                            { ch: 19, name: 'Las Piedras de Moonmere', desc: 'Piedras cardinales del lago' },
-                            { ch: 20, name: 'El Camino de la Niebla', desc: 'Sendero hacia la Laguna' }
-                          ].slice(0, Math.min(9, completedChapCount)).map(cap => (
-                            <div key={cap.ch} className="p-1.5 bg-[#0b1428] rounded border border-slate-800 text-[10.5px] flex items-center justify-between">
-                              <span className="text-emerald-400 font-bold">✓ Cap. {cap.ch}: {cap.name}</span>
-                              <span className="text-slate-500 text-[9.5px]">Completado</span>
+                          {/* Tarjeta de Acción Inmediata (Objetivo Actual) */}
+                          <div className="p-4 bg-gradient-to-r from-[#101b38] to-[#0c1630] border-2 border-amber-500/50 rounded-xl shadow-lg flex flex-col gap-3">
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                              <div className="flex items-center gap-2">
+                                <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase tracking-wider flex items-center gap-1.5">
+                                  <span>🎯</span> OBJETIVO EN CURSO (Paso {curStepNum} de {totalSteps})
+                                </span>
+                                <span className="text-xs font-bold text-white">
+                                  {curStepName}
+                                </span>
+                              </div>
+                              {questReward && (
+                                <span className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2.5 py-0.5 rounded-full border border-amber-500/30 text-xs">
+                                  💰 Recompensa: {questReward.gold ? `${questReward.gold.toLocaleString('es-ES')} Oro` : 'Completar Misión'}
+                                </span>
+                              )}
                             </div>
-                          ))}
+
+                            <div className="text-sm text-slate-100 font-medium leading-relaxed bg-[#080f20]/70 p-3 rounded-xl border border-slate-800">
+                              {curStepText}
+                            </div>
+
+                            <div className="flex items-center justify-between text-xs text-slate-400 pt-1 flex-wrap gap-2">
+                              <span>📍 <b>Dónde:</b> {curWhere}</span>
+                              <span>👤 <b>Habla con:</b> {curNpc}</span>
+                            </div>
+
+                            {/* Checklist de Ítems Requeridos en este Paso (si aplica) */}
+                            {Array.isArray(curStepDef?.items) && curStepDef.items.length > 0 && (
+                              <div className="mt-1 pt-2 border-t border-slate-800 flex flex-col gap-2">
+                                <div className="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
+                                  <span>📦</span> <span>Materiales e Insumos requeridos para este paso:</span>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {curStepDef.items.map((it, itIdx) => {
+                                    const bd = getItemStorageBreakdown({ id: it.id, name: it.name });
+                                    const manualKey = `${targetQuest.id}_${it.id}`;
+                                    const isManualDelivered = !!deliveredItemsManual[manualKey];
+                                    const haveEnough = isManualDelivered || (bd.total >= it.needed);
+
+                                    return (
+                                      <div
+                                        key={itIdx}
+                                        className={`p-2.5 rounded-xl border flex items-center justify-between gap-2 text-xs ${
+                                          haveEnough
+                                            ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
+                                            : 'bg-rose-950/30 border-rose-500/40 text-slate-200'
+                                        }`}
+                                      >
+                                        <div className="flex items-center gap-1.5 overflow-hidden">
+                                          <span>{haveEnough ? '✅' : '⚠️'}</span>
+                                          <span className="font-semibold truncate">{it.name}:</span>
+                                          <span className="font-mono font-bold">
+                                            {isManualDelivered ? 'Entregado' : `${bd.total} / ${it.needed}`}
+                                          </span>
+                                        </div>
+                                        <button
+                                          onClick={() => toggleDeliveredItem(targetQuest.id, it.id)}
+                                          className={`px-2 py-0.5 rounded text-[10px] font-bold border transition-colors shrink-0 ${
+                                            isManualDelivered
+                                              ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200 cursor-default'
+                                              : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 cursor-pointer'
+                                          }`}
+                                        >
+                                          {isManualDelivered ? '✓ Entregado' : 'Marcar Entregado'}
+                                        </button>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="h-full flex items-center justify-center p-8 text-center text-slate-400 text-sm">
+                          Selecciona una misión activa de la lista izquierda para ver su paso a paso en vivo.
                         </div>
-                      </details>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })()}
@@ -4515,6 +4766,78 @@ export default function BloomshireCommand() {
                   )}
                 </div>
 
+                {/* CAJA 4 (COLAPSABLE): Monitor de Energía y Cama UTC */}
+                <div className="bg-[#0e172c] border border-cyan-500/40 rounded-xl shadow-md overflow-hidden">
+                  <button
+                    onClick={() => toggleQuestSection('energyBed')}
+                    className="w-full p-4 flex items-center justify-between gap-2 text-left cursor-pointer hover:bg-white/[0.02] transition-colors"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      {questSectionsOpen.energyBed ? (
+                        <ChevronDown className="w-4 h-4 text-cyan-400 shrink-0" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0" />
+                      )}
+                      <div>
+                        <div className="text-xs font-black text-cyan-400 uppercase tracking-wider">
+                          🛏️ Monitor de Energía y Cama (Season 0 Rework)
+                        </div>
+                        <div className="text-[11px] text-slate-300 mt-0.5 font-mono">
+                          ⚡ {Math.floor(currentEnergy)}/{maxEnergy} • {energyMeta.canRest ? '✓ Cama Lista' : `Cama: ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-[11px] text-slate-400 font-mono">
+                      {questSectionsOpen.energyBed ? 'Ocultar ▲' : 'Mostrar ▼'}
+                    </span>
+                  </button>
+
+                  {questSectionsOpen.energyBed && (
+                    <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-2.5">
+                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
+                        <span className="text-slate-300">Energía Actual del Personaje:</span>
+                        <span className="font-mono font-black text-cyan-300 text-sm">
+                          {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">(+1⚡ cada 3m VIP)</span>
+                        </span>
+                      </div>
+
+                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
+                        <span className="text-slate-300">Estado de la Cama (Reinicio 00:00 UTC):</span>
+                        <span className={energyMeta.canRest ? 'text-emerald-400 font-black' : 'text-amber-300 font-black'}>
+                          {energyMeta.recovering
+                            ? `💤 Recuperando (${energyMeta.recoverMinutesLeft}m restantes)`
+                            : energyMeta.canRest
+                            ? `✓ Cama Lista (${energyMeta.sleepLeft ?? 450}/450⚡ hoy)`
+                            : `🏠 Cama en ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
+                        </span>
+                      </div>
+
+                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
+                        <span className="text-slate-300">Sueño Diario Usado Hoy (3 Barras VIP):</span>
+                        <span className="font-mono font-bold text-amber-300">
+                          {energyMeta.usedSleepToday ?? 450} / {energyMeta.sleepADay || 450} ⚡
+                        </span>
+                      </div>
+
+                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
+                        <span className="text-slate-300">Comida Consumida (Ciclo 12h UTC):</span>
+                        <span className="font-mono font-bold text-emerald-300">
+                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || 90} ⚡
+                        </span>
+                      </div>
+
+                      <div className="text-[11px] text-slate-400 leading-relaxed bg-[#0a1224] p-2.5 rounded-lg border border-slate-800">
+                        💡 <b>Cómo funciona el nuevo sistema de Cama y Energía:</b>
+                        <br />• Tus 10 Founding Farmers regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora) aunque estés quieto.
+                        <br />• Tienes una cuota de sueño de <b>450⚡ por día UTC</b> (3 barras completas de 150⚡). Al agotar los 450⚡ del día, el contador muestra el tiempo exacto hasta las <b>00:00 UTC (21:00 hs Argentina)</b>.
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Columna Derecha (6/12): Libro de las 10 Habilidades */}
+              <div className="lg:col-span-6 flex flex-col gap-4">
                 {/* CAJA 2 (COLAPSABLE): LIBRO DE LAS 10 HABILIDADES */}
                 <div className="bg-[#0e172c] border-2 border-amber-500/50 rounded-xl shadow-lg overflow-hidden">
                   <button
@@ -4627,282 +4950,8 @@ export default function BloomshireCommand() {
                     </div>
                   )}
                 </div>
-
-                {/* CAJA 4 (COLAPSABLE): Monitor de Energía y Cama UTC */}
-                <div className="bg-[#0e172c] border border-cyan-500/40 rounded-xl shadow-md overflow-hidden">
-                  <button
-                    onClick={() => toggleQuestSection('energyBed')}
-                    className="w-full p-4 flex items-center justify-between gap-2 text-left cursor-pointer hover:bg-white/[0.02] transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      {questSectionsOpen.energyBed ? (
-                        <ChevronDown className="w-4 h-4 text-cyan-400 shrink-0" />
-                      ) : (
-                        <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0" />
-                      )}
-                      <div>
-                        <div className="text-xs font-black text-cyan-400 uppercase tracking-wider">
-                          🛏️ Monitor de Energía y Cama (Season 0 Rework)
-                        </div>
-                        <div className="text-[11px] text-slate-300 mt-0.5 font-mono">
-                          ⚡ {Math.floor(currentEnergy)}/{maxEnergy} • {energyMeta.canRest ? '✓ Cama Lista' : `Cama: ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-[11px] text-slate-400 font-mono">
-                      {questSectionsOpen.energyBed ? 'Ocultar ▲' : 'Mostrar ▼'}
-                    </span>
-                  </button>
-
-                  {questSectionsOpen.energyBed && (
-                    <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-2.5">
-                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Energía Actual del Personaje:</span>
-                        <span className="font-mono font-black text-cyan-300 text-sm">
-                          {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">(+1⚡ cada 3m VIP)</span>
-                        </span>
-                      </div>
-
-                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Estado de la Cama (Reinicio 00:00 UTC):</span>
-                        <span className={energyMeta.canRest ? 'text-emerald-400 font-black' : 'text-amber-300 font-black'}>
-                          {energyMeta.recovering
-                            ? `💤 Recuperando (${energyMeta.recoverMinutesLeft}m restantes)`
-                            : energyMeta.canRest
-                            ? `✓ Cama Lista (${energyMeta.sleepLeft ?? 450}/450⚡ hoy)`
-                            : `🏠 Cama en ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
-                        </span>
-                      </div>
-
-                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Sueño Diario Usado Hoy (3 Barras VIP):</span>
-                        <span className="font-mono font-bold text-amber-300">
-                          {energyMeta.usedSleepToday ?? 450} / {energyMeta.sleepADay || 450} ⚡
-                        </span>
-                      </div>
-
-                      <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Comida Consumida (Ciclo 12h UTC):</span>
-                        <span className="font-mono font-bold text-emerald-300">
-                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || 90} ⚡
-                        </span>
-                      </div>
-
-                      <div className="text-[11px] text-slate-400 leading-relaxed bg-[#0a1224] p-2.5 rounded-lg border border-slate-800">
-                        💡 <b>Cómo funciona el nuevo sistema de Cama y Energía:</b>
-                        <br />• Tus 10 Founding Farmers regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora) aunque estés quieto.
-                        <br />• Tienes una cuota de sueño de <b>450⚡ por día UTC</b> (3 barras completas de 150⚡). Al agotar los 450⚡ del día, el contador muestra el tiempo exacto hasta las <b>00:00 UTC (21:00 hs Argentina)</b>.
-                      </div>
-                    </div>
-                  )}
-                </div>
               </div>
-
-              {/* Columna Derecha (6/12): Guía Dinámica de Tareas & Pasos de Misiones (Completa y en Vivo) */}
-              <div className="lg:col-span-6 flex flex-col gap-4">
-                {/* CAJA 5 (COLAPSABLE): GUÍA DINÁMICA DE TAREAS & PASOS EN VIVO */}
-                <div className="bg-[#0e172c] border border-amber-500/40 rounded-xl shadow-md overflow-hidden">
-                  <button
-                    onClick={() => toggleQuestSection('roadmap')}
-                    className="w-full p-4 flex items-center justify-between gap-2 text-left cursor-pointer hover:bg-white/[0.02] transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      {questSectionsOpen.roadmap ? (
-                        <ChevronDown className="w-4 h-4 text-amber-400 shrink-0" />
-                      ) : (
-                        <ChevronRight className="w-4 h-4 text-amber-400 shrink-0" />
-                      )}
-                      <div>
-                        <div className="text-xs font-black text-amber-300 uppercase tracking-wider flex items-center gap-2">
-                          <span>🎯 Guía Dinámica de Tareas & Pasos de Misiones</span>
-                          <span className="px-1.5 py-0.2 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded text-[10px] font-mono">
-                            {activeQuestsList.length} Activas
-                          </span>
-                        </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">
-                          Paso a paso en tiempo real sincronizado con tu partida (Historia y Secundarias)
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-[11px] text-slate-400 font-mono">
-                      {questSectionsOpen.roadmap ? 'Ocultar ▲' : 'Mostrar ▼'}
-                    </span>
-                  </button>
-
-                  {questSectionsOpen.roadmap && (
-                    <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-3 text-xs">
-                      {activeQuestsList.length === 0 ? (
-                        <div className="p-4 bg-[#101b33] border border-slate-800 rounded-lg text-slate-300 text-center">
-                          ✨ No tienes misiones activas en este momento.
-                        </div>
-                      ) : (
-                        activeQuestsList.map((rawQ, qIdx) => {
-                          const normId = (rawQ.id || '').toLowerCase();
-                          const catDef = DASHBOARD_QUEST_CATALOG[normId] ||
-                            DASHBOARD_QUEST_CATALOG[normId.replace(/^s_/, 'sd_')] ||
-                            DASHBOARD_QUEST_CATALOG[normId.replace(/^sd_/, 's_')];
-
-                          const q = {
-                            ...catDef,
-                            ...rawQ,
-                            title: (catDef?.name && (rawQ.title === `Misión ${(rawQ.id || '').toUpperCase()}` || !rawQ.title)) ? catDef.name : (rawQ.title || catDef?.name || rawQ.name || `Misión ${(rawQ.id || '').toUpperCase()}`),
-                            allSteps: (rawQ.allSteps && rawQ.allSteps.length > 0) ? rawQ.allSteps : (catDef?.steps || []),
-                            coords: rawQ.coords || catDef?.coords
-                          };
-
-                          const qTitle = q.title || q.name || `Misión ${(q.id || '').toUpperCase()}`;
-                          const qStepNum = q.step !== undefined ? q.step : ((q.stepIdx || 0) + 1);
-                          const isMain = q.isMainStory || normId.startsWith('bk') || normId.startsWith('ff');
-                          const stepsList = Array.isArray(q.allSteps) && q.allSteps.length > 0 ? q.allSteps : null;
-
-                          const questLoc = q.coords || (
-                            (q.id || '').toLowerCase() === 'bk18'
-                              ? { label: "🌊 Cap. 18: Estanque de Marven (Moonmere)", regionId: 'moonmere', subZoneId: 'moonmere_sub_7_marven_s_pool', wx: 6416, wy: 3636, worldRect: [6144, 3480, 544, 312] }
-                              : { label: `🎯 ${qTitle}`, regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5752, wy: 4472, worldRect: [5450, 4200, 600, 540] }
-                          );
-
-                          return (
-                            <div id={`quest_guide_${(q.id || qIdx).toLowerCase()}`} key={q.id || qIdx} className="p-3.5 bg-[#101b33] border border-amber-500/30 rounded-xl flex flex-col gap-2.5 shadow-md">
-                              <div className="flex items-center justify-between gap-2 flex-wrap">
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-sm">{isMain ? '🌟' : '📋'}</span>
-                                  <span className="font-bold text-amber-300 text-xs">{qTitle}</span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-[10.5px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
-                                    Paso actual: {qStepNum}{stepsList ? ` / ${stepsList.length}` : ''}
-                                  </span>
-                                  <button
-                                    onClick={() => locateInMegaAtlas(questLoc)}
-                                    className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center cursor-pointer shrink-0 transition-all"
-                                    title={`Ubicar objetivo de "${qTitle}" en el Mega-Atlas`}
-                                  >
-                                    <MapPin className="w-3 h-3" />
-                                  </button>
-                                </div>
-                              </div>
-
-                              {/* Stepper de Pasos */}
-                              {stepsList ? (
-                                <div className="flex flex-col gap-2 pl-1">
-                                  {stepsList.map((st, sIdx) => {
-                                    const stepNum = st.step || (sIdx + 1);
-                                    const isDone = stepNum < qStepNum;
-                                    const isCurrent = stepNum === qStepNum;
-                                    const isFuture = stepNum > qStepNum;
-
-                                    return (
-                                      <div
-                                        key={sIdx}
-                                        className={`p-2.5 rounded-lg border flex flex-col gap-1 ${
-                                          isCurrent
-                                            ? 'bg-amber-950/30 border-amber-500/60 shadow-sm'
-                                            : isDone
-                                              ? 'bg-emerald-950/20 border-emerald-500/30 opacity-75'
-                                              : 'bg-[#0b1326] border-slate-800 opacity-60'
-                                        }`}
-                                      >
-                                        <div className="flex items-center justify-between gap-2">
-                                          <div className="flex items-center gap-1.5 font-bold text-xs">
-                                            <span>{isDone ? '✅' : isCurrent ? '⚡' : '🔒'}</span>
-                                            <span className={isCurrent ? 'text-amber-300' : isDone ? 'text-emerald-300' : 'text-slate-400'}>
-                                              Paso {stepNum}: {st.name}
-                                            </span>
-                                          </div>
-                                          <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
-                                            isCurrent ? 'bg-amber-500/20 text-amber-300 font-bold' : isDone ? 'text-emerald-400' : 'text-slate-500'
-                                          }`}>
-                                            {isDone ? 'Completado' : isCurrent ? 'EN CURSO' : 'Pendiente'}
-                                          </span>
-                                        </div>
-                                        <div className="text-[11px] text-slate-300 leading-relaxed">
-                                          {st.text}
-                                        </div>
-
-                                        {/* Insumos asociados al paso */}
-                                        {Array.isArray(st.items) && st.items.length > 0 && (
-                                          <div className="mt-1 pt-1.5 border-t border-slate-800/80 flex flex-col gap-1">
-                                            <div className="text-[10px] font-semibold text-slate-400">
-                                              {isCurrent ? '📦 Requisitos para entregar ahora:' : isDone ? '✨ Ofrendas ya entregadas al PNJ:' : '📋 Ofrendas / Insumos que requerirá:'}
-                                            </div>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                                              {st.items.map((it, itIdx) => {
-                                                const bd = getItemStorageBreakdown({ id: it.id, name: it.name });
-                                                const manualKey = `${q.id}_${it.id}`;
-                                                const isManualDelivered = !!deliveredItemsManual[manualKey];
-                                                const isItemDone = isDone || isManualDelivered;
-                                                const haveEnough = isItemDone || (bd.total >= it.needed);
-                                                return (
-                                                  <div
-                                                    key={itIdx}
-                                                    className={`p-1.5 rounded text-[10.5px] border flex items-center justify-between gap-1.5 flex-wrap ${
-                                                      isItemDone ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300' : haveEnough ? 'bg-emerald-950/30 border-emerald-500/30 text-emerald-300' : 'bg-[#0f172a] border-slate-700 text-slate-300'
-                                                    }`}
-                                                  >
-                                                    <div className="flex items-center gap-1 overflow-hidden">
-                                                      <span>{isItemDone ? '✅' : haveEnough ? '📦' : '⚠️'}</span>
-                                                      <span className="truncate font-semibold">{it.name}:</span>
-                                                      <span className="font-mono font-bold shrink-0">
-                                                        {isItemDone ? 'Entregado' : `${bd.total} / ${it.needed}`}
-                                                      </span>
-                                                    </div>
-                                                    <button
-                                                      onClick={() => toggleDeliveredItem(q.id, it.id)}
-                                                      disabled={isDone}
-                                                      className={`px-1.5 py-0.5 rounded text-[9.5px] font-bold border transition-colors shrink-0 ${
-                                                        isItemDone
-                                                          ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200 cursor-default'
-                                                          : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 cursor-pointer'
-                                                      }`}
-                                                      title={isDone ? 'Paso ya completado' : 'Marcar si ya entregaste este ítem al NPC'}
-                                                    >
-                                                      {isItemDone ? '✓ Ya Entregado' : 'Marcar Entregado'}
-                                                    </button>
-                                                  </div>
-                                                );
-                                              })}
-                                            </div>
-                                          </div>
-                                        )}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              ) : (
-                                <div className="p-2.5 bg-[#0b1326] border border-slate-800 rounded-lg text-slate-300">
-                                  {q.stepText || q.objective}
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })
-                      )}
-
-                      {/* Historial de Capítulos Anteriores (Acordeón de Referencia) */}
-                      <details className="mt-2 p-2.5 bg-[#090f1f] border border-slate-800 rounded-lg text-slate-400">
-                        <summary className="cursor-pointer text-[11px] font-bold text-slate-300 hover:text-white flex items-center gap-1.5">
-                          <span>📜</span> <span>Ver Historial de Capítulos Pasados (Cap. 12 al 17 Completados)</span>
-                        </summary>
-                        <div className="mt-2 flex flex-col gap-1.5 pt-2 border-t border-slate-800">
-                          {[
-                            { ch: 12, name: "La Ronda de Otto (Otto's Round)", desc: 'Sigue la ronda del guardia Otto por Bloomshire y completa las inspecciones.' },
-                            { ch: 13, name: "Adentrándose en Whisperwood", desc: 'Cruza el puente oeste hacia Whisperwood, explora el claro y habla con Reed.' },
-                            { ch: 14, name: "El Claro Escondido (The Hidden Glade)", desc: 'Inspecciona la Losa y calca el Arco de Raíces para Greta en la Escuela.' },
-                            { ch: 15, name: "El Mapa Antiguo (The Old Map)", desc: 'Investiga el mapa antiguo en el Salón de los Fundadores.' },
-                            { ch: 16, name: "Todos los Colores (Every Colour)", desc: 'Reúne flores y tintes con Ivy y Fern en los jardines.' },
-                            { ch: 17, name: "Home Changed (Llave a Moonmere)", desc: 'Camino a The Dreaming Fields y desbloqueo del lago Moonmere con Maren.' }
-                          ].map(past => (
-                            <div key={past.ch} className="p-2 bg-[#0c1426] border border-slate-800/80 rounded flex items-center justify-between gap-2 text-[11px]">
-                              <span className="text-emerald-400 font-bold">✅ Cap. {past.ch}: {past.name}</span>
-                              <span className="text-[10px] text-slate-500">Completado</span>
-                            </div>
-                          ))}
-                        </div>
-                      </details>
-                    </div>
-                  )}
-                </div>
-              </div>
+            
             </div>
           </div>
           )
