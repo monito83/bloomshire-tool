@@ -432,8 +432,7 @@ export default async function handler(req, res) {
     'http://127.0.0.1:5173'
   ]);
   const reqOrigin = (req.headers.origin || '').trim();
-  const isAllowed = ALLOWED_ORIGINS.has(reqOrigin) || /^https:\/\/bloomshire-tool(-[a-z0-9]+)?\.vercel\.app$/.test(reqOrigin);
-  if (isAllowed) {
+  if (ALLOWED_ORIGINS.has(reqOrigin)) {
     res.setHeader('Access-Control-Allow-Origin', reqOrigin);
   } else {
     res.setHeader('Access-Control-Allow-Origin', 'https://bloomshire-tool.vercel.app');

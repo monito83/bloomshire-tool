@@ -143,7 +143,7 @@
         if (m && m[1]) return m[1];
       }
     } catch (_) {}
-    return '2c7e9a3532e5';
+    return 'a70eb5dd5113';
   }
 
   function applyServerCmdResponse(data, cmdPayload) {

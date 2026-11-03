@@ -103,19 +103,17 @@ export function computeCanonicalSkillsFromRaw(rawSkillsObj, fallbackBreak = null
 // Cálculo en vivo de Energía y Reloj de Cama UTC según reglas oficiales (rules.js:46-57)
 export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshotTimestamp, prevEnergyMeta, options = {}) {
   const now = Date.now();
-  const isVipOrHolder = Boolean(
-    options.isVip ||
-    (typeof options.farmersCount === 'number' && options.farmersCount > 0) ||
-    options.maxEnergy === 150 ||
-    (rawEnergyObj && rawEnergyObj.maxEnergy === 150)
-  );
+  const count = typeof options.farmersCount === 'number' ? options.farmersCount : 0;
+  const isHolder = count > 0;
+  // VIP estricto: pase VIP o 10+ Founding Farmers (rules.js:49)
+  const isVip = Boolean(options.isVip || count >= 10);
 
-  // 100 de base; 150 solo con Founding Farmer o VIP (rules.js:46-57)
-  const maxE = isVipOrHolder ? 150 : 100;
+  // 100 de base; 150 solo con Founding Farmer (>= 1) o pase VIP (rules.js:46-57)
+  const maxE = (isHolder || isVip) ? 150 : 100;
   // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
-  const regenRate = isVipOrHolder ? 1 / (3 * 60000) : 0;
+  const regenRate = isVip ? 1 / (3 * 60000) : 0;
   // 450 energía de descanso por día UTC para holders (3 barras), 200 para jugadores base (2 barras)
-  const sleepADay = isVipOrHolder ? 450 : 200;
+  const sleepADay = (isHolder || isVip) ? 450 : 200;
 
   const utcDay = Math.floor(now / 86400000);
   const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;
@@ -185,8 +183,9 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
         usedSleepToday: Math.round(usedSleepToday),
         foodEatenHalfDay,
         foodCapHalfDay: 90,
-        regenPer3Min: isVipOrHolder ? 1 : 0,
-        isVipOrHolder
+        regenPer3Min: isVip ? 1 : 0,
+        isVip,
+        isHolder
       }
     };
   }
@@ -215,8 +214,9 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
       usedSleepToday: sleepADay - sleepLeft,
       foodEatenHalfDay: prevEnergyMeta?.foodEatenHalfDay || 0,
       foodCapHalfDay: 90,
-      regenPer3Min: isVipOrHolder ? 1 : 0,
-      isVipOrHolder
+      regenPer3Min: isVip ? 1 : 0,
+      isVip,
+      isHolder
     }
   };
 }

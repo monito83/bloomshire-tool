@@ -738,7 +738,7 @@ export default function BloomshireCommand() {
   const [currentEnergy, setCurrentEnergy] = useState(() => {
     try { return Number(localStorage.getItem('bloomshire_cached_energy')) || 0; } catch { return 0; }
   });
-  const [maxEnergy, setMaxEnergy] = useState(150);
+  const [maxEnergy, setMaxEnergy] = useState(() => (farmersOwned >= 1 ? 150 : 100));
   const [rawEnergyObj, setRawEnergyObj] = useState(null);
   const [snapshotTimestamp, setSnapshotTimestamp] = useState(() => Date.now());
   const [gold, setGold] = useState(() => {
@@ -767,7 +767,7 @@ export default function BloomshireCommand() {
     unlocked: false
   });
   const [energyMeta, setEnergyMeta] = useState(() => {
-    const init = computeClientLiveEnergyAndBed(null, 59, Date.now(), { sleepExhausted: true, sleepLeft: 0 });
+    const init = computeClientLiveEnergyAndBed(null, 59, Date.now(), { sleepExhausted: true, sleepLeft: 0 }, { farmersCount: farmersOwned });
     return init.energyMeta;
   });
   const [skillsMeta, setSkillsMeta] = useState({
