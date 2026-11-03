@@ -12100,7 +12100,7 @@
         if (!detected) {
           try { detected = localStorage.getItem('bloomshire_wallet'); } catch (_) {}
         }
-        return detected || '0xD3E0147850EC171EED26C2A28A23Eb29424d89d5';
+        return detected || null;
       })(),
       gold,
       currentEnergy: energy,
@@ -12111,7 +12111,7 @@
       avyn,
       bank,
       farmingLevel,
-      farmersCount: 10,
+      farmersCount: rawSave?.farmersCount ?? rawSave?.farmers ?? 0,
       inventory: finalInventory,
       activeOrders: activeOrders.length > 0 ? activeOrders : (latestBloomshireState?.activeOrders || []),
       activeQuest: activeQuestLabel,

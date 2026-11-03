@@ -3,11 +3,23 @@
  * Endpoint de verificación en vivo del Build Hash de Bloomshire y parches de juego.
  */
 
-const VERIFIED_BUILD = 'fbaab897dc9e';
+const VERIFIED_BUILD = 'a70eb5dd5113';
 const TOOL_VERSION = 'v2.5.0';
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const ALLOWED_ORIGINS = new Set([
+    'https://bloomshire-tool.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173'
+  ]);
+  const reqOrigin = (req.headers.origin || '').trim();
+  const isAllowed = ALLOWED_ORIGINS.has(reqOrigin) || /^https:\/\/bloomshire-tool(-[a-z0-9]+)?\.vercel\.app$/.test(reqOrigin);
+  if (isAllowed) {
+    res.setHeader('Access-Control-Allow-Origin', reqOrigin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://bloomshire-tool.vercel.app');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -26,7 +38,7 @@ export default async function handler(req, res) {
 
     const resp = await fetch('https://bloomshire.xyz/play/', {
       headers: {
-        'User-Agent': 'MoniOS-Version-Checker/1.0',
+        'User-Agent': 'Bloomshire-Version-Checker/1.0',
         'Cache-Control': 'no-cache'
       },
       signal: controller.signal
@@ -35,9 +47,13 @@ export default async function handler(req, res) {
 
     if (resp.ok) {
       const html = await resp.text();
-      const match = html.match(/\/v\/([a-zA-Z0-9]{8,16})\//);
-      if (match && match[1]) {
-        liveBuild = match[1];
+      const rulesMatch = html.match(/bloomshire-rules\s*[:=]\s*["']?([a-zA-Z0-9]{8,16})/i);
+      const urlMatch = html.match(/\/v\/([a-zA-Z0-9]{8,16})\//);
+      if (rulesMatch && rulesMatch[1]) {
+        liveBuild = rulesMatch[1];
+        fetchOk = true;
+      } else if (urlMatch && urlMatch[1]) {
+        liveBuild = urlMatch[1];
         fetchOk = true;
       }
     } else {

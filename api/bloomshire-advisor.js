@@ -409,17 +409,33 @@ async function handleSync(req, res) {
   }
 }
 
+// Rate limiting en memoria para el endpoint de IA: máx 15 requests por minuto por IP
+const aiRateLimits = new Map();
+function isAiRateLimited(ip) {
+  const now = Date.now();
+  const windowMs = 60 * 1000;
+  const maxRequests = 15;
+  const timestamps = (aiRateLimits.get(ip) || []).filter(t => now - t < windowMs);
+  if (timestamps.length >= maxRequests) {
+    return true;
+  }
+  timestamps.push(now);
+  aiRateLimits.set(ip, timestamps);
+  return false;
+}
+
 export default async function handler(req, res) {
-  const ALLOWED_ORIGINS = [
+  const ALLOWED_ORIGINS = new Set([
     'https://bloomshire-tool.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000',
     'http://127.0.0.1:5173'
-  ];
-  const reqOrigin = req.headers.origin;
-  if (reqOrigin && (ALLOWED_ORIGINS.includes(reqOrigin) || reqOrigin.endsWith('.vercel.app'))) {
+  ]);
+  const reqOrigin = (req.headers.origin || '').trim();
+  const isAllowed = ALLOWED_ORIGINS.has(reqOrigin) || /^https:\/\/bloomshire-tool(-[a-z0-9]+)?\.vercel\.app$/.test(reqOrigin);
+  if (isAllowed) {
     res.setHeader('Access-Control-Allow-Origin', reqOrigin);
-  } else if (!reqOrigin) {
+  } else {
     res.setHeader('Access-Control-Allow-Origin', 'https://bloomshire-tool.vercel.app');
   }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -438,6 +454,11 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+  }
+
+  const clientIp = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+  if (isAiRateLimited(clientIp)) {
+    return res.status(429).json({ error: 'Límite de consultas de IA alcanzado (máximo 15 por minuto). Espera unos instantes antes de volver a consultar.' });
   }
 
   const prompt = (req.body?.prompt || req.body?.message || '').trim();

@@ -849,7 +849,7 @@ export default function BloomshireCommand() {
           setGameBuildStatus('patch_detected');
           setUpdateStatusMessage(`⚠️ Nuevo parche detectado en Bloomshire: Build ${info.liveBuild} (Tool en ${info.verifiedBuild})`);
           setSystemLogs(prev => [
-            { id: Date.now(), time: nowStr, text: `Alerta de Parche: Bloomshire actualizó al build ${info.liveBuild}. Catálogos locales verificados con 2c7e9a3532e5.`, type: 'warning' },
+            { id: Date.now(), time: nowStr, text: `Alerta de Parche: Bloomshire actualizó al build ${info.liveBuild}. Catálogos locales verificados con a70eb5dd5113.`, type: 'warning' },
             ...prev
           ].slice(0, 50));
         }
@@ -861,9 +861,9 @@ export default function BloomshireCommand() {
 
     setTimeout(() => {
       setIsCheckingUpdates(false);
-      setUpdateStatusMessage('Comprobación exitosa: Servidor y catálogos en build 2c7e9a3532e5.');
+      setUpdateStatusMessage('Comprobación exitosa: Servidor y catálogos en build a70eb5dd5113.');
       setSystemLogs(prev => [
-        { id: Date.now(), time: nowStr, text: 'Comprobación de versión completada: Build 2c7e9a3532e5 activo.', type: 'info' },
+        { id: Date.now(), time: nowStr, text: 'Comprobación de versión completada: Build a70eb5dd5113 activo.', type: 'info' },
         ...prev
       ].slice(0, 50));
     }, 1000);
@@ -1026,7 +1026,7 @@ export default function BloomshireCommand() {
       return c ? (JSON.parse(c)?.timestamp || null) : null;
     } catch { return null; }
   });
-  const [gameBuildHash, setGameBuildHash] = useState('2c7e9a3532e5');
+  const [gameBuildHash, setGameBuildHash] = useState('a70eb5dd5113');
   const [toolVersion] = useState('v2.5.0');
   const [gameBuildStatus, setGameBuildStatus] = useState('synced');
 
@@ -1688,7 +1688,12 @@ export default function BloomshireCommand() {
       data.rawEnergyObj || null,
       typeof data.currentEnergy === 'number' ? data.currentEnergy : 59,
       snapTime,
-      data.energyMeta
+      data.energyMeta,
+      {
+        farmersCount: data.farmersCount ?? farmersOwned,
+        isVip: Boolean(data.isVip || ((data.farmersCount ?? farmersOwned) >= 10)),
+        maxEnergy: data.maxEnergy
+      }
     );
     if (isFromExtension || liveEAndBed.currentEnergy > 1) {
       setCurrentEnergy(liveEAndBed.currentEnergy);
@@ -1698,7 +1703,7 @@ export default function BloomshireCommand() {
     if (data.marketTrades) setMarketTrades(data.marketTrades);
     if (data.activeGameBuild) {
       setGameBuildHash(data.activeGameBuild);
-      setGameBuildStatus(data.activeGameBuild === '2c7e9a3532e5' ? 'synced' : 'patch_detected');
+      setGameBuildStatus(data.activeGameBuild === 'a70eb5dd5113' ? 'synced' : 'patch_detected');
     }
 
     if (Array.isArray(data.activeQuestsList)) {
@@ -1878,14 +1883,24 @@ export default function BloomshireCommand() {
   // Tick local cada 15s para actualizar energía pasiva (+1 cada 3m) y cuenta regresiva de Cama UTC
   useEffect(() => {
     const timer = setInterval(() => {
-      const updated = computeClientLiveEnergyAndBed(rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta);
+      const updated = computeClientLiveEnergyAndBed(
+        rawEnergyObj,
+        currentEnergy,
+        snapshotTimestamp,
+        energyMeta,
+        {
+          farmersCount: farmersOwned,
+          isVip: farmersOwned >= 10,
+          maxEnergy
+        }
+      );
       if (rawEnergyObj) {
         setCurrentEnergy(updated.currentEnergy);
       }
       setEnergyMeta(updated.energyMeta);
     }, 15000);
     return () => clearInterval(timer);
-  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta]);
+  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta, farmersOwned, maxEnergy]);
 
   // Recalcular cantidades cuando cambia el scope
   useEffect(() => {
