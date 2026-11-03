@@ -371,7 +371,35 @@ export function ItemSprite({ name = '', id = '', fallback = '📦', size = 20, c
   );
 }
 
-export function CraftMaterialsBadge({ mats = '' }) {
+export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
+  if (breakdown && Array.isArray(breakdown) && breakdown.length > 0) {
+    return (
+      <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
+        {breakdown.map((b, i) => {
+          const isOk = b.hasEnough;
+          return (
+            <span
+              key={i}
+              className={`inline-flex items-center gap-1 border rounded px-1.5 py-0.5 text-[10px] font-mono shadow-sm transition-all ${
+                isOk
+                  ? 'bg-emerald-950/70 border-emerald-500/50 text-emerald-200'
+                  : 'bg-rose-950/40 border-rose-800/60 text-rose-300'
+              }`}
+              title={`Requerido: ${b.req} | Tienes: ${b.total} (Mochila: ${b.m}, Cabaña: ${b.cc}, Pueblo: ${b.cp})`}
+            >
+              <ItemSprite name={b.item} id={b.item} size={15} className="shrink-0" />
+              <span className="truncate">{b.nameEs || b.item}</span>
+              <span className={`font-bold ml-0.5 ${isOk ? 'text-emerald-400' : 'text-rose-400'}`}>
+                {b.total}/{b.req}
+              </span>
+              {isOk && <span className="text-[9px] text-emerald-400">✓</span>}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
   if (!mats) return null;
   const parts = mats.split('+').map(s => s.trim()).filter(Boolean);
 
@@ -973,7 +1001,8 @@ export default function BloomshireCommand() {
   const [inventorySearchQuery, setInventorySearchQuery] = useState('');
   const [inventorySortBy, setInventorySortBy] = useState('owned_desc'); // 'owned_desc' | 'qty_desc' | 'value_desc' | 'name_asc'
   const [craftSearchQuery, setCraftSearchQuery] = useState('');
-  const [craftSortBy, setCraftSortBy] = useState('level_asc'); // 'level_asc' | 'xp_desc' | 'value_desc' | 'name_asc'
+  const [craftSortBy, setCraftSortBy] = useState('profit_desc'); // 'profit_desc' | 'energy_desc' | 'time_asc' | 'rate_desc' | 'level_asc' | 'xp_desc' | 'name_asc'
+  const [craftOnlyAvailable, setCraftOnlyAvailable] = useState(false);
   const [craftViewMode, setCraftViewMode] = useState('grid'); // 'grid' | 'list'
   const [npcViewMode, setNpcViewMode] = useState('grid'); // 'grid' | 'list'
   const [economySubTab, setEconomySubTab] = useState(() => {
@@ -1251,6 +1280,167 @@ export default function BloomshireCommand() {
     const total = m + cc + cp;
     return { total, m, cc, cp };
   };
+
+  // Helper: Calcular crafteabilidad y disponibilidad de materiales para una receta o plato
+  const getRecipeCraftability = (recipe) => {
+    if (!recipe) return { canCraft: false, maxBatches: 0, missingCount: 0, breakdown: [] };
+    
+    if (recipe.needs && Array.isArray(recipe.needs) && recipe.needs.length > 0) {
+      let canCraft = true;
+      let maxBatches = Infinity;
+      let missingCount = 0;
+      const breakdown = recipe.needs.map(n => {
+        const stock = getItemStorageBreakdown({ id: n.item, name: n.nameEs || n.item });
+        const req = Number(n.qty) || 1;
+        const hasEnough = stock.total >= req;
+        if (!hasEnough) {
+          canCraft = false;
+          missingCount++;
+        }
+        const possible = req > 0 ? Math.floor(stock.total / req) : 0;
+        if (possible < maxBatches) maxBatches = possible;
+        return {
+          item: n.item,
+          nameEs: n.nameEs || n.item,
+          req,
+          total: stock.total,
+          m: stock.m,
+          cc: stock.cc,
+          cp: stock.cp,
+          hasEnough
+        };
+      });
+
+      return {
+        canCraft: canCraft && maxBatches > 0 && maxBatches !== Infinity,
+        maxBatches: canCraft && maxBatches !== Infinity ? maxBatches : 0,
+        missingCount,
+        breakdown
+      };
+    }
+
+    if (recipe.mats && typeof recipe.mats === 'string') {
+      const parts = recipe.mats.split('+').map(s => s.trim()).filter(Boolean);
+      let canCraft = true;
+      let maxBatches = Infinity;
+      let missingCount = 0;
+      const breakdown = parts.map(part => {
+        const m = part.match(/^(.*?)(?:\s*(?:x\s*(\d+)|\((\d+)\)|(\d+)\s*x))?$/i);
+        const nameOnly = m && m[1] ? m[1].trim() : part;
+        const req = m && (m[2] || m[3] || m[4]) ? Number(m[2] || m[3] || m[4]) : 1;
+        const searchName = nameOnly.replace(/\s*\([^)]*\)/g, '').split(' o ')[0].trim();
+        const stock = getItemStorageBreakdown({ id: searchName, name: nameOnly });
+        const hasEnough = stock.total >= req;
+        if (!hasEnough) {
+          canCraft = false;
+          missingCount++;
+        }
+        const possible = req > 0 ? Math.floor(stock.total / req) : 0;
+        if (possible < maxBatches) maxBatches = possible;
+        return {
+          item: searchName,
+          nameEs: nameOnly,
+          req,
+          total: stock.total,
+          m: stock.m,
+          cc: stock.cc,
+          cp: stock.cp,
+          hasEnough
+        };
+      });
+
+      return {
+        canCraft: canCraft && maxBatches > 0 && maxBatches !== Infinity,
+        maxBatches: canCraft && maxBatches !== Infinity ? maxBatches : 0,
+        missingCount,
+        breakdown
+      };
+    }
+
+    return { canCraft: false, maxBatches: 0, missingCount: 0, breakdown: [] };
+  };
+
+  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas de rendimiento
+  const filteredAndSortedCrafts = useMemo(() => {
+    let list = (craftData && craftData[craftCategory]) ? [...craftData[craftCategory]] : [];
+
+    if (craftSearchQuery && craftSearchQuery.trim()) {
+      const q = craftSearchQuery.toLowerCase().trim();
+      list = list.filter(r =>
+        (r.item && r.item.toLowerCase().includes(q)) ||
+        (r.dish && r.dish.toLowerCase().includes(q)) ||
+        (r.craftItem && r.craftItem.toLowerCase().includes(q)) ||
+        (r.mats && r.mats.toLowerCase().includes(q)) ||
+        (r.desc && r.desc.toLowerCase().includes(q)) ||
+        (r.place && r.place.toLowerCase().includes(q))
+      );
+    }
+
+    const enriched = list.map(r => {
+      const craftability = getRecipeCraftability(r);
+      const energyCost = typeof r.energyCost === 'number' ? r.energyCost : (craftCategory === 'cook' ? 2 : craftCategory === 'forge' ? 3 : 2);
+      const energyRestore = typeof r.energyRestore === 'number' ? r.energyRestore : 0;
+      const netEnergy = energyRestore - energyCost;
+
+      const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 100;
+      const sellPrice = typeof r.sellPrice === 'number' ? r.sellPrice : 3000;
+      const netGold = Math.max(0, sellPrice - goldCost);
+
+      const minutes = Math.max(1, typeof r.minutes === 'number' ? r.minutes : 1);
+      const goldPerMin = Math.round(netGold / minutes);
+      const xp = typeof r.xp === 'number' ? r.xp : 25;
+      const levelNum = typeof r.levelNum === 'number' ? r.levelNum : (parseInt((r.level || '').replace(/[^0-9]/g, '')) || 1);
+
+      return {
+        ...r,
+        craftability,
+        energyCost,
+        energyRestore,
+        netEnergy,
+        goldCost,
+        sellPrice,
+        netGold,
+        minutes,
+        goldPerMin,
+        xp,
+        levelNum
+      };
+    });
+
+    let finalFiltered = enriched;
+    if (craftOnlyAvailable) {
+      finalFiltered = finalFiltered.filter(r => r.craftability.canCraft);
+    }
+
+    finalFiltered.sort((a, b) => {
+      if (craftSortBy === 'profit_desc') {
+        return (b.netGold || 0) - (a.netGold || 0);
+      }
+      if (craftSortBy === 'energy_desc') {
+        return (b.netEnergy || 0) - (a.netEnergy || 0);
+      }
+      if (craftSortBy === 'time_asc') {
+        return (a.minutes || 0) - (b.minutes || 0);
+      }
+      if (craftSortBy === 'rate_desc') {
+        return (b.goldPerMin || 0) - (a.goldPerMin || 0);
+      }
+      if (craftSortBy === 'xp_desc') {
+        return (b.xp || 0) - (a.xp || 0);
+      }
+      if (craftSortBy === 'name_asc') {
+        return (a.item || '').localeCompare(b.item || '');
+      }
+      return (a.levelNum || 1) - (b.levelNum || 1);
+    });
+
+    return finalFiltered;
+  }, [craftCategory, craftData, craftSearchQuery, craftSortBy, craftOnlyAvailable, rawInventory]);
+
+  const totalCraftableInCurrentCategory = useMemo(() => {
+    const list = (craftData && craftData[craftCategory]) || [];
+    return list.filter(r => getRecipeCraftability(r).canCraft).length;
+  }, [craftCategory, craftData, rawInventory]);
 
   // Helper: Desglose para órdenes de Odette (con coincidencia estricta para evitar confundir Madera con Blanca de Madera)
   const getOrderBreakdown = (ord) => {
@@ -4281,8 +4471,8 @@ export default function BloomshireCommand() {
                 ? catDef.steps
                 : ((targetQuest?.allSteps && targetQuest.allSteps.length > 0) ? targetQuest.allSteps : []);
               
-              const curStepNum = targetQuest?.step !== undefined ? targetQuest.step : ((targetQuest?.stepIdx || 0) + 1);
-              const totalSteps = Math.max(rawSteps.length, curStepNum, 1);
+              const baseStepNum = targetQuest?.step !== undefined ? targetQuest.step : ((targetQuest?.stepIdx || 0) + 1);
+              const totalSteps = Math.max(rawSteps.length, baseStepNum, 1);
 
               // Asegurar que stepsList tenga todos los pasos
               const stepsList = [...rawSteps];
@@ -4298,12 +4488,60 @@ export default function BloomshireCommand() {
                 });
               }
 
+              // Auto-avance reactivo de pasos de nivel en cliente:
+              // Si el paso actual exige alcanzar un nivel de habilidad que el jugador ya cumple o supera, avanzar al siguiente paso.
+              let resolvedStepNum = baseStepNum;
+              while (resolvedStepNum <= stepsList.length) {
+                const stepToCheck = stepsList[resolvedStepNum - 1];
+                if (!stepToCheck) break;
+                const combined = ((stepToCheck.name || '') + ' ' + (stepToCheck.text || '')).toLowerCase();
+                const match = combined.match(/(?:nivel|level)\s*(\d+)\s*(?:de\s*)?([a-zA-Záéíóúñ]+)/i);
+                if (match) {
+                  const reqLvl = parseInt(match[1], 10);
+                  const skWord = match[2].toLowerCase();
+                  let reqSk = null;
+                  if (skWord.includes('cultiv') || skWord.includes('farm')) reqSk = 'farming';
+                  else if (skWord.includes('miner') || skWord.includes('mine')) reqSk = 'mining';
+                  else if (skWord.includes('pesc') || skWord.includes('fish')) reqSk = 'fishing';
+                  else if (skWord.includes('tal') || skWord.includes('wood')) reqSk = 'woodcutting';
+                  else if (skWord.includes('cocin') || skWord.includes('cook')) reqSk = 'cooking';
+
+                  if (reqSk && reqLvl) {
+                    const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || userSkills.farming || 6) : 1);
+                    if (playerLvl >= reqLvl) {
+                      resolvedStepNum++;
+                      continue;
+                    }
+                  }
+                }
+                break;
+              }
+
+              const curStepNum = Math.min(resolvedStepNum, stepsList.length);
               const curStepDef = stepsList[curStepNum - 1] || stepsList[stepsList.length - 1] || null;
               const curStepName = curStepDef?.name || targetQuest?.stepName || `Paso ${curStepNum}`;
-              const curStepText = curStepDef?.text || targetQuest?.objective || targetQuest?.stepText || 'Consulta el panel de misiones en el juego (M) o habla con el personaje.';
               const curWhere = curStepDef?.where || targetQuest?.where || catDef?.location || 'Ver en el mapa';
               const curNpc = curStepDef?.npc || targetQuest?.giver || catDef?.giver || 'Vecino de Bloomshire';
               const questReward = targetQuest?.reward || catDef?.reward || null;
+
+              // Generador de instrucciones inteligentes y canónicas (CERO textos genéricos de "objetivo en curso..sigue el panel")
+              const cleanStepText = (() => {
+                const raw = curStepDef?.text || targetQuest?.objective || targetQuest?.stepText || '';
+                if (raw && !raw.includes('Consulta el panel') && !raw.includes('Objetivo en curso. Consulta')) {
+                  return raw;
+                }
+                if (Array.isArray(curStepDef?.items) && curStepDef.items.length > 0) {
+                  const itemsStr = curStepDef.items.map(it => `${it.needed}x ${it.name}`).join(' y ');
+                  return `Reúne y entrega ${itemsStr} a ${curNpc} en ${curWhere}.`;
+                }
+                if (curStepName.toLowerCase().includes('habla') || curStepName.toLowerCase().includes('talk')) {
+                  return `Dirígete a ${curWhere} y habla con ${curNpc} para avanzar en la historia.`;
+                }
+                if (curStepName.toLowerCase().includes('nivel') || curStepName.toLowerCase().includes('level')) {
+                  return `Alcanza el nivel de habilidad requerido para desbloquear la siguiente etapa con ${curNpc}.`;
+                }
+                return `Cumple el objetivo "${curStepName}" con ${curNpc} en ${curWhere}.`;
+              })();
 
               const questLoc = curStepDef?.coords || targetQuest?.coords || catDef?.coords || {
                 label: `🎯 ${qTitle}`,
@@ -4344,7 +4582,7 @@ export default function BloomshireCommand() {
                     </div>
                   </div>
 
-                  {/* Contenido Modular: Lista de Misiones (Izquierda) + Ficha Dinámica con Stepper (Derecha) */}
+                  {/* Contenido Modular: Lista de Misiones (Izquierda) + Ficha Unificada Dinámica (Derecha) */}
                   <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[440px]">
                     {/* Columna Izquierda (4/12): Lista de Misiones Activas (como el panel del juego) */}
                     <div className="lg:col-span-4 border-r border-indigo-950/80 p-3.5 bg-[#080f22] flex flex-col gap-2">
@@ -4415,15 +4653,19 @@ export default function BloomshireCommand() {
                       </div>
                     </div>
 
-                    {/* Columna Derecha (8/12): Ficha Dinámica y Stepper Horizontal */}
+                    {/* Columna Derecha (8/12): Ficha Dinámica Unificada y Stepper Horizontal */}
                     <div className="lg:col-span-8 p-5 bg-[#0b1428] flex flex-col gap-4">
                       {targetQuest ? (
-                        <>
-                          {/* Cabecera de la Misión */}
-                          <div className="p-4 bg-gradient-to-r from-[#101b38] to-[#0c1630] border border-slate-800 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-md">
-                            <div className="flex flex-col gap-1">
+                        <div className="bg-gradient-to-b from-[#0f1b3b] via-[#0b1428] to-[#070d1c] border-2 border-indigo-900/60 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+                          {/* 1. Cabecera Unificada de la Misión */}
+                          <div className="p-4 bg-gradient-to-r from-[#14234b] via-[#101b38] to-[#0d1630] border-b border-indigo-950/80 flex flex-wrap items-center justify-between gap-3">
+                            <div className="flex flex-col gap-1.5">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase">
+                                <span className={`px-2.5 py-0.5 rounded-full text-[10.5px] font-black uppercase tracking-wider border ${
+                                  isMain
+                                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm shadow-amber-950/50'
+                                    : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 shadow-sm'
+                                }`}>
                                   {isMain ? '⭐ Historia Principal' : '📜 Misión Secundaria'}
                                 </span>
                                 {targetQuest.chapter && (
@@ -4431,14 +4673,22 @@ export default function BloomshireCommand() {
                                     Capítulo {targetQuest.chapter}
                                   </span>
                                 )}
-                                <h3 className="font-black text-white text-base">
+                                <h3 className="font-black text-white text-base tracking-wide">
                                   {qTitle}
                                 </h3>
                               </div>
-                              <div className="text-xs text-slate-300 mt-0.5 flex items-center gap-3 flex-wrap">
+                              <div className="text-xs text-slate-300 flex items-center gap-3 flex-wrap">
                                 <span>Otorgada por: <b className="text-amber-200">{curNpc}</b></span>
                                 <span>•</span>
                                 <span>Ubicación: <b className="text-slate-200">{curWhere}</b></span>
+                                {questReward && (
+                                  <>
+                                    <span>•</span>
+                                    <span className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-500/30 text-[11px]">
+                                      💰 {questReward.gold ? `${questReward.gold.toLocaleString('es-ES')} Oro` : 'Completar Misión'}
+                                    </span>
+                                  </>
+                                )}
                               </div>
                             </div>
 
@@ -4454,15 +4704,15 @@ export default function BloomshireCommand() {
                             </div>
                           </div>
 
-                          {/* STEPPER HORIZONTAL (COMO LA IMAGEN 5 DE CHECKOUT) */}
-                          <div className="p-5 bg-[#080f22] border border-slate-800 rounded-xl relative overflow-x-auto custom-scrollbar shadow-inner">
-                            <div className="min-w-[440px] py-3 px-8 relative flex items-center justify-between">
+                          {/* 2. Stepper Horizontal Integrado (Progreso de la Misión) */}
+                          <div className="px-6 py-4 bg-[#080f22]/90 border-b border-slate-800/80 overflow-x-auto custom-scrollbar">
+                            <div className="min-w-[420px] py-2 px-4 relative flex items-center justify-between">
                               {/* Línea conectora base */}
-                              <div className="absolute top-[28px] left-12 right-12 h-1 bg-slate-800 -translate-y-1/2 z-0" />
+                              <div className="absolute top-[26px] left-8 right-8 h-1 bg-slate-800 -translate-y-1/2 z-0" />
                               
                               {/* Línea conectora de progreso completado */}
                               <div 
-                                className="absolute top-[28px] left-12 h-1 bg-gradient-to-r from-emerald-500 to-amber-400 -translate-y-1/2 z-0 transition-all duration-500"
+                                className="absolute top-[26px] left-8 h-1 bg-gradient-to-r from-emerald-500 to-amber-400 -translate-y-1/2 z-0 transition-all duration-500"
                                 style={{
                                   width: `${Math.max(0, Math.min(100, ((curStepNum - 1) / Math.max(1, totalSteps - 1)) * 100))}%`
                                 }}
@@ -4474,11 +4724,11 @@ export default function BloomshireCommand() {
                                 const isCur = stepNum === curStepNum;
 
                                 return (
-                                  <div key={sIdx} className="relative z-10 flex flex-col items-center max-w-[130px] text-center">
+                                  <div key={sIdx} className="relative z-10 flex flex-col items-center max-w-[125px] text-center">
                                     {/* Círculo del Paso */}
-                                    <div className={`w-11 h-11 rounded-full flex items-center justify-center font-black transition-all ${
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black transition-all ${
                                       isCur
-                                        ? 'bg-amber-500 border-2 border-amber-200 text-slate-950 ring-4 ring-amber-400/30 shadow-lg shadow-amber-500/30 scale-110'
+                                        ? 'bg-amber-500 border-2 border-amber-200 text-slate-950 ring-4 ring-amber-400/30 shadow-lg shadow-amber-500/40 scale-110'
                                         : isDone
                                           ? 'bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 shadow-md'
                                           : 'bg-[#0d162c] border-2 border-slate-700 text-slate-500'
@@ -4493,7 +4743,7 @@ export default function BloomshireCommand() {
                                     </div>
 
                                     {/* Etiqueta de Estado */}
-                                    <span className={`mt-2.5 text-[10px] font-black uppercase tracking-wider ${
+                                    <span className={`mt-2 text-[10px] font-black uppercase tracking-wider ${
                                       isCur ? 'text-amber-300' : isDone ? 'text-emerald-400' : 'text-slate-500'
                                     }`}>
                                       {isCur ? '⚡ En Curso' : isDone ? '✓ Hecho' : `Paso ${stepNum}`}
@@ -4511,80 +4761,120 @@ export default function BloomshireCommand() {
                             </div>
                           </div>
 
-                          {/* Tarjeta de Acción Inmediata (Objetivo Actual) */}
-                          <div className="p-4 bg-gradient-to-r from-[#101b38] to-[#0c1630] border-2 border-amber-500/50 rounded-xl shadow-lg flex flex-col gap-3">
+                          {/* 3. Panel de Objetivo Activo & Radar de Insumos */}
+                          <div className="p-5 flex flex-col gap-3.5 bg-gradient-to-b from-[#0a1226] to-[#070e1c]">
+                            {/* Cabecera del Objetivo Actual */}
                             <div className="flex items-center justify-between gap-2 flex-wrap">
                               <div className="flex items-center gap-2">
-                                <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase tracking-wider flex items-center gap-1.5">
-                                  <span>🎯</span> OBJETIVO EN CURSO (Paso {curStepNum} de {totalSteps})
+                                <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                                  <span>🎯</span> OBJETIVO ACTUAL (Paso {curStepNum} de {totalSteps})
                                 </span>
-                                <span className="text-xs font-bold text-white">
+                                <span className="text-xs font-black text-white">
                                   {curStepName}
                                 </span>
                               </div>
-                              {questReward && (
-                                <span className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2.5 py-0.5 rounded-full border border-amber-500/30 text-xs">
-                                  💰 Recompensa: {questReward.gold ? `${questReward.gold.toLocaleString('es-ES')} Oro` : 'Completar Misión'}
-                                </span>
-                              )}
+
+                              <span className="text-[11px] font-mono text-slate-400 bg-slate-900/80 px-2.5 py-0.5 rounded-full border border-slate-800">
+                                📍 {curWhere}
+                              </span>
                             </div>
 
-                            <div className="text-sm text-slate-100 font-medium leading-relaxed bg-[#080f20]/70 p-3 rounded-xl border border-slate-800">
-                              {curStepText}
+                            {/* Instrucciones Claras y Canónicas (CERO texto genérico) */}
+                            <div className="text-sm text-slate-100 font-medium leading-relaxed bg-[#0c1630]/90 p-3.5 rounded-xl border border-indigo-950/80 shadow-inner">
+                              {cleanStepText}
                             </div>
 
-                            <div className="flex items-center justify-between text-xs text-slate-400 pt-1 flex-wrap gap-2">
-                              <span>📍 <b>Dónde:</b> {curWhere}</span>
-                              <span>👤 <b>Habla con:</b> {curNpc}</span>
-                            </div>
-
-                            {/* Checklist de Ítems Requeridos en este Paso (si aplica) */}
-                            {Array.isArray(curStepDef?.items) && curStepDef.items.length > 0 && (
-                              <div className="mt-1 pt-2 border-t border-slate-800 flex flex-col gap-2">
-                                <div className="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
-                                  <span>📦</span> <span>Materiales e Insumos requeridos para este paso:</span>
+                            {/* Checklist / Radar de Ítems Requeridos en este Paso */}
+                            {Array.isArray(curStepDef?.items) && curStepDef.items.length > 0 ? (
+                              <div className="mt-1 pt-3 border-t border-slate-800/80 flex flex-col gap-2.5">
+                                <div className="text-[11.5px] font-black uppercase tracking-wider text-amber-300 flex items-center justify-between flex-wrap gap-2">
+                                  <span className="flex items-center gap-1.5">
+                                    <span>📦</span> <span>Materiales e Insumos Requeridos ({curStepDef.items.length})</span>
+                                  </span>
+                                  <span className="text-[10px] text-slate-400 font-normal">
+                                    Existencias: Mochila (M) + Cofres Casa (CC) + Cofre Pueblo (CP)
+                                  </span>
                                 </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                                   {curStepDef.items.map((it, itIdx) => {
                                     const bd = getItemStorageBreakdown({ id: it.id, name: it.name });
                                     const manualKey = `${targetQuest.id}_${it.id}`;
                                     const isManualDelivered = !!deliveredItemsManual[manualKey];
                                     const haveEnough = isManualDelivered || (bd.total >= it.needed);
+                                    const missingCount = Math.max(0, it.needed - bd.total);
 
                                     return (
                                       <div
                                         key={itIdx}
-                                        className={`p-2.5 rounded-xl border flex items-center justify-between gap-2 text-xs ${
+                                        className={`p-3 rounded-xl border flex flex-col gap-2 transition-all ${
                                           haveEnough
-                                            ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
-                                            : 'bg-rose-950/30 border-rose-500/40 text-slate-200'
+                                            ? 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200 shadow-sm shadow-emerald-950/30'
+                                            : 'bg-gradient-to-r from-amber-950/40 to-slate-900 border-amber-500/40 text-slate-200 shadow-sm'
                                         }`}
                                       >
-                                        <div className="flex items-center gap-1.5 overflow-hidden">
-                                          <span>{haveEnough ? '✅' : '⚠️'}</span>
-                                          <span className="font-semibold truncate">{it.name}:</span>
-                                          <span className="font-mono font-bold">
-                                            {isManualDelivered ? 'Entregado' : `${bd.total} / ${it.needed}`}
-                                          </span>
+                                        <div className="flex items-center justify-between gap-2">
+                                          <div className="flex items-center gap-2 overflow-hidden">
+                                            <span className="text-base">{haveEnough ? '✅' : '⏳'}</span>
+                                            <div>
+                                              <div className="font-bold text-xs text-white truncate flex items-center gap-1.5">
+                                                <span>{it.name}</span>
+                                                {haveEnough ? (
+                                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                                                    ¡Suficiente!
+                                                  </span>
+                                                ) : (
+                                                  <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                                                    Faltan {missingCount}
+                                                  </span>
+                                                )}
+                                              </div>
+                                              <div className="text-[10px] text-slate-400 mt-0.5 font-mono">
+                                                M: {bd.hotbar + bd.bag} | CC: {bd.cottage} | CP: {bd.town}
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div className="flex flex-col items-end shrink-0">
+                                            <span className={`text-xs font-mono font-black ${haveEnough ? 'text-emerald-300' : 'text-amber-300'}`}>
+                                              {isManualDelivered ? 'Entregado' : `${bd.total} / ${it.needed}`}
+                                            </span>
+                                            <button
+                                              onClick={() => toggleDeliveredItem(targetQuest.id, it.id)}
+                                              className={`mt-1 px-2.5 py-0.5 rounded text-[10px] font-bold border transition-all cursor-pointer ${
+                                                isManualDelivered
+                                                  ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200'
+                                                  : 'bg-slate-800 hover:bg-slate-700 border-slate-600 text-slate-300'
+                                              }`}
+                                            >
+                                              {isManualDelivered ? '✓ Entregado' : 'Marcar Entregado'}
+                                            </button>
+                                          </div>
                                         </div>
-                                        <button
-                                          onClick={() => toggleDeliveredItem(targetQuest.id, it.id)}
-                                          className={`px-2 py-0.5 rounded text-[10px] font-bold border transition-colors shrink-0 ${
-                                            isManualDelivered
-                                              ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200 cursor-default'
-                                              : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 cursor-pointer'
-                                          }`}
-                                        >
-                                          {isManualDelivered ? '✓ Entregado' : 'Marcar Entregado'}
-                                        </button>
+
+                                        {/* Barra de Progreso del Ítem */}
+                                        <div className="w-full bg-slate-900/80 rounded-full h-1.5 overflow-hidden border border-slate-800">
+                                          <div
+                                            className={`h-full transition-all duration-500 ${haveEnough ? 'bg-emerald-400' : 'bg-amber-400'}`}
+                                            style={{ width: `${Math.min(100, Math.round((bd.total / Math.max(1, it.needed)) * 100))}%` }}
+                                          />
+                                        </div>
                                       </div>
                                     );
                                   })}
                                 </div>
                               </div>
+                            ) : (
+                              <div className="mt-1 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                                <span className="flex items-center gap-1.5">
+                                  <span>🧭</span> <span>Acción Requerida: <b>{curStepName}</b> (sin entrega de materiales en este paso)</span>
+                                </span>
+                                <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/30">
+                                  Exploración / Diálogo
+                                </span>
+                              </div>
                             )}
                           </div>
-                        </>
+                        </div>
                       ) : (
                         <div className="h-full flex items-center justify-center p-8 text-center text-slate-400 text-sm">
                           Selecciona una misión activa de la lista izquierda para ver su paso a paso en vivo.
@@ -5020,6 +5310,24 @@ export default function BloomshireCommand() {
               </div>
 
               <div className="flex items-center gap-2 flex-wrap shrink-0">
+                {/* Botón Toggle Crafteables Ahora con mis Materiales */}
+                <button
+                  onClick={() => setCraftOnlyAvailable(!craftOnlyAvailable)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer flex items-center gap-1.5 ${
+                    craftOnlyAvailable
+                      ? 'bg-emerald-600 text-white border-emerald-400 shadow-md'
+                      : 'bg-[#14203d] text-slate-300 hover:text-emerald-300 border-slate-700'
+                  }`}
+                  title="Filtrar recetas para las que tienes el 100% de los materiales en mochila o cofres"
+                >
+                  <span>✨ Crafteables Ahora</span>
+                  {totalCraftableInCurrentCategory > 0 && (
+                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-emerald-950 border border-emerald-400 text-emerald-300">
+                      {totalCraftableInCurrentCategory}
+                    </span>
+                  )}
+                </button>
+
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10.5px] font-bold text-slate-400">Ordenar:</span>
                   <select
@@ -5027,8 +5335,12 @@ export default function BloomshireCommand() {
                     onChange={(e) => setCraftSortBy(e.target.value)}
                     className="bg-[#14203d] border border-slate-700 text-amber-300 rounded-lg px-2 py-1 text-xs font-bold outline-none cursor-pointer"
                   >
+                    <option value="profit_desc">💰 Mayor beneficio de Oro (Gold neto)</option>
+                    <option value="energy_desc">⚡ Mayor ganancia de Energía (+⚡ neta)</option>
+                    <option value="time_asc">⏱️ Más rápido (Menor tiempo)</option>
+                    <option value="rate_desc">📈 Mayor rendimiento (Oro / Minuto)</option>
                     <option value="level_asc">⭐ Nivel requerido (Menor a Mayor)</option>
-                    <option value="xp_desc">⚡ Más XP por preparación</option>
+                    <option value="xp_desc">⭐ Mayor XP obtenida</option>
                     <option value="name_asc">🔤 Nombre (A-Z)</option>
                   </select>
                 </div>
@@ -5066,154 +5378,228 @@ export default function BloomshireCommand() {
             {/* Recetas de la Estación Seleccionada */}
             {craftViewMode === 'grid' ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2.5 overflow-y-auto">
-              {(
-                craftCategory === 'mill'
-                  ? [
-                      { item: 'Harina (Flour) 🌾', level: 'Molino de Agua (Gratis)', mats: 'Trigo (Wheat) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Base para panes, pasteles, masas y recetas de cocina.' },
-                      { item: 'Azúcar (Sugar) 🍬', level: 'Molino de Agua (Gratis)', mats: 'Caña de Azúcar (Sugarcane) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Indispensable para mermeladas, tartas y postres VIP.' },
-                      { item: 'Arroz Blanco (Milled Rice) 🍚', level: 'Molino de Agua (Gratis)', mats: 'Arroz (Rice) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Arroz procesado para sushi, onigiri y platos del puerto.' },
-                      { item: 'Mantequilla (Butter) 🧈', level: 'Lechería (Dairy)', mats: 'Leche (Milk) x1', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Batida en la lechería de Southvale con leche de tus vacas.' },
-                      { item: 'Queso (Cheese) 🧀', level: 'Lechería (Dairy)', mats: 'Leche (Milk) x2', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Queso madurado para sopas, gratinados y tablas.' },
-                      { item: 'Queso de Cabra (Goat Cheese) 🐐', level: 'Lechería (Dairy)', mats: 'Leche de Cabra (Goat Milk) x1', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Queso fino de alto valor gastronómico.' }
-                    ]
-                  : craftCategory === 'loom'
-                  ? [
-                      { item: 'Tela (Cloth) 🧵', level: 'Artesanía Lv 9 (+24 XP)', mats: 'Lana (Wool) x2', place: 'Telar de Tilly (Sastrería)', desc: 'Se teje en el telar de la Sastrería de Tilly. Esencial para el Amuleto de Zafiro, bolsas y encargos.' }
-                    ]
-                  : (craftData[craftCategory] || [])
-              ).map((recipe, idx) => {
-                const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
-                const stationTarget = isLoomRecipe
-                  ? CRAFT_STATION_LOCATIONS.loom
-                  : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
+              {filteredAndSortedCrafts.length === 0 ? (
+                <div className="col-span-full py-12 text-center text-slate-400">
+                  <div className="text-3xl mb-2">🔍</div>
+                  <div className="font-bold text-sm text-slate-300">No se encontraron recetas</div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    {craftOnlyAvailable 
+                      ? 'No tienes todos los insumos necesarios para ninguna receta de esta estación actualmente.'
+                      : 'Prueba ajustando el texto de búsqueda.'}
+                  </div>
+                </div>
+              ) : (
+                filteredAndSortedCrafts.map((recipe, idx) => {
+                  const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
+                  const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
 
-                return (
-                  (() => {
-                    const energyCost = craftCategory === 'cook' ? 2 : craftCategory === 'forge' ? 3 : craftCategory === 'loom' ? 1 : craftCategory === 'mill' ? 0 : 2;
-                    const estimatedXp = (recipe.level || '').includes('Lv') 
-                      ? Math.min(150, Math.max(15, parseInt((recipe.level || '').replace(/[^0-9]/g, '')) * 6 + 10))
-                      : 25;
-
-                    return (
-                      <div key={idx} className="p-2.5 bg-[#0c1220] border border-slate-800/80 hover:border-slate-700 rounded-xl flex flex-col justify-between shadow-sm gap-2 transition-all">
-                        <div className="flex flex-col gap-1.5">
-                          {/* Cabecera: Icono oficial + Título + Badges de Métricas */}
-                          <div className="flex items-start justify-between gap-1.5">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <ItemSprite name={recipe.item} size={28} className="shrink-0" />
-                              <div className="min-w-0">
-                                <div className="font-bold text-white text-xs truncate leading-tight">{recipe.item}</div>
-                                <div className="text-[10px] text-purple-300 font-mono mt-0.5 truncate">{recipe.level}</div>
-                              </div>
+                  return (
+                    <div 
+                      key={recipe.id || idx} 
+                      className={`p-2.5 rounded-xl flex flex-col justify-between shadow-sm gap-2 transition-all border ${
+                        craftability.canCraft 
+                          ? 'bg-gradient-to-b from-[#0c1825] to-[#0a121d] border-emerald-500/40 hover:border-emerald-400/70 ring-1 ring-emerald-500/20' 
+                          : 'bg-[#0c1220] border-slate-800/80 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        {/* Cabecera: Icono + Título + Status Crafteable */}
+                        <div className="flex items-start justify-between gap-1.5">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <ItemSprite name={recipe.item} size={28} className="shrink-0" />
+                            <div className="min-w-0">
+                              <div className="font-bold text-white text-xs truncate leading-tight">{recipe.item}</div>
+                              <div className="text-[10px] text-purple-300 font-mono mt-0.5 truncate">{recipe.level}</div>
                             </div>
                           </div>
-
-                          {/* Métricas clave: Energía y XP */}
-                          <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="px-1.5 py-0.5 rounded bg-blue-950/60 border border-blue-500/30 text-blue-300 text-[9.5px] font-mono font-bold" title="Energía requerida">
-                              ⚡ -{energyCost}⚡
+                          {craftability.canCraft ? (
+                            <span className="shrink-0 px-1.5 py-0.5 rounded bg-emerald-950/90 border border-emerald-400/60 text-emerald-300 font-mono font-black text-[9.5px] shadow-sm animate-pulse">
+                              ✓ x{craftability.maxBatches}
                             </span>
-                            <span className="px-1.5 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[9.5px] font-mono font-bold" title="Experiencia aproximada">
-                              ⭐ +{estimatedXp} XP
+                          ) : (
+                            <span className="shrink-0 px-1.5 py-0.5 rounded bg-slate-900/90 border border-slate-700/60 text-slate-400 font-mono text-[9px]">
+                              Faltan {craftability.missingCount}
                             </span>
-                          </div>
-
-                          {/* Materiales requeridos */}
-                          <div className="p-1.5 bg-[#080d17] border border-slate-800/80 rounded leading-tight">
-                            <span className="text-slate-400 font-sans font-bold text-[9.5px] block">Insumos:</span>
-                            <CraftMaterialsBadge mats={recipe.mats} />
-                          </div>
-
-                          {/* Descripción condensada */}
-                          {recipe.desc && (
-                            <p className="text-[10.5px] text-slate-400 leading-snug line-clamp-2">
-                              {recipe.desc}
-                            </p>
                           )}
                         </div>
 
-                        {/* Pie de tarjeta con Ubicación */}
-                        <div className="pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1.5">
-                          <span className="text-[9.5px] text-slate-400 truncate">
-                            🛠️ {recipe.place || stationTarget.label}
-                          </span>
-                          <button
-                            onClick={() => locateInMegaAtlas(stationTarget)}
-                            className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
-                            title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
-                          >
-                            <MapPin className="w-3 h-3" />
-                          </button>
+                        {/* Bloque de Rendimiento Táctico: Oro, Energía, Tiempo y XP */}
+                        <div className="grid grid-cols-2 gap-1 bg-[#070b14] p-1.5 rounded-lg border border-slate-800/80 text-[10px] font-mono">
+                          {/* Beneficio de Oro */}
+                          <div className="flex flex-col">
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Ganancia Oro:</span>
+                            <span className="text-amber-300 font-bold truncate">
+                              +{netGold.toLocaleString()}g
+                            </span>
+                            <span className="text-[8.5px] text-slate-400">
+                              {goldPerMin > 0 ? `${goldPerMin.toLocaleString()}g/min` : 'Instantáneo'}
+                            </span>
+                          </div>
+
+                          {/* Rendimiento de Energía */}
+                          <div className="flex flex-col">
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Balance Energía:</span>
+                            {energyRestore > 0 ? (
+                              <span className="text-emerald-400 font-bold">
+                                +{netEnergy >= 0 ? netEnergy : netEnergy}⚡ netos
+                              </span>
+                            ) : (
+                              <span className="text-blue-300 font-bold">
+                                -{energyCost}⚡ coste
+                              </span>
+                            )}
+                            <span className="text-[8.5px] text-slate-400">
+                              {energyRestore > 0 ? `Restaura +${energyRestore}⚡` : `Gasto de oficio`}
+                            </span>
+                          </div>
+
+                          {/* Tiempo de fuego/banco */}
+                          <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Tiempo:</span>
+                            <span className="text-cyan-300 font-bold">
+                              ⏱️ {minutes} {minutes === 1 ? 'min' : 'mins'}
+                            </span>
+                          </div>
+
+                          {/* XP de oficio */}
+                          <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Experiencia:</span>
+                            <span className="text-purple-300 font-bold">
+                              ⭐ +{xp} XP
+                            </span>
+                          </div>
                         </div>
+
+                        {/* Materiales requeridos con stock del inventario en vivo */}
+                        <div className="p-1.5 bg-[#080d17] border border-slate-800/80 rounded leading-tight">
+                          <div className="flex items-center justify-between text-[9px] mb-0.5">
+                            <span className="text-slate-400 font-sans font-bold">Insumos (Tus Existencias):</span>
+                            {craftability.canCraft && (
+                              <span className="text-emerald-400 font-mono font-bold text-[8.5px]">Materiales 100% listos</span>
+                            )}
+                          </div>
+                          <CraftMaterialsBadge mats={recipe.mats} breakdown={craftability.breakdown} />
+                        </div>
+
+                        {/* Descripción condensada */}
+                        {recipe.desc && (
+                          <p className="text-[10px] text-slate-400 leading-snug line-clamp-2">
+                            {recipe.desc}
+                          </p>
+                        )}
                       </div>
-                    );
-                  })()
-                );
-              })}
+
+                      {/* Pie de tarjeta con Ubicación */}
+                      <div className="pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1.5">
+                        <span className="text-[9.5px] text-slate-400 truncate">
+                          🛠️ {recipe.place || stationTarget.label}
+                        </span>
+                        <button
+                          onClick={() => locateInMegaAtlas(stationTarget)}
+                          className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
+                          title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
+                        >
+                          <MapPin className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
             ) : (
             /* Vista Lista Compacta para Crafteo y Cocina */
             <div className="flex flex-col gap-1.5 overflow-y-auto pr-1">
-              {(
-                craftCategory === 'mill'
-                  ? [
-                      { item: 'Harina (Flour) 🌾', level: 'Molino de Agua (Gratis)', mats: 'Trigo (Wheat) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Base para panes, pasteles, masas y recetas de cocina.' },
-                      { item: 'Azúcar (Sugar) 🍬', level: 'Molino de Agua (Gratis)', mats: 'Caña de Azúcar (Sugarcane) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Indispensable para mermeladas, tartas y postres VIP.' },
-                      { item: 'Arroz Blanco (Milled Rice) 🍚', level: 'Molino de Agua (Gratis)', mats: 'Arroz (Rice) x1', place: 'Molino de Agua (Granja de Hollin - Southvale)', desc: 'Arroz procesado para sushi, onigiri y platos del puerto.' },
-                      { item: 'Mantequilla (Butter) 🧈', level: 'Lechería (Dairy)', mats: 'Leche (Milk) x1', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Batida en la lechería de Southvale con leche de tus vacas.' },
-                      { item: 'Queso (Cheese) 🧀', level: 'Lechería (Dairy)', mats: 'Leche (Milk) x2', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Queso madurado para sopas, gratinados y tablas.' },
-                      { item: 'Queso de Cabra (Goat Cheese) 🐐', level: 'Lechería (Dairy)', mats: 'Leche de Cabra (Goat Milk) x1', place: 'Lechería (Granja de Hollin - Southvale)', desc: 'Queso fino de alto valor gastronómico.' }
-                    ]
-                  : craftCategory === 'loom'
-                  ? [
-                      { item: 'Tela (Cloth) 🧵', level: 'Artesanía Lv 9 (+24 XP)', mats: 'Lana (Wool) x2', place: 'Telar de Tilly (Sastrería)', desc: 'Se teje en el telar de la Sastrería de Tilly.' }
-                    ]
-                  : (craftData[craftCategory] || [])
-              ).map((recipe, idx) => {
-                const energyCost = craftCategory === 'cook' ? 2 : craftCategory === 'forge' ? 3 : craftCategory === 'loom' ? 1 : craftCategory === 'mill' ? 0 : 2;
-                const estimatedXp = (recipe.level || '').includes('Lv') 
-                  ? Math.min(150, Math.max(15, parseInt((recipe.level || '').replace(/[^0-9]/g, '')) * 6 + 10))
-                  : 25;
-                const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
-                const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
+              {filteredAndSortedCrafts.length === 0 ? (
+                <div className="py-12 text-center text-slate-400">
+                  <div className="text-3xl mb-2">🔍</div>
+                  <div className="font-bold text-sm text-slate-300">No se encontraron recetas</div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    {craftOnlyAvailable 
+                      ? 'No tienes todos los insumos necesarios para ninguna receta de esta estación actualmente.'
+                      : 'Prueba ajustando el texto de búsqueda.'}
+                  </div>
+                </div>
+              ) : (
+                filteredAndSortedCrafts.map((recipe, idx) => {
+                  const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
+                  const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
 
-                return (
-                  <div key={idx} className="px-3 py-2 bg-[#0c1220] border border-slate-800/80 hover:border-slate-700 rounded-xl shadow-sm flex items-center justify-between gap-3 transition-all">
-                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                      <ItemSprite name={recipe.item} size={24} className="shrink-0" />
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-bold text-white text-xs truncate">{recipe.item}</span>
-                          <span className="text-[10px] text-purple-300 font-mono bg-purple-950/60 border border-purple-500/30 px-1.5 py-0.2 rounded">
-                            {recipe.level}
-                          </span>
-                        </div>
-                        <div className="mt-0.5">
-                          <CraftMaterialsBadge mats={recipe.mats} />
+                  return (
+                    <div 
+                      key={recipe.id || idx} 
+                      className={`px-3 py-2 border rounded-xl shadow-sm flex items-center justify-between gap-3 transition-all ${
+                        craftability.canCraft 
+                          ? 'bg-[#0b1724] border-emerald-500/40 hover:border-emerald-400/70' 
+                          : 'bg-[#0c1220] border-slate-800/80 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                        <ItemSprite name={recipe.item} size={28} className="shrink-0" />
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-bold text-white text-xs truncate">{recipe.item}</span>
+                            <span className="text-[10px] text-purple-300 font-mono bg-purple-950/60 border border-purple-500/30 px-1.5 py-0.2 rounded">
+                              {recipe.level}
+                            </span>
+                            {craftability.canCraft ? (
+                              <span className="px-1.5 py-0.2 rounded bg-emerald-950/90 border border-emerald-400/60 text-emerald-300 font-mono font-black text-[9.5px]">
+                                ✓ x{craftability.maxBatches} posibles
+                              </span>
+                            ) : (
+                              <span className="px-1.5 py-0.2 rounded bg-slate-900 border border-slate-700 text-slate-400 font-mono text-[9px]">
+                                Faltan {craftability.missingCount}
+                              </span>
+                            )}
+                          </div>
+                          <div className="mt-1">
+                            <CraftMaterialsBadge mats={recipe.mats} breakdown={craftability.breakdown} />
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="px-1.5 py-0.5 rounded bg-blue-950/60 border border-blue-500/30 text-blue-300 text-[10px] font-mono font-bold">
-                        ⚡ -{energyCost}⚡
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold">
-                        ⭐ +{estimatedXp} XP
-                      </span>
-                      <button
-                        onClick={() => locateInMegaAtlas(stationTarget)}
-                        className="w-7 h-7 rounded-lg bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                        title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
-                      >
-                        <MapPin className="w-3.5 h-3.5" />
-                      </button>
+                      {/* Bloque de Rendimiento Táctico Compacto */}
+                      <div className="flex items-center gap-2 shrink-0 flex-wrap justify-end">
+                        {/* Ganancia de Oro */}
+                        <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Venta: ${sellPrice.toLocaleString()}g - Coste: ${goldCost}g (${goldPerMin} g/min)`}>
+                          💰 +{netGold.toLocaleString()}g
+                        </span>
+
+                        {/* Balance de Energía */}
+                        <span className={`px-2 py-0.5 rounded border text-[10px] font-mono font-bold ${
+                          energyRestore > 0 
+                            ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' 
+                            : 'bg-blue-950/60 border-blue-500/30 text-blue-300'
+                        }`} title={energyRestore > 0 ? `Restaura +${energyRestore}⚡ menos ${energyCost}⚡ de preparación` : `Gasto de energía: -${energyCost}⚡`}>
+                          ⚡ {energyRestore > 0 ? `+${netEnergy}⚡` : `-${energyCost}⚡`}
+                        </span>
+
+                        {/* Tiempo */}
+                        <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono font-bold" title={`Tiempo en estación: ${minutes} minutos`}>
+                          ⏱️ {minutes}m
+                        </span>
+
+                        {/* Experiencia */}
+                        <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] font-mono font-bold" title="Experiencia obtenida">
+                          ⭐ +{xp} XP
+                        </span>
+
+                        <button
+                          onClick={() => locateInMegaAtlas(stationTarget)}
+                          className="w-7 h-7 rounded-lg bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                          title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
+                        >
+                          <MapPin className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
-            )}
+                        )}
           </div>
         )}
 
