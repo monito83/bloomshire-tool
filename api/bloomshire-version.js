@@ -3,7 +3,7 @@
  * Endpoint de verificación en vivo del Build Hash de Bloomshire y parches de juego.
  */
 
-const VERIFIED_BUILD = 'a70eb5dd5113';
+const VERIFIED_BUILD = '124afc8d9ec7';
 const TOOL_VERSION = 'v2.5.0';
 
 export default async function handler(req, res) {
