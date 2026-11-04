@@ -12159,6 +12159,7 @@
       rawEnergyObj,
       energyMeta,
       isVip,
+      vipUntil: Math.max(save?.vipUntil ?? 0, save?.perks?.vipUntil ?? 0) || null,
       shards,
       avyn,
       bank,

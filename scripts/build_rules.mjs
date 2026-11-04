@@ -159,6 +159,8 @@ async function main() {
       else requiredLevel = 1;
     }
 
+    const isPremium = Boolean(s.premium || itemData.cat === 'premium');
+    const waterStages = Array.isArray(s.stages) ? s.stages.length : (s.stages ?? 5);
     return {
       index,
       name: s.name,
@@ -166,15 +168,17 @@ async function main() {
       growMinutes: s.grow,
       regrowMinutes: s.regrow || null,
       harvests: s.harvests || 1,
-      waterStages: Array.isArray(s.stages) ? s.stages.length : (s.stages ?? 1),
+      waterStages,
+      stages: waterStages,
+      premium: isPremium,
       seedDear: Boolean(s.seedDear),
-      seedPrice: itemData.cat === 'premium' ? 0 : (seedData.price ?? null),
+      seedPrice: isPremium ? 0 : (seedData.price ?? null),
       cropSellValue: itemData.value ?? 0,
       farmingXp: itemData.xp ?? 1,
       requiredLevel,
       seasons: finalSeasons,
       icon: itemData.icon ?? null,
-      category: itemData.cat || 'crop'
+      category: isPremium ? 'premium' : (itemData.cat || 'crop')
     };
   });
 
@@ -279,6 +283,8 @@ async function main() {
     }, {}),
     crops: detailedCrops,
     shops: catalog.SHOPS,
+    sellLimits: rules.SELL_LIMITS || { perItem: 15, things: 60, gold: 12000 },
+    seedSources: rules.SEED_SOURCES || null,
   };
 
   // 1. Guardar rules.json
@@ -387,11 +393,14 @@ async function main() {
       id: c.name,
       name: isVip ? `${meta.es} (VIP)` : meta.es,
       unit: unitPrice,
+      unitNpc: isVip ? 0 : c.cropSellValue,
+      unitP2p: unitPrice,
       seller,
       matchKeys,
       qty: 0,
       cat: isVip ? 'vip' : 'crop',
       icon: meta.emoji,
+      requiredLevel: c.requiredLevel,
       desc: isVip
         ? `Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~${unitPrice}g) o utilízala en recetas VIP.`
         : `Cultivo de Bloomshire (${c.growMinutes} min). Véndelo a Odette por ${unitPrice}g o entrégalo en el Tablón de Pedidos.`
@@ -415,7 +424,7 @@ async function main() {
     let hookContent = fs.readFileSync(hookPath, 'utf8');
     const seedsInfoRows = detailedCrops.map(c => {
       const meta = cropMeta[c.name] || { es: c.name, emoji: '🌱' };
-      return `    { id: '${c.name}', name: '${meta.es}', grow: ${c.growMinutes}, icon: '${meta.emoji}' }`;
+      return `    { id: '${c.name}', name: '${meta.es}', grow: ${c.growMinutes}, regrow: ${c.regrowMinutes ?? 'null'}, harvests: ${c.harvests ?? 1}, stages: ${c.waterStages ?? 5}, premium: ${Boolean(c.premium)}, icon: '${meta.emoji}' }`;
     });
 
     const newSeedsInfoBlock = `const SEEDS_INFO = [\n${seedsInfoRows.join(',\n')}\n  ];`;

@@ -700,6 +700,9 @@ export default function BloomshireCommand() {
   const [isVip, setIsVip] = useState(() => {
     try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; }
   });
+  const [vipUntil, setVipUntil] = useState(() => {
+    try { return Number(localStorage.getItem('bloomshire_cached_vip_until')) || 0; } catch { return 0; }
+  });
   const [playerPerks, setPlayerPerks] = useState(() => {
     try {
       const cached = localStorage.getItem('bloomshire_cached_perks');
@@ -723,6 +726,8 @@ export default function BloomshireCommand() {
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
+    setVipUntil(0);
+    try { localStorage.removeItem('bloomshire_cached_vip_until'); } catch (_) {}
     setPlayerPerks(null);
     setGold(0);
     setCurrentEnergy(0);
@@ -1777,7 +1782,12 @@ export default function BloomshireCommand() {
     // O3 & O8: Actualizar isVip, perks y farmersOwned
     const effectiveIsVip = Boolean(data.isVip);
     setIsVip(effectiveIsVip);
-    try { localStorage.setItem('bloomshire_cached_is_vip', String(effectiveIsVip)); } catch (_) {}
+    const effectiveVipUntil = typeof data.vipUntil === 'number' ? data.vipUntil : (data.isVip ? (vipUntil || 0) : 0);
+    setVipUntil(effectiveVipUntil);
+    try {
+      localStorage.setItem('bloomshire_cached_is_vip', String(effectiveIsVip));
+      localStorage.setItem('bloomshire_cached_vip_until', String(effectiveVipUntil));
+    } catch (_) {}
 
     // Perks reales emitidos por el juego (save.perks)
     let effectivePerks = playerPerks;
@@ -1833,6 +1843,7 @@ export default function BloomshireCommand() {
       {
         farmersCount: effectiveFarmersCount,
         isVip: effectiveIsVip,
+        vipUntil: effectiveVipUntil,
         maxEnergy: computedMaxE,
         perks: effectivePerks,
         buffs: data.buffs || data.rawEnergyObj?.buffs,
@@ -2090,6 +2101,7 @@ export default function BloomshireCommand() {
         {
           farmersCount: farmersOwned,
           isVip,
+          vipUntil,
           maxEnergy: computeMaxEnergy(isVip, isHolder),
           perks: playerPerks,
           buffs: rawEnergyObj?.buffs,
@@ -2187,7 +2199,9 @@ export default function BloomshireCommand() {
         return;
       }
 
-      const isNpcSellable = item.cat !== 'vip' && item.cat !== 'food' && (item.unitNpc ?? item.unit ?? 0) > 0;
+      const reqLevel = item.requiredLevel || 1;
+      const isLevelLocked = item.cat === 'crop' && farmingLevel < reqLevel;
+      const isNpcSellable = item.cat !== 'vip' && item.cat !== 'food' && !isLevelLocked && (item.unitNpc ?? item.unit ?? 0) > 0;
       const npcPrice = isNpcSellable ? (item.unitNpc ?? item.unit ?? 0) : 0;
       const p2pPrice = item.unitP2p ?? item.unit ?? 0;
 
@@ -2201,7 +2215,11 @@ export default function BloomshireCommand() {
           p2pGold: owned * p2pPrice,
           isP2pOnly: true,
           itemQuotaLeft: 0,
-          reason: item.cat === 'food' ? 'Plato Cocinado (0g en tiendas NPC, consumo o P2P)' : 'Cosecha VIP (Mercado Rowan)'
+          isLevelLocked,
+          reqLevel,
+          reason: isLevelLocked
+            ? `Requiere Nv ${reqLevel} de Cultivo para vender en tiendas NPC (SEED_SOURCES.shopAtFarmingLevel)`
+            : (item.cat === 'food' ? 'Plato Cocinado (0g en tiendas NPC, consumo o P2P)' : 'Cosecha VIP (Mercado Rowan)')
         };
         return;
       }
@@ -4036,6 +4054,10 @@ export default function BloomshireCommand() {
                                     <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-purple-950 text-purple-300 border border-purple-500/40" title="Cosecha VIP: venta en Rowan P2P">
                                       VIP Rowan
                                     </span>
+                                  ) : detail.isLevelLocked ? (
+                                    <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-rose-950 text-rose-300 border border-rose-500/40" title={`Las tiendas solo compran este cultivo a granjeros de Nv ${detail.reqLevel}+ (SEED_SOURCES.shopAtFarmingLevel)`}>
+                                      Bloq Nv {detail.reqLevel}
+                                    </span>
                                   ) : (
                                     <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-slate-800 text-slate-300">
                                       NPC (15/día)
@@ -4124,7 +4146,8 @@ export default function BloomshireCommand() {
                           </div>
                         </div>
                       );
-                    })}                  </div>
+                    })}
+                  </div>
                 </div>
                 )
               )}
@@ -5515,7 +5538,7 @@ export default function BloomshireCommand() {
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
                         <span className="text-slate-300">Comida Consumida Hoy (Reinicio 00:00 UTC):</span>
                         <span className="font-mono font-bold text-emerald-300">
-                          {energyMeta.foodEatenToday || 0} / {energyMeta.foodCapToday || (isVip || isHolder ? 150 : 100)} ⚡
+                          {energyMeta.foodEatenToday || 0} / {energyMeta.foodCapToday || (isVip || energyMeta.isHolder ? 150 : 100)} ⚡
                         </span>
                       </div>
 
@@ -5526,7 +5549,7 @@ export default function BloomshireCommand() {
                           <><br />• 🫐 <b>Mermelada de Zafiro Activa:</b> Regeneración acelerada a <b>+1.3⚡ cada 3 min</b> (+26⚡/h) durante {energyMeta.jamMinutesLeft}m restantes.</>
                         )}
                         <br />• Cuota de sueño diaria (reinicio 00:00 UTC): <b>200⚡</b> (jugador base, 2 barras de 100⚡), o <b>450⚡ / 600⚡ / 750⚡</b> (VIP u Holders, 3 a 5 barras de 150⚡ según perks/farmers).
-                        <br />• Cuota de comida diaria (reinicio 00:00 UTC, 1 barra completa por día): <b>100⚡</b> (jugador base) / <b>150⚡</b> (VIP u Holders). Los platos cocinados alimentan la barra diaria; Moonlight Stew otorga 8⚡ diarios.
+                        <br />• Cuota de comida diaria (reinicio 00:00 UTC, 1 barra completa por día): <b>100⚡</b> (jugador base) / <b>150⚡</b> (VIP u Holders). Los platos cocinados alimentan la barra diaria; Moonlight Stew otorga 8⚡ por plato (cuenta para la barra de comida diaria).
                       </div>
                     </div>
                   )}
@@ -6328,7 +6351,11 @@ export default function BloomshireCommand() {
                     {[...activeCrops, ...productionTimers].map((item, idx) => {
                       const effectiveNow = nowTime + serverTimeOffset;
                       const isCrop = item.type === 'crop';
-                      const totalMs = (item.growMinutes || item.durationMinutes || 10) * 60 * 1000;
+                      const baseMinutes = (isCrop && item.regrowMinutes && (item.harvestCount || 0) > 0)
+                        ? item.regrowMinutes
+                        : (item.growMinutes || item.durationMinutes || 15);
+                      const actualGrowMinutes = baseMinutes * (item.k ?? 1);
+                      const totalMs = actualGrowMinutes * 60 * 1000;
                       const remMs = item.readyAt ? Math.max(0, item.readyAt - effectiveNow) : 0;
                       
                       const isWithered = isCrop && Boolean(item.isWithered || (item.witherAt && effectiveNow >= item.witherAt));
@@ -6339,7 +6366,7 @@ export default function BloomshireCommand() {
                       const isFirstWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'first' || (!item.wateredAt && !isReady && !isWithered));
                       const needsWater = isSecondWater || isFirstWater || item.needsWater;
 
-                      const elapsed = item.plantedAt ? (effectiveNow - item.plantedAt) : (totalMs - remMs);
+                      const elapsed = item.readyAt ? Math.max(0, totalMs - remMs) : (item.plantedAt ? (effectiveNow - item.plantedAt) : 0);
                       const pct = isReady ? 100 : (isWithered ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalMs) * 100))));
 
                       const mins = Math.floor(remMs / 60000);
@@ -6469,8 +6496,8 @@ export default function BloomshireCommand() {
                                 {item.location || 'Huerto'}
                               </span>
                               {isCrop && (
-                                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-slate-400">
-                                  {item.source === 'live_engine' ? '⚡ En vivo' : item.source === 'simulation' ? '💾 Simulado' : 'Sin datos en vivo'}
+                                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-emerald-400/90 bg-emerald-950/30">
+                                  🌱 Parcela en Huerto
                                 </span>
                               )}
                             </div>
@@ -6498,7 +6525,8 @@ export default function BloomshireCommand() {
                           </div>
                         </div>
                       );
-                    })}                  </div>
+                    })}
+                  </div>
                 )}
               </div>
 

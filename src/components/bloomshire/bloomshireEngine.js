@@ -117,11 +117,22 @@ export function computeCanonicalSkillsFromRaw(rawSkillsObj, fallbackBreak = null
  * - Aceleración de Founding Farmers (crop.k = 0.8 / 0.7).
  * - Marchitado tras 5 horas de maduro (WITHER.afterRipeHours = 5).
  */
-export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed = null) {
+export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed = null, asIs = false) {
   if (!crop || typeof crop !== 'object') return null;
   if (!seed) return null;
 
-  const last = (typeof seed.stages === 'number' ? seed.stages : (seed.stages?.length ?? seed.waterStages ?? 5)) - 1;
+  // Cultivos Premium (VIP Quarter): nunca se marchitan y se riegan automáticamente en crop.t (rules.js: PREMIUM / farm.js:86-90)
+  if (!asIs && seed.premium && crop.t) {
+    const w1 = crop.w1 ?? crop.t;
+    const g0 = computeCropGrowth({ ...crop, w1, w2: null }, now, false, seed, true);
+    const w2 = crop.w2 ?? (g0.needs === 'second' ? g0.waitAt : null);
+    return { ...computeCropGrowth({ ...crop, w1, w2 }, now, false, seed, true), w1, w2 };
+  }
+
+  const stagesCount = typeof seed.stages === 'number'
+    ? seed.stages
+    : (Array.isArray(seed.stages) ? seed.stages.length : (seed.waterStages ?? 5));
+  const last = stagesCount - 1;
   const from = Math.min(crop.base ?? 0, Math.max(0, last - 1));
   const span = Math.max(1, last - from);
 
@@ -145,7 +156,7 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
       two,
       per,
       withered: false,
-      statusText: 'Necesita agua (1.er riego) 💧'
+      statusText: outdoors ? 'Requiere riego (o lluvia al aire libre) 💧🌧️' : 'Necesita agua (1.er riego) 💧'
     };
   }
 
@@ -153,7 +164,7 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
   if (!two) {
     const isRipe = first >= last;
     const readyAt = crop.w1 + total;
-    const withered = isRipe && (now >= readyAt + late);
+    const withered = (!seed.premium) && isRipe && (now >= readyAt + late);
     return {
       stage: first,
       last,
@@ -195,14 +206,14 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
       two,
       per,
       withered: false,
-      statusText: '¡Necesita 2.° riego! 💧'
+      statusText: outdoors ? '¡Requiere 2.° riego (o lluvia al aire libre)! 💧🌧️' : '¡Necesita 2.° riego! 💧'
     };
   }
 
   const stage = Math.min(last, wait + Math.floor(Math.max(0, now - crop.w2) / per));
   const isRipe = stage >= last;
   const readyAt = crop.w2 + per;
-  const withered = isRipe && (now >= readyAt + late);
+  const withered = (!seed.premium) && isRipe && (now >= readyAt + late);
   return {
     stage,
     last,
@@ -215,7 +226,6 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
     statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
   };
 }
-
 
 // Cálculo en vivo de Energía, Reloj de Cama UTC, Sapphire Jam y Comida diaria según reglas oficiales (rules.js:46-57, 2980-3020)
 export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshotTimestamp, prevEnergyMeta, options = {}) {
@@ -291,7 +301,7 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
       }
     };
 
-    const vipTo = isVip ? (options.vipUntil || (now + 86400000)) : 0;
+    const vipTo = (isVip && typeof options.vipUntil === 'number' && options.vipUntil > now) ? options.vipUntil : (isVip ? now : 0);
     const rateAt = (x) => (x < jamTo ? baseRegen * 1.3 : x < vipTo ? baseRegen : 0);
     const idle = (to) => {
       for (const edge of [jamTo, vipTo, to].sort((a, b) => a - b)) {
