@@ -700,6 +700,12 @@ export default function BloomshireCommand() {
   const [isVip, setIsVip] = useState(() => {
     try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; }
   });
+  const [playerPerks, setPlayerPerks] = useState(() => {
+    try {
+      const cached = localStorage.getItem('bloomshire_cached_perks');
+      return cached ? JSON.parse(cached) : null;
+    } catch { return null; }
+  });
 
   // El acceso premium exige sesión SIWE verificada por el servidor (S1)
   const isConnected = Boolean(isPremiumUnlocked);
@@ -717,6 +723,7 @@ export default function BloomshireCommand() {
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
+    setPlayerPerks(null);
     setGold(0);
     setCurrentEnergy(0);
     setMaxEnergy(100);
@@ -742,6 +749,7 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_cached_farming_level');
       localStorage.removeItem('bloomshire_cached_farmers');
       localStorage.removeItem('bloomshire_cached_is_vip');
+      localStorage.removeItem('bloomshire_cached_perks');
       localStorage.removeItem('bloomshire_cached_active_quest');
       localStorage.removeItem('bloomshire_prod_timers');
       localStorage.removeItem('bloomshire_daily_tasks');
@@ -759,10 +767,13 @@ export default function BloomshireCommand() {
   const [currentEnergy, setCurrentEnergy] = useState(() => {
     try { return Number(localStorage.getItem('bloomshire_cached_energy')) || 0; } catch { return 0; }
   });
-  const [maxEnergy, setMaxEnergy] = useState(() => computeMaxEnergy(
-    (() => { try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; } })(),
-    (() => { try { return (Number(localStorage.getItem('bloomshire_cached_farmers')) || 0) > 0; } catch { return false; } })()
-  ));
+  const [maxEnergy, setMaxEnergy] = useState(() => {
+    const cachedVip = (() => { try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; } })();
+    const cachedFarmers = (() => { try { return Number(localStorage.getItem('bloomshire_cached_farmers')) || 0; } catch { return 0; } })();
+    const cachedPerks = (() => { try { const p = localStorage.getItem('bloomshire_cached_perks'); return p ? JSON.parse(p) : null; } catch { return null; } })();
+    const isHolder = cachedFarmers > 0 || Boolean(cachedPerks);
+    return computeMaxEnergy(cachedVip, isHolder);
+  });
   const [rawEnergyObj, setRawEnergyObj] = useState(null);
   const [snapshotTimestamp, setSnapshotTimestamp] = useState(() => Date.now());
   const [gold, setGold] = useState(() => {
@@ -1763,20 +1774,30 @@ export default function BloomshireCommand() {
     if (data.shards !== undefined) setShards(data.shards);
     if (data.avyn !== undefined) setAvyn(data.avyn > 100000 ? Math.round(data.avyn / 1e6) : Math.round(Number(data.avyn) * 100) / 100);
 
-    // O3 & O8: Actualizar isVip y farmersOwned (aceptando 0 sin descartarlo)
+    // O3 & O8: Actualizar isVip, perks y farmersOwned
     const effectiveIsVip = Boolean(data.isVip);
     setIsVip(effectiveIsVip);
     try { localStorage.setItem('bloomshire_cached_is_vip', String(effectiveIsVip)); } catch (_) {}
 
+    // Perks reales emitidos por el juego (save.perks)
+    let effectivePerks = playerPerks;
+    if (data.perks && typeof data.perks === 'object') {
+      effectivePerks = data.perks;
+      setPlayerPerks(data.perks);
+      try { localStorage.setItem('bloomshire_cached_perks', JSON.stringify(data.perks)); } catch (_) {}
+    }
+
+    // El conteo de farmers sale de on-chain / sync del servidor; la extensión no lo pisa
     let effectiveFarmersCount = farmersOwned;
-    if (typeof data.farmersCount === 'number' && data.farmersCount >= 0) {
+    if (typeof data.farmersCount === 'number' && data.farmersCount >= 0 && source !== 'extension') {
       effectiveFarmersCount = data.farmersCount;
       setFarmersOwned(data.farmersCount);
       try { localStorage.setItem('bloomshire_cached_farmers', String(data.farmersCount)); } catch (_) {}
     }
 
-    // Cálculo centralizado de maxEnergy: 150 si es VIP o Holder, 100 si no
-    const computedMaxE = computeMaxEnergy(effectiveIsVip, effectiveFarmersCount > 0);
+    // Holder canónico: posesión on-chain (> 0) o perks vigentes (play.js:2118)
+    const isHolder = effectiveFarmersCount > 0 || Boolean(effectivePerks);
+    const computedMaxE = computeMaxEnergy(effectiveIsVip, isHolder);
     setMaxEnergy(computedMaxE);
 
     const snapTime = data.timestamp || Date.now();
@@ -1813,7 +1834,7 @@ export default function BloomshireCommand() {
         farmersCount: effectiveFarmersCount,
         isVip: effectiveIsVip,
         maxEnergy: computedMaxE,
-        perks: data.perks || null
+        perks: effectivePerks
       }
     );
     if (isFromExtension || liveEAndBed.currentEnergy > 1) {
@@ -2057,6 +2078,7 @@ export default function BloomshireCommand() {
   // Tick local cada 15s para actualizar energía pasiva (+1 cada 3m VIP) y cuenta regresiva de Cama UTC
   useEffect(() => {
     const timer = setInterval(() => {
+      const isHolder = farmersOwned > 0 || Boolean(playerPerks);
       const updated = computeClientLiveEnergyAndBed(
         rawEnergyObj,
         currentEnergy,
@@ -2065,7 +2087,8 @@ export default function BloomshireCommand() {
         {
           farmersCount: farmersOwned,
           isVip,
-          maxEnergy: computeMaxEnergy(isVip, farmersOwned > 0)
+          maxEnergy: computeMaxEnergy(isVip, isHolder),
+          perks: playerPerks
         }
       );
       if (rawEnergyObj) {
@@ -2074,7 +2097,7 @@ export default function BloomshireCommand() {
       setEnergyMeta(updated.energyMeta);
     }, 15000);
     return () => clearInterval(timer);
-  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta, farmersOwned, isVip, maxEnergy]);
+  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta, farmersOwned, playerPerks, isVip, maxEnergy]);
 
   // Recalcular cantidades cuando cambia el scope
   useEffect(() => {
@@ -5349,7 +5372,7 @@ export default function BloomshireCommand() {
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
                         <span className="text-slate-300">Comida Consumida (Ciclo 12h UTC):</span>
                         <span className="font-mono font-bold text-emerald-300">
-                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || (maxEnergy === 150 ? 90 : 60)} ⚡
+                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || 90} ⚡
                         </span>
                       </div>
 
@@ -6994,7 +7017,15 @@ export default function BloomshireCommand() {
                     <span className="text-xl">⚡</span>
                     <div>
                       <div className="font-bold text-white text-[11px]">Bono de Velocidad</div>
-                      <div className="text-[10px] text-emerald-300 font-mono font-bold">{farmersOwned > 0 ? '+20% Crecimiento' : 'Sin bono'}</div>
+                      <div className="text-[10px] text-emerald-300 font-mono font-bold">
+                        {playerPerks?.fast
+                          ? `${Math.round((1 - playerPerks.fast) * 100)}% Crecimiento (${playerPerks.fast})`
+                          : farmersOwned >= 15
+                          ? '-30% Crecimiento'
+                          : farmersOwned >= 7
+                          ? '-20% Crecimiento'
+                          : 'Sin bono (< 7 Farmers)'}
+                      </div>
                     </div>
                   </div>
                   <div className="p-2.5 bg-[#0f172a] border border-purple-500/30 rounded-xl flex items-center gap-2.5">

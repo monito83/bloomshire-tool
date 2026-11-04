@@ -11561,15 +11561,13 @@
     // VIP canónico: vigente por save.vipUntil o save.perks.vipUntil (rules.js:898)
     const vipTo = Math.max(saveRoot?.vipUntil ?? 0, saveRoot?.perks?.vipUntil ?? 0);
     const isVip = vipTo > now;
-    const count = typeof saveRoot?._farmersCount === 'number'
-      ? saveRoot._farmersCount
-      : (Array.isArray(saveRoot?.game?.founders) ? saveRoot.game.founders.length : (saveRoot?.perks?.sleeps ? 1 : 0));
-    const isHolder = count > 0;
+    // Holder canónico según play.js:2118: !!save.perks
+    const isHolder = Boolean(saveRoot?.perks);
     const isHolderOrVip = isHolder || isVip;
     const maxE = isHolderOrVip ? 150 : 100;
     const regenRate = isVip ? 1 / (3 * 60000) : 0; // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
     const sleepADay = isHolderOrVip
-      ? (Math.max(3, Math.min(5, saveRoot?.perks?.sleeps || (count >= 20 ? 5 : count >= 10 ? 4 : 3))) * 150)
+      ? (Math.max(3, Math.min(5, saveRoot?.perks?.sleeps || 3)) * 150)
       : 200;
 
     if (typeof saveEnergy === 'number') {
@@ -11588,7 +11586,7 @@
           sleepADay: sleepADay,
           usedSleepToday: 0,
           foodEatenHalfDay: 0,
-          foodCapHalfDay: isHolderOrVip ? 90 : 60,
+          foodCapHalfDay: 90,
           regenPer3Min: isVip ? 1 : 0
         }
       };
@@ -11663,7 +11661,7 @@
     // Comida por medio día UTC (12h): 90⚡ para VIP/Founders, 60⚡ base
     const utcHalf = Math.floor(now / 43200000);
     const foodEatenHalfDay = (e.eaten && e.eaten.half === utcHalf) ? Math.round(Number(e.eaten.n) || 0) : 0;
-    const foodCapHalfDay = isHolderOrVip ? 90 : 60;
+    const foodCapHalfDay = 90;
 
     return {
       currentEnergy,
@@ -11704,10 +11702,7 @@
     // 1. ENERGÍA EXACTA (#walk + +1 cada 3m VIP) Y MONITOR DE CAMA
     const vipTo = Math.max(save?.vipUntil ?? 0, save?.perks?.vipUntil ?? 0);
     const isVip = vipTo > Date.now();
-    const count = typeof save?._farmersCount === 'number'
-      ? save._farmersCount
-      : (Array.isArray(save?.game?.founders) ? save.game.founders.length : (save?.perks?.sleeps ? 1 : 0));
-    const isHolder = count > 0;
+    const isHolder = Boolean(save?.perks);
     const maxE = (isVip || isHolder) ? 150 : 100;
     const rawEnergyInput = save._liveEnergyObj || (save.energy && typeof save.energy === 'object' ? save.energy : (typeof save.energy === 'number' ? { v: save.energy } : {}));
     const { currentEnergy: energy, rawEnergyObj, energyMeta } = computeLiveEnergyAndBed(
@@ -12126,7 +12121,7 @@
       avyn,
       bank,
       farmingLevel,
-      farmersCount: count,
+      perks: save?.perks || null,
       inventory: finalInventory,
       activeOrders: activeOrders.length > 0 ? activeOrders : (latestBloomshireState?.activeOrders || []),
       activeQuest: activeQuestLabel,
