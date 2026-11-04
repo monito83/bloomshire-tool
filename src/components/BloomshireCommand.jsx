@@ -1753,13 +1753,17 @@ export default function BloomshireCommand() {
     if (craftLevelFilter && craftLevelFilter !== 'all') {
       if (craftLevelFilter === 'special') {
         list = list.filter(r => !r.levelNum || r.levelNum === 0 || (r.level && (r.level.toLowerCase().includes('misi') || r.level.toLowerCase().includes('especial') || r.level.toLowerCase().includes('vip'))));
-      } else if (craftLevelFilter === '8') {
-        list = list.filter(r => (r.levelNum || 1) >= 8 && (r.levelNum || 1) < 10);
-      } else if (craftLevelFilter === '10') {
-        list = list.filter(r => (r.levelNum || 1) >= 10);
       } else {
-        const targetNum = Number(craftLevelFilter);
-        list = list.filter(r => (r.levelNum || 1) === targetNum);
+        const targetNum = parseInt(craftLevelFilter, 10);
+        if (!isNaN(targetNum)) {
+          if (targetNum >= 10) {
+            // Nivel 10+ muestra todas las recetas disponibles hasta nivel avanzado
+            list = list.filter(r => (r.levelNum || 1) <= 30);
+          } else {
+            // Filtro acumulativo: muestra todo lo que se puede craftear estando en ese nivel
+            list = list.filter(r => (r.levelNum || 1) <= targetNum);
+          }
+        }
       }
     }
 
