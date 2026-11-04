@@ -592,7 +592,7 @@
       "seedPrice": 1650,
       "cropSellValue": 3250,
       "farmingXp": 94,
-      "requiredLevel": 15,
+      "requiredLevel": 1,
       "seasons": [
         "Fall"
       ],
@@ -617,7 +617,7 @@
       "seedPrice": 2100,
       "cropSellValue": 4150,
       "farmingXp": 111,
-      "requiredLevel": 10,
+      "requiredLevel": 1,
       "seasons": [
         "Summer"
       ],
@@ -1467,7 +1467,7 @@
       "seedPrice": 1200,
       "cropSellValue": 2350,
       "farmingXp": 76,
-      "requiredLevel": 20,
+      "requiredLevel": 1,
       "seasons": [
         "all"
       ],
@@ -1492,7 +1492,7 @@
       "seedPrice": 700,
       "cropSellValue": 1400,
       "farmingXp": 54,
-      "requiredLevel": 15,
+      "requiredLevel": 1,
       "seasons": [
         "all"
       ],

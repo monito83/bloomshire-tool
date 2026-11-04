@@ -148,16 +148,9 @@ async function main() {
     const season = cropSeasonMap[s.name] || (s.seasons ? s.seasons[0] : 'all');
     const finalSeasons = season === 'all' ? ['all'] : [season];
 
-    let requiredLevel = shopLevels[`seed:${index}`];
-    if (!requiredLevel) {
-      if (itemData.cat === 'premium') requiredLevel = 1;
-      else if (s.name === 'Star Fruit') requiredLevel = 10;
-      else if (s.name === 'Saffron') requiredLevel = 15;
-      else if (s.name === 'Aloe') requiredLevel = 15;
-      else if (s.name === 'Fireheart Pepper') requiredLevel = 20;
-      else if (s.name === 'Fairy Rose') requiredLevel = 15;
-      else requiredLevel = 1;
-    }
+    // Según catalog.js:123, solo los cultivos listados en SEED_SOURCES.shopAtFarmingLevel
+    // exigen nivel para comprarse/venderse en tiendas NPC. Los demás (Star Fruit, Saffron, Fairy Rose, etc.) son Nivel 1.
+    const requiredLevel = shopLevels[`seed:${index}`] || 1;
 
     const isPremium = Boolean(s.premium || itemData.cat === 'premium');
     const waterStages = Array.isArray(s.stages) ? s.stages.length : (s.stages ?? 5);

@@ -48,6 +48,25 @@ import itemIconsMap from '../../public/data/bloomshire/item_icons_map.json';
 import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
 import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
 import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
+import rulesData from '../data/rules.json';
+
+// Singleton de AudioContext para alarmas de producción (O15)
+let sharedAudioContext = null;
+function getSharedAudioContext() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!sharedAudioContext || sharedAudioContext.state === 'closed') {
+      sharedAudioContext = new AudioCtx();
+    }
+    if (sharedAudioContext.state === 'suspended') {
+      sharedAudioContext.resume().catch(() => {});
+    }
+    return sharedAudioContext;
+  } catch (e) {
+    return null;
+  }
+}
 
 // Importar lógica y fórmulas de bloomshireEngine
 import {
@@ -666,6 +685,211 @@ function LockedModuleScreen({ title, description, onConnect, onBack }) {
   );
 }
 
+// Componente de temporizador desacoplado del reloj raíz (evita repintar toda la app cada segundo)
+function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas, handleRemoveProductionTimer }) {
+  const [ticker, setTicker] = useState(() => Date.now());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTicker(Date.now());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const effectiveNow = ticker + (serverTimeOffset || 0);
+  const isCrop = item.type === 'crop';
+  const baseMinutes = (isCrop && item.regrowMinutes && (item.harvestCount || 0) > 0)
+    ? item.regrowMinutes
+    : (item.growMinutes || item.durationMinutes || 15);
+  const actualGrowMinutes = baseMinutes * (item.k ?? 1);
+  const totalMs = actualGrowMinutes * 60 * 1000;
+  const remMs = item.readyAt ? Math.max(0, item.readyAt - effectiveNow) : 0;
+
+  const isWithered = isCrop && Boolean(item.isWithered || (item.witherAt && effectiveNow >= item.witherAt));
+  const isReady = isCrop
+    ? (!isWithered && Boolean(item.isRipe || (item.readyAt && effectiveNow >= item.readyAt)))
+    : Boolean(item.readyAt && remMs === 0);
+  const isSecondWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'second');
+  const isFirstWater = isCrop && !isWithered && !isReady && !item.rained && Boolean(item.needsWaterStage === 'first' || (item.needsWater && !item.wateredAt));
+  const isRained = isCrop && Boolean(item.rained);
+
+  const elapsed = item.readyAt ? Math.max(0, totalMs - remMs) : (item.plantedAt ? (effectiveNow - item.plantedAt) : 0);
+  const pct = isReady ? 100 : (isWithered ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalMs) * 100))));
+
+  const mins = Math.floor(remMs / 60000);
+  const secs = Math.floor((remMs % 60000) / 1000);
+  const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+  let statusBadge = null;
+  if (isWithered) {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-rose-500 text-slate-950 border-rose-300">
+        🥀 MARCHITO
+      </span>
+    );
+  } else if (isReady) {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-emerald-500 text-slate-950 border-emerald-300">
+        ✨ ¡LISTO!
+      </span>
+    );
+  } else if (isSecondWater) {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-amber-500 text-slate-950 border-amber-300 animate-pulse">
+        💧 2.° RIEGO
+      </span>
+    );
+  } else if (isFirstWater) {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-sky-500/20 text-sky-300 border-sky-500/40">
+        💧 1.ER RIEGO
+      </span>
+    );
+  } else if (isRained) {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-indigo-500/30 text-indigo-200 border-indigo-400/50">
+        🌧️ LLUVIA
+      </span>
+    );
+  } else {
+    statusBadge = (
+      <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-cyan-500/20 text-cyan-300 border-cyan-500/40">
+        {timeStr}
+      </span>
+    );
+  }
+
+  let statusDesc = `${timeStr} restantes`;
+  if (isWithered) {
+    statusDesc = 'Marchito tras 5h maduro sin cosechar';
+  } else if (isReady) {
+    const msToWither = item.witherAt ? Math.max(0, item.witherAt - effectiveNow) : 0;
+    const witherMins = Math.floor(msToWither / 60000);
+    statusDesc = msToWither > 0 ? `Marchita en ${witherMins}m (5h tope)` : '¡Listo para cosechar!';
+  } else if (isSecondWater) {
+    statusDesc = '¡Requiere 2.° riego para madurar!';
+  } else if (isFirstWater) {
+    statusDesc = item.outdoors ? 'Requiere riego (o lluvia al aire libre) 🌧️' : 'Sin regar (crecimiento pausado)';
+  } else if (isRained) {
+    statusDesc = 'Regado por lluvia (creciendo) 🌧️';
+  } else if (isCrop) {
+    statusDesc = `Creciendo (etapa ${item.stage ?? 0}/${item.lastStage ?? 4})`;
+  }
+
+  return (
+    <div
+      className={`p-3.5 rounded-xl border flex flex-col justify-between gap-2.5 transition-all shadow-sm ${
+        isWithered
+          ? 'bg-rose-950/40 border-rose-500/70 shadow-rose-950/20'
+          : isReady
+          ? 'bg-emerald-950/40 border-emerald-400 ring-1 ring-emerald-500/50 shadow-emerald-900/20 animate-pulse'
+          : isSecondWater
+          ? 'bg-amber-950/50 border-amber-500/80 ring-1 ring-amber-500/40'
+          : isFirstWater
+          ? 'bg-sky-950/40 border-sky-500/60'
+          : isRained
+          ? 'bg-indigo-950/40 border-indigo-500/50'
+          : 'bg-[#091224] border-slate-800 hover:border-slate-700'
+      }`}
+    >
+      <div>
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">{item.icon || '🌱'}</span>
+            <div>
+              <div className="font-bold text-white text-sm leading-tight flex items-center gap-1.5 flex-wrap">
+                <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name}</span>
+              </div>
+              <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
+                <span>{isCrop ? 'Cultivo en Parcela' : 'Cocina / Crafteo'}</span>
+                {isCrop && item.k && item.k < 1 && (
+                  <span className="px-1 py-0.2 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[9px]">
+                    ⚡ -{Math.round((1 - item.k) * 100)}% tiempo
+                  </span>
+                )}
+                {isCrop && item.regrowMinutes && (
+                  <span className="px-1 py-0.2 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono font-bold text-[9px]">
+                    🔁 Rebrote ({item.harvestCount || 1}/{item.harvests || 5})
+                  </span>
+                )}
+                {isRained && (
+                  <span className="px-1 py-0.2 rounded bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 font-mono font-bold text-[9px]">
+                    🌧️ Lluvia
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {statusBadge}
+        </div>
+
+        {/* Barra de Progreso */}
+        <div className="mt-2.5">
+          <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+            <div
+              className={`h-full transition-all duration-300 ${
+                isWithered
+                  ? 'bg-rose-500'
+                  : isReady
+                  ? 'bg-emerald-400'
+                  : isSecondWater
+                  ? 'bg-amber-400'
+                  : isFirstWater
+                  ? 'bg-sky-400'
+                  : isRained
+                  ? 'bg-gradient-to-r from-indigo-500 to-cyan-400'
+                  : 'bg-gradient-to-r from-cyan-500 to-emerald-400'
+              }`}
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+          <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
+            <span>{pct}% completado</span>
+            <span className={isWithered ? 'text-rose-400 font-bold' : isReady ? 'text-emerald-300 font-bold' : isSecondWater ? 'text-amber-300 font-bold' : isRained ? 'text-indigo-300 font-bold' : ''}>
+              {statusDesc}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs gap-1">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-[11px] text-slate-300 truncate max-w-[140px]" title={item.location}>
+            {item.location || 'Huerto'}
+          </span>
+          {isCrop && (
+            <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-emerald-400/90 bg-emerald-950/30">
+              🌱 Parcela en Huerto
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          {item.atlasTarget && (
+            <button
+              onClick={() => locateInMegaAtlas(item.atlasTarget)}
+              className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-cyan-500/20 border border-slate-700 hover:border-cyan-500/40 text-cyan-300 flex items-center justify-center cursor-pointer transition-all shrink-0"
+              title="Ver ubicación en Mega-Atlas"
+            >
+              <MapPin className="w-3 h-3" />
+            </button>
+          )}
+          {item.isManual && (
+            <button
+              onClick={() => handleRemoveProductionTimer(item.id)}
+              className="px-2 py-0.5 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 rounded text-[10px] font-bold cursor-pointer"
+              title="Eliminar este temporizador"
+            >
+              ✕ Listo
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BloomshireCommand() {
   const VALID_TABS = ['mega_atlas', 'inventory', 'items', 'craft', 'npcs', 'calc', 'monitors', 'quests', 'advisor', 'system'];
   const [activeTab, setActiveTab] = useState(() => {
@@ -695,6 +919,10 @@ export default function BloomshireCommand() {
     try { return localStorage.getItem('bloomshire_session_token') || null; } catch { return null; }
   });
   const [authenticatedWallet, setAuthenticatedWallet] = useState(null);
+  const authenticatedWalletRef = useRef(null);
+  useEffect(() => {
+    authenticatedWalletRef.current = authenticatedWallet;
+  }, [authenticatedWallet]);
   const [viewOnlyWallet, setViewOnlyWallet] = useState(null);
   const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
   const [isVip, setIsVip] = useState(() => {
@@ -723,6 +951,7 @@ export default function BloomshireCommand() {
     setWalletAddress(null);
     setSessionToken(null);
     setAuthenticatedWallet(null);
+    authenticatedWalletRef.current = null;
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
@@ -807,31 +1036,19 @@ export default function BloomshireCommand() {
     unlocked: false
   });
   const [energyMeta, setEnergyMeta] = useState(() => {
-    const init = computeClientLiveEnergyAndBed(null, 59, Date.now(), { sleepExhausted: true, sleepLeft: 0 }, { farmersCount: farmersOwned });
+    const init = computeClientLiveEnergyAndBed(null, 0, Date.now(), { sleepExhausted: false, sleepLeft: 0 }, { farmersCount: farmersOwned });
     return init.energyMeta;
   });
   const [skillsMeta, setSkillsMeta] = useState({
-    minSkillKey: 'foraging',
-    minSkillName: 'Recolección y Cocina',
-    minSkillsList: ['Recolección', 'Cocina'],
-    minSkillLevel: 2,
-    maxAllowedLevel: 5,
-    isFarmingCapped: true
+    minSkillKey: 'farming',
+    minSkillName: 'Cultivo',
+    minSkillsList: ['Cultivo'],
+    minSkillLevel: 1,
+    maxAllowedLevel: 30,
+    isFarmingCapped: false
   });
   const [skillsBreakdown, setSkillsBreakdown] = useState(() => {
-    const defSkills = {
-      farming: 4500,
-      woodcutting: 1450,
-      fishing: 2100,
-      foraging: 180,
-      cooking: 420,
-      crafting: 780,
-      mining: 2050,
-      combat: 2200,
-      husbandry: 0,
-      exploration: 920
-    };
-    return computeCanonicalSkillsFromRaw(defSkills).skillsBreakdown;
+    return computeCanonicalSkillsFromRaw({}).skillsBreakdown;
   });
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSyncTime, setLastSyncTime] = useState(() => new Date().toLocaleTimeString());
@@ -909,6 +1126,7 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_manual_disconnected');
       setWalletAddress(account);
       setAuthenticatedWallet(account);
+      authenticatedWalletRef.current = account;
       setSessionToken(token);
       setIsPremiumUnlocked(true);
 
@@ -1180,13 +1398,12 @@ export default function BloomshireCommand() {
   const [soundAlarmEnabled, setSoundAlarmEnabled] = useState(() => localStorage.getItem('bloomshire_sound_alarm') !== 'false');
   const [showAddTimerModal, setShowAddTimerModal] = useState(false);
   const [newTimerForm, setNewTimerForm] = useState({
-    name: 'Guiso de Pescado',
+    name: '',
     qty: 1,
     durationMinutes: 10,
     location: '🏡 Cabaña (Home Island)',
     icon: '🍲'
   });
-  const [nowTime, setNowTime] = useState(Date.now());
   const [serverTimeOffset, setServerTimeOffset] = useState(0);
 
   // Persistir temporizadores de producción y preferencia de alarma
@@ -1202,20 +1419,11 @@ export default function BloomshireCommand() {
     } catch (e) {}
   }, [soundAlarmEnabled]);
 
-  // Tick cada segundo para actualizar cuentas regresivas
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNowTime(Date.now());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Campanilla sonora retro (Web Audio API nativa sin archivos externos)
+  // Campanilla sonora retro (Web Audio API nativa reutilizando singleton AudioContext - O15)
   const playChimeAlarm = () => {
     try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
+      const ctx = getSharedAudioContext();
+      if (!ctx) return;
       const notes = [523.25, 659.25, 783.99, 1046.50]; // Do5, Mi5, Sol5, Do6
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
@@ -1234,20 +1442,24 @@ export default function BloomshireCommand() {
     }
   };
 
+  // Verificación de alarmas desacoplada del render raíz (sin re-renderizar todo el componente cada segundo)
   const alertedProductionIds = useRef(new Set());
   useEffect(() => {
     if (!soundAlarmEnabled) return;
-    const effectiveNow = nowTime + serverTimeOffset;
-    const allItems = [...activeCrops, ...productionTimers];
-    allItems.forEach(item => {
-      if (item.readyAt && item.readyAt <= effectiveNow) {
-        if (!alertedProductionIds.current.has(item.id)) {
-          alertedProductionIds.current.add(item.id);
-          playChimeAlarm();
+    const interval = setInterval(() => {
+      const effectiveNow = Date.now() + serverTimeOffset;
+      const allItems = [...activeCrops, ...productionTimers];
+      allItems.forEach(item => {
+        if (item.readyAt && item.readyAt <= effectiveNow) {
+          if (!alertedProductionIds.current.has(item.id)) {
+            alertedProductionIds.current.add(item.id);
+            playChimeAlarm();
+          }
         }
-      }
-    });
-  }, [nowTime, serverTimeOffset, activeCrops, productionTimers, soundAlarmEnabled]);
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [serverTimeOffset, activeCrops, productionTimers, soundAlarmEnabled]);
 
   // Función para agregar un temporizador de producción manual
   const handleAddProductionTimer = () => {
@@ -1731,16 +1943,32 @@ export default function BloomshireCommand() {
       lastExtensionSyncAtRef.current = Date.now();
     }
 
+    let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet.toLowerCase() : null;
+
+    // 4.1. Invalidación al Cambiar de Wallet en el Juego (S3):
+    // Si la extensión/hook reporta una wallet distinta a la que firmó el token SIWE, desconectar la sesión inmediatamente.
+    const activeAuthWallet = authenticatedWalletRef.current;
+    if (isFromExtension && effectiveWallet && activeAuthWallet && effectiveWallet !== activeAuthWallet.toLowerCase()) {
+      console.warn(`[S3] Conflicto de wallet detectado: la sesión fue autenticada con ${activeAuthWallet} pero la extensión reporta ${effectiveWallet}. Cerrando sesión por seguridad.`);
+      handleDisconnect();
+      setConnectFeedback({
+        type: 'error',
+        text: `Se detectó cambio de cuenta en el juego (${effectiveWallet.slice(0, 6)}...${effectiveWallet.slice(-4)}). Tu sesión anterior fue cerrada por seguridad. Por favor, vuelve a firmar con la nueva wallet.`
+      });
+      setShowConnectModal(true);
+      return;
+    }
+
+    // Guardar el snapshot en caché SOLO tras verificar que no hay conflicto de wallet
     try {
       localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(data));
     } catch (e) {}
 
-    let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet : null;
     if (!effectiveWallet) {
       try {
         const localW = localStorage.getItem('bloomshire_wallet');
         if (localW && localW !== 'null' && localW.startsWith('0x')) {
-          effectiveWallet = localW;
+          effectiveWallet = localW.toLowerCase();
         }
       } catch (_) {}
     }
@@ -1971,6 +2199,7 @@ export default function BloomshireCommand() {
         if (!isCancelled) {
           setSessionToken(null);
           setAuthenticatedWallet(null);
+          authenticatedWalletRef.current = null;
           setIsPremiumUnlocked(false);
         }
         return;
@@ -1987,6 +2216,7 @@ export default function BloomshireCommand() {
             if (!isCancelled) {
               setSessionToken(storedToken);
               setAuthenticatedWallet(verifiedWallet);
+              authenticatedWalletRef.current = verifiedWallet;
               setWalletAddress(verifiedWallet);
               setIsPremiumUnlocked(true);
             }
@@ -2001,6 +2231,7 @@ export default function BloomshireCommand() {
         if (!isCancelled) {
           setSessionToken(null);
           setAuthenticatedWallet(null);
+          authenticatedWalletRef.current = null;
           setWalletAddress(null);
           setIsPremiumUnlocked(false);
         }
@@ -2165,17 +2396,18 @@ export default function BloomshireCommand() {
     }
   };
 
-  // Límites diarios de venta a tiendas NPC según rules.js (SELL_LIMITS = { perItem: 15, things: 60, gold: 12000 })
-  const utcDay = Math.floor(nowTime / 86400000);
+  // Límites diarios de venta a tiendas NPC según rules.json (sellLimits = { perItem: 15, things: 60, gold: 12000 })
+  const utcDay = Math.floor(Date.now() / 86400000);
   const soldData = rawEnergyObj?.sold || null;
   const isTodaySold = Boolean(soldData && soldData.day === utcDay);
   const soldGoldToday = isTodaySold ? (Number(soldData.gold) || 0) : 0;
   const soldThingsToday = isTodaySold ? (Number(soldData.n) || 0) : 0;
   const soldItemsToday = isTodaySold ? (soldData.items || {}) : {};
 
-  const dailyGoldCap = isVip ? 15000 : 12000;
-  const dailyThingsCap = 60;
-  const dailyPerItemCap = 15;
+  const baseGoldCap = rulesData?.sellLimits?.gold ?? 12000;
+  const dailyGoldCap = isVip ? Math.round(baseGoldCap * 1.25) : baseGoldCap; // VIP otorga +25% de tope diario de oro
+  const dailyThingsCap = rulesData?.sellLimits?.things ?? 60;
+  const dailyPerItemCap = rulesData?.sellLimits?.perItem ?? 15;
 
   const remainingGoldCap = Math.max(0, dailyGoldCap - soldGoldToday);
   const remainingThingsCap = Math.max(0, dailyThingsCap - soldThingsToday);
@@ -2260,7 +2492,7 @@ export default function BloomshireCommand() {
       p2pMarketThings,
       itemDetails
     };
-  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday]);
+  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday, farmingLevel]);
 
   // Calcular valor total de liquidación unificada
   const totalLiquidationValue = useMemo(() => {
@@ -6348,184 +6580,15 @@ export default function BloomshireCommand() {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {[...activeCrops, ...productionTimers].map((item, idx) => {
-                      const effectiveNow = nowTime + serverTimeOffset;
-                      const isCrop = item.type === 'crop';
-                      const baseMinutes = (isCrop && item.regrowMinutes && (item.harvestCount || 0) > 0)
-                        ? item.regrowMinutes
-                        : (item.growMinutes || item.durationMinutes || 15);
-                      const actualGrowMinutes = baseMinutes * (item.k ?? 1);
-                      const totalMs = actualGrowMinutes * 60 * 1000;
-                      const remMs = item.readyAt ? Math.max(0, item.readyAt - effectiveNow) : 0;
-                      
-                      const isWithered = isCrop && Boolean(item.isWithered || (item.witherAt && effectiveNow >= item.witherAt));
-                      const isReady = isCrop
-                        ? (!isWithered && Boolean(item.isRipe || (item.readyAt && effectiveNow >= item.readyAt)))
-                        : Boolean(item.readyAt && remMs === 0);
-                      const isSecondWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'second');
-                      const isFirstWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'first' || (!item.wateredAt && !isReady && !isWithered));
-                      const needsWater = isSecondWater || isFirstWater || item.needsWater;
-
-                      const elapsed = item.readyAt ? Math.max(0, totalMs - remMs) : (item.plantedAt ? (effectiveNow - item.plantedAt) : 0);
-                      const pct = isReady ? 100 : (isWithered ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalMs) * 100))));
-
-                      const mins = Math.floor(remMs / 60000);
-                      const secs = Math.floor((remMs % 60000) / 1000);
-                      const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-                      let statusBadge = null;
-                      if (isWithered) {
-                        statusBadge = (
-                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-rose-500 text-slate-950 border-rose-300">
-                            🥀 MARCHITO
-                          </span>
-                        );
-                      } else if (isReady) {
-                        statusBadge = (
-                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-emerald-500 text-slate-950 border-emerald-300">
-                            ✨ ¡LISTO!
-                          </span>
-                        );
-                      } else if (isSecondWater) {
-                        statusBadge = (
-                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-amber-500 text-slate-950 border-amber-300 animate-pulse">
-                            💧 2.° RIEGO
-                          </span>
-                        );
-                      } else if (isFirstWater) {
-                        statusBadge = (
-                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-sky-500/20 text-sky-300 border-sky-500/40">
-                            💧 1.ER RIEGO
-                          </span>
-                        );
-                      } else {
-                        statusBadge = (
-                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-cyan-500/20 text-cyan-300 border-cyan-500/40">
-                            {timeStr}
-                          </span>
-                        );
-                      }
-
-                      let statusDesc = `${timeStr} restantes`;
-                      if (isWithered) {
-                        statusDesc = 'Marchito tras 5h maduro sin cosechar';
-                      } else if (isReady) {
-                        const msToWither = item.witherAt ? Math.max(0, item.witherAt - effectiveNow) : 0;
-                        const witherMins = Math.floor(msToWither / 60000);
-                        statusDesc = msToWither > 0 ? `Marchita en ${witherMins}m (5h tope)` : '¡Listo para cosechar!';
-                      } else if (isSecondWater) {
-                        statusDesc = '¡Requiere 2.° riego para madurar!';
-                      } else if (isFirstWater) {
-                        statusDesc = 'Sin regar (crecimiento pausado)';
-                      } else if (isCrop) {
-                        statusDesc = `Creciendo (etapa ${item.stage ?? 0}/${item.lastStage ?? 4})`;
-                      }
-
-                      return (
-                        <div
-                          key={item.id || idx}
-                          className={`p-3.5 rounded-xl border flex flex-col justify-between gap-2.5 transition-all shadow-sm ${
-                            isWithered
-                              ? 'bg-rose-950/40 border-rose-500/70 shadow-rose-950/20'
-                              : isReady
-                              ? 'bg-emerald-950/40 border-emerald-400 ring-1 ring-emerald-500/50 shadow-emerald-900/20 animate-pulse'
-                              : isSecondWater
-                              ? 'bg-amber-950/50 border-amber-500/80 ring-1 ring-amber-500/40'
-                              : isFirstWater
-                              ? 'bg-sky-950/40 border-sky-500/60'
-                              : 'bg-[#091224] border-slate-800 hover:border-slate-700'
-                          }`}
-                        >
-                          <div>
-                            <div className="flex items-start justify-between gap-2">
-                              <div className="flex items-center gap-2">
-                                <span className="text-xl">{item.icon || '🌱'}</span>
-                                <div>
-                                  <div className="font-bold text-white text-sm leading-tight flex items-center gap-1.5 flex-wrap">
-                                    <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name}</span>
-                                  </div>
-                                  <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
-                                    <span>{isCrop ? 'Cultivo en Parcela' : 'Cocina / Crafteo'}</span>
-                                    {isCrop && item.k && item.k < 1 && (
-                                      <span className="px-1 py-0.2 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[9px]">
-                                        ⚡ -{Math.round((1 - item.k) * 100)}% tiempo
-                                      </span>
-                                    )}
-                                    {isCrop && item.regrowMinutes && (
-                                      <span className="px-1 py-0.2 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono font-bold text-[9px]">
-                                        🔁 Rebrote ({item.harvestCount || 1}/{item.harvests || 5})
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-
-                              {statusBadge}
-                            </div>
-
-                            {/* Barra de Progreso */}
-                            <div className="mt-2.5">
-                              <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
-                                <div
-                                  className={`h-full transition-all duration-300 ${
-                                    isWithered
-                                      ? 'bg-rose-500'
-                                      : isReady
-                                      ? 'bg-emerald-400'
-                                      : isSecondWater
-                                      ? 'bg-amber-400'
-                                      : isFirstWater
-                                      ? 'bg-sky-400'
-                                      : 'bg-gradient-to-r from-cyan-500 to-emerald-400'
-                                  }`}
-                                  style={{ width: `${pct}%` }}
-                                />
-                              </div>
-                              <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
-                                <span>{pct}% completado</span>
-                                <span className={isWithered ? 'text-rose-400 font-bold' : isReady ? 'text-emerald-300 font-bold' : isSecondWater ? 'text-amber-300 font-bold' : ''}>
-                                  {statusDesc}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs gap-1">
-                            <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="text-[11px] text-slate-300 truncate max-w-[140px]" title={item.location}>
-                                {item.location || 'Huerto'}
-                              </span>
-                              {isCrop && (
-                                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-emerald-400/90 bg-emerald-950/30">
-                                  🌱 Parcela en Huerto
-                                </span>
-                              )}
-                            </div>
-
-                            <div className="flex items-center gap-1.5">
-                              {item.atlasTarget && (
-                                <button
-                                  onClick={() => locateInMegaAtlas(item.atlasTarget)}
-                                  className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-cyan-500/20 border border-slate-700 hover:border-cyan-500/40 text-cyan-300 flex items-center justify-center cursor-pointer transition-all shrink-0"
-                                  title="Ver ubicación en Mega-Atlas"
-                                >
-                                  <MapPin className="w-3 h-3" />
-                                </button>
-                              )}
-                              {item.isManual && (
-                                <button
-                                  onClick={() => handleRemoveProductionTimer(item.id)}
-                                  className="px-2 py-0.5 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 rounded text-[10px] font-bold cursor-pointer"
-                                  title="Eliminar este temporizador"
-                                >
-                                  ✕ Listo
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {[...activeCrops, ...productionTimers].map((item, idx) => (
+                      <LiveCropOrTimerCard
+                        key={item.id || idx}
+                        item={item}
+                        serverTimeOffset={serverTimeOffset}
+                        locateInMegaAtlas={locateInMegaAtlas}
+                        handleRemoveProductionTimer={handleRemoveProductionTimer}
+                      />
+                    ))}
                   </div>
                 )}
               </div>
