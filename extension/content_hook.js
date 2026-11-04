@@ -485,8 +485,18 @@
       if (!crop || typeof crop !== 'object') return null;
       if (!seed) return null;
 
-      // Lluvia canónica (farm.js:52-61): En exteriores la lluvia riega los cultivos automáticamente
-      if (outdoors && !asIs) {
+      // Cultivos Premium (VIP Quarter / rules.js: PREMIUM / farm.js:86-90):
+      // La rama premium va ANTES de la lluvia: nunca se marchitan, se riegan automáticamente en crop.t
+      // e ignoran la lluvia meteorológica (su ciclo es autónomo).
+      if (!asIs && seed.premium && crop.t) {
+        const w1 = crop.w1 ?? crop.t;
+        const g0 = computeCropGrowth({ ...crop, w1, w2: null }, nowTs, false, seed, true);
+        const w2 = crop.w2 ?? (g0.needs === 'second' ? g0.waitAt : null);
+        return { ...computeCropGrowth({ ...crop, w1, w2 }, nowTs, false, seed, true), w1, w2 };
+      }
+
+      // Lluvia canónica (farm.js:52-61): En exteriores la lluvia riega los cultivos automáticamente (solo no-premium)
+      if (outdoors && !asIs && !seed.premium) {
         let w1 = crop.w1, w2 = crop.w2, rained = false;
         if (!w1 && crop.t) {
           w1 = bloomshireFirstRainBetween(crop.t, nowTs);
@@ -509,14 +519,6 @@
             statusText: res.statusText.includes('Marchito') ? res.statusText : (res.ripe ? '¡Listo para cosechar! 🌾' : 'Creciendo (regado por lluvia) 🌧️🌱')
           };
         }
-      }
-
-      // Cultivos Premium (VIP Quarter): nunca se marchitan y se riegan automáticamente en crop.t (rules.js: PREMIUM / farm.js:86-90)
-      if (!asIs && seed.premium && crop.t) {
-        const w1 = crop.w1 ?? crop.t;
-        const g0 = computeCropGrowth({ ...crop, w1, w2: null }, nowTs, false, seed, true);
-        const w2 = crop.w2 ?? (g0.needs === 'second' ? g0.waitAt : null);
-        return { ...computeCropGrowth({ ...crop, w1, w2 }, nowTs, false, seed, true), w1, w2 };
       }
 
       const stagesCount = typeof seed.stages === 'number'
@@ -658,7 +660,10 @@
       const seedIcon = seedDef ? seedDef.icon : '🌱';
       const cellId = cell.cell ?? cell.cellId ?? cellIdx;
       const normField = normalizeFarmFieldKey(fieldKey);
-      const isOutdoors = normField !== 'farm.home'; // farm.bloomshire, farm.town son exteriores; farm.home es interior
+      const mapId = normField.replace(/^farm\./i, '');
+      // Regla canónica del juego (farm.js:96):
+      // this.outdoors = !/^interior/i.test(doc.id ?? '') && doc.region !== 'interiors';
+      const isOutdoors = !/^interior/i.test(mapId) && mapId !== 'home' && mapId !== 'interiors';
 
       let growthState = null;
       if (seedDef) {

@@ -919,6 +919,10 @@ export default function BloomshireCommand() {
     try { return localStorage.getItem('bloomshire_session_token') || null; } catch { return null; }
   });
   const [authenticatedWallet, setAuthenticatedWallet] = useState(null);
+  const authenticatedWalletRef = useRef(null);
+  useEffect(() => {
+    authenticatedWalletRef.current = authenticatedWallet;
+  }, [authenticatedWallet]);
   const [viewOnlyWallet, setViewOnlyWallet] = useState(null);
   const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
   const [isVip, setIsVip] = useState(() => {
@@ -947,6 +951,7 @@ export default function BloomshireCommand() {
     setWalletAddress(null);
     setSessionToken(null);
     setAuthenticatedWallet(null);
+    authenticatedWalletRef.current = null;
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
@@ -1121,6 +1126,7 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_manual_disconnected');
       setWalletAddress(account);
       setAuthenticatedWallet(account);
+      authenticatedWalletRef.current = account;
       setSessionToken(token);
       setIsPremiumUnlocked(true);
 
@@ -1937,16 +1943,13 @@ export default function BloomshireCommand() {
       lastExtensionSyncAtRef.current = Date.now();
     }
 
-    try {
-      localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(data));
-    } catch (e) {}
-
     let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet.toLowerCase() : null;
 
     // 4.1. Invalidación al Cambiar de Wallet en el Juego (S3):
     // Si la extensión/hook reporta una wallet distinta a la que firmó el token SIWE, desconectar la sesión inmediatamente.
-    if (effectiveWallet && authenticatedWallet && effectiveWallet !== authenticatedWallet.toLowerCase()) {
-      console.warn(`[S3] Conflicto de wallet detectado: la sesión fue autenticada con ${authenticatedWallet} pero el juego reporta ${effectiveWallet}. Cerrando sesión por seguridad.`);
+    const activeAuthWallet = authenticatedWalletRef.current;
+    if (isFromExtension && effectiveWallet && activeAuthWallet && effectiveWallet !== activeAuthWallet.toLowerCase()) {
+      console.warn(`[S3] Conflicto de wallet detectado: la sesión fue autenticada con ${activeAuthWallet} pero la extensión reporta ${effectiveWallet}. Cerrando sesión por seguridad.`);
       handleDisconnect();
       setConnectFeedback({
         type: 'error',
@@ -1955,6 +1958,11 @@ export default function BloomshireCommand() {
       setShowConnectModal(true);
       return;
     }
+
+    // Guardar el snapshot en caché SOLO tras verificar que no hay conflicto de wallet
+    try {
+      localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(data));
+    } catch (e) {}
 
     if (!effectiveWallet) {
       try {
@@ -2191,6 +2199,7 @@ export default function BloomshireCommand() {
         if (!isCancelled) {
           setSessionToken(null);
           setAuthenticatedWallet(null);
+          authenticatedWalletRef.current = null;
           setIsPremiumUnlocked(false);
         }
         return;
@@ -2207,6 +2216,7 @@ export default function BloomshireCommand() {
             if (!isCancelled) {
               setSessionToken(storedToken);
               setAuthenticatedWallet(verifiedWallet);
+              authenticatedWalletRef.current = verifiedWallet;
               setWalletAddress(verifiedWallet);
               setIsPremiumUnlocked(true);
             }
@@ -2221,6 +2231,7 @@ export default function BloomshireCommand() {
         if (!isCancelled) {
           setSessionToken(null);
           setAuthenticatedWallet(null);
+          authenticatedWalletRef.current = null;
           setWalletAddress(null);
           setIsPremiumUnlocked(false);
         }
@@ -2481,7 +2492,7 @@ export default function BloomshireCommand() {
       p2pMarketThings,
       itemDetails
     };
-  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday]);
+  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday, farmingLevel]);
 
   // Calcular valor total de liquidación unificada
   const totalLiquidationValue = useMemo(() => {

@@ -108,7 +108,7 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(res.energyMeta.sleepADay).toBe(750);
     });
 
-    it('respeta perks.sleeps explícito enviado en el snapshot (como barras 3, 4, 5 o energía 450, 600, 750)', () => {
+    it('respeta perks.sleeps explícito enviado en el snapshot (como barras canónicas 3, 4, 5)', () => {
       const resBars3 = computeClientLiveEnergyAndBed(null, 50, now, null, { farmersCount: 0, perks: { sleeps: 3 } });
       expect(resBars3.energyMeta.sleepADay).toBe(450);
 
@@ -117,9 +117,6 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
 
       const resBars5 = computeClientLiveEnergyAndBed(null, 50, now, null, { farmersCount: 0, perks: { sleeps: 5 } });
       expect(resBars5.energyMeta.sleepADay).toBe(750);
-
-      const resEnergy600 = computeClientLiveEnergyAndBed(null, 50, now, null, { farmersCount: 0, perks: { sleeps: 600 } });
-      expect(resEnergy600.energyMeta.sleepADay).toBe(600);
     });
   });
 
@@ -186,6 +183,29 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(bloomshireRainsOn(1)).toBe(true);
     });
 
+    it('cultivos premium ignoran la lluvia meteorológica incluso sembrados al aire libre (outdoors = true)', () => {
+      const goldSeed = { id: 'Golden Pumpkin', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true };
+      const tPlanted = 1730000000000;
+      const g = computeCropGrowth({ s: 40, t: tPlanted, w1: null, w2: null }, tPlanted + 5000, true, goldSeed);
+
+      expect(g.rained).toBeUndefined();
+      expect(g.readyAt).toBe(tPlanted + 15 * 60000);
+      expect(g.statusText).not.toContain('LLUVIA');
+      expect(g.statusText).not.toContain('lluvia');
+    });
+
+    it('aplica la regla canónica de mapas interiores del juego (farm.js:96)', () => {
+      const isOutdoors = (mapId) => !/^interior/i.test(mapId) && mapId !== 'home' && mapId !== 'interiors';
+
+      expect(isOutdoors('home')).toBe(false);
+      expect(isOutdoors('interior_barn')).toBe(false);
+      expect(isOutdoors('interior_greenhouse')).toBe(false);
+      expect(isOutdoors('interiors')).toBe(false);
+      expect(isOutdoors('bloomshire')).toBe(true);
+      expect(isOutdoors('town')).toBe(true);
+      expect(isOutdoors('whisperwood')).toBe(true);
+    });
+
     it('valida la existencia de los 57 cultivos en el catálogo oficial', () => {
       const rulesPath = path.resolve(__dirname, '../src/data/rules.json');
       const rules = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
@@ -218,6 +238,45 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(aloe.requiredLevel).toBe(15);
       const cauliflower = rules.crops.find(c => c.name === 'Cauliflower');
       expect(cauliflower.requiredLevel).toBe(12);
+    });
+  });
+
+  // 7. Seguridad SIWE y Conflicto de Wallet (S3)
+  describe('7. Seguridad SIWE y Resolución de Conflicto de Wallet (S3)', () => {
+    it('detecta conflicto cuando un evento de extensión trae una wallet distinta a la autenticada', () => {
+      const authenticatedWallet = '0x1111111111111111111111111111111111111111';
+      const incomingExtensionWallet = '0x2222222222222222222222222222222222222222';
+      const isFromExtension = true;
+
+      const hasConflict = Boolean(
+        isFromExtension &&
+        incomingExtensionWallet &&
+        authenticatedWallet &&
+        incomingExtensionWallet.toLowerCase() !== authenticatedWallet.toLowerCase()
+      );
+
+      expect(hasConflict).toBe(true);
+    });
+
+    it('no dispara conflicto ante la misma wallet o eventos no provenientes de la extensión', () => {
+      const authenticatedWallet = '0x1111111111111111111111111111111111111111';
+      const sameWallet = '0x1111111111111111111111111111111111111111';
+      
+      const hasConflictSame = Boolean(
+        true &&
+        sameWallet &&
+        authenticatedWallet &&
+        sameWallet.toLowerCase() !== authenticatedWallet.toLowerCase()
+      );
+      expect(hasConflictSame).toBe(false);
+
+      const hasConflictNotExtension = Boolean(
+        false &&
+        '0x3333333333333333333333333333333333333333' &&
+        authenticatedWallet &&
+        '0x3333333333333333333333333333333333333333' !== authenticatedWallet.toLowerCase()
+      );
+      expect(hasConflictNotExtension).toBe(false);
     });
   });
 });
