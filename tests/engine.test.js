@@ -438,5 +438,29 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       const fallbackLvl = skillsBreakdown['unknown']?.level || (reqSk === 'farming' ? (0 || skillsBreakdown.farming?.level || 1) : 1);
       expect(fallbackLvl).toBe(8);
     });
+
+    it('los platos de cocina no son vendibles a tiendas NPC y tienen sellPrice: 0 y goldCost: 0', () => {
+      const craftPath = path.resolve(__dirname, '../public/data/bloomshire/craft_data.json');
+      const craftData = JSON.parse(fs.readFileSync(craftPath, 'utf8'));
+      const soup = craftData.cook.find(r => r.id === 'parsnip_soup');
+      expect(soup).toBeDefined();
+      expect(soup.sellPrice).toBe(0);
+      expect(soup.goldCost).toBe(0);
+      expect(soup.netGold).toBe(0);
+      expect(soup.level).not.toContain('(Valor:');
+    });
+
+    it('la regeneración pasiva (+1⚡/3m) sincroniza exactamente 124⚡ para un perfil con 150⚡ (Holder o VIP)', () => {
+      const now = Date.now();
+      const res = computeClientLiveEnergyAndBed(
+        { v: 114, at: now - 30 * 60000 },
+        114,
+        now - 30 * 60000,
+        null,
+        { farmersCount: 1, isHolder: true, isVip: false }
+      );
+      expect(res.currentEnergy).toBe(124);
+      expect(res.energyMeta.regenPer3Min).toBe(1);
+    });
   });
 });

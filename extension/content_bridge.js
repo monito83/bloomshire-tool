@@ -11571,7 +11571,8 @@
     const isJamActive = jamTo > now;
     const jamMinutesLeft = isJamActive ? Math.ceil((jamTo - now) / 60000) : 0;
     const baseRegen = 1 / (3 * 60000); // 1 energía cada 3 min
-    const regenRate = isJamActive ? (baseRegen * 1.3) : (isVip ? baseRegen : 0);
+    const hasPassiveRegen = isHolderOrVip;
+    const regenRate = isJamActive ? (baseRegen * 1.3) : (hasPassiveRegen ? baseRegen : 0);
 
     // Escala canónica de sueño diario (rules.js: rules.ENERGY.sleep)
     const perksSleeps = (saveRoot?.perks && typeof saveRoot.perks.sleeps === 'number') ? saveRoot.perks.sleeps : null;
@@ -11626,7 +11627,7 @@
           isJamActive,
           jamMinutesLeft,
           jamBadgeText: isJamActive ? `Mermelada de Zafiro (${jamMinutesLeft}m restante)` : null,
-          regenPer3Min: isJamActive ? 1.3 : (isVip ? 1 : 0)
+          regenPer3Min: isJamActive ? 1.3 : (hasPassiveRegen ? 1 : 0)
         }
       };
     }
