@@ -180,11 +180,10 @@ async function main() {
 
   const canonicalRules = {
     metadata: {
-      generatedAt: new Date().toISOString(),
       buildHash: '124afc8d9ec7',
-      rulesHash: '124afc8d9ec7',
+      rulesHash: 'a70eb5dd5113',
       sourceDate: '2026-11-04',
-      description: 'Bloomshire Canonical Game Balance & Economy Rules (Build 124afc8d9ec7)',
+      description: 'Bloomshire Canonical Game Balance & Economy Rules (Build 124afc8d9ec7, Rules a70eb5dd5113)',
     },
     energy: {
       maxBase: rules.ENERGY?.max ?? 100, // 100
@@ -206,7 +205,7 @@ async function main() {
       food: {
         dailyBars: rules.FOOD_BARS_A_DAY ?? 1, // 1 barra al día
         moonlightStewEnergy: rules.MOONLIGHT_ENERGY ?? 8, // 8⚡
-        moonlightStewNoDailyCap: true
+        countsTowardDailyCap: true // Moonlight Stew sí cuenta para la barra diaria de comida
       },
       refillsPerDay: rules.ENERGY?.refillsADay ?? 3,
     },
@@ -269,7 +268,8 @@ async function main() {
       perDay: orders?.ORDERS?.perDay ?? 6,
       cropRatio: orders?.ORDERS?.crops ?? 4,
       premium: orders?.ORDERS?.premium ?? 0.5, // 50% del valor de venta
-      cropXpRatio: orders?.ORDERS?.cropXp ?? 0.5,
+      cropXpRatio: orders?.ORDERS?.cropXp ?? 0.5, // 50% XP en pedidos de cultivos
+      otherXpPerGold: orders?.ORDERS?.otherXpPer ?? 40, // 1 XP por cada 40 Gold en otros pedidos
       slotsFormula: 'Math.min(16, 6 + Math.floor(level / 3))',
       instantRefill: true
     },
@@ -432,7 +432,7 @@ async function main() {
   console.log(`✅ ¡Fase 2 de Catálogos y Datos completada con éxito!`);
   console.log(`   - Cultivos procesados: ${detailedCrops.length}`);
   console.log(`   - Nivel máximo: ${catalog.MAX_LEVEL} (Fórmula: 100 * (L - 1)^2.7)`);
-  console.log(`   - Build Hash verificado: 124afc8d9ec7`);
+  console.log(`   - Rules Hash: a70eb5dd5113 | Build Hash: 124afc8d9ec7`);
 }
 
 main().catch(err => {

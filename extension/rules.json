@@ -1,10 +1,9 @@
 {
   "metadata": {
-    "generatedAt": "2026-11-04T13:42:10.119Z",
     "buildHash": "124afc8d9ec7",
-    "rulesHash": "124afc8d9ec7",
+    "rulesHash": "a70eb5dd5113",
     "sourceDate": "2026-11-04",
-    "description": "Bloomshire Canonical Game Balance & Economy Rules (Build 124afc8d9ec7)"
+    "description": "Bloomshire Canonical Game Balance & Economy Rules (Build 124afc8d9ec7, Rules a70eb5dd5113)"
   },
   "energy": {
     "maxBase": 100,
@@ -26,7 +25,7 @@
     "food": {
       "dailyBars": 1,
       "moonlightStewEnergy": 8,
-      "moonlightStewNoDailyCap": true
+      "countsTowardDailyCap": true
     },
     "refillsPerDay": 3
   },
@@ -238,6 +237,7 @@
     "cropRatio": 4,
     "premium": 0.5,
     "cropXpRatio": 0.5,
+    "otherXpPerGold": 40,
     "slotsFormula": "Math.min(16, 6 + Math.floor(level / 3))",
     "instantRefill": true
   },

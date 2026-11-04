@@ -7,28 +7,24 @@
 
 import { jwtVerify } from 'jose';
 
-import fs from 'fs';
+import canonicalRules from '../src/data/rules.json' with { type: 'json' };
 
 function getCanonicalRulesSummary() {
-  try {
-    const rulesUrl = new URL('../public/data/bloomshire/rules.json', import.meta.url);
-    if (fs.existsSync(rulesUrl)) {
-      const r = JSON.parse(fs.readFileSync(rulesUrl, 'utf8'));
-      return `
+  const r = canonicalRules;
+  const sleepTiers = r.energy?.sleep?.dailyEnergyTiers;
+  const ffTiers = r.foundingFarmers?.tiersByCount;
+  return `
 ========================
-REGLAS CANÓNICAS VIGENTES (Build ${r.metadata?.buildHash || '124afc8d9ec7'}):
+REGLAS CANÓNICAS VIGENTES (Build ${r.metadata?.buildHash || '124afc8d9ec7'} | Rules ${r.metadata?.rulesHash || 'a70eb5dd5113'}):
 ========================
 • Fórmula Oficial de XP: ${r.levelProgression?.formula || '100 * (level - 1)^2.7'}
-• Escala de Sueño Diario: Normal 200⚡ (2x100), VIP/Holder 450⚡ (3x150), 10 Farmers 600⚡ (4x150), 20 Farmers 750⚡ (5x150).
+• Escala de Sueño Diario: Normal ${sleepTiers?.normal || 200}⚡ (2x100), VIP/Holder ${sleepTiers?.vipOrHolder || 450}⚡ (3x150), 10 Farmers ${sleepTiers?.holders10 || 600}⚡ (4x150), 20 Farmers ${sleepTiers?.holders20 || 750}⚡ (5x150).
 • Límite Diario de Comida: 1 barra completa (${r.energy?.maxBase || 100}⚡ común / ${r.energy?.maxFounding || 150}⚡ VIP/Holder).
-• Moonlight Stew: da +${r.energy?.food?.moonlightStewEnergy || 8}⚡ sin consumir cupo diario de comida.
-• Tablón de Pedidos de Odette: ${r.orders?.slotsFormula || '6 + Math.floor(level/3)'} pedidos en simultáneo con reposición continua inmediata. Pagan 50% del valor de tienda en Gold y 50% de XP.
+• Moonlight Stew: da +${r.energy?.food?.moonlightStewEnergy || 8}⚡ y cuenta para la barra diaria de comida como todo plato.
+• Tablón de Pedidos de Odette: ${r.orders?.slotsFormula || '6 + Math.floor(level/3)'} pedidos simultáneos con reposición continua inmediata. Pagan 50% del valor de tienda en Gold (ORDERS.premium = ${r.orders?.premium || 0.5}). Pedidos de cultivos dan 50% de XP (cropXp = ${r.orders?.cropXpRatio || 0.5}); demás pedidos dan 1 XP por cada 40 Gold.
 • Market Hall (Rowan): Mercado P2P con 2.5% de comisión, sin tope rígido de ofertas.
-• Founding Farmers: 7 FF (-20% tiempo cultivos), 10 FF (600⚡ sueño, VIP Quarter permanente), 15 FF (-30% tiempo), 20 FF (750⚡ sueño).
+• Founding Farmers: 7 FF (-20% tiempo cultivos), 10 FF (${ffTiers?.[10]?.dailySleepEnergy || 600}⚡ sueño, VIP Quarter permanente), 15 FF (-30% tiempo), 20 FF (${ffTiers?.[20]?.dailySleepEnergy || 750}⚡ sueño).
 `;
-    }
-  } catch (_) {}
-  return '';
 }
 
 
@@ -85,7 +81,7 @@ ENCICLOPEDIA OFICIAL DEL JUEGO (Código y Documentación):
    • Greta: Maestra de escuela en la Escuela (Schoolhouse) al noreste del pueblo, enseña de 07:00 a 18:00.
    • Hollis & Cole: Ganaderos en el Paddock & Corrales (al este del pueblo, a la derecha del banco).
    • Pell: Carpintero al noreste. Compra madera (29g c/u) y piedra (14g c/u).
-   • Odette: Tienda General. Compra cualquier cosa a precio oficial. En el Tablón de Pedidos ofrece órdenes dinámicas (6 base + 1 cada 3 niveles de Farming, hasta 16 a nivel 30) que se reponen al instante. Los pedidos pagan el 50% del valor de venta en Gold (ORDERS.premium = 0.5) y dan +50% de XP del cultivo.
+   • Odette: Tienda General. Compra cualquier cosa a precio oficial. En el Tablón de Pedidos ofrece órdenes dinámicas (6 base + 1 cada 3 niveles de Farming, hasta 16 a nivel 30) que se reponen al instante. Los pedidos pagan el 50% del valor de venta en Gold (ORDERS.premium = 0.5); los pedidos de cultivos dan +50% de XP de cosecha, y los demás dan 1 XP por cada 40 Gold.
    • 67 Personajes: El engine contiene 67 NPCs en Moonmere, Whisperwood, Stonepeak y Home Island.
    • Anuncio oficial de Syd: 40M AVS quemados. Semana de depósito 30 Oct - 6 Nov a ratio fijo 2 AVS = 1 $AVYN en TGE.
    • Regla de los 3 niveles: Ninguna habilidad puede superar a la más baja por más de 3 niveles.
@@ -129,7 +125,7 @@ ENCICLOPEDIA OFICIAL DEL JUEGO (Código y Documentación):
    • Fried Fish: 1 Carp (+5 Energía).
    • Hearty Stew: 1 Pike Fish + 1 Potato + 1 Onion (+22 Energía).
    • Golden Pie / Diamond Tart: Platos premium VIP con buffs (+40 Vida, +50 Energía, velocidad/resistencia). Solo se venden en Market Hall o se comen antes de bajar a The Dungeon.
-   • **Moonlight Stew:** 1x Ghost Catfish + 1x Star Fruit + 2x Silvercap Mushroom. Da **+8 de Energía** (MOONLIGHT_ENERGY = 8 en rules.js) y no consume el cupo diario de comida.
+   • **Moonlight Stew:** 1x Ghost Catfish + 1x Star Fruit + 2x Silvercap Mushroom. Da **+8 de Energía** (MOONLIGHT_ENERGY = 8 en rules.js) y cuenta para la barra diaria de comida como cualquier otro plato.
 
 4. MINERÍA, HERRAMIENTAS Y DURABILIDAD:
    • Herramientas infinitas: Azadón (hoe), Regadera (watering can), Hoz (sickle), Pala (shovel) y Armas nunca se rompen ni gastan energía para usarse.
@@ -161,10 +157,10 @@ ENCICLOPEDIA OFICIAL DEL JUEGO (Código y Documentación):
      - Quests: +10 Shards por capítulo de Founding Farmers.
    • $AVYN: Moneda exclusiva para intercambios P2P cara a cara y en el Exchange (ningún NPC la acepta).
    • Market Hall (Rowan): Mercado P2P donde los jugadores intercambian cosechas, platos y recursos con otros jugadores por Gold o $AVYN. Comisión del 2.5% para el vendedor. NO tiene tope rígido de 8 ofertas.
-   • Órdenes de Odette (General Store): Tablón de pedidos dinámico (6 base + 1 cada 3 niveles de Farming, hasta 16 a nivel 30). Las órdenes completadas se reponen de inmediato (no se agotan). Pagan el 50% del valor de venta en Gold (ORDERS.premium = 0.5) más el 50% de la XP de cosecha.
+   • Órdenes de Odette (General Store): Tablón de pedidos dinámico (6 base + 1 cada 3 niveles de Farming, hasta 16 a nivel 30). Las órdenes completadas se reponen de inmediato (no se agotan). Pagan el 50% del valor de venta en Gold (ORDERS.premium = 0.5); pedidos de cultivos dan 50% de XP, y los demás dan 1 XP por cada 40 Gold.
 
 7. FOUNDING FARMERS (2.222 NFTs en Robinhood Chain):
-   • 1 Farmer: Acceso Season 0, 150/200 Energía, descanso cada 6h, boost de XP (+5% a +15%).
+   • 1 Farmer: Acceso Season 0, 150 Energía máxima, sueño diario de 450⚡ (3 barras de 150), boost de XP (+5% a +15%).
    • 2 Farmers: 4 sets cosméticos estacionales.
    • 3 Farmers: **Mascota (PET)** que encuentra forraje, ilumina cuevas y da **+5 slots de carga** (clave por el tope de 10 ítems).
    • 5 Farmers: Monturas.
@@ -770,7 +766,7 @@ Veo tu partida lista: **${gold} Gold**, **${energy}⚡ de energía**, **Nivel ${
 • El umbral óptimo de inversión es **3 Farmers** para desbloquear la **Pet** (+5 slots de carga, forrajeo pasivo y luz en cuevas), o **7 Farmers** para la reducción del **-20% de tiempo de crecimiento** en todos los cultivos.
 
 📊 **Diagnóstico Cuantitativo:**
-• 🥇 **1 Farmer:** Acceso a Season 0, Energía máxima 150 y recarga cada 6 horas (2x más rápido).
+• 🥇 **1 Farmer:** Acceso a Season 0, Energía máxima 150 y 450⚡ de sueño diario en cama (3 barras de 150).
 • 🥈 **3 Farmers (Punto Dulce Operativo):** Desbloquea la Mascota, vital para superar el límite estricto de 10 ítems en la mochila y minar en cuevas oscuras.
 • 🚀 **7 Farmers (Ventaja Competitiva):** -20% de tiempo en cultivos acelera tu Gold y Shards/hora.
 • 👑 **10 Farmers (Élite):** 600⚡ de sueño diario (4 barras) y acceso VIP permanente.
@@ -784,7 +780,7 @@ Veo tu partida lista: **${gold} Gold**, **${energy}⚡ de energía**, **Nivel ${
 
   if (p.includes('moonlight') || p.includes('stew') || p.includes('estofado') || p.includes('comida')) {
     return `💡 **Resumen Ejecutivo:**
-• El **Moonlight Stew** es el plato de Bloomshire que recupera **8 de Energía** (MOONLIGHT_ENERGY = 8) sin consumir el tope diario de comida.
+• El **Moonlight Stew** es el plato de Bloomshire que recupera **8 de Energía** (MOONLIGHT_ENERGY = 8). Al igual que los demás platos, cuenta para la barra diaria de comida (FOOD_BARS_A_DAY = 1).
 
 📊 **Receta Secreta del Moonlight Stew:**
 • 🐟 **1x Ghost Catfish** (Pez fantasma de aguas profundas).
@@ -809,10 +805,10 @@ Veo tu partida lista: **${gold} Gold**, **${energy}⚡ de energía**, **Nivel ${
 
 📊 **Diagnóstico Cuantitativo:**
 • 🚜 **Cultivos de Re-cosecha:** Prioriza siempre cultivos que re-crecen (Corn, Cucumber, Tomato, Peppers). Una sola semilla te rinde 5 cosechas completas, ahorrando el 80% del gasto en semillas.
-• 📦 **Órdenes de Odette:** Revisa siempre el tablón del General Store. Las órdenes completadas se reponen de inmediato, pagando el 50% del valor de venta en Gold más 50% de la XP de cosecha.
+• 📦 **Órdenes de Odette:** Revisa siempre el tablón del General Store. Las órdenes se reponen al instante, pagando el 50% del valor de venta en Gold; los pedidos de cultivos dan 50% de XP y los demás 1 XP cada 40 Gold.
 
 🎯 **Plan de Acción Inmediato:**
 • **Paso 1:** Planta tu campo completo con ${bestCrop}.
 • **Paso 2:** Deja suficiente energía para regar (el riego es gratis, pero cosechar cuesta 1 de energía por planta).
-• **Paso 3:** Descansa en tu cama cada 12 horas (o 6 horas con Founding Farmer) para recuperar la barra completa.`;
+• **Paso 3:** Descansa en tu cama para consumir tu cupo diario de sueño (200⚡ normal, 450⚡ con 1 Farmer/VIP, 600⚡ con 10 Farmers, 750⚡ con 20 Farmers).`;
 }
