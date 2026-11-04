@@ -11565,10 +11565,44 @@
     const isHolder = Boolean(saveRoot?.perks);
     const isHolderOrVip = isHolder || isVip;
     const maxE = isHolderOrVip ? 150 : 100;
-    const regenRate = isVip ? 1 / (3 * 60000) : 0; // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
-    const sleepADay = isHolderOrVip
-      ? (Math.max(3, Math.min(5, saveRoot?.perks?.sleeps || 3)) * 150)
-      : 200;
+
+    // Soporte para Sapphire Jam (rules.js:2981-2995): +30% regeneración pasiva para cualquiera
+    const jamTo = Number(saveRoot?.buffs?.jam || 0);
+    const isJamActive = jamTo > now;
+    const jamMinutesLeft = isJamActive ? Math.ceil((jamTo - now) / 60000) : 0;
+    const baseRegen = 1 / (3 * 60000); // 1 energía cada 3 min
+    const regenRate = isJamActive ? (baseRegen * 1.3) : (isVip ? baseRegen : 0);
+
+    // Escala canónica de sueño diario (rules.js: rules.ENERGY.sleep)
+    const perksSleeps = (saveRoot?.perks && typeof saveRoot.perks.sleeps === 'number') ? saveRoot.perks.sleeps : null;
+    const isMythic = Boolean(saveRoot?.perks?.mythic || saveRoot?.perks?.isMythic);
+    let sleepADay = 200;
+    if (isHolderOrVip) {
+      if (typeof perksSleeps === 'number' && perksSleeps >= 3) {
+        sleepADay = Math.max(3, Math.min(5, perksSleeps)) * 150;
+      } else if (isMythic) {
+        sleepADay = 600;
+      } else {
+        sleepADay = 450;
+      }
+    } else {
+      sleepADay = 200;
+    }
+
+    const utcDay = Math.floor(now / 86400000);
+    const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;
+    const minsToMidnight = Math.max(1, Math.ceil(msToNextUtcMidnight / 60000));
+    const hoursWait = Math.floor(minsToMidnight / 60);
+    const minsWait = minsToMidnight % 60;
+    const utcCountdownStr = `${hoursWait}h ${minsWait}m`;
+
+    // Contador de comida canónico (FOOD_BARS_A_DAY = 1): 1 barra completa diaria
+    const ateData = (saveRoot?.ate && typeof saveRoot.ate === 'object') ? saveRoot.ate : null;
+    const foodEatenToday = (ateData && ateData.day === utcDay && typeof ateData.energy === 'number')
+      ? Math.round(ateData.energy)
+      : 0;
+    const foodCapToday = maxE;
+    const foodRoomToday = Math.max(0, foodCapToday - foodEatenToday);
 
     if (typeof saveEnergy === 'number') {
       const val = typeof liveEnergyOverride === 'number' ? liveEnergyOverride : Math.floor(Math.min(maxE, Math.max(0, saveEnergy)));
@@ -11585,9 +11619,14 @@
           sleepLeft: sleepADay,
           sleepADay: sleepADay,
           usedSleepToday: 0,
-          foodEatenHalfDay: 0,
-          foodCapHalfDay: 90,
-          regenPer3Min: isVip ? 1 : 0
+          foodEatenToday,
+          foodCapToday,
+          foodRoomToday,
+          foodCapExhausted: foodRoomToday <= 0,
+          isJamActive,
+          jamMinutesLeft,
+          jamBadgeText: isJamActive ? `Mermelada de Zafiro (${jamMinutesLeft}m restante)` : null,
+          regenPer3Min: isJamActive ? 1.3 : (isVip ? 1 : 0)
         }
       };
     }
@@ -11606,11 +11645,17 @@
         t = to;
       }
     };
+
+    const rateAt = (x) => (x < jamTo ? baseRegen * 1.3 : x < vipTo ? baseRegen : 0);
     const idle = (to) => {
-      if (vipTo > t) {
-        grow(Math.min(to, vipTo), regenRate);
+      for (const edge of [jamTo, vipTo, to].sort((a, b) => a - b)) {
+        const end = Math.min(edge, to);
+        if (end > t) {
+          const k = rateAt(t);
+          if (k > 0) grow(end, k);
+          else t = end;
+        }
       }
-      if (to > t) t = to;
     };
 
     if (r && typeof r.from === 'number' && typeof r.until === 'number' && typeof r.rate === 'number') {
@@ -11629,7 +11674,6 @@
     ));
 
     // Cuota diaria de sueño según perfil real
-    const utcDay = Math.floor(now / 86400000);
     let usedSleepToday = (e.slept && e.slept.day === utcDay)
       ? (Number(e.slept.n) || 0)
       : (typeof e.sleepLeft === 'number' ? Math.max(0, sleepADay - e.sleepLeft) : 0);
@@ -11643,25 +11687,15 @@
 
     const recovering = Boolean(r && now < (r.until || 0) && exactVal < maxE - 1e-3);
     const recoverMinutesLeft = recovering ? Math.max(1, Math.ceil((r.until - now) / 60000)) : 0;
-
-    // Si agotó el sueño del día UTC, espera hasta la próxima medianoche UTC (00:00 UTC)
     const sleepExhausted = sleepLeft <= 0;
-    const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;
-    const nextRestMinutes = sleepExhausted ? Math.max(1, Math.ceil(msToNextUtcMidnight / 60000)) : 0;
+    const nextRestMinutes = sleepExhausted ? minsToMidnight : 0;
     const canRest = !recovering && !sleepExhausted && currentEnergy < maxE;
 
-    const hoursWait = Math.floor(nextRestMinutes / 60);
-    const minsWait = nextRestMinutes % 60;
     const bedWaitText = recovering
       ? `Recuperando (${recoverMinutesLeft}m)`
       : sleepExhausted
-        ? `${hoursWait}h ${minsWait}m`
+        ? utcCountdownStr
         : `Lista (${sleepLeft}/${sleepADay}⚡)`;
-
-    // Comida por medio día UTC (12h): 90⚡ para VIP/Founders, 60⚡ base
-    const utcHalf = Math.floor(now / 43200000);
-    const foodEatenHalfDay = (e.eaten && e.eaten.half === utcHalf) ? Math.round(Number(e.eaten.n) || 0) : 0;
-    const foodCapHalfDay = 90;
 
     return {
       currentEnergy,
@@ -11670,7 +11704,10 @@
         at: e.at,
         recovery: e.recovery || null,
         slept: e.slept || null,
-        eaten: e.eaten || null
+        eaten: e.eaten || null,
+        ate: saveRoot?.ate || null,
+        sold: saveRoot?.sold || null,
+        buffs: saveRoot?.buffs || null
       },
       energyMeta: {
         recovering,
@@ -11682,9 +11719,14 @@
         sleepLeft,
         sleepADay,
         usedSleepToday: Math.round(usedSleepToday),
-        foodEatenHalfDay,
-        foodCapHalfDay,
-        regenPer3Min: isVip ? 1 : 0
+        foodEatenToday,
+        foodCapToday,
+        foodRoomToday,
+        foodCapExhausted: foodRoomToday <= 0,
+        isJamActive,
+        jamMinutesLeft,
+        jamBadgeText: isJamActive ? `Mermelada de Zafiro (${jamMinutesLeft}m restante)` : null,
+        regenPer3Min: isJamActive ? 1.3 : (isVip ? 1 : 0)
       }
     };
   }
@@ -12117,11 +12159,15 @@
       rawEnergyObj,
       energyMeta,
       isVip,
+      vipUntil: Math.max(save?.vipUntil ?? 0, save?.perks?.vipUntil ?? 0) || null,
       shards,
       avyn,
       bank,
       farmingLevel,
       perks: save?.perks || null,
+      ate: save?.ate || null,
+      sold: save?.sold || null,
+      buffs: save?.buffs || null,
       inventory: finalInventory,
       activeOrders: activeOrders.length > 0 ? activeOrders : (latestBloomshireState?.activeOrders || []),
       activeQuest: activeQuestLabel,
