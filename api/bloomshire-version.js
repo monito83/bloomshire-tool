@@ -3,7 +3,8 @@
  * Endpoint de verificación en vivo del Build Hash de Bloomshire y parches de juego.
  */
 
-const VERIFIED_BUILD = 'a70eb5dd5113';
+const VERIFIED_RULES = 'a70eb5dd5113';
+const VERIFIED_BUILD = '124afc8d9ec7';
 const TOOL_VERSION = 'v2.5.0';
 
 export default async function handler(req, res) {
@@ -27,6 +28,7 @@ export default async function handler(req, res) {
   }
 
   const now = new Date();
+  let liveRules = VERIFIED_RULES;
   let liveBuild = VERIFIED_BUILD;
   let fetchOk = false;
   let errorMsg = null;
@@ -49,9 +51,10 @@ export default async function handler(req, res) {
       const rulesMatch = html.match(/bloomshire-rules\s*[:=]\s*["']?([a-zA-Z0-9]{8,16})/i);
       const urlMatch = html.match(/\/v\/([a-zA-Z0-9]{8,16})\//);
       if (rulesMatch && rulesMatch[1]) {
-        liveBuild = rulesMatch[1];
+        liveRules = rulesMatch[1];
         fetchOk = true;
-      } else if (urlMatch && urlMatch[1]) {
+      }
+      if (urlMatch && urlMatch[1]) {
         liveBuild = urlMatch[1];
         fetchOk = true;
       }
@@ -62,13 +65,15 @@ export default async function handler(req, res) {
     errorMsg = err.name === 'AbortError' ? 'Timeout al contactar servidor del juego' : err.message;
   }
 
-  const isUpToDate = (liveBuild === VERIFIED_BUILD);
+  const isUpToDate = (liveRules === VERIFIED_RULES) && (liveBuild === VERIFIED_BUILD);
 
   return res.status(200).json({
     ok: true,
     toolVersion: TOOL_VERSION,
     verifiedBuild: VERIFIED_BUILD,
+    verifiedRules: VERIFIED_RULES,
     liveBuild,
+    liveRules,
     isUpToDate,
     status: isUpToDate ? 'synced' : 'patch_detected',
     serverStatus: fetchOk ? 'online' : 'fallback',
@@ -77,4 +82,3 @@ export default async function handler(req, res) {
     checkedAtFormatted: now.toLocaleTimeString('es-ES')
   });
 }
-

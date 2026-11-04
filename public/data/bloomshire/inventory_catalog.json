@@ -13,7 +13,7 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🎃",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~750g) o cocínala en Pastel Dorado (+50⚡)."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~750g) o utilízala en recetas VIP."
   },
   {
     "id": "Sunfire Pepper",
@@ -23,12 +23,13 @@
     "matchKeys": [
       "sunfire pepper",
       "pimiento fuego solar",
-      "sunfire_pepper"
+      "sunfire_pepper",
+      "pimiento_fuego_solar"
     ],
     "qty": 0,
     "cat": "vip",
     "icon": "🌶️",
-    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Chile Fuego Solar (+30% vel. y ataque)."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~450g) o utilízala en recetas VIP."
   },
   {
     "id": "Diamond Strawberry",
@@ -38,12 +39,13 @@
     "matchKeys": [
       "diamond strawberry",
       "fresa diamante",
-      "diamond_strawberry"
+      "diamond_strawberry",
+      "fresa_diamante"
     ],
     "qty": 0,
     "cat": "vip",
     "icon": "🍓",
-    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Tarta Diamante (+30% XP)."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~500g) o utilízala en recetas VIP."
   },
   {
     "id": "Sapphire Blueberry",
@@ -53,18 +55,18 @@
     "matchKeys": [
       "sapphire blueberry",
       "arándano zafiro",
-      "arandano zafiro",
-      "sapphire_blueberry"
+      "sapphire_blueberry",
+      "arándano_zafiro"
     ],
     "qty": 0,
     "cat": "vip",
     "icon": "🫐",
-    "desc": "Cosecha Premium VIP. Véndela en Rowan o cocínala en Mermelada Zafiro (Regen estamina x2)."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~550g) o utilízala en recetas VIP."
   },
   {
     "id": "Pumpkin",
-    "name": "Calabaza Común (Pumpkin)",
-    "unit": 2300,
+    "name": "Calabaza",
+    "unit": 2350,
     "seller": "Tienda General (Odette)",
     "matchKeys": [
       "pumpkin",
@@ -73,11 +75,11 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🎃",
-    "desc": "Cultivo estándar de 3 horas. Odette te paga 2.300g por unidad en la Tienda General."
+    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Strawberry",
-    "name": "Fresa Común (Strawberry)",
+    "name": "Fresa",
     "unit": 990,
     "seller": "Tienda General (Odette)",
     "matchKeys": [
@@ -87,37 +89,37 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍓",
-    "desc": "Cultivo estándar. Odette te paga 990g por unidad en la Tienda General."
+    "desc": "Cultivo de Bloomshire (80 min). Véndelo a Odette por 990g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Blueberry",
-    "name": "Arándano Común (Blueberry)",
-    "unit": 1120,
+    "name": "Arándano",
+    "unit": 1150,
     "seller": "Tienda General (Odette)",
     "matchKeys": [
       "blueberry",
-      "arándano",
-      "arandano"
+      "arándano"
     ],
     "qty": 0,
     "cat": "crop",
     "icon": "🫐",
-    "desc": "Cultivo estándar. Odette te paga 1.120g por unidad en la Tienda General."
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Hot Pepper",
-    "name": "Chile Picante (Hot Pepper)",
-    "unit": 750,
+    "name": "Chile Picante",
+    "unit": 740,
     "seller": "Tienda General (Odette)",
     "matchKeys": [
       "hot pepper",
       "chile picante",
-      "chile"
+      "hot_pepper",
+      "chile_picante"
     ],
     "qty": 0,
     "cat": "crop",
     "icon": "🌶️",
-    "desc": "Cultivo estándar. Odette te paga 750g por unidad en la Tienda General."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Wood",
@@ -233,40 +235,42 @@
       "carrot",
       "zanahoria"
     ],
-    "name": "Zanahorias",
+    "name": "Zanahoria",
     "unit": 40,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥕"
+    "icon": "🥕",
+    "desc": "Cultivo de Bloomshire (2 min). Véndelo a Odette por 40g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Parsnip",
     "matchKeys": [
       "parsnip",
-      "chirivía",
-      "chirivia"
+      "chirivía"
     ],
-    "name": "Chirivías",
+    "name": "Chirivía",
     "unit": 73,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥔"
+    "icon": "🥔",
+    "desc": "Cultivo de Bloomshire (5 min). Véndelo a Odette por 73g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Spring Onion",
     "matchKeys": [
       "spring onion",
       "cebollín",
-      "cebollin"
+      "spring_onion"
     ],
     "name": "Cebollín",
     "unit": 89,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🧅"
+    "icon": "🧅",
+    "desc": "Cultivo de Bloomshire (6 min). Véndelo a Odette por 89g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Wheat",
@@ -274,26 +278,27 @@
       "wheat",
       "trigo"
     ],
-    "name": "Trigo Cosechado",
+    "name": "Trigo",
     "unit": 185,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🌾"
+    "icon": "🌾",
+    "desc": "Cultivo de Bloomshire (15 min). Véndelo a Odette por 185g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Potato",
     "matchKeys": [
       "potato",
-      "patata",
-      "papa"
+      "patata"
     ],
-    "name": "Patatas / Papas",
+    "name": "Patata",
     "unit": 105,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥔"
+    "icon": "🥔",
+    "desc": "Cultivo de Bloomshire (8 min). Véndelo a Odette por 105g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Cabbage",
@@ -303,10 +308,11 @@
     ],
     "name": "Repollo",
     "unit": 240,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥬"
+    "icon": "🥬",
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Onion",
@@ -314,26 +320,27 @@
       "onion",
       "cebolla"
     ],
-    "name": "Cebollas",
+    "name": "Cebolla",
     "unit": 150,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🧅"
+    "icon": "🧅",
+    "desc": "Cultivo de Bloomshire (12 min). Véndelo a Odette por 150g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Marigold",
     "matchKeys": [
       "marigold",
-      "caléndula",
-      "calendula"
+      "caléndula"
     ],
-    "name": "Caléndula (Marigold)",
+    "name": "Caléndula",
     "unit": 240,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🌼"
+    "icon": "🌼",
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Rice",
@@ -341,26 +348,27 @@
       "rice",
       "arroz"
     ],
-    "name": "Arroz (Rice)",
+    "name": "Arroz",
     "unit": 355,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🌾"
+    "icon": "🌾",
+    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Broccoli",
     "matchKeys": [
       "broccoli",
-      "brócoli",
-      "brocoli"
+      "brócoli"
     ],
     "name": "Brócoli",
     "unit": 355,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥦"
+    "icon": "🥦",
+    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Sunflower",
@@ -370,10 +378,11 @@
     ],
     "name": "Girasol",
     "unit": 420,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🌻"
+    "icon": "🌻",
+    "desc": "Cultivo de Bloomshire (35 min). Véndelo a Odette por 420g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Cucumber",
@@ -383,10 +392,11 @@
     ],
     "name": "Pepino",
     "unit": 490,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🥒"
+    "icon": "🥒",
+    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Tomato",
@@ -394,40 +404,45 @@
       "tomato",
       "tomate"
     ],
-    "name": "Tomates",
+    "name": "Tomate",
     "unit": 545,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🍅"
+    "icon": "🍅",
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Adzuki Bean",
     "matchKeys": [
       "adzuki bean",
-      "adzuki",
-      "frijol adzuki"
+      "frijol adzuki",
+      "adzuki_bean",
+      "frijol_adzuki"
     ],
     "name": "Frijol Adzuki",
     "unit": 545,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🫘"
+    "icon": "🫘",
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Green Beans",
     "matchKeys": [
       "green beans",
       "judías verdes",
-      "judias verdes"
+      "green_beans",
+      "judías_verdes"
     ],
     "name": "Judías Verdes",
     "unit": 605,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🫛"
+    "icon": "🫛",
+    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Eggplant",
@@ -437,37 +452,41 @@
     ],
     "name": "Berenjena",
     "unit": 740,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🍆"
+    "icon": "🍆",
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Star Fruit",
     "matchKeys": [
       "star fruit",
-      "carambola"
+      "fruta estrella",
+      "star_fruit",
+      "fruta_estrella"
     ],
-    "name": "Fruta Estrella (Star Fruit)",
+    "name": "Fruta Estrella",
     "unit": 4150,
-    "seller": "Odette / Moonlight Stew",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "⭐"
+    "icon": "⭐",
+    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 4150g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Corn",
     "matchKeys": [
       "corn",
-      "maíz",
-      "maiz"
+      "maíz"
     ],
     "name": "Maíz",
     "unit": 490,
-    "seller": "Odette / Hazel",
+    "seller": "Tienda General (Odette)",
     "qty": 0,
     "cat": "crop",
-    "icon": "🌽"
+    "icon": "🌽",
+    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos."
   },
   {
     "id": "Parsnip Soup",
@@ -588,5 +607,480 @@
     "qty": 0,
     "cat": "ore",
     "icon": "❤️"
+  },
+  {
+    "id": "Cauliflower",
+    "name": "Coliflor",
+    "unit": 1150,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "cauliflower",
+      "coliflor"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥦",
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Cantaloupe",
+    "name": "Melón Cantalupo",
+    "unit": 1250,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "cantaloupe",
+      "melón cantalupo",
+      "melón_cantalupo"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍈",
+    "desc": "Cultivo de Bloomshire (100 min). Véndelo a Odette por 1250g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Sweet Potato",
+    "name": "Batata",
+    "unit": 870,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "sweet potato",
+      "batata",
+      "sweet_potato"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍠",
+    "desc": "Cultivo de Bloomshire (70 min). Véndelo a Odette por 870g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Saffron",
+    "name": "Azafrán",
+    "unit": 3250,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "saffron",
+      "azafrán"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌾",
+    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Watermelon",
+    "name": "Sandía",
+    "unit": 1400,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "watermelon",
+      "sandía"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍉",
+    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Beetroot",
+    "name": "Remolacha",
+    "unit": 1550,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "beetroot",
+      "remolacha"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🟣",
+    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Grapes",
+    "name": "Uvas",
+    "unit": 1950,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "grapes",
+      "uvas"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍇",
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Asparagus",
+    "name": "Espárrago",
+    "unit": 1550,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "asparagus",
+      "espárrago"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌱",
+    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Green Bell Pepper",
+    "name": "Pimiento Verde",
+    "unit": 740,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "green bell pepper",
+      "pimiento verde",
+      "green_bell_pepper",
+      "pimiento_verde"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫑",
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Red Bell Pepper",
+    "name": "Pimiento Rojo",
+    "unit": 740,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "red bell pepper",
+      "pimiento rojo",
+      "red_bell_pepper",
+      "pimiento_rojo"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌶️",
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Yellow Bell Pepper",
+    "name": "Pimiento Amarillo",
+    "unit": 740,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "yellow bell pepper",
+      "pimiento amarillo",
+      "yellow_bell_pepper",
+      "pimiento_amarillo"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫑",
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Blackberry",
+    "name": "Mora",
+    "unit": 605,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "blackberry",
+      "mora"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫐",
+    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Pineapple",
+    "name": "Piña",
+    "unit": 3250,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "pineapple",
+      "piña"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍍",
+    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Aloe",
+    "name": "Aloe Vera",
+    "unit": 1950,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "aloe",
+      "aloe vera",
+      "aloe_vera"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🪴",
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Premium Seed",
+    "name": "Semilla Premium (VIP)",
+    "unit": 300,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "premium seed",
+      "semilla premium",
+      "premium_seed",
+      "semilla_premium"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "✨",
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~300g) o utilízala en recetas VIP."
+  },
+  {
+    "id": "Crystal Grapes",
+    "name": "Uvas de Cristal (VIP)",
+    "unit": 600,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "crystal grapes",
+      "uvas de cristal",
+      "crystal_grapes",
+      "uvas_de_cristal"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🍇",
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~600g) o utilízala en recetas VIP."
+  },
+  {
+    "id": "Starbloom",
+    "name": "Flor Estelar (VIP)",
+    "unit": 650,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "starbloom",
+      "flor estelar",
+      "flor_estelar"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🌸",
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~650g) o utilízala en recetas VIP."
+  },
+  {
+    "id": "Celestial Pineapple",
+    "name": "Piña Celestial (VIP)",
+    "unit": 800,
+    "seller": "Mercado Rowan (P2P)",
+    "matchKeys": [
+      "celestial pineapple",
+      "piña celestial",
+      "celestial_pineapple",
+      "piña_celestial"
+    ],
+    "qty": 0,
+    "cat": "vip",
+    "icon": "🍍",
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~800g) o utilízala en recetas VIP."
+  },
+  {
+    "id": "Winter Kale",
+    "name": "Winter Kale (Col de Invierno)",
+    "unit": 240,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "winter kale",
+      "winter kale (col de invierno)",
+      "winter_kale",
+      "winter_kale_(col_de_invierno)"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥬❄️",
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Snow Turnip",
+    "name": "Snow Turnip (Nabo de Nieve)",
+    "unit": 545,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "snow turnip",
+      "snow turnip (nabo de nieve)",
+      "snow_turnip",
+      "snow_turnip_(nabo_de_nieve)"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "❄️",
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Frostberry",
+    "name": "Frostberry (Baya de Escarcha)",
+    "unit": 1150,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "frostberry",
+      "frostberry (baya de escarcha)",
+      "frostberry_(baya_de_escarcha)"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫐❄️",
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Ice Melon",
+    "name": "Ice Melon (Melón de Hielo)",
+    "unit": 1950,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "ice melon",
+      "ice melon (melón de hielo)",
+      "ice_melon",
+      "ice_melon_(melón_de_hielo)"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍈❄️",
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Fireheart Pepper",
+    "name": "Pimiento Corazón de Fuego",
+    "unit": 2350,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "fireheart pepper",
+      "pimiento corazón de fuego",
+      "fireheart_pepper",
+      "pimiento_corazón_de_fuego"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌶️🔥",
+    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Fairy Rose",
+    "name": "Rosa de Hada",
+    "unit": 1400,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "fairy rose",
+      "rosa de hada",
+      "fairy_rose",
+      "rosa_de_hada"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌹✨",
+    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Honeydew Melon",
+    "name": "Melón Verde",
+    "unit": 5550,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "honeydew melon",
+      "melón verde",
+      "honeydew_melon",
+      "melón_verde"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍈",
+    "desc": "Cultivo de Bloomshire (270 min). Véndelo a Odette por 5550g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Purple Cauliflower",
+    "name": "Coliflor Violeta",
+    "unit": 6250,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "purple cauliflower",
+      "coliflor violeta",
+      "purple_cauliflower",
+      "coliflor_violeta"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🥦🟣",
+    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 6250g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Snow Pea",
+    "name": "Snow Pea (Guisante de Nieve)",
+    "unit": 6900,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "snow pea",
+      "snow pea (guisante de nieve)",
+      "snow_pea",
+      "snow_pea_(guisante_de_nieve)"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🫛❄️",
+    "desc": "Cultivo de Bloomshire (330 min). Véndelo a Odette por 6900g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Golden Beet",
+    "name": "Remolacha Dorada",
+    "unit": 7650,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "golden beet",
+      "remolacha dorada",
+      "golden_beet",
+      "remolacha_dorada"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🟡",
+    "desc": "Cultivo de Bloomshire (360 min). Véndelo a Odette por 7650g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Black Tomato",
+    "name": "Tomate Negro",
+    "unit": 8350,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "black tomato",
+      "tomate negro",
+      "black_tomato",
+      "tomate_negro"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🍅🖤",
+    "desc": "Cultivo de Bloomshire (390 min). Véndelo a Odette por 8350g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Blue Corn",
+    "name": "Maíz Azul",
+    "unit": 9000,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "blue corn",
+      "maíz azul",
+      "blue_corn",
+      "maíz_azul"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🌽🔵",
+    "desc": "Cultivo de Bloomshire (420 min). Véndelo a Odette por 9000g o entrégalo en el Tablón de Pedidos."
+  },
+  {
+    "id": "Dragon Fruit",
+    "name": "Fruta del Dragón",
+    "unit": 10500,
+    "seller": "Tienda General (Odette)",
+    "matchKeys": [
+      "dragon fruit",
+      "fruta del dragón",
+      "dragon_fruit",
+      "fruta_del_dragón"
+    ],
+    "qty": 0,
+    "cat": "crop",
+    "icon": "🐉",
+    "desc": "Cultivo de Bloomshire (480 min). Véndelo a Odette por 10500g o entrégalo en el Tablón de Pedidos."
   }
 ]
