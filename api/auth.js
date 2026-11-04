@@ -30,6 +30,35 @@ const ALLOWED_HOSTS = new Set([
 const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
 const SIWE_STATEMENT = 'Iniciar sesión en Bloomshire Tool para proteger y sincronizar tu partida.';
 
+// Cache anti-repetición de nonces utilizados (P3/P4 Anti-Replay)
+const usedNoncesMap = new Map();
+function markNonceUsed(nonce) {
+  usedNoncesMap.set(nonce, Date.now());
+  const cutoff = Date.now() - 6 * 60 * 1000;
+  for (const [n, ts] of usedNoncesMap) {
+    if (ts < cutoff) usedNoncesMap.delete(n);
+  }
+}
+function isNonceUsed(nonce) {
+  return usedNoncesMap.has(nonce);
+}
+
+// Rate Limiter en memoria por IP (Sliding Window)
+const ipRateLimitMap = new Map();
+function checkRateLimit(ip, limit = 30, windowMs = 60000) {
+  const now = Date.now();
+  let record = ipRateLimitMap.get(ip);
+  if (!record || now > record.resetAt) {
+    record = { count: 1, resetAt: now + windowMs };
+    ipRateLimitMap.set(ip, record);
+    return { allowed: true, remaining: limit - 1, reset: Math.ceil((record.resetAt - now) / 1000) };
+  }
+  record.count++;
+  const remaining = Math.max(0, limit - record.count);
+  const reset = Math.ceil((record.resetAt - now) / 1000);
+  return { allowed: record.count <= limit, remaining, reset };
+}
+
 function getSessionSecret() {
   const secret = process.env.SESSION_SECRET;
   if (!secret || secret.trim().length < 32) {
@@ -114,6 +143,19 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // Rate Limiting por IP para protección contra abuso y fuerza bruta
+  const clientIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress || 'unknown';
+  const rl = checkRateLimit(clientIp, 30, 60000);
+  res.setHeader('X-RateLimit-Limit', '30');
+  res.setHeader('X-RateLimit-Remaining', String(rl.remaining));
+  res.setHeader('X-RateLimit-Reset', String(rl.reset));
+  if (!rl.allowed) {
+    return res.status(429).json({
+      ok: false,
+      error: 'Demasiadas solicitudes. Límite de tasa excedido, intenta de nuevo en un minuto.'
+    });
+  }
+
   // Comprobación estricta de secreto: SIN fallbacks hardcodeados en el código
   const sessionSecret = getSessionSecret();
   if (!sessionSecret) {
@@ -186,7 +228,10 @@ export default async function handler(req, res) {
     const wallet = rawWallet.toLowerCase();
     const checksumWallet = getAddress(wallet);
 
-    // a) Verificar el nonce sin estado con HMAC
+    // a) Verificar anti-repetición y validez del nonce sin estado con HMAC
+    if (isNonceUsed(nonce)) {
+      return res.status(401).json({ ok: false, error: 'Este reto (nonce) ya fue utilizado. Solicita un nuevo reto de firma.' });
+    }
     const nonceCheck = verifyStatelessNonce(nonce, wallet, sessionSecret);
     if (!nonceCheck.valid) {
       return res.status(401).json({ ok: false, error: nonceCheck.error });
@@ -271,6 +316,9 @@ export default async function handler(req, res) {
       if (!isValidSig) {
         return res.status(401).json({ ok: false, error: 'Firma criptográfica inválida.' });
       }
+
+      // Marcar nonce como utilizado para prevenir ataques de repetición (P3/P4 Anti-Replay)
+      markNonceUsed(nonce);
 
       // d) Emitir token JWT con 24 horas de validez, con issuer y audience (P6)
       const secretKey = new TextEncoder().encode(sessionSecret);

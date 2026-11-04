@@ -324,6 +324,30 @@ async function main() {
       growTxt = m > 0 ? `${h}h ${m}m` : `${h}h`;
     }
 
+    // Regla de rebrote (rules.js:604, 656-657):
+    // Nivel < 15: 1 sola cosecha (growMinutes).
+    // Nivel >= 15: ciclo de rebrote (hasta seed.harvests cosechas, normalmente 5).
+    const hasRegrow = Boolean(c.regrowMinutes && c.harvests > 1);
+    const regrowHarvests = hasRegrow ? (c.harvests || 5) : 1;
+    const regrowTotalMinutes = hasRegrow
+      ? c.growMinutes + (regrowHarvests - 1) * c.regrowMinutes
+      : grow;
+    const regrowTotalNet = hasRegrow
+      ? (sell * regrowHarvests) - cost
+      : net;
+    const regrowTotalXp = hasRegrow
+      ? (xp * regrowHarvests)
+      : xp;
+    const regrowXpMin = parseFloat((regrowTotalXp / regrowTotalMinutes).toFixed(2));
+    const regrowGoldMin = parseFloat((regrowTotalNet / regrowTotalMinutes).toFixed(2));
+
+    let regrowGrowTxt = `${regrowTotalMinutes} min (${regrowHarvests}x)`;
+    if (regrowTotalMinutes >= 60) {
+      const h = Math.floor(regrowTotalMinutes / 60);
+      const m = regrowTotalMinutes % 60;
+      regrowGrowTxt = m > 0 ? `${h}h ${m}m (${regrowHarvests}x)` : `${h}h (${regrowHarvests}x)`;
+    }
+
     return {
       name: nameFormatted,
       grow,
@@ -335,6 +359,15 @@ async function main() {
       xp,
       xpMin,
       goldMin,
+      hasRegrow,
+      regrowMinutes: c.regrowMinutes || null,
+      harvests: regrowHarvests,
+      regrowTotalMinutes,
+      regrowGrowTxt,
+      regrowNet: regrowTotalNet,
+      regrowXp: regrowTotalXp,
+      regrowXpMin,
+      regrowGoldMin,
       season,
       seasonLabel,
       tip: meta.tip
@@ -417,7 +450,7 @@ async function main() {
     let hookContent = fs.readFileSync(hookPath, 'utf8');
     const seedsInfoRows = detailedCrops.map(c => {
       const meta = cropMeta[c.name] || { es: c.name, emoji: '🌱' };
-      return `    { id: '${c.name}', name: '${meta.es}', grow: ${c.growMinutes}, regrow: ${c.regrowMinutes ?? 'null'}, harvests: ${c.harvests ?? 1}, stages: ${c.waterStages ?? 5}, premium: ${Boolean(c.premium)}, icon: '${meta.emoji}' }`;
+      return `    { id: '${c.name}', name: '${meta.es}', grow: ${c.growMinutes}, regrow: ${c.regrowMinutes ?? 'null'}, harvests: ${c.harvests ?? 1}, stages: ${c.waterStages ?? 5}, premium: ${Boolean(c.premium)}, seasons: ${JSON.stringify(c.seasons)}, icon: '${meta.emoji}' }`;
     });
 
     const newSeedsInfoBlock = `const SEEDS_INFO = [\n${seedsInfoRows.join(',\n')}\n  ];`;

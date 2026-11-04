@@ -920,6 +920,7 @@ export default function BloomshireCommand() {
   });
   const [authenticatedWallet, setAuthenticatedWallet] = useState(null);
   const authenticatedWalletRef = useRef(null);
+  const lastReportedExtensionWalletRef = useRef(null);
   useEffect(() => {
     authenticatedWalletRef.current = authenticatedWallet;
   }, [authenticatedWallet]);
@@ -952,6 +953,7 @@ export default function BloomshireCommand() {
     setSessionToken(null);
     setAuthenticatedWallet(null);
     authenticatedWalletRef.current = null;
+    lastReportedExtensionWalletRef.current = null;
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
@@ -1944,6 +1946,9 @@ export default function BloomshireCommand() {
     }
 
     let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet.toLowerCase() : null;
+    if (isFromExtension && effectiveWallet) {
+      lastReportedExtensionWalletRef.current = effectiveWallet;
+    }
 
     // 4.1. Invalidación al Cambiar de Wallet en el Juego (S3):
     // Si la extensión/hook reporta una wallet distinta a la que firmó el token SIWE, desconectar la sesión inmediatamente.
@@ -2213,10 +2218,25 @@ export default function BloomshireCommand() {
           const json = await res.json();
           if (json.ok && json.wallet) {
             const verifiedWallet = json.wallet.toLowerCase();
+            authenticatedWalletRef.current = verifiedWallet;
+
+            // S3: Chequeo de condición de carrera al arranque:
+            // Si la extensión reportó una wallet antes de terminar /api/auth?action=me, verificar discrepancia inmediatamente.
+            const reportedExtWallet = lastReportedExtensionWalletRef.current;
+            if (reportedExtWallet && reportedExtWallet !== verifiedWallet) {
+              console.warn(`[S3] Conflicto de wallet detectado al inicializar sesión: sesión SIWE pertenece a ${verifiedWallet} pero la extensión ya reportó ${reportedExtWallet}. Cerrando sesión por seguridad.`);
+              handleDisconnect();
+              setConnectFeedback({
+                type: 'error',
+                text: `Se detectó cambio de cuenta en el juego (${reportedExtWallet.slice(0, 6)}...${reportedExtWallet.slice(-4)}). Tu sesión anterior fue cerrada por seguridad. Por favor, vuelve a firmar con la nueva wallet.`
+              });
+              setShowConnectModal(true);
+              return;
+            }
+
             if (!isCancelled) {
               setSessionToken(storedToken);
               setAuthenticatedWallet(verifiedWallet);
-              authenticatedWalletRef.current = verifiedWallet;
               setWalletAddress(verifiedWallet);
               setIsPremiumUnlocked(true);
             }
@@ -2405,7 +2425,7 @@ export default function BloomshireCommand() {
   const soldItemsToday = isTodaySold ? (soldData.items || {}) : {};
 
   const baseGoldCap = rulesData?.sellLimits?.gold ?? 12000;
-  const dailyGoldCap = isVip ? Math.round(baseGoldCap * 1.25) : baseGoldCap; // VIP otorga +25% de tope diario de oro
+  const dailyGoldCap = isVip ? Math.round(baseGoldCap * (rulesData?.vipPerks?.sellGold ?? 1.25)) : baseGoldCap; // VIP otorga bono oficial (rules.VIP_PERKS.sellGold = 1.25)
   const dailyThingsCap = rulesData?.sellLimits?.things ?? 60;
   const dailyPerItemCap = rulesData?.sellLimits?.perItem ?? 15;
 
@@ -2780,11 +2800,18 @@ export default function BloomshireCommand() {
       const goldPerEA = netA / eA;
       const goldPerEB = netB / eB;
 
+      const isMasterA = calcSkill === 'farming' && farmingLevel >= 15 && a.hasRegrow;
+      const isMasterB = calcSkill === 'farming' && farmingLevel >= 15 && b.hasRegrow;
+      const xpMinA = isMasterA ? (a.regrowXpMin ?? a.xpMin ?? 0) : (a.xpMin ?? 0);
+      const xpMinB = isMasterB ? (b.regrowXpMin ?? b.xpMin ?? 0) : (b.xpMin ?? 0);
+      const goldMinA = isMasterA ? (a.regrowGoldMin ?? a.goldMin ?? 0) : (a.goldMin ?? 0);
+      const goldMinB = isMasterB ? (b.regrowGoldMin ?? b.goldMin ?? 0) : (b.goldMin ?? 0);
+
       let vA = 0, vB = 0;
       if (field === 'xpEnergy') { vA = xpPerEA; vB = xpPerEB; }
       else if (field === 'goldEnergy') { vA = goldPerEA; vB = goldPerEB; }
-      else if (field === 'xpMin') { vA = a.xpMin ?? 0; vB = b.xpMin ?? 0; }
-      else if (field === 'goldMin') { vA = a.goldMin ?? 0; vB = b.goldMin ?? 0; }
+      else if (field === 'xpMin') { vA = xpMinA; vB = xpMinB; }
+      else if (field === 'goldMin') { vA = goldMinA; vB = goldMinB; }
       else if (field === 'time') { vA = a.grow ?? 1; vB = b.grow ?? 0; }
       else if (field === 'cost') { vA = a.cost ?? 0; vB = b.cost ?? 0; }
       else if (field === 'sell') { vA = a.sell ?? 0; vB = b.sell ?? 0; }
@@ -2792,7 +2819,7 @@ export default function BloomshireCommand() {
     });
 
     return list;
-  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort]);
+  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort, farmingLevel]);
 
   // Filtro de NPCs
   const filteredNpcs = useMemo(() => {
@@ -3757,8 +3784,36 @@ export default function BloomshireCommand() {
                             </span>
                           </td>
 
-                          <td className="p-3 text-purple-400 font-mono font-bold whitespace-nowrap">{item.xpMin || 0}</td>
-                          <td className="p-3 text-amber-400 font-mono font-bold whitespace-nowrap">{item.goldMin || 0}g</td>
+                          <td className="p-3 text-purple-400 font-mono font-bold whitespace-nowrap">
+                            {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
+                              <div className="flex flex-col">
+                                <span>{item.regrowXpMin}</span>
+                                <span className="text-[10px] text-purple-300/70 font-normal">Rebrote (5x)</span>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col">
+                                <span>{item.xpMin || 0}</span>
+                                {calcSkill === 'farming' && item.hasRegrow && (
+                                  <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowXpMin}</span>
+                                )}
+                              </div>
+                            )}
+                          </td>
+                          <td className="p-3 text-amber-400 font-mono font-bold whitespace-nowrap">
+                            {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
+                              <div className="flex flex-col">
+                                <span>{item.regrowGoldMin}g</span>
+                                <span className="text-[10px] text-amber-300/70 font-normal">Rebrote (5x)</span>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col">
+                                <span>{item.goldMin || 0}g</span>
+                                {calcSkill === 'farming' && item.hasRegrow && (
+                                  <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowGoldMin}g</span>
+                                )}
+                              </div>
+                            )}
+                          </td>
 
                           {calcSkill === 'farming' && (
                             <td className="p-3 whitespace-nowrap">
