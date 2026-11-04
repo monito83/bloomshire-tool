@@ -1375,6 +1375,7 @@ export default function BloomshireCommand() {
   const [inventorySortBy, setInventorySortBy] = useState('owned_desc'); // 'owned_desc' | 'qty_desc' | 'value_desc' | 'name_asc'
   const [craftSearchQuery, setCraftSearchQuery] = useState('');
   const [craftSortBy, setCraftSortBy] = useState('profit_desc'); // 'profit_desc' | 'energy_desc' | 'time_asc' | 'rate_desc' | 'level_asc' | 'xp_desc' | 'name_asc'
+  const [craftLevelFilter, setCraftLevelFilter] = useState('all');
   const [craftOnlyAvailable, setCraftOnlyAvailable] = useState(false);
   const [craftViewMode, setCraftViewMode] = useState('grid'); // 'grid' | 'list'
   const [npcViewMode, setNpcViewMode] = useState('grid'); // 'grid' | 'list'
@@ -1613,7 +1614,7 @@ export default function BloomshireCommand() {
     {
       id: 'init',
       role: 'assistant',
-      content: '¡Hola Farmer! Soy el **Asesor IA** de Bloomshire Tool.\n\nPuedo ayudarte a optimizar tu energía, pedidos de Odette, cosechas y estrategias de economía. Conecta tu partida con la extensión Companion o ingresa tu wallet para sincronizar tus datos reales.'
+      content: '🤖 **Copilot IA: En Pausa Temporal (Próximamente)**\n\nEl copiloto estratégico con IA está actualmente en mantenimiento y no configurado. Se activará próximamente una vez finalizada la fase de pruebas y calibración económica. Mientras tanto, puedes consultar la Calculadora de Cultivos, el Mega-Atlas y la Enciclopedia de Ítems libremente.'
     }
   ]);
   const messagesEndRef = useRef(null);
@@ -1749,6 +1750,19 @@ export default function BloomshireCommand() {
       );
     }
 
+    if (craftLevelFilter && craftLevelFilter !== 'all') {
+      if (craftLevelFilter === 'special') {
+        list = list.filter(r => !r.levelNum || r.levelNum === 0 || (r.level && (r.level.toLowerCase().includes('misi') || r.level.toLowerCase().includes('especial') || r.level.toLowerCase().includes('vip'))));
+      } else if (craftLevelFilter === '8') {
+        list = list.filter(r => (r.levelNum || 1) >= 8 && (r.levelNum || 1) < 10);
+      } else if (craftLevelFilter === '10') {
+        list = list.filter(r => (r.levelNum || 1) >= 10);
+      } else {
+        const targetNum = Number(craftLevelFilter);
+        list = list.filter(r => (r.levelNum || 1) === targetNum);
+      }
+    }
+
     const enriched = list.map(r => {
       const craftability = getRecipeCraftability(r);
       const energyCost = typeof r.energyCost === 'number' ? r.energyCost : (craftCategory === 'cook' ? 1 : craftCategory === 'forge' ? 3 : 2);
@@ -1821,7 +1835,7 @@ export default function BloomshireCommand() {
     });
 
     return finalFiltered;
-  }, [craftCategory, craftData, craftSearchQuery, craftSortBy, craftOnlyAvailable, rawInventory]);
+  }, [craftCategory, craftData, craftSearchQuery, craftSortBy, craftLevelFilter, craftOnlyAvailable, rawInventory]);
 
   const totalCraftableInCurrentCategory = useMemo(() => {
     const list = (craftData && craftData[craftCategory]) || [];
@@ -6136,6 +6150,27 @@ export default function BloomshireCommand() {
                 </button>
 
                 <div className="flex items-center gap-1.5">
+                  <span className="text-[10.5px] font-bold text-slate-400">Nivel:</span>
+                  <select
+                    value={craftLevelFilter}
+                    onChange={(e) => setCraftLevelFilter(e.target.value)}
+                    className="bg-[#14203d] border border-slate-700 text-white rounded-lg px-2 py-1 text-xs font-semibold outline-none cursor-pointer"
+                  >
+                    <option value="all">⭐ Todos los Niveles</option>
+                    <option value="1">Nivel 1 (Principiante)</option>
+                    <option value="2">Nivel 2</option>
+                    <option value="3">Nivel 3</option>
+                    <option value="4">Nivel 4</option>
+                    <option value="5">Nivel 5 (Botica)</option>
+                    <option value="6">Nivel 6</option>
+                    <option value="7">Nivel 7</option>
+                    <option value="8">Nivel 8+</option>
+                    <option value="10">Nivel 10+ (Avanzado)</option>
+                    <option value="special">Misiones / Especiales</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-1.5">
                   <span className="text-[10.5px] font-bold text-slate-400">Ordenar:</span>
                   <select
                     value={craftSortBy}
@@ -6235,16 +6270,28 @@ export default function BloomshireCommand() {
 
                         {/* Bloque de Rendimiento Táctico: Oro, Energía, Tiempo y XP */}
                         <div className="grid grid-cols-2 gap-1 bg-[#070b14] p-1.5 rounded-lg border border-slate-800/80 text-[10px] font-mono">
-                          {/* Beneficio de Oro */}
-                          <div className="flex flex-col">
-                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Ganancia Oro:</span>
-                            <span className="text-amber-300 font-bold truncate">
-                              +{netGold.toLocaleString()}g
-                            </span>
-                            <span className="text-[8.5px] text-slate-400">
-                              {goldPerMin > 0 ? `${goldPerMin.toLocaleString()}g/min` : 'Instantáneo'}
-                            </span>
-                          </div>
+                          {/* Beneficio de Oro o Propósito de Comida */}
+                          {craftCategory === 'cook' ? (
+                            <div className="flex flex-col">
+                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Uso / Venta:</span>
+                              <span className="text-amber-200 font-bold truncate text-[9.5px]">
+                                🍲 Consumo & Pedidos
+                              </span>
+                              <span className="text-[8px] text-slate-400">
+                                No vendible en tiendas
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="flex flex-col">
+                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Valor Base:</span>
+                              <span className="text-amber-300 font-bold truncate">
+                                {sellPrice > 0 ? `+${sellPrice.toLocaleString()}g` : 'Material de oficio'}
+                              </span>
+                              <span className="text-[8.5px] text-slate-400">
+                                {goldCost > 0 ? `Coste: ${goldCost}g` : 'Sin coste en oro'}
+                              </span>
+                            </div>
+                          )}
 
                           {/* Rendimiento de Energía */}
                           <div className="flex flex-col">
@@ -6269,10 +6316,16 @@ export default function BloomshireCommand() {
                             <span className="text-cyan-300 font-bold">
                               ⏱️ {minutes} {minutes === 1 ? 'min' : 'mins'}
                             </span>
-                            {goldPerEnergy > 0 && (
+                            {craftCategory === 'cook' ? (
                               <span className="text-[8.5px] text-emerald-400 font-bold">
-                                +{goldPerEnergy.toLocaleString()}g / ⚡
+                                +{Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10}⚡ retorno
                               </span>
+                            ) : (
+                              goldPerEnergy > 0 && (
+                                <span className="text-[8.5px] text-emerald-400 font-bold">
+                                  +{goldPerEnergy.toLocaleString()}g / ⚡
+                                </span>
+                              )
                             )}
                           </div>
 
@@ -6381,10 +6434,16 @@ export default function BloomshireCommand() {
 
                       {/* Bloque de Rendimiento Táctico Compacto */}
                       <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
-                        {/* Ganancia de Oro */}
-                        <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Beneficio Neto: +${netGold.toLocaleString()}g (Venta: ${sellPrice.toLocaleString()}g - Coste: ${goldCost}g) | Ritmo: ${goldPerMin.toLocaleString()}g/min`}>
-                          💰 +{netGold.toLocaleString()}g
-                        </span>
+                        {/* Beneficio de Oro o Propósito de Comida */}
+                        {craftCategory === 'cook' ? (
+                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title="Plato de comida: consumo para recargar energía/vida o entregar en pedidos de Odette (no vendible en tiendas)">
+                            🍲 Consumo & Pedidos
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Valor base: ${sellPrice > 0 ? sellPrice + 'g' : 'Material de oficio'} | Coste: ${goldCost}g`}>
+                            💰 {sellPrice > 0 ? `+${sellPrice.toLocaleString()}g` : 'Material'}
+                          </span>
+                        )}
 
                         {/* Balance de Energía */}
                         <span className={`px-2 py-0.5 rounded border text-[10px] font-mono font-bold ${
@@ -6395,11 +6454,17 @@ export default function BloomshireCommand() {
                           ⚡ {energyRestore > 0 ? `+${netEnergy}⚡ netos` : `-${energyCost}⚡`}
                         </span>
 
-                        {/* Ratio Oro / Energía */}
-                        {goldPerEnergy > 0 && (
-                          <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={`Oro ganado por cada punto de energía invertido: +${goldPerEnergy.toLocaleString()}g/⚡`}>
-                            +{goldPerEnergy}g/⚡
+                        {/* Ratio Oro / Energía o Retorno Energía */}
+                        {craftCategory === 'cook' ? (
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title="Retorno de energía por punto invertido">
+                            +{Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10}⚡ retorno
                           </span>
+                        ) : (
+                          goldPerEnergy > 0 && (
+                            <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={`Oro ganado por cada punto de energía invertido: +${goldPerEnergy.toLocaleString()}g/⚡`}>
+                              +{goldPerEnergy}g/⚡
+                            </span>
+                          )
                         )}
 
                         {/* Tiempo */}

@@ -390,7 +390,8 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
   const isJamActive = jamTo > now;
   const jamMinutesLeft = isJamActive ? Math.ceil((jamTo - now) / 60000) : 0;
   const baseRegen = 1 / (3 * 60000); // 1 energía cada 3 min
-  const regenRate = isJamActive ? (baseRegen * 1.3) : (isVip ? baseRegen : 0);
+  const hasPassiveRegen = isVip || isHolder;
+  const regenRate = isJamActive ? (baseRegen * 1.3) : (hasPassiveRegen ? baseRegen : 0);
   
   // Sueño diario canónico:
   // Jugador común: 200 (2 barras de 100).
@@ -446,10 +447,12 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
       }
     };
 
-    const vipTo = (isVip && typeof options.vipUntil === 'number' && options.vipUntil > now) ? options.vipUntil : (isVip ? now : 0);
-    const rateAt = (x) => (x < jamTo ? baseRegen * 1.3 : x < vipTo ? baseRegen : 0);
+    const regenTo = isVip
+      ? (typeof options.vipUntil === 'number' && options.vipUntil > now ? options.vipUntil : now)
+      : (isHolder ? now : 0);
+    const rateAt = (x) => (x < jamTo ? baseRegen * 1.3 : x < regenTo ? baseRegen : 0);
     const idle = (to) => {
-      for (const edge of [jamTo, vipTo, to].sort((a, b) => a - b)) {
+      for (const edge of [jamTo, regenTo, to].sort((a, b) => a - b)) {
         const end = Math.min(edge, to);
         if (end > t) {
           const k = rateAt(t);
@@ -508,7 +511,7 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
         isJamActive,
         jamMinutesLeft,
         jamBadgeText: isJamActive ? `Mermelada de Zafiro (${jamMinutesLeft}m restante)` : null,
-        regenPer3Min: isJamActive ? 1.3 : (isVip ? 1 : 0),
+        regenPer3Min: isJamActive ? 1.3 : (hasPassiveRegen ? 1 : 0),
         isVip,
         isHolder
       }

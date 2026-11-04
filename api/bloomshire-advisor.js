@@ -621,14 +621,14 @@ export default async function handler(req, res) {
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY || '';
 
   if (!apiKey) {
-    const fallbackText = generateAlgorithmicAdvice(prompt, playerSnapshot);
+    const pausedNotice = '🤖 **Copilot IA: En Pausa Temporal (Próximamente)**\\n\\nEl servicio de inteligencia artificial está actualmente en pausa y no configurado. Se activará próximamente una vez finalizada la fase de pruebas y balance del sistema.';
     return res.status(200).json({
       ok: true,
-      text: fallbackText,
-      reply: fallbackText,
-      advice: fallbackText,
-      analysis: fallbackText,
-      model: 'algorithmic-bloomshire-fallback'
+      text: pausedNotice,
+      reply: pausedNotice,
+      advice: pausedNotice,
+      analysis: pausedNotice,
+      model: 'maintenance-paused'
     });
   }
 
