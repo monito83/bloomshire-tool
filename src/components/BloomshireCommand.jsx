@@ -49,10 +49,28 @@ import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
 import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
 import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
 import rulesData from '../data/rules.json';
+import ErrorBoundary from './ErrorBoundary';
 
-// Singleton de AudioContext para alarmas de producción (O15)
+// Singleton de AudioContext para alarmas de producción (O15) con respeto a Autoplay Policy
 let sharedAudioContext = null;
+let hasUserInteracted = false;
+if (typeof window !== 'undefined') {
+  const markInteracted = () => {
+    hasUserInteracted = true;
+    if (sharedAudioContext && sharedAudioContext.state === 'suspended') {
+      sharedAudioContext.resume().catch(() => {});
+    }
+    window.removeEventListener('click', markInteracted);
+    window.removeEventListener('keydown', markInteracted);
+    window.removeEventListener('touchstart', markInteracted);
+  };
+  window.addEventListener('click', markInteracted, { passive: true });
+  window.addEventListener('keydown', markInteracted, { passive: true });
+  window.addEventListener('touchstart', markInteracted, { passive: true });
+}
+
 function getSharedAudioContext() {
+  if (!hasUserInteracted) return null; // Prevenir avisos de Autoplay Policy hasta el primer gesto del usuario
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return null;
@@ -920,6 +938,7 @@ export default function BloomshireCommand() {
   });
   const [authenticatedWallet, setAuthenticatedWallet] = useState(null);
   const authenticatedWalletRef = useRef(null);
+  const lastReportedExtensionWalletRef = useRef(null);
   useEffect(() => {
     authenticatedWalletRef.current = authenticatedWallet;
   }, [authenticatedWallet]);
@@ -952,6 +971,7 @@ export default function BloomshireCommand() {
     setSessionToken(null);
     setAuthenticatedWallet(null);
     authenticatedWalletRef.current = null;
+    lastReportedExtensionWalletRef.current = null;
     setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
@@ -1068,6 +1088,23 @@ export default function BloomshireCommand() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [connectCode, setConnectCode] = useState('');
   const [connectFeedback, setConnectFeedback] = useState(null);
+  const [injectedWallets, setInjectedWallets] = useState([]);
+  const [selectedWalletUuid, setSelectedWalletUuid] = useState(null);
+
+  // Detección de Billeteras mediante estándar EIP-6963 (evita colisión entre Backpack, MetaMask, Rabby, etc.)
+  useEffect(() => {
+    const handleAnnounce = (event) => {
+      if (!event.detail?.info || !event.detail?.provider) return;
+      setInjectedWallets(prev => {
+        if (prev.some(w => w.info.uuid === event.detail.info.uuid || w.info.name === event.detail.info.name)) return prev;
+        return [...prev, event.detail];
+      });
+    };
+    window.addEventListener('eip6963:announceProvider', handleAnnounce);
+    window.dispatchEvent(new Event('eip6963:requestProvider'));
+    return () => window.removeEventListener('eip6963:announceProvider', handleAnnounce);
+  }, []);
+
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
   const [lastUpdateCheck, setLastUpdateCheck] = useState(() => new Date().toLocaleTimeString());
   const [updateStatusMessage, setUpdateStatusMessage] = useState('Todos los módulos y catálogos están 100% sincronizados con el juego.');
@@ -1078,31 +1115,36 @@ export default function BloomshireCommand() {
     { id: 4, time: new Date().toLocaleTimeString(), text: 'Registro de aldeanos: 67 NPCs indexados con tabla de regalos y horarios.', type: 'info' }
   ]);
 
-  const handleConnectAndSignWallet = async () => {
-    if (typeof window.ethereum === 'undefined') {
-      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Rabby, etc.) en este navegador.' });
+  const handleConnectAndSignWallet = async (explicitProvider = null) => {
+    const activeProvider = explicitProvider || 
+      (selectedWalletUuid ? injectedWallets.find(w => w.info.uuid === selectedWalletUuid)?.provider : null) ||
+      (injectedWallets[0]?.provider) ||
+      (typeof window !== 'undefined' ? window.ethereum : null);
+
+    if (!activeProvider) {
+      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Backpack, Rabby, etc.) en este navegador.' });
       return;
     }
     try {
       setConnectFeedback({ type: 'loading', text: 'Solicitando conexión con tu billetera Web3...' });
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
       const account = accounts && accounts[0] ? accounts[0].toLowerCase() : null;
       if (!account) {
-        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta.' });
+        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta en la billetera.' });
         return;
       }
 
-      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma...' });
+      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma (nonce)...' });
       const nonceRes = await fetch(`/api/auth?action=nonce&wallet=${encodeURIComponent(account)}`);
       if (!nonceRes.ok) {
         const errJson = await nonceRes.json().catch(() => ({}));
-        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener nonce de firma.' });
+        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener reto de firma del servidor.' });
         return;
       }
       const { nonce, message } = await nonceRes.json();
 
       setConnectFeedback({ type: 'loading', text: 'Firma el mensaje en tu billetera para verificar tu identidad (sin costo de gas)...' });
-      const signature = await window.ethereum.request({
+      const signature = await activeProvider.request({
         method: 'personal_sign',
         params: [message, account]
       });
@@ -1148,7 +1190,7 @@ export default function BloomshireCommand() {
       }
       setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
     } catch (err) {
-      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada.' });
+      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada en la billetera.' });
     }
   };
 
@@ -1944,6 +1986,9 @@ export default function BloomshireCommand() {
     }
 
     let effectiveWallet = (data.wallet && typeof data.wallet === 'string' && data.wallet.startsWith('0x')) ? data.wallet.toLowerCase() : null;
+    if (isFromExtension && effectiveWallet) {
+      lastReportedExtensionWalletRef.current = effectiveWallet;
+    }
 
     // 4.1. Invalidación al Cambiar de Wallet en el Juego (S3):
     // Si la extensión/hook reporta una wallet distinta a la que firmó el token SIWE, desconectar la sesión inmediatamente.
@@ -2213,10 +2258,25 @@ export default function BloomshireCommand() {
           const json = await res.json();
           if (json.ok && json.wallet) {
             const verifiedWallet = json.wallet.toLowerCase();
+            authenticatedWalletRef.current = verifiedWallet;
+
+            // S3: Chequeo de condición de carrera al arranque:
+            // Si la extensión reportó una wallet antes de terminar /api/auth?action=me, verificar discrepancia inmediatamente.
+            const reportedExtWallet = lastReportedExtensionWalletRef.current;
+            if (reportedExtWallet && reportedExtWallet !== verifiedWallet) {
+              console.warn(`[S3] Conflicto de wallet detectado al inicializar sesión: sesión SIWE pertenece a ${verifiedWallet} pero la extensión ya reportó ${reportedExtWallet}. Cerrando sesión por seguridad.`);
+              handleDisconnect();
+              setConnectFeedback({
+                type: 'error',
+                text: `Se detectó cambio de cuenta en el juego (${reportedExtWallet.slice(0, 6)}...${reportedExtWallet.slice(-4)}). Tu sesión anterior fue cerrada por seguridad. Por favor, vuelve a firmar con la nueva wallet.`
+              });
+              setShowConnectModal(true);
+              return;
+            }
+
             if (!isCancelled) {
               setSessionToken(storedToken);
               setAuthenticatedWallet(verifiedWallet);
-              authenticatedWalletRef.current = verifiedWallet;
               setWalletAddress(verifiedWallet);
               setIsPremiumUnlocked(true);
             }
@@ -2258,15 +2318,11 @@ export default function BloomshireCommand() {
       if (event.source !== window) return;
       if (event.data?.type === 'MONIOS_COMPANION_SYNC' && event.data.game === 'bloomshire') {
         applyIncomingSync(event.data.data, 'extension');
-        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
-        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
     const handleCompanionCustomEvent = (event) => {
       if (event.detail?.game === 'bloomshire') {
         applyIncomingSync(event.detail.data, 'extension');
-        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
-        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
 
@@ -2405,7 +2461,7 @@ export default function BloomshireCommand() {
   const soldItemsToday = isTodaySold ? (soldData.items || {}) : {};
 
   const baseGoldCap = rulesData?.sellLimits?.gold ?? 12000;
-  const dailyGoldCap = isVip ? Math.round(baseGoldCap * 1.25) : baseGoldCap; // VIP otorga +25% de tope diario de oro
+  const dailyGoldCap = isVip ? Math.round(baseGoldCap * (rulesData?.vipPerks?.sellGold ?? 1.25)) : baseGoldCap; // VIP otorga bono oficial (rules.VIP_PERKS.sellGold = 1.25)
   const dailyThingsCap = rulesData?.sellLimits?.things ?? 60;
   const dailyPerItemCap = rulesData?.sellLimits?.perItem ?? 15;
 
@@ -2780,11 +2836,18 @@ export default function BloomshireCommand() {
       const goldPerEA = netA / eA;
       const goldPerEB = netB / eB;
 
+      const isMasterA = calcSkill === 'farming' && farmingLevel >= 15 && a.hasRegrow;
+      const isMasterB = calcSkill === 'farming' && farmingLevel >= 15 && b.hasRegrow;
+      const xpMinA = isMasterA ? (a.regrowXpMin ?? a.xpMin ?? 0) : (a.xpMin ?? 0);
+      const xpMinB = isMasterB ? (b.regrowXpMin ?? b.xpMin ?? 0) : (b.xpMin ?? 0);
+      const goldMinA = isMasterA ? (a.regrowGoldMin ?? a.goldMin ?? 0) : (a.goldMin ?? 0);
+      const goldMinB = isMasterB ? (b.regrowGoldMin ?? b.goldMin ?? 0) : (b.goldMin ?? 0);
+
       let vA = 0, vB = 0;
       if (field === 'xpEnergy') { vA = xpPerEA; vB = xpPerEB; }
       else if (field === 'goldEnergy') { vA = goldPerEA; vB = goldPerEB; }
-      else if (field === 'xpMin') { vA = a.xpMin ?? 0; vB = b.xpMin ?? 0; }
-      else if (field === 'goldMin') { vA = a.goldMin ?? 0; vB = b.goldMin ?? 0; }
+      else if (field === 'xpMin') { vA = xpMinA; vB = xpMinB; }
+      else if (field === 'goldMin') { vA = goldMinA; vB = goldMinB; }
       else if (field === 'time') { vA = a.grow ?? 1; vB = b.grow ?? 0; }
       else if (field === 'cost') { vA = a.cost ?? 0; vB = b.cost ?? 0; }
       else if (field === 'sell') { vA = a.sell ?? 0; vB = b.sell ?? 0; }
@@ -2792,7 +2855,7 @@ export default function BloomshireCommand() {
     });
 
     return list;
-  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort]);
+  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort, farmingLevel]);
 
   // Filtro de NPCs
   const filteredNpcs = useMemo(() => {
@@ -3168,6 +3231,7 @@ export default function BloomshireCommand() {
 
       {/* 3. CONTENIDO PRINCIPAL SEGÚN PESTAÑA */}
       <div className="flex-1 overflow-hidden relative">
+        <ErrorBoundary key={activeTab} title={`Error al cargar el módulo (${activeTab})`} onBack={() => setActiveTab('mega_atlas')}>
 
         {/* ==============================================================
             TAB: BUSCADOR UNIVERSAL DE ÍTEMS ("¿DÓNDE LO CONSIGO?") - 359 ÍTEMS
@@ -3757,8 +3821,36 @@ export default function BloomshireCommand() {
                             </span>
                           </td>
 
-                          <td className="p-3 text-purple-400 font-mono font-bold whitespace-nowrap">{item.xpMin || 0}</td>
-                          <td className="p-3 text-amber-400 font-mono font-bold whitespace-nowrap">{item.goldMin || 0}g</td>
+                          <td className="p-3 text-purple-400 font-mono font-bold whitespace-nowrap">
+                            {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
+                              <div className="flex flex-col">
+                                <span>{item.regrowXpMin}</span>
+                                <span className="text-[10px] text-purple-300/70 font-normal">Rebrote (5x)</span>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col">
+                                <span>{item.xpMin || 0}</span>
+                                {calcSkill === 'farming' && item.hasRegrow && (
+                                  <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowXpMin}</span>
+                                )}
+                              </div>
+                            )}
+                          </td>
+                          <td className="p-3 text-amber-400 font-mono font-bold whitespace-nowrap">
+                            {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
+                              <div className="flex flex-col">
+                                <span>{item.regrowGoldMin}g</span>
+                                <span className="text-[10px] text-amber-300/70 font-normal">Rebrote (5x)</span>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col">
+                                <span>{item.goldMin || 0}g</span>
+                                {calcSkill === 'farming' && item.hasRegrow && (
+                                  <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowGoldMin}g</span>
+                                )}
+                              </div>
+                            )}
+                          </td>
 
                           {calcSkill === 'farming' && (
                             <td className="p-3 whitespace-nowrap">
@@ -5182,7 +5274,7 @@ export default function BloomshireCommand() {
                   else if (skWord.includes('cocin') || skWord.includes('cook')) reqSk = 'cooking';
 
                   if (reqSk && reqLvl) {
-                    const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || userSkills.farming || 6) : 1);
+                    const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || skillsBreakdown.farming?.level || 1) : 1);
                     if (playerLvl >= reqLvl) {
                       resolvedStepNum++;
                       continue;
@@ -6109,7 +6201,7 @@ export default function BloomshireCommand() {
                 filteredAndSortedCrafts.map((recipe, idx) => {
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
-                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
 
                   return (
                     <div 
@@ -6252,7 +6344,7 @@ export default function BloomshireCommand() {
                 filteredAndSortedCrafts.map((recipe, idx) => {
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
-                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
 
                   return (
                     <div 
@@ -7269,6 +7361,7 @@ export default function BloomshireCommand() {
         )}
 
         {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
+        </ErrorBoundary>
       
         {/* MODAL DE PERFIL DE GRANJERO, NFTS Y BOOSTS */}
         {showProfileModal && (
@@ -7469,16 +7562,36 @@ export default function BloomshireCommand() {
                         <div className="pt-1">
                           <button
                             type="button"
-                            onClick={handleConnectAndSignWallet}
+                            onClick={() => handleConnectAndSignWallet()}
                             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-900/30 transition-all active:scale-[0.98]"
                           >
                             <span>🔐 Conectar y Firmar con Billetera (Web3)</span>
                           </button>
                         </div>
+                        {injectedWallets.length > 1 && (
+                          <div className="space-y-1.5 pt-1">
+                            <div className="text-[10px] text-cyan-300 font-bold uppercase tracking-wider">
+                              Seleccionar Billetera (EIP-6963):
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              {injectedWallets.map(w => (
+                                <button
+                                  key={w.info.uuid}
+                                  type="button"
+                                  onClick={() => handleConnectAndSignWallet(w.provider)}
+                                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0d172e] hover:bg-cyan-950/80 border border-cyan-500/40 text-cyan-200 text-xs font-bold cursor-pointer transition-all active:scale-95"
+                                >
+                                  {w.info.icon && <img src={w.info.icon} alt={w.info.name} className="w-3.5 h-3.5 rounded" />}
+                                  <span>{w.info.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
                           <span>✓ Compatible con EVM (Ethereum / Arbitrum)</span>
                           <span>•</span>
-                          <span>✓ Sesión JWT segura de 7 días</span>
+                          <span>✓ Sesión JWT segura de 24 horas (renovable)</span>
                         </div>
                       </div>
 
@@ -7490,6 +7603,9 @@ export default function BloomshireCommand() {
                         <p className="text-slate-300 leading-relaxed text-[11px]">
                           La extensión oficial <b>Bloomshire Companion</b> lee tu partida localmente en tu navegador con 0 latencia:
                         </p>
+                        <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200/90 text-[10.5px]">
+                          ℹ️ <b>Nota:</b> La extensión sincroniza tus existencias locales. Para desbloquear los módulos con candado (Misiones, Liquidador y Asesor IA), firma con tu billetera en la <b>Opción 1</b>.
+                        </div>
                         <div className="pt-1 pb-1">
                           <button
                             type="button"
@@ -7505,15 +7621,19 @@ export default function BloomshireCommand() {
                                     const parsed = JSON.parse(snap);
                                     if (parsed && (parsed.gold > 0 || (parsed.inventory && parsed.inventory.length > 0))) {
                                       applyIncomingSync(parsed, 'cache');
-                                      setConnectFeedback({ type: 'success', text: '¡Partida vinculada desde la caché de la extensión!' });
-                                      setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                                      setConnectFeedback({ 
+                                        type: 'success', 
+                                        text: '¡Partida vinculada desde la caché de la extensión! Recuerda firmar en la Opción 1 para desbloquear los candados.' 
+                                      });
                                       return;
                                     }
                                   } catch (_) {}
                                 }
                                 if (w && w.startsWith('0x')) {
-                                  setConnectFeedback({ type: 'success', text: `¡Partida vinculada a ${w.slice(0, 6)}...!` });
-                                  setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
+                                  setConnectFeedback({ 
+                                    type: 'success', 
+                                    text: `¡Partida vinculada a ${w.slice(0, 6)}...! Recuerda firmar en la Opción 1 para desbloquear los candados.` 
+                                  });
                                 } else {
                                   setConnectFeedback({ 
                                     type: 'info', 

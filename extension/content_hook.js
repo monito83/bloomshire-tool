@@ -348,63 +348,63 @@
 
   // Catálogo canónico oficial de las 57 semillas de Bloomshire (rules.js SEEDS)
   const SEEDS_INFO = [
-    { id: 'Carrot', name: 'Zanahoria', grow: 2, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🥕' },
-    { id: 'Potato', name: 'Patata', grow: 8, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🥔' },
-    { id: 'Cabbage', name: 'Repollo', grow: 20, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🥬' },
-    { id: 'Cauliflower', name: 'Coliflor', grow: 90, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🥦' },
-    { id: 'Strawberry', name: 'Fresa', grow: 80, regrow: 60, harvests: 5, stages: 5, premium: false, icon: '🍓' },
-    { id: 'Tomato', name: 'Tomate', grow: 45, regrow: 35, harvests: 5, stages: 6, premium: false, icon: '🍅' },
-    { id: 'Wheat', name: 'Trigo', grow: 15, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🌾' },
-    { id: 'Sunflower', name: 'Girasol', grow: 35, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🌻' },
-    { id: 'Corn', name: 'Maíz', grow: 40, regrow: 30, harvests: 5, stages: 6, premium: false, icon: '🌽' },
-    { id: 'Green Beans', name: 'Judías Verdes', grow: 50, regrow: 40, harvests: 5, stages: 5, premium: false, icon: '🫛' },
-    { id: 'Cantaloupe', name: 'Melón Cantalupo', grow: 100, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🍈' },
-    { id: 'Marigold', name: 'Caléndula', grow: 20, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🌼' },
-    { id: 'Sweet Potato', name: 'Batata', grow: 70, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🍠' },
-    { id: 'Saffron', name: 'Azafrán', grow: 240, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🌾' },
-    { id: 'Star Fruit', name: 'Fruta Estrella', grow: 300, regrow: null, harvests: 1, stages: 6, premium: false, icon: '⭐' },
-    { id: 'Onion', name: 'Cebolla', grow: 12, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🧅' },
-    { id: 'Eggplant', name: 'Berenjena', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, icon: '🍆' },
-    { id: 'Watermelon', name: 'Sandía', grow: 110, regrow: null, harvests: 1, stages: 7, premium: false, icon: '🍉' },
-    { id: 'Beetroot', name: 'Remolacha', grow: 120, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🟣' },
-    { id: 'Pumpkin', name: 'Calabaza', grow: 180, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🎃' },
-    { id: 'Grapes', name: 'Uvas', grow: 150, regrow: 90, harvests: 5, stages: 5, premium: false, icon: '🍇' },
-    { id: 'Hot Pepper', name: 'Chile Picante', grow: 60, regrow: 45, harvests: 5, stages: 6, premium: false, icon: '🌶️' },
-    { id: 'Asparagus', name: 'Espárrago', grow: 120, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🌱' },
-    { id: 'Blueberry', name: 'Arándano', grow: 90, regrow: 60, harvests: 5, stages: 5, premium: false, icon: '🫐' },
-    { id: 'Broccoli', name: 'Brócoli', grow: 30, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🥦' },
-    { id: 'Parsnip', name: 'Chirivía', grow: 5, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🥔' },
-    { id: 'Rice', name: 'Arroz', grow: 30, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🌾' },
-    { id: 'Spring Onion', name: 'Cebollín', grow: 6, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🧅' },
-    { id: 'Adzuki Bean', name: 'Frijol Adzuki', grow: 45, regrow: 35, harvests: 5, stages: 6, premium: false, icon: '🫘' },
-    { id: 'Green Bell Pepper', name: 'Pimiento Verde', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, icon: '🫑' },
-    { id: 'Red Bell Pepper', name: 'Pimiento Rojo', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, icon: '🌶️' },
-    { id: 'Yellow Bell Pepper', name: 'Pimiento Amarillo', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, icon: '🫑' },
-    { id: 'Blackberry', name: 'Mora', grow: 50, regrow: 40, harvests: 5, stages: 6, premium: false, icon: '🫐' },
-    { id: 'Cucumber', name: 'Pepino', grow: 40, regrow: 30, harvests: 5, stages: 5, premium: false, icon: '🥒' },
-    { id: 'Pineapple', name: 'Piña', grow: 240, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🍍' },
-    { id: 'Aloe', name: 'Aloe Vera', grow: 150, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🪴' },
-    { id: 'Premium Seed', name: 'Semilla Premium', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '✨' },
-    { id: 'Sunfire Pepper', name: 'Pimiento Fuego Solar', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🌶️' },
-    { id: 'Diamond Strawberry', name: 'Fresa Diamante', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🍓' },
-    { id: 'Sapphire Blueberry', name: 'Arándano Zafiro', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🫐' },
-    { id: 'Golden Pumpkin', name: 'Calabaza Dorada', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🎃' },
-    { id: 'Crystal Grapes', name: 'Uvas de Cristal', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🍇' },
-    { id: 'Starbloom', name: 'Flor Estelar', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🌸' },
-    { id: 'Celestial Pineapple', name: 'Piña Celestial', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, icon: '🍍' },
-    { id: 'Winter Kale', name: 'Winter Kale (Col de Invierno)', grow: 20, regrow: null, harvests: 1, stages: 4, premium: false, icon: '🥬❄️' },
-    { id: 'Snow Turnip', name: 'Snow Turnip (Nabo de Nieve)', grow: 45, regrow: null, harvests: 1, stages: 4, premium: false, icon: '❄️' },
-    { id: 'Frostberry', name: 'Frostberry (Baya de Escarcha)', grow: 90, regrow: 60, harvests: 5, stages: 5, premium: false, icon: '🫐❄️' },
-    { id: 'Ice Melon', name: 'Ice Melon (Melón de Hielo)', grow: 150, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🍈❄️' },
-    { id: 'Fireheart Pepper', name: 'Pimiento Corazón de Fuego', grow: 180, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🌶️🔥' },
-    { id: 'Fairy Rose', name: 'Rosa de Hada', grow: 110, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🌹✨' },
-    { id: 'Honeydew Melon', name: 'Melón Verde', grow: 270, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🍈' },
-    { id: 'Purple Cauliflower', name: 'Coliflor Violeta', grow: 300, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🥦🟣' },
-    { id: 'Snow Pea', name: 'Snow Pea (Guisante de Nieve)', grow: 330, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🫛❄️' },
-    { id: 'Golden Beet', name: 'Remolacha Dorada', grow: 360, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🟡' },
-    { id: 'Black Tomato', name: 'Tomate Negro', grow: 390, regrow: null, harvests: 1, stages: 6, premium: false, icon: '🍅🖤' },
-    { id: 'Blue Corn', name: 'Maíz Azul', grow: 420, regrow: null, harvests: 1, stages: 7, premium: false, icon: '🌽🔵' },
-    { id: 'Dragon Fruit', name: 'Fruta del Dragón', grow: 480, regrow: null, harvests: 1, stages: 5, premium: false, icon: '🐉' }
+    { id: 'Carrot', name: 'Zanahoria', grow: 2, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🥕' },
+    { id: 'Potato', name: 'Patata', grow: 8, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🥔' },
+    { id: 'Cabbage', name: 'Repollo', grow: 20, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["all"], icon: '🥬' },
+    { id: 'Cauliflower', name: 'Coliflor', grow: 90, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["Spring"], icon: '🥦' },
+    { id: 'Strawberry', name: 'Fresa', grow: 80, regrow: 60, harvests: 5, stages: 5, premium: false, seasons: ["Spring"], icon: '🍓' },
+    { id: 'Tomato', name: 'Tomate', grow: 45, regrow: 35, harvests: 5, stages: 6, premium: false, seasons: ["Summer"], icon: '🍅' },
+    { id: 'Wheat', name: 'Trigo', grow: 15, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🌾' },
+    { id: 'Sunflower', name: 'Girasol', grow: 35, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Summer"], icon: '🌻' },
+    { id: 'Corn', name: 'Maíz', grow: 40, regrow: 30, harvests: 5, stages: 6, premium: false, seasons: ["Fall"], icon: '🌽' },
+    { id: 'Green Beans', name: 'Judías Verdes', grow: 50, regrow: 40, harvests: 5, stages: 5, premium: false, seasons: ["Summer"], icon: '🫛' },
+    { id: 'Cantaloupe', name: 'Melón Cantalupo', grow: 100, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["Summer"], icon: '🍈' },
+    { id: 'Marigold', name: 'Caléndula', grow: 20, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🌼' },
+    { id: 'Sweet Potato', name: 'Batata', grow: 70, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Fall"], icon: '🍠' },
+    { id: 'Saffron', name: 'Azafrán', grow: 240, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Fall"], icon: '🌾' },
+    { id: 'Star Fruit', name: 'Fruta Estrella', grow: 300, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["Summer"], icon: '⭐' },
+    { id: 'Onion', name: 'Cebolla', grow: 12, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Spring"], icon: '🧅' },
+    { id: 'Eggplant', name: 'Berenjena', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, seasons: ["Fall"], icon: '🍆' },
+    { id: 'Watermelon', name: 'Sandía', grow: 110, regrow: null, harvests: 1, stages: 7, premium: false, seasons: ["Summer"], icon: '🍉' },
+    { id: 'Beetroot', name: 'Remolacha', grow: 120, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Fall"], icon: '🟣' },
+    { id: 'Pumpkin', name: 'Calabaza', grow: 180, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Fall"], icon: '🎃' },
+    { id: 'Grapes', name: 'Uvas', grow: 150, regrow: 90, harvests: 5, stages: 5, premium: false, seasons: ["Fall"], icon: '🍇' },
+    { id: 'Hot Pepper', name: 'Chile Picante', grow: 60, regrow: 45, harvests: 5, stages: 6, premium: false, seasons: ["Summer"], icon: '🌶️' },
+    { id: 'Asparagus', name: 'Espárrago', grow: 120, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Spring"], icon: '🌱' },
+    { id: 'Blueberry', name: 'Arándano', grow: 90, regrow: 60, harvests: 5, stages: 5, premium: false, seasons: ["Spring"], icon: '🫐' },
+    { id: 'Broccoli', name: 'Brócoli', grow: 30, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Spring"], icon: '🥦' },
+    { id: 'Parsnip', name: 'Chirivía', grow: 5, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["all"], icon: '🥔' },
+    { id: 'Rice', name: 'Arroz', grow: 30, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Spring"], icon: '🌾' },
+    { id: 'Spring Onion', name: 'Cebollín', grow: 6, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🧅' },
+    { id: 'Adzuki Bean', name: 'Frijol Adzuki', grow: 45, regrow: 35, harvests: 5, stages: 6, premium: false, seasons: ["Summer"], icon: '🫘' },
+    { id: 'Green Bell Pepper', name: 'Pimiento Verde', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, seasons: ["Summer"], icon: '🫑' },
+    { id: 'Red Bell Pepper', name: 'Pimiento Rojo', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, seasons: ["Summer"], icon: '🌶️' },
+    { id: 'Yellow Bell Pepper', name: 'Pimiento Amarillo', grow: 60, regrow: 45, harvests: 5, stages: 5, premium: false, seasons: ["Summer"], icon: '🫑' },
+    { id: 'Blackberry', name: 'Mora', grow: 50, regrow: 40, harvests: 5, stages: 6, premium: false, seasons: ["Summer"], icon: '🫐' },
+    { id: 'Cucumber', name: 'Pepino', grow: 40, regrow: 30, harvests: 5, stages: 5, premium: false, seasons: ["Summer"], icon: '🥒' },
+    { id: 'Pineapple', name: 'Piña', grow: 240, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Summer"], icon: '🍍' },
+    { id: 'Aloe', name: 'Aloe Vera', grow: 150, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Fall"], icon: '🪴' },
+    { id: 'Premium Seed', name: 'Semilla Premium', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '✨' },
+    { id: 'Sunfire Pepper', name: 'Pimiento Fuego Solar', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🌶️' },
+    { id: 'Diamond Strawberry', name: 'Fresa Diamante', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🍓' },
+    { id: 'Sapphire Blueberry', name: 'Arándano Zafiro', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🫐' },
+    { id: 'Golden Pumpkin', name: 'Calabaza Dorada', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🎃' },
+    { id: 'Crystal Grapes', name: 'Uvas de Cristal', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🍇' },
+    { id: 'Starbloom', name: 'Flor Estelar', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🌸' },
+    { id: 'Celestial Pineapple', name: 'Piña Celestial', grow: 15, regrow: null, harvests: 1, stages: 4, premium: true, seasons: ["all"], icon: '🍍' },
+    { id: 'Winter Kale', name: 'Winter Kale (Col de Invierno)', grow: 20, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Winter"], icon: '🥬❄️' },
+    { id: 'Snow Turnip', name: 'Snow Turnip (Nabo de Nieve)', grow: 45, regrow: null, harvests: 1, stages: 4, premium: false, seasons: ["Winter"], icon: '❄️' },
+    { id: 'Frostberry', name: 'Frostberry (Baya de Escarcha)', grow: 90, regrow: 60, harvests: 5, stages: 5, premium: false, seasons: ["Winter"], icon: '🫐❄️' },
+    { id: 'Ice Melon', name: 'Ice Melon (Melón de Hielo)', grow: 150, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Winter"], icon: '🍈❄️' },
+    { id: 'Fireheart Pepper', name: 'Pimiento Corazón de Fuego', grow: 180, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["all"], icon: '🌶️🔥' },
+    { id: 'Fairy Rose', name: 'Rosa de Hada', grow: 110, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["all"], icon: '🌹✨' },
+    { id: 'Honeydew Melon', name: 'Melón Verde', grow: 270, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Summer"], icon: '🍈' },
+    { id: 'Purple Cauliflower', name: 'Coliflor Violeta', grow: 300, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Spring"], icon: '🥦🟣' },
+    { id: 'Snow Pea', name: 'Snow Pea (Guisante de Nieve)', grow: 330, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["Winter"], icon: '🫛❄️' },
+    { id: 'Golden Beet', name: 'Remolacha Dorada', grow: 360, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Spring"], icon: '🟡' },
+    { id: 'Black Tomato', name: 'Tomate Negro', grow: 390, regrow: null, harvests: 1, stages: 6, premium: false, seasons: ["Summer"], icon: '🍅🖤' },
+    { id: 'Blue Corn', name: 'Maíz Azul', grow: 420, regrow: null, harvests: 1, stages: 7, premium: false, seasons: ["Fall"], icon: '🌽🔵' },
+    { id: 'Dragon Fruit', name: 'Fruta del Dragón', grow: 480, regrow: null, harvests: 1, stages: 5, premium: false, seasons: ["Summer"], icon: '🐉' }
   ];
 
   function normalizeFarmFieldKey(key) {
@@ -459,6 +459,24 @@
       const fromDawn = into < BLOOM_LIGHT_MS ? (into / BLOOM_LIGHT_MS) * BLOOM_LIGHT_MIN : BLOOM_LIGHT_MIN + ((into - BLOOM_LIGHT_MS) / (BLOOM_DAY_MS - BLOOM_LIGHT_MS)) * BLOOM_NIGHT_MIN;
       return { day, fromDawn, clock: (BLOOM_DAWN_MIN + fromDawn) % 1440 };
     }
+
+    // Temporadas canónicas de Bloomshire (rules.js:618-628)
+    const WORLD_TIME = {
+      dayRealHours: 8,
+      daylight: { from: 5, to: 21, realHours: 6 },
+      daysPerSeason: 28,
+      seasons: ['Spring', 'Summer', 'Fall', 'Winter'],
+      epoch: WORLD_TIME_EPOCH,
+    };
+    const SEASON_MS = WORLD_TIME.dayRealHours * 3600e3 * WORLD_TIME.daysPerSeason;
+    const seasonNo = (t) => Math.max(0, Math.floor((t - WORLD_TIME.epoch) / SEASON_MS));
+    const seasonAt = (t = Date.now()) => WORLD_TIME.seasons[((seasonNo(t) % 4) + 4) % 4];
+    const seasonStartAt = (t = Date.now()) => WORLD_TIME.epoch + seasonNo(t) * SEASON_MS;
+    const inSeason = (seed, t = Date.now()) => {
+      if (!seed || !seed.seasons) return true;
+      if (Array.isArray(seed.seasons) && (seed.seasons.includes('all') || seed.seasons.length === 0)) return true;
+      return seed.seasons.includes(seasonAt(t));
+    };
 
     function bloomshireWorldAt(day, fromDawn) {
       const into = fromDawn < BLOOM_LIGHT_MIN ? (fromDawn / BLOOM_LIGHT_MIN) * BLOOM_LIGHT_MS : BLOOM_LIGHT_MS + ((fromDawn - BLOOM_LIGHT_MIN) / BLOOM_NIGHT_MIN) * (BLOOM_DAY_MS - BLOOM_LIGHT_MS);
@@ -538,8 +556,9 @@
       const wait = two ? last - 1 : last;
       const late = 5 * 3600e3; // WITHER.afterRipeHours = 5
 
+      let res = null;
       if (!crop.w1) {
-        return {
+        res = {
           stage: from,
           last,
           ripe: false,
@@ -548,75 +567,103 @@
           two,
           per,
           withered: false,
+          witheredAt: null,
           statusText: outdoors ? 'Requiere riego (o lluvia al aire libre) 💧🌧️' : 'Necesita agua (1.er riego) 💧'
         };
-      }
-
-      const first = Math.min(wait, from + Math.floor(Math.max(0, nowTs - crop.w1) / per));
-      if (!two) {
+      } else if (!two) {
+        const first = Math.min(wait, from + Math.floor(Math.max(0, nowTs - crop.w1) / per));
         const isRipe = first >= last;
         const readyAt = crop.w1 + total;
-        const withered = (!seed.premium) && isRipe && (nowTs >= readyAt + late);
-        return {
+        res = {
           stage: first,
           last,
-          ripe: isRipe && !withered,
+          ripe: isRipe,
           needs: null,
           readyAt,
           two,
           per,
-          withered,
-          statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
-        };
-      }
-
-      if (first < wait) {
-        const waitAt = crop.w1 + (wait - from) * per;
-        return {
-          stage: first,
-          last,
-          ripe: false,
-          needs: null,
-          readyAt: null,
-          waitAt,
-          two,
-          per,
           withered: false,
-          statusText: 'Creciendo (esperando 2.° riego) 🌱'
+          witheredAt: null,
+          statusText: isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱'
         };
-      }
-
-      if (!crop.w2) {
+      } else {
+        const first = Math.min(wait, from + Math.floor(Math.max(0, nowTs - crop.w1) / per));
         const waitAt = crop.w1 + (wait - from) * per;
-        return {
-          stage: wait,
-          last,
-          ripe: false,
-          needs: 'second',
-          readyAt: null,
-          waitAt,
-          two,
-          per,
-          withered: false,
-          statusText: outdoors ? '¡Requiere 2.° riego (o lluvia al aire libre)! 💧🌧️' : '¡Necesita 2.° riego! 💧'
-        };
+        if (first < wait) {
+          res = {
+            stage: first,
+            last,
+            ripe: false,
+            needs: null,
+            readyAt: null,
+            waitAt,
+            two,
+            per,
+            withered: false,
+            witheredAt: null,
+            statusText: 'Creciendo (esperando 2.° riego) 🌱'
+          };
+        } else if (!crop.w2) {
+          res = {
+            stage: wait,
+            last,
+            ripe: false,
+            needs: 'second',
+            readyAt: null,
+            waitAt,
+            two,
+            per,
+            withered: false,
+            witheredAt: null,
+            statusText: outdoors ? '¡Requiere 2.° riego (o lluvia al aire libre)! 💧🌧️' : '¡Necesita 2.° riego! 💧'
+          };
+        } else {
+          const stage = Math.min(last, wait + Math.floor(Math.max(0, nowTs - crop.w2) / per));
+          const isRipe = stage >= last;
+          const readyAt = crop.w2 + per;
+          res = {
+            stage,
+            last,
+            ripe: isRipe,
+            needs: null,
+            readyAt,
+            two,
+            per,
+            withered: false,
+            witheredAt: null,
+            statusText: isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱'
+          };
+        }
       }
 
-      const stage = Math.min(last, wait + Math.floor(Math.max(0, nowTs - crop.w2) / per));
-      const isRipe = stage >= last;
-      const readyAt = crop.w2 + per;
-      const withered = (!seed.premium) && isRipe && (nowTs >= readyAt + late);
-      return {
-        stage,
-        last,
-        ripe: isRipe && !withered,
-        needs: null,
-        readyAt,
-        two,
-        per,
-        withered,
-        statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
-      };
+      // WITHER CANÓNICO (farm.js:76-82 & rules.js:654):
+      if (!asIs && !seed.premium) {
+        if (res.ripe && nowTs >= res.readyAt + late) {
+          return {
+            ...res,
+            ripe: false,
+            needs: null,
+            withered: true,
+            witheredAt: res.readyAt + late,
+            statusText: 'Marchito tras 5h maduro 🥀'
+          };
+        }
+        if (crop.t && !inSeason(seed, nowTs)) {
+          const turn = seasonStartAt(nowTs);
+          if (crop.t < turn && !(res.ripe && res.readyAt <= turn)) {
+            return {
+              ...res,
+              ripe: false,
+              needs: null,
+              withered: true,
+              witheredAt: turn,
+              statusText: 'Marchito por fin de temporada 🥀'
+            };
+          }
+        }
+      }
+
+      return res;
     }
 
     function parseCellToCrop(cell, fieldKey, cellIdx) {
@@ -661,9 +708,12 @@
       const cellId = cell.cell ?? cell.cellId ?? cellIdx;
       const normField = normalizeFarmFieldKey(fieldKey);
       const mapId = normField.replace(/^farm\./i, '');
-      // Regla canónica del juego (farm.js:96):
-      // this.outdoors = !/^interior/i.test(doc.id ?? '') && doc.region !== 'interiors';
-      const isOutdoors = !/^interior/i.test(mapId) && mapId !== 'home' && mapId !== 'interiors';
+      // Regla canónica del juego (farm.js:136 & weather.js:245):
+      // this.outdoors = !/^interior/i.test(doc.id ?? '') && doc.region !== 'interiors' && !fixedSky(doc);
+      const doc = rawMapJsonCache.get(mapId);
+      const isInterior = /^interior/i.test(mapId) || (doc && /^interior/i.test(doc.id ?? '')) || (doc && doc.region === 'interiors');
+      const isFixedSky = (doc && doc.region === 'vip') || mapId === 'vip' || mapId === 'vip_quarter';
+      const isOutdoors = !isInterior && !isFixedSky;
 
       let growthState = null;
       if (seedDef) {

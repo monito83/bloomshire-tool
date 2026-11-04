@@ -109,12 +109,31 @@ export function computeCanonicalSkillsFromRaw(rawSkillsObj, fallbackBreak = null
 
 
 // Constantes y cálculo canónico del ciclo meteorológico y de lluvia de Bloomshire (rules.js:611 / weather.js:18-138)
-const WORLD_TIME_EPOCH = Date.UTC(2026, 9, 23, 14, 0, 0); // 2026-10-23T14:00:00Z
-const BLOOM_DAY_MS = 8 * 3600e3; // 8 horas reales por día en Bloomshire
-const BLOOM_LIGHT_MS = 6 * 3600e3; // 6 horas de luz
-const BLOOM_DAWN_MIN = 5 * 60; // 05:00 amanecer
-const BLOOM_LIGHT_MIN = (21 - 5) * 60; // 960 minutos
+export const WORLD_TIME = {
+  dayRealHours: 8,
+  daylight: { from: 5, to: 21, realHours: 6 },
+  daysPerSeason: 28,
+  seasons: ['Spring', 'Summer', 'Fall', 'Winter'],
+  epoch: Date.UTC(2026, 9, 23, 14, 0, 0), // 2026-10-23T14:00:00Z
+};
+const WORLD_TIME_EPOCH = WORLD_TIME.epoch;
+const BLOOM_DAY_MS = WORLD_TIME.dayRealHours * 3600e3; // 8 horas reales por día en Bloomshire
+const BLOOM_LIGHT_MS = WORLD_TIME.daylight.realHours * 3600e3; // 6 horas de luz
+const BLOOM_DAWN_MIN = WORLD_TIME.daylight.from * 60; // 05:00 amanecer
+const BLOOM_LIGHT_MIN = (WORLD_TIME.daylight.to - WORLD_TIME.daylight.from) * 60; // 960 minutos
 const BLOOM_NIGHT_MIN = 24 * 60 - BLOOM_LIGHT_MIN; // 480 minutos
+
+// Temporadas canónicas de Bloomshire (rules.js:618-628):
+// 28 días por estación (9 días reales y 8 horas = 806.400.000 ms)
+export const SEASON_MS = WORLD_TIME.dayRealHours * 3600e3 * WORLD_TIME.daysPerSeason;
+export const seasonNo = (t) => Math.max(0, Math.floor((t - WORLD_TIME.epoch) / SEASON_MS));
+export const seasonAt = (t = Date.now()) => WORLD_TIME.seasons[((seasonNo(t) % 4) + 4) % 4];
+export const seasonStartAt = (t = Date.now()) => WORLD_TIME.epoch + seasonNo(t) * SEASON_MS;
+export const inSeason = (seed, t = Date.now()) => {
+  if (!seed || !seed.seasons) return true;
+  if (Array.isArray(seed.seasons) && (seed.seasons.includes('all') || seed.seasons.length === 0)) return true;
+  return seed.seasons.includes(seasonAt(t));
+};
 
 function bloomDayRandom(n) {
   let h = Math.imul((n | 0) ^ 0x9e3779b9, 2654435761) >>> 0;
@@ -236,8 +255,9 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
   const wait = two ? last - 1 : last;
   const late = 5 * 3600e3; // WITHER.afterRipeHours = 5
 
+  let res = null;
   if (!crop.w1) {
-    return {
+    res = {
       stage: from,
       last,
       ripe: false,
@@ -246,75 +266,110 @@ export function computeCropGrowth(crop, now = Date.now(), outdoors = false, seed
       two,
       per,
       withered: false,
+      witheredAt: null,
       statusText: outdoors ? 'Requiere riego (o lluvia al aire libre) 💧🌧️' : 'Necesita agua (1.er riego) 💧'
     };
-  }
-
-  const first = Math.min(wait, from + Math.floor(Math.max(0, now - crop.w1) / per));
-  if (!two) {
+  } else if (!two) {
+    const first = Math.min(wait, from + Math.floor(Math.max(0, now - crop.w1) / per));
     const isRipe = first >= last;
     const readyAt = crop.w1 + total;
-    const withered = (!seed.premium) && isRipe && (now >= readyAt + late);
-    return {
+    res = {
       stage: first,
       last,
-      ripe: isRipe && !withered,
+      ripe: isRipe,
       needs: null,
       readyAt,
       two,
       per,
-      withered,
-      statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
-    };
-  }
-
-  if (first < wait) {
-    const waitAt = crop.w1 + (wait - from) * per;
-    return {
-      stage: first,
-      last,
-      ripe: false,
-      needs: null,
-      readyAt: null,
-      waitAt,
-      two,
-      per,
       withered: false,
-      statusText: 'Creciendo (esperando 2.° riego) 🌱'
+      witheredAt: null,
+      statusText: isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱'
     };
-  }
-
-  if (!crop.w2) {
+  } else {
+    const first = Math.min(wait, from + Math.floor(Math.max(0, now - crop.w1) / per));
     const waitAt = crop.w1 + (wait - from) * per;
-    return {
-      stage: wait,
-      last,
-      ripe: false,
-      needs: 'second',
-      readyAt: null,
-      waitAt,
-      two,
-      per,
-      withered: false,
-      statusText: outdoors ? '¡Requiere 2.° riego (o lluvia al aire libre)! 💧🌧️' : '¡Necesita 2.° riego! 💧'
-    };
+    if (first < wait) {
+      res = {
+        stage: first,
+        last,
+        ripe: false,
+        needs: null,
+        readyAt: null,
+        waitAt,
+        two,
+        per,
+        withered: false,
+        witheredAt: null,
+        statusText: 'Creciendo (esperando 2.° riego) 🌱'
+      };
+    } else if (!crop.w2) {
+      res = {
+        stage: wait,
+        last,
+        ripe: false,
+        needs: 'second',
+        readyAt: null,
+        waitAt,
+        two,
+        per,
+        withered: false,
+        witheredAt: null,
+        statusText: outdoors ? '¡Requiere 2.° riego (o lluvia al aire libre)! 💧🌧️' : '¡Necesita 2.° riego! 💧'
+      };
+    } else {
+      const stage = Math.min(last, wait + Math.floor(Math.max(0, now - crop.w2) / per));
+      const isRipe = stage >= last;
+      const readyAt = crop.w2 + per;
+      res = {
+        stage,
+        last,
+        ripe: isRipe,
+        needs: null,
+        readyAt,
+        two,
+        per,
+        withered: false,
+        witheredAt: null,
+        statusText: isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱'
+      };
+    }
   }
 
-  const stage = Math.min(last, wait + Math.floor(Math.max(0, now - crop.w2) / per));
-  const isRipe = stage >= last;
-  const readyAt = crop.w2 + per;
-  const withered = (!seed.premium) && isRipe && (now >= readyAt + late);
-  return {
-    stage,
-    last,
-    ripe: isRipe && !withered,
-    needs: null,
-    readyAt,
-    two,
-    per,
-    withered,
-    statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
-  };
+  // WITHER CANÓNICO (farm.js:76-82 & rules.js:654):
+  // 1. Ripe left longer than WITHER.afterRipeHours (5h) withers:
+  //    if (g.ripe && now >= g.readyAt + late) return { ...g, ripe: false, needs: null, withered: true, witheredAt: g.readyAt + late };
+  // 2. Caught growing when its season ended withers (crops ripe before the turn wait by rule 1):
+  //    if (crop.t && !inSeason(seed, now)) {
+  //      const turn = seasonStartAt(now);
+  //      if (crop.t < turn && !(g.ripe && g.readyAt <= turn)) return { ...g, ripe: false, needs: null, withered: true, witheredAt: turn };
+  //    }
+  if (!asIs && !seed.premium) {
+    if (res.ripe && now >= res.readyAt + late) {
+      return {
+        ...res,
+        ripe: false,
+        needs: null,
+        withered: true,
+        witheredAt: res.readyAt + late,
+        statusText: 'Marchito tras 5h maduro 🥀'
+      };
+    }
+    if (crop.t && !inSeason(seed, now)) {
+      const turn = seasonStartAt(now);
+      if (crop.t < turn && !(res.ripe && res.readyAt <= turn)) {
+        return {
+          ...res,
+          ripe: false,
+          needs: null,
+          withered: true,
+          witheredAt: turn,
+          statusText: 'Marchito por fin de temporada 🥀'
+        };
+      }
+    }
+  }
+
+  return res;
 }
 
 // Cálculo en vivo de Energía, Reloj de Cama UTC, Sapphire Jam y Comida diaria según reglas oficiales (rules.js:46-57, 2980-3020)

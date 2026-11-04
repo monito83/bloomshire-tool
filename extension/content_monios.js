@@ -26,9 +26,6 @@
         console.log('[Bloomshire Companion MoniOS] Estado inicial entregado a MoniOS:', resp.data);
         window.postMessage({ type: 'MONIOS_COMPANION_SYNC', game: 'bloomshire', data: resp.data }, '*');
         document.dispatchEvent(new CustomEvent('monios_game_sync', { detail: { game: 'bloomshire', data: resp.data } }));
-        try {
-          localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(resp.data));
-        } catch (e) { }
       }
     });
   } catch (e) { }
@@ -82,11 +79,6 @@
       document.dispatchEvent(new CustomEvent('monios_game_sync', {
         detail: { game: 'bloomshire', data: payloadWithSource }
       }));
-
-      // Guardar también en localStorage para arranque inmediato
-      try {
-        localStorage.setItem('bloomshire_cached_snapshot', JSON.stringify(payloadWithSource));
-      } catch (e) { }
 
       sendResponse({ status: 'delivered' });
       return false;

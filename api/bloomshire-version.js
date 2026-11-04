@@ -48,8 +48,10 @@ export default async function handler(req, res) {
 
     if (resp.ok) {
       const html = await resp.text();
-      const rulesMatch = html.match(/bloomshire-rules\s*[:=]\s*["']?([a-zA-Z0-9]{8,16})/i);
-      const urlMatch = html.match(/\/v\/([a-zA-Z0-9]{8,16})\//);
+      const rulesMatch = html.match(/<meta\s+name=["']bloomshire-rules["']\s+content=["']([a-zA-Z0-9]{8,16})["']/i) ||
+                         html.match(/bloomshire-rules["']?\s*content=["']([a-zA-Z0-9]{8,16})["']/i) ||
+                         html.match(/bloomshire-rules\s*[:=]\s*["']?([a-zA-Z0-9]{8,16})/i);
+      const urlMatch = html.match(/(?:\/|^|["'])v\/([a-zA-Z0-9]{8,16})\//i);
       if (rulesMatch && rulesMatch[1]) {
         liveRules = rulesMatch[1];
         fetchOk = true;

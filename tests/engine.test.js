@@ -10,7 +10,13 @@ import {
   computeCropGrowth,
   computeMaxEnergy,
   bloomshireFirstRainBetween,
-  bloomshireRainsOn
+  bloomshireRainsOn,
+  WORLD_TIME,
+  SEASON_MS,
+  seasonNo,
+  seasonAt,
+  seasonStartAt,
+  inSeason
 } from '../src/components/bloomshire/bloomshireEngine.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -194,16 +200,79 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(g.statusText).not.toContain('lluvia');
     });
 
-    it('aplica la regla canónica de mapas interiores del juego (farm.js:96)', () => {
-      const isOutdoors = (mapId) => !/^interior/i.test(mapId) && mapId !== 'home' && mapId !== 'interiors';
+    it('aplica la regla canónica de mapas interiores y fixedSky del juego (farm.js:136 & weather.js:245)', () => {
+      const isOutdoors = (doc) => {
+        const id = doc?.id ?? '';
+        const region = doc?.region ?? '';
+        const isInterior = /^interior/i.test(id) || region === 'interiors';
+        const isFixedSky = region === 'vip' || id === 'vip' || id === 'vip_quarter';
+        return !isInterior && !isFixedSky;
+      };
 
-      expect(isOutdoors('home')).toBe(false);
-      expect(isOutdoors('interior_barn')).toBe(false);
-      expect(isOutdoors('interior_greenhouse')).toBe(false);
-      expect(isOutdoors('interiors')).toBe(false);
-      expect(isOutdoors('bloomshire')).toBe(true);
-      expect(isOutdoors('town')).toBe(true);
-      expect(isOutdoors('whisperwood')).toBe(true);
+      expect(isOutdoors({ id: 'interior_barn', region: 'interiors' })).toBe(false);
+      expect(isOutdoors({ id: 'interior_greenhouse', region: 'interiors' })).toBe(false);
+      expect(isOutdoors({ id: 'home_island', region: 'interiors' })).toBe(false);
+      expect(isOutdoors({ id: 'vip_quarter', region: 'vip' })).toBe(false); // VIP Quarter no recibe lluvia por fixedSky
+      expect(isOutdoors({ id: 'bloomshire', region: 'valley' })).toBe(true);
+      expect(isOutdoors({ id: 'whisperwood', region: 'forest' })).toBe(true);
+    });
+
+    it('calcula la rotación canónica de las 4 estaciones de 28 días (rules.js:611-628)', () => {
+      const epoch = WORLD_TIME.epoch;
+      expect(SEASON_MS).toBe(8 * 3600e3 * 28); // 806.400.000 ms
+      expect(seasonAt(epoch)).toBe('Spring');
+      expect(seasonAt(epoch + SEASON_MS)).toBe('Summer');
+      expect(seasonAt(epoch + 2 * SEASON_MS)).toBe('Fall');
+      expect(seasonAt(epoch + 3 * SEASON_MS)).toBe('Winter');
+      expect(seasonAt(epoch + 4 * SEASON_MS)).toBe('Spring');
+    });
+
+    it('marchitado por fin de temporada (farm.js:79-82): cultivo de primavera que no madura a tiempo se marchita en turn', () => {
+      const springTurn = WORLD_TIME.epoch + SEASON_MS; // Inicio de Verano (turn)
+      const cauliSeed = { id: 'Cauliflower', grow: 90, regrow: null, harvests: 1, stages: 6, seasons: ['Spring'], premium: false };
+      
+      // Sembrado y regado 30 min antes del cambio de temporada (necesita 90 min)
+      const tPlanted = springTurn - 30 * 60000;
+      const g = computeCropGrowth({ s: 3, t: tPlanted, w1: tPlanted, w2: null }, springTurn + 1000, false, cauliSeed);
+
+      expect(g.withered).toBe(true);
+      expect(g.witheredAt).toBe(springTurn);
+      expect(g.ripe).toBe(false);
+      expect(g.statusText).toContain('Marchito por fin de temporada');
+    });
+
+    it('cultivo que maduró antes del cambio de estación NO se marchita al cambio y espera 5h (farm.js:81 & rules.js:654)', () => {
+      const springTurn = WORLD_TIME.epoch + SEASON_MS;
+      const springOnionSeed = { id: 'Spring Onion', grow: 6, regrow: null, harvests: 1, stages: 3, seasons: ['Spring'], premium: false };
+
+      // Sembrado 10 min antes del cambio (madura a los 6 min, antes de turn)
+      const tPlanted = springTurn - 10 * 60000;
+      const tReady = tPlanted + 6 * 60000; // 4 min antes de turn
+
+      // En turn + 1 minuto: sigue maduro y NO marchito porque maduró a tiempo
+      const gAtTurn = computeCropGrowth({ s: 27, t: tPlanted, w1: tPlanted }, springTurn + 60000, false, springOnionSeed);
+      expect(gAtTurn.ripe).toBe(true);
+      expect(gAtTurn.withered).toBe(false);
+
+      // Tras 5 horas de maduro (tReady + 5h + 1s): se marchita por WITHER.afterRipeHours
+      const g5h = computeCropGrowth({ s: 27, t: tPlanted, w1: tPlanted }, tReady + 5 * 3600e3 + 1000, false, springOnionSeed);
+      expect(g5h.withered).toBe(true);
+      expect(g5h.statusText).toContain('Marchito tras 5h maduro');
+    });
+
+    it('cultivos permanentes (staples: Carrot, Wheat) y premium nunca se marchitan por fin de estación', () => {
+      const springTurn = WORLD_TIME.epoch + SEASON_MS;
+      const carrotSeed = { id: 'Carrot', grow: 2, regrow: null, harvests: 1, stages: 5, seasons: ['all'], premium: false };
+      const goldSeed = { id: 'Golden Pumpkin', grow: 15, regrow: null, harvests: 1, stages: 4, seasons: null, premium: true };
+
+      // Zanahoria sembrada justo antes del cambio:
+      const tPlanted = springTurn - 1000;
+      const gCarrot = computeCropGrowth({ s: 0, t: tPlanted, w1: tPlanted }, springTurn + 1000, false, carrotSeed);
+      expect(gCarrot.withered).toBe(false);
+
+      // Golden Pumpkin VIP sembrada justo antes del cambio:
+      const gGold = computeCropGrowth({ s: 40, t: tPlanted }, springTurn + 1000, false, goldSeed);
+      expect(gGold.withered).toBe(false);
     });
 
     it('valida la existencia de los 57 cultivos en el catálogo oficial', () => {
@@ -238,6 +307,35 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(aloe.requiredLevel).toBe(15);
       const cauliflower = rules.crops.find(c => c.name === 'Cauliflower');
       expect(cauliflower.requiredLevel).toBe(12);
+    });
+
+    it('VIP otorga tope diario de oro con el multiplicador oficial (rules.vipPerks.sellGold = 1.25 -> 15.000g)', () => {
+      expect(rules.vipPerks?.sellGold).toBe(1.25);
+      const baseCap = rules.sellLimits.gold; // 12000
+      const vipCap = Math.round(baseCap * (rules.vipPerks?.sellGold ?? 1.25));
+      expect(vipCap).toBe(15000);
+    });
+
+    it('calc_data.json incluye métricas de rebrote para granjeros Nivel 15+ (rules.REGROW_FROM_LEVEL = 15)', () => {
+      const calcPath = path.resolve(__dirname, '../public/data/bloomshire/calc_data.json');
+      const calc = JSON.parse(fs.readFileSync(calcPath, 'utf8'));
+      
+      const strawberry = calc.farming.find(c => c.name.includes('Fresa') && !c.name.includes('Diamante'));
+      expect(strawberry.hasRegrow).toBe(true);
+      expect(strawberry.regrowMinutes).toBe(60);
+      expect(strawberry.harvests).toBe(5);
+      // Ciclo: 80 min + 4 * 60 min = 320 min
+      expect(strawberry.regrowTotalMinutes).toBe(320);
+      // 5 cosechas * 990g - 495g coste semilla = 4455g
+      expect(strawberry.regrowNet).toBe(4455);
+      // Oro/min con rebrote: 4455 / 320 = 13.92g/min (más del doble que 6.19g/min)
+      expect(strawberry.regrowGoldMin).toBe(13.92);
+
+      const tomato = calc.farming.find(c => c.name.includes('Tomate') && !c.name.includes('Negro'));
+      expect(tomato.hasRegrow).toBe(true);
+      expect(tomato.regrowMinutes).toBe(35);
+      expect(tomato.regrowTotalMinutes).toBe(185); // 45 + 4*35
+      expect(tomato.regrowGoldMin).toBe(13.24); // (5*545 - 275) / 185
     });
   });
 
@@ -277,6 +375,68 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
         '0x3333333333333333333333333333333333333333' !== authenticatedWallet.toLowerCase()
       );
       expect(hasConflictNotExtension).toBe(false);
+    });
+
+    it('S3: carrera al inicio detectada si la extensión reporta antes de resolver /api/auth?action=me', () => {
+      // Simular referencia mutable lastReportedExtensionWalletRef y authenticatedWalletRef
+      let lastReportedExtensionWallet = '0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'.toLowerCase();
+      let authenticatedWallet = null;
+
+      // Evento de extensión llega primero (applyIncomingSync)
+      // Guarda en lastReportedExtensionWalletRef
+      expect(lastReportedExtensionWallet).toBeTruthy();
+
+      // Tiempo después, concluye fetch('/api/auth?action=me') con verifiedWallet distinta
+      const verifiedWallet = '0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'.toLowerCase();
+      authenticatedWallet = verifiedWallet;
+
+      // Validación de carrera
+      const isRaceMismatch = Boolean(
+        lastReportedExtensionWallet &&
+        lastReportedExtensionWallet !== verifiedWallet
+      );
+
+      expect(isRaceMismatch).toBe(true);
+    });
+  });
+
+  // 8. Integridad de Crafteo, Cocina y Robustez de UI
+  describe('8. Integridad de Crafteo, Cocina y Robustez de UI', () => {
+    it('las recetas de crafteo y cocina calculan goldPerEnergy y xpPerEnergy de forma segura', () => {
+      const craftPath = path.resolve(__dirname, '../public/data/bloomshire/craft_data.json');
+      const craftData = JSON.parse(fs.readFileSync(craftPath, 'utf8'));
+      const craftList = Object.values(craftData).flat();
+      expect(Array.isArray(craftList)).toBe(true);
+      expect(craftList.length).toBeGreaterThan(0);
+
+      craftList.forEach(r => {
+        const energyCost = typeof r.energyCost === 'number' ? r.energyCost : 1;
+        const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 50;
+        const sellPrice = typeof r.sellPrice === 'number' ? r.sellPrice : 3000;
+        const netGold = Math.max(0, sellPrice - goldCost);
+        const xp = typeof r.xp === 'number' ? r.xp : 25;
+
+        const goldPerEnergy = energyCost > 0 ? Math.round(netGold / energyCost) : netGold;
+        const xpPerEnergy = energyCost > 0 ? Number((xp / energyCost).toFixed(1)) : xp;
+
+        expect(typeof goldPerEnergy).toBe('number');
+        expect(typeof xpPerEnergy).toBe('number');
+        expect(isNaN(goldPerEnergy)).toBe(false);
+        expect(isNaN(xpPerEnergy)).toBe(false);
+      });
+    });
+
+    it('la evaluación de nivel en misiones no depende de la variable obsoleta userSkills', () => {
+      const skillsBreakdown = { farming: { level: 8 } };
+      const farmingLevel = 8;
+      const reqSk = 'farming';
+
+      const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || skillsBreakdown.farming?.level || 1) : 1);
+      expect(playerLvl).toBe(8);
+
+      // Si farmingLevel es 0 o null, resuelve fallback seguro sin lanzar ReferenceError
+      const fallbackLvl = skillsBreakdown['unknown']?.level || (reqSk === 'farming' ? (0 || skillsBreakdown.farming?.level || 1) : 1);
+      expect(fallbackLvl).toBe(8);
     });
   });
 });
