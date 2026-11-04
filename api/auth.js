@@ -4,7 +4,8 @@
  * para Bloomshire Tool.
  *
  * Implementa nonces sin estado basados en HMAC-SHA256 (compatibles con Serverless multi-instancia),
- * validación canónica EIP-4361 con viem/siwe y sesiones JWT de 24 horas.
+ * validación canónica EIP-4361 con viem/siwe, validación estricta de mensaje obligatorio (anti-phishing)
+ * y sesiones JWT de 24 horas con issuer y audience.
  */
 
 import crypto from 'crypto';
@@ -27,6 +28,7 @@ const ALLOWED_HOSTS = new Set([
 ]);
 
 const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
+const SIWE_STATEMENT = 'Iniciar sesión en Bloomshire Tool para proteger y sincronizar tu partida.';
 
 function getSessionSecret() {
   const secret = process.env.SESSION_SECRET;
@@ -41,9 +43,9 @@ function getSessionSecret() {
  * Formato: 16 hex (random) + 11 hex (timestamp) + 24 hex (HMAC) = 51 caracteres hex.
  * Permite que cualquier instancia serverless valide el nonce sin base de datos ni memoria compartida.
  */
-function generateStatelessNonce(wallet, secret) {
+function generateStatelessNonce(wallet, secret, nowMs = Date.now()) {
   const randomHex = crypto.randomBytes(8).toString('hex'); // 16 chars
-  const timeHex = Date.now().toString(16).padStart(11, '0'); // 11 chars
+  const timeHex = nowMs.toString(16).padStart(11, '0'); // 11 chars
   const hmacHex = crypto.createHmac('sha256', secret)
     .update(`${wallet.toLowerCase()}:${randomHex}:${timeHex}`)
     .digest('hex')
@@ -136,9 +138,10 @@ export default async function handler(req, res) {
     const wallet = rawWallet.toLowerCase();
     const checksumWallet = getAddress(wallet);
     const { host, uri } = resolveHostAndUri(req);
-    const nonce = generateStatelessNonce(wallet, sessionSecret);
-    const now = new Date();
-    const expirationTime = new Date(Date.now() + 5 * 60 * 1000);
+    const nowMs = Date.now();
+    const nonce = generateStatelessNonce(wallet, sessionSecret, nowMs);
+    const issuedAt = new Date(nowMs);
+    const expirationTime = new Date(nowMs + 5 * 60 * 1000);
 
     const message = createSiweMessage({
       address: checksumWallet,
@@ -147,9 +150,9 @@ export default async function handler(req, res) {
       version: '1',
       chainId: 1,
       nonce,
-      issuedAt: now,
+      issuedAt,
       expirationTime,
-      statement: 'Iniciar sesión en Bloomshire Tool para proteger y sincronizar tu partida.'
+      statement: SIWE_STATEMENT
     });
 
     return res.status(200).json({
@@ -172,6 +175,14 @@ export default async function handler(req, res) {
       });
     }
 
+    // P1: message es OBLIGATORIO para prevenir bypass de dominio y ataques de phishing
+    if (!message || typeof message !== 'string' || !message.trim()) {
+      return res.status(400).json({
+        ok: false,
+        error: 'Parámetro message obligatorio. Debe contener el mensaje EIP-4361 completo emitido por el servidor.'
+      });
+    }
+
     const wallet = rawWallet.toLowerCase();
     const checksumWallet = getAddress(wallet);
 
@@ -181,36 +192,79 @@ export default async function handler(req, res) {
       return res.status(401).json({ ok: false, error: nonceCheck.error });
     }
 
-    // b) Validar mensaje SIWE EIP-4361 si fue provisto
-    const { host } = resolveHostAndUri(req);
-    if (message) {
-      try {
-        const parsedSiwe = parseSiweMessage(message);
-        const isValidSiwe = validateSiweMessage({
-          address: checksumWallet,
-          domain: host,
-          nonce,
-          message: parsedSiwe
-        });
-        if (!isValidSiwe) {
-          return res.status(401).json({
-            ok: false,
-            error: 'El mensaje SIWE no coincide con el dominio autorizado, la wallet o el nonce emitido.'
-          });
-        }
-      } catch (err) {
-        return res.status(400).json({
-          ok: false,
-          error: `Error al parsear el mensaje EIP-4361: ${err.message}`
-        });
+    // b) Validar exhaustivamente el mensaje SIWE (P1 + P2)
+    const { host, uri } = resolveHostAndUri(req);
+    let parsedSiwe;
+    try {
+      parsedSiwe = parseSiweMessage(message);
+    } catch (err) {
+      return res.status(400).json({
+        ok: false,
+        error: `Error al parsear el mensaje EIP-4361: ${err.message}`
+      });
+    }
+
+    // Validación formal con viem/siwe
+    const isValidSiwe = validateSiweMessage({
+      address: checksumWallet,
+      domain: host,
+      nonce,
+      message: parsedSiwe
+    });
+    if (!isValidSiwe) {
+      return res.status(401).json({
+        ok: false,
+        error: 'El mensaje SIWE no coincide con el dominio autorizado, la wallet o el nonce emitido.'
+      });
+    }
+
+    // Validaciones explícitas de campos críticos (P2)
+    if (parsedSiwe.uri !== uri) {
+      return res.status(401).json({ ok: false, error: `URI del mensaje no autorizada: ${parsedSiwe.uri}` });
+    }
+    if (parsedSiwe.chainId !== 1) {
+      return res.status(401).json({ ok: false, error: `Chain ID no soportado: ${parsedSiwe.chainId}` });
+    }
+    if (parsedSiwe.version !== '1') {
+      return res.status(401).json({ ok: false, error: `Versión SIWE no soportada: ${parsedSiwe.version}` });
+    }
+    if (parsedSiwe.statement !== SIWE_STATEMENT) {
+      return res.status(401).json({ ok: false, error: 'El statement del mensaje no coincide con el oficial.' });
+    }
+
+    // Comprobar expiración del mensaje SIWE
+    if (parsedSiwe.expirationTime) {
+      const expMs = new Date(parsedSiwe.expirationTime).getTime();
+      if (Date.now() > expMs) {
+        return res.status(401).json({ ok: false, error: 'El mensaje SIWE ha expirado.' });
       }
     }
 
-    // c) Validar la firma criptográfica
+    // Reconstruir el mensaje exacto esperado por el servidor a partir del timestamp del nonce y comparar (P1)
+    const expectedMessage = createSiweMessage({
+      address: checksumWallet,
+      domain: host,
+      uri,
+      version: '1',
+      chainId: 1,
+      nonce,
+      issuedAt: new Date(nonceCheck.issuedAt),
+      expirationTime: new Date(nonceCheck.issuedAt + 5 * 60 * 1000),
+      statement: SIWE_STATEMENT
+    });
+
+    if (message.trim() !== expectedMessage.trim()) {
+      return res.status(401).json({
+        ok: false,
+        error: 'El contenido del mensaje EIP-4361 no coincide exactamente con el reto emitido por el servidor.'
+      });
+    }
+
+    // c) Validar la firma criptográfica sobre el mensaje SIWE canónico (NUNCA sobre nonce pelado)
     try {
       const isValidSig = await verifyMessage({
         address: wallet,
-        message: message || nonce,
+        message,
         signature
       });
 
@@ -218,10 +272,12 @@ export default async function handler(req, res) {
         return res.status(401).json({ ok: false, error: 'Firma criptográfica inválida.' });
       }
 
-      // d) Emitir token JWT con 24 horas de validez
+      // d) Emitir token JWT con 24 horas de validez, con issuer y audience (P6)
       const secretKey = new TextEncoder().encode(sessionSecret);
       const token = await new SignJWT({ wallet })
         .setProtectedHeader({ alg: 'HS256' })
+        .setIssuer('bloomshire-tool')
+        .setAudience('bloomshire-tool')
         .setIssuedAt()
         .setExpirationTime('24h')
         .sign(secretKey);
@@ -247,7 +303,10 @@ export default async function handler(req, res) {
     const token = authHeader.slice(7).trim();
     try {
       const secretKey = new TextEncoder().encode(sessionSecret);
-      const { payload } = await jwtVerify(token, secretKey);
+      const { payload } = await jwtVerify(token, secretKey, {
+        issuer: 'bloomshire-tool',
+        audience: 'bloomshire-tool'
+      });
       return res.status(200).json({ ok: true, wallet: payload.wallet });
     } catch (_) {
       return res.status(401).json({ ok: false, error: 'Token expirado o inválido' });

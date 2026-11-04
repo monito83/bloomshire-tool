@@ -21,7 +21,10 @@ export async function getAuthenticatedWallet(req) {
 
   try {
     const secretKey = new TextEncoder().encode(secret.trim());
-    const { payload } = await jwtVerify(token, secretKey);
+    const { payload } = await jwtVerify(token, secretKey, {
+      issuer: 'bloomshire-tool',
+      audience: 'bloomshire-tool'
+    });
     return payload?.wallet ? payload.wallet.toLowerCase() : null;
   } catch (_) {
     return null;
