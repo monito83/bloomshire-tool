@@ -860,7 +860,7 @@ export default function BloomshireCommand() {
       const verifyRes = await fetch('/api/auth?action=verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'verify', wallet: account, signature, nonce })
+        body: JSON.stringify({ action: 'verify', wallet: account, signature, nonce, message })
       });
 
       if (!verifyRes.ok) {

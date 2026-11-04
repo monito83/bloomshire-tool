@@ -77,28 +77,6 @@ function broadcastToMonios(data, force = false) {
   });
 }
 
-// Push directo a endpoints de backend MoniOS
-let lastBackendPushAt = 0;
-async function pushToBackend(data, force = false) {
-  if (!data) return;
-  const now = Date.now();
-  if (!force && now - lastBackendPushAt < 2500) return;
-  lastBackendPushAt = now;
-
-  const endpoints = [
-    'https://bloomshire-tool.vercel.app/api/bloomshire-advisor?action=push_snapshot'
-  ];
-  for (const ep of endpoints) {
-    try {
-      fetch(ep, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'push_snapshot', snapshot: data })
-      }).catch(() => { });
-    } catch (e) { }
-  }
-}
-
 // Throttling en background con firma completa (incluyendo ítems de Odette y misiones)
 let lastStateSig = '';
 let lastStateBroadcastAt = 0;
@@ -142,7 +120,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     chrome.storage.local.set({ latest_bloomshire_state: data });
     broadcastToMonios(data, force);
-    pushToBackend(data, force);
     sendResponse({ status: 'broadcasted' });
     return false;
   }

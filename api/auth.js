@@ -2,10 +2,14 @@
  * api/auth.js
  * Endpoints de autenticación criptográfica SIWE (Sign-In with Ethereum / EIP-4361)
  * para Bloomshire Tool.
+ *
+ * Implementa nonces sin estado basados en HMAC-SHA256 (compatibles con Serverless multi-instancia),
+ * validación canónica EIP-4361 con viem/siwe y sesiones JWT de 24 horas.
  */
 
 import crypto from 'crypto';
-import { verifyMessage } from 'viem';
+import { verifyMessage, getAddress } from 'viem';
+import { createSiweMessage, parseSiweMessage, validateSiweMessage } from 'viem/siwe';
 import { SignJWT, jwtVerify } from 'jose';
 
 const ALLOWED_ORIGINS = new Set([
@@ -15,14 +19,83 @@ const ALLOWED_ORIGINS = new Set([
   'http://127.0.0.1:5173'
 ]);
 
-const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
-const noncesMap = new Map(); // wallet -> { nonce, message, expiresAt }
+const ALLOWED_HOSTS = new Set([
+  'bloomshire-tool.vercel.app',
+  'localhost:5173',
+  'localhost:3000',
+  '127.0.0.1:5173'
+]);
 
-function cleanExpiredNonces() {
-  const now = Date.now();
-  for (const [w, entry] of noncesMap.entries()) {
-    if (entry.expiresAt < now) noncesMap.delete(w);
+const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
+
+function getSessionSecret() {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret || secret.trim().length < 32) {
+    return null;
   }
+  return secret.trim();
+}
+
+/**
+ * Genera un nonce criptográfico sin estado firmado con HMAC-SHA256.
+ * Formato: 16 hex (random) + 11 hex (timestamp) + 24 hex (HMAC) = 51 caracteres hex.
+ * Permite que cualquier instancia serverless valide el nonce sin base de datos ni memoria compartida.
+ */
+function generateStatelessNonce(wallet, secret) {
+  const randomHex = crypto.randomBytes(8).toString('hex'); // 16 chars
+  const timeHex = Date.now().toString(16).padStart(11, '0'); // 11 chars
+  const hmacHex = crypto.createHmac('sha256', secret)
+    .update(`${wallet.toLowerCase()}:${randomHex}:${timeHex}`)
+    .digest('hex')
+    .slice(0, 24); // 24 chars
+  return `${randomHex}${timeHex}${hmacHex}`;
+}
+
+/**
+ * Verifica la autenticidad, wallet asociada y vigencia de un nonce sin estado.
+ */
+function verifyStatelessNonce(nonce, wallet, secret) {
+  if (typeof nonce !== 'string' || nonce.length !== 51) {
+    return { valid: false, error: 'Formato de nonce inválido.' };
+  }
+
+  const randomHex = nonce.slice(0, 16);
+  const timeHex = nonce.slice(16, 27);
+  const hmacHex = nonce.slice(27, 51);
+
+  const issuedAt = parseInt(timeHex, 16);
+  if (isNaN(issuedAt)) {
+    return { valid: false, error: 'Timestamp de nonce corrupto.' };
+  }
+
+  const now = Date.now();
+  // Validez de 5 minutos (300.000 ms) + 60s de margen por desincronización de reloj
+  if (now - issuedAt > 5 * 60 * 1000) {
+    return { valid: false, error: 'El reto de firma (nonce) ha expirado (validez máxima: 5 minutos).' };
+  }
+  if (issuedAt - now > 60 * 1000) {
+    return { valid: false, error: 'Timestamp de nonce en el futuro.' };
+  }
+
+  const expectedHmac = crypto.createHmac('sha256', secret)
+    .update(`${wallet.toLowerCase()}:${randomHex}:${timeHex}`)
+    .digest('hex')
+    .slice(0, 24);
+
+  const isValidHmac = crypto.timingSafeEqual(Buffer.from(hmacHex), Buffer.from(expectedHmac));
+  if (!isValidHmac) {
+    return { valid: false, error: 'Nonce inválido o no generado para esta wallet.' };
+  }
+
+  return { valid: true, issuedAt };
+}
+
+function resolveHostAndUri(req) {
+  const hostHeader = (req.headers.host || '').trim();
+  const host = ALLOWED_HOSTS.has(hostHeader) ? hostHeader : 'bloomshire-tool.vercel.app';
+  const scheme = host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https';
+  const uri = `${scheme}://${host}`;
+  return { host, uri };
 }
 
 export default async function handler(req, res) {
@@ -39,81 +112,118 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  cleanExpiredNonces();
+  // Comprobación estricta de secreto: SIN fallbacks hardcodeados en el código
+  const sessionSecret = getSessionSecret();
+  if (!sessionSecret) {
+    return res.status(500).json({
+      ok: false,
+      error: 'Error de configuración en el servidor: SESSION_SECRET no está definida en las variables de entorno de Vercel (mínimo 32 caracteres).'
+    });
+  }
 
   const action = req.query?.action || req.body?.action;
 
-  // 1. GENERAR NONCE Y MENSAJE DE RETO
+  // 1. GENERAR NONCE Y MENSAJE EIP-4361 (SIWE)
   if (req.method === 'GET' && action === 'nonce') {
     const rawWallet = (req.query?.wallet || '').trim();
     if (!rawWallet || !WALLET_REGEX.test(rawWallet)) {
-      return res.status(400).json({ ok: false, error: 'Wallet inválida. Formato esperado: 0x seguido de 40 caracteres hex.' });
+      return res.status(400).json({
+        ok: false,
+        error: 'Wallet inválida. Formato esperado: 0x seguido de 40 caracteres hex.'
+      });
     }
+
     const wallet = rawWallet.toLowerCase();
-    const nonce = crypto.randomBytes(16).toString('hex');
+    const checksumWallet = getAddress(wallet);
+    const { host, uri } = resolveHostAndUri(req);
+    const nonce = generateStatelessNonce(wallet, sessionSecret);
     const now = new Date();
-    const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutos de validez
+    const expirationTime = new Date(Date.now() + 5 * 60 * 1000);
 
-    const message = [
-      'Iniciar sesión en Bloomshire Tool',
-      '',
-      `Wallet: ${wallet}`,
-      `Nonce: ${nonce}`,
-      `Fecha: ${now.toISOString()}`,
-      '',
-      'Esta firma es gratuita, no interactúa con la blockchain y autentica tu acceso seguro a la herramienta.'
-    ].join('\n');
-
-    noncesMap.set(wallet, { nonce, message, expiresAt });
+    const message = createSiweMessage({
+      address: checksumWallet,
+      domain: host,
+      uri,
+      version: '1',
+      chainId: 1,
+      nonce,
+      issuedAt: now,
+      expirationTime,
+      statement: 'Iniciar sesión en Bloomshire Tool para proteger y sincronizar tu partida.'
+    });
 
     return res.status(200).json({
       ok: true,
       wallet,
       nonce,
+      domain: host,
       message,
-      expiresAt
+      expiresAt: expirationTime.getTime()
     });
   }
 
-  // 2. VERIFICAR FIRMA Y EMITIR JWT
+  // 2. VERIFICAR FIRMA Y EMITIR JWT (24h)
   if (req.method === 'POST' && action === 'verify') {
-    const { wallet: rawWallet, signature, nonce } = req.body || {};
+    const { wallet: rawWallet, signature, nonce, message } = req.body || {};
     if (!rawWallet || !WALLET_REGEX.test(rawWallet) || !signature || !nonce) {
-      return res.status(400).json({ ok: false, error: 'Parámetros incompletos (se requiere wallet, signature y nonce).' });
+      return res.status(400).json({
+        ok: false,
+        error: 'Parámetros incompletos (se requiere wallet, signature y nonce).'
+      });
     }
 
     const wallet = rawWallet.toLowerCase();
-    const stored = noncesMap.get(wallet);
+    const checksumWallet = getAddress(wallet);
 
-    if (!stored || stored.nonce !== nonce) {
-      return res.status(401).json({ ok: false, error: 'Nonce inválido o inexistente. Solicita un nuevo reto de firma.' });
+    // a) Verificar el nonce sin estado con HMAC
+    const nonceCheck = verifyStatelessNonce(nonce, wallet, sessionSecret);
+    if (!nonceCheck.valid) {
+      return res.status(401).json({ ok: false, error: nonceCheck.error });
     }
 
-    if (Date.now() > stored.expiresAt) {
-      noncesMap.delete(wallet);
-      return res.status(401).json({ ok: false, error: 'El nonce ha expirado. Solicita una nueva firma.' });
+    // b) Validar mensaje SIWE EIP-4361 si fue provisto
+    const { host } = resolveHostAndUri(req);
+    if (message) {
+      try {
+        const parsedSiwe = parseSiweMessage(message);
+        const isValidSiwe = validateSiweMessage({
+          address: checksumWallet,
+          domain: host,
+          nonce,
+          message: parsedSiwe
+        });
+        if (!isValidSiwe) {
+          return res.status(401).json({
+            ok: false,
+            error: 'El mensaje SIWE no coincide con el dominio autorizado, la wallet o el nonce emitido.'
+          });
+        }
+      } catch (err) {
+        return res.status(400).json({
+          ok: false,
+          error: `Error al parsear el mensaje EIP-4361: ${err.message}`
+        });
+      }
     }
 
+    // c) Validar la firma criptográfica
     try {
-      const isValid = await verifyMessage({
+      const isValidSig = await verifyMessage({
         address: wallet,
-        message: stored.message,
+        message: message || nonce,
         signature
       });
 
-      if (!isValid) {
-        noncesMap.delete(wallet);
+      if (!isValidSig) {
         return res.status(401).json({ ok: false, error: 'Firma criptográfica inválida.' });
       }
 
-      // Replay attack protection: borrar el nonce utilizado
-      noncesMap.delete(wallet);
-
-      const secretKey = new TextEncoder().encode(process.env.SESSION_SECRET || 'bloomshire-super-secret-session-salt-2026');
+      // d) Emitir token JWT con 24 horas de validez
+      const secretKey = new TextEncoder().encode(sessionSecret);
       const token = await new SignJWT({ wallet })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
-        .setExpirationTime('7d')
+        .setExpirationTime('24h')
         .sign(secretKey);
 
       return res.status(200).json({
@@ -121,7 +231,7 @@ export default async function handler(req, res) {
         message: 'Sesión autenticada con éxito',
         token,
         wallet,
-        expiresIn: '7d'
+        expiresIn: '24h'
       });
     } catch (err) {
       return res.status(500).json({ ok: false, error: `Error al verificar la firma: ${err.message}` });
@@ -136,7 +246,7 @@ export default async function handler(req, res) {
     }
     const token = authHeader.slice(7).trim();
     try {
-      const secretKey = new TextEncoder().encode(process.env.SESSION_SECRET || 'bloomshire-super-secret-session-salt-2026');
+      const secretKey = new TextEncoder().encode(sessionSecret);
       const { payload } = await jwtVerify(token, secretKey);
       return res.status(200).json({ ok: true, wallet: payload.wallet });
     } catch (_) {
@@ -146,4 +256,3 @@ export default async function handler(req, res) {
 
   return res.status(400).json({ ok: false, error: 'Acción no soportada. Acciones válidas: nonce, verify, me.' });
 }
-

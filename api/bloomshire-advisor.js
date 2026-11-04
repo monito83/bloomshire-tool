@@ -12,8 +12,15 @@ export async function getAuthenticatedWallet(req) {
   if (!authHeader.startsWith('Bearer ')) return null;
   const token = authHeader.slice(7).trim();
   if (!token) return null;
+
+  const secret = process.env.SESSION_SECRET;
+  if (!secret || secret.trim().length < 32) {
+    // Si SESSION_SECRET no está configurada en Vercel, no se autentica ninguna sesión por seguridad
+    return null;
+  }
+
   try {
-    const secretKey = new TextEncoder().encode(process.env.SESSION_SECRET || 'bloomshire-super-secret-session-salt-2026');
+    const secretKey = new TextEncoder().encode(secret.trim());
     const { payload } = await jwtVerify(token, secretKey);
     return payload?.wallet ? payload.wallet.toLowerCase() : null;
   } catch (_) {
