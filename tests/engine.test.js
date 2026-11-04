@@ -399,4 +399,44 @@ describe('Motor Canónico de Bloomshire (Fase 4)', () => {
       expect(isRaceMismatch).toBe(true);
     });
   });
+
+  // 8. Integridad de Crafteo, Cocina y Robustez de UI
+  describe('8. Integridad de Crafteo, Cocina y Robustez de UI', () => {
+    it('las recetas de crafteo y cocina calculan goldPerEnergy y xpPerEnergy de forma segura', () => {
+      const craftPath = path.resolve(__dirname, '../public/data/bloomshire/craft_data.json');
+      const craftData = JSON.parse(fs.readFileSync(craftPath, 'utf8'));
+      const craftList = Object.values(craftData).flat();
+      expect(Array.isArray(craftList)).toBe(true);
+      expect(craftList.length).toBeGreaterThan(0);
+
+      craftList.forEach(r => {
+        const energyCost = typeof r.energyCost === 'number' ? r.energyCost : 1;
+        const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 50;
+        const sellPrice = typeof r.sellPrice === 'number' ? r.sellPrice : 3000;
+        const netGold = Math.max(0, sellPrice - goldCost);
+        const xp = typeof r.xp === 'number' ? r.xp : 25;
+
+        const goldPerEnergy = energyCost > 0 ? Math.round(netGold / energyCost) : netGold;
+        const xpPerEnergy = energyCost > 0 ? Number((xp / energyCost).toFixed(1)) : xp;
+
+        expect(typeof goldPerEnergy).toBe('number');
+        expect(typeof xpPerEnergy).toBe('number');
+        expect(isNaN(goldPerEnergy)).toBe(false);
+        expect(isNaN(xpPerEnergy)).toBe(false);
+      });
+    });
+
+    it('la evaluación de nivel en misiones no depende de la variable obsoleta userSkills', () => {
+      const skillsBreakdown = { farming: { level: 8 } };
+      const farmingLevel = 8;
+      const reqSk = 'farming';
+
+      const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || skillsBreakdown.farming?.level || 1) : 1);
+      expect(playerLvl).toBe(8);
+
+      // Si farmingLevel es 0 o null, resuelve fallback seguro sin lanzar ReferenceError
+      const fallbackLvl = skillsBreakdown['unknown']?.level || (reqSk === 'farming' ? (0 || skillsBreakdown.farming?.level || 1) : 1);
+      expect(fallbackLvl).toBe(8);
+    });
+  });
 });

@@ -49,10 +49,28 @@ import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
 import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
 import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
 import rulesData from '../data/rules.json';
+import ErrorBoundary from './ErrorBoundary';
 
-// Singleton de AudioContext para alarmas de producción (O15)
+// Singleton de AudioContext para alarmas de producción (O15) con respeto a Autoplay Policy
 let sharedAudioContext = null;
+let hasUserInteracted = false;
+if (typeof window !== 'undefined') {
+  const markInteracted = () => {
+    hasUserInteracted = true;
+    if (sharedAudioContext && sharedAudioContext.state === 'suspended') {
+      sharedAudioContext.resume().catch(() => {});
+    }
+    window.removeEventListener('click', markInteracted);
+    window.removeEventListener('keydown', markInteracted);
+    window.removeEventListener('touchstart', markInteracted);
+  };
+  window.addEventListener('click', markInteracted, { passive: true });
+  window.addEventListener('keydown', markInteracted, { passive: true });
+  window.addEventListener('touchstart', markInteracted, { passive: true });
+}
+
 function getSharedAudioContext() {
+  if (!hasUserInteracted) return null; // Prevenir avisos de Autoplay Policy hasta el primer gesto del usuario
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return null;
@@ -1070,6 +1088,23 @@ export default function BloomshireCommand() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [connectCode, setConnectCode] = useState('');
   const [connectFeedback, setConnectFeedback] = useState(null);
+  const [injectedWallets, setInjectedWallets] = useState([]);
+  const [selectedWalletUuid, setSelectedWalletUuid] = useState(null);
+
+  // Detección de Billeteras mediante estándar EIP-6963 (evita colisión entre Backpack, MetaMask, Rabby, etc.)
+  useEffect(() => {
+    const handleAnnounce = (event) => {
+      if (!event.detail?.info || !event.detail?.provider) return;
+      setInjectedWallets(prev => {
+        if (prev.some(w => w.info.uuid === event.detail.info.uuid || w.info.name === event.detail.info.name)) return prev;
+        return [...prev, event.detail];
+      });
+    };
+    window.addEventListener('eip6963:announceProvider', handleAnnounce);
+    window.dispatchEvent(new Event('eip6963:requestProvider'));
+    return () => window.removeEventListener('eip6963:announceProvider', handleAnnounce);
+  }, []);
+
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
   const [lastUpdateCheck, setLastUpdateCheck] = useState(() => new Date().toLocaleTimeString());
   const [updateStatusMessage, setUpdateStatusMessage] = useState('Todos los módulos y catálogos están 100% sincronizados con el juego.');
@@ -1080,31 +1115,36 @@ export default function BloomshireCommand() {
     { id: 4, time: new Date().toLocaleTimeString(), text: 'Registro de aldeanos: 67 NPCs indexados con tabla de regalos y horarios.', type: 'info' }
   ]);
 
-  const handleConnectAndSignWallet = async () => {
-    if (typeof window.ethereum === 'undefined') {
-      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Rabby, etc.) en este navegador.' });
+  const handleConnectAndSignWallet = async (explicitProvider = null) => {
+    const activeProvider = explicitProvider || 
+      (selectedWalletUuid ? injectedWallets.find(w => w.info.uuid === selectedWalletUuid)?.provider : null) ||
+      (injectedWallets[0]?.provider) ||
+      (typeof window !== 'undefined' ? window.ethereum : null);
+
+    if (!activeProvider) {
+      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Backpack, Rabby, etc.) en este navegador.' });
       return;
     }
     try {
       setConnectFeedback({ type: 'loading', text: 'Solicitando conexión con tu billetera Web3...' });
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
       const account = accounts && accounts[0] ? accounts[0].toLowerCase() : null;
       if (!account) {
-        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta.' });
+        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta en la billetera.' });
         return;
       }
 
-      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma...' });
+      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma (nonce)...' });
       const nonceRes = await fetch(`/api/auth?action=nonce&wallet=${encodeURIComponent(account)}`);
       if (!nonceRes.ok) {
         const errJson = await nonceRes.json().catch(() => ({}));
-        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener nonce de firma.' });
+        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener reto de firma del servidor.' });
         return;
       }
       const { nonce, message } = await nonceRes.json();
 
       setConnectFeedback({ type: 'loading', text: 'Firma el mensaje en tu billetera para verificar tu identidad (sin costo de gas)...' });
-      const signature = await window.ethereum.request({
+      const signature = await activeProvider.request({
         method: 'personal_sign',
         params: [message, account]
       });
@@ -1150,7 +1190,7 @@ export default function BloomshireCommand() {
       }
       setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
     } catch (err) {
-      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada.' });
+      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada en la billetera.' });
     }
   };
 
@@ -2278,15 +2318,11 @@ export default function BloomshireCommand() {
       if (event.source !== window) return;
       if (event.data?.type === 'MONIOS_COMPANION_SYNC' && event.data.game === 'bloomshire') {
         applyIncomingSync(event.data.data, 'extension');
-        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
-        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
     const handleCompanionCustomEvent = (event) => {
       if (event.detail?.game === 'bloomshire') {
         applyIncomingSync(event.detail.data, 'extension');
-        setConnectFeedback({ type: 'success', text: '¡Partida detectada y sincronizada desde la extensión!' });
-        setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
       }
     };
 
@@ -3195,6 +3231,7 @@ export default function BloomshireCommand() {
 
       {/* 3. CONTENIDO PRINCIPAL SEGÚN PESTAÑA */}
       <div className="flex-1 overflow-hidden relative">
+        <ErrorBoundary key={activeTab} title={`Error al cargar el módulo (${activeTab})`} onBack={() => setActiveTab('mega_atlas')}>
 
         {/* ==============================================================
             TAB: BUSCADOR UNIVERSAL DE ÍTEMS ("¿DÓNDE LO CONSIGO?") - 359 ÍTEMS
@@ -5237,7 +5274,7 @@ export default function BloomshireCommand() {
                   else if (skWord.includes('cocin') || skWord.includes('cook')) reqSk = 'cooking';
 
                   if (reqSk && reqLvl) {
-                    const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || userSkills.farming || 6) : 1);
+                    const playerLvl = skillsBreakdown[reqSk]?.level || (reqSk === 'farming' ? (farmingLevel || skillsBreakdown.farming?.level || 1) : 1);
                     if (playerLvl >= reqLvl) {
                       resolvedStepNum++;
                       continue;
@@ -6164,7 +6201,7 @@ export default function BloomshireCommand() {
                 filteredAndSortedCrafts.map((recipe, idx) => {
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
-                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
 
                   return (
                     <div 
@@ -6307,7 +6344,7 @@ export default function BloomshireCommand() {
                 filteredAndSortedCrafts.map((recipe, idx) => {
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
-                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, xp } = recipe;
+                  const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
 
                   return (
                     <div 
@@ -7324,6 +7361,7 @@ export default function BloomshireCommand() {
         )}
 
         {/* MODAL DE CONEXIÓN Y DESBLOQUEO PREMIUM */}
+        </ErrorBoundary>
       
         {/* MODAL DE PERFIL DE GRANJERO, NFTS Y BOOSTS */}
         {showProfileModal && (
@@ -7524,16 +7562,36 @@ export default function BloomshireCommand() {
                         <div className="pt-1">
                           <button
                             type="button"
-                            onClick={handleConnectAndSignWallet}
+                            onClick={() => handleConnectAndSignWallet()}
                             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-900/30 transition-all active:scale-[0.98]"
                           >
                             <span>🔐 Conectar y Firmar con Billetera (Web3)</span>
                           </button>
                         </div>
+                        {injectedWallets.length > 1 && (
+                          <div className="space-y-1.5 pt-1">
+                            <div className="text-[10px] text-cyan-300 font-bold uppercase tracking-wider">
+                              Seleccionar Billetera (EIP-6963):
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              {injectedWallets.map(w => (
+                                <button
+                                  key={w.info.uuid}
+                                  type="button"
+                                  onClick={() => handleConnectAndSignWallet(w.provider)}
+                                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0d172e] hover:bg-cyan-950/80 border border-cyan-500/40 text-cyan-200 text-xs font-bold cursor-pointer transition-all active:scale-95"
+                                >
+                                  {w.info.icon && <img src={w.info.icon} alt={w.info.name} className="w-3.5 h-3.5 rounded" />}
+                                  <span>{w.info.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
                           <span>✓ Compatible con EVM (Ethereum / Arbitrum)</span>
                           <span>•</span>
-                          <span>✓ Sesión JWT segura de 7 días</span>
+                          <span>✓ Sesión JWT segura de 24 horas (renovable)</span>
                         </div>
                       </div>
 
@@ -7545,6 +7603,9 @@ export default function BloomshireCommand() {
                         <p className="text-slate-300 leading-relaxed text-[11px]">
                           La extensión oficial <b>Bloomshire Companion</b> lee tu partida localmente en tu navegador con 0 latencia:
                         </p>
+                        <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200/90 text-[10.5px]">
+                          ℹ️ <b>Nota:</b> La extensión sincroniza tus existencias locales. Para desbloquear los módulos con candado (Misiones, Liquidador y Asesor IA), firma con tu billetera en la <b>Opción 1</b>.
+                        </div>
                         <div className="pt-1 pb-1">
                           <button
                             type="button"
@@ -7560,15 +7621,19 @@ export default function BloomshireCommand() {
                                     const parsed = JSON.parse(snap);
                                     if (parsed && (parsed.gold > 0 || (parsed.inventory && parsed.inventory.length > 0))) {
                                       applyIncomingSync(parsed, 'cache');
-                                      setConnectFeedback({ type: 'success', text: '¡Partida vinculada desde la caché de la extensión!' });
-                                      setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1200);
+                                      setConnectFeedback({ 
+                                        type: 'success', 
+                                        text: '¡Partida vinculada desde la caché de la extensión! Recuerda firmar en la Opción 1 para desbloquear los candados.' 
+                                      });
                                       return;
                                     }
                                   } catch (_) {}
                                 }
                                 if (w && w.startsWith('0x')) {
-                                  setConnectFeedback({ type: 'success', text: `¡Partida vinculada a ${w.slice(0, 6)}...!` });
-                                  setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
+                                  setConnectFeedback({ 
+                                    type: 'success', 
+                                    text: `¡Partida vinculada a ${w.slice(0, 6)}...! Recuerda firmar en la Opción 1 para desbloquear los candados.` 
+                                  });
                                 } else {
                                   setConnectFeedback({ 
                                     type: 'info', 
