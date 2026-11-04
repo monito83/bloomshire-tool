@@ -11558,8 +11558,17 @@
   // Algoritmo exacto de rules.js (Energy.#walk + THE REWORK 2026-10-26)
   function computeLiveEnergyAndBed(saveEnergy, saveRoot, liveEnergyOverride) {
     const now = Date.now();
-    const maxE = 150;
-    const regenRate = 1 / (3 * 60000); // +1 energía cada 3 minutos (VIP / 10 Founding Farmers)
+    // VIP canónico: vigente por save.vipUntil o save.perks.vipUntil (rules.js:898)
+    const vipTo = Math.max(saveRoot?.vipUntil ?? 0, saveRoot?.perks?.vipUntil ?? 0);
+    const isVip = vipTo > now;
+    // Holder canónico según play.js:2118: !!save.perks
+    const isHolder = Boolean(saveRoot?.perks);
+    const isHolderOrVip = isHolder || isVip;
+    const maxE = isHolderOrVip ? 150 : 100;
+    const regenRate = isVip ? 1 / (3 * 60000) : 0; // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
+    const sleepADay = isHolderOrVip
+      ? (Math.max(3, Math.min(5, saveRoot?.perks?.sleeps || 3)) * 150)
+      : 200;
 
     if (typeof saveEnergy === 'number') {
       const val = typeof liveEnergyOverride === 'number' ? liveEnergyOverride : Math.floor(Math.min(maxE, Math.max(0, saveEnergy)));
@@ -11572,13 +11581,13 @@
           canRest: val < maxE,
           sleepExhausted: false,
           nextRestMinutes: 0,
-          bedWaitText: 'Lista (450/450⚡)',
-          sleepLeft: 450,
-          sleepADay: 450,
+          bedWaitText: `Lista (${sleepADay}/${sleepADay}⚡)`,
+          sleepLeft: sleepADay,
+          sleepADay: sleepADay,
           usedSleepToday: 0,
           foodEatenHalfDay: 0,
           foodCapHalfDay: 90,
-          regenPer3Min: 1
+          regenPer3Min: isVip ? 1 : 0
         }
       };
     }
@@ -11587,8 +11596,6 @@
     let v = typeof e.v === 'number' ? e.v : maxE;
     let t = (typeof e.at === 'number' && e.at > 0) ? e.at : now;
     const r = (e.recovery && typeof e.recovery === 'object') ? e.recovery : null;
-    // VIP activo para 10 Founding Farmers o save.vipUntil
-    const vipTo = Math.max(saveRoot?.vipUntil ?? 0, saveRoot?.perks?.vipUntil ?? 0, now + 86400000);
 
     let sleptGain = 0;
     const grow = (to, rate) => {
@@ -11621,9 +11628,8 @@
       typeof liveEnergyOverride === 'number' ? liveEnergyOverride : 0
     ));
 
-    // Cuota diaria de sueño (THE REWORK 2026-10-26: 3 barras = 450⚡ por día UTC para VIP/Founders)
+    // Cuota diaria de sueño según perfil real
     const utcDay = Math.floor(now / 86400000);
-    const sleepADay = 450;
     let usedSleepToday = (e.slept && e.slept.day === utcDay)
       ? (Number(e.slept.n) || 0)
       : (typeof e.sleepLeft === 'number' ? Math.max(0, sleepADay - e.sleepLeft) : 0);
@@ -11638,7 +11644,7 @@
     const recovering = Boolean(r && now < (r.until || 0) && exactVal < maxE - 1e-3);
     const recoverMinutesLeft = recovering ? Math.max(1, Math.ceil((r.until - now) / 60000)) : 0;
 
-    // Si agotó los 450⚡ de sueño del día UTC, espera hasta la próxima medianoche UTC (00:00 UTC)
+    // Si agotó el sueño del día UTC, espera hasta la próxima medianoche UTC (00:00 UTC)
     const sleepExhausted = sleepLeft <= 0;
     const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;
     const nextRestMinutes = sleepExhausted ? Math.max(1, Math.ceil(msToNextUtcMidnight / 60000)) : 0;
@@ -11652,7 +11658,7 @@
         ? `${hoursWait}h ${minsWait}m`
         : `Lista (${sleepLeft}/${sleepADay}⚡)`;
 
-    // Comida por medio día UTC (12h): 90⚡ para VIP/Founders (60% de 150)
+    // Comida por medio día UTC (12h): 90⚡ para VIP/Founders, 60⚡ base
     const utcHalf = Math.floor(now / 43200000);
     const foodEatenHalfDay = (e.eaten && e.eaten.half === utcHalf) ? Math.round(Number(e.eaten.n) || 0) : 0;
     const foodCapHalfDay = 90;
@@ -11678,7 +11684,7 @@
         usedSleepToday: Math.round(usedSleepToday),
         foodEatenHalfDay,
         foodCapHalfDay,
-        regenPer3Min: 1
+        regenPer3Min: isVip ? 1 : 0
       }
     };
   }
@@ -11693,8 +11699,11 @@
     const avyn = typeof purse.avyn === 'number' ? purse.avyn : (typeof save.avyn === 'number' ? save.avyn : (latestBloomshireState?.avyn ?? 0));
     const bank = typeof purse.bank === 'number' ? purse.bank : (latestBloomshireState?.bank ?? 0);
 
-    // 1. ENERGÍA EXACTA (#walk + +1 cada 3m VIP) Y MONITOR DE CAMA (450⚡/día UTC + Reset 00:00 UTC)
-    const maxE = 150;
+    // 1. ENERGÍA EXACTA (#walk + +1 cada 3m VIP) Y MONITOR DE CAMA
+    const vipTo = Math.max(save?.vipUntil ?? 0, save?.perks?.vipUntil ?? 0);
+    const isVip = vipTo > Date.now();
+    const isHolder = Boolean(save?.perks);
+    const maxE = (isVip || isHolder) ? 150 : 100;
     const rawEnergyInput = save._liveEnergyObj || (save.energy && typeof save.energy === 'object' ? save.energy : (typeof save.energy === 'number' ? { v: save.energy } : {}));
     const { currentEnergy: energy, rawEnergyObj, energyMeta } = computeLiveEnergyAndBed(
       rawEnergyInput,
@@ -12107,11 +12116,12 @@
       maxEnergy: maxE,
       rawEnergyObj,
       energyMeta,
+      isVip,
       shards,
       avyn,
       bank,
       farmingLevel,
-      farmersCount: rawSave?.farmersCount ?? rawSave?.farmers ?? 0,
+      perks: save?.perks || null,
       inventory: finalInventory,
       activeOrders: activeOrders.length > 0 ? activeOrders : (latestBloomshireState?.activeOrders || []),
       activeQuest: activeQuestLabel,
