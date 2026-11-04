@@ -419,6 +419,106 @@
     const rawList = [];
     const now = Date.now() + serverTimeOffset;
 
+    // Algoritmo canónico oficial de crecimiento (game/farm.js: growth y grown)
+    function computeCropGrowth(crop, nowTs = Date.now(), outdoors = false, seed = null) {
+      if (!crop || typeof crop !== 'object') return null;
+      if (!seed) return null;
+
+      const last = (typeof seed.stages === 'number' ? seed.stages : (seed.stages?.length ?? seed.waterStages ?? 5)) - 1;
+      const from = Math.min(crop.base ?? 0, Math.max(0, last - 1));
+      const span = Math.max(1, last - from);
+
+      const baseMinutes = crop.regrowing
+        ? (seed.regrow ?? seed.regrowMinutes ?? seed.grow ?? seed.growMinutes ?? 15)
+        : (seed.grow ?? seed.growMinutes ?? 15);
+      const minutes = baseMinutes * (crop.k ?? 1);
+      const total = minutes * 60e3;
+      const per = total / span;
+      const two = minutes > 60 && span >= 2;
+      const wait = two ? last - 1 : last;
+      const late = 5 * 3600e3; // WITHER.afterRipeHours = 5
+
+      if (!crop.w1) {
+        return {
+          stage: from,
+          last,
+          ripe: false,
+          needs: 'first',
+          readyAt: null,
+          two,
+          per,
+          withered: false,
+          statusText: 'Necesita agua (1.er riego) 💧'
+        };
+      }
+
+      const first = Math.min(wait, from + Math.floor(Math.max(0, nowTs - crop.w1) / per));
+      if (!two) {
+        const isRipe = first >= last;
+        const readyAt = crop.w1 + total;
+        const withered = isRipe && (nowTs >= readyAt + late);
+        return {
+          stage: first,
+          last,
+          ripe: isRipe && !withered,
+          needs: null,
+          readyAt,
+          two,
+          per,
+          withered,
+          statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
+        };
+      }
+
+      if (first < wait) {
+        const waitAt = crop.w1 + (wait - from) * per;
+        return {
+          stage: first,
+          last,
+          ripe: false,
+          needs: null,
+          readyAt: null,
+          waitAt,
+          two,
+          per,
+          withered: false,
+          statusText: 'Creciendo (esperando 2.° riego) 🌱'
+        };
+      }
+
+      if (!crop.w2) {
+        const waitAt = crop.w1 + (wait - from) * per;
+        return {
+          stage: wait,
+          last,
+          ripe: false,
+          needs: 'second',
+          readyAt: null,
+          waitAt,
+          two,
+          per,
+          withered: false,
+          statusText: '¡Necesita 2.° riego! 💧'
+        };
+      }
+
+      const stage = Math.min(last, wait + Math.floor(Math.max(0, nowTs - crop.w2) / per));
+      const isRipe = stage >= last;
+      const readyAt = crop.w2 + per;
+      const withered = isRipe && (nowTs >= readyAt + late);
+      return {
+        stage,
+        last,
+        ripe: isRipe && !withered,
+        needs: null,
+        readyAt,
+        two,
+        per,
+        withered,
+        statusText: withered ? 'Marchito 🥀' : (isRipe ? '¡Listo para cosechar! 🌾' : 'Creciendo 🌱')
+      };
+    }
+
     function parseCellToCrop(cell, fieldKey, cellIdx) {
       if (!cell || typeof cell !== 'object') return null;
       // En Bloomshire farm.js, una celda es { tilled: true, crop: { s: index, t: now, w1: ... } } o un overlay { s: index, t: ... }
@@ -429,23 +529,20 @@
       if (seedRaw === undefined || seedRaw === null || seedRaw === '' || seedRaw === -1) return null;
       if (c.harvested || c.empty || c.reaped || c.harvestedAt) return null;
 
-            let seedDef = null;
+      let seedDef = null;
       if (typeof seedRaw === 'number') {
         seedDef = SEEDS_INFO[seedRaw] || null;
       } else if (typeof seedRaw === 'string') {
         const str = seedRaw.trim();
-        // Caso A: 'seed:0', 'seed:25', etc.
         const colonMatch = str.match(/^seed:(\d+)$/i);
         if (colonMatch) {
           const idx = parseInt(colonMatch[1], 10);
           seedDef = SEEDS_INFO[idx] || null;
         }
-        // Caso B: número puro en string '0', '1', etc.
         if (!seedDef && /^\d+$/.test(str)) {
           const idx = parseInt(str, 10);
           seedDef = SEEDS_INFO[idx] || null;
         }
-        // Caso C: búsqueda por ID o Nombre (ej. 'Carrot', 'Zanahoria')
         if (!seedDef) {
           const normSeed = str.toLowerCase()
             .replace(/^seed[:_]/i, '')
@@ -461,16 +558,75 @@
 
       const seedName = seedDef ? seedDef.name : (c.name || String(seedRaw));
       const seedIcon = seedDef ? seedDef.icon : '🌱';
-      const growMinutes = c.grow || (c.dur ? Math.round(c.dur / 60) : (seedDef ? seedDef.grow : 15));
-      const totalMs = growMinutes * 60 * 1000;
-      const wateredAt = c.w1 || c.watered || c.w || null;
-      const plantedAt = c.t || c.planted || c.plantedAt || wateredAt || now;
-      const readyAt = c.ready || c.readyAt || c.r || c.matureAt || (wateredAt ? (wateredAt + totalMs) : null);
-      const needsWater = !wateredAt;
-      const isRipe = Boolean(readyAt && now >= readyAt);
-      const remainingMs = readyAt ? Math.max(0, readyAt - now) : 0;
       const cellId = cell.cell ?? cell.cellId ?? cellIdx;
       const normField = normalizeFarmFieldKey(fieldKey);
+
+      // Consulta prioritaria al motor en vivo en pantalla: window.play.farm.state(cellId)
+      let growthState = null;
+      const livePlay = window.play || window.bloomshire?.play;
+      if (livePlay?.farm && typeof livePlay.farm.state === 'function') {
+        try {
+          const st = livePlay.farm.state(cellId, now);
+          if (st && typeof st === 'object' && typeof st.stage === 'number') {
+            growthState = {
+              stage: st.stage,
+              last: st.last,
+              ripe: Boolean(st.ripe),
+              needs: st.needs || null,
+              readyAt: st.readyAt || null,
+              waitAt: st.waitAt || null,
+              two: Boolean(st.two),
+              per: st.per || null,
+              withered: Boolean(st.withered),
+              statusText: st.withered ? 'Marchito 🥀' : (st.ripe ? '¡Listo para cosechar! 🌾' : (st.needs === 'first' ? 'Necesita agua (1.er riego) 💧' : (st.needs === 'second' ? '¡Necesita 2.° riego! 💧' : 'Creciendo 🌱'))),
+              source: 'live_engine'
+            };
+          }
+        } catch (_) {}
+      }
+
+      // Si no está en el motor activo actual, simulación canónica de farm.js con computeCropGrowth
+      if (!growthState) {
+        if (seedDef) {
+          growthState = computeCropGrowth(c, now, false, seedDef);
+          if (growthState) growthState.source = 'simulation';
+        }
+      }
+
+      if (!growthState) {
+        // Sin datos suficientes para simular
+        return {
+          id: `${normField}_${cellId}`,
+          cellId,
+          fieldKey: normField,
+          seedId: seedDef?.id || String(seedRaw),
+          name: seedName,
+          icon: seedIcon,
+          growMinutes: seedDef?.grow || 15,
+          regrowMinutes: seedDef?.regrow || null,
+          harvests: seedDef?.harvests || 1,
+          stage: 0,
+          lastStage: 4,
+          plantedAt: c.t || now,
+          wateredAt: c.w1 || null,
+          readyAt: null,
+          needsWater: true,
+          needsWaterStage: 'first',
+          isRipe: false,
+          isWithered: false,
+          twoWaterings: false,
+          k: c.k || 1,
+          source: 'unknown',
+          statusText: 'Sin datos en vivo',
+          remainingMs: 0,
+          type: 'crop'
+        };
+      }
+
+      const wateredAt = c.w1 || null;
+      const plantedAt = c.t || c.planted || c.plantedAt || wateredAt || now;
+      const readyAt = growthState.readyAt;
+      const remainingMs = readyAt ? Math.max(0, readyAt - now) : 0;
 
       return {
         id: `${normField}_${cellId}`,
@@ -479,17 +635,30 @@
         seedId: seedDef?.id || String(seedRaw),
         name: seedName,
         icon: seedIcon,
-        growMinutes,
+        growMinutes: seedDef?.grow || 15,
+        regrowMinutes: seedDef?.regrow || null,
+        harvests: seedDef?.harvests || 1,
+        harvestCount: c.h || 0,
+        stage: growthState.stage,
+        lastStage: growthState.last,
         plantedAt,
         wateredAt,
+        wateredAt2: c.w2 || null,
         readyAt,
-        needsWater,
-        isRipe,
+        waitAt: growthState.waitAt || null,
+        witherAt: readyAt ? (readyAt + 5 * 3600e3) : null,
+        needsWater: Boolean(growthState.needs),
+        needsWaterStage: growthState.needs || null,
+        isRipe: Boolean(growthState.ripe),
+        isWithered: Boolean(growthState.withered),
+        twoWaterings: Boolean(growthState.two),
+        k: c.k || 1,
+        source: growthState.source || 'simulation',
+        statusText: growthState.statusText,
         remainingMs,
         type: 'crop'
       };
     }
-
     try {
       const activeSave = window.__bloomshire_master_save || save;
       const farmSources = new Map();

@@ -13,7 +13,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🎃",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~750g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~750g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 750
   },
   {
     "id": "Sunfire Pepper",
@@ -29,7 +31,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🌶️",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~450g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~450g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 450
   },
   {
     "id": "Diamond Strawberry",
@@ -45,7 +49,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🍓",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~500g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~500g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 500
   },
   {
     "id": "Sapphire Blueberry",
@@ -61,7 +67,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🫐",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~550g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~550g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 550
   },
   {
     "id": "Pumpkin",
@@ -75,7 +83,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🎃",
-    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 2350,
+    "unitP2p": 2350
   },
   {
     "id": "Strawberry",
@@ -89,7 +99,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍓",
-    "desc": "Cultivo de Bloomshire (80 min). Véndelo a Odette por 990g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (80 min). Véndelo a Odette por 990g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 990,
+    "unitP2p": 990
   },
   {
     "id": "Blueberry",
@@ -103,7 +115,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫐",
-    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1150,
+    "unitP2p": 1150
   },
   {
     "id": "Hot Pepper",
@@ -119,7 +133,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌶️",
-    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 740,
+    "unitP2p": 740
   },
   {
     "id": "Wood",
@@ -132,7 +148,9 @@
     "seller": "Pell (Carpintería)",
     "qty": 0,
     "cat": "resource",
-    "icon": "🪵"
+    "icon": "🪵",
+    "unitNpc": 29,
+    "unitP2p": 29
   },
   {
     "id": "Stone",
@@ -145,7 +163,9 @@
     "seller": "Pell / Bram",
     "qty": 0,
     "cat": "resource",
-    "icon": "🪨"
+    "icon": "🪨",
+    "unitNpc": 14,
+    "unitP2p": 14
   },
   {
     "id": "Wooden Plank",
@@ -160,7 +180,9 @@
     "seller": "Pell (Carpintería)",
     "qty": 0,
     "cat": "resource",
-    "icon": "🪵"
+    "icon": "🪵",
+    "unitNpc": 35,
+    "unitP2p": 35
   },
   {
     "id": "Copper Bar",
@@ -175,7 +197,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "resource",
-    "icon": "🧱"
+    "icon": "🧱",
+    "unitNpc": 45,
+    "unitP2p": 45
   },
   {
     "id": "Quartz",
@@ -188,7 +212,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "💎"
+    "icon": "💎",
+    "unitNpc": 60,
+    "unitP2p": 60
   },
   {
     "id": "Rose Quartz",
@@ -201,7 +227,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "💎"
+    "icon": "💎",
+    "unitNpc": 97,
+    "unitP2p": 97
   },
   {
     "id": "Silvercap Mushroom",
@@ -214,7 +242,9 @@
     "seller": "Odette (General)",
     "qty": 0,
     "cat": "forage",
-    "icon": "🍄"
+    "icon": "🍄",
+    "unitNpc": 160,
+    "unitP2p": 160
   },
   {
     "id": "Glowcap Mushroom",
@@ -227,7 +257,9 @@
     "seller": "Odette (General)",
     "qty": 0,
     "cat": "forage",
-    "icon": "🍄"
+    "icon": "🍄",
+    "unitNpc": 120,
+    "unitP2p": 120
   },
   {
     "id": "Carrot",
@@ -241,7 +273,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥕",
-    "desc": "Cultivo de Bloomshire (2 min). Véndelo a Odette por 40g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (2 min). Véndelo a Odette por 40g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 40,
+    "unitP2p": 40
   },
   {
     "id": "Parsnip",
@@ -255,7 +289,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥔",
-    "desc": "Cultivo de Bloomshire (5 min). Véndelo a Odette por 73g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (5 min). Véndelo a Odette por 73g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 73,
+    "unitP2p": 73
   },
   {
     "id": "Spring Onion",
@@ -270,7 +306,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🧅",
-    "desc": "Cultivo de Bloomshire (6 min). Véndelo a Odette por 89g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (6 min). Véndelo a Odette por 89g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 89,
+    "unitP2p": 89
   },
   {
     "id": "Wheat",
@@ -284,7 +322,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌾",
-    "desc": "Cultivo de Bloomshire (15 min). Véndelo a Odette por 185g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (15 min). Véndelo a Odette por 185g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 185,
+    "unitP2p": 185
   },
   {
     "id": "Potato",
@@ -298,7 +338,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥔",
-    "desc": "Cultivo de Bloomshire (8 min). Véndelo a Odette por 105g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (8 min). Véndelo a Odette por 105g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 105,
+    "unitP2p": 105
   },
   {
     "id": "Cabbage",
@@ -312,7 +354,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥬",
-    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 240,
+    "unitP2p": 240
   },
   {
     "id": "Onion",
@@ -326,7 +370,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🧅",
-    "desc": "Cultivo de Bloomshire (12 min). Véndelo a Odette por 150g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (12 min). Véndelo a Odette por 150g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 150,
+    "unitP2p": 150
   },
   {
     "id": "Marigold",
@@ -340,7 +386,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌼",
-    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 240,
+    "unitP2p": 240
   },
   {
     "id": "Rice",
@@ -354,7 +402,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌾",
-    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 355,
+    "unitP2p": 355
   },
   {
     "id": "Broccoli",
@@ -368,7 +418,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥦",
-    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (30 min). Véndelo a Odette por 355g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 355,
+    "unitP2p": 355
   },
   {
     "id": "Sunflower",
@@ -382,7 +434,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌻",
-    "desc": "Cultivo de Bloomshire (35 min). Véndelo a Odette por 420g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (35 min). Véndelo a Odette por 420g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 420,
+    "unitP2p": 420
   },
   {
     "id": "Cucumber",
@@ -396,7 +450,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥒",
-    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 490,
+    "unitP2p": 490
   },
   {
     "id": "Tomato",
@@ -410,7 +466,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍅",
-    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 545,
+    "unitP2p": 545
   },
   {
     "id": "Adzuki Bean",
@@ -426,7 +484,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫘",
-    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 545,
+    "unitP2p": 545
   },
   {
     "id": "Green Beans",
@@ -442,7 +502,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫛",
-    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 605,
+    "unitP2p": 605
   },
   {
     "id": "Eggplant",
@@ -456,7 +518,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍆",
-    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 740,
+    "unitP2p": 740
   },
   {
     "id": "Star Fruit",
@@ -472,7 +536,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "⭐",
-    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 4150g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 4150g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 4150,
+    "unitP2p": 4150
   },
   {
     "id": "Corn",
@@ -486,7 +552,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌽",
-    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (40 min). Véndelo a Odette por 490g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 490,
+    "unitP2p": 490
   },
   {
     "id": "Parsnip Soup",
@@ -500,7 +568,9 @@
     "seller": "Tamsin / Consumo",
     "qty": 0,
     "cat": "food",
-    "icon": "🍲"
+    "icon": "🍲",
+    "unitNpc": 0,
+    "unitP2p": 50
   },
   {
     "id": "Carp",
@@ -513,7 +583,9 @@
     "seller": "Wren (Pesquería)",
     "qty": 0,
     "cat": "fish",
-    "icon": "🐟"
+    "icon": "🐟",
+    "unitNpc": 16,
+    "unitP2p": 16
   },
   {
     "id": "Pike Fish",
@@ -526,7 +598,9 @@
     "seller": "Wren (Pesquería)",
     "qty": 0,
     "cat": "fish",
-    "icon": "🐟"
+    "icon": "🐟",
+    "unitNpc": 24,
+    "unitP2p": 24
   },
   {
     "id": "Golden Fish",
@@ -539,7 +613,9 @@
     "seller": "Wren (Pesquería)",
     "qty": 0,
     "cat": "fish",
-    "icon": "🐠"
+    "icon": "🐠",
+    "unitNpc": 905,
+    "unitP2p": 905
   },
   {
     "id": "Wood White",
@@ -553,7 +629,9 @@
     "seller": "Odette (General)",
     "qty": 0,
     "cat": "forage",
-    "icon": "🦋"
+    "icon": "🦋",
+    "unitNpc": 40,
+    "unitP2p": 40
   },
   {
     "id": "Topaz",
@@ -566,7 +644,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "💛"
+    "icon": "💛",
+    "unitNpc": 210,
+    "unitP2p": 210
   },
   {
     "id": "Sapphire",
@@ -579,7 +659,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "💙"
+    "icon": "💙",
+    "unitNpc": 320,
+    "unitP2p": 320
   },
   {
     "id": "Emerald",
@@ -592,7 +674,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "💚"
+    "icon": "💚",
+    "unitNpc": 480,
+    "unitP2p": 480
   },
   {
     "id": "Ruby",
@@ -606,7 +690,9 @@
     "seller": "Bram (Herrería)",
     "qty": 0,
     "cat": "ore",
-    "icon": "❤️"
+    "icon": "❤️",
+    "unitNpc": 750,
+    "unitP2p": 750
   },
   {
     "id": "Cauliflower",
@@ -620,7 +706,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥦",
-    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1150,
+    "unitP2p": 1150
   },
   {
     "id": "Cantaloupe",
@@ -635,7 +723,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍈",
-    "desc": "Cultivo de Bloomshire (100 min). Véndelo a Odette por 1250g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (100 min). Véndelo a Odette por 1250g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1250,
+    "unitP2p": 1250
   },
   {
     "id": "Sweet Potato",
@@ -650,7 +740,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍠",
-    "desc": "Cultivo de Bloomshire (70 min). Véndelo a Odette por 870g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (70 min). Véndelo a Odette por 870g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 870,
+    "unitP2p": 870
   },
   {
     "id": "Saffron",
@@ -664,7 +756,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌾",
-    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 3250,
+    "unitP2p": 3250
   },
   {
     "id": "Watermelon",
@@ -678,7 +772,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍉",
-    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1400,
+    "unitP2p": 1400
   },
   {
     "id": "Beetroot",
@@ -692,7 +788,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🟣",
-    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1550,
+    "unitP2p": 1550
   },
   {
     "id": "Grapes",
@@ -706,7 +804,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍇",
-    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1950,
+    "unitP2p": 1950
   },
   {
     "id": "Asparagus",
@@ -720,7 +820,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌱",
-    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (120 min). Véndelo a Odette por 1550g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1550,
+    "unitP2p": 1550
   },
   {
     "id": "Green Bell Pepper",
@@ -736,7 +838,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫑",
-    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 740,
+    "unitP2p": 740
   },
   {
     "id": "Red Bell Pepper",
@@ -752,7 +856,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌶️",
-    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 740,
+    "unitP2p": 740
   },
   {
     "id": "Yellow Bell Pepper",
@@ -768,7 +874,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫑",
-    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (60 min). Véndelo a Odette por 740g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 740,
+    "unitP2p": 740
   },
   {
     "id": "Blackberry",
@@ -782,7 +890,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫐",
-    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (50 min). Véndelo a Odette por 605g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 605,
+    "unitP2p": 605
   },
   {
     "id": "Pineapple",
@@ -796,7 +906,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍍",
-    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 3250,
+    "unitP2p": 3250
   },
   {
     "id": "Aloe",
@@ -811,7 +923,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🪴",
-    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1950,
+    "unitP2p": 1950
   },
   {
     "id": "Premium Seed",
@@ -827,7 +941,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "✨",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~300g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~300g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 300
   },
   {
     "id": "Crystal Grapes",
@@ -843,7 +959,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🍇",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~600g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~600g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 600
   },
   {
     "id": "Starbloom",
@@ -858,7 +976,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🌸",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~650g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~650g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 650
   },
   {
     "id": "Celestial Pineapple",
@@ -874,7 +994,9 @@
     "qty": 0,
     "cat": "vip",
     "icon": "🍍",
-    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~800g) o utilízala en recetas VIP."
+    "desc": "Cosecha Premium de 15m. Odette no la compra. Véndela en Rowan (~800g) o utilízala en recetas VIP.",
+    "unitNpc": 0,
+    "unitP2p": 800
   },
   {
     "id": "Winter Kale",
@@ -890,7 +1012,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥬❄️",
-    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (20 min). Véndelo a Odette por 240g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 240,
+    "unitP2p": 240
   },
   {
     "id": "Snow Turnip",
@@ -906,7 +1030,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "❄️",
-    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (45 min). Véndelo a Odette por 545g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 545,
+    "unitP2p": 545
   },
   {
     "id": "Frostberry",
@@ -921,7 +1047,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫐❄️",
-    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (90 min). Véndelo a Odette por 1150g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1150,
+    "unitP2p": 1150
   },
   {
     "id": "Ice Melon",
@@ -937,7 +1065,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍈❄️",
-    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (150 min). Véndelo a Odette por 1950g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1950,
+    "unitP2p": 1950
   },
   {
     "id": "Fireheart Pepper",
@@ -953,7 +1083,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌶️🔥",
-    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 2350,
+    "unitP2p": 2350
   },
   {
     "id": "Fairy Rose",
@@ -969,7 +1101,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌹✨",
-    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 1400,
+    "unitP2p": 1400
   },
   {
     "id": "Honeydew Melon",
@@ -985,7 +1119,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍈",
-    "desc": "Cultivo de Bloomshire (270 min). Véndelo a Odette por 5550g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (270 min). Véndelo a Odette por 5550g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 5550,
+    "unitP2p": 5550
   },
   {
     "id": "Purple Cauliflower",
@@ -1001,7 +1137,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🥦🟣",
-    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 6250g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 6250g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 6250,
+    "unitP2p": 6250
   },
   {
     "id": "Snow Pea",
@@ -1017,7 +1155,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🫛❄️",
-    "desc": "Cultivo de Bloomshire (330 min). Véndelo a Odette por 6900g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (330 min). Véndelo a Odette por 6900g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 6900,
+    "unitP2p": 6900
   },
   {
     "id": "Golden Beet",
@@ -1033,7 +1173,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🟡",
-    "desc": "Cultivo de Bloomshire (360 min). Véndelo a Odette por 7650g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (360 min). Véndelo a Odette por 7650g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 7650,
+    "unitP2p": 7650
   },
   {
     "id": "Black Tomato",
@@ -1049,7 +1191,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🍅🖤",
-    "desc": "Cultivo de Bloomshire (390 min). Véndelo a Odette por 8350g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (390 min). Véndelo a Odette por 8350g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 8350,
+    "unitP2p": 8350
   },
   {
     "id": "Blue Corn",
@@ -1065,7 +1209,9 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🌽🔵",
-    "desc": "Cultivo de Bloomshire (420 min). Véndelo a Odette por 9000g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (420 min). Véndelo a Odette por 9000g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 9000,
+    "unitP2p": 9000
   },
   {
     "id": "Dragon Fruit",
@@ -1081,6 +1227,110 @@
     "qty": 0,
     "cat": "crop",
     "icon": "🐉",
-    "desc": "Cultivo de Bloomshire (480 min). Véndelo a Odette por 10500g o entrégalo en el Tablón de Pedidos."
+    "desc": "Cultivo de Bloomshire (480 min). Véndelo a Odette por 10500g o entrégalo en el Tablón de Pedidos.",
+    "unitNpc": 10500,
+    "unitP2p": 10500
+  },
+  {
+    "id": "Moonlight Stew",
+    "name": "Estofado de Luz Lunar",
+    "unit": 140,
+    "unitNpc": 0,
+    "unitP2p": 140,
+    "seller": "Consumo (8⚡) / Mercado Rowan",
+    "matchKeys": [
+      "moonlight stew",
+      "estofado de luz lunar",
+      "moonlight_stew"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🍲✨",
+    "desc": "Otorga 8⚡ de energía y cuenta para la barra de comida diaria."
+  },
+  {
+    "id": "Sapphire Jam",
+    "name": "Mermelada de Zafiro",
+    "unit": 220,
+    "unitNpc": 0,
+    "unitP2p": 220,
+    "seller": "Consumo (+30% regen) / Mercado Rowan",
+    "matchKeys": [
+      "sapphire jam",
+      "mermelada de zafiro",
+      "sapphire_jam"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🫐🍯",
+    "desc": "Otorga 6⚡ de energía y acelera la regeneración pasiva +30% durante 15 minutos."
+  },
+  {
+    "id": "Hearty Stew",
+    "name": "Estofado Sustancioso",
+    "unit": 160,
+    "unitNpc": 0,
+    "unitP2p": 160,
+    "seller": "Consumo (20⚡) / Mercado Rowan",
+    "matchKeys": [
+      "hearty stew",
+      "estofado sustancioso",
+      "hearty_stew"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🍲",
+    "desc": "Plato caliente reconfortante. Otorga 20⚡ de energía."
+  },
+  {
+    "id": "Vegetable Stir Fry",
+    "name": "Salteado de Verduras",
+    "unit": 110,
+    "unitNpc": 0,
+    "unitP2p": 110,
+    "seller": "Consumo (15⚡) / Mercado Rowan",
+    "matchKeys": [
+      "vegetable stir fry",
+      "salteado de verduras",
+      "vegetable_stir_fry"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🥗",
+    "desc": "Salteado crujiente de verduras de temporada. Otorga 15⚡ de energía."
+  },
+  {
+    "id": "Berry Pie",
+    "name": "Pastel de Bayas",
+    "unit": 150,
+    "unitNpc": 0,
+    "unitP2p": 150,
+    "seller": "Consumo (22⚡) / Mercado Rowan",
+    "matchKeys": [
+      "berry pie",
+      "pastel de bayas",
+      "berry_pie"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🥧",
+    "desc": "Dulce tarta horneada con bayas silvestres. Otorga 22⚡ de energía."
+  },
+  {
+    "id": "Fruit Salad",
+    "name": "Ensalada de Frutas",
+    "unit": 95,
+    "unitNpc": 0,
+    "unitP2p": 95,
+    "seller": "Consumo (14⚡) / Mercado Rowan",
+    "matchKeys": [
+      "fruit salad",
+      "ensalada de frutas",
+      "fruit_salad"
+    ],
+    "qty": 0,
+    "cat": "food",
+    "icon": "🍓🥣",
+    "desc": "Refrescante mezcla de frutas. Otorga 14⚡ de energía."
   }
 ]

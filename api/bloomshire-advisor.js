@@ -15,7 +15,7 @@ function getCanonicalRulesSummary() {
   const ffTiers = r.foundingFarmers?.tiersByCount;
   return `
 ========================
-REGLAS CANÓNICAS VIGENTES (Build ${r.metadata?.buildHash || '124afc8d9ec7'} | Rules ${r.metadata?.rulesHash || 'a70eb5dd5113'}):
+REGLAS CANÓNICAS VIGENTES (Build ${r.metadata?.buildHash} | Rules ${r.metadata?.rulesHash}):
 ========================
 • Fórmula Oficial de XP: ${r.levelProgression?.formula || '100 * (level - 1)^2.7'}
 • Escala de Sueño Diario: Normal ${sleepTiers?.normal || 200}⚡ (2x100), VIP/Holder ${sleepTiers?.vipOrHolder || 450}⚡ (3x150), 10 Farmers ${sleepTiers?.holders10 || 600}⚡ (4x150), 20 Farmers ${sleepTiers?.holders20 || 750}⚡ (5x150).

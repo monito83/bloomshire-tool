@@ -1824,7 +1824,7 @@ export default function BloomshireCommand() {
       try { localStorage.setItem('bloomshire_cached_farming_level', String(data.farmingLevel)); } catch (_) {}
     }
 
-    // 2. Recalcular Energía Viva (+1 cada 3m VIP) y Reloj de Cama UTC
+    // 2. Recalcular Energía Viva (+1 cada 3m VIP), Sapphire Jam, Comida Diaria y Reloj de Cama UTC
     const liveEAndBed = computeClientLiveEnergyAndBed(
       data.rawEnergyObj || null,
       typeof data.currentEnergy === 'number' ? data.currentEnergy : 59,
@@ -1834,7 +1834,10 @@ export default function BloomshireCommand() {
         farmersCount: effectiveFarmersCount,
         isVip: effectiveIsVip,
         maxEnergy: computedMaxE,
-        perks: effectivePerks
+        perks: effectivePerks,
+        buffs: data.buffs || data.rawEnergyObj?.buffs,
+        ate: data.ate || data.rawEnergyObj?.ate,
+        sold: data.sold || data.rawEnergyObj?.sold
       }
     );
     if (isFromExtension || liveEAndBed.currentEnergy > 1) {
@@ -2088,7 +2091,10 @@ export default function BloomshireCommand() {
           farmersCount: farmersOwned,
           isVip,
           maxEnergy: computeMaxEnergy(isVip, isHolder),
-          perks: playerPerks
+          perks: playerPerks,
+          buffs: rawEnergyObj?.buffs,
+          ate: rawEnergyObj?.ate,
+          sold: rawEnergyObj?.sold
         }
       );
       if (rawEnergyObj) {
@@ -2147,12 +2153,103 @@ export default function BloomshireCommand() {
     }
   };
 
-  // Calcular valor total de liquidación
+  // Límites diarios de venta a tiendas NPC según rules.js (SELL_LIMITS = { perItem: 15, things: 60, gold: 12000 })
+  const utcDay = Math.floor(nowTime / 86400000);
+  const soldData = rawEnergyObj?.sold || null;
+  const isTodaySold = Boolean(soldData && soldData.day === utcDay);
+  const soldGoldToday = isTodaySold ? (Number(soldData.gold) || 0) : 0;
+  const soldThingsToday = isTodaySold ? (Number(soldData.n) || 0) : 0;
+  const soldItemsToday = isTodaySold ? (soldData.items || {}) : {};
+
+  const dailyGoldCap = isVip ? 15000 : 12000;
+  const dailyThingsCap = 60;
+  const dailyPerItemCap = 15;
+
+  const remainingGoldCap = Math.max(0, dailyGoldCap - soldGoldToday);
+  const remainingThingsCap = Math.max(0, dailyThingsCap - soldThingsToday);
+
+  // Desglose de liquidación canónica: Vendible hoy en tiendas NPC vs Excedente para Mercado Rowan (P2P)
+  const liquidationBreakdown = useMemo(() => {
+    let npcSellableGold = 0;
+    let npcSellableThings = 0;
+    let p2pMarketGold = 0;
+    let p2pMarketThings = 0;
+
+    let remainingThingsBudget = remainingThingsCap;
+    let remainingGoldBudget = remainingGoldCap;
+
+    const itemDetails = {};
+
+    inventoryCatalogData.forEach(item => {
+      const owned = itemQuantities[item.id] || 0;
+      if (owned <= 0) {
+        itemDetails[item.id] = { npcSellQty: 0, npcGold: 0, p2pQty: 0, p2pGold: 0, itemQuotaLeft: dailyPerItemCap };
+        return;
+      }
+
+      const isNpcSellable = item.cat !== 'vip' && item.cat !== 'food' && (item.unitNpc ?? item.unit ?? 0) > 0;
+      const npcPrice = isNpcSellable ? (item.unitNpc ?? item.unit ?? 0) : 0;
+      const p2pPrice = item.unitP2p ?? item.unit ?? 0;
+
+      if (!isNpcSellable) {
+        p2pMarketThings += owned;
+        p2pMarketGold += owned * p2pPrice;
+        itemDetails[item.id] = {
+          npcSellQty: 0,
+          npcGold: 0,
+          p2pQty: owned,
+          p2pGold: owned * p2pPrice,
+          isP2pOnly: true,
+          itemQuotaLeft: 0,
+          reason: item.cat === 'food' ? 'Plato Cocinado (0g en tiendas NPC, consumo o P2P)' : 'Cosecha VIP (Mercado Rowan)'
+        };
+        return;
+      }
+
+      const alreadySoldItem = Number(soldItemsToday[item.id]) || 0;
+      const itemQuotaLeft = Math.max(0, dailyPerItemCap - alreadySoldItem);
+
+      const candidateQty = Math.min(owned, itemQuotaLeft);
+      const fitThingsQty = Math.min(candidateQty, remainingThingsBudget);
+      const maxThingsByGold = npcPrice > 0 ? Math.floor(remainingGoldBudget / npcPrice) : fitThingsQty;
+      const actualNpcQty = Math.min(fitThingsQty, maxThingsByGold);
+
+      const actualNpcGold = actualNpcQty * npcPrice;
+      npcSellableThings += actualNpcQty;
+      npcSellableGold += actualNpcGold;
+      remainingThingsBudget -= actualNpcQty;
+      remainingGoldBudget -= actualNpcGold;
+
+      const surplusQty = owned - actualNpcQty;
+      const surplusGold = surplusQty * (p2pPrice || npcPrice);
+      p2pMarketThings += surplusQty;
+      p2pMarketGold += surplusGold;
+
+      itemDetails[item.id] = {
+        npcSellQty: actualNpcQty,
+        npcGold: actualNpcGold,
+        p2pQty: surplusQty,
+        p2pGold: surplusGold,
+        isP2pOnly: false,
+        itemQuotaLeft
+      };
+    });
+
+    return {
+      npcSellableGold,
+      npcSellableThings,
+      p2pMarketGold,
+      p2pMarketThings,
+      itemDetails
+    };
+  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday]);
+
+  // Calcular valor total de liquidación unificada
   const totalLiquidationValue = useMemo(() => {
     let sum = 0;
     inventoryCatalogData.forEach(item => {
       const qty = itemQuantities[item.id] || 0;
-      sum += qty * item.unit;
+      sum += qty * (item.unit || 0);
     });
     return sum;
   }, [itemQuantities]);
@@ -2636,9 +2733,19 @@ export default function BloomshireCommand() {
               </div>
 
               {/* Píldora de Energía */}
+              {energyMeta.isJamActive && (
+                <div
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-indigo-950/70 border border-indigo-400/50 text-indigo-300 font-bold text-xs shadow-sm shrink-0 animate-pulse"
+                  title={`Mermelada de Zafiro activa (+30% regeneración): +1.3⚡ cada 3m (${energyMeta.jamMinutesLeft}m restante)`}
+                >
+                  <span className="text-sm">🫐</span>
+                  <span className="font-mono text-xs font-black">{energyMeta.jamMinutesLeft}m</span>
+                  <span className="text-[10px] uppercase font-bold text-indigo-300 hidden sm:inline">+30%</span>
+                </div>
+              )}
               <div 
                 className="relative overflow-hidden flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12192a] border border-slate-700/60 text-slate-200 font-bold text-xs shadow-sm shrink-0 min-w-[125px]"
-                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (${isVip ? '+1⚡ cada 3m pasivo VIP' : 'Regen base'})`}
+                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (${energyMeta.isJamActive ? '🫐 Mermelada activa: +1.3⚡ cada 3m' : isVip ? '+1⚡ cada 3m pasivo VIP' : 'Regen base'})`}
               >
                 <div 
                   className="absolute inset-0 bg-gradient-to-r from-amber-600/30 to-amber-500/35 pointer-events-none transition-all duration-500"
@@ -3896,8 +4003,12 @@ export default function BloomshireCommand() {
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2.5">
                     {sortedInventoryCatalog.map(item => {
                       const qty = itemQuantities[item.id] || 0;
-                      const subtotal = qty * item.unit;
+                      const detail = liquidationBreakdown.itemDetails[item.id] || { npcSellQty: 0, npcGold: 0, p2pQty: qty, p2pGold: qty * (item.unit || 0), itemQuotaLeft: 15 };
                       const bd = getItemStorageBreakdown(item);
+                      const isFood = item.cat === 'food';
+                      const isVipCrop = item.cat === 'vip';
+                      const unitPrice = isFood || isVipCrop ? (item.unitP2p || item.unit) : (item.unitNpc ?? item.unit);
+
                       return (
                         <div 
                           key={item.id} 
@@ -3907,7 +4018,7 @@ export default function BloomshireCommand() {
                               : 'bg-[#0a0f1a] border-slate-800/60 opacity-60 hover:opacity-95'
                           }`}
                         >
-                          {/* Fila Superior: Ícono + Nombre Completo + Subtotal en Oro */}
+                          {/* Fila Superior: Ícono + Nombre Completo + Subtotal */}
                           <div className="flex items-start justify-between gap-2 min-w-0">
                             <div className="flex items-center gap-2 min-w-0 flex-1">
                               <ItemSprite name={item.name} id={item.id} fallback={item.icon || '📦'} size={24} className="shrink-0" />
@@ -3916,10 +4027,18 @@ export default function BloomshireCommand() {
                                   {item.name}
                                 </div>
                                 <div className="flex items-center gap-1.5 text-[10px] text-slate-400 mt-0.5 font-mono flex-wrap">
-                                  <span className="text-amber-400 font-bold">🪙 {item.unit}g/u</span>
-                                  {item.seller && (
-                                    <span className={`px-1 py-0.2 rounded text-[8.5px] font-sans font-bold ${item.cat === 'vip' ? 'bg-purple-950/80 text-purple-300 border border-purple-500/40' : 'bg-slate-800 text-slate-300'}`}>
-                                      {item.seller.replace(' (NPC)', '').replace(' (Odette)', '')}
+                                  <span className="text-amber-400 font-bold">🪙 {unitPrice}g/u</span>
+                                  {isFood ? (
+                                    <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-blue-950 text-blue-300 border border-blue-500/40" title="Plato cocinado: no se vende a NPCs, sirve para consumo o venta P2P">
+                                      Plato (P2P / 0g NPC)
+                                    </span>
+                                  ) : isVipCrop ? (
+                                    <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-purple-950 text-purple-300 border border-purple-500/40" title="Cosecha VIP: venta en Rowan P2P">
+                                      VIP Rowan
+                                    </span>
+                                  ) : (
+                                    <span className="px-1 py-0.2 rounded text-[8.5px] font-sans font-bold bg-slate-800 text-slate-300">
+                                      NPC (15/día)
                                     </span>
                                   )}
                                   {bd.total > 0 && (
@@ -3935,17 +4054,42 @@ export default function BloomshireCommand() {
                             </div>
 
                             {qty > 0 && (
-                              <span className="text-xs font-mono font-black text-amber-300 bg-amber-500/15 border border-amber-500/30 px-1.5 py-0.5 rounded shrink-0">
-                                +{subtotal.toLocaleString('es-ES')}g
-                              </span>
+                              <div className="text-right shrink-0">
+                                <span className="text-xs font-mono font-black text-amber-300 bg-amber-500/15 border border-amber-500/30 px-1.5 py-0.5 rounded block">
+                                  +{((detail.npcGold || 0) + (detail.p2pGold || 0)).toLocaleString('es-ES')}g
+                                </span>
+                              </div>
                             )}
                           </div>
+
+                          {/* Fila Intermedia: Desglose NPC vs Excedente */}
+                          {qty > 0 && (
+                            <div className="text-[10px] font-mono bg-[#091122] p-1.5 rounded border border-slate-800/80 flex flex-col gap-0.5">
+                              {detail.npcSellQty > 0 && (
+                                <div className="text-emerald-300 flex justify-between">
+                                  <span>Vendible NPC hoy:</span>
+                                  <b>{detail.npcSellQty}x (+{detail.npcGold}g)</b>
+                                </div>
+                              )}
+                              {detail.p2pQty > 0 && (
+                                <div className="text-purple-300 flex justify-between">
+                                  <span>{isFood || isVipCrop ? 'Mercado Rowan / P2P:' : 'Excedente (P2P/mañana):'}</span>
+                                  <b>{detail.p2pQty}x (+{detail.p2pGold}g)</b>
+                                </div>
+                              )}
+                              {!isFood && !isVipCrop && detail.itemQuotaLeft <= 0 && (
+                                <div className="text-rose-400 text-[9px] font-bold">
+                                  ⛔ Cupo diario alcanzado (15/15)
+                                </div>
+                              )}
+                            </div>
+                          )}
 
                           {/* Fila Inferior: Indicador de Venta + Stepper con Botones */}
                           <div className="flex items-center justify-between pt-1.5 border-t border-slate-800/60 mt-0.5">
                             <span className="text-[10px] font-mono">
                               {qty > 0 ? (
-                                <span className="text-emerald-400 font-bold">Vender: {qty}x</span>
+                                <span className="text-emerald-400 font-bold">Total: {qty}x</span>
                               ) : (
                                 <span className="text-slate-500">0 en lote</span>
                               )}
@@ -3980,8 +4124,7 @@ export default function BloomshireCommand() {
                           </div>
                         </div>
                       );
-                    })}
-                  </div>
+                    })}                  </div>
                 </div>
                 )
               )}
@@ -5370,16 +5513,20 @@ export default function BloomshireCommand() {
                       </div>
 
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Comida Consumida (Ciclo 12h UTC):</span>
+                        <span className="text-slate-300">Comida Consumida Hoy (Reinicio 00:00 UTC):</span>
                         <span className="font-mono font-bold text-emerald-300">
-                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || 90} ⚡
+                          {energyMeta.foodEatenToday || 0} / {energyMeta.foodCapToday || (isVip || isHolder ? 150 : 100)} ⚡
                         </span>
                       </div>
 
                       <div className="text-[11px] text-slate-400 leading-relaxed bg-[#0a1224] p-2.5 rounded-lg border border-slate-800">
-                        💡 <b>Cómo funciona el sistema de Cama y Energía:</b>
+                        💡 <b>Cómo funciona el sistema de Cama, Comida y Energía:</b>
                         <br />• Los jugadores <b>VIP</b> regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora).
+                        {energyMeta.isJamActive && (
+                          <><br />• 🫐 <b>Mermelada de Zafiro Activa:</b> Regeneración acelerada a <b>+1.3⚡ cada 3 min</b> (+26⚡/h) durante {energyMeta.jamMinutesLeft}m restantes.</>
+                        )}
                         <br />• Cuota de sueño diaria (reinicio 00:00 UTC): <b>200⚡</b> (jugador base, 2 barras de 100⚡), o <b>450⚡ / 600⚡ / 750⚡</b> (VIP u Holders, 3 a 5 barras de 150⚡ según perks/farmers).
+                        <br />• Cuota de comida diaria (reinicio 00:00 UTC, 1 barra completa por día): <b>100⚡</b> (jugador base) / <b>150⚡</b> (VIP u Holders). Los platos cocinados alimentan la barra diaria; Moonlight Stew otorga 8⚡ diarios.
                       </div>
                     </div>
                   )}
@@ -6180,24 +6327,85 @@ export default function BloomshireCommand() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {[...activeCrops, ...productionTimers].map((item, idx) => {
                       const effectiveNow = nowTime + serverTimeOffset;
+                      const isCrop = item.type === 'crop';
                       const totalMs = (item.growMinutes || item.durationMinutes || 10) * 60 * 1000;
                       const remMs = item.readyAt ? Math.max(0, item.readyAt - effectiveNow) : 0;
-                      const isReady = Boolean(item.readyAt && remMs === 0);
+                      
+                      const isWithered = isCrop && Boolean(item.isWithered || (item.witherAt && effectiveNow >= item.witherAt));
+                      const isReady = isCrop
+                        ? (!isWithered && Boolean(item.isRipe || (item.readyAt && effectiveNow >= item.readyAt)))
+                        : Boolean(item.readyAt && remMs === 0);
+                      const isSecondWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'second');
+                      const isFirstWater = isCrop && !isWithered && !isReady && Boolean(item.needsWaterStage === 'first' || (!item.wateredAt && !isReady && !isWithered));
+                      const needsWater = isSecondWater || isFirstWater || item.needsWater;
+
                       const elapsed = item.plantedAt ? (effectiveNow - item.plantedAt) : (totalMs - remMs);
-                      const pct = isReady ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalMs) * 100)));
+                      const pct = isReady ? 100 : (isWithered ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalMs) * 100))));
 
                       const mins = Math.floor(remMs / 60000);
                       const secs = Math.floor((remMs % 60000) / 1000);
                       const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 
+                      let statusBadge = null;
+                      if (isWithered) {
+                        statusBadge = (
+                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-rose-500 text-slate-950 border-rose-300">
+                            🥀 MARCHITO
+                          </span>
+                        );
+                      } else if (isReady) {
+                        statusBadge = (
+                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-emerald-500 text-slate-950 border-emerald-300">
+                            ✨ ¡LISTO!
+                          </span>
+                        );
+                      } else if (isSecondWater) {
+                        statusBadge = (
+                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-amber-500 text-slate-950 border-amber-300 animate-pulse">
+                            💧 2.° RIEGO
+                          </span>
+                        );
+                      } else if (isFirstWater) {
+                        statusBadge = (
+                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-sky-500/20 text-sky-300 border-sky-500/40">
+                            💧 1.ER RIEGO
+                          </span>
+                        );
+                      } else {
+                        statusBadge = (
+                          <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-cyan-500/20 text-cyan-300 border-cyan-500/40">
+                            {timeStr}
+                          </span>
+                        );
+                      }
+
+                      let statusDesc = `${timeStr} restantes`;
+                      if (isWithered) {
+                        statusDesc = 'Marchito tras 5h maduro sin cosechar';
+                      } else if (isReady) {
+                        const msToWither = item.witherAt ? Math.max(0, item.witherAt - effectiveNow) : 0;
+                        const witherMins = Math.floor(msToWither / 60000);
+                        statusDesc = msToWither > 0 ? `Marchita en ${witherMins}m (5h tope)` : '¡Listo para cosechar!';
+                      } else if (isSecondWater) {
+                        statusDesc = '¡Requiere 2.° riego para madurar!';
+                      } else if (isFirstWater) {
+                        statusDesc = 'Sin regar (crecimiento pausado)';
+                      } else if (isCrop) {
+                        statusDesc = `Creciendo (etapa ${item.stage ?? 0}/${item.lastStage ?? 4})`;
+                      }
+
                       return (
                         <div
                           key={item.id || idx}
                           className={`p-3.5 rounded-xl border flex flex-col justify-between gap-2.5 transition-all shadow-sm ${
-                            isReady
+                            isWithered
+                              ? 'bg-rose-950/40 border-rose-500/70 shadow-rose-950/20'
+                              : isReady
                               ? 'bg-emerald-950/40 border-emerald-400 ring-1 ring-emerald-500/50 shadow-emerald-900/20 animate-pulse'
-                              : item.needsWater
-                              ? 'bg-amber-950/40 border-amber-500/60'
+                              : isSecondWater
+                              ? 'bg-amber-950/50 border-amber-500/80 ring-1 ring-amber-500/40'
+                              : isFirstWater
+                              ? 'bg-sky-950/40 border-sky-500/60'
                               : 'bg-[#091224] border-slate-800 hover:border-slate-700'
                           }`}
                         >
@@ -6206,24 +6414,26 @@ export default function BloomshireCommand() {
                               <div className="flex items-center gap-2">
                                 <span className="text-xl">{item.icon || '🌱'}</span>
                                 <div>
-                                  <div className="font-bold text-white text-sm leading-tight">
-                                    {item.count > 1 ? `${item.count}x ` : ''}{item.name}
+                                  <div className="font-bold text-white text-sm leading-tight flex items-center gap-1.5 flex-wrap">
+                                    <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name}</span>
                                   </div>
-                                  <div className="text-[10px] text-slate-400 mt-0.5">
-                                    {item.type === 'crop' ? 'Cultivo en Parcela' : 'Cocina / Crafteo'}
+                                  <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
+                                    <span>{isCrop ? 'Cultivo en Parcela' : 'Cocina / Crafteo'}</span>
+                                    {isCrop && item.k && item.k < 1 && (
+                                      <span className="px-1 py-0.2 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[9px]">
+                                        ⚡ -{Math.round((1 - item.k) * 100)}% tiempo
+                                      </span>
+                                    )}
+                                    {isCrop && item.regrowMinutes && (
+                                      <span className="px-1 py-0.2 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono font-bold text-[9px]">
+                                        🔁 Rebrote ({item.harvestCount || 1}/{item.harvests || 5})
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>
 
-                              <span className={`font-mono font-black text-xs px-2 py-0.5 rounded border ${
-                                isReady
-                                  ? 'bg-emerald-500 text-slate-950 border-emerald-300'
-                                  : item.needsWater
-                                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                                  : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                              }`}>
-                                {isReady ? '✨ ¡LISTO!' : item.needsWater ? '💧 REGAR' : timeStr}
-                              </span>
+                              {statusBadge}
                             </div>
 
                             {/* Barra de Progreso */}
@@ -6231,10 +6441,14 @@ export default function BloomshireCommand() {
                               <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
                                 <div
                                   className={`h-full transition-all duration-300 ${
-                                    isReady
+                                    isWithered
+                                      ? 'bg-rose-500'
+                                      : isReady
                                       ? 'bg-emerald-400'
-                                      : item.needsWater
+                                      : isSecondWater
                                       ? 'bg-amber-400'
+                                      : isFirstWater
+                                      ? 'bg-sky-400'
                                       : 'bg-gradient-to-r from-cyan-500 to-emerald-400'
                                   }`}
                                   style={{ width: `${pct}%` }}
@@ -6242,15 +6456,24 @@ export default function BloomshireCommand() {
                               </div>
                               <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
                                 <span>{pct}% completado</span>
-                                <span>{isReady ? '¡Listo para cosechar!' : item.needsWater ? 'Falta regar' : `${timeStr} restantes`}</span>
+                                <span className={isWithered ? 'text-rose-400 font-bold' : isReady ? 'text-emerald-300 font-bold' : isSecondWater ? 'text-amber-300 font-bold' : ''}>
+                                  {statusDesc}
+                                </span>
                               </div>
                             </div>
                           </div>
 
                           <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs gap-1">
-                            <span className="text-[11px] text-slate-300 truncate max-w-[170px]" title={item.location}>
-                              {item.location}
-                            </span>
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="text-[11px] text-slate-300 truncate max-w-[140px]" title={item.location}>
+                                {item.location || 'Huerto'}
+                              </span>
+                              {isCrop && (
+                                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-slate-400">
+                                  {item.source === 'live_engine' ? '⚡ En vivo' : item.source === 'simulation' ? '💾 Simulado' : 'Sin datos en vivo'}
+                                </span>
+                              )}
+                            </div>
 
                             <div className="flex items-center gap-1.5">
                               {item.atlasTarget && (
@@ -6275,8 +6498,7 @@ export default function BloomshireCommand() {
                           </div>
                         </div>
                       );
-                    })}
-                  </div>
+                    })}                  </div>
                 )}
               </div>
 
