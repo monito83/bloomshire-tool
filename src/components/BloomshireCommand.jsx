@@ -7019,7 +7019,7 @@ export default function BloomshireCommand() {
                       <div className="font-bold text-white text-[11px]">Bono de Velocidad</div>
                       <div className="text-[10px] text-emerald-300 font-mono font-bold">
                         {playerPerks?.fast
-                          ? `${Math.round((1 - playerPerks.fast) * 100)}% Crecimiento (${playerPerks.fast})`
+                          ? `-${Math.round((1 - playerPerks.fast) * 100)}% Crecimiento`
                           : farmersOwned >= 15
                           ? '-30% Crecimiento'
                           : farmersOwned >= 7
