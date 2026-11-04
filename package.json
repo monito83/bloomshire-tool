@@ -8,7 +8,7 @@
     "build": "vite build",
     "build:rules": "node scripts/build_rules.mjs",
     "preview": "vite preview",
-    "test": "node tests/verify_phase3.mjs"
+    "test": "vitest run"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "vitest": "^5.1.0"
   }
 }

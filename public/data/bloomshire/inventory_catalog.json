@@ -563,7 +563,7 @@
     "desc": "Cultivo de Bloomshire (300 min). Véndelo a Odette por 4150g o entrégalo en el Tablón de Pedidos.",
     "unitNpc": 4150,
     "unitP2p": 4150,
-    "requiredLevel": 10
+    "requiredLevel": 1
   },
   {
     "id": "Corn",
@@ -788,7 +788,7 @@
     "desc": "Cultivo de Bloomshire (240 min). Véndelo a Odette por 3250g o entrégalo en el Tablón de Pedidos.",
     "unitNpc": 3250,
     "unitP2p": 3250,
-    "requiredLevel": 15
+    "requiredLevel": 1
   },
   {
     "id": "Watermelon",
@@ -1134,7 +1134,7 @@
     "desc": "Cultivo de Bloomshire (180 min). Véndelo a Odette por 2350g o entrégalo en el Tablón de Pedidos.",
     "unitNpc": 2350,
     "unitP2p": 2350,
-    "requiredLevel": 20
+    "requiredLevel": 1
   },
   {
     "id": "Fairy Rose",
@@ -1153,7 +1153,7 @@
     "desc": "Cultivo de Bloomshire (110 min). Véndelo a Odette por 1400g o entrégalo en el Tablón de Pedidos.",
     "unitNpc": 1400,
     "unitP2p": 1400,
-    "requiredLevel": 15
+    "requiredLevel": 1
   },
   {
     "id": "Honeydew Melon",

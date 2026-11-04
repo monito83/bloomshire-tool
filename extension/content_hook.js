@@ -419,10 +419,97 @@
     const rawList = [];
     const now = Date.now() + serverTimeOffset;
 
+    // Constantes y ciclo de lluvia canónico de Bloomshire (rules.js:611 / weather.js:18-138)
+    const WORLD_TIME_EPOCH = Date.UTC(2026, 9, 23, 14, 0, 0);
+    const BLOOM_DAY_MS = 8 * 3600e3;
+    const BLOOM_LIGHT_MS = 6 * 3600e3;
+    const BLOOM_DAWN_MIN = 5 * 60;
+    const BLOOM_LIGHT_MIN = (21 - 5) * 60;
+    const BLOOM_NIGHT_MIN = 24 * 60 - BLOOM_LIGHT_MIN;
+
+    function bloomDayRandom(n) {
+      let h = Math.imul((n | 0) ^ 0x9e3779b9, 2654435761) >>> 0;
+      h ^= h >>> 15; h = Math.imul(h, 2246822519) >>> 0; h ^= h >>> 13; h = Math.imul(h, 3266489917) >>> 0; h ^= h >>> 16;
+      return (h >>> 0) / 4294967296;
+    }
+
+    const rainyDaysCache = new Map();
+    let reachDay = -1, nextRainDay = 1;
+    function bloomshireRainsOn(day) {
+      if (day < 0) return false;
+      if (day > reachDay) {
+        for (let d = reachDay + 1; d <= day; d++) {
+          const yes = d === nextRainDay;
+          rainyDaysCache.set(d, yes);
+          if (yes) nextRainDay = d + (bloomDayRandom(d * 3 + 11) < 0.5 ? 2 : 3);
+        }
+        reachDay = day;
+      }
+      return rainyDaysCache.get(day) ?? false;
+    }
+
+    function bloomshireShowerOf(day) {
+      const start = (2 + bloomDayRandom(day * 7 + 1) * 9) * 60;
+      const hours = 5 + bloomDayRandom(day * 7 + 2) * 4;
+      return { from: start, to: start + hours * 60, heavy: bloomDayRandom(day * 7 + 3) > 0.62 };
+    }
+
+    function bloomshireDayAt(t) {
+      const since = t - WORLD_TIME_EPOCH, day = Math.floor(since / BLOOM_DAY_MS), into = since - day * BLOOM_DAY_MS;
+      const fromDawn = into < BLOOM_LIGHT_MS ? (into / BLOOM_LIGHT_MS) * BLOOM_LIGHT_MIN : BLOOM_LIGHT_MIN + ((into - BLOOM_LIGHT_MS) / (BLOOM_DAY_MS - BLOOM_LIGHT_MS)) * BLOOM_NIGHT_MIN;
+      return { day, fromDawn, clock: (BLOOM_DAWN_MIN + fromDawn) % 1440 };
+    }
+
+    function bloomshireWorldAt(day, fromDawn) {
+      const into = fromDawn < BLOOM_LIGHT_MIN ? (fromDawn / BLOOM_LIGHT_MIN) * BLOOM_LIGHT_MS : BLOOM_LIGHT_MS + ((fromDawn - BLOOM_LIGHT_MIN) / BLOOM_NIGHT_MIN) * (BLOOM_DAY_MS - BLOOM_LIGHT_MS);
+      return WORLD_TIME_EPOCH + day * BLOOM_DAY_MS + into;
+    }
+
+    function bloomshireFirstRainBetween(a, b) {
+      if (!(b > a)) return null;
+      let first = null;
+      const seen = (from, to) => {
+        const x = Math.max(a, from);
+        if (Math.min(b, to) > x && (first == null || x < first)) first = x;
+      };
+      for (let d = Math.max(0, bloomshireDayAt(a).day - 1), last = bloomshireDayAt(b).day; d <= last; d++) {
+        if (!bloomshireRainsOn(d)) continue;
+        const s = bloomshireShowerOf(d);
+        seen(bloomshireWorldAt(d, s.from), bloomshireWorldAt(d, s.to));
+      }
+      return first;
+    }
+
     // Algoritmo canónico oficial de crecimiento (game/farm.js: growth y grown)
     function computeCropGrowth(crop, nowTs = Date.now(), outdoors = false, seed = null, asIs = false) {
       if (!crop || typeof crop !== 'object') return null;
       if (!seed) return null;
+
+      // Lluvia canónica (farm.js:52-61): En exteriores la lluvia riega los cultivos automáticamente
+      if (outdoors && !asIs) {
+        let w1 = crop.w1, w2 = crop.w2, rained = false;
+        if (!w1 && crop.t) {
+          w1 = bloomshireFirstRainBetween(crop.t, nowTs);
+          rained = Boolean(w1);
+        }
+        if (w1 && !w2) {
+          const g0 = computeCropGrowth({ ...crop, w1, w2: null }, nowTs, false, seed, true);
+          if (g0.needs === 'second') {
+            w2 = bloomshireFirstRainBetween(g0.waitAt ?? w1, nowTs);
+            rained = rained || Boolean(w2);
+          }
+        }
+        if (rained) {
+          const res = computeCropGrowth({ ...crop, w1, w2 }, nowTs, false, seed, true);
+          return {
+            ...res,
+            rained: true,
+            w1,
+            w2,
+            statusText: res.statusText.includes('Marchito') ? res.statusText : (res.ripe ? '¡Listo para cosechar! 🌾' : 'Creciendo (regado por lluvia) 🌧️🌱')
+          };
+        }
+      }
 
       // Cultivos Premium (VIP Quarter): nunca se marchitan y se riegan automáticamente en crop.t (rules.js: PREMIUM / farm.js:86-90)
       if (!asIs && seed.premium && crop.t) {
@@ -639,6 +726,8 @@
         isRipe: Boolean(growthState.ripe),
         isWithered: Boolean(growthState.withered),
         twoWaterings: Boolean(growthState.two),
+        outdoors: isOutdoors,
+        rained: Boolean(growthState.rained),
         k: c.k || 1,
         statusText: growthState.statusText,
         remainingMs,
