@@ -54,7 +54,8 @@ import {
   CANONICAL_SKILLS,
   xpForLevel,
   computeCanonicalSkillsFromRaw,
-  computeClientLiveEnergyAndBed
+  computeClientLiveEnergyAndBed,
+  computeMaxEnergy
 } from './bloomshire/bloomshireEngine';
 
 
@@ -693,16 +694,29 @@ export default function BloomshireCommand() {
   const [sessionToken, setSessionToken] = useState(() => {
     try { return localStorage.getItem('bloomshire_session_token') || null; } catch { return null; }
   });
-  const isConnected = Boolean(walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x'));
+  const [authenticatedWallet, setAuthenticatedWallet] = useState(null);
+  const [viewOnlyWallet, setViewOnlyWallet] = useState(null);
+  const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
+  const [isVip, setIsVip] = useState(() => {
+    try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; }
+  });
+
+  // El acceso premium exige sesión SIWE verificada por el servidor (S1)
+  const isConnected = Boolean(isPremiumUnlocked);
 
   const handleDisconnect = () => {
     try {
       localStorage.setItem('bloomshire_manual_disconnected', 'true');
       localStorage.removeItem('bloomshire_session_token');
       localStorage.removeItem('bloomshire_wallet');
+      localStorage.removeItem('bloomshire_cached_is_vip');
     } catch (_) {}
     setWalletAddress(null);
     setSessionToken(null);
+    setAuthenticatedWallet(null);
+    setViewOnlyWallet(null);
+    setIsPremiumUnlocked(false);
+    setIsVip(false);
     setGold(0);
     setCurrentEnergy(0);
     setMaxEnergy(100);
@@ -727,6 +741,7 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_cached_energy');
       localStorage.removeItem('bloomshire_cached_farming_level');
       localStorage.removeItem('bloomshire_cached_farmers');
+      localStorage.removeItem('bloomshire_cached_is_vip');
       localStorage.removeItem('bloomshire_cached_active_quest');
       localStorage.removeItem('bloomshire_prod_timers');
       localStorage.removeItem('bloomshire_daily_tasks');
@@ -744,7 +759,10 @@ export default function BloomshireCommand() {
   const [currentEnergy, setCurrentEnergy] = useState(() => {
     try { return Number(localStorage.getItem('bloomshire_cached_energy')) || 0; } catch { return 0; }
   });
-  const [maxEnergy, setMaxEnergy] = useState(() => (farmersOwned >= 1 ? 150 : 100));
+  const [maxEnergy, setMaxEnergy] = useState(() => computeMaxEnergy(
+    (() => { try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; } })(),
+    (() => { try { return (Number(localStorage.getItem('bloomshire_cached_farmers')) || 0) > 0; } catch { return false; } })()
+  ));
   const [rawEnergyObj, setRawEnergyObj] = useState(null);
   const [snapshotTimestamp, setSnapshotTimestamp] = useState(() => Date.now());
   const [gold, setGold] = useState(() => {
@@ -874,7 +892,9 @@ export default function BloomshireCommand() {
       localStorage.setItem('bloomshire_wallet', account);
       localStorage.removeItem('bloomshire_manual_disconnected');
       setWalletAddress(account);
+      setAuthenticatedWallet(account);
       setSessionToken(token);
+      setIsPremiumUnlocked(true);
 
       setConnectFeedback({ type: 'success', text: `¡Sesión autenticada con éxito! (${account.slice(0, 6)}...)` });
 
@@ -1740,10 +1760,24 @@ export default function BloomshireCommand() {
       }
     }
     if (data.gold !== undefined && data.gold >= 0) setGold(data.gold);
-    if (data.maxEnergy !== undefined && data.maxEnergy > 0) setMaxEnergy(data.maxEnergy);
     if (data.shards !== undefined) setShards(data.shards);
     if (data.avyn !== undefined) setAvyn(data.avyn > 100000 ? Math.round(data.avyn / 1e6) : Math.round(Number(data.avyn) * 100) / 100);
-    if (data.farmersCount !== undefined && data.farmersCount > 0) setFarmersOwned(data.farmersCount);
+
+    // O3 & O8: Actualizar isVip y farmersOwned (aceptando 0 sin descartarlo)
+    const effectiveIsVip = Boolean(data.isVip);
+    setIsVip(effectiveIsVip);
+    try { localStorage.setItem('bloomshire_cached_is_vip', String(effectiveIsVip)); } catch (_) {}
+
+    let effectiveFarmersCount = farmersOwned;
+    if (typeof data.farmersCount === 'number' && data.farmersCount >= 0) {
+      effectiveFarmersCount = data.farmersCount;
+      setFarmersOwned(data.farmersCount);
+      try { localStorage.setItem('bloomshire_cached_farmers', String(data.farmersCount)); } catch (_) {}
+    }
+
+    // Cálculo centralizado de maxEnergy: 150 si es VIP o Holder, 100 si no
+    const computedMaxE = computeMaxEnergy(effectiveIsVip, effectiveFarmersCount > 0);
+    setMaxEnergy(computedMaxE);
 
     const snapTime = data.timestamp || Date.now();
     setSnapshotTimestamp(snapTime);
@@ -1751,19 +1785,22 @@ export default function BloomshireCommand() {
       setRawEnergyObj(data.rawEnergyObj);
     }
 
-    // 1. Recalcular las 10 habilidades con la fórmula real de catalog.js (100 * (L-1)^2.7)
+    // 1. Recalcular las 10 habilidades con la fórmula real de catalog.js (100 * (L-1)^2.7) (O9: sin límite de nivel 5)
     if (data.skills && typeof data.skills === 'object' && Object.keys(data.skills).length > 0) {
       const computedSkills = computeCanonicalSkillsFromRaw(data.skills, data.skillsBreakdown);
       setFarmingLevel(computedSkills.farmingLevel);
       setSkillsBreakdown(computedSkills.skillsBreakdown);
       setSkillsMeta(computedSkills.skillsMeta);
+      try { localStorage.setItem('bloomshire_cached_farming_level', String(computedSkills.farmingLevel)); } catch (_) {}
     } else if (data.skillsBreakdown && typeof data.skillsBreakdown === 'object' && Object.keys(data.skillsBreakdown).length > 0) {
       const computedSkills = computeCanonicalSkillsFromRaw(null, data.skillsBreakdown);
       setFarmingLevel(computedSkills.farmingLevel);
       setSkillsBreakdown(computedSkills.skillsBreakdown);
       setSkillsMeta(computedSkills.skillsMeta);
-    } else if (data.farmingLevel) {
-      setFarmingLevel(Math.min(5, data.farmingLevel));
+      try { localStorage.setItem('bloomshire_cached_farming_level', String(computedSkills.farmingLevel)); } catch (_) {}
+    } else if (typeof data.farmingLevel === 'number' && data.farmingLevel >= 0) {
+      setFarmingLevel(data.farmingLevel);
+      try { localStorage.setItem('bloomshire_cached_farming_level', String(data.farmingLevel)); } catch (_) {}
     }
 
     // 2. Recalcular Energía Viva (+1 cada 3m VIP) y Reloj de Cama UTC
@@ -1773,9 +1810,10 @@ export default function BloomshireCommand() {
       snapTime,
       data.energyMeta,
       {
-        farmersCount: data.farmersCount ?? farmersOwned,
-        isVip: Boolean(data.isVip || ((data.farmersCount ?? farmersOwned) >= 10)),
-        maxEnergy: data.maxEnergy
+        farmersCount: effectiveFarmersCount,
+        isVip: effectiveIsVip,
+        maxEnergy: computedMaxE,
+        perks: data.perks || null
       }
     );
     if (isFromExtension || liveEAndBed.currentEnergy > 1) {
@@ -1887,6 +1925,59 @@ export default function BloomshireCommand() {
     setLastSyncTime(new Date().toLocaleTimeString());
   };
 
+  // S1: Validar sesión SIWE al inicio con /api/auth?action=me (anti-phishing y protección premium)
+  useEffect(() => {
+    let isCancelled = false;
+    const validateSession = async () => {
+      const storedToken = (function() {
+        try { return localStorage.getItem('bloomshire_session_token'); } catch (_) { return null; }
+      })();
+      if (!storedToken) {
+        if (!isCancelled) {
+          setSessionToken(null);
+          setAuthenticatedWallet(null);
+          setIsPremiumUnlocked(false);
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth?action=me', {
+          headers: { 'Authorization': `Bearer ${storedToken}` }
+        });
+        if (res.ok) {
+          const json = await res.json();
+          if (json.ok && json.wallet) {
+            const verifiedWallet = json.wallet.toLowerCase();
+            if (!isCancelled) {
+              setSessionToken(storedToken);
+              setAuthenticatedWallet(verifiedWallet);
+              setWalletAddress(verifiedWallet);
+              setIsPremiumUnlocked(true);
+            }
+            return;
+          }
+        }
+        // Si responde 401 o token inválido: limpiar sesión y regresar a modo anónimo
+        try {
+          localStorage.removeItem('bloomshire_session_token');
+          localStorage.removeItem('bloomshire_wallet');
+        } catch (_) {}
+        if (!isCancelled) {
+          setSessionToken(null);
+          setAuthenticatedWallet(null);
+          setWalletAddress(null);
+          setIsPremiumUnlocked(false);
+        }
+      } catch (err) {
+        console.warn('Error al verificar sesión SIWE con el servidor:', err);
+      }
+    };
+
+    validateSession();
+    return () => { isCancelled = true; };
+  }, []);
+
   // Inicialización y Listeners
   useEffect(() => {
     try {
@@ -1963,7 +2054,7 @@ export default function BloomshireCommand() {
     };
   }, []);
 
-  // Tick local cada 15s para actualizar energía pasiva (+1 cada 3m) y cuenta regresiva de Cama UTC
+  // Tick local cada 15s para actualizar energía pasiva (+1 cada 3m VIP) y cuenta regresiva de Cama UTC
   useEffect(() => {
     const timer = setInterval(() => {
       const updated = computeClientLiveEnergyAndBed(
@@ -1973,8 +2064,8 @@ export default function BloomshireCommand() {
         energyMeta,
         {
           farmersCount: farmersOwned,
-          isVip: farmersOwned >= 10,
-          maxEnergy
+          isVip,
+          maxEnergy: computeMaxEnergy(isVip, farmersOwned > 0)
         }
       );
       if (rawEnergyObj) {
@@ -1983,7 +2074,7 @@ export default function BloomshireCommand() {
       setEnergyMeta(updated.energyMeta);
     }, 15000);
     return () => clearInterval(timer);
-  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta, farmersOwned, maxEnergy]);
+  }, [rawEnergyObj, currentEnergy, snapshotTimestamp, energyMeta, farmersOwned, isVip, maxEnergy]);
 
   // Recalcular cantidades cuando cambia el scope
   useEffect(() => {
@@ -2020,9 +2111,9 @@ export default function BloomshireCommand() {
           applyIncomingSync({
             ...json.inGame,
             wallet: json.onChain?.wallet || walletAddress,
-            farmersCount: json.onChain?.farmersCount || 10
+            farmersCount: json.onChain?.farmersCount ?? 0
           }, 'server');
-        } else if (json.onChain?.farmersCount) {
+        } else if (typeof json.onChain?.farmersCount === 'number') {
           setFarmersOwned(json.onChain.farmersCount);
         }
       }
@@ -2510,7 +2601,7 @@ export default function BloomshireCommand() {
             <span className="font-black text-white text-xs tracking-wider hidden sm:inline">BLOOMSHIRE</span>
           </div>
 
-          {walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') ? (
+          {isConnected && walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') ? (
             <>
               {/* Píldora de Oro */}
               <div 
@@ -2524,7 +2615,7 @@ export default function BloomshireCommand() {
               {/* Píldora de Energía */}
               <div 
                 className="relative overflow-hidden flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12192a] border border-slate-700/60 text-slate-200 font-bold text-xs shadow-sm shrink-0 min-w-[125px]"
-                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (+1⚡ cada 3m pasivo VIP)`}
+                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (${isVip ? '+1⚡ cada 3m pasivo VIP' : 'Regen base'})`}
               >
                 <div 
                   className="absolute inset-0 bg-gradient-to-r from-amber-600/30 to-amber-500/35 pointer-events-none transition-all duration-500"
@@ -2561,10 +2652,17 @@ export default function BloomshireCommand() {
             </>
           ) : (
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span>Guía Comunitaria Libre</span>
-              </div>
+              {viewOnlyWallet ? (
+                <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                  <span className="font-mono">Lectura: {viewOnlyWallet.slice(0, 6)}...{viewOnlyWallet.slice(-4)}</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                  <span>Guía Comunitaria Libre</span>
+                </div>
+              )}
               <button
                 onClick={() => setShowConnectModal(true)}
                 className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 hover:border-amber-400 text-amber-300 font-bold text-xs transition-all cursor-pointer"
@@ -3331,7 +3429,7 @@ export default function BloomshireCommand() {
                       : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <span>📜 Pedidos Diarios de Odette (+25% Oro)</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
+                  <span>📜 Pedidos Diarios de Odette</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
                   {readyOrdersCount > 0 && (
                     <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-emerald-500 text-slate-950">
                       {readyOrdersCount} Listo
@@ -3886,11 +3984,11 @@ export default function BloomshireCommand() {
                             📜 TABLÓN DE PEDIDOS DIARIOS DE ODETTE
                           </h2>
                           <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                            +25% ORO EXTRA
+                            PEDIDOS DIARIOS
                           </span>
                         </div>
                         <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
-                          Odette compra hasta 6 pedidos diarios en el tablón de su Tienda General en Bloomshire. Paga el <b>125% del valor de mercado</b> y recompensa con experiencia directa para subir de nivel tus oficios.
+                          Odette ofrece <b>6 + ⌊Nivel / 3⌋ pedidos diarios</b> (hasta un máximo de 16) en el tablón de su Tienda General en Bloomshire. Paga aproximadamente el <b>50% del valor de venta en tienda</b> y recompensa con experiencia directa para subir de nivel tus oficios.
                         </p>
                       </div>
                     </div>
@@ -4012,7 +4110,6 @@ export default function BloomshireCommand() {
                                 <div className="text-[9.5px] text-slate-400 font-bold uppercase">Recompensa Oro:</div>
                                 <div className="font-mono text-amber-400 font-black text-sm flex items-center gap-1">
                                   <span>🪙 +{ord.gold}g</span>
-                                  <span className="text-[9.5px] text-amber-300/80 font-normal">(+25%)</span>
                                 </div>
                               </div>
                               <div>
@@ -5071,9 +5168,9 @@ export default function BloomshireCommand() {
                         </div>
                         <div className="text-[11px] text-slate-300 mt-0.5">
                           {dailyTasksCompletedCount === 6 ? (
-                            <span className="text-emerald-300 font-bold">🎉 ¡6 de 6 completadas! Reclama tu Semilla Premium en el botón 'Task' bajo tu perfil.</span>
+                            <span className="text-emerald-300 font-bold">🎉 ¡6 de 6 completadas! Reclama tus 10 Semillas Premium en el botón 'Task' bajo tu perfil.</span>
                           ) : (
-                            <span>Recompensa al completar las 6: <b className="text-amber-300">🌱 1x Semilla Premium (NFT / Recompensa Diaria)</b></span>
+                            <span>Recompensa al completar las 6: <b className="text-amber-300">🌱 10 Semillas Premium (Recompensa Diaria)</b></span>
                           )}
                         </div>
                       </div>
@@ -5085,11 +5182,11 @@ export default function BloomshireCommand() {
 
                   {questSectionsOpen.dailyTasks && (
                     <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-2.5">
-                      {/* Barra de Progreso a la Semilla Premium */}
+                      {/* Barra de Progreso a las 10 Semillas Premium */}
                       <div className="p-3 bg-[#0a1224] border border-slate-800 rounded-lg flex flex-col gap-1.5">
                         <div className="flex items-center justify-between text-xs flex-wrap gap-2">
                           <span className="text-slate-300 font-bold flex items-center gap-1.5">
-                            <span>🎁</span> <span>Progreso a Semilla Premium:</span>
+                            <span>🎁</span> <span>Progreso a 10 Semillas Premium:</span>
                           </span>
                           <span className="font-mono font-black text-emerald-400">
                             {dailyTasksCompletedCount} / 6 ({Math.round((dailyTasksCompletedCount / 6) * 100)}%)
@@ -5227,7 +5324,7 @@ export default function BloomshireCommand() {
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
                         <span className="text-slate-300">Energía Actual del Personaje:</span>
                         <span className="font-mono font-black text-cyan-300 text-sm">
-                          {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">(+1⚡ cada 3m VIP)</span>
+                          {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">{isVip ? '(+1⚡ cada 3m VIP)' : '(Regen base)'}</span>
                         </span>
                       </div>
 
@@ -5237,29 +5334,29 @@ export default function BloomshireCommand() {
                           {energyMeta.recovering
                             ? `💤 Recuperando (${energyMeta.recoverMinutesLeft}m restantes)`
                             : energyMeta.canRest
-                            ? `✓ Cama Lista (${energyMeta.sleepLeft ?? 450}/450⚡ hoy)`
+                            ? `✓ Cama Lista (${energyMeta.sleepLeft ?? (energyMeta.sleepADay || 200)}/${energyMeta.sleepADay || 200}⚡ hoy)`
                             : `🏠 Cama en ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
                         </span>
                       </div>
 
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                        <span className="text-slate-300">Sueño Diario Usado Hoy (3 Barras VIP):</span>
+                        <span className="text-slate-300">Sueño Diario Usado Hoy:</span>
                         <span className="font-mono font-bold text-amber-300">
-                          {energyMeta.usedSleepToday ?? 450} / {energyMeta.sleepADay || 450} ⚡
+                          {energyMeta.usedSleepToday ?? (energyMeta.sleepADay || 200)} / {energyMeta.sleepADay || 200} ⚡
                         </span>
                       </div>
 
                       <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
                         <span className="text-slate-300">Comida Consumida (Ciclo 12h UTC):</span>
                         <span className="font-mono font-bold text-emerald-300">
-                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || 90} ⚡
+                          {energyMeta.foodEatenHalfDay || 0} / {energyMeta.foodCapHalfDay || (maxEnergy === 150 ? 90 : 60)} ⚡
                         </span>
                       </div>
 
                       <div className="text-[11px] text-slate-400 leading-relaxed bg-[#0a1224] p-2.5 rounded-lg border border-slate-800">
-                        💡 <b>Cómo funciona el nuevo sistema de Cama y Energía:</b>
-                        <br />• Tus 10 Founding Farmers regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora) aunque estés quieto.
-                        <br />• Tienes una cuota de sueño de <b>450⚡ por día UTC</b> (3 barras completas de 150⚡). Al agotar los 450⚡ del día, el contador muestra el tiempo exacto hasta las <b>00:00 UTC (21:00 hs Argentina)</b>.
+                        💡 <b>Cómo funciona el sistema de Cama y Energía:</b>
+                        <br />• Los jugadores <b>VIP</b> regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora).
+                        <br />• Cuota de sueño diaria (reinicio 00:00 UTC): <b>200⚡</b> (jugador base, 2 barras de 100⚡), o <b>450⚡ / 600⚡ / 750⚡</b> (VIP u Holders, 3 a 5 barras de 150⚡ según perks/farmers).
                       </div>
                     </div>
                   )}
@@ -6251,7 +6348,7 @@ export default function BloomshireCommand() {
                 <div className="p-4 bg-[#0e172c] border-2 border-emerald-500/50 rounded-xl shadow-md flex flex-col justify-between gap-3 col-span-1 md:col-span-2">
                   <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-2 flex-wrap">
                     <div className="text-sm font-black text-emerald-400 flex items-center gap-2 flex-wrap">
-                      <span>🌱 TAREAS DIARIAS (TASK CENTER) — RECOMPENSA: SEMILLA PREMIUM</span>
+                      <span>🌱 TAREAS DIARIAS (TASK CENTER) — RECOMPENSA: 10 SEMILLAS PREMIUM</span>
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold border ${
                         dailyTasksCompletedCount === 6 ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
                       }`}>
@@ -6890,14 +6987,14 @@ export default function BloomshireCommand() {
                     <span className="text-xl">👨‍🌾</span>
                     <div>
                       <div className="font-bold text-white text-[11px]">Founding Farmers</div>
-                      <div className="text-[10px] text-amber-300 font-mono font-bold">10 NFTs Poseídos</div>
+                      <div className="text-[10px] text-amber-300 font-mono font-bold">{farmersOwned} NFT{farmersOwned === 1 ? '' : 's'} Poseído{farmersOwned === 1 ? '' : 's'}</div>
                     </div>
                   </div>
                   <div className="p-2.5 bg-[#0f172a] border border-emerald-500/30 rounded-xl flex items-center gap-2.5">
                     <span className="text-xl">⚡</span>
                     <div>
                       <div className="font-bold text-white text-[11px]">Bono de Velocidad</div>
-                      <div className="text-[10px] text-emerald-300 font-mono font-bold">+20% Crecimiento</div>
+                      <div className="text-[10px] text-emerald-300 font-mono font-bold">{farmersOwned > 0 ? '+20% Crecimiento' : 'Sin bono'}</div>
                     </div>
                   </div>
                   <div className="p-2.5 bg-[#0f172a] border border-purple-500/30 rounded-xl flex items-center gap-2.5">
@@ -6910,8 +7007,8 @@ export default function BloomshireCommand() {
                   <div className="p-2.5 bg-[#0f172a] border border-cyan-500/30 rounded-xl flex items-center gap-2.5">
                     <span className="text-xl">🔋</span>
                     <div>
-                      <div className="font-bold text-white text-[11px]">Estamina VIP</div>
-                      <div className="text-[10px] text-cyan-300 font-mono font-bold">150⚡ (Regen +1 / 3m)</div>
+                      <div className="font-bold text-white text-[11px]">{isVip ? 'Estamina VIP' : farmersOwned > 0 ? 'Estamina Holder' : 'Estamina Base'}</div>
+                      <div className="text-[10px] text-cyan-300 font-mono font-bold">{maxEnergy}⚡ {isVip ? '(Regen +1 / 3m)' : ''}</div>
                     </div>
                   </div>
                 </div>
@@ -7114,43 +7211,23 @@ export default function BloomshireCommand() {
                               if (!connectCode) return;
                               const cleanCode = connectCode.trim();
 
-                              const resetSessionState = () => {
-                                setGold(0);
-                                setCurrentEnergy(0);
-                                setMaxEnergy(100);
-                                setShards(0);
-                                setAvyn(0);
-                                setFarmersOwned(0);
-                                setFarmingLevel(0);
-                                setSkillsBreakdown({});
-                                setActiveQuestsList([]);
-                                setActiveOrders([]);
-                                setActiveCrops([]);
-                                setProductionTimers([]);
-                                setRawEnergyObj(null);
-                                setRawInventory([]);
-                                setItemQuantities({});
-                              };
-
                               if (/^0x[0-9a-fA-F]{40}$/.test(cleanCode)) {
-                                resetSessionState();
-                                setWalletAddress(cleanCode);
-                                try { localStorage.setItem('bloomshire_wallet', cleanCode); } catch (_) {}
+                                const targetWallet = cleanCode.toLowerCase();
+                                setViewOnlyWallet(targetWallet);
 
                                 try {
                                   setConnectFeedback({ type: 'loading', text: 'Consultando perfil on-chain en el servidor...' });
-                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(cleanCode)}`);
+                                  const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(targetWallet)}`);
                                   if (res.ok) {
                                     const json = await res.json();
                                     if (json.onChain) {
-                                      setFarmersOwned(json.onChain.farmersCount ?? 0);
-                                      setConnectFeedback({ type: 'success', text: `Perfil público cargado (${cleanCode.slice(0, 6)}... - ${json.onChain.farmersCount ?? 0} Farmers).` });
+                                      setConnectFeedback({ type: 'success', text: `Perfil público consultado (${targetWallet.slice(0, 6)}... - ${json.onChain.farmersCount ?? 0} Farmers). Modo solo lectura.` });
                                     } else {
-                                      setConnectFeedback({ type: 'info', text: `Wallet vinculada en modo lectura.` });
+                                      setConnectFeedback({ type: 'info', text: `Wallet ${targetWallet.slice(0, 6)}... vinculada en modo solo lectura.` });
                                     }
                                   }
                                 } catch (_) {
-                                  setConnectFeedback({ type: 'info', text: `Wallet vinculada en modo lectura.` });
+                                  setConnectFeedback({ type: 'info', text: `Wallet ${targetWallet.slice(0, 6)}... vinculada en modo solo lectura.` });
                                 }
                                 setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2000);
                               } else {

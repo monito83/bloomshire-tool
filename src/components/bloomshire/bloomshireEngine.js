@@ -16,8 +16,13 @@ export const CANONICAL_SKILLS = [
 
 export const SKILL_GAP = 3;
 
-// Fórmula canónica oficial del juego (catalog.js:145)
-export const xpForLevel = (L) => (L <= 1 ? 0 : Math.round(40 * (L - 1) ** 1.9));
+// Fórmula canónica oficial del juego (game/catalog.js:501)
+export const xpForLevel = (L) => (L <= 1 ? 0 : Math.round(100 * (L - 1) ** 2.7));
+
+// Cálculo canónico unificado de energía máxima: 150 si VIP o holder (>= 1 NFT), 100 de base
+export function computeMaxEnergy(isVip, isHolder) {
+  return (isVip || isHolder) ? 150 : 100;
+}
 
 export function computeCanonicalSkillsFromRaw(rawSkillsObj, fallbackBreak = null) {
   const breakdown = {};
@@ -105,16 +110,37 @@ export function computeClientLiveEnergyAndBed(rawEnergyObj, baseEnergy, snapshot
   const now = Date.now();
   const count = typeof options.farmersCount === 'number' ? options.farmersCount : 0;
   const isHolder = count > 0;
-  // VIP estricto: pase VIP o 10+ Founding Farmers (rules.js:49)
-  const isVip = Boolean(options.isVip || count >= 10);
+  // VIP estricto: determinado exclusivamente por vipUntil vigente o flag isVip (rules.js:898)
+  const isVip = Boolean(options.isVip || (options.vipUntil && options.vipUntil > now));
   const isHolderOrVip = isHolder || isVip;
 
   // 100 de base; 150 solo con Founding Farmer (>= 1) o pase VIP (rules.js:46-57)
-  const maxE = isHolderOrVip ? 150 : 100;
+  const maxE = computeMaxEnergy(isVip, isHolder);
   // +1 energía cada 3 min SOLO para VIPs (rules.js:49)
   const regenRate = isVip ? 1 / (3 * 60000) : 0;
-  // 450 energía de descanso por día UTC para holders (3 barras), 200 para jugadores base (2 barras)
-  const sleepADay = isHolderOrVip ? 450 : 200;
+  
+  // Sueño diario canónico:
+  // Jugador común: 200 (2 barras de 100).
+  // VIP o holder: max(3, min(5, perks.sleeps)) barras de 150 (450 / 600 / 750).
+  // Fallback: común 200, VIP/holder 450, 10 farmers / Mythic 600, 20 farmers 750.
+  // El Mythic cuenta como 10 farmers.
+  const perksSleeps = (options.perks && typeof options.perks.sleeps === 'number')
+    ? options.perks.sleeps
+    : (typeof options.perksSleeps === 'number' ? options.perksSleeps : null);
+  const isMythic = Boolean(options.isMythic || (options.perks && (options.perks.mythic || options.perks.isMythic)));
+
+  let sleepADay = 200;
+  if (isHolderOrVip) {
+    if (typeof perksSleeps === 'number' && perksSleeps >= 3) {
+      sleepADay = Math.max(3, Math.min(5, perksSleeps)) * 150;
+    } else if (count >= 20) {
+      sleepADay = 750;
+    } else if (count >= 10 || isMythic) {
+      sleepADay = 600;
+    } else {
+      sleepADay = 450;
+    }
+  }
 
   const utcDay = Math.floor(now / 86400000);
   const msToNextUtcMidnight = ((utcDay + 1) * 86400000) - now;

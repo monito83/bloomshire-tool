@@ -87,7 +87,7 @@
   },
   "levelProgression": {
     "maxLevel": 30,
-    "formula": "40 * (level - 1)^1.9",
+    "formula": "100 * (level - 1)^2.7",
     "xpLevels": [
       {
         "level": 1,
@@ -95,119 +95,119 @@
       },
       {
         "level": 2,
-        "totalXpRequired": 40
+        "totalXpRequired": 100
       },
       {
         "level": 3,
-        "totalXpRequired": 149
+        "totalXpRequired": 650
       },
       {
         "level": 4,
-        "totalXpRequired": 323
+        "totalXpRequired": 1942
       },
       {
         "level": 5,
-        "totalXpRequired": 557
+        "totalXpRequired": 4222
       },
       {
         "level": 6,
-        "totalXpRequired": 851
+        "totalXpRequired": 7713
       },
       {
         "level": 7,
-        "totalXpRequired": 1204
+        "totalXpRequired": 12619
       },
       {
         "level": 8,
-        "totalXpRequired": 1613
+        "totalXpRequired": 19132
       },
       {
         "level": 9,
-        "totalXpRequired": 2079
+        "totalXpRequired": 27437
       },
       {
         "level": 10,
-        "totalXpRequired": 2601
+        "totalXpRequired": 37710
       },
       {
         "level": 11,
-        "totalXpRequired": 3177
+        "totalXpRequired": 50119
       },
       {
         "level": 12,
-        "totalXpRequired": 3808
+        "totalXpRequired": 64828
       },
       {
         "level": 13,
-        "totalXpRequired": 4493
+        "totalXpRequired": 81995
       },
       {
         "level": 14,
-        "totalXpRequired": 5231
+        "totalXpRequired": 101776
       },
       {
         "level": 15,
-        "totalXpRequired": 6021
+        "totalXpRequired": 124321
       },
       {
         "level": 16,
-        "totalXpRequired": 6865
+        "totalXpRequired": 149777
       },
       {
         "level": 17,
-        "totalXpRequired": 7760
+        "totalXpRequired": 178289
       },
       {
         "level": 18,
-        "totalXpRequired": 8708
+        "totalXpRequired": 209997
       },
       {
         "level": 19,
-        "totalXpRequired": 9707
+        "totalXpRequired": 245039
       },
       {
         "level": 20,
-        "totalXpRequired": 10757
+        "totalXpRequired": 283553
       },
       {
         "level": 21,
-        "totalXpRequired": 11858
+        "totalXpRequired": 325672
       },
       {
         "level": 22,
-        "totalXpRequired": 13010
+        "totalXpRequired": 371528
       },
       {
         "level": 23,
-        "totalXpRequired": 14212
+        "totalXpRequired": 421251
       },
       {
         "level": 24,
-        "totalXpRequired": 15465
+        "totalXpRequired": 474969
       },
       {
         "level": 25,
-        "totalXpRequired": 16767
+        "totalXpRequired": 532808
       },
       {
         "level": 26,
-        "totalXpRequired": 18119
+        "totalXpRequired": 594892
       },
       {
         "level": 27,
-        "totalXpRequired": 19521
+        "totalXpRequired": 661345
       },
       {
         "level": 28,
-        "totalXpRequired": 20973
+        "totalXpRequired": 732288
       },
       {
         "level": 29,
-        "totalXpRequired": 22473
+        "totalXpRequired": 807842
       },
       {
         "level": 30,
-        "totalXpRequired": 24022
+        "totalXpRequired": 888126
       }
     ]
   },
