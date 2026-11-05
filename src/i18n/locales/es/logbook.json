@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "kicker": "Guía de campo de la comunidad",
+    "title": "Bitácora de Leonman",
+    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, escritos por Leonman y compartidos con toda la comunidad.",
+    "credit": "Contenido de Leonman, publicado con su permiso."
+  },
+  "nav": {
+    "home": "Bitácora",
+    "sections": "Secciones",
+    "showSections": "Mostrar secciones",
+    "hideSections": "Ocultar secciones",
+    "empty": "Todavía no hay secciones.",
+    "collapse": "Contraer",
+    "expand": "Expandir"
+  },
+  "search": {
+    "placeholder": "Buscar guías, jefes, lugares…",
+    "clear": "Borrar búsqueda",
+    "searching": "Buscando…",
+    "resultsFor": "Resultados para «{{q}}»",
+    "noResults": "No se encontró nada para «{{q}}». Probá otra palabra o quitá el filtro de lugar.",
+    "minChars": "Escribí al menos 2 caracteres."
+  },
+  "places": {
+    "filterLabel": "Filtrar por lugar",
+    "filterPlaceholder": "Lugar: escribí «Whis»…",
+    "noMatches": "Ningún lugar coincide con «{{q}}».",
+    "clearFilter": "Quitar filtro de lugar",
+    "filteringBy": "Entradas sobre {{place}}",
+    "viewInAtlas": "Ver en Mega-Atlas",
+    "noCoords": "Todavía no está en el mapa",
+    "unknown": "Lugar desconocido",
+    "kind": {
+      "region": "Región",
+      "sub": "Zona",
+      "npc": "Aldeano",
+      "door": "Entrada",
+      "clue": "Pista",
+      "custom": "Lugar de la bitácora"
+    }
+  },
+  "home": {
+    "browse": "Explorar la bitácora",
+    "recent": "Actualizado recientemente",
+    "entries_one": "{{count}} entrada",
+    "entries_other": "{{count}} entradas",
+    "emptyTitle": "La bitácora todavía está en blanco",
+    "emptyBody": "Las primeras guías de Leonman van a aparecer acá apenas se publiquen."
+  },
+  "section": {
+    "subsections": "Subsecciones",
+    "entries": "Entradas",
+    "empty": "Esta sección todavía no tiene entradas publicadas."
+  },
+  "entry": {
+    "back": "Volver",
+    "updated": "Actualizado el {{date}}",
+    "by": "por {{author}}",
+    "tags": "Etiquetas",
+    "places": "Lugares",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "copyLink": "Copiar enlace",
+    "copied": "Enlace copiado",
+    "notFound": "Esta entrada no existe o ya no está publicada.",
+    "translationMissing": "Parte de esta entrada todavía no está traducida; se muestra el texto original en inglés.",
+    "loading": "Abriendo la página…"
+  },
+  "blocks": {
+    "note": "Nota",
+    "tip": "Consejo",
+    "warning": "Atención",
+    "playVideo": "Reproducir video",
+    "videoPrivacy": "El video se carga desde YouTube (modo de privacidad mejorada) solo cuando tocás reproducir.",
+    "download": "Descargar",
+    "pdf": "Documento PDF",
+    "imageCount": "Imagen {{n}} de {{total}}",
+    "openImage": "Abrir imagen",
+    "close": "Cerrar",
+    "prevImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "imageUnavailable": "Imagen no disponible"
+  },
+  "state": {
+    "loading": "Abriendo la bitácora…",
+    "error": "No se pudo cargar la bitácora en este momento.",
+    "retry": "Reintentar",
+    "demo": "Datos de demostración locales: la bitácora real se carga desde el servidor una vez publicada."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "kicker": "Community field guide",
+    "title": "Leonman's Logbook",
+    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, written by Leonman and shared with the whole community.",
+    "credit": "Content by Leonman, published with his permission."
+  },
+  "nav": {
+    "home": "Logbook",
+    "sections": "Sections",
+    "showSections": "Show sections",
+    "hideSections": "Hide sections",
+    "empty": "No sections yet.",
+    "collapse": "Collapse",
+    "expand": "Expand"
+  },
+  "search": {
+    "placeholder": "Search guides, bosses, places…",
+    "clear": "Clear search",
+    "searching": "Searching…",
+    "resultsFor": "Results for “{{q}}”",
+    "noResults": "Nothing found for “{{q}}”. Try another word or remove the place filter.",
+    "minChars": "Type at least 2 characters."
+  },
+  "places": {
+    "filterLabel": "Filter by place",
+    "filterPlaceholder": "Place: type “Whis”…",
+    "noMatches": "No place matches “{{q}}”.",
+    "clearFilter": "Remove place filter",
+    "filteringBy": "Entries about {{place}}",
+    "viewInAtlas": "View in Mega-Atlas",
+    "noCoords": "Not on the map yet",
+    "unknown": "Unknown place",
+    "kind": {
+      "region": "Region",
+      "sub": "Zone",
+      "npc": "Villager",
+      "door": "Entrance",
+      "clue": "Clue",
+      "custom": "Logbook place"
+    }
+  },
+  "home": {
+    "browse": "Browse the logbook",
+    "recent": "Recently updated",
+    "entries_one": "{{count}} entry",
+    "entries_other": "{{count}} entries",
+    "emptyTitle": "The logbook is still blank",
+    "emptyBody": "Leonman's first guides will appear here as soon as they are published."
+  },
+  "section": {
+    "subsections": "Subsections",
+    "entries": "Entries",
+    "empty": "This section has no published entries yet."
+  },
+  "entry": {
+    "back": "Back",
+    "updated": "Updated {{date}}",
+    "by": "by {{author}}",
+    "tags": "Tags",
+    "places": "Places",
+    "previous": "Previous",
+    "next": "Next",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "notFound": "This entry does not exist or is no longer published.",
+    "translationMissing": "Part of this entry is not translated yet; the original English text is shown.",
+    "loading": "Opening the page…"
+  },
+  "blocks": {
+    "note": "Note",
+    "tip": "Tip",
+    "warning": "Warning",
+    "playVideo": "Play video",
+    "videoPrivacy": "The video loads from YouTube (privacy-enhanced mode) only when you press play.",
+    "download": "Download",
+    "pdf": "PDF document",
+    "imageCount": "Image {{n}} of {{total}}",
+    "openImage": "Open image",
+    "close": "Close",
+    "prevImage": "Previous image",
+    "nextImage": "Next image",
+    "imageUnavailable": "Image unavailable"
+  },
+  "state": {
+    "loading": "Opening the logbook…",
+    "error": "The logbook could not be loaded right now.",
+    "retry": "Try again",
+    "demo": "Local demo data: the real logbook loads from the server when deployed."
+  }
+}
