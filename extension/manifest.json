@@ -59,5 +59,16 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "Bloomshire Companion"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["quests_es.json"],
+      "matches": [
+        "*://bloomshire.xyz/*",
+        "*://*.bloomshire.xyz/*",
+        "*://bloomshire.io/*",
+        "*://*.bloomshire.io/*"
+      ]
+    }
+  ]
 }
