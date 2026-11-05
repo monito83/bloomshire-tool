@@ -1,0 +1,86 @@
+{
+  "strategicMode": "Strategic Mode:",
+  "presets": {
+    "energy": "Energy Saver (Max XP/⚡)",
+    "speedrun": "Speedrun (Max XP/min)",
+    "gold_energy": "Gold per Energy (Max Gold/⚡)",
+    "profit": "Profitability Gold/min"
+  },
+  "plots": "Plots:",
+  "simulator": {
+    "title": "Remaining Energy Simulator",
+    "liveGame": "Live Game: {{current}} / {{max}} ⚡",
+    "description": "Calculate the exact impact on XP and Gold based on available energy in your game.",
+    "yourEnergy": "⚡ Your Energy:",
+    "resetLive": "Reset Live",
+    "withEnergy": "With <bold>{{energy}}⚡</bold> on <bold>{{crop}}</bold>:",
+    "cropsAndBatches": "{{crops}} crops ({{batches}} batches)",
+    "xpGain": "+{{amount}} XP",
+    "goldGain": "+{{amount}} Gold"
+  },
+  "filters": {
+    "skillLabel": "Skill:",
+    "skills": {
+      "farming": "🌾 Farming",
+      "mining": "⛏️ Mining (Caves & Gems)",
+      "foraging": "🍄 Foraging & Logging",
+      "fishing": "🎣 Fishing (River & Lake)"
+    },
+    "seasonLabel": "Season:",
+    "seasons": {
+      "all": "🌐 All Seasons",
+      "Winter": "❄️ Winter (Current Season)",
+      "Spring": "🌸 Spring",
+      "Summer": "☀️ Summer",
+      "Fall": "🍂 Fall"
+    },
+    "levelLabel": "Required Level:",
+    "levels": {
+      "all": "🌟 All Levels",
+      "level1": "Level 1 (Beginner)",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "level4": "Level 4",
+      "level5": "Level 5 (Apothecary)",
+      "level6": "Level 6",
+      "level7": "Level 7",
+      "level8": "Level 8+",
+      "level10": "Level 10+ (Advanced)",
+      "special": "Quests / Specials"
+    },
+    "sortLabel": "Sort by:",
+    "sort": {
+      "xpEnergy_desc": "⚡ Max XP per Energy (XP/⚡ ↓)",
+      "goldEnergy_desc": "🪙 Max Gold per Energy (Gold/⚡ ↓)",
+      "xpMin_desc": "⏱️ Fastest for XP leveling (XP/min ↓)",
+      "goldMin_desc": "💰 Most profitable in Gold (Gold/min ↓)",
+      "time_asc": "⏳ Shortest wait time (↑)",
+      "cost_asc": "🪙 Cheapest to buy (Cost ↑)",
+      "sell_desc": "💎 Highest sell price (Sell ↓)"
+    }
+  },
+  "table": {
+    "headers": {
+      "item": "Resource / Crop",
+      "season": "Season",
+      "time": "Time",
+      "level": "Level",
+      "cost": "Cost",
+      "sell": "Sell",
+      "net": "Net",
+      "xp": "XP",
+      "energy": "⚡ Cost",
+      "xpPerEnergy": "🎯 XP / ⚡",
+      "goldPerEnergy": "🪙 Gold / ⚡",
+      "xpPerMin": "XP / Min",
+      "goldPerMin": "Gold / Min",
+      "totalPlots": "Total x{{plots}} Plots",
+      "tip": "Tactical Tip"
+    },
+    "allYear": "All Year 🌐",
+    "levelBadge": "Lvl {{level}}",
+    "regrowBadge": "Regrowth (5x)",
+    "regrowLevel": "Lvl 15+: {{val}}",
+    "consumption": "Consumption: {{energy}}⚡"
+  }
+}

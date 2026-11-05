@@ -1,0 +1,37 @@
+{
+  "language": {
+    "en": "English",
+    "es": "Spanish",
+    "switchToEn": "Switch to English",
+    "switchToEs": "Cambiar a Español"
+  },
+  "status": {
+    "loading": "Loading...",
+    "ready": "READY"
+  },
+  "categories": {
+    "crop": "Crop",
+    "fish": "Fish",
+    "food": "Food",
+    "forage": "Forage / Mushroom",
+    "ore": "Ore",
+    "resource": "Resource / Wood",
+    "bug": "Butterfly / Bug",
+    "animal": "Livestock",
+    "meat": "Meat",
+    "staple": "Staple / Mill",
+    "craft": "Crafting",
+    "forged": "Forge",
+    "tool": "Tool",
+    "weapon": "Weapon",
+    "gear": "Gear",
+    "furniture": "Furniture",
+    "quest": "Quest",
+    "premium": "Special / Pass",
+    "treasure": "Treasure",
+    "general": "General"
+  },
+  "craftMaterialsBadge": {
+    "tooltip": "Required: {{req}} | You have: {{total}} (Backpack: {{m}}, Cabin: {{cc}}, Town: {{cp}})"
+  }
+}

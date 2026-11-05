@@ -1,0 +1,37 @@
+{
+  "language": {
+    "en": "Inglés",
+    "es": "Español",
+    "switchToEn": "Switch to English",
+    "switchToEs": "Cambiar a Español"
+  },
+  "status": {
+    "loading": "Cargando...",
+    "ready": "LISTA"
+  },
+  "categories": {
+    "crop": "Cultivo",
+    "fish": "Pez",
+    "food": "Comida",
+    "forage": "Recolección / Seta",
+    "ore": "Mineral",
+    "resource": "Recurso / Madera",
+    "bug": "Mariposa / Bicho",
+    "animal": "Ganadería",
+    "meat": "Carne",
+    "staple": "Básico / Molino",
+    "craft": "Artesanía",
+    "forged": "Forja",
+    "tool": "Herramienta",
+    "weapon": "Arma",
+    "gear": "Equipamiento",
+    "furniture": "Mueble",
+    "quest": "Misión",
+    "premium": "Especial / Pase",
+    "treasure": "Tesoro",
+    "general": "General"
+  },
+  "craftMaterialsBadge": {
+    "tooltip": "Requerido: {{req}} | Tienes: {{total}} (Mochila: {{m}}, Cabaña: {{cc}}, Pueblo: {{cp}})"
+  }
+}

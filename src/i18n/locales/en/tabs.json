@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "mega_atlas": "MEGA-ATLAS HD",
+    "inventory": "ECONOMY & SHOPS",
+    "items": "ITEM FINDER",
+    "craft": "CRAFTING & COOKING",
+    "npcs": "VILLAGERS & GIFTS",
+    "calc": "XP CALCULATOR",
+    "monitors": "TIMERS",
+    "monitorsLocked": "TIMERS 🔒",
+    "quests": "Quests",
+    "questsTitle": "Quest Log & Progression",
+    "advisor": "Copilot",
+    "advisorTitle": "AI Copilot",
+    "systemTitle": "Settings & Diagnostics"
+  }
+}

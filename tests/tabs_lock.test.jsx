@@ -16,12 +16,12 @@ import BloomshireCommand from '../src/components/BloomshireCommand';
 describe('Tabs rendering in free/unconnected mode with locks (candados)', () => {
   it('renders ItemsTab without throwing', () => {
     const html = renderToString(<ItemsTab getPlayerItemQty={() => 0} locateInMegaAtlas={() => {}} />);
-    expect(html).toContain('Buscador de Ítems');
+    expect(html).toContain('Item Finder');
   });
 
   it('renders CalcTab without throwing', () => {
     const html = renderToString(<CalcTab currentEnergy={80} maxEnergy={80} farmingLevel={1} />);
-    expect(html).toContain('Simulador de Energía');
+    expect(html).toContain('Remaining Energy Simulator');
   });
 
   it('renders InventoryTab in arbitrage subtab without throwing', () => {
@@ -96,6 +96,6 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
   it('renders BloomshireCommand root component without crashing in free guide mode', () => {
     const html = renderToString(<BloomshireCommand />);
     expect(html).toContain('BLOOMSHIRE');
-    expect(html).toContain('Guía Comunitaria Libre');
+    expect(html).toContain('Free Community Guide');
   });
 });

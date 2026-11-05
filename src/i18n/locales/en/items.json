@@ -1,0 +1,39 @@
+{
+  "title": "🔎 Item Finder & Encyclopedia",
+  "officialItemsCount": "({{count}} official items)",
+  "description": "Type any item, mushroom, fish, ore, recipe or quest to see what it is, where to find it and locate it on the map.",
+  "itemsCount": "{{count}} items",
+  "views": {
+    "grid": "🔲 Grid",
+    "list": "📋 List"
+  },
+  "search": {
+    "placeholder": "Type the name in English or Spanish, quest or location (e.g. carrot, silvercap, bar, butterfly, bread)...",
+    "clear": "✕ Clear"
+  },
+  "categories": {
+    "all": "🌐 All (359)",
+    "forage": "🍄 Foraging & Mushrooms (2)",
+    "fish": "🐟 Fish (43)",
+    "crop": "🌾 Crops (49)",
+    "resource": "⛏️ Ores & Wood (19)",
+    "staple": "🧈 Mill & Dairy (7)",
+    "craft": "🔨 Crafting & Forge (57)",
+    "food": "🍳 Food (92)",
+    "animal": "🐄 Livestock & Meats (13)",
+    "butterfly": "🦋 Butterflies (27)",
+    "quest": "📜 Quests (39)",
+    "premium": "💎 Special & Treasures (11)"
+  },
+  "card": {
+    "sellPriceTooltip": "Official sell price: {{price}} Gold",
+    "inventoryTooltip": "In backpack and chests: {{count}} units",
+    "skillReq": "⚡ Requirement: {{req}}",
+    "skillReqTooltip": "Requirement: {{req}}",
+    "obtain": "Obtain:",
+    "usedIn": "📋 Required in ({{count}} recipes / quests)",
+    "locateTitle": "Locate \"{{location}}\" in the Mega-Atlas",
+    "youHave": "📦 You have: {{count}}",
+    "zeroStock": "0 in stock"
+  }
+}

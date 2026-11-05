@@ -1,6 +1,7 @@
 // src/components/bloomshire/tabs/CalcTab.jsx
 import React, { useState, useMemo } from 'react';
 import { Filter } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 import calcData from '../../../../public/data/bloomshire/calc_data.json';
 
 export default function CalcTab({ 
@@ -9,6 +10,7 @@ export default function CalcTab({
   farmingLevel = 1, 
   playerPerks = null 
 }) {
+  const { t, i18n } = useTranslation('calc');
   const [calcSkill, setCalcSkill] = useState('farming');
   const [calcLevelFilter, setCalcLevelFilter] = useState('all');
   const [calcSort, setCalcSort] = useState('xpEnergy_desc');
@@ -22,14 +24,14 @@ export default function CalcTab({
   const filteredCalcList = useMemo(() => {
     let list = [...(calcData[calcSkill] || [])];
 
-    // Filtro de Temporada / Época (solo para cultivo)
+    // Filtro de Temporada / Epoca (solo para cultivo)
     if (calcSkill === 'farming' && calcSeasonFilter !== 'all') {
       list = list.filter(x => x.season === 'all' || x.season === calcSeasonFilter);
     }
 
     if (calcLevelFilter !== 'all') {
       if (calcLevelFilter === 'vip' || calcLevelFilter === 'special') {
-        list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misión'))));
+        list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misi'))));
       } else {
         const targetLv = parseInt(calcLevelFilter, 10);
         list = list.filter(x => (x.level ?? 1) <= targetLv || targetLv >= 10);
@@ -76,11 +78,11 @@ export default function CalcTab({
 
   return (
     <div className="h-full overflow-y-auto p-5 space-y-4 custom-scrollbar">
-      {/* Barra de Presets Estratégicos */}
+      {/* Barra de Presets Estrategicos */}
       <div className="p-3.5 bg-gradient-to-r from-[#0d162d] via-[#101b38] to-[#0d162d] border border-indigo-950/80 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5 mr-1">
-            <span>🎯</span> Modo Estratégico:
+            <span>🎯</span> {t('strategicMode')}
           </span>
           <button
             type="button"
@@ -91,7 +93,7 @@ export default function CalcTab({
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
           >
-            <span>⚡</span> <span>Ahorro de Energía (Máx XP/⚡)</span>
+            <span>⚡</span> <span>{t('presets.energy')}</span>
           </button>
           <button
             type="button"
@@ -102,7 +104,7 @@ export default function CalcTab({
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
           >
-            <span>⏱️</span> <span>Speedrun Rápido (Máx XP/min)</span>
+            <span>⏱️</span> <span>{t('presets.speedrun')}</span>
           </button>
           <button
             type="button"
@@ -113,7 +115,7 @@ export default function CalcTab({
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
           >
-            <span>🪙</span> <span>Oro por Energía (Máx Oro/⚡)</span>
+            <span>🪙</span> <span>{t('presets.gold_energy')}</span>
           </button>
           <button
             type="button"
@@ -124,13 +126,13 @@ export default function CalcTab({
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
           >
-            <span>💰</span> <span>Rentabilidad Oro/min</span>
+            <span>💰</span> <span>{t('presets.profit')}</span>
           </button>
         </div>
 
         {calcSkill === 'farming' && (
           <div className="flex items-center gap-2 text-xs bg-[#14203d] px-3 py-1 rounded-lg border border-amber-500/30 text-amber-200">
-            <span className="font-bold">Parcelas:</span>
+            <span className="font-bold">{t('plots')}</span>
             <input 
               type="number" 
               value={availablePlots} 
@@ -141,7 +143,7 @@ export default function CalcTab({
         )}
       </div>
 
-      {/* Simulador Interactivo de Energía Restante */}
+      {/* Simulador Interactivo de Energia Restante */}
       <div className="p-4 bg-gradient-to-r from-[#101b38] via-[#0d162d] to-[#0a1122] border border-cyan-500/40 rounded-xl flex flex-wrap items-center justify-between gap-4 shadow-lg">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-xl shrink-0">
@@ -149,20 +151,20 @@ export default function CalcTab({
           </div>
           <div>
             <div className="text-xs font-black uppercase text-amber-300 flex items-center gap-2 flex-wrap">
-              <span>Simulador de Energía Restante</span>
+              <span>{t('simulator.title')}</span>
               <span className="px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 text-[10px] font-mono font-bold">
-                Partida Live: {Math.floor(currentEnergy)} / {maxEnergy} ⚡
+                {t('simulator.liveGame', { current: Math.floor(currentEnergy), max: maxEnergy })}
               </span>
             </div>
             <div className="text-[11.5px] text-slate-300 mt-0.5">
-              Calcula el impacto exacto en XP y Oro según la energía disponible en tu partida.
+              {t('simulator.description')}
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-2 bg-[#070d1c] px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-bold text-slate-300">
-            <span>⚡ Tu Energía:</span>
+            <span>{t('simulator.yourEnergy')}</span>
             <input
               type="number"
               value={simulatedEnergy !== '' ? simulatedEnergy : Math.floor(currentEnergy || 80)}
@@ -176,7 +178,7 @@ export default function CalcTab({
                 onClick={() => setSimulatedEnergy('')}
                 className="text-[10px] text-slate-400 hover:text-white underline cursor-pointer ml-1"
               >
-                Reset Live
+                {t('simulator.resetLive')}
               </button>
             )}
           </div>
@@ -184,16 +186,21 @@ export default function CalcTab({
           {topCrop && (
             <div className="px-3.5 py-1.5 bg-emerald-950/40 border border-emerald-500/40 rounded-lg flex items-center gap-3 text-xs flex-wrap">
               <span className="text-emerald-300 font-bold">
-                Con <b>{simEnergyVal}⚡</b> en <b>{topCrop.name.split('(')[0].trim()}</b>:
+                <Trans
+                  i18nKey="simulator.withEnergy"
+                  ns="calc"
+                  values={{ energy: simEnergyVal, crop: topCrop.name.split('(')[0].trim() }}
+                  components={{ bold: <b /> }}
+                />
               </span>
               <span className="font-mono text-amber-300 font-black">
-                {cropsPossible} cultivos ({batchesPossible} tandas)
+                {t('simulator.cropsAndBatches', { crops: cropsPossible, batches: batchesPossible })}
               </span>
               <span className="font-mono text-emerald-400 font-black">
-                +{(cropsPossible * (topCrop.xp ?? 0)).toLocaleString('es-ES')} XP
+                {t('simulator.xpGain', { amount: new Intl.NumberFormat(i18n.language).format(cropsPossible * (topCrop.xp ?? 0)) })}
               </span>
               <span className="font-mono text-cyan-300 font-black">
-                +{((cropsPossible * ((topCrop.sell ?? 0) - (topCrop.cost ?? 0)))).toLocaleString('es-ES')} Oro
+                {t('simulator.goldGain', { amount: new Intl.NumberFormat(i18n.language).format(cropsPossible * ((topCrop.sell ?? 0) - (topCrop.cost ?? 0))) })}
               </span>
             </div>
           )}
@@ -204,72 +211,72 @@ export default function CalcTab({
       <div className="p-3.5 bg-[#0e172c] border border-indigo-950/70 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-            <Filter className="w-4 h-4 text-amber-400" /> Habilidad:
+            <Filter className="w-4 h-4 text-amber-400" /> {t('filters.skillLabel')}
             <select 
               value={calcSkill} 
               onChange={(e) => setCalcSkill(e.target.value)}
               className="bg-[#14203d] border border-slate-700 text-amber-300 rounded px-2.5 py-1 text-xs font-bold cursor-pointer"
             >
-              <option value="farming">🌾 Cultivo (Farming)</option>
-              <option value="mining">⛏️ Minería (Cuevas y Gemas)</option>
-              <option value="foraging">🍄 Recolección &amp; Tala</option>
-              <option value="fishing">🎣 Pesca (Río y Lago)</option>
+              <option value="farming">{t('filters.skills.farming')}</option>
+              <option value="mining">{t('filters.skills.mining')}</option>
+              <option value="foraging">{t('filters.skills.foraging')}</option>
+              <option value="fishing">{t('filters.skills.fishing')}</option>
             </select>
           </div>
 
-          {/* Selector de Época del Año (Solo Cultivo) */}
+          {/* Selector de Epoca del Ano (Solo Cultivo) */}
           {calcSkill === 'farming' && (
             <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-              <span className="text-amber-400">🍂</span> Época:
+              <span className="text-amber-400">🍂</span> {t('filters.seasonLabel')}
               <select 
                 value={calcSeasonFilter} 
                 onChange={(e) => setCalcSeasonFilter(e.target.value)}
                 className="bg-[#14203d] border border-slate-700 text-white rounded px-2.5 py-1 text-xs font-semibold cursor-pointer"
               >
-                <option value="all">🌐 Todas las Épocas</option>
-                <option value="Winter">❄️ Invierno (Temporada Actual)</option>
-                <option value="Spring">🌸 Primavera (Spring)</option>
-                <option value="Summer">☀️ Verano (Summer)</option>
-                <option value="Fall">🍂 Otoño (Fall)</option>
+                <option value="all">{t('filters.seasons.all')}</option>
+                <option value="Winter">{t('filters.seasons.Winter')}</option>
+                <option value="Spring">{t('filters.seasons.Spring')}</option>
+                <option value="Summer">{t('filters.seasons.Summer')}</option>
+                <option value="Fall">{t('filters.seasons.Fall')}</option>
               </select>
             </div>
           )}
 
           <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-            Nivel Requerido:
+            {t('filters.levelLabel')}
             <select 
               value={calcLevelFilter} 
               onChange={(e) => setCalcLevelFilter(e.target.value)}
               className="bg-[#14203d] border border-slate-700 text-white rounded px-2.5 py-1 text-xs font-semibold cursor-pointer"
             >
-              <option value="all">🌟 Todos los Niveles</option>
-              <option value="1">Nivel 1 (Principiante)</option>
-              <option value="2">Nivel 2</option>
-              <option value="3">Nivel 3</option>
-              <option value="4">Nivel 4</option>
-              <option value="5">Nivel 5 (Botica)</option>
-              <option value="6">Nivel 6</option>
-              <option value="7">Nivel 7</option>
-              <option value="8">Nivel 8+</option>
-              <option value="10">Nivel 10+ (Avanzado)</option>
-              <option value="special">Misiones / Especiales</option>
+              <option value="all">{t('filters.levels.all')}</option>
+              <option value="1">{t('filters.levels.level1')}</option>
+              <option value="2">{t('filters.levels.level2')}</option>
+              <option value="3">{t('filters.levels.level3')}</option>
+              <option value="4">{t('filters.levels.level4')}</option>
+              <option value="5">{t('filters.levels.level5')}</option>
+              <option value="6">{t('filters.levels.level6')}</option>
+              <option value="7">{t('filters.levels.level7')}</option>
+              <option value="8">{t('filters.levels.level8')}</option>
+              <option value="10">{t('filters.levels.level10')}</option>
+              <option value="special">{t('filters.levels.special')}</option>
             </select>
           </div>
 
           <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-            Ordenar por:
+            {t('filters.sortLabel')}
             <select 
               value={calcSort} 
               onChange={(e) => setCalcSort(e.target.value)}
               className="bg-[#14203d] border border-slate-700 text-amber-300 font-bold rounded px-2.5 py-1 text-xs cursor-pointer"
             >
-              <option value="xpEnergy_desc">⚡ Mayor XP por Energía (XP/⚡ ↓)</option>
-              <option value="goldEnergy_desc">🪙 Mayor Oro por Energía (Oro/⚡ ↓)</option>
-              <option value="xpMin_desc">⏱️ Más rápido para subir XP (XP/min ↓)</option>
-              <option value="goldMin_desc">💰 Más rentable en Oro (Oro/min ↓)</option>
-              <option value="time_asc">⏳ Menor tiempo de espera (↑)</option>
-              <option value="cost_asc">🪙 Más barato de comprar (Coste ↑)</option>
-              <option value="sell_desc">💎 Mayor precio de venta (Venta ↓)</option>
+              <option value="xpEnergy_desc">{t('filters.sort.xpEnergy_desc')}</option>
+              <option value="goldEnergy_desc">{t('filters.sort.goldEnergy_desc')}</option>
+              <option value="xpMin_desc">{t('filters.sort.xpMin_desc')}</option>
+              <option value="goldMin_desc">{t('filters.sort.goldMin_desc')}</option>
+              <option value="time_asc">{t('filters.sort.time_asc')}</option>
+              <option value="cost_asc">{t('filters.sort.cost_asc')}</option>
+              <option value="sell_desc">{t('filters.sort.sell_desc')}</option>
             </select>
           </div>
         </div>
@@ -281,21 +288,21 @@ export default function CalcTab({
           <table className="w-full text-left text-xs border-collapse min-w-[980px]">
             <thead>
               <tr className="bg-[#121d38] border-b border-slate-800 text-slate-300 uppercase tracking-wider text-[10.5px] font-black">
-                <th className="p-3">Recurso / Cultivo</th>
-                {calcSkill === 'farming' && <th className="p-3">Época</th>}
-                <th className="p-3">Tiempo</th>
-                <th className="p-3">Nivel</th>
-                <th className="p-3">Coste</th>
-                <th className="p-3">Venta</th>
-                <th className="p-3">Neto</th>
-                <th className="p-3">XP</th>
-                <th className="p-3 text-amber-300 bg-amber-950/30 border-l border-amber-900/40">⚡ Gasto</th>
-                <th className="p-3 text-emerald-300 bg-emerald-950/30">🎯 XP / ⚡</th>
-                <th className="p-3 text-cyan-300 bg-cyan-950/30 border-r border-cyan-900/40">🪙 Oro / ⚡</th>
-                <th className="p-3">XP / Min</th>
-                <th className="p-3">Oro / Min</th>
-                {calcSkill === 'farming' && <th className="p-3">Total x{availablePlots} Parcelas</th>}
-                <th className="p-3">Consejo Táctico</th>
+                <th className="p-3">{t('table.headers.item')}</th>
+                {calcSkill === 'farming' && <th className="p-3">{t('table.headers.season')}</th>}
+                <th className="p-3">{t('table.headers.time')}</th>
+                <th className="p-3">{t('table.headers.level')}</th>
+                <th className="p-3">{t('table.headers.cost')}</th>
+                <th className="p-3">{t('table.headers.sell')}</th>
+                <th className="p-3">{t('table.headers.net')}</th>
+                <th className="p-3">{t('table.headers.xp')}</th>
+                <th className="p-3 text-amber-300 bg-amber-950/30 border-l border-amber-900/40">{t('table.headers.energy')}</th>
+                <th className="p-3 text-emerald-300 bg-emerald-950/30">{t('table.headers.xpPerEnergy')}</th>
+                <th className="p-3 text-cyan-300 bg-cyan-950/30 border-r border-cyan-900/40">{t('table.headers.goldPerEnergy')}</th>
+                <th className="p-3">{t('table.headers.xpPerMin')}</th>
+                <th className="p-3">{t('table.headers.goldPerMin')}</th>
+                {calcSkill === 'farming' && <th className="p-3">{t('table.headers.totalPlots', { plots: availablePlots })}</th>}
+                <th className="p-3">{t('table.headers.tip')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 font-medium">
@@ -325,7 +332,7 @@ export default function CalcTab({
                           item.season === 'Fall' ? 'bg-orange-950/80 text-orange-300 border border-orange-700/50' :
                           'bg-emerald-950/80 text-emerald-300 border border-emerald-700/50'
                         }`}>
-                          {item.seasonLabel || 'Todo el Año 🌐'}
+                          {item.seasonLabel || t('table.allYear')}
                         </span>
                       </td>
                     )}
@@ -335,24 +342,24 @@ export default function CalcTab({
                     </td>
                     <td className="p-3 whitespace-nowrap">
                       <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono text-[10px]">
-                        {item.level ? `Nv ${item.level}` : 'Nv 1'}
+                        {t('table.levelBadge', { level: item.level || 1 })}
                       </span>
                     </td>
                     <td className="p-3 text-red-300 font-mono whitespace-nowrap">{item.cost ? `${item.cost}g` : '0g'}</td>
                     <td className="p-3 text-amber-300 font-mono font-bold whitespace-nowrap">{item.sell ? `${item.sell}g` : '0g'}</td>
                     <td className="p-3 font-mono font-bold text-emerald-400 whitespace-nowrap">
-                      {netProfit >= 0 ? `+${netProfit}g` : `${netProfit}g`}
+                      {netProfit >= 0 ? `+${new Intl.NumberFormat(i18n.language).format(netProfit)}g` : `${new Intl.NumberFormat(i18n.language).format(netProfit)}g`}
                     </td>
                     <td className="p-3 text-purple-300 font-mono font-bold whitespace-nowrap">+{xp} XP</td>
                     
-                    {/* ⚡ Gasto de Energía */}
+                    {/* ⚡ Gasto de Energia */}
                     <td className="p-3 bg-amber-950/20 border-l border-amber-900/30 whitespace-nowrap">
                       <span className="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[10.5px]">
                         -{energyCost}⚡
                       </span>
                     </td>
 
-                    {/* 🎯 XP por Energía */}
+                    {/* 🎯 XP por Energia */}
                     <td className="p-3 bg-emerald-950/20 whitespace-nowrap">
                       <span className={`px-2 py-0.5 rounded font-mono font-black text-xs border ${
                         xpPerEnergy >= 10
@@ -365,7 +372,7 @@ export default function CalcTab({
                       </span>
                     </td>
 
-                    {/* 🪙 Oro por Energía */}
+                    {/* 🪙 Oro por Energia */}
                     <td className="p-3 bg-cyan-950/20 border-r border-cyan-900/30 whitespace-nowrap font-mono font-bold text-xs">
                       <span className={goldPerEnergy >= 50 ? 'text-cyan-300' : 'text-slate-300'}>
                         {goldPerEnergy >= 0 ? `+${goldPerEnergy}` : goldPerEnergy}g/⚡
@@ -376,13 +383,13 @@ export default function CalcTab({
                       {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
                         <div className="flex flex-col">
                           <span>{item.regrowXpMin}</span>
-                          <span className="text-[10px] text-purple-300/70 font-normal">Rebrote (5x)</span>
+                          <span className="text-[10px] text-purple-300/70 font-normal">{t('table.regrowBadge')}</span>
                         </div>
                       ) : (
                         <div className="flex flex-col">
                           <span>{item.xpMin || 0}</span>
                           {calcSkill === 'farming' && item.hasRegrow && (
-                            <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowXpMin}</span>
+                            <span className="text-[10px] text-slate-500 font-normal">{t('table.regrowLevel', { val: item.regrowXpMin })}</span>
                           )}
                         </div>
                       )}
@@ -391,13 +398,13 @@ export default function CalcTab({
                       {calcSkill === 'farming' && farmingLevel >= 15 && item.hasRegrow ? (
                         <div className="flex flex-col">
                           <span>{item.regrowGoldMin}g</span>
-                          <span className="text-[10px] text-amber-300/70 font-normal">Rebrote (5x)</span>
+                          <span className="text-[10px] text-amber-300/70 font-normal">{t('table.regrowBadge')}</span>
                         </div>
                       ) : (
                         <div className="flex flex-col">
                           <span>{item.goldMin || 0}g</span>
                           {calcSkill === 'farming' && item.hasRegrow && (
-                            <span className="text-[10px] text-slate-500 font-normal">Nv 15+: {item.regrowGoldMin}g</span>
+                            <span className="text-[10px] text-slate-500 font-normal">{t('table.regrowLevel', { val: item.regrowGoldMin + 'g' })}</span>
                           )}
                         </div>
                       )}
@@ -407,10 +414,10 @@ export default function CalcTab({
                       <td className="p-3 whitespace-nowrap">
                         <div className="flex flex-col">
                           <span className="font-mono font-bold text-emerald-300">
-                            +{batchNet.toLocaleString('es-ES')}g <span className="text-purple-300 text-[10px]">/ +{batchXp.toLocaleString('es-ES')}XP</span>
+                            +{new Intl.NumberFormat(i18n.language).format(batchNet)}g <span className="text-purple-300 text-[10px]">/ +{new Intl.NumberFormat(i18n.language).format(batchXp)}XP</span>
                           </span>
                           <span className="text-[10px] text-amber-300/80 font-mono">
-                            Consumo: {batchEnergy}⚡
+                            {t('table.consumption', { energy: batchEnergy })}
                           </span>
                         </div>
                       </td>
@@ -426,4 +433,3 @@ export default function CalcTab({
     </div>
   );
 }
-

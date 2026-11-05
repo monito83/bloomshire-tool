@@ -1,0 +1,39 @@
+{
+  "title": "🔎 Enciclopedia & Buscador de Ítems",
+  "officialItemsCount": "({{count}} objetos oficiales)",
+  "description": "Escribe cualquier objeto, seta, pez, mineral, receta o misión para ver qué es, dónde sale y ubicarlo en el mapa.",
+  "itemsCount": "{{count}} ítems",
+  "views": {
+    "grid": "🔲 Cuadrícula",
+    "list": "📋 Lista"
+  },
+  "search": {
+    "placeholder": "Escribe el nombre en inglés o español, misión o lugar (ej: zanahoria, silvercap, lingote, mariposa, pan)...",
+    "clear": "✕ Limpiar"
+  },
+  "categories": {
+    "all": "🌐 Todos (359)",
+    "forage": "🍄 Recolección & Setas (2)",
+    "fish": "🐟 Peces (43)",
+    "crop": "🌾 Cultivos (49)",
+    "resource": "⛏️ Minerales & Madera (19)",
+    "staple": "🧈 Molino & Lechería (7)",
+    "craft": "🔨 Artesanía & Forja (57)",
+    "food": "🍳 Comidas (92)",
+    "animal": "🐄 Ganadería & Carnes (13)",
+    "butterfly": "🦋 Mariposas (27)",
+    "quest": "📜 Misiones (39)",
+    "premium": "💎 Especial & Tesoros (11)"
+  },
+  "card": {
+    "sellPriceTooltip": "Precio de venta oficial: {{price}} Gold",
+    "inventoryTooltip": "En inventario y cofres: {{count}} unidades",
+    "skillReq": "⚡ Requisito: {{req}}",
+    "skillReqTooltip": "Requisito: {{req}}",
+    "obtain": "Obtención:",
+    "usedIn": "📋 Se pide en ({{count}} recetas / misiones)",
+    "locateTitle": "Ubicar \"{{location}}\" en el Mega-Atlas",
+    "youHave": "📦 Tienes: {{count}}",
+    "zeroStock": "0 en stock"
+  }
+}

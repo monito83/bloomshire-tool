@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { MapPin, Search } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import defaultCraftData from '../../../../public/data/bloomshire/craft_data.json';
 import {
   CRAFT_STATION_LOCATIONS,
@@ -15,6 +16,7 @@ export default function CraftTab({
   initialCraftCategory = 'bench',
   skillsBreakdown = null
 }) {
+  const { t, i18n } = useTranslation('craft');
   const craftData = propCraftData || defaultCraftData;
   const [craftCategory, setCraftCategory] = useState(initialCraftCategory);
   const [craftViewMode, setCraftViewMode] = useState('grid');
@@ -29,7 +31,7 @@ export default function CraftTab({
     return skillsBreakdown.crafting?.level || 1;
   }, [skillsBreakdown, craftCategory]);
 
-  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas multi-variables
+  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analiticas multi-variables
   const filteredAndSortedCrafts = useMemo(() => {
     let list = (craftData && craftData[craftCategory]) ? [...craftData[craftCategory]] : [];
 
@@ -144,7 +146,7 @@ export default function CraftTab({
     return counts;
   }, [craftData, rawInventory]);
 
-  // Resumen táctico de la estación actual
+  // Resumen tactico de la estacion actual
   const stationSummary = useMemo(() => {
     const list = (craftData && craftData[craftCategory]) || [];
     let bestEnergyDish = null;
@@ -179,11 +181,11 @@ export default function CraftTab({
             {/* Selector de Estaciones de Trabajo con Badges de Crafteables Ahora */}
             <div className="flex flex-wrap items-center gap-2">
               {[
-                { key: 'cook', label: '🍲 Estufa de Cocina (Panadería / Cabaña)', badgeKey: 'cook' },
-                { key: 'bench', label: '🪵 Banco de Trabajo (Carpintería Pell)', badgeKey: 'bench' },
-                { key: 'forge', label: '⚒️ Forja de Bram (Herrería)', badgeKey: 'forge' },
-                { key: 'mill', label: '🌊 Molino & Lechería (Granja Hollin)', badgeKey: 'mill' },
-                { key: 'loom', label: '🧵 Telar de Tilly (Sastrería)', badgeKey: 'loom' }
+                { key: 'cook', label: t('tabs.cook'), badgeKey: 'cook' },
+                { key: 'bench', label: t('tabs.bench'), badgeKey: 'bench' },
+                { key: 'forge', label: t('tabs.forge'), badgeKey: 'forge' },
+                { key: 'mill', label: t('tabs.mill'), badgeKey: 'mill' },
+                { key: 'loom', label: t('tabs.loom'), badgeKey: 'loom' }
               ].map(sub => {
                 const readyCount = craftableCountsByCategory[sub.badgeKey] || 0;
                 return (
@@ -199,7 +201,7 @@ export default function CraftTab({
                     <span>{sub.label}</span>
                     {readyCount > 0 && (
                       <span className="px-1.5 py-0.2 rounded-full text-[9.5px] font-mono font-bold bg-emerald-950 border border-emerald-400 text-emerald-300 shadow-sm animate-pulse">
-                        {readyCount} listos
+                        {t('readyBadge', { count: readyCount })}
                       </span>
                     )}
                   </button>
@@ -207,74 +209,74 @@ export default function CraftTab({
               })}
             </div>
 
-            {/* Banner Táctico de la Estación con Analíticas de Rendimiento Global */}
+            {/* Banner Tactico de la Estacion con Analiticas de Rendimiento Global */}
             {CRAFT_STATION_LOCATIONS[craftCategory] && (
               <div className="p-4 bg-gradient-to-r from-[#131d38] via-[#17254a] to-[#111a33] border-2 border-purple-500/50 rounded-xl shadow-lg flex flex-col gap-3">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <div className="text-sm font-black text-amber-300 flex items-center gap-2">
-                      <span>{CRAFT_STATION_LOCATIONS[craftCategory].stationName}</span>
+                      <span>{t(`stations.${craftCategory}.name`)}</span>
                     </div>
                     <div className="text-xs text-slate-300 mt-0.5">
-                      🧭 {CRAFT_STATION_LOCATIONS[craftCategory].stationDesc}
+                      🧭 {t(`stations.${craftCategory}.desc`)}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <button
                       onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory])}
                       className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-sm"
-                      title="Ubicar Estación de Trabajo en el Mega-Atlas"
+                      title={t('locateStationTitle')}
                     >
                       <MapPin className="w-3.5 h-3.5" />
-                      <span>Ubicar Estación</span>
+                      <span>{t('locateStation')}</span>
                     </button>
                     {CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation && (
                       <button
                         onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS[craftCategory].altHomeLocation)}
                         className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-xl text-xs flex items-center gap-1.5 cursor-pointer transition-all"
-                        title="Ubicar Estufa en Tu Cabaña"
+                        title={t('cabinTitle')}
                       >
-                        <span>🏡 Cabaña</span>
+                        <span>{t('cabinButton')}</span>
                       </button>
                     )}
                   </div>
                 </div>
 
-                {/* Radar Táctico de Alto Rendimiento */}
+                {/* Radar Tactico de Alto Rendimiento */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-700/60 font-mono text-xs">
                   <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
-                    <span className="text-[9px] text-slate-400 uppercase font-sans font-bold">Catálogo Estación</span>
-                    <span className="text-white font-black text-sm">{stationSummary.total} recetas</span>
+                    <span className="text-[9px] text-slate-400 uppercase font-sans font-bold">{t('radar.stationCatalog')}</span>
+                    <span className="text-white font-black text-sm">{t('radar.recipesCount', { count: stationSummary.total })}</span>
                   </div>
                   <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
-                    <span className="text-[9px] text-emerald-400 uppercase font-sans font-bold">Crafteables Ahora</span>
+                    <span className="text-[9px] text-emerald-400 uppercase font-sans font-bold">{t('radar.craftableNow')}</span>
                     <span className="text-emerald-300 font-black text-sm">
-                      {totalCraftableInCurrentCategory > 0 ? `✓ ${totalCraftableInCurrentCategory} Listas` : '0 Listas'}
+                      {totalCraftableInCurrentCategory > 0 ? t('radar.readyCount', { count: totalCraftableInCurrentCategory }) : t('radar.zeroReady')}
                     </span>
                   </div>
                   <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
-                    <span className="text-[9px] text-amber-400 uppercase font-sans font-bold">Mayor Ganancia Oro</span>
+                    <span className="text-[9px] text-amber-400 uppercase font-sans font-bold">{t('radar.maxGoldProfit')}</span>
                     <span className="text-amber-300 font-bold text-xs truncate">
-                      {stationSummary.bestProfitCraft ? `+${((stationSummary.bestProfitCraft.sellPrice || 0) - (stationSummary.bestProfitCraft.goldCost || 0)).toLocaleString()}g` : '-'}
+                      {stationSummary.bestProfitCraft ? `+${new Intl.NumberFormat(i18n.language).format((stationSummary.bestProfitCraft.sellPrice || 0) - (stationSummary.bestProfitCraft.goldCost || 0))}g` : '-'}
                     </span>
                   </div>
                   <div className="bg-[#0b1322] p-2 rounded-lg border border-slate-800 flex flex-col">
-                    <span className="text-[9px] text-cyan-400 uppercase font-sans font-bold">Mayor Recarga Energía</span>
+                    <span className="text-[9px] text-cyan-400 uppercase font-sans font-bold">{t('radar.maxEnergyRestore')}</span>
                     <span className="text-cyan-300 font-bold text-xs truncate">
-                      {stationSummary.bestEnergyDish && stationSummary.bestEnergyDish.energyRestore > 0 ? `+${stationSummary.bestEnergyDish.energyRestore}⚡` : 'Gasto Oficio'}
+                      {stationSummary.bestEnergyDish && stationSummary.bestEnergyDish.energyRestore > 0 ? `+${stationSummary.bestEnergyDish.energyRestore}⚡` : t('radar.craftCost')}
                     </span>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Controles de Crafteo: Búsqueda, Ordenamiento y Vista */}
+            {/* Controles de Crafteo: Busqueda, Ordenamiento y Vista */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 bg-[#0e1628] border border-slate-800/80 p-2.5 rounded-xl shadow-sm">
               <div className="flex-1 flex items-center gap-2 bg-[#080d17] border border-slate-700/80 rounded-lg px-2.5 py-1.5 shadow-inner">
                 <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Buscar receta o plato (ej: tarta, guiso, lingote, tela, pan, col)..."
+                  placeholder={t('controls.searchPlaceholder')}
                   value={craftSearchQuery}
                   onChange={(e) => setCraftSearchQuery(e.target.value)}
                   className="bg-transparent border-none text-white text-xs outline-none w-full placeholder:text-slate-500 font-medium"
@@ -290,7 +292,7 @@ export default function CraftTab({
               </div>
 
               <div className="flex items-center gap-2 flex-wrap shrink-0">
-                {/* Botón Toggle Crafteables Ahora con mis Materiales */}
+                {/* Boton Toggle Crafteables Ahora con mis Materiales */}
                 <button
                   onClick={() => setCraftOnlyAvailable(!craftOnlyAvailable)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer flex items-center gap-1.5 ${
@@ -298,9 +300,9 @@ export default function CraftTab({
                       ? 'bg-emerald-600 text-white border-emerald-400 shadow-md'
                       : 'bg-[#14203d] text-slate-300 hover:text-emerald-300 border-slate-700'
                   }`}
-                  title="Filtrar recetas para las que tienes el 100% de los materiales en mochila o cofres"
+                  title={t('controls.filterAvailableTitle')}
                 >
-                  <span>✨ Crafteables Ahora</span>
+                  <span>{t('controls.filterAvailable')}</span>
                   {totalCraftableInCurrentCategory > 0 && (
                     <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-emerald-950 border border-emerald-400 text-emerald-300">
                       {totalCraftableInCurrentCategory}
@@ -309,38 +311,38 @@ export default function CraftTab({
                 </button>
 
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="text-[10.5px] font-bold text-slate-400">Nivel:</span>
+                  <span className="text-[10.5px] font-bold text-slate-400">{t('controls.levelLabel')}</span>
                   <select
                     value={craftLevelFilter}
                     onChange={(e) => setCraftLevelFilter(e.target.value)}
                     className="bg-[#14203d] border border-slate-700 text-white rounded-lg px-2 py-1 text-xs font-semibold outline-none cursor-pointer"
                   >
-                    <option value="all">⭐ Todos los Niveles</option>
-                    <option value="1">Hasta Nivel 1 (Principiante)</option>
-                    <option value="2">Hasta Nivel 2</option>
-                    <option value="3">Hasta Nivel 3</option>
-                    <option value="4">Hasta Nivel 4</option>
-                    <option value="5">Hasta Nivel 5 (Botica)</option>
-                    <option value="6">Hasta Nivel 6</option>
-                    <option value="7">Hasta Nivel 7</option>
-                    <option value="8">Hasta Nivel 8</option>
-                    <option value="9">Hasta Nivel 9</option>
-                    <option value="10">Hasta Nivel 10 (Avanzado)</option>
-                    <option value="11">Hasta Nivel 11</option>
-                    <option value="12">Hasta Nivel 12</option>
-                    <option value="13">Hasta Nivel 13</option>
-                    <option value="14">Hasta Nivel 14</option>
-                    <option value="15">Hasta Nivel 15</option>
-                    <option value="16">Hasta Nivel 16</option>
-                    <option value="17">Hasta Nivel 17</option>
-                    <option value="18">Hasta Nivel 18</option>
-                    <option value="19">Hasta Nivel 19</option>
-                    <option value="20">Hasta Nivel 20</option>
-                    <option value="22">Hasta Nivel 22</option>
-                    <option value="25">Hasta Nivel 25</option>
-                    <option value="28">Hasta Nivel 28</option>
-                    <option value="30">Hasta Nivel 30 (Maestro)</option>
-                    <option value="special">Misiones / Especiales</option>
+                    <option value="all">{t('controls.levels.all')}</option>
+                    <option value="1">{t('controls.levels.upTo1')}</option>
+                    <option value="2">{t('controls.levels.upTo', { level: 2 })}</option>
+                    <option value="3">{t('controls.levels.upTo', { level: 3 })}</option>
+                    <option value="4">{t('controls.levels.upTo', { level: 4 })}</option>
+                    <option value="5">{t('controls.levels.upTo5')}</option>
+                    <option value="6">{t('controls.levels.upTo', { level: 6 })}</option>
+                    <option value="7">{t('controls.levels.upTo', { level: 7 })}</option>
+                    <option value="8">{t('controls.levels.upTo', { level: 8 })}</option>
+                    <option value="9">{t('controls.levels.upTo', { level: 9 })}</option>
+                    <option value="10">{t('controls.levels.upTo10')}</option>
+                    <option value="11">{t('controls.levels.upTo', { level: 11 })}</option>
+                    <option value="12">{t('controls.levels.upTo', { level: 12 })}</option>
+                    <option value="13">{t('controls.levels.upTo', { level: 13 })}</option>
+                    <option value="14">{t('controls.levels.upTo', { level: 14 })}</option>
+                    <option value="15">{t('controls.levels.upTo', { level: 15 })}</option>
+                    <option value="16">{t('controls.levels.upTo', { level: 16 })}</option>
+                    <option value="17">{t('controls.levels.upTo', { level: 17 })}</option>
+                    <option value="18">{t('controls.levels.upTo', { level: 18 })}</option>
+                    <option value="19">{t('controls.levels.upTo', { level: 19 })}</option>
+                    <option value="20">{t('controls.levels.upTo', { level: 20 })}</option>
+                    <option value="22">{t('controls.levels.upTo', { level: 22 })}</option>
+                    <option value="25">{t('controls.levels.upTo', { level: 25 })}</option>
+                    <option value="28">{t('controls.levels.upTo', { level: 28 })}</option>
+                    <option value="30">{t('controls.levels.upTo30')}</option>
+                    <option value="special">{t('controls.levels.special')}</option>
                   </select>
 
                   {currentSkillLevel && currentSkillLevel > 1 && (
@@ -352,33 +354,36 @@ export default function CraftTab({
                           ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-sm'
                           : 'bg-[#14203d] hover:bg-[#1c2e56] text-amber-300 border-amber-500/40'
                       }`}
-                      title={`Filtrar automáticamente todos los crafteos desbloqueados hasta tu nivel actual de ${craftCategory === 'cook' ? 'Cocina' : 'Artesanía'} (${currentSkillLevel})`}
+                      title={t('controls.myLevelTitle', {
+                        skill: craftCategory === 'cook' ? t('controls.skills.cook') : t('controls.skills.craft'),
+                        level: currentSkillLevel
+                      })}
                     >
-                      <span>🎯 Mi Nivel: Nv {currentSkillLevel}</span>
+                      <span>{t('controls.myLevelButton', { level: currentSkillLevel })}</span>
                     </button>
                   )}
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10.5px] font-bold text-slate-400">Ordenar:</span>
+                  <span className="text-[10.5px] font-bold text-slate-400">{t('controls.sortLabel')}</span>
                   <select
                     value={craftSortBy}
                     onChange={(e) => setCraftSortBy(e.target.value)}
                     className="bg-[#14203d] border border-slate-700 text-amber-300 rounded-lg px-2 py-1 text-xs font-bold outline-none cursor-pointer"
                   >
-                    <option value="energy_desc">⚡ Mayor Ganancia Energía (+⚡ netos)</option>
-                    <option value="profit_desc">💰 Mayor Beneficio Oro (Gold neto)</option>
-                    <option value="rate_desc">📈 Mayor Rendimiento (Oro / Minuto)</option>
-                    <option value="energy_eff_desc">⚡ Mayor Eficiencia Oro / Energía (Gold/⚡)</option>
-                    <option value="energy_xp_desc">⚡ Mayor Eficiencia XP / Energía (XP/⚡)</option>
-                    <option value="time_asc">⏱️ Más Rápido (Menor tiempo)</option>
-                    <option value="xp_desc">⭐ Mayor XP Obtenida</option>
-                    <option value="level_asc">⭐ Nivel Requerido (Menor a Mayor)</option>
-                    <option value="name_asc">🔤 Nombre Alfabético (A-Z)</option>
+                    <option value="energy_desc">{t('controls.sort.energy_desc')}</option>
+                    <option value="profit_desc">{t('controls.sort.profit_desc')}</option>
+                    <option value="rate_desc">{t('controls.sort.rate_desc')}</option>
+                    <option value="energy_eff_desc">{t('controls.sort.energy_eff_desc')}</option>
+                    <option value="energy_xp_desc">{t('controls.sort.energy_xp_desc')}</option>
+                    <option value="time_asc">{t('controls.sort.time_asc')}</option>
+                    <option value="xp_desc">{t('controls.sort.xp_desc')}</option>
+                    <option value="level_asc">{t('controls.sort.level_asc')}</option>
+                    <option value="name_asc">{t('controls.sort.name_asc')}</option>
                   </select>
                 </div>
 
-                {/* Selector de Vista: Cuadrícula vs Lista */}
+                {/* Selector de Vista: Cuadricula vs Lista */}
                 <div className="flex items-center bg-[#080d17] border border-slate-700/80 rounded-lg p-0.5 shadow-inner">
                   <button
                     onClick={() => setCraftViewMode('grid')}
@@ -387,10 +392,10 @@ export default function CraftTab({
                         ? 'bg-purple-600 text-white shadow-sm'
                         : 'text-slate-400 hover:text-white'
                     }`}
-                    title="Vista Cuadrícula (4-6 por fila)"
+                    title={t('controls.viewGridTitle')}
                   >
                     <span>🔲</span>
-                    <span className="hidden sm:inline">Cuadrícula</span>
+                    <span className="hidden sm:inline">{t('controls.viewGrid')}</span>
                   </button>
                   <button
                     onClick={() => setCraftViewMode('list')}
@@ -399,26 +404,26 @@ export default function CraftTab({
                         ? 'bg-purple-600 text-white shadow-sm'
                         : 'text-slate-400 hover:text-white'
                     }`}
-                    title="Vista Lista Compacta"
+                    title={t('controls.viewListTitle')}
                   >
                     <span>📋</span>
-                    <span className="hidden sm:inline">Lista</span>
+                    <span className="hidden sm:inline">{t('controls.viewList')}</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Recetas de la Estación Seleccionada */}
+            {/* Recetas de la Estacion Seleccionada */}
             {craftViewMode === 'grid' ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2.5 overflow-y-auto">
               {filteredAndSortedCrafts.length === 0 ? (
                 <div className="col-span-full py-12 text-center text-slate-400">
                   <div className="text-3xl mb-2">🔍</div>
-                  <div className="font-bold text-sm text-slate-300">No se encontraron recetas</div>
+                  <div className="font-bold text-sm text-slate-300">{t('empty.title')}</div>
                   <div className="text-xs text-slate-500 mt-1">
                     {craftOnlyAvailable 
-                      ? 'No tienes todos los insumos necesarios para ninguna receta de esta estación actualmente.'
-                      : 'Prueba ajustando el texto de búsqueda.'}
+                      ? t('empty.availableDesc')
+                      : t('empty.searchDesc')}
                   </div>
                 </div>
               ) : (
@@ -437,7 +442,7 @@ export default function CraftTab({
                       }`}
                     >
                       <div className="flex flex-col gap-1.5">
-                        {/* Cabecera: Icono + Título + Status Crafteable */}
+                        {/* Cabecera: Icono + Titulo + Status Crafteable */}
                         <div className="flex items-start justify-between gap-1.5">
                           <div className="flex items-center gap-2 min-w-0">
                             <ItemSprite name={recipe.item} size={28} className="shrink-0" />
@@ -448,79 +453,79 @@ export default function CraftTab({
                           </div>
                           {craftability.canCraft ? (
                             <span className="shrink-0 px-1.5 py-0.5 rounded bg-emerald-950/90 border border-emerald-400/60 text-emerald-300 font-mono font-black text-[9.5px] shadow-sm animate-pulse">
-                              ✓ x{craftability.maxBatches}
+                              {t('card.batchCount', { count: craftability.maxBatches })}
                             </span>
                           ) : (
                             <span className="shrink-0 px-1.5 py-0.5 rounded bg-slate-900/90 border border-slate-700/60 text-slate-400 font-mono text-[9px]">
-                              Faltan {craftability.missingCount}
+                              {t('card.missingCount', { count: craftability.missingCount })}
                             </span>
                           )}
                         </div>
 
-                        {/* Bloque de Rendimiento Táctico: Oro, Energía, Tiempo y XP */}
+                        {/* Bloque de Rendimiento Tactico: Oro, Energia, Tiempo y XP */}
                         <div className="grid grid-cols-2 gap-1 bg-[#070b14] p-1.5 rounded-lg border border-slate-800/80 text-[10px] font-mono">
-                          {/* Beneficio de Oro o Propósito de Comida */}
+                          {/* Beneficio de Oro o Proposito de Comida */}
                           {craftCategory === 'cook' ? (
                             <div className="flex flex-col">
-                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Uso / Venta:</span>
+                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">{t('card.useSale')}</span>
                               <span className="text-amber-200 font-bold truncate text-[9.5px]">
-                                🍲 Consumo & Pedidos
+                                {t('card.consumptionOrders')}
                               </span>
                               <span className="text-[8px] text-slate-400">
-                                No vendible en tiendas
+                                {t('card.notSellable')}
                               </span>
                             </div>
                           ) : (
                             <div className="flex flex-col">
-                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Valor Base:</span>
+                              <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">{t('card.baseValue')}</span>
                               <span className="text-amber-300 font-bold truncate">
-                                {sellPrice > 0 ? `+${sellPrice.toLocaleString()}g` : 'Material de oficio'}
+                                {sellPrice > 0 ? `+${new Intl.NumberFormat(i18n.language).format(sellPrice)}g` : t('card.craftingMaterial')}
                               </span>
                               <span className="text-[8.5px] text-slate-400">
-                                {goldCost > 0 ? `Coste: ${goldCost}g` : 'Sin coste en oro'}
+                                {goldCost > 0 ? t('card.costWithGold', { cost: goldCost }) : t('card.noGoldCost')}
                               </span>
                             </div>
                           )}
 
-                          {/* Rendimiento de Energía */}
+                          {/* Rendimiento de Energia */}
                           <div className="flex flex-col">
-                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Balance Energía:</span>
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">{t('card.energyBalance')}</span>
                             {energyRestore > 0 ? (
                               <span className="text-emerald-400 font-bold">
-                                +{netEnergy >= 0 ? netEnergy : netEnergy}⚡ netos
+                                {t('card.netEnergy', { net: netEnergy })}
                               </span>
                             ) : (
                               <span className="text-blue-300 font-bold">
-                                -{energyCost}⚡ coste
+                                {t('card.costEnergy', { cost: energyCost })}
                               </span>
                             )}
                             <span className="text-[8.5px] text-slate-400">
-                              {energyRestore > 0 ? `Restaura +${energyRestore}⚡` : `Gasto de oficio`}
+                              {energyRestore > 0 ? t('card.restoreEnergy', { restore: energyRestore }) : t('card.craftEnergyCost')}
                             </span>
                           </div>
 
-                          {/* Tiempo y Ratio Oro/Energía */}
+                          {/* Tiempo y Ratio Oro/Energia */}
                           <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
-                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Tiempo / Ratio:</span>
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">{t('card.timeRatio')}</span>
                             <span className="text-cyan-300 font-bold">
-                              ⏱️ {minutes} {minutes === 1 ? 'min' : 'mins'}
+                              {minutes === 1 ? t('card.timeMinute', { count: 1 }) : t('card.timeMinutes', { count: minutes })}
                             </span>
                             {craftCategory === 'cook' ? (
                               <span className="text-[8.5px] text-emerald-400 font-bold">
-                                +{Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10}⚡ retorno
+                                {t('card.returnRatio', { ratio: Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10 })}
                               </span>
                             ) : (
                               goldPerEnergy > 0 && (
                                 <span className="text-[8.5px] text-emerald-400 font-bold">
-                                  +{goldPerEnergy.toLocaleString()}g / ⚡
+                                  +{new Intl.NumberFormat(i18n.language).format(goldPerEnergy)}g / ⚡
                                 </span>
                               )
                             )}
                           </div>
 
-                          {/* XP y Ratio XP/Energía */}
+                          {/* XP y Ratio XP/Energia */}
                           <div className="flex flex-col mt-0.5 pt-0.5 border-t border-slate-800/60">
-                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">Experiencia:</span>
+                            <span className="text-slate-400 text-[8.5px] uppercase font-sans font-bold">{t('card.experience')}</span>
                             <span className="text-purple-300 font-bold">
                               ⭐ +{xp} XP
                             </span>
@@ -535,15 +540,15 @@ export default function CraftTab({
                         {/* Materiales requeridos con stock del inventario en vivo */}
                         <div className="p-1.5 bg-[#080d17] border border-slate-800/80 rounded leading-tight">
                           <div className="flex items-center justify-between text-[9px] mb-0.5">
-                            <span className="text-slate-400 font-sans font-bold">Insumos (Tus Existencias):</span>
+                            <span className="text-slate-400 font-sans font-bold">{t('card.ingredients')}</span>
                             {craftability.canCraft && (
-                              <span className="text-emerald-400 font-mono font-bold text-[8.5px]">Materiales 100% listos</span>
+                              <span className="text-emerald-400 font-mono font-bold text-[8.5px]">{t('card.materialsReady')}</span>
                             )}
                           </div>
                           <CraftMaterialsBadge mats={recipe.mats} breakdown={craftability.breakdown} />
                         </div>
 
-                        {/* Descripción condensada */}
+                        {/* Descripcion condensada */}
                         {recipe.desc && (
                           <p className="text-[10px] text-slate-400 leading-snug line-clamp-2">
                             {recipe.desc}
@@ -551,7 +556,7 @@ export default function CraftTab({
                         )}
                       </div>
 
-                      {/* Pie de tarjeta con Ubicación */}
+                      {/* Pie de tarjeta con Ubicacion */}
                       <div className="pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1.5">
                         <span className="text-[9.5px] text-slate-400 truncate">
                           🛠️ {recipe.place || stationTarget.label}
@@ -559,7 +564,7 @@ export default function CraftTab({
                         <button
                           onClick={() => locateInMegaAtlas(stationTarget)}
                           className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
-                          title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
+                          title={t('card.locateStationItem', { item: recipe.item })}
                         >
                           <MapPin className="w-3.5 h-3.5" />
                         </button>
@@ -575,11 +580,11 @@ export default function CraftTab({
               {filteredAndSortedCrafts.length === 0 ? (
                 <div className="py-12 text-center text-slate-400">
                   <div className="text-3xl mb-2">🔍</div>
-                  <div className="font-bold text-sm text-slate-300">No se encontraron recetas</div>
+                  <div className="font-bold text-sm text-slate-300">{t('empty.title')}</div>
                   <div className="text-xs text-slate-500 mt-1">
                     {craftOnlyAvailable 
-                      ? 'No tienes todos los insumos necesarios para ninguna receta de esta estación actualmente.'
-                      : 'Prueba ajustando el texto de búsqueda.'}
+                      ? t('empty.availableDesc')
+                      : t('empty.searchDesc')}
                   </div>
                 </div>
               ) : (
@@ -607,11 +612,11 @@ export default function CraftTab({
                             </span>
                             {craftability.canCraft ? (
                               <span className="px-1.5 py-0.2 rounded bg-emerald-950/90 border border-emerald-400/60 text-emerald-300 font-mono font-black text-[9.5px]">
-                                ✓ x{craftability.maxBatches} posibles
+                                {t('card.batchPossibleList', { count: craftability.maxBatches })}
                               </span>
                             ) : (
                               <span className="px-1.5 py-0.2 rounded bg-slate-900 border border-slate-700 text-slate-400 font-mono text-[9px]">
-                                Faltan {craftability.missingCount}
+                                {t('card.missingCount', { count: craftability.missingCount })}
                               </span>
                             )}
                           </div>
@@ -621,55 +626,55 @@ export default function CraftTab({
                         </div>
                       </div>
 
-                      {/* Bloque de Rendimiento Táctico Compacto */}
+                      {/* Bloque de Rendimiento Tactico Compacto */}
                       <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
-                        {/* Beneficio de Oro o Propósito de Comida */}
+                        {/* Beneficio de Oro o Proposito de Comida */}
                         {craftCategory === 'cook' ? (
-                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title="Plato de comida: consumo para recargar energía/vida o entregar en pedidos de Odette (no vendible en tiendas)">
-                            🍲 Consumo & Pedidos
+                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={t('card.consumptionOrdersTooltip')}>
+                            {t('card.consumptionOrders')}
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={`Valor base: ${sellPrice > 0 ? sellPrice + 'g' : 'Material de oficio'} | Coste: ${goldCost}g`}>
-                            💰 {sellPrice > 0 ? `+${sellPrice.toLocaleString()}g` : 'Material'}
+                          <span className="px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold" title={t('card.baseValueTooltip', { sell: sellPrice > 0 ? sellPrice + 'g' : t('card.craftingMaterial'), cost: goldCost })}>
+                            {sellPrice > 0 ? `💰 +${new Intl.NumberFormat(i18n.language).format(sellPrice)}g` : t('card.materialBadge')}
                           </span>
                         )}
 
-                        {/* Balance de Energía */}
+                        {/* Balance de Energia */}
                         <span className={`px-2 py-0.5 rounded border text-[10px] font-mono font-bold ${
                           energyRestore > 0 
                             ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' 
                             : 'bg-blue-950/60 border-blue-500/30 text-blue-300'
-                        }`} title={energyRestore > 0 ? `Restaura +${energyRestore}⚡ al comer | Gasto de estufa: -${energyCost}⚡ | Balance: +${netEnergy}⚡ netos` : `Gasto de oficio: -${energyCost}⚡`}>
-                          ⚡ {energyRestore > 0 ? `+${netEnergy}⚡ netos` : `-${energyCost}⚡`}
+                        }`} title={energyRestore > 0 ? t('card.energyTooltip', { restore: energyRestore, cost: energyCost, net: netEnergy }) : t('card.craftCostTooltip', { cost: energyCost })}>
+                          {energyRestore > 0 ? `⚡ ${t('card.netEnergy', { net: netEnergy })}` : `⚡ -${energyCost}⚡`}
                         </span>
 
-                        {/* Ratio Oro / Energía o Retorno Energía */}
+                        {/* Ratio Oro / Energia o Retorno Energia */}
                         {craftCategory === 'cook' ? (
-                          <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title="Retorno de energía por punto invertido">
-                            +{Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10}⚡ retorno
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={t('card.energyReturnTooltip')}>
+                            {t('card.returnRatio', { ratio: Math.round((energyRestore / Math.max(1, energyCost)) * 10) / 10 })}
                           </span>
                         ) : (
                           goldPerEnergy > 0 && (
-                            <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={`Oro ganado por cada punto de energía invertido: +${goldPerEnergy.toLocaleString()}g/⚡`}>
+                            <span className="px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[9.5px] font-mono font-bold" title={t('card.goldPerEnergyTooltip', { ratio: new Intl.NumberFormat(i18n.language).format(goldPerEnergy) })}>
                               +{goldPerEnergy}g/⚡
                             </span>
                           )
                         )}
 
                         {/* Tiempo */}
-                        <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono font-bold" title={`Tiempo en estación: ${minutes} minutos (${goldPerMin}g/min)`}>
+                        <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono font-bold" title={t('card.timeRateTooltip', { minutes, rate: goldPerMin })}>
                           ⏱️ {minutes}m
                         </span>
 
                         {/* Experiencia */}
-                        <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] font-mono font-bold" title={`Experiencia obtenida: +${xp} XP (${xpPerEnergy} XP/⚡)`}>
+                        <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] font-mono font-bold" title={t('card.xpTooltip', { xp, ratio: xpPerEnergy })}>
                           ⭐ +{xp} XP
                         </span>
 
                         <button
                           onClick={() => locateInMegaAtlas(stationTarget)}
                           className="w-7 h-7 rounded-lg bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                          title={`Ubicar estación de "${recipe.item}" en el Mega-Atlas`}
+                          title={t('card.locateStationItem', { item: recipe.item })}
                         >
                           <MapPin className="w-3.5 h-3.5" />
                         </button>
