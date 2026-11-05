@@ -4,6 +4,8 @@ import { MapPin } from 'lucide-react';
 import itemIconsMap from '../../../public/data/bloomshire/item_icons_map.json';
 import CANONICAL_QUEST_CATALOG from '../../data/canonicalQuests.json';
 import defaultInventoryCatalog from '../../../public/data/bloomshire/inventory_catalog.json';
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 // Singleton de AudioContext para alarmas de producción con respeto a Autoplay Policy
 let sharedAudioContext = null;
@@ -108,6 +110,10 @@ export const getNpcFavoriteGifts = (npc) => {
 };
 
 export const getItemCategoryLabel = (cat) => {
+  if (i18n && typeof i18n.t === 'function') {
+    const translated = i18n.t('common:categories.' + cat);
+    if (translated && translated !== 'categories.' + cat) return translated;
+  }
   switch (cat) {
     case 'crop': return 'Cultivo';
     case 'fish': return 'Pez';
@@ -372,6 +378,7 @@ export function ItemSprite({ name = '', id = '', fallback = '📦', size = 20, c
 }
 
 export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
+  const { t } = useTranslation('common');
   if (breakdown && Array.isArray(breakdown) && breakdown.length > 0) {
     return (
       <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
@@ -385,7 +392,7 @@ export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
                   ? 'bg-emerald-950/70 border-emerald-500/50 text-emerald-200'
                   : 'bg-rose-950/40 border-rose-800/60 text-rose-300'
               }`}
-              title={`Requerido: ${b.req} | Tienes: ${b.total} (Mochila: ${b.m}, Cabaña: ${b.cc}, Pueblo: ${b.cp})`}
+              title={t('craftMaterialsBadge.tooltip', { req: b.req, total: b.total, m: b.m, cc: b.cc, cp: b.cp })}
             >
               <ItemSprite name={b.item} id={b.item} size={15} className="shrink-0" />
               <span className="truncate">{b.nameEs || b.item}</span>

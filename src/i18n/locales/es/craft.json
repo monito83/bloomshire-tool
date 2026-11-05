@@ -1,0 +1,122 @@
+{
+  "tabs": {
+    "cook": "🍲 Estufa de Cocina (Panadería / Cabaña)",
+    "bench": "🪵 Banco de Trabajo (Carpintería Pell)",
+    "forge": "⚒️ Forja de Bram (Herrería)",
+    "mill": "🌊 Molino & Lechería (Granja Hollin)",
+    "loom": "🧵 Telar de Tilly (Sastrería)"
+  },
+  "readyBadge": "{{count}} listos",
+  "stations": {
+    "cook": {
+      "name": "🍲 Estufa de Cocina — Panadería de Tamsin (Oeste) o Tu Cabaña (Home Island)",
+      "desc": "Puedes cocinar en la estufa pública de The Bakery (Tamsin, al oeste del puente) o en la estufa dentro de tu Cabaña."
+    },
+    "bench": {
+      "name": "🪵 Banco de Trabajo — Carpintería de Pell (Noreste del Pueblo)",
+      "desc": "Camina al este desde la Plaza Central y sube hacia el noreste hasta The Carpenter's Shop (Pell)."
+    },
+    "forge": {
+      "name": "⚒️ La Forja y Yunque — Herrería de Bram (Este de la Plaza)",
+      "desc": "Camina al este desde la Plaza Central pasando la Tienda de Semillas hasta The Forge (Bram)."
+    },
+    "mill": {
+      "name": "🌊 Molino de Agua & 🥛 Lechería — Granja de Hollin (Southvale)",
+      "desc": "Sal por el camino sur de Bloomshire hacia Southvale y entra a la Granja de Hollin (Oeste) para moler Harina, Azúcar, Arroz y batir Mantequilla/Queso."
+    },
+    "loom": {
+      "name": "🧵 Telar de Sastrería — Taller de Tilly (Orilla Oeste del Pueblo)",
+      "desc": "Cruza el puente al oeste de la Plaza Central y baja unos pasos hasta The Tailor's (Tilly) para tejer Tela (Cloth) con Lana."
+    }
+  },
+  "locateStation": "Ubicar Estación",
+  "locateStationTitle": "Ubicar Estación de Trabajo en el Mega-Atlas",
+  "cabinButton": "🏡 Cabaña",
+  "cabinTitle": "Ubicar Estufa en Tu Cabaña",
+  "radar": {
+    "stationCatalog": "Catálogo Estación",
+    "recipesCount": "{{count}} recetas",
+    "craftableNow": "Crafteables Ahora",
+    "readyCount": "✓ {{count}} Listas",
+    "zeroReady": "0 Listas",
+    "maxGoldProfit": "Mayor Ganancia Oro",
+    "maxEnergyRestore": "Mayor Recarga Energía",
+    "craftCost": "Gasto Oficio"
+  },
+  "controls": {
+    "searchPlaceholder": "Buscar receta o plato (ej: tarta, guiso, lingote, tela, pan, col)...",
+    "filterAvailable": "✨ Crafteables Ahora",
+    "filterAvailableTitle": "Filtrar recetas para las que tienes el 100% de los materiales en mochila o cofres",
+    "levelLabel": "Nivel:",
+    "levels": {
+      "all": "⭐ Todos los Niveles",
+      "upTo": "Hasta Nivel {{level}}",
+      "upTo1": "Hasta Nivel 1 (Principiante)",
+      "upTo5": "Hasta Nivel 5 (Botica)",
+      "upTo10": "Hasta Nivel 10 (Avanzado)",
+      "upTo30": "Hasta Nivel 30 (Maestro)",
+      "special": "Misiones / Especiales"
+    },
+    "myLevelButton": "🎯 Mi Nivel: Nv {{level}}",
+    "myLevelTitle": "Filtrar automáticamente todos los crafteos desbloqueados hasta tu nivel actual de {{skill}} ({{level}})",
+    "skills": {
+      "cook": "Cocina",
+      "craft": "Artesanía"
+    },
+    "sortLabel": "Ordenar:",
+    "sort": {
+      "energy_desc": "⚡ Mayor Ganancia Energía (+⚡ netos)",
+      "profit_desc": "💰 Mayor Beneficio Oro (Gold neto)",
+      "rate_desc": "📈 Mayor Rendimiento (Oro / Minuto)",
+      "energy_eff_desc": "⚡ Mayor Eficiencia Oro / Energía (Gold/⚡)",
+      "energy_xp_desc": "⚡ Mayor Eficiencia XP / Energía (XP/⚡)",
+      "time_asc": "⏱️ Más Rápido (Menor tiempo)",
+      "xp_desc": "⭐ Mayor XP Obtenida",
+      "level_asc": "⭐ Nivel Requerido (Menor a Mayor)",
+      "name_asc": "🔤 Nombre Alfabético (A-Z)"
+    },
+    "viewGrid": "Cuadrícula",
+    "viewGridTitle": "Vista Cuadrícula (4-6 por fila)",
+    "viewList": "Lista",
+    "viewListTitle": "Vista Lista Compacta"
+  },
+  "empty": {
+    "title": "No se encontraron recetas",
+    "availableDesc": "No tienes todos los insumos necesarios para ninguna receta de esta estación actualmente.",
+    "searchDesc": "Prueba ajustando el texto de búsqueda."
+  },
+  "card": {
+    "batchCount": "✓ x{{count}}",
+    "batchPossibleList": "✓ x{{count}} posibles",
+    "missingCount": "Faltan {{count}}",
+    "useSale": "Uso / Venta:",
+    "consumptionOrders": "🍲 Consumo & Pedidos",
+    "notSellable": "No vendible en tiendas",
+    "consumptionOrdersTooltip": "Plato de comida: consumo para recargar energía/vida o entregar en pedidos de Odette (no vendible en tiendas)",
+    "baseValue": "Valor Base:",
+    "craftingMaterial": "Material de oficio",
+    "materialBadge": "💰 Material",
+    "costWithGold": "Coste: {{cost}}g",
+    "noGoldCost": "Sin coste en oro",
+    "baseValueTooltip": "Valor base: {{sell}} | Coste: {{cost}}g",
+    "energyBalance": "Balance Energía:",
+    "netEnergy": "+{{net}}⚡ netos",
+    "costEnergy": "-{{cost}}⚡ coste",
+    "restoreEnergy": "Restaura +{{restore}}⚡",
+    "craftEnergyCost": "Gasto de oficio",
+    "energyTooltip": "Restaura +{{restore}}⚡ al comer | Gasto de estufa: -{{cost}}⚡ | Balance: +{{net}}⚡ netos",
+    "craftCostTooltip": "Gasto de oficio: -{{cost}}⚡",
+    "timeRatio": "Tiempo / Ratio:",
+    "timeMinute": "⏱️ {{count}} min",
+    "timeMinutes": "⏱️ {{count}} mins",
+    "timeTooltip": "Tiempo en estación: {{minutes}} minutos ({{rate}}g/min)",
+    "returnRatio": "+{{ratio}}⚡ retorno",
+    "energyReturnTooltip": "Retorno de energía por punto invertido",
+    "goldPerEnergyTooltip": "Oro ganado por cada punto de energía invertido: +{{ratio}}g/⚡",
+    "experience": "Experiencia:",
+    "xpTooltip": "Experiencia obtenida: +{{xp}} XP ({{ratio}} XP/⚡)",
+    "ingredients": "Insumos (Tus Existencias):",
+    "materialsReady": "Materiales 100% listos",
+    "locateStationItem": "Ubicar estación de \"{{item}}\" en el Mega-Atlas"
+  }
+}

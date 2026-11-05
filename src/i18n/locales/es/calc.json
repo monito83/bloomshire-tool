@@ -1,0 +1,86 @@
+{
+  "strategicMode": "Modo Estratégico:",
+  "presets": {
+    "energy": "Ahorro de Energía (Máx XP/⚡)",
+    "speedrun": "Speedrun Rápido (Máx XP/min)",
+    "gold_energy": "Oro por Energía (Máx Oro/⚡)",
+    "profit": "Rentabilidad Oro/min"
+  },
+  "plots": "Parcelas:",
+  "simulator": {
+    "title": "Simulador de Energía Restante",
+    "liveGame": "Partida Live: {{current}} / {{max}} ⚡",
+    "description": "Calcula el impacto exacto en XP y Oro según la energía disponible en tu partida.",
+    "yourEnergy": "⚡ Tu Energía:",
+    "resetLive": "Reset Live",
+    "withEnergy": "Con <bold>{{energy}}⚡</bold> en <bold>{{crop}}</bold>:",
+    "cropsAndBatches": "{{crops}} cultivos ({{batches}} tandas)",
+    "xpGain": "+{{amount}} XP",
+    "goldGain": "+{{amount}} Oro"
+  },
+  "filters": {
+    "skillLabel": "Habilidad:",
+    "skills": {
+      "farming": "🌾 Cultivo (Farming)",
+      "mining": "⛏️ Minería (Cuevas y Gemas)",
+      "foraging": "🍄 Recolección & Tala",
+      "fishing": "🎣 Pesca (Río y Lago)"
+    },
+    "seasonLabel": "Época:",
+    "seasons": {
+      "all": "🌐 Todas las Épocas",
+      "Winter": "❄️ Invierno (Temporada Actual)",
+      "Spring": "🌸 Primavera (Spring)",
+      "Summer": "☀️ Verano (Summer)",
+      "Fall": "🍂 Otoño (Fall)"
+    },
+    "levelLabel": "Nivel Requerido:",
+    "levels": {
+      "all": "🌟 Todos los Niveles",
+      "level1": "Nivel 1 (Principiante)",
+      "level2": "Nivel 2",
+      "level3": "Nivel 3",
+      "level4": "Nivel 4",
+      "level5": "Nivel 5 (Botica)",
+      "level6": "Nivel 6",
+      "level7": "Nivel 7",
+      "level8": "Nivel 8+",
+      "level10": "Nivel 10+ (Avanzado)",
+      "special": "Misiones / Especiales"
+    },
+    "sortLabel": "Ordenar por:",
+    "sort": {
+      "xpEnergy_desc": "⚡ Mayor XP por Energía (XP/⚡ ↓)",
+      "goldEnergy_desc": "🪙 Mayor Oro por Energía (Oro/⚡ ↓)",
+      "xpMin_desc": "⏱️ Más rápido para subir XP (XP/min ↓)",
+      "goldMin_desc": "💰 Más rentable en Oro (Oro/min ↓)",
+      "time_asc": "⏳ Menor tiempo de espera (↑)",
+      "cost_asc": "🪙 Más barato de comprar (Coste ↑)",
+      "sell_desc": "💎 Mayor precio de venta (Venta ↓)"
+    }
+  },
+  "table": {
+    "headers": {
+      "item": "Recurso / Cultivo",
+      "season": "Época",
+      "time": "Tiempo",
+      "level": "Nivel",
+      "cost": "Coste",
+      "sell": "Venta",
+      "net": "Neto",
+      "xp": "XP",
+      "energy": "⚡ Gasto",
+      "xpPerEnergy": "🎯 XP / ⚡",
+      "goldPerEnergy": "🪙 Oro / ⚡",
+      "xpPerMin": "XP / Min",
+      "goldPerMin": "Oro / Min",
+      "totalPlots": "Total x{{plots}} Parcelas",
+      "tip": "Consejo Táctico"
+    },
+    "allYear": "Todo el Año 🌐",
+    "levelBadge": "Nv {{level}}",
+    "regrowBadge": "Rebrote (5x)",
+    "regrowLevel": "Nv 15+: {{val}}",
+    "consumption": "Consumo: {{energy}}⚡"
+  }
+}

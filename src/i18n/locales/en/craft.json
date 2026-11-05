@@ -1,0 +1,122 @@
+{
+  "tabs": {
+    "cook": "🍲 Cooking Stove (Bakery / Cabin)",
+    "bench": "🪵 Workbench (Pell's Carpentry)",
+    "forge": "⚒️ Bram's Forge (Blacksmith)",
+    "mill": "🌊 Mill & Dairy (Hollin Farm)",
+    "loom": "🧵 Tilly's Loom (Tailoring)"
+  },
+  "readyBadge": "{{count}} ready",
+  "stations": {
+    "cook": {
+      "name": "🍲 Cooking Stove — Tamsin's Bakery (West) or Your Cottage (Home Island)",
+      "desc": "You can cook at the public stove in The Bakery (Tamsin, west of the bridge) or in the stove inside your Cottage."
+    },
+    "bench": {
+      "name": "🪵 Workbench — Pell's Carpentry (Northeast of Town)",
+      "desc": "Walk east from Town Square and head northeast to The Carpenter's Shop (Pell)."
+    },
+    "forge": {
+      "name": "⚒️ The Forge and Anvil — Bram's Blacksmith (East of Square)",
+      "desc": "Walk east from Town Square past the Seed Shop to The Forge (Bram)."
+    },
+    "mill": {
+      "name": "🌊 Water Mill & 🥛 Dairy — Hollin's Farm (Southvale)",
+      "desc": "Take the south road from Bloomshire towards Southvale and enter Hollin's Farm (West) to grind Flour, Sugar, Rice and churn Butter/Cheese."
+    },
+    "loom": {
+      "name": "🧵 Tailor Loom — Tilly's Workshop (West Bank of Town)",
+      "desc": "Cross the bridge west of Town Square and walk south a few steps to The Tailor's (Tilly) to weave Cloth with Wool."
+    }
+  },
+  "locateStation": "Locate Station",
+  "locateStationTitle": "Locate Workstation in the Mega-Atlas",
+  "cabinButton": "🏡 Cabin",
+  "cabinTitle": "Locate Stove in Your Cabin",
+  "radar": {
+    "stationCatalog": "Station Catalog",
+    "recipesCount": "{{count}} recipes",
+    "craftableNow": "Craftable Now",
+    "readyCount": "✓ {{count}} Ready",
+    "zeroReady": "0 Ready",
+    "maxGoldProfit": "Max Gold Profit",
+    "maxEnergyRestore": "Max Energy Restore",
+    "craftCost": "Craft Cost"
+  },
+  "controls": {
+    "searchPlaceholder": "Search recipe or dish (e.g. pie, stew, bar, cloth, bread, cabbage)...",
+    "filterAvailable": "✨ Craftable Now",
+    "filterAvailableTitle": "Filter recipes for which you have 100% of materials in backpack or chests",
+    "levelLabel": "Level:",
+    "levels": {
+      "all": "⭐ All Levels",
+      "upTo": "Up to Level {{level}}",
+      "upTo1": "Up to Level 1 (Beginner)",
+      "upTo5": "Up to Level 5 (Apothecary)",
+      "upTo10": "Up to Level 10 (Advanced)",
+      "upTo30": "Up to Level 30 (Master)",
+      "special": "Quests / Specials"
+    },
+    "myLevelButton": "🎯 My Level: Lvl {{level}}",
+    "myLevelTitle": "Automatically filter all crafts unlocked up to your current {{skill}} level ({{level}})",
+    "skills": {
+      "cook": "Cooking",
+      "craft": "Crafting"
+    },
+    "sortLabel": "Sort by:",
+    "sort": {
+      "energy_desc": "⚡ Max Energy Gain (+⚡ net)",
+      "profit_desc": "💰 Max Gold Profit (Net Gold)",
+      "rate_desc": "📈 Max Rate (Gold / Minute)",
+      "energy_eff_desc": "⚡ Max Gold / Energy Efficiency (Gold/⚡)",
+      "energy_xp_desc": "⚡ Max XP / Energy Efficiency (XP/⚡)",
+      "time_asc": "⏱️ Fastest (Shortest time)",
+      "xp_desc": "⭐ Max XP Gained",
+      "level_asc": "⭐ Required Level (Lowest to Highest)",
+      "name_asc": "🔤 Alphabetical (A-Z)"
+    },
+    "viewGrid": "Grid",
+    "viewGridTitle": "Grid View (4-6 per row)",
+    "viewList": "List",
+    "viewListTitle": "Compact List View"
+  },
+  "empty": {
+    "title": "No recipes found",
+    "availableDesc": "You don't have all required materials for any recipe at this station currently.",
+    "searchDesc": "Try adjusting your search text."
+  },
+  "card": {
+    "batchCount": "✓ x{{count}}",
+    "batchPossibleList": "✓ x{{count}} possible",
+    "missingCount": "Missing {{count}}",
+    "useSale": "Use / Sale:",
+    "consumptionOrders": "🍲 Consumable & Orders",
+    "notSellable": "Cannot be sold in shops",
+    "consumptionOrdersTooltip": "Food dish: consume to restore energy/health or deliver in Odette's orders (not sellable in shops)",
+    "baseValue": "Base Value:",
+    "craftingMaterial": "Crafting material",
+    "materialBadge": "💰 Material",
+    "costWithGold": "Cost: {{cost}}g",
+    "noGoldCost": "No gold cost",
+    "baseValueTooltip": "Base value: {{sell}} | Cost: {{cost}}g",
+    "energyBalance": "Energy Balance:",
+    "netEnergy": "+{{net}}⚡ net",
+    "costEnergy": "-{{cost}}⚡ cost",
+    "restoreEnergy": "Restores +{{restore}}⚡",
+    "craftEnergyCost": "Crafting cost",
+    "energyTooltip": "Restores +{{restore}}⚡ when eaten | Stove cost: -{{cost}}⚡ | Balance: +{{net}}⚡ net",
+    "craftCostTooltip": "Crafting cost: -{{cost}}⚡",
+    "timeRatio": "Time / Rate:",
+    "timeMinute": "⏱️ {{count}} min",
+    "timeMinutes": "⏱️ {{count}} mins",
+    "timeTooltip": "Station time: {{minutes}} minutes ({{rate}}g/min)",
+    "returnRatio": "+{{ratio}}⚡ return",
+    "energyReturnTooltip": "Energy return per invested point",
+    "goldPerEnergyTooltip": "Gold earned per invested energy point: +{{ratio}}g/⚡",
+    "experience": "Experience:",
+    "xpTooltip": "Experience gained: +{{xp}} XP ({{ratio}} XP/⚡)",
+    "ingredients": "Ingredients (Your Stock):",
+    "materialsReady": "Materials 100% ready",
+    "locateStationItem": "Locate station for \"{{item}}\" in the Mega-Atlas"
+  }
+}

@@ -5,11 +5,17 @@ import enCommon from './locales/en/common.json';
 import enHeader from './locales/en/header.json';
 import enTabs from './locales/en/tabs.json';
 import enErrors from './locales/en/errors.json';
+import enCraft from './locales/en/craft.json';
+import enItems from './locales/en/items.json';
+import enCalc from './locales/en/calc.json';
 
 import esCommon from './locales/es/common.json';
 import esHeader from './locales/es/header.json';
 import esTabs from './locales/es/tabs.json';
 import esErrors from './locales/es/errors.json';
+import esCraft from './locales/es/craft.json';
+import esItems from './locales/es/items.json';
+import esCalc from './locales/es/calc.json';
 
 export const STORAGE_LANG_KEY = 'bloomshire_lang';
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -58,17 +64,23 @@ i18n
         header: enHeader,
         tabs: enTabs,
         errors: enErrors,
+        craft: enCraft,
+        items: enItems,
+        calc: enCalc,
       },
       es: {
         common: esCommon,
         header: esHeader,
         tabs: esTabs,
         errors: esErrors,
+        craft: esCraft,
+        items: esItems,
+        calc: esCalc,
       },
     },
     lng: initialLang,
     fallbackLng: DEFAULT_LANGUAGE,
-    ns: ['common', 'header', 'tabs', 'errors'],
+    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: {
