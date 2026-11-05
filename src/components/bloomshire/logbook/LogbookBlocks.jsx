@@ -75,6 +75,8 @@ function YouTubeBlock({ block, lang }) {
 function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
   const { t } = useTranslation('logbook');
   const [failed, setFailed] = useState(false);
+  // Sprites chicos (pixel art) se amplian sin suavizado para que no queden borrosos
+  const [pixelated, setPixelated] = useState(false);
   const url = mediaUrl(mediaBase, image.path);
   const alt = pickLang(image, 'alt', lang);
   const caption = pickLang(image, 'caption', lang);
@@ -101,8 +103,9 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
           width={image.width || undefined}
           height={image.height || undefined}
           onError={() => setFailed(true)}
-          className={`w-full ${compact ? 'aspect-[4/3] object-cover' : 'max-h-[560px] object-contain'} transition-transform duration-500 group-hover:scale-[1.02]`}
-          style={{ imageRendering: 'auto' }}
+          onLoad={(e) => setPixelated(e.currentTarget.naturalWidth > 0 && e.currentTarget.naturalWidth <= 128)}
+          className={`w-full ${compact ? (pixelated ? 'aspect-[4/3] object-contain p-6' : 'aspect-[4/3] object-cover') : 'max-h-[560px] object-contain'} transition-transform duration-500 group-hover:scale-[1.02]`}
+          style={{ imageRendering: pixelated ? 'pixelated' : 'auto' }}
         />
         <span className="absolute right-2 top-2 rounded-lg bg-black/60 p-1.5 text-white/80 opacity-0 transition-opacity group-hover:opacity-100">
           <Maximize2 className="h-3.5 w-3.5" />

@@ -662,7 +662,7 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
 
       {/* Contenido */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex flex-wrap items-center gap-2.5 border-b border-slate-800/80 bg-[#0d1830]/80 px-4 py-3 backdrop-blur">
+        <div className="relative z-20 flex flex-wrap items-center gap-2.5 border-b border-slate-800/80 bg-[#0d1830]/80 px-4 py-3 backdrop-blur">
           <button type="button" onClick={() => setSidebarOpen(true)} className="rounded-xl border border-slate-700 p-2 text-slate-300 hover:border-amber-500/50 lg:hidden cursor-pointer" aria-label={t('nav.showSections')}>
             <PanelLeft className="h-4 w-4" />
           </button>
