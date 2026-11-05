@@ -774,6 +774,7 @@
       marketTrades: save._marketTrades || null,
       serverTimeOffset: save._serverTimeOffset || 0,
       activeGameBuild: save._activeGameBuild || "a70eb5dd5113",
+      stale: Boolean(save?.stale),
       skills: save.skills || {},
       skillsBreakdown,
       skillsMeta,

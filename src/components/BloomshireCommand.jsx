@@ -192,6 +192,7 @@ export default function BloomshireCommand() {
     setWalletAddress(null);
     setSessionToken(null);
     setAuthenticatedWallet(null);
+    setIsSyncStale(false);
     authenticatedWalletRef.current = null;
     lastReportedExtensionWalletRef.current = null;
     setViewOnlyWallet(null);
@@ -293,6 +294,7 @@ export default function BloomshireCommand() {
     return computeCanonicalSkillsFromRaw({}).skillsBreakdown;
   });
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isSyncStale, setIsSyncStale] = useState(false);
   const [lastSyncTime, setLastSyncTime] = useState(() => new Date().toLocaleTimeString());
   const lastExtensionSyncAtRef = useRef(0);
 
@@ -1472,6 +1474,7 @@ export default function BloomshireCommand() {
       );
     }
 
+    setIsSyncStale(Boolean(data?.stale));
     setLastSyncTime(new Date().toLocaleTimeString());
   };
 
@@ -2363,6 +2366,13 @@ export default function BloomshireCommand() {
         <div className="flex items-center gap-2 shrink-0">
           {isConnected && (
             <>
+              {isSyncStale && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold shadow-sm" title="La extensión no tiene referencia viva directa. Presioná F5 en el juego para sincronizar.">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                  <span className="hidden sm:inline">Recargá el juego (F5) para sincronizar</span>
+                  <span className="sm:hidden">F5 para sync</span>
+                </div>
+              )}
               <button
                 onClick={fetchSyncFromServer}
                 disabled={isSyncing}

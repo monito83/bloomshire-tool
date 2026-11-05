@@ -130,7 +130,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       tabs.forEach(tab => {
         if (!tab.id) return;
         const url = tab.url || '';
-        if (isMoniosUrl(url)) {
+        if (isToolUrl(url)) {
           chrome.tabs.sendMessage(tab.id, {
             type: 'BLOOMSHIRE_INJECT_MAP',
             payload: mapPayload
@@ -150,7 +150,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       tabs.forEach(tab => {
         if (!tab.id) return;
         const url = tab.url || '';
-        if (isMoniosUrl(url)) {
+        if (isToolUrl(url)) {
           chrome.tabs.sendMessage(tab.id, {
             type: 'BLOOMSHIRE_INJECT_MARKET_SNAPSHOT',
             offers: message.offers,
@@ -206,10 +206,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === 'FORCE_SYNC_REQUEST') {
     chrome.tabs.query({}, (tabs) => {
+      let bloomshireTabFound = false;
       tabs.forEach(tab => {
         if (!tab.id) return;
         const url = tab.url || '';
         if (isBloomshireUrl(url)) {
+          bloomshireTabFound = true;
           chrome.tabs.sendMessage(tab.id, { type: 'TRIGGER_FORCE_SYNC' }, () => {
             if (chrome.runtime.lastError) {
               ensureBloomshireInjected(tab.id);
@@ -218,12 +220,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
       });
 
-      // Entregar también de inmediato el último estado en storage por si la pestaña del juego está cerrada
-      chrome.storage.local.get(['latest_bloomshire_state'], (res) => {
-        if (res.latest_bloomshire_state) {
-          broadcastToMonios(res.latest_bloomshire_state, true);
-        }
-      });
+      // Si no hay pestaña del juego abierta, enviar el último estado en storage marcado como stale
+      if (!bloomshireTabFound) {
+        chrome.storage.local.get(['latest_bloomshire_state'], (res) => {
+          if (res.latest_bloomshire_state) {
+            broadcastToMonios({ ...res.latest_bloomshire_state, stale: true }, true);
+          }
+        });
+      }
     });
 
     sendResponse({ status: 'sync_requested' });

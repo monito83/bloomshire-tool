@@ -1,69 +1,60 @@
 // content_hook.js - MAIN world hook for bloomshire.xyz
+// Pure helper functions for reference capture (exported for Vitest / Node testing)
+function shouldCaptureLiveDoc(url) {
+  if (!url || typeof url !== 'string') return false;
+  const clean = url.toLowerCase();
+  if (!clean.includes('api/state')) return false;
+  if (clean.includes('api/cmd') || clean.includes('api/trade') || clean.includes('api/crypto') || clean.includes('api/offers')) {
+    return false;
+  }
+  return true;
+}
+
+function captureLiveDoc(currentRef, data, url, onCaptured) {
+  if (!shouldCaptureLiveDoc(url)) return currentRef;
+  const newSave = (data && typeof data === 'object' && data.save && typeof data.save === 'object') ? data.save : null;
+  if (newSave && newSave !== currentRef) {
+    if (typeof onCaptured === 'function') {
+      onCaptured(newSave, url);
+    }
+    return newSave;
+  }
+  return currentRef;
+}
+
 (function () {
-  if (window.__bloomshire_hook_loaded) return;
+  if (typeof window === 'undefined' || window.__bloomshire_hook_loaded) return;
   window.__bloomshire_hook_loaded = true;
 
   console.log('[Bloomshire Companion Hook] MAIN world hook initialized on', window.location.href);
 
-  const liveFarmOverlay = new Map();
-  const deletedCellKeys = new Set(); // celdas cosechadas / eliminadas recientemente
-
   // Hook directo a Response.prototype.json para capturar la referencia viva en memoria del save (doc)
-  // que Bloomshire (Session.open y rules.js useSaveDoc) muta directamente durante toda la sesión
-  function attachLiveSaveWatchers(saveObj) {
-    if (!saveObj || typeof saveObj !== 'object') return saveObj;
-    if (saveObj.__bloomshire_watched) return saveObj;
-    try {
-      Object.defineProperty(saveObj, '__bloomshire_watched', {
-        value: true,
-        enumerable: false,
-        configurable: true
-      });
-
-      window.__bloomshire_live_doc = saveObj;
-      window.__bloomshire_master_save = saveObj;
-      lastKnownSave = saveObj;
-
-      // Lista de propiedades críticas que el motor de Bloomshire actualiza con save(name, value) en rules.js
-      const criticalKeys = ['energy', 'purse', 'inventory', 'daily', 'quests', 'orders', 'farm', 'crops'];
-      criticalKeys.forEach(key => {
-        let internalVal = saveObj[key];
-        Object.defineProperty(saveObj, key, {
-          enumerable: true,
-          configurable: true,
-          get() {
-            return internalVal;
-          },
-          set(newVal) {
-            internalVal = newVal;
-            try {
-              if (key === 'energy') {
-                console.log('[Bloomshire Hook] Motor de juego actualizó energía en memoria viva:', newVal);
-              }
-              dispatchState(saveObj, true);
-            } catch (err) {
-              console.warn('[Bloomshire Hook] Error en dispatch reactivo de', key, err);
-            }
-          }
-        });
-      });
-    } catch (e) {
-      console.warn('[Bloomshire Hook] No se pudieron enlazar observadores a save:', e);
-    }
-    return saveObj;
-  }
-
+  // ÚNICAMENTE desde GET api/state (el juego adopta datos sobre este mismo objeto en #adopt)
   const _origResponseJson = Response.prototype.json;
   Response.prototype.json = async function () {
     const data = await _origResponseJson.apply(this, arguments);
     try {
+      const respUrl = this.url || '';
       if (data && typeof data === 'object') {
-        if (data.save && typeof data.save === 'object') {
-          console.log('[Bloomshire Companion Hook] >>> REFERENCIA MAESTRA DE SAVE CAPTURADA (Response.json) <<<', Object.keys(data.save));
-          attachLiveSaveWatchers(data.save);
-          liveFarmOverlay.clear();
-          deletedCellKeys.clear();
-          dispatchState(data.save, true);
+        if (shouldCaptureLiveDoc(respUrl)) {
+          const prev = window.__bloomshire_live_doc;
+          const next = captureLiveDoc(prev, data, respUrl, (newRef, u) => {
+            console.log(`[Hook] referencia viva fijada desde ${u}`);
+          });
+          if (next && next !== prev) {
+            window.__bloomshire_live_doc = next;
+            window.__bloomshire_master_save = next;
+            lastKnownSave = next;
+            dispatchState(next, true);
+          }
+        } else if (respUrl.includes('api/cmd') || respUrl.includes('api/trade') || respUrl.includes('api/crypto')) {
+          // Las respuestas de api/cmd, trade y crypto solo deben disparar dispatchState sobre el objeto vivo
+          const live = window.__bloomshire_live_doc;
+          if (live) {
+            setTimeout(() => {
+              dispatchState(live, true);
+            }, 130);
+          }
         }
         if (data.quests && Array.isArray(data.quests)) {
           cachedQuestCatalog = data.quests;
@@ -144,190 +135,6 @@
       }
     } catch (_) {}
     return 'a70eb5dd5113';
-  }
-
-  function applyServerCmdResponse(data, cmdPayload) {
-    try {
-      const active = window.__bloomshire_master_save || lastKnownSave || {};
-      lastKnownSave = active;
-      window.__bloomshire_master_save = active;
-
-      // Fusionar deltas que vengan en data, data.state, data.delta, data.patch o data.results
-      const patches = [data, data?.state, data?.delta, data?.patch];
-      if (Array.isArray(data?.results)) {
-        data.results.forEach(r => {
-          if (r && typeof r === 'object') {
-            patches.push(r, r.save, r.state, r.delta, r.patch);
-          }
-        });
-      }
-
-      patches.forEach(src => {
-        if (!src || typeof src !== 'object') return;
-        ['farm', 'farms', 'inventory', 'purse', 'energy', 'skills', 'orders', 'quests', 'daily', 'tasks', 'pot', 'craftPot', 'millPot', 'dairyPot', 'loomPot'].forEach(k => {
-          if (src[k] !== undefined) active[k] = src[k];
-        });
-        Object.keys(src).forEach(k => {
-          if (k.startsWith('farm.')) active[k] = src[k];
-        });
-      });
-
-      const rawCmds = Array.isArray(cmdPayload)
-        ? cmdPayload
-        : (Array.isArray(cmdPayload?.cmds)
-          ? cmdPayload.cmds
-          : (Array.isArray(cmdPayload?.batch)
-            ? cmdPayload.batch
-            : (Array.isArray(cmdPayload?.actions)
-              ? cmdPayload.actions
-              : (cmdPayload ? [cmdPayload] : []))));
-
-      const now = Date.now() + serverTimeOffset;
-
-      rawCmds.forEach(item => {
-        if (!item || typeof item !== 'object') return;
-        const cmd = String(item.name || item.cmd || item.action || item.c || item.type || item.op || '').toLowerCase();
-        const args = (item.args && typeof item.args === 'object') ? item.args : (item.payload && typeof item.payload === 'object' ? item.payload : item);
-        const cellId = args.i ?? args.cell ?? args.cellId ?? args.index ?? args.pos ?? args.tile ?? item.cell ?? item.index;
-        let seedRaw = args.seed ?? args.s ?? args.seedId ?? args.crop ?? args.item ?? item.seed ?? item.s ?? item.item;
-        
-        // Comprobar args.id o item.id (el juego pasa id: 'seed:0' en sow)
-        if (seedRaw === undefined || seedRaw === null) {
-          const rawId = String(args.id || item.id || '');
-          if (rawId.startsWith('seed:') || rawId.startsWith('crop:')) {
-            seedRaw = rawId;
-          }
-        }
-        // Comprobar ranura de hotbar
-        if (seedRaw === undefined || seedRaw === null) {
-          const slotIdx = args.slot ?? args.hotbarSlot ?? item.slot;
-          if (slotIdx !== undefined) {
-            const hItem = active.inventory?.hotbar?.[+slotIdx] || active.inv?.hotbar?.[+slotIdx] || active.hotbar?.[+slotIdx];
-            if (hItem) seedRaw = hItem.id ?? hItem.item ?? hItem.name;
-          }
-        }
-        // Si es siembra y aún no se resuelve, asignar por defecto semilla 0 (Zanahoria)
-        if ((seedRaw === undefined || seedRaw === null) && (cmd.includes('plant') || cmd.includes('sow') || cmd.includes('seed'))) {
-          seedRaw = 'seed:0';
-        }
-
-        const farmKey = normalizeFarmFieldKey(args.farm || args.farmKey || args.field || args.map || item.farm || item.farmKey || item.field || activeFarmKey || 'farm.bloomshire');
-
-        if (cmd.includes('plant') || cmd.includes('sow') || cmd.includes('seed')) {
-          if (cellId !== undefined && seedRaw !== undefined && seedRaw !== null) {
-            const cellKey = `${farmKey}:${cellId}`;
-            deletedCellKeys.delete(cellKey);
-            deletedCellKeys.delete(`farm.bloomshire:${cellId}`);
-            deletedCellKeys.delete(`farm.town:${cellId}`);
-            deletedCellKeys.delete(`farm.home:${cellId}`);
-            const farmDoc = active[farmKey] || active['farm.bloomshire'] || active['farm.town'] || active['farm.home'];
-            const cellDoc = farmDoc?.[cellId] || farmDoc?.[String(cellId)];
-            const watered = Boolean(args.watered || args.w1 || cellDoc?.crop?.w1 || cellDoc?.w1 || cellDoc?.wet || true);
-            liveFarmOverlay.set(cellKey, {
-              fieldKey: farmKey,
-              cellId,
-              seedId: seedRaw,
-              s: seedRaw,
-              t: now,
-              plantedAt: now,
-              wateredAt: now,
-              w1: now,
-              needsWater: false,
-              isLiveOverlay: true
-            });
-            console.log('[Bloomshire Hook] Siembra en tiempo real detectada (<50ms):', cellKey, seedRaw);
-          }
-        } else if (cmd.includes('water') || cmd.includes('irrigate')) {
-          const targetCells = Array.isArray(args.cells) ? args.cells : (cellId !== undefined ? [cellId] : []);
-          targetCells.forEach(cId => {
-            const cellKey = `${farmKey}:${cId}`;
-            const existing = liveFarmOverlay.get(cellKey);
-            if (existing) {
-              existing.wateredAt = existing.wateredAt || now;
-              existing.w1 = existing.w1 || now;
-              existing.needsWater = false;
-            } else {
-              liveFarmOverlay.set(cellKey, {
-                fieldKey: farmKey,
-                cellId: cId,
-                wateredAt: now,
-                w1: now,
-                needsWater: false,
-                isLiveOverlay: true
-              });
-            }
-          });
-        } else if (cmd.includes('harvest') || cmd.includes('reap') || cmd.includes('collect') || cmd.includes('pick') || cmd.includes('dig')) {
-          const targetCells = Array.isArray(args.cells) ? args.cells : (cellId !== undefined ? [cellId] : []);
-          targetCells.forEach(cId => {
-            const numId = Number(cId);
-            // 1. Limpiar de liveFarmOverlay
-            for (const key of Array.from(liveFarmOverlay.keys())) {
-              if (key.endsWith(':' + numId) || key.endsWith(':' + cId)) {
-                liveFarmOverlay.delete(key);
-              }
-            }
-            // 2. Registrar en deletedCellKeys para todos los prefijos posibles (bloomshire, town, home, island, etc.)
-            const allPrefixes = [farmKey, 'farm.bloomshire', 'farm.town', 'farm.home', 'farm.island', 'farm.greenhouse'];
-            allPrefixes.forEach(pfx => {
-              deletedCellKeys.add(`${pfx}:${numId}`);
-              deletedCellKeys.add(`${pfx}:${cId}`);
-              if (active[pfx] && typeof active[pfx] === 'object') {
-                delete active[pfx][numId];
-                delete active[pfx][String(numId)];
-                delete active[pfx][cId];
-              }
-            });
-            console.log('[Bloomshire Hook] Cosecha/recolección detectada en celda:', cId);
-          });
-        } else if (cmd === 'cook.take' || cmd.endsWith('.take') || (cmd.includes('take') && !cmd.includes('start'))) {
-          // cook.take: { place: 'cook' | 'craft' | 'mill' | 'dairy' | 'loom' }
-          const place = args.place || item.place || 'cook';
-          const placeMap = { cook: 'pot', craft: 'craftPot', loom: 'loomPot', mill: 'millPot', dairy: 'dairyPot' };
-          const targetPot = placeMap[place] || 'pot';
-          delete active[targetPot];
-          delete active.pot;
-          // Limpiar también cualquier pot que esté listo en active
-          ['pot', 'craftPot', 'millPot', 'dairyPot', 'loomPot'].forEach(k => {
-            if (active[k] && active[k].ready && now >= active[k].ready) {
-              delete active[k];
-            }
-          });
-          console.log('[Bloomshire Hook] Recogida de cocina/crafteo detectada (<50ms):', targetPot);
-        } else if (
-          cmd.includes('cook') ||
-          cmd.includes('craft') ||
-          cmd.includes('forge') ||
-          cmd.includes('smelt') ||
-          cmd.includes('mill') ||
-          cmd.includes('dairy') ||
-          cmd.includes('churn') ||
-          cmd.includes('loom') ||
-          cmd.includes('weave')
-        ) {
-          const recipeName = args.recipe || args.dish || args.item || args.id || item.dish || item.recipe || item.item;
-          if (recipeName) {
-            let potKey = 'craftPot';
-            if (cmd.includes('cook')) potKey = 'pot';
-            else if (cmd.includes('mill')) potKey = 'millPot';
-            else if (cmd.includes('dairy') || cmd.includes('churn')) potKey = 'dairyPot';
-            else if (cmd.includes('loom') || cmd.includes('weave')) potKey = 'loomPot';
-
-            const qty = Number(args.n || args.qty || args.count || item.n || 1);
-            const durSec = Number(args.duration || args.time || item.duration || 60);
-            active[potKey] = {
-              dish: recipeName,
-              item: recipeName,
-              n: qty,
-              ready: now + (durSec * 1000)
-            };
-            console.log('[Bloomshire Hook] Crafteo/Cocina en tiempo real detectado (<50ms):', potKey, active[potKey]);
-          }
-        }
-      });
-    } catch (err) {
-      console.warn('[Bloomshire Hook] Error aplicando acción cmd:', err);
-    }
   }
 
   try {
@@ -837,30 +644,9 @@
 
         entries.forEach(([idx, cell]) => {
           const cellId = cell?.cell ?? cell?.cellId ?? idx;
-          const cellKey = `${normF}:${cellId}`;
-          // Si fue cosechada en tiempo real, ignorar hasta próximo F5
-          if (deletedCellKeys.has(cellKey) ||
-              deletedCellKeys.has(`farm.bloomshire:${cellId}`) ||
-              deletedCellKeys.has(`farm.town:${cellId}`) ||
-              deletedCellKeys.has(`farm.home:${cellId}`)) return;
-          // Si tiene un overlay vivo más reciente (siembra o riego), priorizar el overlay
-          const liveOv = liveFarmOverlay.get(cellKey);
-          const mergedCell = liveOv ? { ...(typeof cell === 'object' ? cell : {}), ...liveOv, crop: { ...(cell?.crop || {}), ...liveOv } } : cell;
-          const cr = parseCellToCrop(mergedCell, normF, cellId);
+          const cr = parseCellToCrop(cell, normF, cellId);
           if (cr) rawList.push(cr);
         });
-      });
-
-      // 2. Inyectar celdas recién sembradas en liveFarmOverlay que aún no existían en farmSources
-      liveFarmOverlay.forEach((ov, cellKey) => {
-        if (deletedCellKeys.has(cellKey)) return;
-        const normF = normalizeFarmFieldKey(ov.fieldKey || 'farm.bloomshire');
-        const cellId = ov.cellId;
-        const alreadyInList = rawList.some(r => r.id === `${normF}_${cellId}`);
-        if (!alreadyInList && ov.seedId !== undefined) {
-          const cr = parseCellToCrop(ov, normF, cellId);
-          if (cr) rawList.push(cr);
-        }
       });
     } catch (err) {
       console.warn('[Bloomshire Companion Hook] Error extrayendo cultivos:', err);
@@ -962,60 +748,43 @@
     if (!save || typeof save !== 'object') return '';
     const g = save.purse?.gold ?? save.gold ?? 0;
     const sh = save.purse?.shards ?? save.shards ?? 0;
-    const eObj = (window.__bloomshire_live_doc && window.__bloomshire_live_doc.energy) || save.energy;
-    
-    // Cálculo de energía viva reactiva para que el despertar de cama (150⚡) y regeneración cambien la firma de inmediato
-    let liveEVal = 150;
-    if (eObj && typeof eObj === 'object') {
-      const now = Date.now() + serverTimeOffset;
-      const ev = typeof eObj.v === 'number' ? eObj.v : 150;
-      const rec = eObj.recovery;
-      if (rec && typeof rec.from === 'number' && typeof rec.until === 'number' && typeof rec.rate === 'number') {
-        liveEVal = now >= rec.until ? 150 : Math.min(150, Math.floor(ev + rec.rate * (Math.max(now, rec.from) - rec.from)));
-      } else {
-        liveEVal = Math.floor(ev);
-      }
-    } else if (typeof eObj === 'number') {
-      liveEVal = Math.floor(eObj);
+    const e = (window.__bloomshire_live_doc && window.__bloomshire_live_doc.energy) || save.energy;
+    let eSig = '0';
+    if (e && typeof e === 'object') {
+      const rec = e.recovery;
+      eSig = `${e.v ?? 0}_${e.at ?? 0}_${rec ? `${rec.rate}_${rec.until}` : 0}_${e.slept ?? 0}`;
+    } else if (typeof e === 'number') {
+      eSig = String(Math.floor(e));
     }
-    const eVal = `${liveEVal}_${eObj?.at || 0}_${eObj?.recovery ? 1 : 0}`;
+
     const hb = Array.isArray(save.inventory?.hotbar)
-      ? save.inventory.hotbar.filter(Boolean).map(s => `${s.id}:${s.n || s.qty || 1}`).join('|')
+      ? save.inventory.hotbar.map(s => s ? `${s.id || s.item}:${s.n || s.qty || 1}` : '').join(',')
       : '';
     const bag = Array.isArray(save.inventory?.bag)
-      ? save.inventory.bag.filter(Boolean).map(s => `${s.id}:${s.n || s.qty || 1}`).join('|')
+      ? save.inventory.bag.map(s => s ? `${s.id || s.item}:${s.n || s.qty || 1}` : '').join(',')
       : '';
-    const ordList = Array.isArray(save.orders?.list)
-      ? save.orders.list.map(o => `${o.id}:${o.item}:${o.n}`).join('|')
-      : '';
-    const ordDone = Array.isArray(save.orders?.done) ? save.orders.done.join(',') : '';
-    const qSig = save.quests ? JSON.stringify(save.quests) : '';
+
+    const ord = Array.isArray(save.orders?.list) ? save.orders.list.length : 0;
+    const ordDone = Array.isArray(save.orders?.done) ? save.orders.done.length : 0;
+
     const farmKeys = Object.keys(save).filter(k => k.startsWith('farm.'));
-    const farmSig = farmKeys.map(k => `${k}:${JSON.stringify(save[k])}`).join(';');
-    const potSig = `${JSON.stringify(save.pot)}_${JSON.stringify(save.craftPot)}_${JSON.stringify(save.millPot)}_${JSON.stringify(save.dairyPot)}`;
-    const skillsSig = save.skills ? JSON.stringify(save.skills) : '';
-    const tasksSig = JSON.stringify(save.daily || save.tasks || save.dailyTasks || '');
-    let localFarmSig = '';
-    try {
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k && k.includes('farm.')) {
-          localFarmSig += `${k}:${localStorage.getItem(k)}|`;
-        }
-      }
-    } catch (e) {}
-    let overlaySig = '';
-    liveFarmOverlay.forEach((v, k) => {
-      overlaySig += `${k}:${v.seedId}:${v.wateredAt ? 1 : 0}:${v.t}|`;
-    });
-    const delSig = Array.from(deletedCellKeys).join(',');
-    return `${g}_${sh}_${eVal}_${hb}_${bag}_${ordList}_${ordDone}_${qSig}_${skillsSig}_${tasksSig}_${farmSig}_${localFarmSig}_${overlaySig}_${delSig}_${potSig}`;
+    const farmSig = farmKeys.map(k => {
+      const f = save[k];
+      if (!f || typeof f !== 'object') return `${k}:0`;
+      const cKeys = Object.keys(f);
+      return `${k}:${cKeys.length}:${cKeys.map(c => `${c}:${f[c]?.crop?.s ?? f[c]?.s ?? ''}:${f[c]?.crop?.t ?? f[c]?.t ?? ''}:${f[c]?.crop?.w1 ?? f[c]?.w1 ?? ''}`).join(',')}`;
+    }).join(';');
+
+    const potSig = `${save.pot?.dish || ''}:${save.pot?.ready || 0}_${save.craftPot?.item || ''}:${save.craftPot?.ready || 0}_${save.millPot?.item || ''}:${save.millPot?.ready || 0}_${save.dairyPot?.item || ''}:${save.dairyPot?.ready || 0}`;
+
+    const tasksSig = save.daily?.claimed ? 'claimed' : (save.daily?.list ? save.daily.list.map(t => `${t.id}:${t.n || 0}:${t.done ? 1 : 0}`).join(',') : '');
+
+    return `${g}_${sh}_${eSig}_${hb}_${bag}_${ord}_${ordDone}_${farmSig}_${potSig}_${tasksSig}`;
   }
 
   function dispatchState(rawPayload, force = false) {
     if (!rawPayload || typeof rawPayload !== 'object') return;
     try {
-      // Si viene el paquete raíz de /api/state con { save, quests, sky }, guardar catálogo de quests
       if (rawPayload.quests && Array.isArray(rawPayload.quests)) {
         cachedQuestCatalog = rawPayload.quests;
       } else if (rawPayload.questConfig && Array.isArray(rawPayload.questConfig)) {
@@ -1025,14 +794,12 @@
       const save = window.__bloomshire_live_doc || (rawPayload.save && typeof rawPayload.save === 'object' ? rawPayload.save : rawPayload);
       lastKnownSave = save;
 
-      // Validar que sea realmente un objeto save de partida (tiene purse, inventory, skills o energy)
       const isValidSave = Boolean(
         save && (
           save.purse ||
           save.inventory ||
           save.skills ||
-          (save.energy && typeof save.energy === 'object') ||
-          liveFarmOverlay.size > 0
+          (save.energy && typeof save.energy === 'object')
         )
       );
       if (!isValidSave) return;
@@ -1043,29 +810,9 @@
       lastDispatchSig = sig;
       lastDispatchAt = now;
 
-      // Extracción profunda del objeto Energy (memoria viva canónica y cálculo de cama)
+      // Extracción canónica de Energy estrictamente desde save.energy ({v, at, recovery, slept})
       let liveEnergyOverride = null;
       let liveEnergyObj = null;
-      const p = window.bloomshire?.play || window.app?.play || window.__play || window.play;
-      if (p?.energy) {
-        try {
-          const liveE = typeof p.energy.value === 'function' ? p.energy.value() : (typeof p.energy.v === 'number' ? p.energy.v : null);
-          if (typeof liveE === 'number' && Number.isFinite(liveE)) {
-            liveEnergyOverride = Math.floor(liveE);
-          }
-          liveEnergyObj = {
-            v: typeof p.energy.v === 'number' ? p.energy.v : liveEnergyOverride,
-            at: p.energy.at || now,
-            recovery: p.energy.recovery || null,
-            slept: p.energy.slept || null,
-            sleepLeft: typeof p.energy.sleepLeft === 'function' ? p.energy.sleepLeft() : null,
-            recovering: typeof p.energy.recovering === 'function' ? p.energy.recovering() : false,
-            bedWait: typeof p.energy.bedWait === 'function' ? p.energy.bedWait() : 0
-          };
-        } catch (e) { }
-      }
-
-      // Si no tenemos p.energy por restricción de producción, calcular canónicamente desde save.energy del DOC en memoria viva
       const activeEnergySource = (window.__bloomshire_live_doc && window.__bloomshire_live_doc.energy)
         ? window.__bloomshire_live_doc.energy
         : (save.energy || null);
@@ -1074,8 +821,6 @@
         const ev = typeof activeEnergySource.v === 'number' ? activeEnergySource.v : 150;
         const rec = activeEnergySource.recovery || null;
         let calculatedE = ev;
-        // Fórmula canónica oficial de rules.js:
-        // if (r) v += r.rate * Math.max(0, Math.min(now, r.until) - Math.max(this.at, r.from))
         if (rec && typeof rec.from === 'number' && typeof rec.until === 'number' && typeof rec.rate === 'number') {
           const effectiveNow = Math.min(now, rec.until);
           const effectiveStart = Math.max(activeEnergySource.at || rec.from, rec.from);
@@ -1086,26 +831,27 @@
             calculatedE = 150;
           }
         }
-        if (liveEnergyOverride === null) {
-          liveEnergyOverride = calculatedE;
-        }
+        liveEnergyOverride = calculatedE;
         liveEnergyObj = {
           v: ev,
           at: activeEnergySource.at || now,
           recovery: rec,
-          slept: activeEnergySource.slept || null,
-          ...(liveEnergyObj || {})
+          slept: activeEnergySource.slept || null
         };
-      } else if (typeof activeEnergySource === 'number' && liveEnergyOverride === null) {
+      } else if (typeof activeEnergySource === 'number') {
         liveEnergyOverride = activeEnergySource;
       }
+
+      const isStale = !window.__bloomshire_live_doc;
 
       window.postMessage({
         type: '__BLOOMSHIRE_RAW_STATE',
         source: 'bloomshire_hook',
         force: Boolean(force),
+        stale: isStale,
         payload: {
           ...save,
+          stale: isStale,
           wallet: save.wallet || cachedWallet || (function () {
             try { return localStorage.getItem('bloomshire_wallet'); } catch (_) { return null; }
           })(),
@@ -1133,9 +879,6 @@
               });
             }
             let t = save.tasks || rawPayload.tasks || save.dailyTasks || rawPayload.dailyTasks || null;
-            if (!t && p) {
-              t = p.tasks || p.dailyTasks || p.daily || (typeof p.getTasks === 'function' ? p.getTasks() : null);
-            }
             if (!t) {
               try {
                 for (let i = 0; i < localStorage.length; i++) {
@@ -1160,7 +903,9 @@
           _serverTimeOffset: serverTimeOffset
         }
       }, window.location.origin);
-    } catch (e) { }
+    } catch (err) {
+      console.warn('[Bloomshire Companion Hook] Error en dispatchState:', err);
+    }
   }
 
   const _origFetch = window.fetch;
@@ -1195,15 +940,14 @@
     return false;
   }
 
-  function schedulePostCmdRefresh() {
+  function schedulePostCmdRefresh(delay = 130) {
     if (cmdRefreshTimer) clearTimeout(cmdRefreshTimer);
     cmdRefreshTimer = setTimeout(() => {
-      // Despacho 100% pasivo desde memoria viva Phaser y localStorage (CERO llamadas de red al servidor)
-      // NUNCA llamar a fetchFreshServerState aquí: llamar a GET /api/state mientras se está en interiores
-      // resetea la sesión del PNJ en el servidor y causa el error "Aquí nadie vende eso" en las tiendas.
-      console.log('[Bloomshire Companion Hook] Acción de juego detectada: refrescando parcelas vivas de forma pasiva...');
-      dispatchState(window.__bloomshire_master_save || lastKnownSave || {}, true);
-    }, 150);
+      const active = window.__bloomshire_live_doc || lastKnownSave;
+      if (active) {
+        dispatchState(active, true);
+      }
+    }, delay);
   }
 
   // 1. Sniffer pasivo de fetch (captura /api/state, /api/cmd y /api/maps/<id> de forma 100% pasiva)
@@ -1516,22 +1260,21 @@
   }
 
   window.fetch = async function (...args) {
-    let interceptedCmd = null;
+    let reqUrl = '';
     try {
-      const url = typeof args[0] === 'string' ? args[0] : (args[0]?.url || '');
-      if (url.includes('api/cmd')) {
-        const rawBody = args[1]?.body;
-        if (typeof rawBody === 'string') {
-          try { interceptedCmd = JSON.parse(rawBody); } catch (e) {}
-        } else if (rawBody && typeof rawBody === 'object') {
-          interceptedCmd = rawBody;
-        }
+      reqUrl = typeof args[0] === 'string' ? args[0] : (args[0]?.url || '');
+      if (reqUrl.includes('api/cmd')) {
+        // Al ver salir un api/cmd, programar lectura del objeto vivo a los ~100 ms
+        setTimeout(() => {
+          const live = window.__bloomshire_live_doc;
+          if (live) dispatchState(live, false);
+        }, 100);
       }
     } catch (e) {}
 
     const resp = await _origFetch.apply(this, args);
     try {
-      const url = typeof args[0] === 'string' ? args[0] : (args[0]?.url || '');
+      const url = reqUrl || (typeof args[0] === 'string' ? args[0] : (args[0]?.url || ''));
       if (url.includes('/api/session') || url.includes('/play/api/door')) {
         resp.clone().json().then(sessData => {
           const acc = sessData?.account || sessData?.player;
@@ -1540,20 +1283,32 @@
             try { localStorage.setItem('bloomshire_wallet', acc.id); } catch (_) {}
           }
         }).catch(() => {});
-      } else if (url.includes('api/state') || url.includes('api/cmd') || url.includes('api/trade') || url.includes('api/crypto')) {
+      } else if (shouldCaptureLiveDoc(url)) {
         resp.clone().json().then(data => {
           updateServerTimeOffset(resp, data);
           if (data && data.save) {
-            attachLiveSaveWatchers(data.save);
-            dispatchState(data.save, true);
-          } else if (url.includes('api/cmd')) {
-            applyServerCmdResponse(data, interceptedCmd);
-            const live = window.__bloomshire_live_doc || window.__bloomshire_master_save || lastKnownSave;
-            if (live) dispatchState(live, true);
-            schedulePostCmdRefresh();
+            const prev = window.__bloomshire_live_doc;
+            const next = captureLiveDoc(prev, data, url, (newRef, u) => {
+              console.log(`[Hook] referencia viva fijada desde ${u}`);
+            });
+            if (next && next !== prev) {
+              window.__bloomshire_live_doc = next;
+              window.__bloomshire_master_save = next;
+              lastKnownSave = next;
+              dispatchState(next, true);
+            }
           }
-        }).catch(() => { });
-            } else if (url.includes('api/offers')) {
+        }).catch(() => {});
+      } else if (url.includes('api/cmd') || url.includes('api/trade') || url.includes('api/crypto')) {
+        // Al volver la respuesta (100–150 ms después, para que el #adopt del juego termine)
+        resp.clone().json().then(data => {
+          updateServerTimeOffset(resp, data);
+        }).catch(() => {});
+        setTimeout(() => {
+          const live = window.__bloomshire_live_doc;
+          if (live) dispatchState(live, true);
+        }, 130);
+      } else if (url.includes('api/offers')) {
         resp.clone().json().then(offersData => {
           latestMarketTrades = offersData;
           window.postMessage({
@@ -1563,20 +1318,18 @@
           }, '*');
         }).catch(() => {});
       } else if (url.includes('api/maps/')) {
-        // Captura 100% pasiva cuando el propio juego carga el mapa actual o hace prefetchNext() de mapas vecinos
         const m = /api\/maps\/([a-zA-Z0-9_-]+)/.exec(url);
         const mapId = m ? decodeURIComponent(m[1]) : null;
         if (mapId && ATLAS_MAP_IDS.has(mapId)) {
           resp.clone().json().then(mapJson => {
             if (mapJson && mapJson.layers) {
               rawMapJsonCache.set(mapId, mapJson);
-              // Renderizar en segundo plano sin bloquear el hilo principal del juego
               setTimeout(() => renderMapJsonToWebP(mapId, mapJson), 800);
             }
-          }).catch(() => { });
+          }).catch(() => {});
         }
       }
-    } catch (e) { }
+    } catch (e) {}
     return resp;
   };
 
@@ -1588,47 +1341,44 @@
     return _origXhrOpen.apply(this, arguments);
   };
   XMLHttpRequest.prototype.send = function (body) {
-    let interceptedCmd = null;
-    try {
-      if (typeof body === 'string') {
-        interceptedCmd = JSON.parse(body);
-      } else if (body && typeof body === 'object') {
-        interceptedCmd = body;
-      }
-    } catch (e) {}
+    const url = this._reqUrl || '';
+    if (url.includes('api/cmd')) {
+      setTimeout(() => {
+        const live = window.__bloomshire_live_doc;
+        if (live) dispatchState(live, false);
+      }, 100);
+    }
 
     this.addEventListener('load', () => {
       try {
-        const url = this._reqUrl || '';
-        if (url.includes('api/state') || url.includes('api/cmd')) {
+        const reqUrl = this._reqUrl || '';
+        if (shouldCaptureLiveDoc(reqUrl)) {
           const data = JSON.parse(this.responseText);
           updateServerTimeOffset(null, data);
           if (data && data.save) {
-            window.__bloomshire_master_save = data.save;
-            lastKnownSave = data.save;
-            dispatchState(data, true);
-          } else if (url.includes('api/cmd')) {
-            applyServerCmdResponse(data, interceptedCmd);
-            const live = window.__bloomshire_master_save || lastKnownSave;
-            if (live) dispatchState(live, true);
-            schedulePostCmdRefresh();
+            const prev = window.__bloomshire_live_doc;
+            const next = captureLiveDoc(prev, data, reqUrl, (newRef, u) => {
+              console.log(`[Hook] referencia viva fijada desde ${u}`);
+            });
+            if (next && next !== prev) {
+              window.__bloomshire_live_doc = next;
+              window.__bloomshire_master_save = next;
+              lastKnownSave = next;
+              dispatchState(next, true);
+            }
           }
+        } else if (reqUrl.includes('api/cmd') || reqUrl.includes('api/trade') || reqUrl.includes('api/crypto')) {
+          setTimeout(() => {
+            const live = window.__bloomshire_live_doc;
+            if (live) dispatchState(live, true);
+          }, 130);
         }
-      } catch (e) { }
+      } catch (e) {}
     });
     return _origXhrSend.apply(this, arguments);
   };
 
-  // 3. Interceptores de Storage para sincronización ultra-fluida (<50ms) de parcelas, cocina y crafteo
-  function normalizeStorageSubKey(k) {
-    if (!k || typeof k !== 'string') return '';
-    const farmM = /farm\.[a-zA-Z0-9_-]+/.exec(k);
-    if (farmM) return farmM[0];
-    const potM = /(pot|craftPot|millPot|dairyPot|loomPot)/.exec(k);
-    if (potM) return potM[0];
-    return k.split('.').pop();
-  }
-
+  // 3. Interceptores pasivos de Storage (100% de solo lectura, sin modificar save)
   const _origSetItem = Storage.prototype.setItem;
   Storage.prototype.setItem = function (key, value) {
     try {
@@ -1647,41 +1397,7 @@
         key.includes('task') ||
         key.includes('daily')
       )) {
-        if (!lastKnownSave) lastKnownSave = {};
-        
-        let parsedVal = null;
-        try {
-          parsedVal = (typeof value === 'string' && (value.startsWith('{') || value.startsWith('[') || value === 'null' || !isNaN(value)))
-            ? JSON.parse(value)
-            : value;
-        } catch (_) {}
-
-        const normKey = normalizeStorageSubKey(key);
-        if (normKey === 'pot' || normKey === 'craftPot' || normKey === 'millPot' || normKey === 'dairyPot' || normKey === 'loomPot') {
-          if (!parsedVal || parsedVal === 'null') {
-            delete lastKnownSave[normKey];
-          } else {
-            lastKnownSave[normKey] = parsedVal;
-          }
-          console.log('[Bloomshire Hook] Producción/Craft actualizado en vivo:', normKey, parsedVal);
-        } else if (normKey.startsWith('farm.')) {
-          lastKnownSave[normKey] = parsedVal;
-          console.log('[Bloomshire Hook] Parcela actualizada en vivo (<50ms):', normKey);
-        } else if (normKey === 'inventory') {
-          lastKnownSave.inventory = parsedVal;
-        } else if (normKey === 'purse') {
-          lastKnownSave.purse = parsedVal;
-        } else if (normKey === 'energy') {
-          lastKnownSave.energy = parsedVal;
-        } else if (normKey === 'quests') {
-          lastKnownSave.quests = parsedVal;
-        } else if (normKey === 'tasks' || normKey === 'dailyTasks' || key.includes('task') || key.includes('daily')) {
-          lastKnownSave.tasks = parsedVal;
-          lastKnownSave._dailyTasks = parsedVal;
-          console.log('[Bloomshire Hook] Tareas diarias actualizadas en vivo:', parsedVal);
-        }
-
-        schedulePostCmdRefresh();
+        schedulePostCmdRefresh(100);
       }
     } catch (e) {}
     return _origSetItem.apply(this, arguments);
@@ -1690,38 +1406,32 @@
   const _origRemoveItem = Storage.prototype.removeItem;
   Storage.prototype.removeItem = function (key) {
     try {
-      if (typeof key === 'string' && lastKnownSave) {
-        const normKey = normalizeStorageSubKey(key);
-        if (normKey) {
-          delete lastKnownSave[normKey];
-          schedulePostCmdRefresh();
-        }
+      if (typeof key === 'string') {
+        schedulePostCmdRefresh(100);
       }
     } catch (e) {}
     return _origRemoveItem.apply(this, arguments);
   };
 
-  // Sincronizador automático y ultra-fluido cada 2 segundos (CERO llamadas de red al servidor, 100% pasivo)
+  // Sincronizador automático de respaldo cada 1 segundo (100% pasivo)
   setInterval(() => {
     try {
-      const active = window.__bloomshire_live_doc || window.__bloomshire_master_save || lastKnownSave;
+      const active = window.__bloomshire_live_doc || lastKnownSave;
       if (active) {
         dispatchState(active, false);
       }
     } catch (_) {}
-  }, 2000);
+  }, 1000);
 
   // Sincronización manual instantánea (botón "Sincronizar" en MoniOS o en popup de extensión)
   window.addEventListener('message', (e) => {
     if (e.data?.type === 'FORCE_BLOOMSHIRE_SCAN') {
       console.log('[Bloomshire Companion Hook] Sincronización manual 100% pasiva solicitada');
-      // NUNCA llamar a fetchFreshServerState aquí: llamar a GET /api/state mientras se está en interiores
-      // resetea la sesión del PNJ en el servidor y causa el error "Aquí nadie vende eso" en las tiendas.
-      const active = window.__bloomshire_master_save || lastKnownSave;
+      const active = window.__bloomshire_live_doc || lastKnownSave;
       if (active) {
         dispatchState(active, true);
       }
-        } else if (e.data?.type === '__FETCH_MARKET_OFFERS_REQ') {
+    } else if (e.data?.type === '__FETCH_MARKET_OFFERS_REQ') {
       console.log('[Bloomshire Companion Hook] Consulta manual on-demand de /play/api/offers solicitada');
       _origFetch('/play/api/offers', { credentials: 'same-origin', cache: 'no-store' })
         .then(r => r.json())
@@ -1746,3 +1456,14 @@
     }
   });
 })();
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    shouldCaptureLiveDoc,
+    captureLiveDoc
+  };
+}
+if (typeof globalThis !== 'undefined') {
+  globalThis.shouldCaptureLiveDoc = shouldCaptureLiveDoc;
+  globalThis.captureLiveDoc = captureLiveDoc;
+}
