@@ -14,7 +14,7 @@ import {
   CRAFT_STATION_LOCATIONS,
   MARKET_ROTATION_CATALOG,
   getStorageType,
-  getItemStorageBreakdown,
+  getItemStorageBreakdown as getItemStorageBreakdownHelper,
   calculateQuantitiesFromRaw,
   getOrderBreakdown as getOrderBreakdownHelper,
   getOrderAvailableQty as getOrderAvailableQtyHelper,
@@ -49,7 +49,8 @@ export default function InventoryTab({
   locateInMegaAtlas = () => {},
   setShowConnectModal = () => {},
   inventoryCatalogData: propCatalogData,
-  initialSubTab
+  initialSubTab,
+  getPlayerItemQty: propGetPlayerItemQty
 }) {
   const inventoryCatalogData = propCatalogData || defaultInventoryCatalog;
   const [economySubTab, setEconomySubTab] = useState(() => {
@@ -62,9 +63,17 @@ export default function InventoryTab({
   const [marketSearch, setMarketSearch] = useState('');
 
   // Helpers de desglose vinculados al inventario vivo
-  const getItemStorageBreakdownLocal = (itemObj) => getItemStorageBreakdown(itemObj, rawInventory);
+  const getItemStorageBreakdown = (itemObj) => getItemStorageBreakdownHelper(itemObj, rawInventory);
   const getOrderBreakdown = (ord) => getOrderBreakdownHelper(ord, rawInventory, inventoryCatalogData);
   const getOrderAvailableQty = (ord) => getOrderAvailableQtyHelper(ord, rawInventory, inventoryCatalogData);
+  const getPlayerItemQty = propGetPlayerItemQty || ((itemObj) => {
+    if (!itemObj) return 0;
+    const idRaw = (itemObj.id || '').trim();
+    if (itemQuantities[idRaw] !== undefined && itemQuantities[idRaw] > 0) {
+      return itemQuantities[idRaw];
+    }
+    return getItemStorageBreakdown(itemObj).total;
+  });
 
   // Conteo de slots por almacén
   const inventoryCounts = useMemo(() => {
@@ -224,7 +233,7 @@ export default function InventoryTab({
     }
 
     return MARKET_ROTATION_CATALOG.map(entry => {
-      const bd = getItemStorageBreakdownLocal({ id: entry.id, name: entry.name });
+      const bd = getItemStorageBreakdown({ id: entry.id, name: entry.name });
       const idKey = entry.id.toLowerCase().trim();
       const isProtected = !!protectedMap[idKey];
       const questProtection = protectedMap[idKey] || null;
@@ -285,9 +294,6 @@ export default function InventoryTab({
       };
     }).sort((a, b) => b.score - a.score);
   }, [rawInventory, activeQuestMaterials, liveMarketOffers]);
-
-  // Alias para uso directo dentro del JSX existente
-  const getItemStorageBreakdown = getItemStorageBreakdownLocal;
 
   return (
             <div className="flex flex-col h-full w-full overflow-hidden p-4 gap-3">

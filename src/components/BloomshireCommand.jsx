@@ -660,7 +660,13 @@ export default function BloomshireCommand() {
       return saved ? JSON.parse(saved) : [];
     } catch (e) { return []; }
   });
-  const [soundAlarmEnabled, setSoundAlarmEnabled] = useState(() => localStorage.getItem('bloomshire_sound_alarm') !== 'false');
+  const [soundAlarmEnabled, setSoundAlarmEnabled] = useState(() => {
+    try {
+      return localStorage.getItem('bloomshire_sound_alarm') !== 'false';
+    } catch {
+      return true;
+    }
+  });
   const [showAddTimerModal, setShowAddTimerModal] = useState(false);
   const [newTimerForm, setNewTimerForm] = useState({
     name: '',
@@ -2475,15 +2481,17 @@ export default function BloomshireCommand() {
         {/* SUBMÓDULOS DE PESTAÑAS DESACOPLADAS (FASE 7) */}
         {activeTab === 'items' && (
           <ItemsTab
+            getPlayerItemQty={getPlayerItemQty}
             locateInMegaAtlas={locateInMegaAtlas}
-            rawInventory={rawInventory}
           />
         )}
 
         {activeTab === 'calc' && (
           <CalcTab
+            currentEnergy={currentEnergy}
+            maxEnergy={maxEnergy}
             farmingLevel={farmingLevel}
-            locateInMegaAtlas={locateInMegaAtlas}
+            playerPerks={playerPerks}
           />
         )}
 
@@ -2514,22 +2522,35 @@ export default function BloomshireCommand() {
             dailyPerItemCap={dailyPerItemCap}
             locateInMegaAtlas={locateInMegaAtlas}
             setShowConnectModal={setShowConnectModal}
+            getPlayerItemQty={getPlayerItemQty}
           />
         )}
 
         {activeTab === 'quests' && (
           <QuestsTab
             isConnected={isConnected}
+            onConnect={() => setShowConnectModal(true)}
+            onBack={() => setActiveTab('mega_atlas')}
             activeQuestsList={activeQuestsList}
             activeQuestMaterials={activeQuestMaterials}
+            gold={gold}
+            farmingLevel={farmingLevel}
             moonmereProgress={moonmereProgress}
-            dailyTasksMeta={dailyTasksMeta}
-            skillsBreakdown={skillsBreakdown}
-            bedMeta={bedMeta}
+            deliveredItemsManual={deliveredItemsManual}
+            toggleDeliveredItem={toggleDeliveredItem}
+            dailyTasks={dailyTasks}
+            setDailyTasks={setDailyTasks}
+            toggleDailyTask={toggleDailyTask}
+            dailyTasksCompletedCount={dailyTasksCompletedCount}
             energyMeta={energyMeta}
+            currentEnergy={currentEnergy}
+            maxEnergy={maxEnergy}
+            isVip={isVip}
+            skillsBreakdown={skillsBreakdown}
+            skillsMeta={skillsMeta}
             locateInMegaAtlas={locateInMegaAtlas}
-            rawInventory={rawInventory}
-            setShowConnectModal={setShowConnectModal}
+            getItemStorageBreakdown={(itemObj) => getItemStorageBreakdown(itemObj, rawInventory)}
+            setActiveTab={setActiveTab}
           />
         )}
 
@@ -2543,24 +2564,34 @@ export default function BloomshireCommand() {
         {activeTab === 'npcs' && (
           <NpcsTab
             locateInMegaAtlas={locateInMegaAtlas}
-            rawInventory={rawInventory}
           />
         )}
 
         {activeTab === 'monitors' && (
           <MonitorsTab
-            liveCrops={liveCrops}
-            manualProductionTimers={manualProductionTimers}
-            setManualProductionTimers={setManualProductionTimers}
-            productionSoundAlarm={productionSoundAlarm}
-            setProductionSoundAlarm={setProductionSoundAlarm}
-            lastCropPing={lastCropPing}
-            bedMeta={bedMeta}
-            dailyTasksMeta={dailyTasksMeta}
-            locateInMegaAtlas={locateInMegaAtlas}
-            rawInventory={rawInventory}
             isConnected={isConnected}
-            setShowConnectModal={setShowConnectModal}
+            onConnect={() => setShowConnectModal(true)}
+            onBack={() => setActiveTab('mega_atlas')}
+            activeCrops={activeCrops}
+            productionTimers={productionTimers}
+            serverTimeOffset={serverTimeOffset}
+            locateInMegaAtlas={locateInMegaAtlas}
+            handleRemoveProductionTimer={handleRemoveProductionTimer}
+            soundAlarmEnabled={soundAlarmEnabled}
+            setSoundAlarmEnabled={setSoundAlarmEnabled}
+            playChimeAlarm={playChimeAlarm}
+            showAddTimerModal={showAddTimerModal}
+            setShowAddTimerModal={setShowAddTimerModal}
+            newTimerForm={newTimerForm}
+            setNewTimerForm={setNewTimerForm}
+            handleAddProductionTimer={handleAddProductionTimer}
+            dailyTasks={dailyTasks}
+            toggleDailyTask={toggleDailyTask}
+            dailyTasksCompletedCount={dailyTasksCompletedCount}
+            activeQuestMaterials={activeQuestMaterials}
+            getItemStorageBreakdown={(itemObj) => getItemStorageBreakdown(itemObj, rawInventory)}
+            energyMeta={energyMeta}
+            setActiveTab={setActiveTab}
           />
         )}
 
@@ -2585,23 +2616,24 @@ export default function BloomshireCommand() {
             locateInMegaAtlas={locateInMegaAtlas}
             isConnected={isConnected}
             setShowConnectModal={setShowConnectModal}
+            onConnect={() => setShowConnectModal(true)}
+            onBack={() => setActiveTab('mega_atlas')}
           />
         )}
 
         {activeTab === 'system' && (
           <SystemTab
-            modulesEnabled={modulesEnabled}
-            setModulesEnabled={setModulesEnabled}
-            onForceRedownload={handleForceRedownload}
-            onClearAllStorage={handleClearAllStorage}
-            onResetSales={handleResetSales}
+            handleCheckUpdates={handleCheckUpdates}
+            isCheckingUpdates={isCheckingUpdates}
+            handleForceRedownload={handleForceRedownload}
             updateStatusMessage={updateStatusMessage}
+            activeQuestsList={activeQuestsList}
+            activeQuestMaterials={activeQuestMaterials}
+            activeCrops={activeCrops}
+            productionTimers={productionTimers}
+            energyMeta={energyMeta}
             systemLogs={systemLogs}
-            extensionInstalled={extensionInstalled}
-            isConnected={isConnected}
-            setShowConnectModal={setShowConnectModal}
-            locateInMegaAtlas={locateInMegaAtlas}
-            rawInventory={rawInventory}
+            setSystemLogs={setSystemLogs}
           />
         )}
 
