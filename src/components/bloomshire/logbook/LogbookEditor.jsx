@@ -11,6 +11,8 @@ import LogbookBlocks, { PlaceChip } from './LogbookBlocks';
 import PlaceSearch from './PlaceSearch';
 import { Field, Button, ErrorNote, ConfirmDeleteModal, StatusToggle, inputCls, useAdminErrorText } from './adminUi';
 import { slugify, validateEntryInput, sanitizeBlock, pickLang } from './logbookModel';
+import MediaDropzone, { UploadContext } from './MediaDropzone';
+import { imageFilesFrom } from './logbookUpload';
 
 const hasText = (v) => typeof v === 'string' && v.trim().length > 0;
 const hasList = (v) => Array.isArray(v) && v.some(hasText);
@@ -91,7 +93,7 @@ function AddBlockMenu({ onAdd, compact = false, onClose }) {
   );
 }
 
-export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByKey, mediaBase, onSave, onDelete, onClose }) {
+export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByKey, mediaBase, call = null, onSave, onDelete, onClose }) {
   const { t } = useTranslation('logbook');
   const errorText = useAdminErrorText();
   const isNew = !initial.id;
@@ -138,6 +140,34 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
 
   // Bloques
   const setBlock = (i, b) => update({ blocks: draft.blocks.map((x, j) => (j === i ? { ...b, _k: x._k } : x)) });
+  // Cambio funcional por clave: seguro aunque el bloque se mueva mientras sube un archivo
+  const patchBlock = useCallback((k, fn) => {
+    setDraft((d) => ({ ...d, blocks: d.blocks.map((x) => (x._k === k ? { ...fn(x), _k: k } : x)) }));
+    setDirty(true);
+    setSavedAt(null);
+  }, []);
+  // Imagenes pegadas o soltadas en cualquier parte del editor -> bloque nuevo que las sube
+  const addImagesFromFiles = (files, at = null) => {
+    if (!files.length) return;
+    const block = files.length === 1
+      ? { ...newBlock('image'), _pendingFiles: files }
+      : { ...newBlock('gallery'), _pendingFiles: files };
+    const blocks = [...draft.blocks];
+    blocks.splice(at == null ? blocks.length : at, 0, withKey(block));
+    update({ blocks });
+  };
+  const onEditorPaste = (e) => {
+    const files = imageFilesFrom(e.clipboardData);
+    if (!files.length || !call) return;
+    e.preventDefault();
+    addImagesFromFiles(files);
+  };
+  const onEditorDrop = (e) => {
+    const files = imageFilesFrom(e.dataTransfer);
+    if (!files.length || !call) return;
+    e.preventDefault();
+    addImagesFromFiles(files);
+  };
   const addBlock = (type, at = draft.blocks.length) => {
     const blocks = [...draft.blocks];
     blocks.splice(at, 0, withKey(newBlock(type)));
@@ -153,7 +183,8 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
   const removeBlock = (i) => update({ blocks: draft.blocks.filter((_, j) => j !== i) });
   const duplicateBlock = (i) => {
     const blocks = [...draft.blocks];
-    blocks.splice(i + 1, 0, withKey(JSON.parse(JSON.stringify(stripKey(draft.blocks[i])))));
+    const { _pendingFiles, ...copy } = stripKey(draft.blocks[i]);
+    blocks.splice(i + 1, 0, withKey(JSON.parse(JSON.stringify(copy))));
     update({ blocks });
   };
 
@@ -230,7 +261,13 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
     : error ? errorText(error) : null;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 pb-24 lb-fade">
+    <UploadContext.Provider value={{ call, mediaBase }}>
+    <div
+      className="mx-auto max-w-4xl space-y-6 pb-24 lb-fade"
+      onPaste={preview ? undefined : onEditorPaste}
+      onDragOver={(e) => { if (!preview && e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files')) e.preventDefault(); }}
+      onDrop={preview ? undefined : onEditorDrop}
+    >
       {/* Barra superior fija */}
       <div className="sticky -top-6 z-20 -mx-4 -mt-6 flex flex-wrap items-center gap-2 border-b border-slate-800 bg-[#0b1428] px-4 py-3 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.9)] sm:-top-8 sm:-mx-8 sm:-mt-8 sm:px-8">
         <Button onClick={close}><ArrowLeft className="h-3.5 w-3.5" /> {t('admin.actions.back')}</Button>
@@ -327,14 +364,24 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
                 <PlaceSearch corpus={corpus} lang={uiLang} onSelect={(p) => !draft.places.includes(p.key) && update({ places: [...draft.places, p.key] })} />
               </div>
             </Field>
-            <Field label={t('admin.entry.cover')} hint={t('admin.entry.coverHint')}>
-              <input className={`${inputCls} font-mono text-xs`} value={draft.cover_path} onChange={(e) => update({ cover_path: e.target.value })} placeholder="covers/gloom-cave.webp" />
+            <Field label={t('admin.entry.cover')}>
+              <div>
+                <MediaDropzone
+                  kind="image"
+                  compact
+                  value={draft.cover_path}
+                  onUploaded={(res) => update({ cover_path: res.path })}
+                  onClear={() => update({ cover_path: '' })}
+                  onPathChange={(path) => update({ cover_path: path })}
+                />
+              </div>
             </Field>
           </section>
 
           {/* Bloques */}
           <section className="space-y-3">
             <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">{t('admin.entry.content')}</h3>
+            {call && <p className="text-[11px] text-slate-500">{t('admin.upload.pasteAnywhere')}</p>}
             {draft.blocks.length === 0 && <p className="rounded-2xl border border-dashed border-slate-700 p-6 text-center text-sm text-slate-500">{t('admin.entry.emptyBlocks')}</p>}
             {draft.blocks.map((b, i) => (
               <React.Fragment key={b._k}>
@@ -371,7 +418,7 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
                   </div>
                   {b.type !== 'divider' && (
                     <div className="p-3.5">
-                      <BlockEditor block={b} onChange={(nb) => setBlock(i, nb)} editLang={editLang} corpus={corpus} placesByKey={placesByKey} uiLang={uiLang} />
+                      <BlockEditor block={b} onChange={(nb) => setBlock(i, nb)} patch={(fn) => patchBlock(b._k, fn)} editLang={editLang} corpus={corpus} placesByKey={placesByKey} uiLang={uiLang} />
                     </div>
                   )}
                 </div>
@@ -393,5 +440,6 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
         </>
       )}
     </div>
+    </UploadContext.Provider>
   );
 }

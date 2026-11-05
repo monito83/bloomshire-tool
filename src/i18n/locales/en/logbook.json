@@ -152,8 +152,7 @@
       "tags": "Tags",
       "tagsHint": "Separated by commas",
       "places": "Places",
-      "cover": "Cover image (path in the bucket)",
-      "coverHint": "Uploading images arrives in the next phase; for now paste a path inside the bucket.",
+      "cover": "Cover image",
       "content": "Content",
       "emptyBlocks": "No content yet. Add the first block below.",
       "addBlock": "Add block",
@@ -234,7 +233,24 @@
       "too_large": "The entry is too large. Split it into several entries.",
       "network_error": "No connection to the server.",
       "generic": "Something went wrong. Try again.",
-      "incomplete_blocks": "Some blocks are empty or incomplete (English text, image path, valid video or place missing)"
+      "incomplete_blocks": "Some blocks are empty or incomplete (English text, image path, valid video or place missing)",
+      "invalid_file_type": "That file type is not allowed (images: WebP, PNG, JPG, GIF; documents: PDF).",
+      "file_too_large": "The file is larger than 10 MB.",
+      "invalid_file": "The file is not valid.",
+      "invalid_image": "The image could not be read.",
+      "upload_failed": "The upload failed. Try again."
+    },
+    "upload": {
+      "dropImage": "Drag an image here, or click to choose",
+      "dropImages": "Drag images here, or click to choose (several at once)",
+      "dropPdf": "Drag a PDF here, or click to choose",
+      "pasteHint": "You can also paste a screenshot with Ctrl+V",
+      "uploading": "Uploading… {{pct}}%",
+      "replace": "Replace",
+      "usePath": "Use a link or bucket path instead",
+      "pathPlaceholder": "Paste the image link or its path in the bucket",
+      "invalidPath": "That link is not from the logbook storage.",
+      "pasteAnywhere": "Tip: paste a screenshot (Ctrl+V) or drop images anywhere in the editor to add them."
     }
   }
 }

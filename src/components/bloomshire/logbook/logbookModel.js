@@ -227,6 +227,24 @@ export function isSafeMediaPath(path) {
   return typeof path === 'string' && MEDIA_PATH_RE.test(path);
 }
 
+const PUBLIC_BUCKET_URL_RE = /^https:\/\/[A-Za-z0-9.-]+\/storage\/v1\/object\/(?:public|sign)\/logbook\/([^?#]+)/;
+
+/**
+ * Acepta una ruta del bucket o la URL publica completa de Supabase
+ * (https://<proyecto>.supabase.co/storage/v1/object/public/logbook/<ruta>) y
+ * devuelve solo la ruta. null si no es valida.
+ */
+export function extractMediaPath(input) {
+  if (typeof input !== 'string') return null;
+  let s = input.trim();
+  const m = s.match(PUBLIC_BUCKET_URL_RE);
+  if (m) {
+    try { s = decodeURIComponent(m[1]); } catch { return null; }
+  }
+  s = s.replace(/^\/+/, '').replace(/^logbook\//, '');
+  return isSafeMediaPath(s) ? s : null;
+}
+
 /** URL publica del bucket; null si la ruta no es segura o falta la base. */
 export function mediaUrl(mediaBase, path) {
   if (!isSafeMediaPath(path)) return null;
@@ -309,15 +327,17 @@ export function sanitizeBlock(raw) {
       };
     case 'heading':
       return { type: t, level: raw.level === 3 ? 3 : 2, text_en: str(raw.text_en, 300), text_es: str(raw.text_es, 300) };
-    case 'image':
-      if (!isSafeMediaPath(raw.path)) return null;
+    case 'image': {
+      const path = extractMediaPath(raw.path);
+      if (!path) return null;
       return {
-        type: t, path: raw.path,
+        type: t, path,
         alt_en: str(raw.alt_en, 300), alt_es: str(raw.alt_es, 300),
         caption_en: str(raw.caption_en, 500), caption_es: str(raw.caption_es, 500),
         width: Number.isFinite(raw.width) ? raw.width : null,
         height: Number.isFinite(raw.height) ? raw.height : null
       };
+    }
     case 'gallery': {
       const images = (Array.isArray(raw.images) ? raw.images : [])
         .map((img) => sanitizeBlock({ ...(img || {}), type: 'image' }))
@@ -335,13 +355,15 @@ export function sanitizeBlock(raw) {
       return { type: t, ordered: Boolean(raw.ordered), items_en: strList(raw.items_en), items_es: strList(raw.items_es) };
     case 'divider':
       return { type: t };
-    case 'file':
-      if (!isSafeMediaPath(raw.path)) return null;
+    case 'file': {
+      const path = extractMediaPath(raw.path);
+      if (!path) return null;
       return {
-        type: t, path: raw.path,
+        type: t, path,
         label_en: str(raw.label_en, 200), label_es: str(raw.label_es, 200),
         bytes: Number.isFinite(raw.bytes) ? raw.bytes : null
       };
+    }
     case 'place':
       if (!PLACE_KEY_RE.test(String(raw.key || ''))) return null;
       return { type: t, key: raw.key, note_en: str(raw.note_en, 1000), note_es: str(raw.note_es, 1000) };
@@ -548,8 +570,12 @@ export function validateEntryInput(input) {
   const slug = String(input.slug || '').trim() || slugify(title);
   if (!SLUG_RE.test(slug) || slug.length > 80) return fail('invalid_slug', 'slug');
   v.slug = slug;
-  if (input.cover_path != null && input.cover_path !== '' && !isSafeMediaPath(input.cover_path)) return fail('invalid_cover', 'cover_path');
-  v.cover_path = input.cover_path || null;
+  if (input.cover_path != null && String(input.cover_path).trim() !== '') {
+    v.cover_path = extractMediaPath(input.cover_path);
+    if (!v.cover_path) return fail('invalid_cover', 'cover_path');
+  } else {
+    v.cover_path = null;
+  }
   v.status = input.status === 'published' ? 'published' : 'draft';
   v.sort = Number.isInteger(input.sort) ? Math.max(-100000, Math.min(100000, input.sort)) : 0;
   const tags = Array.isArray(input.tags) ? input.tags : [];

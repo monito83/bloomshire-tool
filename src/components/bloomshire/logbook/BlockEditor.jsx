@@ -2,13 +2,14 @@
 // Campos de edicion de cada tipo de bloque. Los textos con idioma usan
 // <campo>_en / <campo>_es segun el idioma que se esta editando; en modo ES se
 // muestra el original en ingles como referencia para traducir.
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus, X } from 'lucide-react';
+import { Plus, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Field, inputCls } from './adminUi';
 import PlaceSearch from './PlaceSearch';
 import { PlaceChip } from './LogbookBlocks';
-import { parseYouTubeId, CALLOUT_VARIANTS } from './logbookModel';
+import MediaDropzone, { UploadContext } from './MediaDropzone';
+import { parseYouTubeId, CALLOUT_VARIANTS, mediaUrl } from './logbookModel';
 
 export const BLOCK_ICONS = {
   text: '¶', heading: 'H', image: '🖼️', gallery: '🎞️', youtube: '▶', table: '▦',
@@ -22,7 +23,7 @@ export function newBlock(type) {
     case 'text': return { type, md_en: '', md_es: '' };
     case 'heading': return { type, level: 2, text_en: '', text_es: '' };
     case 'image': return { type, path: '', alt_en: '', alt_es: '', caption_en: '', caption_es: '' };
-    case 'gallery': return { type, images: [{ path: '', alt_en: '', alt_es: '' }], caption_en: '', caption_es: '' };
+    case 'gallery': return { type, images: [], caption_en: '', caption_es: '' };
     case 'youtube': return { type, id: '', url: '', start: 0, title_en: '', title_es: '' };
     case 'table': return { type, md_en: '| Column | Column |\n| --- | --- |\n|  |  |', md_es: '' };
     case 'callout': return { type, variant: 'tip', title_en: '', title_es: '', md_en: '', md_es: '' };
@@ -47,8 +48,11 @@ function EnRef({ show, text }) {
   );
 }
 
-export default function BlockEditor({ block, onChange, editLang, corpus, placesByKey, uiLang }) {
+export default function BlockEditor({ block, onChange, patch, editLang, corpus, placesByKey, uiLang }) {
   const { t } = useTranslation('logbook');
+  const { mediaBase } = useContext(UploadContext);
+  // patch(fn) aplica cambios sobre el estado mas reciente (necesario durante subidas)
+  const apply = patch || ((fn) => onChange(fn(block)));
   const L = (f) => `${f}_${editLang}`;
   const isEs = editLang === 'es';
   const set = (patch) => onChange({ ...block, ...patch });
@@ -137,31 +141,70 @@ export default function BlockEditor({ block, onChange, editLang, corpus, placesB
 
     case 'image':
       return (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {line('path', t('admin.fields.path'), { lang: false, placeholder: 'guides/gloom-cave/1.webp' })}
-          {line('alt', t('admin.fields.alt'))}
-          <div className="sm:col-span-2">{line('caption', t('admin.fields.caption'))}</div>
+        <div className="space-y-3">
+          <MediaDropzone
+            kind="image"
+            value={block.path}
+            pendingFiles={block._pendingFiles}
+            onPendingDone={() => apply((b) => ({ ...b, _pendingFiles: null }))}
+            onUploaded={(res) => apply((b) => ({ ...b, path: res.path, width: res.width, height: res.height }))}
+            onClear={() => apply((b) => ({ ...b, path: '', width: null, height: null }))}
+            onPathChange={(path) => apply((b) => ({ ...b, path }))}
+          />
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {line('alt', t('admin.fields.alt'))}
+            {line('caption', t('admin.fields.caption'))}
+          </div>
         </div>
       );
 
     case 'gallery': {
       const images = block.images || [];
-      const setImg = (i, patch) => set({ images: images.map((im, j) => (j === i ? { ...im, ...patch } : im)) });
+      const setImg = (i, p) => apply((b) => ({ ...b, images: (b.images || []).map((im, j) => (j === i ? { ...im, ...p } : im)) }));
+      const moveImg = (i, d) => apply((b) => {
+        const list = [...(b.images || [])];
+        const j = i + d;
+        if (j < 0 || j >= list.length) return b;
+        [list[i], list[j]] = [list[j], list[i]];
+        return { ...b, images: list };
+      });
       return (
-        <div className="space-y-2.5">
-          {images.map((im, i) => (
-            <div key={i} className="grid grid-cols-[auto_1fr_1fr_auto] items-center gap-2">
-              <span className="w-7 text-center text-[11px] font-black text-amber-300">#{i + 1}</span>
-              <input className={`${inputCls} font-mono text-xs`} value={im.path || ''} placeholder={t('admin.fields.path')} onChange={(e) => setImg(i, { path: e.target.value })} />
-              <input className={inputCls} value={im[L('alt')] || ''} placeholder={isEs && im.alt_en ? im.alt_en : t('admin.fields.alt')} onChange={(e) => setImg(i, { [L('alt')]: e.target.value })} />
-              <button type="button" onClick={() => set({ images: images.filter((_, j) => j !== i) })} className="rounded-lg p-1.5 text-slate-500 hover:bg-rose-500/10 hover:text-rose-300 cursor-pointer" aria-label={t('admin.fields.remove')}>
-                <X className="h-4 w-4" />
-              </button>
+        <div className="space-y-3">
+          {images.some((im) => im.path) && (
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+              {images.map((im, i) => (im.path ? (
+                <div key={`${im.path}-${i}`} className="group overflow-hidden rounded-xl border border-slate-700/80 bg-[#0a1324]">
+                  <div className="relative flex aspect-[4/3] items-center justify-center bg-slate-950">
+                    {mediaUrl(mediaBase, im.path) && <img src={mediaUrl(mediaBase, im.path)} alt="" className="max-h-full max-w-full object-contain" />}
+                    <span className="absolute left-1.5 top-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-black text-amber-200">#{i + 1}</span>
+                    <span className="absolute right-1.5 top-1.5 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
+                      <button type="button" onClick={() => moveImg(i, -1)} disabled={i === 0} className="rounded-md bg-black/70 p-1 text-slate-200 hover:text-amber-200 disabled:opacity-30 cursor-pointer" aria-label={t('admin.actions.moveUp')}><ArrowLeft className="h-3 w-3" /></button>
+                      <button type="button" onClick={() => moveImg(i, 1)} disabled={i === images.length - 1} className="rounded-md bg-black/70 p-1 text-slate-200 hover:text-amber-200 disabled:opacity-30 cursor-pointer" aria-label={t('admin.actions.moveDown')}><ArrowRight className="h-3 w-3" /></button>
+                      <button type="button" onClick={() => apply((b) => ({ ...b, images: (b.images || []).filter((_, j) => j !== i) }))} className="rounded-md bg-black/70 p-1 text-slate-200 hover:text-rose-300 cursor-pointer" aria-label={t('admin.fields.remove')}><X className="h-3 w-3" /></button>
+                    </span>
+                  </div>
+                  <input
+                    className="w-full border-t border-slate-800 bg-transparent px-2 py-1.5 text-xs text-slate-200 placeholder:text-slate-600 outline-none focus:bg-amber-500/[0.05]"
+                    value={im[L('alt')] || ''}
+                    placeholder={isEs && im.alt_en ? im.alt_en : t('admin.fields.alt')}
+                    onChange={(e) => setImg(i, { [L('alt')]: e.target.value })}
+                  />
+                </div>
+              ) : null))}
             </div>
-          ))}
-          <button type="button" onClick={() => set({ images: [...images, { path: '', alt_en: '', alt_es: '' }] })} className="inline-flex items-center gap-1 text-xs font-bold text-amber-300 hover:text-amber-200 cursor-pointer">
-            <Plus className="h-3.5 w-3.5" /> {t('admin.fields.addImage')}
-          </button>
+          )}
+          <MediaDropzone
+            kind="image"
+            multiple
+            compact={images.some((im) => im.path)}
+            pendingFiles={block._pendingFiles}
+            onPendingDone={() => apply((b) => ({ ...b, _pendingFiles: null }))}
+            onUploaded={(res) => apply((b) => ({
+              ...b,
+              images: [...(b.images || []).filter((im) => im.path), { path: res.path, width: res.width, height: res.height, alt_en: '', alt_es: '' }]
+            }))}
+            onPathChange={(path) => apply((b) => ({ ...b, images: [...(b.images || []).filter((im) => im.path), { path, alt_en: '', alt_es: '' }] }))}
+          />
           {line('caption', t('admin.fields.caption'))}
         </div>
       );
@@ -193,8 +236,19 @@ export default function BlockEditor({ block, onChange, editLang, corpus, placesB
 
     case 'file':
       return (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {line('path', t('admin.fields.path'), { lang: false, placeholder: 'docs/guide.pdf' })}
+        <div className="space-y-3">
+          <MediaDropzone
+            kind="pdf"
+            value={block.path}
+            onUploaded={(res) => apply((b) => ({
+              ...b,
+              path: res.path,
+              bytes: res.bytes,
+              label_en: b.label_en || res.name.replace(/\.pdf$/i, '')
+            }))}
+            onClear={() => apply((b) => ({ ...b, path: '', bytes: null }))}
+            onPathChange={(path) => apply((b) => ({ ...b, path }))}
+          />
           {line('label', t('admin.fields.fileLabel'))}
         </div>
       );

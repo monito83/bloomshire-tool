@@ -152,8 +152,7 @@
       "tags": "Etiquetas",
       "tagsHint": "Separadas por comas",
       "places": "Lugares",
-      "cover": "Imagen de portada (ruta en el bucket)",
-      "coverHint": "La subida de imágenes llega en la próxima fase; por ahora pegá una ruta dentro del bucket.",
+      "cover": "Imagen de portada",
       "content": "Contenido",
       "emptyBlocks": "Todavía no hay contenido. Agregá el primer bloque abajo.",
       "addBlock": "Agregar bloque",
@@ -234,7 +233,24 @@
       "too_large": "La entrada es demasiado grande. Dividila en varias entradas.",
       "network_error": "Sin conexión con el servidor.",
       "generic": "Algo salió mal. Probá de nuevo.",
-      "incomplete_blocks": "Hay bloques vacíos o incompletos (falta el texto en inglés, la ruta de la imagen, un video válido o el lugar)"
+      "incomplete_blocks": "Hay bloques vacíos o incompletos (falta el texto en inglés, la ruta de la imagen, un video válido o el lugar)",
+      "invalid_file_type": "Ese tipo de archivo no está permitido (imágenes: WebP, PNG, JPG, GIF; documentos: PDF).",
+      "file_too_large": "El archivo pesa más de 10 MB.",
+      "invalid_file": "El archivo no es válido.",
+      "invalid_image": "No se pudo leer la imagen.",
+      "upload_failed": "Falló la subida. Probá de nuevo."
+    },
+    "upload": {
+      "dropImage": "Arrastrá una imagen acá o hacé clic para elegirla",
+      "dropImages": "Arrastrá imágenes acá o hacé clic para elegirlas (varias a la vez)",
+      "dropPdf": "Arrastrá un PDF acá o hacé clic para elegirlo",
+      "pasteHint": "También podés pegar una captura con Ctrl+V",
+      "uploading": "Subiendo… {{pct}}%",
+      "replace": "Reemplazar",
+      "usePath": "Usar un enlace o una ruta del bucket",
+      "pathPlaceholder": "Pegá el enlace de la imagen o su ruta en el bucket",
+      "invalidPath": "Ese enlace no es del almacenamiento de la bitácora.",
+      "pasteAnywhere": "Consejo: pegá una captura (Ctrl+V) o soltá imágenes en cualquier parte del editor para agregarlas."
     }
   }
 }

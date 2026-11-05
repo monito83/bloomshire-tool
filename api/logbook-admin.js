@@ -11,6 +11,13 @@
  *   section_reorder  { parent_id, ids[] }        -> sort = posicion en ids
  *   entry_save       { entry }                   -> crea (sin id) o actualiza
  *   entry_delete     { id, confirmSlug }
+ *   upload_sign      { mime, bytes, kind }        -> { path, uploadUrl } URL firmada de Supabase Storage
+ *   media_register   { path, mime, bytes, width, height, alt_en, alt_es } -> fila en logbook_media
+ *
+ * Subidas: el navegador reduce y convierte la imagen a WebP y la sube DIRECTO a
+ * Supabase con la URL firmada (asi no pasa por el limite de 4,5 MB de Vercel).
+ * El servidor elige la ruta (entries/AAAA/MM/<uuid>.<ext>); el bucket limita
+ * tipos (webp/png/jpeg/gif/pdf) y tamaño (10 MB).
  *
  * Seguridad:
  *   - Contraseña en LOGBOOK_ADMIN_PASSWORD, comparada en tiempo constante.
@@ -38,6 +45,16 @@ const SESSION_HOURS = 12;
 const MAX_FAILS_PER_IP = 5;
 const MAX_FAILS_GLOBAL = 30;
 const FAIL_WINDOW_MS = 15 * 60 * 1000;
+
+export const UPLOAD_TYPES = {
+  'image/webp': { ext: 'webp', kind: 'image' },
+  'image/png': { ext: 'png', kind: 'image' },
+  'image/jpeg': { ext: 'jpg', kind: 'image' },
+  'image/gif': { ext: 'gif', kind: 'image' },
+  'application/pdf': { ext: 'pdf', kind: 'file' }
+};
+export const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+const UPLOAD_PATH_RE = /^entries\/\d{4}\/\d{2}\/[0-9a-f-]{36}\.(webp|png|jpg|gif|pdf)$/;
 
 const SECTION_FIELDS = 'id,parent_id,slug,title_en,title_es,description_en,description_es,icon,sort,status,created_at,updated_at';
 const ENTRY_META_FIELDS = 'id,section_id,slug,title_en,title_es,summary_en,summary_es,tags,places,cover_path,sort,status,author,published_at,created_at,updated_at';
@@ -260,6 +277,46 @@ const actions = {
       ? await rest(cfg, 'PATCH', `logbook_entries?id=eq.${id}`, value)
       : await rest(cfg, 'POST', 'logbook_entries', value);
     return { ok: true, entry: { ...rows[0], blocks: sanitizeBlocks(rows[0].blocks) } };
+  },
+
+  async upload_sign(cfg, body) {
+    const type = UPLOAD_TYPES[String(body.mime || '')];
+    if (!type) throw new HttpError(400, 'invalid_file_type');
+    const bytes = Number(body.bytes);
+    if (!Number.isFinite(bytes) || bytes <= 0) throw new HttpError(400, 'invalid_file');
+    if (bytes > MAX_UPLOAD_BYTES) throw new HttpError(400, 'file_too_large');
+    const now = new Date();
+    const path = `entries/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${crypto.randomUUID()}.${type.ext}`;
+    const res = await fetch(`${cfg.url}/storage/v1/object/upload/sign/logbook/${path}`, {
+      method: 'POST',
+      headers: { apikey: cfg.key, Authorization: `Bearer ${cfg.key}`, 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+    if (!res.ok) throw new HttpError(502, 'upstream_error');
+    const data = await res.json();
+    const rel = String(data?.url || '');
+    if (!rel.startsWith('/object/upload/sign/logbook/')) throw new HttpError(502, 'upstream_error');
+    return { ok: true, path, uploadUrl: `${cfg.url}/storage/v1${rel}`, publicUrl: `${cfg.mediaBase}/${path}` };
+  },
+
+  async media_register(cfg, body) {
+    const path = String(body.path || '');
+    if (!UPLOAD_PATH_RE.test(path)) throw new HttpError(400, 'invalid_file');
+    const type = UPLOAD_TYPES[String(body.mime || '')];
+    if (!type) throw new HttpError(400, 'invalid_file_type');
+    const int = (v) => (Number.isInteger(v) && v > 0 && v < 1e9 ? v : null);
+    const text = (v) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, 300) : null);
+    const rows = await rest(cfg, 'POST', 'logbook_media', {
+      path,
+      kind: type.kind,
+      mime: body.mime,
+      bytes: int(body.bytes),
+      width: int(body.width),
+      height: int(body.height),
+      alt_en: text(body.alt_en),
+      alt_es: text(body.alt_es)
+    });
+    return { ok: true, media: rows && rows[0] };
   },
 
   async entry_delete(cfg, body) {

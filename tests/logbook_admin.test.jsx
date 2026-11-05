@@ -302,3 +302,78 @@ describe('Bitacora admin: bloques incompletos', async () => {
     expect(isBlockComplete({ type: 'divider' })).toBe(true);
   });
 });
+
+describe('Bitacora: subida de archivos', () => {
+  it('extractMediaPath acepta ruta o URL publica del bucket y rechaza otras', async () => {
+    const { extractMediaPath, sanitizeBlock } = await import('../src/components/bloomshire/logbook/logbookModel');
+    const url = 'https://vbefuztmqqymlotdhjvh.supabase.co/storage/v1/object/public/logbook/entries/2026/11/a b.webp';
+    expect(extractMediaPath(url)).toBeNull(); // espacio no permitido
+    expect(extractMediaPath('https://x.supabase.co/storage/v1/object/public/logbook/guides/cave/1.webp?t=1')).toBe('guides/cave/1.webp');
+    expect(extractMediaPath('/logbook/guides/1.png')).toBe('guides/1.png');
+    expect(extractMediaPath('guides/1.png')).toBe('guides/1.png');
+    expect(extractMediaPath('https://evil.com/x.png')).toBeNull();
+    expect(extractMediaPath('https://x.supabase.co/storage/v1/object/public/otro/x.png')).toBeNull();
+    expect(sanitizeBlock({ type: 'image', path: 'https://x.supabase.co/storage/v1/object/public/logbook/a/b.webp' }).path).toBe('a/b.webp');
+  });
+
+  it('fitWithin reduce sin agrandar', async () => {
+    const { fitWithin } = await import('../src/components/bloomshire/logbook/logbookUpload');
+    expect(fitWithin(4000, 2000)).toEqual({ width: 2000, height: 1000 });
+    expect(fitWithin(800, 600)).toEqual({ width: 800, height: 600 });
+  });
+});
+
+describe('Bitacora admin: upload_sign y media_register', () => {
+  let storageCalls;
+  beforeEach(() => {
+    _resetLoginLimits();
+    process.env.SUPABASE_URL = 'https://abc.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-key';
+    process.env.SESSION_SECRET = SECRET;
+    process.env.LOGBOOK_ADMIN_PASSWORD = PASSWORD;
+    storageCalls = [];
+    vi.stubGlobal('fetch', vi.fn(async (url, opts = {}) => {
+      const u = new URL(url);
+      if (u.pathname.startsWith('/storage/v1/object/upload/sign/logbook/')) {
+        storageCalls.push({ url, opts });
+        const path = u.pathname.replace('/storage/v1', '');
+        return { ok: true, status: 200, json: async () => ({ url: `${path}?token=tkn` }) };
+      }
+      const body = opts.body ? JSON.parse(opts.body) : null;
+      return { ok: true, status: 201, json: async () => [body], text: async () => JSON.stringify([{ id: 'm1', ...body }]) };
+    }));
+  });
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    for (const k of ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'SESSION_SECRET', 'LOGBOOK_ADMIN_PASSWORD']) delete process.env[k];
+  });
+
+  it('exige sesion', async () => {
+    expect((await call({ action: 'upload_sign', mime: 'image/webp', bytes: 10 })).code).toBe(401);
+  });
+
+  it('firma una ruta elegida por el servidor', async () => {
+    const token = await login();
+    const r = await call({ action: 'upload_sign', mime: 'image/webp', bytes: 50000, path: '../../hack.html' }, { token });
+    expect(r.code).toBe(200);
+    expect(r.body.path).toMatch(/^entries\/\d{4}\/\d{2}\/[0-9a-f-]{36}\.webp$/);
+    expect(r.body.uploadUrl).toBe(`https://abc.supabase.co/storage/v1/object/upload/sign/logbook/${r.body.path}?token=tkn`);
+    expect(r.body.publicUrl).toBe(`https://abc.supabase.co/storage/v1/object/public/logbook/${r.body.path}`);
+    expect(storageCalls[0].opts.headers.Authorization).toBe('Bearer service-key');
+  });
+
+  it('rechaza tipos y tamaños no permitidos', async () => {
+    const token = await login();
+    expect((await call({ action: 'upload_sign', mime: 'image/svg+xml', bytes: 10 }, { token })).body.error).toBe('invalid_file_type');
+    expect((await call({ action: 'upload_sign', mime: 'text/html', bytes: 10 }, { token })).body.error).toBe('invalid_file_type');
+    expect((await call({ action: 'upload_sign', mime: 'image/png', bytes: 11 * 1024 * 1024 }, { token })).body.error).toBe('file_too_large');
+    expect((await call({ action: 'upload_sign', mime: 'image/png', bytes: 0 }, { token })).body.error).toBe('invalid_file');
+  });
+
+  it('media_register solo acepta rutas generadas por upload_sign', async () => {
+    const token = await login();
+    expect((await call({ action: 'media_register', path: 'guides/x.webp', mime: 'image/webp' }, { token })).body.error).toBe('invalid_file');
+    const ok = await call({ action: 'media_register', path: 'entries/2026/11/0f8fad5b-d9cb-469f-a165-70867728950e.webp', mime: 'image/webp', bytes: 1200, width: 800, height: 600 }, { token });
+    expect(ok.code).toBe(200);
+  });
+});

@@ -854,6 +854,7 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
           corpus={corpus}
           placesByKey={placesByKey}
           mediaBase={mediaBase}
+          call={call}
           onSave={saveEntry}
           onDelete={deleteEntry}
           onClose={(id) => { setEditing(null); if (id) setPendingNav({ kind: 'entry', id }); }}
