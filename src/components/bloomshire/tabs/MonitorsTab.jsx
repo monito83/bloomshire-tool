@@ -404,3 +404,4 @@ export default function MonitorsTab({
     </div>
   );
 }
+
