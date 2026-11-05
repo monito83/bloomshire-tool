@@ -40,3 +40,21 @@ De acuerdo con las reglas de la Fase 8, estos textos **no se modifican en el có
 | `seasonLabel` | Etiqueta de la estación del año con emoji | `"Invierno ❄️"`, `"Primavera 🌸"`, `"Todo el Año 🌐"` |
 | `tip` | Consejo táctico y recomendación de optimización | `"Mejor relación XP/energía para subir rápido a Nivel 5"` |
 | `growTxt` | Texto de tiempo especial si no es numérico | `"Instantáneo"` |
+
+---
+
+## 4. Lugares del código con heurísticas basadas en literales de datos (A refactorizar en PR de datos)
+
+Actualmente existen 3 lugares en la interfaz donde el código decide comportamientos inspeccionando subcadenas en español dentro de los campos de texto de los datos. Funcionan hoy porque los JSON están en español, pero deben reemplazarse por campos canónicos estables en el PR de datos para evitar rupturas al traducir:
+
+1. **`CraftTab.jsx` (~línea 52)**:
+   - **Heurística actual**: `r.level.toLowerCase().includes('misi') || r.level.toLowerCase().includes('especial') || r.level.toLowerCase().includes('vip')` para el filtro de recetas especiales/misión.
+   - **Reemplazo en PR de datos**: Agregar en `craft_data.json` una clave canónica estable como `isSpecial: true` o `categoryType: "quest" | "special"`.
+
+2. **`CalcTab.jsx` (~línea 34)**:
+   - **Heurística actual**: `x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misi'))` para filtrar cultivos/acciones de eventos y fundadores.
+   - **Reemplazo en PR de datos**: Agregar en `calc_data.json` una clave canónica estable como `isSpecial: true` o `bonusType: "founders" | "quest"`.
+
+3. **`ItemsTab.jsx` (~línea 234)**:
+   - **Heurística actual**: `u.includes('Misi') || u.includes('Cap.') || u.includes('Quest')` para dar estilo diferenciado a las insignias de misiones en la lista `usedIn`.
+   - **Reemplazo en PR de datos**: Estructurar los elementos de `usedIn` como objetos con campo `kind: "quest" | "recipe"` o usar un identificador canónico en vez de cadenas libres.

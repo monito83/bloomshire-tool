@@ -111,31 +111,11 @@ export const getNpcFavoriteGifts = (npc) => {
 
 export const getItemCategoryLabel = (cat) => {
   if (i18n && typeof i18n.t === 'function') {
-    const translated = i18n.t('common:categories.' + cat);
-    if (translated && translated !== 'categories.' + cat) return translated;
+    const key = 'categories.' + (cat || 'general');
+    const translated = i18n.t(key, { ns: 'common' });
+    if (translated && translated !== key) return translated;
   }
-  switch (cat) {
-    case 'crop': return 'Cultivo';
-    case 'fish': return 'Pez';
-    case 'food': return 'Comida';
-    case 'forage': return 'Recolección / Seta';
-    case 'ore': return 'Mineral';
-    case 'resource': return 'Recurso / Madera';
-    case 'bug': return 'Mariposa / Bicho';
-    case 'animal': return 'Ganadería';
-    case 'meat': return 'Carne';
-    case 'staple': return 'Básico / Molino';
-    case 'craft': return 'Artesanía';
-    case 'forged': return 'Forja';
-    case 'tool': return 'Herramienta';
-    case 'weapon': return 'Arma';
-    case 'gear': return 'Equipamiento';
-    case 'furniture': return 'Mueble';
-    case 'quest': return 'Misión';
-    case 'premium': return 'Especial / Pase';
-    case 'treasure': return 'Tesoro';
-    default: return cat || 'General';
-  }
+  return cat || 'General';
 };
 
 export const getItemIcon = (cat) => {

@@ -215,10 +215,10 @@ export default function CraftTab({
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <div className="text-sm font-black text-amber-300 flex items-center gap-2">
-                      <span>{t(`stations.${craftCategory}.name`, { defaultValue: CRAFT_STATION_LOCATIONS[craftCategory].stationName })}</span>
+                      <span>{t(`stations.${craftCategory}.name`)}</span>
                     </div>
                     <div className="text-xs text-slate-300 mt-0.5">
-                      🧭 {t(`stations.${craftCategory}.desc`, { defaultValue: CRAFT_STATION_LOCATIONS[craftCategory].stationDesc })}
+                      🧭 {t(`stations.${craftCategory}.desc`)}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">

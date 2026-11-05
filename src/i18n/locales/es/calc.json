@@ -12,7 +12,7 @@
     "liveGame": "Partida Live: {{current}} / {{max}} ⚡",
     "description": "Calcula el impacto exacto en XP y Oro según la energía disponible en tu partida.",
     "yourEnergy": "⚡ Tu Energía:",
-    "resetLive": "Reset Live",
+    "resetLive": "Restablecer en vivo",
     "withEnergy": "Con <bold>{{energy}}⚡</bold> en <bold>{{crop}}</bold>:",
     "cropsAndBatches": "{{crops}} cultivos ({{batches}} tandas)",
     "xpGain": "+{{amount}} XP",
