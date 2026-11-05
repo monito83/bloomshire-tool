@@ -2558,6 +2558,7 @@ export default function BloomshireCommand() {
           <CraftTab
             rawInventory={rawInventory}
             locateInMegaAtlas={locateInMegaAtlas}
+            skillsBreakdown={skillsBreakdown}
           />
         )}
 

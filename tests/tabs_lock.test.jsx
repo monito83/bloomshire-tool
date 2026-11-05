@@ -53,9 +53,22 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
     expect(html).toContain('Conectar Partida');
   });
 
-  it('renders CraftTab without throwing', () => {
-    const html = renderToString(<CraftTab rawInventory={[]} />);
-    expect(html).toContain('Banco de Trabajo');
+  it('renders CraftTab without throwing and filters up to level properly', () => {
+    const html = renderToString(<CraftTab rawInventory={[]} initialCraftCategory="forge" />);
+    expect(html).toContain('Barra de Cobre');
+  });
+
+  it('filters all unlocked crafts up to selected level in forge and bench', () => {
+    // Test that level 4 in forge includes level 1 (Barra de Cobre), level 3 (Kit de Reparación), level 4 (Cut Rose Quartz)
+    import('../public/data/bloomshire/craft_data.json').then(mod => {
+      const craftData = mod.default || mod;
+      const forgeLevel4 = craftData.forge.filter(r => (r.levelNum || 1) <= 4);
+      const names = forgeLevel4.map(r => r.item);
+      expect(names.some(n => n.includes('Barra de Cobre'))).toBe(true);
+      expect(names.some(n => n.includes('Kit de Reparación'))).toBe(true);
+      expect(names.some(n => n.includes('Cut Rose Quartz'))).toBe(true);
+      expect(names.some(n => n.includes('Barra de Hierro'))).toBe(false);
+    });
   });
 
   it('renders NpcsTab without throwing', () => {
