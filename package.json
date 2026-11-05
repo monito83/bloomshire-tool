@@ -13,11 +13,13 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "clsx": "^2.1.1",
+    "i18next": "^26.7.1",
     "jose": "^6.2.15",
     "lucide-react": "^1.14.0",
     "postcss": "^8.5.14",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "react-i18next": "^17.1.12",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.4",
     "viem": "^2.57.16"

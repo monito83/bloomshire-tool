@@ -1,0 +1,12 @@
+{
+  "language": {
+    "en": "Inglés",
+    "es": "Español",
+    "switchToEn": "Switch to English",
+    "switchToEs": "Cambiar a Español"
+  },
+  "status": {
+    "loading": "Cargando...",
+    "ready": "LISTA"
+  }
+}

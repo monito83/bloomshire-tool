@@ -1,0 +1,40 @@
+{
+  "gold": {
+    "tooltip": "Available gold: {{amount}} Gold",
+    "display": "{{amount}} Gold",
+    "displayK": "{{amount}}k Gold"
+  },
+  "energy": {
+    "jamTooltip": "Sapphire Jam active (+30% regeneration): +1.3⚡ every 3m ({{minutes}}m remaining)",
+    "liveTooltip": "Live energy: {{current}}/{{max}} ⚡ ({{detail}})",
+    "jamDetail": "🫐 Jam active: +1.3⚡ every 3m",
+    "vipDetail": "+1⚡ every 3m VIP passive",
+    "baseDetail": "Base regen",
+    "ready": "READY"
+  },
+  "farmer": {
+    "profileTooltip": "Open Farmer Profile, NFTs and On-Chain Status",
+    "level": "Lvl {{level}}"
+  },
+  "mode": {
+    "readOnly": "Read-only: {{wallet}}",
+    "freeGuide": "Free Community Guide",
+    "connectGameTitle": "Link your game or enter key",
+    "connectGameButton": "🎮 Connect Game"
+  },
+  "sync": {
+    "staleTooltip": "The extension has no direct live reference. Press F5 in the game to sync.",
+    "staleFull": "Reload game (F5) to sync",
+    "staleShort": "F5 to sync",
+    "tooltip": "Sync telemetry (Last: {{time}})",
+    "button": "Sync"
+  },
+  "disconnect": {
+    "title": "Disconnect wallet and return to Free Guide Mode",
+    "button": "Disconnect"
+  },
+  "toggle": {
+    "expand": "Expand header",
+    "collapse": "Hide header"
+  }
+}

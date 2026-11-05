@@ -1,0 +1,10 @@
+{
+  "boundary": {
+    "defaultTitle": "Error al cargar este módulo",
+    "globalTitle": "Error Global en Bloomshire Tool",
+    "moduleTitle": "Error al cargar el módulo ({{tab}})",
+    "description": "Ocurrió un error inesperado al procesar los datos de este panel. La herramienta sigue activa.",
+    "retry": "🔄 Reintentar",
+    "backToAtlas": "🏡 Volver al Atlas"
+  }
+}

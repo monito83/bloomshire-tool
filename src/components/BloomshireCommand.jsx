@@ -50,6 +50,9 @@ import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
 import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
 import rulesData from '../data/rules.json';
 import ErrorBoundary from './ErrorBoundary';
+import '../i18n';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 // Importar lógica y fórmulas de bloomshireEngine
 import {
@@ -131,6 +134,9 @@ export {
 };
 
 export default function BloomshireCommand() {
+  const { t: tHeader, i18n } = useTranslation('header');
+  const { t: tTabs } = useTranslation('tabs');
+  const { t: tErrors } = useTranslation('errors');
   const VALID_TABS = ['mega_atlas', 'inventory', 'items', 'craft', 'npcs', 'calc', 'monitors', 'quests', 'advisor', 'system'];
   const [activeTab, setActiveTab] = useState(() => {
     try {
@@ -295,7 +301,19 @@ export default function BloomshireCommand() {
   });
   const [isSyncing, setIsSyncing] = useState(false);
   const [isSyncStale, setIsSyncStale] = useState(false);
-  const [lastSyncTime, setLastSyncTime] = useState(() => new Date().toLocaleTimeString());
+  const [lastSyncTime, setLastSyncTime] = useState(() => new Date());
+  const formattedLastSyncTime = useMemo(() => {
+    const d = lastSyncTime instanceof Date ? lastSyncTime : new Date();
+    try {
+      return new Intl.DateTimeFormat(i18n.language || 'en', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(d);
+    } catch {
+      return d.toLocaleTimeString();
+    }
+  }, [lastSyncTime, i18n.language]);
   const lastExtensionSyncAtRef = useRef(0);
 
   // Inventory & Liquidation State
@@ -1475,7 +1493,7 @@ export default function BloomshireCommand() {
     }
 
     setIsSyncStale(Boolean(data?.stale));
-    setLastSyncTime(new Date().toLocaleTimeString());
+    setLastSyncTime(new Date());
   };
 
   // S1: Validar sesión SIWE al inicio con /api/auth?action=me (anti-phishing y protección premium)
@@ -2284,17 +2302,17 @@ export default function BloomshireCommand() {
               {/* Píldora de Oro */}
               <div 
                 className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#12192a] border border-amber-500/30 text-amber-300 font-bold text-xs shadow-sm shrink-0" 
-                title={`Oro disponible: ${gold.toLocaleString('es-ES')} Gold`}
+                title={tHeader('gold.tooltip', { amount: new Intl.NumberFormat(i18n.language || 'en').format(gold) })}
               >
                 <span className="text-amber-400">🪙</span>
-                <span>{gold >= 1000 ? `${(gold / 1000).toFixed(1)}k Gold` : `${gold} Gold`}</span>
+                <span>{gold >= 1000 ? tHeader('gold.displayK', { amount: (gold / 1000).toFixed(1) }) : tHeader('gold.display', { amount: new Intl.NumberFormat(i18n.language || 'en').format(gold) })}</span>
               </div>
 
               {/* Píldora de Energía */}
               {energyMeta.isJamActive && (
                 <div
                   className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-indigo-950/70 border border-indigo-400/50 text-indigo-300 font-bold text-xs shadow-sm shrink-0 animate-pulse"
-                  title={`Mermelada de Zafiro activa (+30% regeneración): +1.3⚡ cada 3m (${energyMeta.jamMinutesLeft}m restante)`}
+                  title={tHeader('energy.jamTooltip', { minutes: energyMeta.jamMinutesLeft })}
                 >
                   <span className="text-sm">🫐</span>
                   <span className="font-mono text-xs font-black">{energyMeta.jamMinutesLeft}m</span>
@@ -2303,7 +2321,15 @@ export default function BloomshireCommand() {
               )}
               <div 
                 className="relative overflow-hidden flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12192a] border border-slate-700/60 text-slate-200 font-bold text-xs shadow-sm shrink-0 min-w-[125px]"
-                title={`Energía viva: ${Math.floor(currentEnergy)}/${maxEnergy} ⚡ (${energyMeta.isJamActive ? '🫐 Mermelada activa: +1.3⚡ cada 3m' : isVip ? '+1⚡ cada 3m pasivo VIP' : 'Regen base'})`}
+                title={tHeader('energy.liveTooltip', {
+                  current: Math.floor(currentEnergy),
+                  max: maxEnergy,
+                  detail: energyMeta.isJamActive
+                    ? tHeader('energy.jamDetail')
+                    : isVip
+                    ? tHeader('energy.vipDetail')
+                    : tHeader('energy.baseDetail')
+                })}
               >
                 <div 
                   className="absolute inset-0 bg-gradient-to-r from-amber-600/30 to-amber-500/35 pointer-events-none transition-all duration-500"
@@ -2312,7 +2338,7 @@ export default function BloomshireCommand() {
                 <span className="relative z-10 text-amber-400">🛏️</span>
                 <span className="relative z-10 font-mono">{`${Math.floor(currentEnergy)}/${maxEnergy}`}</span>
                 {energyMeta.canRest && (
-                  <span className="relative z-10 text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">LISTA</span>
+                  <span className="relative z-10 text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">{tHeader('energy.ready')}</span>
                 )}
               </div>
 
@@ -2321,10 +2347,10 @@ export default function BloomshireCommand() {
                 type="button"
                 onClick={() => setShowProfileModal(true)}
                 className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-amber-500/40 hover:border-amber-400/80 text-amber-300 hover:text-white text-xs font-mono shrink-0 cursor-pointer transition-all shadow-sm active:scale-[0.98]"
-                title="Abrir Perfil de Granjero, NFTs y Estado On-Chain"
+                title={tHeader('farmer.profileTooltip')}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-amber-400 font-bold">Nv {farmingLevel}</span>
+                <span className="text-amber-400 font-bold">{tHeader('farmer.level', { level: farmingLevel })}</span>
                 <span className="text-slate-600">•</span>
                 <span title={walletAddress}>{walletAddress.slice(0, 5)}...{walletAddress.slice(-3)}</span>
                 <span className="text-[10px] font-sans text-amber-400/90 ml-0.5">👤</span>
@@ -2343,53 +2369,54 @@ export default function BloomshireCommand() {
               {viewOnlyWallet ? (
                 <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                  <span className="font-mono">Lectura: {viewOnlyWallet.slice(0, 6)}...{viewOnlyWallet.slice(-4)}</span>
+                  <span className="font-mono">{tHeader('mode.readOnly', { wallet: `${viewOnlyWallet.slice(0, 6)}...${viewOnlyWallet.slice(-4)}` })}</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                  <span>Guía Comunitaria Libre</span>
+                  <span>{tHeader('mode.freeGuide')}</span>
                 </div>
               )}
               <button
                 onClick={() => setShowConnectModal(true)}
                 className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 hover:border-amber-400 text-amber-300 font-bold text-xs transition-all cursor-pointer"
-                title="Vincular tu partida o ingresar clave"
+                title={tHeader('mode.connectGameTitle')}
               >
-                <span>🎮 Conectar Partida</span>
+                <span>{tHeader('mode.connectGameButton')}</span>
               </button>
             </div>
           )}
         </div>
 
-        {/* Derecha: Botón Sync estilo Boceto + Colapsar */}
+        {/* Derecha: Selector de Idioma + Botón Sync estilo Boceto + Desconectar + Colapsar */}
         <div className="flex items-center gap-2 shrink-0">
+          <LanguageSwitcher />
           {isConnected && (
             <>
               {isSyncStale && (
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold shadow-sm" title="La extensión no tiene referencia viva directa. Presioná F5 en el juego para sincronizar.">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold shadow-sm" title={tHeader('sync.staleTooltip')}>
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                  <span className="hidden sm:inline">Recargá el juego (F5) para sincronizar</span>
-                  <span className="sm:hidden">F5 para sync</span>
+                  <span className="hidden sm:inline">{tHeader('sync.staleFull')}</span>
+                  <span className="sm:hidden">{tHeader('sync.staleShort')}</span>
                 </div>
               )}
               <button
                 onClick={fetchSyncFromServer}
                 disabled={isSyncing}
                 className="px-3.5 py-1.5 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-700/80 hover:border-amber-500/50 text-slate-200 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm disabled:opacity-50"
-                title={`Sincronizar telemetría (Última: ${lastSyncTime})`}
+                title={tHeader('sync.tooltip', { time: formattedLastSyncTime })}
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
-                <span>Sync</span>
+                <span>{tHeader('sync.button')}</span>
               </button>
 
               <button
                 onClick={handleDisconnect}
                 className="px-3 py-1.5 rounded-xl bg-rose-950/30 hover:bg-rose-900/50 border border-rose-500/30 hover:border-rose-400/60 text-rose-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-                title="Desconectar wallet y volver al Modo Guía Libre"
+                title={tHeader('disconnect.title')}
               >
                 <LogOut className="w-3.5 h-3.5 text-rose-400" />
-                <span className="hidden sm:inline">Desconectar</span>
+                <span className="hidden sm:inline">{tHeader('disconnect.button')}</span>
               </button>
             </>
           )}
@@ -2401,7 +2428,7 @@ export default function BloomshireCommand() {
               try { localStorage.setItem('bloomshire_header_collapsed', String(next)); } catch {}
             }}
             className="w-8 h-8 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-slate-800 text-slate-400 hover:text-slate-200 flex items-center justify-center transition-all cursor-pointer"
-            title={isHeaderCollapsed ? "Expandir encabezado" : "Ocultar encabezado"}
+            title={isHeaderCollapsed ? tHeader('toggle.expand') : tHeader('toggle.collapse')}
           >
             {isHeaderCollapsed ? <ChevronDown className="w-4 h-4 text-amber-400" /> : <ChevronUp className="w-4 h-4" />}
           </button>
@@ -2413,13 +2440,13 @@ export default function BloomshireCommand() {
         <nav className="px-5 py-2 bg-[#0e1628] border-y border-slate-800/90 flex items-center justify-between gap-3 overflow-x-auto no-scrollbar shrink-0 shadow-sm">
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
             {[
-              { key: 'mega_atlas', label: 'MEGA-ATLAS HD' },
-              { key: 'inventory', label: 'ECONOMÍA & TIENDAS' },
-              { key: 'items', label: 'BUSCADOR ÍTEMS' },
-              { key: 'craft', label: 'CRAFTEO & COCINA' },
-              { key: 'npcs', label: 'ALDEANOS & REGALOS' },
-              { key: 'calc', label: 'CALCULADORA XP' },
-              { key: 'monitors', label: isConnected ? 'TEMPORIZADORES' : 'TEMPORIZADORES 🔒' }
+              { key: 'mega_atlas', label: tTabs('titles.mega_atlas') },
+              { key: 'inventory', label: tTabs('titles.inventory') },
+              { key: 'items', label: tTabs('titles.items') },
+              { key: 'craft', label: tTabs('titles.craft') },
+              { key: 'npcs', label: tTabs('titles.npcs') },
+              { key: 'calc', label: tTabs('titles.calc') },
+              { key: 'monitors', label: isConnected ? tTabs('titles.monitors') : tTabs('titles.monitorsLocked') }
             ].map(t => {
               const isActive = activeTab === t.key;
               return (
@@ -2447,9 +2474,9 @@ export default function BloomshireCommand() {
                   ? 'bg-amber-500/20 border-amber-500/60 text-amber-300'
                   : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
               }`}
-              title="Libro de Misiones y Progresión"
+              title={tTabs('titles.questsTitle')}
             >
-              <span>Misiones</span>
+              <span>{tTabs('titles.quests')}</span>
               {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
 
@@ -2460,9 +2487,9 @@ export default function BloomshireCommand() {
                   ? 'bg-cyan-500/20 border-cyan-500/60 text-cyan-300'
                   : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
               }`}
-              title="Copilot IA"
+              title={tTabs('titles.advisorTitle')}
             >
-              <span>Copilot</span>
+              <span>{tTabs('titles.advisor')}</span>
               {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
 
@@ -2473,7 +2500,7 @@ export default function BloomshireCommand() {
                   ? 'bg-amber-500/20 border-amber-500/60 text-amber-300'
                   : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
               }`}
-              title="Ajustes y Diagnóstico"
+              title={tTabs('titles.systemTitle')}
             >
               <Settings className="w-3.5 h-3.5" />
             </button>
@@ -2483,7 +2510,7 @@ export default function BloomshireCommand() {
 
       {/* 3. CONTENIDO PRINCIPAL SEGÚN PESTAÑA */}
       <div className="flex-1 overflow-hidden relative">
-        <ErrorBoundary key={activeTab} title={`Error al cargar el módulo (${activeTab})`} onBack={() => setActiveTab('mega_atlas')}>
+        <ErrorBoundary key={activeTab} title={tErrors('boundary.moduleTitle', { tab: activeTab })} onBack={() => setActiveTab('mega_atlas')}>
 
         {/* ==============================================================
             TAB: BUSCADOR UNIVERSAL DE ÍTEMS ("¿DÓNDE LO CONSIGO?") - 359 ÍTEMS

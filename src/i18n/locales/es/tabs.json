@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "mega_atlas": "MEGA-ATLAS HD",
+    "inventory": "ECONOMÍA & TIENDAS",
+    "items": "BUSCADOR ÍTEMS",
+    "craft": "CRAFTEO & COCINA",
+    "npcs": "ALDEANOS & REGALOS",
+    "calc": "CALCULADORA XP",
+    "monitors": "TEMPORIZADORES",
+    "monitorsLocked": "TEMPORIZADORES 🔒",
+    "quests": "Misiones",
+    "questsTitle": "Libro de Misiones y Progresión",
+    "advisor": "Copilot",
+    "advisorTitle": "Copilot IA",
+    "systemTitle": "Ajustes y Diagnóstico"
+  }
+}

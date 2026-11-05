@@ -1,0 +1,40 @@
+{
+  "gold": {
+    "tooltip": "Oro disponible: {{amount}} Gold",
+    "display": "{{amount}} Gold",
+    "displayK": "{{amount}}k Gold"
+  },
+  "energy": {
+    "jamTooltip": "Mermelada de Zafiro activa (+30% regeneración): +1.3⚡ cada 3m ({{minutes}}m restante)",
+    "liveTooltip": "Energía viva: {{current}}/{{max}} ⚡ ({{detail}})",
+    "jamDetail": "🫐 Mermelada activa: +1.3⚡ cada 3m",
+    "vipDetail": "+1⚡ cada 3m pasivo VIP",
+    "baseDetail": "Regen base",
+    "ready": "LISTA"
+  },
+  "farmer": {
+    "profileTooltip": "Abrir Perfil de Granjero, NFTs y Estado On-Chain",
+    "level": "Nv {{level}}"
+  },
+  "mode": {
+    "readOnly": "Lectura: {{wallet}}",
+    "freeGuide": "Guía Comunitaria Libre",
+    "connectGameTitle": "Vincular tu partida o ingresar clave",
+    "connectGameButton": "🎮 Conectar Partida"
+  },
+  "sync": {
+    "staleTooltip": "La extensión no tiene referencia viva directa. Presioná F5 en el juego para sincronizar.",
+    "staleFull": "Recargá el juego (F5) para sincronizar",
+    "staleShort": "F5 para sync",
+    "tooltip": "Sincronizar telemetría (Última: {{time}})",
+    "button": "Sync"
+  },
+  "disconnect": {
+    "title": "Desconectar wallet y volver al Modo Guía Libre",
+    "button": "Desconectar"
+  },
+  "toggle": {
+    "expand": "Expandir encabezado",
+    "collapse": "Ocultar encabezado"
+  }
+}
