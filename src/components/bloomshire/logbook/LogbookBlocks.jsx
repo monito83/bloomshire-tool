@@ -23,6 +23,7 @@ const formatBytes = (n, lang) => {
 function YouTubeBlock({ block, lang }) {
   const { t } = useTranslation('logbook');
   const [playing, setPlaying] = useState(false);
+  const [thumbFailed, setThumbFailed] = useState(false);
   const title = pickLang(block, 'title', lang);
   const thumb = youTubeThumbUrl(block.id);
   const src = youTubeEmbedUrl(block.id, block.start);
@@ -46,10 +47,11 @@ function YouTubeBlock({ block, lang }) {
             className="group absolute inset-0 flex items-center justify-center cursor-pointer"
             aria-label={t('blocks.playVideo')}
           >
-            {thumb && (
+            {thumb && !thumbFailed && (
               <img
                 src={thumb}
                 alt=""
+                onError={() => setThumbFailed(true)}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-500 group-hover:opacity-90 group-hover:scale-[1.03]"
               />

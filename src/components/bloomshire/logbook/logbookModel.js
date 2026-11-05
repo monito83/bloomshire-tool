@@ -472,3 +472,105 @@ export function entryHasPlace(entry, key) {
   if ((entry.places || []).includes(key)) return true;
   return (entry.blocks || []).some((b) => b && b.type === 'place' && b.key === key);
 }
+
+// ---------------------------------------------------------------------------
+// Edicion (fase 3): slugs y validacion de lo que llega al servidor de admin.
+// Se usa en api/logbook-admin.js (autoridad) y en el editor (aviso temprano).
+// ---------------------------------------------------------------------------
+
+export const LIMITS = {
+  title: 200,
+  description: 2000,
+  summary: 600,
+  icon: 8,
+  tags: 20,
+  tag: 40,
+  places: 40,
+  author: 80,
+  blocksJsonBytes: 400 * 1024
+};
+
+/** "The Gloom Cave — Guía!" -> "the-gloom-cave-guia" */
+export function slugify(s, max = 80) {
+  return normalizeText(s).replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, max).replace(/-$/, '');
+}
+
+const trimOrNull = (v, max) => {
+  if (v == null) return null;
+  if (typeof v !== 'string') return undefined; // tipo invalido
+  const t = v.trim();
+  if (t.length > max) return undefined;
+  return t.length ? t : null;
+};
+
+const fail = (error, field) => ({ ok: false, error, field });
+
+/** Valida una seccion. Devuelve {ok, value} con solo columnas permitidas. */
+export function validateSectionInput(input) {
+  if (!input || typeof input !== 'object') return fail('invalid_body');
+  const v = {};
+  if (input.id != null && !UUID_RE.test(String(input.id))) return fail('invalid_id', 'id');
+  if (input.parent_id != null && !UUID_RE.test(String(input.parent_id))) return fail('invalid_parent', 'parent_id');
+  v.parent_id = input.parent_id ? String(input.parent_id).toLowerCase() : null;
+  const title = trimOrNull(input.title_en, LIMITS.title);
+  if (!title) return fail('title_required', 'title_en');
+  v.title_en = title;
+  const fields = [['title_es', LIMITS.title], ['description_en', LIMITS.description], ['description_es', LIMITS.description], ['icon', LIMITS.icon]];
+  for (const [k, max] of fields) {
+    const t = trimOrNull(input[k], max);
+    if (t === undefined) return fail('invalid_field', k);
+    v[k] = t;
+  }
+  const slug = String(input.slug || '').trim() || slugify(title);
+  if (!SLUG_RE.test(slug) || slug.length > 80) return fail('invalid_slug', 'slug');
+  v.slug = slug;
+  v.status = input.status === 'draft' ? 'draft' : 'published';
+  v.sort = Number.isInteger(input.sort) ? Math.max(-100000, Math.min(100000, input.sort)) : 0;
+  return { ok: true, value: v };
+}
+
+/** Valida una entrada; sanea bloques, etiquetas y lugares. */
+export function validateEntryInput(input) {
+  if (!input || typeof input !== 'object') return fail('invalid_body');
+  const v = {};
+  if (input.id != null && !UUID_RE.test(String(input.id))) return fail('invalid_id', 'id');
+  if (!UUID_RE.test(String(input.section_id || ''))) return fail('section_required', 'section_id');
+  v.section_id = String(input.section_id).toLowerCase();
+  const title = trimOrNull(input.title_en, LIMITS.title);
+  if (!title) return fail('title_required', 'title_en');
+  v.title_en = title;
+  const fields = [['title_es', LIMITS.title], ['summary_en', LIMITS.summary], ['summary_es', LIMITS.summary], ['author', LIMITS.author]];
+  for (const [k, max] of fields) {
+    const t = trimOrNull(input[k], max);
+    if (t === undefined) return fail('invalid_field', k);
+    v[k] = t;
+  }
+  const slug = String(input.slug || '').trim() || slugify(title);
+  if (!SLUG_RE.test(slug) || slug.length > 80) return fail('invalid_slug', 'slug');
+  v.slug = slug;
+  if (input.cover_path != null && input.cover_path !== '' && !isSafeMediaPath(input.cover_path)) return fail('invalid_cover', 'cover_path');
+  v.cover_path = input.cover_path || null;
+  v.status = input.status === 'published' ? 'published' : 'draft';
+  v.sort = Number.isInteger(input.sort) ? Math.max(-100000, Math.min(100000, input.sort)) : 0;
+  const tags = Array.isArray(input.tags) ? input.tags : [];
+  v.tags = [...new Set(tags.filter((t) => typeof t === 'string').map((t) => t.trim().toLowerCase().slice(0, LIMITS.tag)).filter(Boolean))].slice(0, LIMITS.tags);
+  const places = Array.isArray(input.places) ? input.places : [];
+  if (places.some((p) => !PLACE_KEY_RE.test(String(p)))) return fail('invalid_place', 'places');
+  v.places = [...new Set(places)].slice(0, LIMITS.places);
+  if (input.blocks != null && !Array.isArray(input.blocks)) return fail('invalid_blocks', 'blocks');
+  v.blocks = sanitizeBlocks(input.blocks || []);
+  if (JSON.stringify(v.blocks).length > LIMITS.blocksJsonBytes) return fail('too_large', 'blocks');
+  return { ok: true, value: v };
+}
+
+/** true si mover `id` debajo de `newParentId` crearia un ciclo. */
+export function wouldCreateCycle(sections, id, newParentId) {
+  if (!id || !newParentId) return false;
+  const byId = new Map(sections.map((s) => [s.id, s]));
+  let cur = newParentId;
+  for (let i = 0; cur && i < 256; i++) {
+    if (cur === id) return true;
+    cur = byId.get(cur)?.parent_id || null;
+  }
+  return false;
+}

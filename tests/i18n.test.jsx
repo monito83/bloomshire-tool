@@ -296,7 +296,11 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/tabs/LogbookTab.jsx',
       'src/components/bloomshire/logbook/LogbookBlocks.jsx',
       'src/components/bloomshire/logbook/LogbookMarkdown.jsx',
-      'src/components/bloomshire/logbook/PlaceSearch.jsx'
+      'src/components/bloomshire/logbook/PlaceSearch.jsx',
+      'src/components/bloomshire/logbook/adminUi.jsx',
+      'src/components/bloomshire/logbook/SectionEditorModal.jsx',
+      'src/components/bloomshire/logbook/LogbookEditor.jsx',
+      'src/components/bloomshire/logbook/BlockEditor.jsx'
     ];
 
     for (const filePath of targetFiles) {

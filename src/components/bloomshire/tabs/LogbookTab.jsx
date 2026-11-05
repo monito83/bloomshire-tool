@@ -1,17 +1,22 @@
 // src/components/bloomshire/tabs/LogbookTab.jsx
-// Leonman's Logbook — pestaña publica de lectura (fase 2).
+// Leonman's Logbook — pestaña publica (fase 2) + modo admin (fase 3).
 // Arbol dinamico de secciones, entradas en bloques, busqueda, filtro por lugar,
 // enlaces compartibles (#logbook/seccion/entrada) y salto al Mega-Atlas.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BookOpen, ScrollText, Search, X, ChevronRight, ChevronDown, ChevronLeft, ArrowLeft, ArrowRight,
-  FileText, LoaderCircle, RefreshCw, Link2, Check, PanelLeft, Tag, Sparkles, Feather, TriangleAlert
+  FileText, LoaderCircle, RefreshCw, Link2, Check, PanelLeft, Tag, Sparkles, Feather, TriangleAlert,
+  LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck
 } from 'lucide-react';
 import megaAtlasData from '../../../../public/data/bloomshire/mega_atlas_data.json';
 import LogbookBlocks, { PlaceChip } from '../logbook/LogbookBlocks';
 import PlaceSearch from '../logbook/PlaceSearch';
 import { fetchLogbookIndex, fetchLogbookEntry, searchLogbook } from '../logbook/logbookApi';
+import { adminCall, loadAdminSession, saveAdminSession } from '../logbook/logbookAdminApi';
+import { AdminLoginModal, useAdminErrorText } from '../logbook/adminUi';
+import SectionEditorModal from '../logbook/SectionEditorModal';
+import LogbookEditor from '../logbook/LogbookEditor';
 import {
   baseLang, pickLang, buildTree, indexTree, entryPath, flattenEntries, parseLogbookHash, buildLogbookHash,
   buildPlaceCorpus, placeLabel, entryHasPlace, isMissingTranslation, mediaUrl, searchEntries
@@ -34,15 +39,54 @@ const formatDate = (iso, lang) => {
 // Arbol lateral
 // ---------------------------------------------------------------------------
 
-function TreeNode({ node, lang, currentPath, onNavigate, openMap, toggleOpen }) {
+function DraftBadge() {
+  const { t } = useTranslation('logbook');
+  return <span className="shrink-0 rounded-md border border-slate-600 px-1 text-[9px] font-black uppercase tracking-wider text-slate-400">{t('admin.status.draft')}</span>;
+}
+
+/** Botoncito de accion del arbol (solo admin, aparece al pasar el mouse). */
+function TreeAction({ icon: Icon, label, onClick, disabled = false }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      disabled={disabled}
+      title={label}
+      aria-label={label}
+      className="rounded-md p-1 text-slate-500 hover:bg-white/10 hover:text-amber-200 disabled:opacity-25 cursor-pointer"
+    >
+      <Icon className="h-3 w-3" />
+    </button>
+  );
+}
+
+function AdminChip({ icon: Icon, label, onClick, primary = false }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[11px] font-black transition-all cursor-pointer ${
+        primary
+          ? 'bg-amber-500/20 text-amber-100 ring-1 ring-amber-500/50 hover:bg-amber-500/30'
+          : 'border border-slate-700 text-slate-300 hover:border-amber-500/50 hover:text-amber-200'
+      }`}
+    >
+      <Icon className="h-3.5 w-3.5" /> {label}
+    </button>
+  );
+}
+
+function TreeNode({ node, lang, currentPath, onNavigate, openMap, toggleOpen, admin = null, siblings = [] }) {
   const { t } = useTranslation('logbook');
   const path = node.path.join('/');
   const isOpen = openMap[node.id] ?? (currentPath === path || currentPath.startsWith(`${path}/`));
   const isActive = currentPath === path;
   const hasKids = node.children.length > 0 || node.entries.length > 0;
+  const pos = siblings.indexOf(node.id);
+  const isDraft = node.status === 'draft';
   return (
     <li>
-      <div className={`group flex items-center gap-1 rounded-lg pr-2 transition-colors ${isActive ? 'bg-amber-500/15' : 'hover:bg-white/[0.04]'}`}>
+      <div className={`group flex items-center gap-1 rounded-lg pr-1.5 transition-colors ${isActive ? 'bg-amber-500/15' : 'hover:bg-white/[0.04]'} ${isDraft ? 'opacity-70' : ''}`}>
         <button
           type="button"
           onClick={() => hasKids && toggleOpen(node.id, !isOpen)}
@@ -59,30 +103,59 @@ function TreeNode({ node, lang, currentPath, onNavigate, openMap, toggleOpen }) 
         >
           <span className="w-4 shrink-0 text-center" aria-hidden="true">{node.icon || '📁'}</span>
           <span className="truncate">{pickLang(node, 'title', lang)}</span>
-          <span className="ml-auto shrink-0 rounded-md bg-slate-800/80 px-1.5 text-[10px] font-black text-slate-500 tabular-nums">{node.total}</span>
+          {isDraft && <DraftBadge />}
+          <span className={`ml-auto shrink-0 rounded-md bg-slate-800/80 px-1.5 text-[10px] font-black text-slate-500 tabular-nums ${admin ? 'group-hover:hidden' : ''}`}>{node.total}</span>
         </button>
+        {admin && (
+          <span className="hidden shrink-0 items-center group-hover:flex group-focus-within:flex">
+            <TreeAction icon={ArrowUp} label={t('admin.actions.moveUp')} disabled={pos <= 0} onClick={() => admin.move('sections', siblings, node.id, -1)} />
+            <TreeAction icon={ArrowDown} label={t('admin.actions.moveDown')} disabled={pos < 0 || pos >= siblings.length - 1} onClick={() => admin.move('sections', siblings, node.id, 1)} />
+            <TreeAction icon={Pencil} label={t('admin.actions.editSection')} onClick={() => admin.editSection(node)} />
+            <TreeAction icon={FolderPlus} label={t('admin.actions.newSubsection')} onClick={() => { toggleOpen(node.id, true); admin.newSection(node.id); }} />
+            <TreeAction icon={FilePlus} label={t('admin.actions.newEntry')} onClick={() => admin.newEntry(node.id)} />
+          </span>
+        )}
       </div>
       {isOpen && hasKids && (
         <ul className="ml-3 border-l border-slate-800/80 pl-2 lb-fade">
           {node.children.map((c) => (
-            <TreeNode key={c.id} node={c} lang={lang} currentPath={currentPath} onNavigate={onNavigate} openMap={openMap} toggleOpen={toggleOpen} />
+            <TreeNode
+              key={c.id}
+              node={c}
+              lang={lang}
+              currentPath={currentPath}
+              onNavigate={onNavigate}
+              openMap={openMap}
+              toggleOpen={toggleOpen}
+              admin={admin}
+              siblings={node.children.map((x) => x.id)}
+            />
           ))}
-          {node.entries.map((e) => {
+          {node.entries.map((e, ei) => {
             const ePath = [...node.path, e.slug].join('/');
             const active = currentPath === ePath;
+            const entryIds = node.entries.map((x) => x.id);
             return (
-              <li key={e.id}>
+              <li key={e.id} className="group/entry flex items-center">
                 <button
                   type="button"
                   onClick={() => onNavigate(ePath)}
-                  className={`relative flex w-full items-center gap-2 rounded-lg py-1.5 pl-2 pr-2 text-left text-[13px] transition-all cursor-pointer ${
+                  className={`relative flex min-w-0 flex-1 items-center gap-2 rounded-lg py-1.5 pl-2 pr-2 text-left text-[13px] transition-all cursor-pointer ${
                     active ? 'bg-gradient-to-r from-amber-500/20 to-transparent font-bold text-amber-100' : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200'
-                  }`}
+                  } ${e.status === 'draft' ? 'opacity-70' : ''}`}
                 >
                   {active && <span className="absolute -left-[9px] top-1.5 bottom-1.5 w-0.5 rounded-full bg-amber-400" />}
                   <FileText className={`h-3.5 w-3.5 shrink-0 ${active ? 'text-amber-300' : 'text-slate-600'}`} />
                   <span className="truncate">{pickLang(e, 'title', lang)}</span>
+                  {e.status === 'draft' && <DraftBadge />}
                 </button>
+                {admin && (
+                  <span className="hidden shrink-0 items-center group-hover/entry:flex group-focus-within/entry:flex">
+                    <TreeAction icon={ArrowUp} label={t('admin.actions.moveUp')} disabled={ei === 0} onClick={() => admin.move('entries', entryIds, e.id, -1)} />
+                    <TreeAction icon={ArrowDown} label={t('admin.actions.moveDown')} disabled={ei === entryIds.length - 1} onClick={() => admin.move('entries', entryIds, e.id, 1)} />
+                    <TreeAction icon={Pencil} label={t('admin.actions.edit')} onClick={() => admin.editEntry(e)} />
+                  </span>
+                )}
               </li>
             );
           })}
@@ -113,7 +186,10 @@ function EntryCard({ entry, lang, path, onNavigate, mediaBase, sectionLabel, sni
         </div>
       )}
       <div className="flex flex-1 flex-col gap-2 p-4">
-        {sectionLabel && <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-400/80">{sectionLabel}</span>}
+        <span className="flex items-center gap-2">
+          {sectionLabel && <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-400/80">{sectionLabel}</span>}
+          {entry.status === 'draft' && <DraftBadge />}
+        </span>
         <span className="text-base font-black leading-snug text-slate-100 group-hover:text-amber-100 transition-colors">{pickLang(entry, 'title', lang)}</span>
         {summary && <span className="line-clamp-3 text-[13px] leading-relaxed text-slate-400">{summary}</span>}
         <span className="mt-auto flex flex-wrap items-center gap-1.5 pt-1">
@@ -221,16 +297,48 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
   const entryCache = useRef(new Map((initialEntries || []).map((e) => [e.id, e])));
   const mainRef = useRef(null);
 
-  // --- Carga del indice
+  // --- Modo admin (fase 3)
+  const errorText = useAdminErrorText();
+  const [adminSession, setAdminSession] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
+  const [sectionModal, setSectionModal] = useState(null); // { initial }
+  const [editing, setEditing] = useState(null); // { initial }
+  const [pendingNav, setPendingNav] = useState(null); // { kind, id }
+  const [adminNotice, setAdminNotice] = useState(null);
+  const token = adminSession ? adminSession.token : null;
+
   useEffect(() => {
-    if (initialData) return undefined;
+    const saved = loadAdminSession();
+    if (saved) setAdminSession(saved);
+  }, []);
+
+  useEffect(() => {
+    if (!adminNotice) return undefined;
+    const timer = setTimeout(() => setAdminNotice(null), 6000);
+    return () => clearTimeout(timer);
+  }, [adminNotice]);
+
+  // --- Carga del indice (publico, o completo con borradores si hay sesion admin)
+  useEffect(() => {
+    if (initialData && !token) return undefined;
     const ctrl = new AbortController();
-    setStatus('loading');
-    fetchLogbookIndex(ctrl.signal)
-      .then((d) => { setData(d); setStatus('ready'); })
-      .catch((err) => { if (err.name !== 'AbortError') setStatus('error'); });
-    return () => ctrl.abort();
-  }, [initialData, reloadKey]);
+    let alive = true;
+    setStatus((s) => (s === 'ready' ? s : 'loading'));
+    const load = token ? adminCall('tree', {}, token) : fetchLogbookIndex(ctrl.signal);
+    load
+      .then((d) => { if (alive) { setData(d); setStatus('ready'); } })
+      .catch((err) => {
+        if (!alive || err.name === 'AbortError') return;
+        if (token && err.code === 'unauthorized') {
+          saveAdminSession(null);
+          setAdminSession(null);
+          setAdminNotice(err);
+          return;
+        }
+        setStatus('error');
+      });
+    return () => { alive = false; ctrl.abort(); };
+  }, [initialData, reloadKey, token]);
 
   // --- Enlaces (#logbook/...) y boton atras del navegador
   useEffect(() => {
@@ -290,11 +398,14 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
     if (cached) { setEntryState({ id, entry: cached, status: 'ready' }); return undefined; }
     const ctrl = new AbortController();
     setEntryState({ id, entry: null, status: 'loading' });
-    fetchLogbookEntry(id, { demo: isDemo, signal: ctrl.signal })
+    const load = token
+      ? adminCall('entry_get', { id }, token).then((r) => r.entry)
+      : fetchLogbookEntry(id, { demo: isDemo, signal: ctrl.signal });
+    load
       .then((e) => { entryCache.current.set(id, e); setEntryState({ id, entry: e, status: 'ready' }); })
       .catch((err) => { if (err.name !== 'AbortError') setEntryState({ id, entry: null, status: 'error' }); });
     return () => ctrl.abort();
-  }, [currentEntryMeta?.entry.id, isDemo]);
+  }, [currentEntryMeta?.entry.id, isDemo, token]);
 
   // --- Busqueda: instantanea sobre titulos/resumen/etiquetas + completa en el servidor
   const trimmed = query.trim();
@@ -339,6 +450,113 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
   );
 
   const toggleOpen = useCallback((id, value) => setOpenMap((m) => ({ ...m, [id]: value })), []);
+
+  // --- Acciones de admin
+  const refresh = useCallback(() => setReloadKey((k) => k + 1), []);
+
+  const onLoginSuccess = useCallback((session) => {
+    saveAdminSession(session);
+    entryCache.current.clear();
+    setAdminSession(session);
+    setShowLogin(false);
+  }, []);
+
+  const logout = useCallback(() => {
+    saveAdminSession(null);
+    entryCache.current.clear();
+    setEditing(null);
+    setSectionModal(null);
+    setAdminSession(null);
+    refresh();
+  }, [refresh]);
+
+  const call = useCallback(async (action, payload) => {
+    try {
+      return await adminCall(action, payload, token);
+    } catch (err) {
+      if (err.code === 'unauthorized') {
+        saveAdminSession(null);
+        setAdminSession(null);
+        setShowLogin(true);
+      }
+      throw err;
+    }
+  }, [token]);
+
+  const saveSection = useCallback(async (value) => {
+    const r = await call('section_save', { section: value });
+    setSectionModal(null);
+    refresh();
+    setPendingNav({ kind: 'section', id: r.section.id });
+  }, [call, refresh]);
+
+  const deleteSection = useCallback(async (id, confirmSlug) => {
+    await call('section_delete', { id, confirmSlug });
+    setSectionModal(null);
+    entryCache.current.clear();
+    refresh();
+    navigate('');
+  }, [call, refresh, navigate]);
+
+  const saveEntry = useCallback(async (value) => {
+    const r = await call('entry_save', { entry: value });
+    entryCache.current.set(r.entry.id, r.entry);
+    refresh();
+    return r.entry;
+  }, [call, refresh]);
+
+  const deleteEntry = useCallback(async (id, confirmSlug) => {
+    await call('entry_delete', { id, confirmSlug });
+    entryCache.current.delete(id);
+    setEditing(null);
+    refresh();
+    navigate('');
+  }, [call, refresh, navigate]);
+
+  const openEditor = useCallback(async (meta) => {
+    try {
+      const full = entryCache.current.get(meta.id) || (await call('entry_get', { id: meta.id })).entry;
+      setEditing({ initial: full });
+    } catch (err) {
+      setAdminNotice(err);
+    }
+  }, [call]);
+
+  const move = useCallback(async (kind, ids, id, delta) => {
+    const i = ids.indexOf(id);
+    const j = i + delta;
+    if (i < 0 || j < 0 || j >= ids.length) return;
+    const next = [...ids];
+    [next[i], next[j]] = [next[j], next[i]];
+    const key = kind === 'entries' ? 'entries' : 'sections';
+    setData((d) => ({ ...d, [key]: d[key].map((x) => (next.includes(x.id) ? { ...x, sort: next.indexOf(x.id) * 10 } : x)) }));
+    try {
+      await call('section_reorder', { kind, ids: next });
+    } catch (err) {
+      setAdminNotice(err);
+      refresh();
+    }
+  }, [call, refresh]);
+
+  const adminActions = useMemo(() => (token ? {
+    move,
+    editSection: (node) => setSectionModal({ initial: node }),
+    newSection: (parentId) => setSectionModal({ initial: { parent_id: parentId || null } }),
+    newEntry: (sectionId) => setEditing({ initial: { section_id: sectionId, status: 'draft' } }),
+    editEntry: openEditor
+  } : null), [token, move, openEditor]);
+
+  // Despues de crear/guardar: navegar al elemento cuando ya esta en el arbol nuevo
+  useEffect(() => {
+    if (!pendingNav) return;
+    const p = pendingNav.kind === 'section'
+      ? index.sectionsById.get(pendingNav.id)?.node.path.join('/')
+      : entryPath(index, pendingNav.id);
+    if (p) {
+      setPendingNav(null);
+      navigate(p);
+    }
+  }, [index, pendingNav, navigate]);
 
   const onLocate = useCallback((targetObj) => {
     if (locateInMegaAtlas && targetObj) locateInMegaAtlas(targetObj);
@@ -403,6 +621,11 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
           <ScrollText className="mx-auto mb-3 h-10 w-10 text-slate-600" />
           <h2 className="text-lg font-black text-slate-200">{t('home.emptyTitle')}</h2>
           <p className="mt-1 text-sm text-slate-500">{t('home.emptyBody')}</p>
+          {adminActions && (
+            <button type="button" onClick={() => adminActions.newSection(null)} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-gradient-to-b from-amber-400 to-amber-600 px-4 py-2.5 text-xs font-black text-[#1a1205] shadow-[0_8px_24px_-10px_rgba(245,158,11,0.8)] transition-transform hover:-translate-y-0.5 cursor-pointer">
+              <FolderPlus className="h-4 w-4" /> {t('admin.actions.createFirst')}
+            </button>
+          )}
         </div>
       ) : (
         <>
@@ -454,6 +677,13 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
             <h1 className="text-3xl font-black tracking-tight text-amber-50">{pickLang(node, 'title', lang)}</h1>
             {pickLang(node, 'description', lang) && <p className="mt-1 text-slate-400">{pickLang(node, 'description', lang)}</p>}
           </div>
+          {adminActions && (
+            <div className="ml-auto flex shrink-0 flex-wrap justify-end gap-2">
+              <AdminChip icon={Pencil} label={t('admin.actions.editSection')} onClick={() => adminActions.editSection(node)} />
+              <AdminChip icon={FolderPlus} label={t('admin.actions.newSubsection')} onClick={() => adminActions.newSection(node.id)} />
+              <AdminChip icon={FilePlus} label={t('admin.actions.newEntry')} onClick={() => adminActions.newEntry(node.id)} primary />
+            </div>
+          )}
         </header>
         {node.children.length > 0 && (
           <section className="space-y-3">
@@ -490,12 +720,16 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
               <span className="absolute inset-0 bg-gradient-to-t from-[#0b1428] via-transparent to-transparent" />
             </div>
           )}
+          {entry.status === 'draft' && <DraftBadge />}
           <h1 className="text-3xl font-black leading-tight tracking-tight text-amber-50 sm:text-4xl">{pickLang(entry, 'title', lang)}</h1>
           {pickLang(entry, 'summary', lang) && <p className="text-lg leading-relaxed text-slate-400">{pickLang(entry, 'summary', lang)}</p>}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500">
             {entry.author && <span className="flex items-center gap-1.5 font-bold text-slate-400"><Feather className="h-3.5 w-3.5 text-amber-400/80" /> {t('entry.by', { author: entry.author })}</span>}
             {date && <span>{t('entry.updated', { date })}</span>}
-            <button type="button" onClick={copyLink} className="ml-auto flex items-center gap-1.5 rounded-lg border border-slate-700 px-2.5 py-1 font-bold text-slate-300 transition-colors hover:border-amber-500/50 hover:text-amber-200 cursor-pointer">
+            {adminActions && (
+              <span className="ml-auto"><AdminChip icon={Pencil} label={t('admin.actions.edit')} onClick={() => adminActions.editEntry(meta)} primary /></span>
+            )}
+            <button type="button" onClick={copyLink} className={`${adminActions ? '' : 'ml-auto '}flex items-center gap-1.5 rounded-lg border border-slate-700 px-2.5 py-1 font-bold text-slate-300 transition-colors hover:border-amber-500/50 hover:text-amber-200 cursor-pointer`}>
               {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Link2 className="h-3.5 w-3.5" />}
               {copied ? t('entry.copied') : t('entry.copyLink')}
             </button>
@@ -610,6 +844,22 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
         </div>
       );
     }
+    if (editing && token) {
+      return (
+        <LogbookEditor
+          key={editing.initial.id || 'new'}
+          initial={editing.initial}
+          tree={tree}
+          uiLang={lang}
+          corpus={corpus}
+          placesByKey={placesByKey}
+          mediaBase={mediaBase}
+          onSave={saveEntry}
+          onDelete={deleteEntry}
+          onClose={(id) => { setEditing(null); if (id) setPendingNav({ kind: 'entry', id }); }}
+        />
+      );
+    }
     if (trimmed.length >= 2) return renderSearch();
     if (placeFilter) return renderPlaceFilter();
     if (currentEntryMeta) return renderEntry();
@@ -646,17 +896,53 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
             <X className="h-4 w-4" />
           </button>
         </div>
+        {adminActions && (
+          <div className="flex items-center gap-2 border-b border-slate-800 bg-amber-500/[0.06] px-4 py-2.5">
+            <span className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-amber-300">
+              <ShieldCheck className="h-3.5 w-3.5" /> {t('admin.mode')}
+            </span>
+            <button type="button" onClick={() => adminActions.newSection(null)} className="ml-auto inline-flex items-center gap-1 rounded-lg border border-amber-500/40 px-2 py-1 text-[11px] font-black text-amber-200 hover:bg-amber-500/15 cursor-pointer">
+              <FolderPlus className="h-3.5 w-3.5" /> {t('admin.actions.newSection')}
+            </button>
+          </div>
+        )}
         <nav className="flex-1 overflow-y-auto px-2 py-3">
           {status === 'ready' && tree.length === 0 && <p className="px-3 text-xs text-slate-500">{t('nav.empty')}</p>}
           <ul className="space-y-0.5">
             {tree.map((n) => (
-              <TreeNode key={n.id} node={n} lang={lang} currentPath={path} onNavigate={navigate} openMap={openMap} toggleOpen={toggleOpen} />
+              <TreeNode
+                key={n.id}
+                node={n}
+                lang={lang}
+                currentPath={path}
+                onNavigate={navigate}
+                openMap={openMap}
+                toggleOpen={toggleOpen}
+                admin={adminActions}
+                siblings={tree.map((x) => x.id)}
+              />
             ))}
           </ul>
         </nav>
         {isDemo && (
           <div className="m-3 rounded-xl border border-amber-500/30 bg-amber-500/[0.07] p-2.5 text-[11px] leading-snug text-amber-200/90">{t('state.demo')}</div>
         )}
+        <div className="flex items-center gap-2 border-t border-slate-800 px-3 py-2.5">
+          {adminSession ? (
+            <>
+              <span className="min-w-0 flex-1 truncate text-[10px] text-slate-500" title={t('admin.draftsVisible')}>
+                {t('admin.sessionUntil', { time: new Date(adminSession.expiresAt).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit' }) })}
+              </span>
+              <button type="button" onClick={logout} className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-bold text-slate-400 hover:bg-white/5 hover:text-rose-200 cursor-pointer">
+                <LogOut className="h-3.5 w-3.5" /> {t('admin.logout')}
+              </button>
+            </>
+          ) : (
+            <button type="button" onClick={() => setShowLogin(true)} className="ml-auto inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-bold text-slate-600 transition-colors hover:bg-white/5 hover:text-amber-200 cursor-pointer">
+              <LockKeyhole className="h-3 w-3" /> {t('admin.button')}
+            </button>
+          )}
+        </div>
       </aside>
       {sidebarOpen && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={() => setSidebarOpen(false)} />}
 
@@ -701,6 +987,23 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
           {renderMain()}
         </main>
       </div>
+
+      {showLogin && <AdminLoginModal onClose={() => setShowLogin(false)} onSuccess={onLoginSuccess} />}
+      {sectionModal && token && (
+        <SectionEditorModal
+          tree={tree}
+          lang={lang}
+          initial={sectionModal.initial}
+          onSave={saveSection}
+          onDelete={deleteSection}
+          onClose={() => setSectionModal(null)}
+        />
+      )}
+      {adminNotice && (
+        <div className="fixed bottom-5 left-1/2 z-[80] -translate-x-1/2 rounded-xl border border-rose-500/40 bg-[#1a0f18]/95 px-4 py-2.5 text-sm text-rose-200 shadow-2xl backdrop-blur lb-pop" role="status">
+          {errorText(adminNotice)}
+        </div>
+      )}
 
       {lightbox && (
         <Lightbox
