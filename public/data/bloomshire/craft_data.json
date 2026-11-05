@@ -4246,6 +4246,40 @@
       "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 20g en 1 min."
     },
     {
+      "id": "repair_kit",
+      "craftItem": "Repair Kit",
+      "dish": "Repair Kit",
+      "item": "Kit de Reparación (Repair Kit) ⚒️",
+      "level": "Artesanía Lv 3 (+30 XP)",
+      "levelNum": 3,
+      "tier": "Common",
+      "mats": "Tablón de Madera (Wooden Plank) x2 + Barra de Cobre (Copper Bar) x1",
+      "needs": [
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Copper Bar",
+          "nameEs": "Barra de Cobre",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 20,
+      "minutes": 1,
+      "sellPrice": 210,
+      "netGold": 190,
+      "netEnergy": -1,
+      "goldPerMin": 190,
+      "xp": 30,
+      "desc": "Crafteado en el Yunque de Bram. Consume 1⚡ y 20g en 1 min."
+    },
+    {
       "id": "cut_rose_quartz",
       "craftItem": "Cut Rose Quartz",
       "dish": "Cut Rose Quartz",
@@ -4367,6 +4401,84 @@
       "desc": "Crafteado en la Forja de Bram. Consume 1⚡ y 100g en 2 min."
     },
     {
+      "id": "iron_bow",
+      "craftItem": "Iron Bow",
+      "dish": "Iron Bow",
+      "item": "Iron Bow (Iron Bow) ⚒️",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Barra de Hierro (Iron Bar) x3 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
+      "needs": [
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 3
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en el Yunque de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
+      "id": "iron_staff",
+      "craftItem": "Iron Staff",
+      "dish": "Iron Staff",
+      "item": "Iron Staff (Iron Staff) ⚒️",
+      "level": "Artesanía Lv 6 (+48 XP)",
+      "levelNum": 6,
+      "tier": "Uncommon",
+      "mats": "Barra de Hierro (Iron Bar) x3 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 3
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 1,
+      "goldCost": 100,
+      "minutes": 2,
+      "sellPrice": 600,
+      "netGold": 500,
+      "netEnergy": -1,
+      "goldPerMin": 250,
+      "xp": 48,
+      "desc": "Crafteado en el Yunque de Bram. Consume 1⚡ y 100g en 2 min."
+    },
+    {
       "id": "cut_sapphire",
       "craftItem": "Cut Sapphire",
       "dish": "Cut Sapphire",
@@ -4462,6 +4574,94 @@
       "goldPerMin": 230,
       "xp": 78,
       "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 300g en 5 min."
+    },
+    {
+      "id": "bronze_bow",
+      "craftItem": "Bronze Bow",
+      "dish": "Bronze Bow",
+      "item": "Bronze Bow (Bronze Bow) ⚒️",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
+      "tier": "Rare",
+      "mats": "Barra de Cobre (Copper Bar) x6 + Barra de Hierro (Iron Bar) x2 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
+      "needs": [
+        {
+          "item": "Copper Bar",
+          "nameEs": "Barra de Cobre",
+          "qty": 6
+        },
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en el Yunque de Bram. Consume 2⚡ y 300g en 5 min."
+    },
+    {
+      "id": "bronze_staff",
+      "craftItem": "Bronze Staff",
+      "dish": "Bronze Staff",
+      "item": "Bronze Staff (Bronze Staff) ⚒️",
+      "level": "Artesanía Lv 11 (+78 XP)",
+      "levelNum": 11,
+      "tier": "Rare",
+      "mats": "Barra de Cobre (Copper Bar) x6 + Barra de Hierro (Iron Bar) x2 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Copper Bar",
+          "nameEs": "Barra de Cobre",
+          "qty": 6
+        },
+        {
+          "item": "Iron Bar",
+          "nameEs": "Barra de Hierro",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 300,
+      "minutes": 5,
+      "sellPrice": 1450,
+      "netGold": 1150,
+      "netEnergy": -2,
+      "goldPerMin": 230,
+      "xp": 78,
+      "desc": "Crafteado en el Yunque de Bram. Consume 2⚡ y 300g en 5 min."
     },
     {
       "id": "cut_emerald",
@@ -4653,6 +4853,104 @@
       "desc": "Crafteado en la Forja de Bram. Consume 2⚡ y 800g en 12 min."
     },
     {
+      "id": "gold_bow",
+      "craftItem": "Gold Bow",
+      "dish": "Gold Bow",
+      "item": "Gold Bow (Gold Bow) ⚒️",
+      "level": "Artesanía Lv 17 (+114 XP)",
+      "levelNum": 17,
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x4 + Barra de Platino (Platinum Bar) x2 + Cut Emerald (Cut Emerald) x1 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
+      "needs": [
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 4
+        },
+        {
+          "item": "Platinum Bar",
+          "nameEs": "Barra de Platino",
+          "qty": 2
+        },
+        {
+          "item": "Cut Emerald",
+          "nameEs": "Cut Emerald",
+          "qty": 1
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
+      "xp": 114,
+      "desc": "Crafteado en el Yunque de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
+      "id": "gold_staff",
+      "craftItem": "Gold Staff",
+      "dish": "Gold Staff",
+      "item": "Gold Staff (Gold Staff) ⚒️",
+      "level": "Artesanía Lv 17 (+114 XP)",
+      "levelNum": 17,
+      "tier": "Epic",
+      "mats": "Barra de Oro (Gold Bar) x4 + Barra de Platino (Platinum Bar) x2 + Cut Emerald (Cut Emerald) x1 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 4
+        },
+        {
+          "item": "Platinum Bar",
+          "nameEs": "Barra de Platino",
+          "qty": 2
+        },
+        {
+          "item": "Cut Emerald",
+          "nameEs": "Cut Emerald",
+          "qty": 1
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 2,
+      "goldCost": 800,
+      "minutes": 12,
+      "sellPrice": 3250,
+      "netGold": 2450,
+      "netEnergy": -2,
+      "goldPerMin": 204,
+      "xp": 114,
+      "desc": "Crafteado en el Yunque de Bram. Consume 2⚡ y 800g en 12 min."
+    },
+    {
       "id": "frost_bar",
       "craftItem": "Frost Bar",
       "dish": "Frost Bar",
@@ -4782,6 +5080,104 @@
       "goldPerMin": 210,
       "xp": 162,
       "desc": "Crafteado en la Forja de Bram. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "amethyst_bow",
+      "craftItem": "Amethyst Bow",
+      "dish": "Amethyst Bow",
+      "item": "Amethyst Bow (Amethyst Bow) ⚒️",
+      "level": "Artesanía Lv 25 (+162 XP)",
+      "levelNum": 25,
+      "tier": "Epic",
+      "mats": "Shadow Bar (Shadow Bar) x4 + Barra de Oro (Gold Bar) x2 + Cut Amethyst (Cut Amethyst) x2 + Tablón de Madera (Wooden Plank) x2 + Cuerda de Enredadera (Rope) x2",
+      "needs": [
+        {
+          "item": "Shadow Bar",
+          "nameEs": "Shadow Bar",
+          "qty": 4
+        },
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 2
+        },
+        {
+          "item": "Cut Amethyst",
+          "nameEs": "Cut Amethyst",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Rope",
+          "nameEs": "Cuerda de Enredadera",
+          "qty": 2
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7250,
+      "netGold": 5250,
+      "netEnergy": -3,
+      "goldPerMin": 210,
+      "xp": 162,
+      "desc": "Crafteado en el Yunque de Bram. Consume 3⚡ y 2000g en 25 min."
+    },
+    {
+      "id": "amethyst_staff",
+      "craftItem": "Amethyst Staff",
+      "dish": "Amethyst Staff",
+      "item": "Amethyst Staff (Amethyst Staff) ⚒️",
+      "level": "Artesanía Lv 25 (+162 XP)",
+      "levelNum": 25,
+      "tier": "Epic",
+      "mats": "Shadow Bar (Shadow Bar) x4 + Barra de Oro (Gold Bar) x2 + Cut Amethyst (Cut Amethyst) x2 + Tablón de Madera (Wooden Plank) x2 + Cut Topaz (Cut Topaz) x1",
+      "needs": [
+        {
+          "item": "Shadow Bar",
+          "nameEs": "Shadow Bar",
+          "qty": 4
+        },
+        {
+          "item": "Gold Bar",
+          "nameEs": "Barra de Oro",
+          "qty": 2
+        },
+        {
+          "item": "Cut Amethyst",
+          "nameEs": "Cut Amethyst",
+          "qty": 2
+        },
+        {
+          "item": "Wooden Plank",
+          "nameEs": "Tablón de Madera",
+          "qty": 2
+        },
+        {
+          "item": "Cut Topaz",
+          "nameEs": "Cut Topaz",
+          "qty": 1
+        }
+      ],
+      "place": "La Forja y Yunque (Bram)",
+      "energyRestore": 0,
+      "healthRestore": 0,
+      "energyCost": 3,
+      "goldCost": 2000,
+      "minutes": 25,
+      "sellPrice": 7250,
+      "netGold": 5250,
+      "netEnergy": -3,
+      "goldPerMin": 210,
+      "xp": 162,
+      "desc": "Crafteado en el Yunque de Bram. Consume 3⚡ y 2000g en 25 min."
     },
     {
       "id": "obsidian_bar",

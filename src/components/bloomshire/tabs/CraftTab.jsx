@@ -12,7 +12,8 @@ export default function CraftTab({
   rawInventory = [],
   locateInMegaAtlas = () => {},
   craftData: propCraftData,
-  initialCraftCategory = 'bench'
+  initialCraftCategory = 'bench',
+  skillsBreakdown = null
 }) {
   const craftData = propCraftData || defaultCraftData;
   const [craftCategory, setCraftCategory] = useState(initialCraftCategory);
@@ -21,6 +22,12 @@ export default function CraftTab({
   const [craftLevelFilter, setCraftLevelFilter] = useState('all');
   const [craftSortBy, setCraftSortBy] = useState('level_asc');
   const [craftOnlyAvailable, setCraftOnlyAvailable] = useState(false);
+
+  const currentSkillLevel = useMemo(() => {
+    if (!skillsBreakdown) return null;
+    if (craftCategory === 'cook') return skillsBreakdown.cooking?.level || 1;
+    return skillsBreakdown.crafting?.level || 1;
+  }, [skillsBreakdown, craftCategory]);
 
   // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas multi-variables
   const filteredAndSortedCrafts = useMemo(() => {
@@ -41,13 +48,9 @@ export default function CraftTab({
     if (craftLevelFilter && craftLevelFilter !== 'all') {
       if (craftLevelFilter === 'special') {
         list = list.filter(r => !r.levelNum || r.levelNum === 0 || (r.level && (r.level.toLowerCase().includes('misi') || r.level.toLowerCase().includes('especial') || r.level.toLowerCase().includes('vip'))));
-      } else if (craftLevelFilter === '8') {
-        list = list.filter(r => (r.levelNum || 1) >= 8 && (r.levelNum || 1) < 10);
-      } else if (craftLevelFilter === '10') {
-        list = list.filter(r => (r.levelNum || 1) >= 10);
       } else {
         const targetNum = Number(craftLevelFilter);
-        list = list.filter(r => (r.levelNum || 1) === targetNum);
+        list = list.filter(r => (r.levelNum || 1) <= targetNum);
       }
     }
 
@@ -305,7 +308,7 @@ export default function CraftTab({
                   )}
                 </button>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="text-[10.5px] font-bold text-slate-400">Nivel:</span>
                   <select
                     value={craftLevelFilter}
@@ -313,17 +316,47 @@ export default function CraftTab({
                     className="bg-[#14203d] border border-slate-700 text-white rounded-lg px-2 py-1 text-xs font-semibold outline-none cursor-pointer"
                   >
                     <option value="all">⭐ Todos los Niveles</option>
-                    <option value="1">Nivel 1 (Principiante)</option>
-                    <option value="2">Nivel 2</option>
-                    <option value="3">Nivel 3</option>
-                    <option value="4">Nivel 4</option>
-                    <option value="5">Nivel 5 (Botica)</option>
-                    <option value="6">Nivel 6</option>
-                    <option value="7">Nivel 7</option>
-                    <option value="8">Nivel 8+</option>
-                    <option value="10">Nivel 10+ (Avanzado)</option>
+                    <option value="1">Hasta Nivel 1 (Principiante)</option>
+                    <option value="2">Hasta Nivel 2</option>
+                    <option value="3">Hasta Nivel 3</option>
+                    <option value="4">Hasta Nivel 4</option>
+                    <option value="5">Hasta Nivel 5 (Botica)</option>
+                    <option value="6">Hasta Nivel 6</option>
+                    <option value="7">Hasta Nivel 7</option>
+                    <option value="8">Hasta Nivel 8</option>
+                    <option value="9">Hasta Nivel 9</option>
+                    <option value="10">Hasta Nivel 10 (Avanzado)</option>
+                    <option value="11">Hasta Nivel 11</option>
+                    <option value="12">Hasta Nivel 12</option>
+                    <option value="13">Hasta Nivel 13</option>
+                    <option value="14">Hasta Nivel 14</option>
+                    <option value="15">Hasta Nivel 15</option>
+                    <option value="16">Hasta Nivel 16</option>
+                    <option value="17">Hasta Nivel 17</option>
+                    <option value="18">Hasta Nivel 18</option>
+                    <option value="19">Hasta Nivel 19</option>
+                    <option value="20">Hasta Nivel 20</option>
+                    <option value="22">Hasta Nivel 22</option>
+                    <option value="25">Hasta Nivel 25</option>
+                    <option value="28">Hasta Nivel 28</option>
+                    <option value="30">Hasta Nivel 30 (Maestro)</option>
                     <option value="special">Misiones / Especiales</option>
                   </select>
+
+                  {currentSkillLevel && currentSkillLevel > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setCraftLevelFilter(String(currentSkillLevel))}
+                      className={`px-2 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer flex items-center gap-1 ${
+                        craftLevelFilter === String(currentSkillLevel)
+                          ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-sm'
+                          : 'bg-[#14203d] hover:bg-[#1c2e56] text-amber-300 border-amber-500/40'
+                      }`}
+                      title={`Filtrar automáticamente todos los crafteos desbloqueados hasta tu nivel actual de ${craftCategory === 'cook' ? 'Cocina' : 'Artesanía'} (${currentSkillLevel})`}
+                    >
+                      <span>🎯 Mi Nivel: Nv {currentSkillLevel}</span>
+                    </button>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-1.5">
