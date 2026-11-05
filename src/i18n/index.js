@@ -70,7 +70,7 @@ i18n
     fallbackLng: DEFAULT_LANGUAGE,
     ns: ['common', 'header', 'tabs', 'errors'],
     defaultNS: 'common',
-    fallbackNS: ['header', 'tabs', 'errors', 'common'],
+    fallbackNS: 'common',
     interpolation: {
       escapeValue: false, // React ya previene XSS
     },

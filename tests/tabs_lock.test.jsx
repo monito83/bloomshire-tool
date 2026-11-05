@@ -96,6 +96,6 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
   it('renders BloomshireCommand root component without crashing in free guide mode', () => {
     const html = renderToString(<BloomshireCommand />);
     expect(html).toContain('BLOOMSHIRE');
-    expect(html.includes('Free Community Guide') || html.includes('Guía Comunitaria Libre')).toBe(true);
+    expect(html).toContain('Free Community Guide');
   });
 });

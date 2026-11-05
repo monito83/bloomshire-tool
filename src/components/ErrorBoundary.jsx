@@ -33,10 +33,10 @@ export class ErrorBoundaryClass extends React.Component {
             </div>
             <div className="space-y-1">
               <h3 className="text-base font-black text-white">
-                {this.props.title || (t ? t('boundary.defaultTitle') : 'Error al cargar este módulo')}
+                {this.props.title || t('boundary.defaultTitle')}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                {t ? t('boundary.description') : 'Ocurrió un error inesperado al procesar los datos de este panel. La herramienta sigue activa.'}
+                {t('boundary.description')}
               </p>
             </div>
             {this.state.error?.message && (
@@ -50,7 +50,7 @@ export class ErrorBoundaryClass extends React.Component {
                 onClick={this.handleReset}
                 className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs cursor-pointer shadow-md transition-all active:scale-95"
               >
-                {t ? t('boundary.retry') : '🔄 Reintentar'}
+                {t('boundary.retry')}
               </button>
               {this.props.onBack && (
                 <button
@@ -58,7 +58,7 @@ export class ErrorBoundaryClass extends React.Component {
                   onClick={this.props.onBack}
                   className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs cursor-pointer transition-all"
                 >
-                  {t ? t('boundary.backToAtlas') : '🏡 Volver al Atlas'}
+                  {t('boundary.backToAtlas')}
                 </button>
               )}
             </div>

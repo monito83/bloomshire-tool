@@ -114,6 +114,15 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalización (i18n)', ()
       expect(resolved).toBe('Fallback English Text');
       expect(resolved).not.toBe('only_in_en_test_key');
     });
+
+    it('fallbackNS usa únicamente "common" para evitar que namespaces se pisen entre sí', () => {
+      // Clave en 'tabs:titles.inventory' no debe ser resuelta si se busca en defaultNS ('common')
+      const crossResolution = i18n.t('titles.inventory');
+      expect(crossResolution).toBe('titles.inventory');
+
+      // Claves compartidas de 'common' sí caen al fallback correctamente
+      expect(i18n.t('status.ready')).toBe('READY');
+    });
   });
 
   describe('3. Persistencia en localStorage y sincronización de <html lang>', () => {
@@ -202,7 +211,7 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalización (i18n)', ()
       expect(html).toContain('aria-pressed');
     });
 
-    it('ErrorBoundary renderiza textos traducidos en caso de error', () => {
+    it('ErrorBoundary renderiza textos traducidos en caso de error sin textos a mano en el código', () => {
       // Simular un ErrorBoundary en estado de error
       const mockProps = {
         title: undefined,
