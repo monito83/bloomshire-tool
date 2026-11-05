@@ -73,6 +73,7 @@ import NpcsTab from './bloomshire/tabs/NpcsTab';
 import MonitorsTab from './bloomshire/tabs/MonitorsTab';
 import AdvisorTab from './bloomshire/tabs/AdvisorTab';
 import SystemTab from './bloomshire/tabs/SystemTab';
+import LogbookTab from './bloomshire/tabs/LogbookTab';
 
 // Importar helpers y constantes canónicas compartidas
 import {
@@ -137,9 +138,11 @@ export default function BloomshireCommand() {
   const { t: tHeader, i18n } = useTranslation('header');
   const { t: tTabs } = useTranslation('tabs');
   const { t: tErrors } = useTranslation('errors');
-  const VALID_TABS = ['mega_atlas', 'inventory', 'items', 'craft', 'npcs', 'calc', 'monitors', 'quests', 'advisor', 'system'];
+  const VALID_TABS = ['mega_atlas', 'logbook', 'inventory', 'items', 'craft', 'npcs', 'calc', 'monitors', 'quests', 'advisor', 'system'];
   const [activeTab, setActiveTab] = useState(() => {
     try {
+      // Enlace compartido a la bitacora (#logbook/...) abre esa pestaña directamente
+      if (typeof window !== 'undefined' && String(window.location.hash || '').toLowerCase().startsWith('#logbook')) return 'logbook';
       const saved = localStorage.getItem('bloomshire_active_tab');
       if (saved && VALID_TABS.includes(saved)) {
         const isPrivate = ['quests', 'advisor', 'monitors'].includes(saved);
@@ -527,6 +530,23 @@ export default function BloomshireCommand() {
   };
 
   const [atlasFocusTarget, setAtlasFocusTarget] = useState(null);
+
+  // Bitacora: abrir la pestaña si cambia el hash a #logbook/... y limpiar el hash al salir de ella
+  useEffect(() => {
+    const onHash = () => {
+      if (String(window.location.hash || '').toLowerCase().startsWith('#logbook')) setActiveTab('logbook');
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  useEffect(() => {
+    if (activeTab === 'logbook') return;
+    try {
+      if (String(window.location.hash || '').toLowerCase().startsWith('#logbook')) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } catch (_) {}
+  }, [activeTab]);
 
   const locateInMegaAtlas = (locationObj) => {
     if (!locationObj) return;
@@ -2441,6 +2461,7 @@ export default function BloomshireCommand() {
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
             {[
               { key: 'mega_atlas', label: tTabs('titles.mega_atlas') },
+              { key: 'logbook', label: tTabs('titles.logbook') },
               { key: 'inventory', label: tTabs('titles.inventory') },
               { key: 'items', label: tTabs('titles.items') },
               { key: 'craft', label: tTabs('titles.craft') },
@@ -2673,6 +2694,10 @@ export default function BloomshireCommand() {
             systemLogs={systemLogs}
             setSystemLogs={setSystemLogs}
           />
+        )}
+
+        {activeTab === 'logbook' && (
+          <LogbookTab locateInMegaAtlas={locateInMegaAtlas} />
         )}
 
         {activeTab === 'mega_atlas' && (

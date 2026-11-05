@@ -18,6 +18,7 @@ import enErrors from '../src/i18n/locales/en/errors.json';
 import enCraft from '../src/i18n/locales/en/craft.json';
 import enItems from '../src/i18n/locales/en/items.json';
 import enCalc from '../src/i18n/locales/en/calc.json';
+import enLogbook from '../src/i18n/locales/en/logbook.json';
 
 import esCommon from '../src/i18n/locales/es/common.json';
 import esHeader from '../src/i18n/locales/es/header.json';
@@ -26,6 +27,7 @@ import esErrors from '../src/i18n/locales/es/errors.json';
 import esCraft from '../src/i18n/locales/es/craft.json';
 import esItems from '../src/i18n/locales/es/items.json';
 import esCalc from '../src/i18n/locales/es/calc.json';
+import esLogbook from '../src/i18n/locales/es/logbook.json';
 
 import LanguageSwitcher from '../src/components/LanguageSwitcher';
 import ErrorBoundary, { ErrorBoundaryClass } from '../src/components/ErrorBoundary';
@@ -65,6 +67,7 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       { name: 'craft', en: enCraft, es: esCraft },
       { name: 'items', en: enItems, es: esItems },
       { name: 'calc', en: enCalc, es: esCalc },
+      { name: 'logbook', en: enLogbook, es: esLogbook },
     ];
 
     for (const ns of namespaces) {
@@ -289,7 +292,16 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
     const targetFiles = [
       'src/components/bloomshire/tabs/CraftTab.jsx',
       'src/components/bloomshire/tabs/ItemsTab.jsx',
-      'src/components/bloomshire/tabs/CalcTab.jsx'
+      'src/components/bloomshire/tabs/CalcTab.jsx',
+      'src/components/bloomshire/tabs/LogbookTab.jsx',
+      'src/components/bloomshire/logbook/LogbookBlocks.jsx',
+      'src/components/bloomshire/logbook/LogbookMarkdown.jsx',
+      'src/components/bloomshire/logbook/PlaceSearch.jsx',
+      'src/components/bloomshire/logbook/adminUi.jsx',
+      'src/components/bloomshire/logbook/SectionEditorModal.jsx',
+      'src/components/bloomshire/logbook/LogbookEditor.jsx',
+      'src/components/bloomshire/logbook/BlockEditor.jsx',
+      'src/components/bloomshire/logbook/MediaDropzone.jsx'
     ];
 
     for (const filePath of targetFiles) {
