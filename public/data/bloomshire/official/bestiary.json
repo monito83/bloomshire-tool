@@ -1,0 +1,2552 @@
+{
+ "families": [
+  {
+   "id": "slimes",
+   "kinds": [
+    "slime",
+    "blue_slime",
+    "pink_slime",
+    "cave_slime",
+    "crystal_slime",
+    "lava_slime",
+    "storm_slime",
+    "frost_slime"
+   ],
+   "name_en": "Slimes",
+   "name_es": null
+  },
+  {
+   "id": "kings",
+   "kinds": [
+    "storm_slime_king",
+    "tide_slime_king",
+    "mire_slime_king",
+    "gale_slime_king"
+   ],
+   "name_en": "Slime Kings",
+   "name_es": "Reyes Slime"
+  },
+  {
+   "id": "plants",
+   "kinds": [
+    "flytrap",
+    "bulb_plant",
+    "thorn_bloom"
+   ],
+   "name_en": "Wild Plants",
+   "name_es": "Plantas Silvestres"
+  },
+  {
+   "id": "beasts",
+   "kinds": [
+    "wolf",
+    "grey_wolf",
+    "dark_wolf",
+    "ice_wolf",
+    "cave_bat",
+    "giant_rat",
+    "plague_rat",
+    "gloom_rat"
+   ],
+   "name_en": "Beasts",
+   "name_es": "Bestias"
+  },
+  {
+   "id": "goblins",
+   "kinds": [
+    "goblin",
+    "goblin_raider",
+    "goblin_rogue",
+    "goblin_warchief",
+    "orc",
+    "orc_reaver",
+    "orc_warlord"
+   ],
+   "name_en": "Goblins and Orcs",
+   "name_es": "Goblins y Orcos"
+  },
+  {
+   "id": "spiders",
+   "kinds": [
+    "pit_spider",
+    "tunnel_spider",
+    "glimmer_spider",
+    "pale_spider",
+    "topaz_spider",
+    "drowned_spider",
+    "venom_spider",
+    "ember_spider",
+    "cinder_spider",
+    "gilded_spider",
+    "bone_spider",
+    "vault_queen"
+   ],
+   "name_en": "Spiders",
+   "name_es": "Arañas"
+  },
+  {
+   "id": "golems",
+   "kinds": [
+    "earth_golem",
+    "crystal_golem",
+    "frost_golem",
+    "boss_crystal_golem",
+    "boss_frost_golem"
+   ],
+   "name_en": "Golems",
+   "name_es": "Gólems"
+  },
+  {
+   "id": "dead",
+   "kinds": [
+    "skeleton",
+    "skeleton_guard",
+    "skeleton_knight",
+    "ghoul",
+    "grave_bat",
+    "lich_adept",
+    "lich_mage",
+    "lich"
+   ],
+   "name_en": "The Dead",
+   "name_es": "Los Muertos"
+  },
+  {
+   "id": "fiends",
+   "kinds": [
+    "pale_ghost",
+    "shade_ghost",
+    "crimson_ghost",
+    "imp",
+    "cinder_imp",
+    "hellfire_imp",
+    "beholder",
+    "ember_beholder",
+    "elder_beholder"
+   ],
+   "name_en": "Spirits and Fiends",
+   "name_es": "Espíritus y Demonios"
+  }
+ ],
+ "beasts": [
+  {
+   "id": "slime",
+   "family": "slimes",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Slime",
+   "name_es": null,
+   "description_en": "The green slime of Whisperwood. Slow and soft, it bumps into anything that moves and hopes for the best.",
+   "description_es": "El slime verde de Whisperwood. Lento y blando, choca con cualquier cosa que se mueva y espera lo mejor.",
+   "facts_en": [
+    "Bumps into you"
+   ],
+   "facts_es": [
+    "Choca contigo"
+   ],
+   "where_en": "Lives in Whisperwood and the Colosseum",
+   "where_es": "Vive en Whisperwood and the Colosseum",
+   "places": [
+    "whisperwood",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 24,
+    "damage": 10,
+    "speed": 32,
+    "gold": [
+     10,
+     25
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/slime.png"
+  },
+  {
+   "id": "blue_slime",
+   "family": "slimes",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Blue Slime",
+   "name_es": "Slime Azul",
+   "description_en": "A blue slime of the fields around town. Mostly harmless, until a crowd of them finds you.",
+   "description_es": "Un slime azul de los campos cerca del pueblo. Casi inofensivo, hasta que te rodea una multitud de ellos.",
+   "facts_en": [
+    "Bumps into you"
+   ],
+   "facts_es": [
+    "Choca contigo"
+   ],
+   "where_en": "Lives in the valley around town and the Colosseum",
+   "where_es": "Vive en the valley around town and the Colosseum",
+   "places": [
+    "valley",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 24,
+    "damage": 10,
+    "speed": 32,
+    "gold": [
+     10,
+     25
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/blue_slime.png"
+  },
+  {
+   "id": "pink_slime",
+   "family": "slimes",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Pink Slime",
+   "name_es": "Slime Rosa",
+   "description_en": "A pink slime that wanders the edges of town. Farmers swear it smells faintly of strawberries.",
+   "description_es": "Un slime rosa que vaga por las afueras del pueblo. Los granjeros juran que huele levemente a fresas.",
+   "facts_en": [
+    "Bumps into you"
+   ],
+   "facts_es": [
+    "Choca contigo"
+   ],
+   "where_en": "Lives in the valley around town and the Colosseum",
+   "where_es": "Vive en the valley around town and the Colosseum",
+   "places": [
+    "valley",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 24,
+    "damage": 10,
+    "speed": 32,
+    "gold": [
+     10,
+     25
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/pink_slime.png"
+  },
+  {
+   "id": "cave_slime",
+   "family": "slimes",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Cave Slime",
+   "name_es": "Slime de Cueva",
+   "description_en": "A grey slime of the Old Working, fat on mine dust and dripping water.",
+   "description_es": "Un slime gris de la Mina Vieja, engordado con polvo de mina y agua goteante.",
+   "facts_en": [
+    "Bumps into you",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Choca contigo",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Old Working and the Bone Crypt",
+   "where_es": "Vive en the Old Working and the Bone Crypt",
+   "places": [
+    "old_working",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 30,
+    "damage": 10,
+    "speed": 32,
+    "gold": [
+     12,
+     28
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/cave_slime.png"
+  },
+  {
+   "id": "crystal_slime",
+   "family": "slimes",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Crystal Slime",
+   "name_es": "Slime de Cristal",
+   "description_en": "A slime that has swallowed so many gems it glitters. Tougher than it looks.",
+   "description_es": "Un slime que ha tragado tantas gemas que brilla. Más resistente de lo que parece.",
+   "facts_en": [
+    "Bumps into you"
+   ],
+   "facts_es": [
+    "Choca contigo"
+   ],
+   "where_en": "Lives in Glimmer Hollow, Topaz Drift and the Colosseum",
+   "where_es": "Vive en Glimmer Hollow, Topaz Drift and the Colosseum",
+   "places": [
+    "glimmer",
+    "topaz",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 44,
+    "damage": 12,
+    "speed": 30,
+    "gold": [
+     20,
+     38
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/crystal_slime.png"
+  },
+  {
+   "id": "lava_slime",
+   "family": "slimes",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Lava Slime",
+   "name_es": "Slime de Lava",
+   "description_en": "A slime full of molten rock from the Gloom. Whatever it touches keeps burning a little after.",
+   "description_es": "Un slime de roca fundida de la Penumbra. Todo lo que toca sigue ardiendo un poco después.",
+   "facts_en": [
+    "Bumps into you",
+    "Its blows set you burning"
+   ],
+   "facts_es": [
+    "Choca contigo",
+    "Sus golpes te prenden fuego"
+   ],
+   "where_en": "Lives in the Gloom and the Colosseum",
+   "where_es": "Vive en the Gloom and the Colosseum",
+   "places": [
+    "gloom",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 54,
+    "damage": 14,
+    "speed": 30,
+    "gold": [
+     28,
+     48
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/lava_slime.png"
+  },
+  {
+   "id": "storm_slime",
+   "family": "slimes",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Storm Slime",
+   "name_es": "Slime de Tormenta",
+   "description_en": "A slime full of lightning. Every time it strikes, a shock runs through the ground around it, so keep your distance.",
+   "description_es": "Un slime cargado de relámpagos. Cada vez que golpea, una descarga recorre el suelo a su alrededor, así que mantén la distancia.",
+   "facts_en": [
+    "Bumps into you",
+    "Every time it strikes it sends a shock through the ground around it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Choca contigo",
+    "Every time it strikes it sends a shock through the ground around it",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the valley around town, Whisperwood, Stonepeak, Glimmer Hollow, Topaz Drift, the Dungeon and the Bone Crypt",
+   "where_es": "Vive en the valley around town, Whisperwood, Stonepeak, Glimmer Hollow, Topaz Drift, the Dungeon and the Bone Crypt",
+   "places": [
+    "valley",
+    "whisperwood",
+    "stonepeak",
+    "glimmer",
+    "topaz",
+    "dungeon",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 52,
+    "damage": 14,
+    "speed": 34,
+    "gold": [
+     30,
+     50
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/storm_slime.png"
+  },
+  {
+   "id": "frost_slime",
+   "family": "slimes",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Frost Slime",
+   "name_es": "Slime de Escarcha",
+   "description_en": "A slime of snow and ice from Frosthaven. Its touch freezes you for a moment and leaves you slow.",
+   "description_es": "Un slime de nieve y hielo de Frosthaven. Su toque te congela por un momento y te deja lento.",
+   "facts_en": [
+    "Bumps into you",
+    "Its touch freezes you for a moment, then leaves you slow"
+   ],
+   "facts_es": [
+    "Choca contigo",
+    "Su toque te congela por un momento y luego te deja lento"
+   ],
+   "where_en": "Lives in Frosthaven and the Drowned Keep",
+   "where_es": "Vive en Frosthaven and the Drowned Keep",
+   "places": [
+    "frosthaven",
+    "keep"
+   ],
+   "stats": {
+    "hp": 46,
+    "damage": 13,
+    "speed": 32,
+    "gold": [
+     26,
+     44
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/frost_slime.png"
+  },
+  {
+   "id": "storm_slime_king",
+   "family": "kings",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Storm Slime King",
+   "name_es": "Rey Slime de Tormenta",
+   "description_en": "The king of the storm slimes, crowned in lightning, deep in Whisperwood. Every blow it lands shakes the ground with a shock.",
+   "description_es": "El rey de los slimes de tormenta, coronado de relámpagos, en las profundidades de Whisperwood. Cada golpe que da sacude el suelo con una descarga.",
+   "facts_en": [
+    "Crushes you under its weight",
+    "Every time it strikes it sends a shock through the ground around it",
+    "Three Storm Slimes fight beside it"
+   ],
+   "facts_es": [
+    "Te aplasta con su peso",
+    "Every time it strikes it sends a shock through the ground around it",
+    "Three Storm Slimes luchan a su lado"
+   ],
+   "where_en": "Lives in Whisperwood and the Dungeon",
+   "where_es": "Vive en Whisperwood and the Dungeon",
+   "places": [
+    "whisperwood",
+    "dungeon"
+   ],
+   "stats": {
+    "hp": 468,
+    "damage": 18,
+    "speed": 34,
+    "gold": [
+     75,
+     125
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "blade",
+    "weak": "staff"
+   },
+   "art": "beasts/storm_slime_king.png"
+  },
+  {
+   "id": "tide_slime_king",
+   "family": "kings",
+   "tier": 5,
+   "reward": 25000,
+   "name_en": "Tide Slime King",
+   "name_es": "Rey Slime de la Marea",
+   "description_en": "A great king of icy water that rules part of the Drowned Keep. Its slam sends a frozen cross along the floor.",
+   "description_es": "Un gran rey de agua helada que domina parte del Castillo Hundido. Su golpe envía una cruz congelada por el suelo.",
+   "facts_en": [
+    "Crushes you under its weight",
+    "Every third blow it slams the floor in a great cross, freezing anyone it catches for a moment",
+    "Two Frost Slimes fight beside it",
+    "When it falls it breaks into three Frost Slimes"
+   ],
+   "facts_es": [
+    "Te aplasta con su peso",
+    "Every third blow it slams the floor in a great cross, freezing anyone it catches por un momento",
+    "Two Frost Slimes luchan a su lado",
+    "Cuando cae se rompe en tres Frost Slimes"
+   ],
+   "where_en": "Lives in the Drowned Keep",
+   "where_es": "Vive en la Fortaleza Ahogada",
+   "places": [
+    "keep"
+   ],
+   "stats": {
+    "hp": 528,
+    "damage": 29,
+    "speed": 34,
+    "gold": [
+     750,
+     1000
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "blade",
+    "weak": "bow"
+   },
+   "art": "beasts/tide_slime_king.png"
+  },
+  {
+   "id": "mire_slime_king",
+   "family": "kings",
+   "tier": 5,
+   "reward": 25000,
+   "name_en": "Mire Slime King",
+   "name_es": "Rey Slime del Cenagal",
+   "description_en": "A king of mud and stone deep in the Bone Crypt. Its slam cracks the floor in a cross and leaves you dazed.",
+   "description_es": "Un rey de barro y piedra en lo profundo de la Cripta de Huesos. Su golpe agrieta el suelo en forma de cruz y te deja aturdido.",
+   "facts_en": [
+    "Crushes you under its weight",
+    "Every third blow it slams the floor and cracks it in a great cross, stunning anyone it catches",
+    "Two Cave Slimes fight beside it",
+    "When it falls it breaks into three Cave Slimes",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te aplasta con su peso",
+    "Every third blow it slams the floor and cracks it in a great cross, stunning anyone it catches",
+    "Two Cave Slimes luchan a su lado",
+    "Cuando cae se rompe en tres Cave Slimes",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 624,
+    "damage": 31,
+    "speed": 32,
+    "gold": [
+     850,
+     1100
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "bow",
+    "weak": "staff"
+   },
+   "art": "beasts/mire_slime_king.png"
+  },
+  {
+   "id": "gale_slime_king",
+   "family": "kings",
+   "tier": 5,
+   "reward": 25000,
+   "name_en": "Gale Slime King",
+   "name_es": "Rey Slime del Vendaval",
+   "description_en": "The fiercest of the slime kings, wrapped in storm winds. Its slam lands like a bolt of lightning.",
+   "description_es": "El más feroz de los reyes slime, envuelto en vientos de tormenta. Su golpe cae como un rayo.",
+   "facts_en": [
+    "Crushes you under its weight",
+    "Every third blow it sends a shock through the ground around it",
+    "Two Storm Slimes fight beside it",
+    "When it falls it breaks into three Storm Slimes",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te aplasta con su peso",
+    "Every third blow it sends a shock through the ground around it",
+    "Two Storm Slimes luchan a su lado",
+    "Cuando cae se rompe en tres Storm Slimes",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 720,
+    "damage": 34,
+    "speed": 38,
+    "gold": [
+     950,
+     1200
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "staff",
+    "weak": "blade"
+   },
+   "art": "beasts/gale_slime_king.png"
+  },
+  {
+   "id": "flytrap",
+   "family": "plants",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Flytrap",
+   "name_es": "Atrapamoscas",
+   "description_en": "A snapping plant that waits beside the paths. It reaches further than you would think, and its bite is poisoned.",
+   "description_es": "Una planta que muerde y espera junto a los caminos. Alcanza más lejos de lo que crees, y su mordida está envenenada.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the valley around town and Whisperwood",
+   "where_es": "Vive en the valley around town and Whisperwood",
+   "places": [
+    "valley",
+    "whisperwood"
+   ],
+   "stats": {
+    "hp": 70,
+    "damage": 16,
+    "speed": 34,
+    "gold": [
+     30,
+     50
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/flytrap.png"
+  },
+  {
+   "id": "bulb_plant",
+   "family": "plants",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Bulb Spitter",
+   "name_es": "Escupidor de Bulbos",
+   "description_en": "A bulb that spits hard seeds at anything that comes near. Get close and it has little else to offer.",
+   "description_es": "Un bulbo que escupe semillas duras a todo lo que se acerca. Si te acercas, poco más puede ofrecer.",
+   "facts_en": [
+    "Spits hard seeds from afar"
+   ],
+   "facts_es": [
+    "Escupe semillas duras desde lejos"
+   ],
+   "where_en": "Lives in the valley around town and Whisperwood",
+   "where_es": "Vive en the valley around town and Whisperwood",
+   "places": [
+    "valley",
+    "whisperwood"
+   ],
+   "stats": {
+    "hp": 56,
+    "damage": 12,
+    "speed": 30,
+    "gold": [
+     25,
+     42
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/bulb_plant.png"
+  },
+  {
+   "id": "thorn_bloom",
+   "family": "plants",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Thorn Bloom",
+   "name_es": "Flor de Espina",
+   "description_en": "A flower of the Everbloom with thorns full of venom. Lovely, from a long way off.",
+   "description_es": "Una flor de la Flor Eterna con espinas llenas de veneno. Hermosa, vista desde lejos.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the Everbloom",
+   "where_es": "Vive en el Everbloom",
+   "places": [
+    "everbloom"
+   ],
+   "stats": {
+    "hp": 84,
+    "damage": 18,
+    "speed": 34,
+    "gold": [
+     35,
+     58
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/thorn_bloom.png"
+  },
+  {
+   "id": "wolf",
+   "family": "beasts",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Wolf",
+   "name_es": "Lobo",
+   "description_en": "A wolf of Whisperwood. Wolves are quick, they hunt in packs, and they bite from a step further off than you expect.",
+   "description_es": "Un lobo de Whisperwood. Los lobos son rápidos, cazan en manada y muerden desde un paso más lejos de lo que esperas.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in Whisperwood and the Colosseum",
+   "where_es": "Vive en Whisperwood and the Colosseum",
+   "places": [
+    "whisperwood",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 60,
+    "damage": 14,
+    "speed": 64,
+    "gold": [
+     25,
+     40
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/wolf.png"
+  },
+  {
+   "id": "grey_wolf",
+   "family": "beasts",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Grey Wolf",
+   "name_es": "Lobo Gris",
+   "description_en": "An older wolf with a grey coat, a little stronger and a little quicker than the rest of its pack.",
+   "description_es": "Un lobo más viejo de pelaje gris, un poco más fuerte y un poco más rápido que el resto de su manada.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in Whisperwood",
+   "where_es": "Vive en Whisperwood",
+   "places": [
+    "whisperwood"
+   ],
+   "stats": {
+    "hp": 70,
+    "damage": 15,
+    "speed": 66,
+    "gold": [
+     28,
+     44
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/grey_wolf.png"
+  },
+  {
+   "id": "dark_wolf",
+   "family": "beasts",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Dark Wolf",
+   "name_es": "Lobo Oscuro",
+   "description_en": "A black wolf from the deep woods. The fastest and hardest hitting of Whisperwood's wolves.",
+   "description_es": "Un lobo negro de los bosques profundos. El más veloz y contundente de los lobos de Whisperwood.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in Whisperwood and the Colosseum",
+   "where_es": "Vive en Whisperwood and the Colosseum",
+   "places": [
+    "whisperwood",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 82,
+    "damage": 17,
+    "speed": 68,
+    "gold": [
+     35,
+     55
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/dark_wolf.png"
+  },
+  {
+   "id": "ice_wolf",
+   "family": "beasts",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Ice Wolf",
+   "name_es": "Lobo de Hielo",
+   "description_en": "A white wolf of Frosthaven. Its bite is so cold it slows you down.",
+   "description_es": "Un lobo blanco del Refugio de Escarcha. Su mordida es tan fría que te hace más lento.",
+   "facts_en": [
+    "Bites",
+    "Its bite is so cold it slows you down"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Su mordisco es tan frío que te ralentiza"
+   ],
+   "where_en": "Lives in Frosthaven",
+   "where_es": "Vive en Frosthaven",
+   "places": [
+    "frosthaven"
+   ],
+   "stats": {
+    "hp": 92,
+    "damage": 18,
+    "speed": 68,
+    "gold": [
+     40,
+     60
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/ice_wolf.png"
+  },
+  {
+   "id": "cave_bat",
+   "family": "beasts",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Cave Bat",
+   "name_es": "Murciélago de Cueva",
+   "description_en": "A bat that sleeps in every cave. It dives at you in a rush and darts away again before you can swing.",
+   "description_es": "Un murciélago que duerme en toda cueva. Se abalanza sobre ti de golpe y se aparta antes de que puedas golpear.",
+   "facts_en": [
+    "Dives at you in a rush and darts away again"
+   ],
+   "facts_es": [
+    "Se lanza hacia ti a toda velocidad y luego se aleja de nuevo"
+   ],
+   "where_en": "Lives in the Old Working, Glimmer Hollow, the Gloom, the Green Vein, Topaz Drift, the Sunken Vault, the Old Cave, the Drowned Keep and the Colosseum",
+   "where_es": "Vive en the Old Working, Glimmer Hollow, the Gloom, the Green Vein, Topaz Drift, the Sunken Vault, the Old Cave, the Drowned Keep and the Colosseum",
+   "places": [
+    "old_working",
+    "glimmer",
+    "gloom",
+    "green_vein",
+    "topaz",
+    "vault",
+    "old_cave",
+    "keep",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 26,
+    "damage": 10,
+    "speed": 72,
+    "gold": [
+     12,
+     24
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/cave_bat.png"
+  },
+  {
+   "id": "giant_rat",
+   "family": "beasts",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Giant Rat",
+   "name_es": "Rata Gigante",
+   "description_en": "A rat the size of a dog, from the Drowned Keep. Quick on its feet, and its bite festers.",
+   "description_es": "Una rata del tamaño de un perro, del Castillo Hundido. Ágil de patas, y su mordida se infecta.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the Drowned Keep",
+   "where_es": "Vive en la Fortaleza Ahogada",
+   "places": [
+    "keep"
+   ],
+   "stats": {
+    "hp": 40,
+    "damage": 11,
+    "speed": 70,
+    "gold": [
+     12,
+     22
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/giant_rat.png"
+  },
+  {
+   "id": "plague_rat",
+   "family": "beasts",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Plague Rat",
+   "name_es": "Rata de la Plaga",
+   "description_en": "A sickly rat of the Bone Crypt. Its bite poisons you for longer than most.",
+   "description_es": "Una rata enferma de la Cripta de Huesos. Su mordida te envenena por más tiempo que la mayoría.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 50,
+    "damage": 13,
+    "speed": 74,
+    "gold": [
+     16,
+     28
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/plague_rat.png"
+  },
+  {
+   "id": "gloom_rat",
+   "family": "beasts",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Gloom Rat",
+   "name_es": "Rata de la Penumbra",
+   "description_en": "The biggest rat of the Drowned Keep. Every few bites it pounces, catching everyone close by.",
+   "description_es": "La rata más grande de la Fortaleza Anegada. Cada pocos mordiscos salta y atrapa a todos los que estén cerca.",
+   "facts_en": [
+    "Bites",
+    "Every third blow it pounces, catching everyone close by",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Every third blow it pounces, catching everyone close by",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the Drowned Keep",
+   "where_es": "Vive en la Fortaleza Ahogada",
+   "places": [
+    "keep"
+   ],
+   "stats": {
+    "hp": 58,
+    "damage": 14,
+    "speed": 72,
+    "gold": [
+     18,
+     30
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/gloom_rat.png"
+  },
+  {
+   "id": "goblin",
+   "family": "goblins",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Goblin Cutter",
+   "name_es": "Cortador Goblin",
+   "description_en": "A goblin with a short blade, found in Stonepeak and Whisperwood. Badly hurt, it turns and runs.",
+   "description_es": "Un goblin con una hoja corta, que se encuentra en Stonepeak y Whisperwood. Malherido, se da la vuelta y huye.",
+   "facts_en": [
+    "Cuts and slashes",
+    "Runs away when it is badly hurt"
+   ],
+   "facts_es": [
+    "Corta y taja",
+    "Huye cuando está muy herido"
+   ],
+   "where_en": "Lives in Whisperwood, Stonepeak, the Dungeon and the Colosseum",
+   "where_es": "Vive en Whisperwood, Stonepeak, the Dungeon and the Colosseum",
+   "places": [
+    "whisperwood",
+    "stonepeak",
+    "dungeon",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 44,
+    "damage": 12,
+    "speed": 44,
+    "gold": [
+     20,
+     35
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/goblin.png"
+  },
+  {
+   "id": "goblin_raider",
+   "family": "goblins",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Goblin Raider",
+   "name_es": "Saqueador Goblin",
+   "description_en": "A goblin raider with a longer reach. Raiders travel in bands with the cutters.",
+   "description_es": "Un saqueador goblin de mayor alcance. Los saqueadores viajan en bandas junto a los cortadores.",
+   "facts_en": [
+    "Cuts and slashes",
+    "Runs away when it is badly hurt"
+   ],
+   "facts_es": [
+    "Corta y taja",
+    "Huye cuando está muy herido"
+   ],
+   "where_en": "Lives in Whisperwood, Stonepeak, the Dungeon and the Colosseum",
+   "where_es": "Vive en Whisperwood, Stonepeak, the Dungeon and the Colosseum",
+   "places": [
+    "whisperwood",
+    "stonepeak",
+    "dungeon",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 56,
+    "damage": 15,
+    "speed": 44,
+    "gold": [
+     28,
+     45
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/goblin_raider.png"
+  },
+  {
+   "id": "goblin_rogue",
+   "family": "goblins",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Goblin Rogue",
+   "name_es": "Pícaro Goblin",
+   "description_en": "The quickest goblin of them all, and the one that hits hardest. It runs early and comes back for more.",
+   "description_es": "El goblin más rápido de todos, y el que golpea más fuerte. Huye pronto y vuelve por más.",
+   "facts_en": [
+    "Cuts and slashes",
+    "Runs away when it is badly hurt"
+   ],
+   "facts_es": [
+    "Corta y taja",
+    "Huye cuando está muy herido"
+   ],
+   "where_en": "Lives in Whisperwood, Stonepeak and the Colosseum",
+   "where_es": "Vive en Whisperwood, Stonepeak and the Colosseum",
+   "places": [
+    "whisperwood",
+    "stonepeak",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 50,
+    "damage": 17,
+    "speed": 54,
+    "gold": [
+     32,
+     52
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/goblin_rogue.png"
+  },
+  {
+   "id": "goblin_warchief",
+   "family": "goblins",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Goblin Warchief",
+   "name_es": "Señor de la Guerra Goblin",
+   "description_en": "The goblin warchief of Whisperwood. Fast and fierce, it never fights without its band around it.",
+   "description_es": "El señor de la guerra goblin de Whisperwood. Rápido y feroz, nunca pelea sin su banda alrededor.",
+   "facts_en": [
+    "Cuts and slashes",
+    "Two Goblin Cutters and two Goblin Raiders fight beside it"
+   ],
+   "facts_es": [
+    "Corta y taja",
+    "Two Goblin Cutters and two Goblin Raiders luchan a su lado"
+   ],
+   "where_en": "Lives in Whisperwood and the Dungeon",
+   "where_es": "Vive en Whisperwood and the Dungeon",
+   "places": [
+    "whisperwood",
+    "dungeon"
+   ],
+   "stats": {
+    "hp": 500,
+    "damage": 22,
+    "speed": 54,
+    "gold": [
+     80,
+     130
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "bow",
+    "weak": "blade"
+   },
+   "art": "beasts/goblin_warchief.png"
+  },
+  {
+   "id": "orc",
+   "family": "goblins",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Orc Brute",
+   "name_es": "Bruto Orco",
+   "description_en": "A big orc of Stonepeak with a thick hide. It hits hard and takes a lot of hitting.",
+   "description_es": "Un orco grande de Stonepeak de piel gruesa. Golpea fuerte y aguanta mucho castigo.",
+   "facts_en": [
+    "Hits hard with a heavy blade",
+    "Its thick hide softens every blow",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Golpea con fuerza usando una hoja pesada",
+    "Su thick hide suaviza cada golpe",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Stonepeak, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en Stonepeak, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "stonepeak",
+    "dungeon",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 110,
+    "damage": 20,
+    "speed": 40,
+    "gold": [
+     55,
+     85
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/orc.png"
+  },
+  {
+   "id": "orc_reaver",
+   "family": "goblins",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Orc Reaver",
+   "name_es": "Saqueador Orco",
+   "description_en": "An orc reaver, stronger than a brute, with the same thick hide.",
+   "description_es": "Un saqueador orco, más fuerte que un bruto, con la misma piel gruesa.",
+   "facts_en": [
+    "Hits hard with a heavy blade",
+    "Its thick hide softens every blow"
+   ],
+   "facts_es": [
+    "Golpea con fuerza usando una hoja pesada",
+    "Su thick hide suaviza cada golpe"
+   ],
+   "where_en": "Lives in Stonepeak",
+   "where_es": "Vive en Stonepeak",
+   "places": [
+    "stonepeak"
+   ],
+   "stats": {
+    "hp": 130,
+    "damage": 22,
+    "speed": 42,
+    "gold": [
+     65,
+     95
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/orc_reaver.png"
+  },
+  {
+   "id": "orc_warlord",
+   "family": "goblins",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Orc Warlord",
+   "name_es": "Señor de la Guerra Orco",
+   "description_en": "The warlord of Stonepeak's orcs. Its great slam knocks you senseless for a moment.",
+   "description_es": "El señor de la guerra de los orcos de Stonepeak. Su gran golpe te deja aturdido por un momento.",
+   "facts_en": [
+    "Hits hard with a heavy blade",
+    "Every third blow it slams the ground around it, stunning anyone it catches",
+    "Its thick hide softens every blow",
+    "Two Orc Brutes fight beside it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Golpea con fuerza usando una hoja pesada",
+    "Every third blow it slams the ground around it, stunning anyone it catches",
+    "Su thick hide suaviza cada golpe",
+    "Two Orc Brutes luchan a su lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Stonepeak, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en Stonepeak, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "stonepeak",
+    "dungeon",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 560,
+    "damage": 36,
+    "speed": 40,
+    "gold": [
+     550,
+     750
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "blade",
+    "weak": "bow"
+   },
+   "art": "beasts/orc_warlord.png"
+  },
+  {
+   "id": "pit_spider",
+   "family": "spiders",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Pit Spider",
+   "name_es": "Araña de Pozo",
+   "description_en": "A small spider of the Old Working's pits. Weak on its own, and seldom on its own.",
+   "description_es": "Una araña pequeña de los pozos de la Mina Vieja. Débil por sí sola, y rara vez está sola.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in the Old Working and the Dungeon",
+   "where_es": "Vive en the Old Working and the Dungeon",
+   "places": [
+    "old_working",
+    "dungeon"
+   ],
+   "stats": {
+    "hp": 28,
+    "damage": 9,
+    "speed": 38,
+    "gold": [
+     15,
+     30
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/pit_spider.png"
+  },
+  {
+   "id": "tunnel_spider",
+   "family": "spiders",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Tunnel Spider",
+   "name_es": "Araña del Túnel",
+   "description_en": "A spider of the Old Working's lower tunnels, a little tougher than the pit spiders above.",
+   "description_es": "Una araña de los túneles inferiores de la Mina Vieja, un poco más resistente que las arañas de pozo de arriba.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in the Old Working and the Dungeon",
+   "where_es": "Vive en the Old Working and the Dungeon",
+   "places": [
+    "old_working",
+    "dungeon"
+   ],
+   "stats": {
+    "hp": 36,
+    "damage": 11,
+    "speed": 38,
+    "gold": [
+     18,
+     34
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/tunnel_spider.png"
+  },
+  {
+   "id": "glimmer_spider",
+   "family": "spiders",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Glimmer Spider",
+   "name_es": "Araña Destello",
+   "description_en": "A spider of Glimmer Hollow, hard to see among the shining stones.",
+   "description_es": "Una araña de la Hondonada del Destello, difícil de ver entre las piedras brillantes.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in Glimmer Hollow",
+   "where_es": "Vive en Hondonada del Destello",
+   "places": [
+    "glimmer"
+   ],
+   "stats": {
+    "hp": 30,
+    "damage": 10,
+    "speed": 38,
+    "gold": [
+     15,
+     30
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/glimmer_spider.png"
+  },
+  {
+   "id": "pale_spider",
+   "family": "spiders",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Pale Spider",
+   "name_es": "Araña Pálida",
+   "description_en": "A pale spider of the deep places, the weakest of the cave spiders.",
+   "description_es": "Una araña pálida de los lugares profundos, la más débil de las arañas de cueva.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in the Dungeon and the Drowned Keep",
+   "where_es": "Vive en the Dungeon and the Drowned Keep",
+   "places": [
+    "dungeon",
+    "keep"
+   ],
+   "stats": {
+    "hp": 26,
+    "damage": 8,
+    "speed": 36,
+    "gold": [
+     12,
+     26
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/pale_spider.png"
+  },
+  {
+   "id": "topaz_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Topaz Spider",
+   "name_es": "Araña de Topacio",
+   "description_en": "A golden spider of Topaz Drift. Quick and strong for its size.",
+   "description_es": "Una araña dorada de Topaz Drift. Rápida y fuerte para su tamaño.",
+   "facts_en": [
+    "Bites"
+   ],
+   "facts_es": [
+    "Muerde"
+   ],
+   "where_en": "Lives in Topaz Drift and the Dungeon",
+   "where_es": "Vive en Topaz Drift and the Dungeon",
+   "places": [
+    "topaz",
+    "dungeon"
+   ],
+   "stats": {
+    "hp": 48,
+    "damage": 14,
+    "speed": 40,
+    "gold": [
+     25,
+     45
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/topaz_spider.png"
+  },
+  {
+   "id": "drowned_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Drowned Spider",
+   "name_es": "Araña Ahogada",
+   "description_en": "A spider of the flooded caves. Its bite carries a slow poison.",
+   "description_es": "Una araña de las cuevas inundadas. Su mordida lleva un veneno lento.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the Old Cave, the Dungeon and the Drowned Keep",
+   "where_es": "Vive en the Old Cave, the Dungeon and the Drowned Keep",
+   "places": [
+    "old_cave",
+    "dungeon",
+    "keep"
+   ],
+   "stats": {
+    "hp": 44,
+    "damage": 12,
+    "speed": 38,
+    "gold": [
+     25,
+     45
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/drowned_spider.png"
+  },
+  {
+   "id": "venom_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Venom Spider",
+   "name_es": "Araña Venenosa",
+   "description_en": "A spider of the Green Vein, its fangs heavy with venom.",
+   "description_es": "Una araña de la Veta Verde, con los colmillos cargados de veneno.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos"
+   ],
+   "where_en": "Lives in the Green Vein, the Dungeon and the Drowned Keep",
+   "where_es": "Vive en the Green Vein, the Dungeon and the Drowned Keep",
+   "places": [
+    "green_vein",
+    "dungeon",
+    "keep"
+   ],
+   "stats": {
+    "hp": 56,
+    "damage": 14,
+    "speed": 40,
+    "gold": [
+     30,
+     50
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/venom_spider.png"
+  },
+  {
+   "id": "ember_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Ember Spider",
+   "name_es": "Araña de Ascuas",
+   "description_en": "A spider of the Gloom with burning fangs.",
+   "description_es": "Una araña de la Penumbra con colmillos ardientes.",
+   "facts_en": [
+    "Bites",
+    "Its blows set you burning",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te prenden fuego",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Gloom, the Dungeon and the Bone Crypt",
+   "where_es": "Vive en the Gloom, the Dungeon and the Bone Crypt",
+   "places": [
+    "gloom",
+    "dungeon",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 60,
+    "damage": 16,
+    "speed": 40,
+    "gold": [
+     35,
+     55
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/ember_spider.png"
+  },
+  {
+   "id": "cinder_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Cinder Spider",
+   "name_es": "Araña de Ceniza",
+   "description_en": "A spider of the Gloom's red deep. Its bite burns hotter than an ember spider's.",
+   "description_es": "Una araña de las profundidades rojas de la Penumbra. Su mordida arde más caliente que la de una araña de ascuas.",
+   "facts_en": [
+    "Bites",
+    "Its blows set you burning",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te prenden fuego",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Gloom, the Dungeon and the Bone Crypt",
+   "where_es": "Vive en the Gloom, the Dungeon and the Bone Crypt",
+   "places": [
+    "gloom",
+    "dungeon",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 70,
+    "damage": 18,
+    "speed": 42,
+    "gold": [
+     40,
+     60
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/cinder_spider.png"
+  },
+  {
+   "id": "gilded_spider",
+   "family": "spiders",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Gilded Spider",
+   "name_es": "Araña Dorada",
+   "description_en": "A spider of the Sunken Vault, its shell flecked with gold. Strong, quick and poisonous.",
+   "description_es": "Una araña de la Bóveda Hundida, con el caparazón salpicado de oro. Fuerte, rápida y venenosa.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Sunken Vault, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en the Sunken Vault, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "vault",
+    "dungeon",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 80,
+    "damage": 20,
+    "speed": 42,
+    "gold": [
+     45,
+     70
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/gilded_spider.png"
+  },
+  {
+   "id": "bone_spider",
+   "family": "spiders",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Bone Spider",
+   "name_es": "Araña Huesuda",
+   "description_en": "A huge spider of bone that guards the red deep of the Gloom. Its legs reach far and its poison lingers.",
+   "description_es": "Una araña enorme de hueso que guarda las profundidades rojas de la Penumbra. Sus patas alcanzan lejos y su veneno perdura.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Gloom, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en the Gloom, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "gloom",
+    "dungeon",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 550,
+    "damage": 34,
+    "speed": 40,
+    "gold": [
+     750,
+     950
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "bow",
+    "weak": "blade"
+   },
+   "art": "beasts/bone_spider.png"
+  },
+  {
+   "id": "vault_queen",
+   "family": "spiders",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Vault Queen",
+   "name_es": "Reina de la Bóveda",
+   "description_en": "The queen of the Sunken Vault's spiders, and the strongest poison under the ground.",
+   "description_es": "La reina de las arañas de la Bóveda Hundida, y el veneno más fuerte bajo tierra.",
+   "facts_en": [
+    "Bites",
+    "Its blows poison you for a few seconds",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Muerde",
+    "Sus golpes te envenenan por unos segundos",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Sunken Vault, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en the Sunken Vault, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "vault",
+    "dungeon",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 700,
+    "damage": 39,
+    "speed": 40,
+    "gold": [
+     1000,
+     1250
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "blade",
+    "weak": "staff"
+   },
+   "art": "beasts/vault_queen.png"
+  },
+  {
+   "id": "earth_golem",
+   "family": "golems",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Earth Golem",
+   "name_es": "Gólem de Tierra",
+   "description_en": "A golem of stone that walks Stonepeak's slopes in groups. Its slam cracks the ground and stuns, so step out of the circle.",
+   "description_es": "Un gólem de piedra que recorre las laderas de Stonepeak en grupos. Su golpe agrieta el suelo y aturde, así que sal del círculo.",
+   "facts_en": [
+    "Pounds you with its fists",
+    "Every third blow it slams the ground and cracks it, stunning anyone it catches",
+    "Walks in groups of three or four",
+    "Its stone softens every blow"
+   ],
+   "facts_es": [
+    "Te golpea con sus puños",
+    "Every third blow it slams the ground and cracks it, stunning anyone it catches",
+    "Camina en grupos de tres o four",
+    "Su piedra suaviza cada golpe"
+   ],
+   "where_en": "Lives in Stonepeak",
+   "where_es": "Vive en Stonepeak",
+   "places": [
+    "stonepeak"
+   ],
+   "stats": {
+    "hp": 190,
+    "damage": 24,
+    "speed": 28,
+    "gold": [
+     90,
+     140
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/earth_golem.png"
+  },
+  {
+   "id": "crystal_golem",
+   "family": "golems",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Crystal Golem",
+   "name_es": "Gólem de Cristal",
+   "description_en": "A golem of crystal from Stonepeak. Its slam cracks the ground and stuns, and it is very hard to break.",
+   "description_es": "Un gólem de cristal de Stonepeak. Su golpe agrieta el suelo y aturde, y es muy difícil de romper.",
+   "facts_en": [
+    "Pounds you with its fists",
+    "Every third blow it slams the ground and cracks it, stunning anyone it catches",
+    "Walks in groups of three or four",
+    "Its stone softens every blow",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te golpea con sus puños",
+    "Every third blow it slams the ground and cracks it, stunning anyone it catches",
+    "Camina en grupos de tres o four",
+    "Su piedra suaviza cada golpe",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Stonepeak, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en Stonepeak, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "stonepeak",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 250,
+    "damage": 26,
+    "speed": 30,
+    "gold": [
+     150,
+     220
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/crystal_golem.png"
+  },
+  {
+   "id": "frost_golem",
+   "family": "golems",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Frost Golem",
+   "name_es": "Gólem de Escarcha",
+   "description_en": "A golem of ice from Frosthaven. It slams more often than its cousins, and its stun lasts longer.",
+   "description_es": "Un gólem de hielo de Frosthaven. Golpea más seguido que sus primos, y su aturdimiento dura más.",
+   "facts_en": [
+    "Pounds you with its fists",
+    "Every second blow it slams the ground and cracks it, stunning anyone it catches",
+    "Walks in groups of three or four",
+    "Its stone softens every blow",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te golpea con sus puños",
+    "Every second blow it slams the ground and cracks it, stunning anyone it catches",
+    "Camina en grupos de tres o four",
+    "Su piedra suaviza cada golpe",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Frosthaven, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en Frosthaven, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "frosthaven",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 310,
+    "damage": 30,
+    "speed": 30,
+    "gold": [
+     200,
+     280
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/frost_golem.png"
+  },
+  {
+   "id": "boss_crystal_golem",
+   "family": "golems",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Great Crystal Golem",
+   "name_es": "Gran Gólem de Cristal",
+   "description_en": "The Great Crystal Golem of Stonepeak. It leaps and slams the ground, cracking it all around.",
+   "description_es": "El Gran Gólem de Cristal de Stonepeak. Salta y golpea el suelo, agrietándolo a su alrededor.",
+   "facts_en": [
+    "Pounds you with its fists",
+    "Every third blow it leaps up and slams the ground, stunning anyone it catches",
+    "Its stone softens every blow",
+    "Two Crystal Golems fight beside it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te golpea con sus puños",
+    "Every third blow it leaps up and slams the ground, stunning anyone it catches",
+    "Su piedra suaviza cada golpe",
+    "Two Crystal Golems luchan a su lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Stonepeak, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en Stonepeak, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "stonepeak",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 625,
+    "damage": 34,
+    "speed": 30,
+    "gold": [
+     375,
+     550
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "staff",
+    "weak": "blade"
+   },
+   "art": "beasts/boss_crystal_golem.png"
+  },
+  {
+   "id": "boss_frost_golem",
+   "family": "golems",
+   "tier": 4,
+   "reward": 10000,
+   "name_en": "Great Frost Golem",
+   "name_es": "Gran Gólem de Escarcha",
+   "description_en": "The Great Frost Golem of Frosthaven. It leaps to slam, and the ground freezes and cracks where it lands.",
+   "description_es": "El Gran Gólem de Escarcha del Refugio de Escarcha. Salta para golpear, y el suelo se congela y se agrieta donde cae.",
+   "facts_en": [
+    "Pounds you with its fists",
+    "Every second blow it leaps up and slams the ground, stunning anyone it catches",
+    "Its stone softens every blow",
+    "Three Frost Golems fight beside it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Te golpea con sus puños",
+    "Every second blow it leaps up and slams the ground, stunning anyone it catches",
+    "Su piedra suaviza cada golpe",
+    "Three Frost Golems luchan a su lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in Frosthaven, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en Frosthaven, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "frosthaven",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 775,
+    "damage": 39,
+    "speed": 30,
+    "gold": [
+     500,
+     700
+    ],
+    "boss": true
+   },
+   "weapons": {
+    "immune": "bow",
+    "weak": "staff"
+   },
+   "art": "beasts/boss_frost_golem.png"
+  },
+  {
+   "id": "skeleton",
+   "family": "dead",
+   "tier": 1,
+   "reward": 250,
+   "name_en": "Skeleton",
+   "name_es": "Esqueleto",
+   "description_en": "The restless dead of the Barrowmire and the old mines. Skeletons climb out of the ground when you come near.",
+   "description_es": "Los muertos inquietos de la Ciénaga de los Túmulos y las minas viejas. Los esqueletos salen de la tierra cuando te acercas.",
+   "facts_en": [
+    "Strikes with old blades and claws",
+    "Lies under the ground and climbs out as you come near"
+   ],
+   "facts_es": [
+    "Ataca con hojas y garras antiguas",
+    "Yace bajo tierra y sale cuando te acercas"
+   ],
+   "where_en": "Lives in the Barrowmire, the Old Working, the Dungeon and the Drowned Keep",
+   "where_es": "Vive en the Barrowmire, the Old Working, the Dungeon and the Drowned Keep",
+   "places": [
+    "barrowmire",
+    "old_working",
+    "dungeon",
+    "keep"
+   ],
+   "stats": {
+    "hp": 56,
+    "damage": 13,
+    "speed": 50,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/skeleton.png"
+  },
+  {
+   "id": "skeleton_guard",
+   "family": "dead",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Skeleton Guard",
+   "name_es": "Guardia Esqueleto",
+   "description_en": "A skeleton in an old guard's gear. It too lies waiting under the earth.",
+   "description_es": "Un esqueleto con el equipo de un viejo guardia. También yace esperando bajo tierra.",
+   "facts_en": [
+    "Strikes with old blades and claws",
+    "Lies under the ground and climbs out as you come near",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Ataca con hojas y garras antiguas",
+    "Yace bajo tierra y sale cuando te acercas",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en the Barrowmire, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "barrowmire",
+    "dungeon",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 66,
+    "damage": 14,
+    "speed": 52,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/skeleton_guard.png"
+  },
+  {
+   "id": "skeleton_knight",
+   "family": "dead",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Skeleton Knight",
+   "name_es": "Caballero Esqueleto",
+   "description_en": "A skeleton knight, heavy and hard to hurt. Its great slam hits all around it.",
+   "description_es": "Un caballero esqueleto, pesado y difícil de herir. Su gran golpe alcanza todo a su alrededor.",
+   "facts_en": [
+    "Strikes with old blades and claws",
+    "Every third blow it slams the ground around it",
+    "Its old iron softens every blow",
+    "Two Skeleton Guards fight beside it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Ataca con hojas y garras antiguas",
+    "Every third blow it slams the ground around it",
+    "Su old iron suaviza cada golpe",
+    "Two Skeleton Guards luchan a su lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en the Barrowmire, the Dungeon, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "barrowmire",
+    "dungeon",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 240,
+    "damage": 28,
+    "speed": 46,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/skeleton_knight.png"
+  },
+  {
+   "id": "ghoul",
+   "family": "dead",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Ghoul",
+   "name_es": "Necrófago",
+   "description_en": "A hungry dead thing, faster than you expect. Its claws poison, and every few blows it lunges.",
+   "description_es": "Una cosa muerta y hambrienta, más rápida de lo que esperas. Sus garras envenenan, y cada pocos golpes se lanza hacia adelante.",
+   "facts_en": [
+    "Strikes with old blades and claws",
+    "Every third blow it pounces, catching everyone close by",
+    "Its blows poison you for a few seconds",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Ataca con hojas y garras antiguas",
+    "Every third blow it pounces, catching everyone close by",
+    "Sus golpes te envenenan por unos segundos",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en the Barrowmire, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "barrowmire",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 70,
+    "damage": 14,
+    "speed": 64,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/ghoul.png"
+  },
+  {
+   "id": "grave_bat",
+   "family": "dead",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Grave Bat",
+   "name_es": "Murciélago de Tumba",
+   "description_en": "A bat of the Barrowmire that dives at you faster than any cave bat.",
+   "description_es": "Un murciélago del Barrowmire que se abalanza sobre ti más rápido que cualquier murciélago de cueva.",
+   "facts_en": [
+    "Dives at you in a rush and darts away again",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Se lanza hacia ti a toda velocidad y luego se aleja de nuevo",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "barrowmire",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 22,
+    "damage": 8,
+    "speed": 82,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/grave_bat.png"
+  },
+  {
+   "id": "lich_adept",
+   "family": "dead",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Lich Adept",
+   "name_es": "Adepto Liche",
+   "description_en": "A young lich that throws curses. The curses bend after you as they fly.",
+   "description_es": "Un liche joven que lanza maldiciones. Las maldiciones se curvan para seguirte mientras vuelan.",
+   "facts_en": [
+    "Throws curses from afar, and they bend toward you as they fly",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Throws curses from afar, and they bend toward you as they fly",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "barrowmire",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 90,
+    "damage": 15,
+    "speed": 40,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/lich_adept.png"
+  },
+  {
+   "id": "lich_mage",
+   "family": "dead",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Lich Mage",
+   "name_es": "Mago Liche",
+   "description_en": "A lich mage that makes roots burst from the ground beneath you, two at a time.",
+   "description_es": "Un mago liche que hace brotar raíces del suelo bajo tus pies, dos a la vez.",
+   "facts_en": [
+    "Makes roots burst from the ground beneath you, two at a time",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Makes roots burst from the ground beneath you, two at a time",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "where_es": "Vive en the Barrowmire, the Drowned Keep, the Bone Crypt and the Colosseum",
+   "places": [
+    "barrowmire",
+    "keep",
+    "crypt",
+    "colosseum"
+   ],
+   "stats": {
+    "hp": 150,
+    "damage": 22,
+    "speed": 36,
+    "gold": null,
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/lich_mage.png"
+  },
+  {
+   "id": "lich",
+   "family": "dead",
+   "tier": 5,
+   "reward": 25000,
+   "name_en": "Arch-Lich",
+   "name_es": "Archiliche",
+   "description_en": "The Arch-Lich, lord of the dead and of the Dungeon's deepest level.",
+   "description_es": "El Archiliche, señor de los muertos y del nivel más profundo de la Mazmorra.",
+   "facts_en": [
+    "Hurls souls of fire, three at a time, and they bend toward you as they fly",
+    "Its old iron softens every blow",
+    "Calls up skeletons to fight for it",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Hurls souls de fire, three at a time, and they bend toward you as they fly",
+    "Su old iron suaviza cada golpe",
+    "Invoca a skeletons para que luche por él",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Barrowmire, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "where_es": "Vive en the Barrowmire, the Dungeon, the Drowned Keep and the Bone Crypt",
+   "places": [
+    "barrowmire",
+    "dungeon",
+    "keep",
+    "crypt"
+   ],
+   "stats": {
+    "hp": 1040,
+    "damage": 34,
+    "speed": 36,
+    "gold": null,
+    "boss": true
+   },
+   "weapons": {
+    "immune": "staff",
+    "weak": "bow"
+   },
+   "art": "beasts/lich.png"
+  },
+  {
+   "id": "pale_ghost",
+   "family": "fiends",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Pale Ghost",
+   "name_es": "Fantasma Pálido",
+   "description_en": "A ghost of the Drowned Keep. It fades away, appears right beside you, and bursts in a cold wail that slows you.",
+   "description_es": "Un fantasma del Castillo Hundido. Se desvanece, aparece justo a tu lado y estalla en un lamento helado que te ralentiza.",
+   "facts_en": [
+    "Every time it strikes it bursts in a cold wail, which slows you",
+    "Fades away and appears right beside you"
+   ],
+   "facts_es": [
+    "Every time it strikes it bursts in a cold wail, which slows you",
+    "Se desvanece y aparece justo a tu lado"
+   ],
+   "where_en": "Lives in the Drowned Keep",
+   "where_es": "Vive en la Fortaleza Ahogada",
+   "places": [
+    "keep"
+   ],
+   "stats": {
+    "hp": 60,
+    "damage": 14,
+    "speed": 46,
+    "gold": [
+     20,
+     34
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/pale_ghost.png"
+  },
+  {
+   "id": "shade_ghost",
+   "family": "fiends",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Shade",
+   "name_es": "Sombra",
+   "description_en": "A dark ghost of the Bone Crypt. It vanishes more often than the pale ghost, and its wail hits harder.",
+   "description_es": "Un fantasma oscuro de la Cripta de Huesos. Desaparece más seguido que el fantasma pálido, y su lamento golpea más fuerte.",
+   "facts_en": [
+    "Every time it strikes it bursts in a wail all round it",
+    "Fades away and appears right beside you",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Every time it strikes it bursts in a wail all round it",
+    "Se desvanece y aparece justo a tu lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 74,
+    "damage": 16,
+    "speed": 50,
+    "gold": [
+     24,
+     40
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/shade_ghost.png"
+  },
+  {
+   "id": "crimson_ghost",
+   "family": "fiends",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Crimson Wraith",
+   "name_es": "Espectro Carmesí",
+   "description_en": "A blood red wraith of the Bone Crypt. It blinks to your side every few seconds, and its wail chills to the bone.",
+   "description_es": "Un espectro rojo sangre de la Cripta de Huesos. Se teletransporta a tu lado cada pocos segundos, y su lamento hiela los huesos.",
+   "facts_en": [
+    "Every time it strikes it bursts in a cold wail, which slows you",
+    "Fades away and appears right beside you",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Every time it strikes it bursts in a cold wail, which slows you",
+    "Se desvanece y aparece justo a tu lado",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 110,
+    "damage": 20,
+    "speed": 52,
+    "gold": [
+     40,
+     60
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/crimson_ghost.png"
+  },
+  {
+   "id": "imp",
+   "family": "fiends",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Imp",
+   "name_es": "Diablillo",
+   "description_en": "An imp of the Drowned Keep. It keeps its distance and throws hellfire that goes on burning.",
+   "description_es": "Un diablillo de la Fortaleza Anegada. Mantiene la distancia y lanza fuego infernal que sigue ardiendo.",
+   "facts_en": [
+    "Throws balls of hellfire",
+    "What it throws sets you burning"
+   ],
+   "facts_es": [
+    "Lanza bolas de fuego infernal",
+    "Lo que lanza te hace arder"
+   ],
+   "where_en": "Lives in the Drowned Keep",
+   "where_es": "Vive en la Fortaleza Ahogada",
+   "places": [
+    "keep"
+   ],
+   "stats": {
+    "hp": 50,
+    "damage": 13,
+    "speed": 52,
+    "gold": [
+     18,
+     30
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/imp.png"
+  },
+  {
+   "id": "cinder_imp",
+   "family": "fiends",
+   "tier": 2,
+   "reward": 750,
+   "name_en": "Cinder Imp",
+   "name_es": "Diablillo de Ceniza",
+   "description_en": "An imp of the Bone Crypt. Its hellfire bends toward you as it flies.",
+   "description_es": "Un diablillo de la Cripta de Huesos. Su fuego infernal se curva hacia ti mientras vuela.",
+   "facts_en": [
+    "Throws balls of hellfire, and they bend toward you as they fly",
+    "What it throws sets you burning",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Throws balls de hellfire, and they bend toward you as they fly",
+    "Lo que lanza te hace arder",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 62,
+    "damage": 15,
+    "speed": 54,
+    "gold": [
+     22,
+     36
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/cinder_imp.png"
+  },
+  {
+   "id": "hellfire_imp",
+   "family": "fiends",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Hellfire Imp",
+   "name_es": "Diablillo del Fuego Infernal",
+   "description_en": "The worst of the imps. It throws two balls of hellfire at once, and both of them follow you.",
+   "description_es": "El peor de los diablillos. Lanza dos bolas de fuego infernal a la vez, y ambas te persiguen.",
+   "facts_en": [
+    "Throws balls of hellfire, two at a time, and they bend toward you as they fly",
+    "What it throws sets you burning",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Throws balls de hellfire, two at a time, and they bend toward you as they fly",
+    "Lo que lanza te hace arder",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 84,
+    "damage": 17,
+    "speed": 56,
+    "gold": [
+     34,
+     52
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/hellfire_imp.png"
+  },
+  {
+   "id": "beholder",
+   "family": "fiends",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Beholder",
+   "name_es": "Observador",
+   "description_en": "A floating eye of the Bone Crypt. It hangs back and strikes with lightning from its great eye.",
+   "description_es": "Un ojo flotante de la Cripta de Huesos. Se mantiene a distancia y ataca con relámpagos desde su gran ojo.",
+   "facts_en": [
+    "Strikes with lightning from its great eye",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Ataca con un rayo desde su gran ojo",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 150,
+    "damage": 20,
+    "speed": 30,
+    "gold": [
+     50,
+     80
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/beholder.png"
+  },
+  {
+   "id": "ember_beholder",
+   "family": "fiends",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Ember Beholder",
+   "name_es": "Observador de Brasa",
+   "description_en": "A beholder of fire. Its gaze sets you burning, two bolts at a time.",
+   "description_es": "Un observador de fuego. Su mirada te hace arder, con dos rayos a la vez.",
+   "facts_en": [
+    "Strikes with lightning from its great eye, two at a time",
+    "What it throws sets you burning",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Strikes with lightning from its great eye, two at a time",
+    "Lo que lanza te hace arder",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 200,
+    "damage": 22,
+    "speed": 30,
+    "gold": [
+     70,
+     100
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/ember_beholder.png"
+  },
+  {
+   "id": "elder_beholder",
+   "family": "fiends",
+   "tier": 3,
+   "reward": 2500,
+   "name_en": "Elder Beholder",
+   "name_es": "Observador Anciano",
+   "description_en": "The oldest of the beholders. Three bolts at once, all bending toward you, and it is hard to hurt.",
+   "description_es": "El más viejo de los observadores. Tres rayos a la vez, todos curvándose hacia ti, y es difícil de herir.",
+   "facts_en": [
+    "Strikes with lightning from its great eye, three at a time, and they bend toward you as they fly",
+    "What it throws sets you burning",
+    "Its thick hide softens every blow",
+    "Bloodlusted in the Bone Crypt, faster and fiercer"
+   ],
+   "facts_es": [
+    "Strikes with lightning from its great eye, three at a time, and they bend toward you as they fly",
+    "Lo que lanza te hace arder",
+    "Su thick hide suaviza cada golpe",
+    "Enfurecido en la Cripta de Huesos, más rápido y feroz"
+   ],
+   "where_en": "Lives in the Bone Crypt",
+   "where_es": "Vive en la Cripta de Huesos",
+   "places": [
+    "crypt"
+   ],
+   "stats": {
+    "hp": 290,
+    "damage": 26,
+    "speed": 28,
+    "gold": [
+     110,
+     150
+    ],
+    "boss": false
+   },
+   "weapons": null,
+   "art": "beasts/elder_beholder.png"
+  }
+ ]
+}

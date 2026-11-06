@@ -1,0 +1,33 @@
+{
+  "boss": "Jefe",
+  "weak": "Débil a {{weapon}}",
+  "immune": "Inmune a {{weapon}}",
+  "weapons": {
+    "blade": "espadas",
+    "bow": "arcos",
+    "staff": "bastones"
+  },
+  "stats": {
+    "hp": "Vida",
+    "damage": "Daño por golpe",
+    "speed": "Velocidad",
+    "gold": "Oro que suelta",
+    "reward": "Recompensa del Bestiario"
+  },
+  "rewardHint": "Recompensa del Bestiario por derrotarlo: {{gold}} de oro.",
+  "adventure": {
+    "title": "Libro de exploración",
+    "showAll": "Ver los {{count}} lugares",
+    "showLess": "Ver menos"
+  },
+  "bestiary": {
+    "title": "Criaturas de la zona",
+    "search": "Filtrar criaturas…",
+    "clear": "Borrar filtro",
+    "source": "Datos del Bestiario del propio juego."
+  },
+  "search": {
+    "title": "Criaturas ({{count}})",
+    "goTo": "Ver esta región en el mapa"
+  }
+}

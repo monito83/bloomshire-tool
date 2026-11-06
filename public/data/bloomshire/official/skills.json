@@ -1,0 +1,1749 @@
+[
+ {
+  "id": "farming",
+  "maxLevel": 30,
+  "name_en": "Farming",
+  "name_es": "Cultivo",
+  "unlocks": [
+   {
+    "level": 2,
+    "text_en": "Spring Onion and Wheat seeds",
+    "text_es": "Semillas: Cebolleta y Trigo"
+   },
+   {
+    "level": 3,
+    "text_en": "Potato and Cabbage seeds",
+    "text_es": "Semillas: Papa y Repollo"
+   },
+   {
+    "level": 4,
+    "text_en": "Onion and Winter Kale seeds",
+    "text_es": "Semillas: Cebolla y Col de Invierno"
+   },
+   {
+    "level": 5,
+    "text_en": "Marigold, Rice and Broccoli seeds",
+    "text_es": "Semillas: Caléndula, Arroz y Brócoli"
+   },
+   {
+    "level": 6,
+    "text_en": "Corn and Sunflower seeds",
+    "text_es": "Semillas: Maíz y Girasol"
+   },
+   {
+    "level": 7,
+    "text_en": "Tomato and Cucumber seeds",
+    "text_es": "Semillas: Tomate y Pepino"
+   },
+   {
+    "level": 8,
+    "text_en": "Green Beans, Adzuki Bean and Snow Turnip seeds\nAnimals of your own at Hollin's Farm, with a free chicken to start",
+    "text_es": "Green Beans, Adzuki Bean and Snow Turnip seeds\nAnimals de your own at Hollin's Farm, with a free chicken to start"
+   },
+   {
+    "level": 9,
+    "text_en": "Eggplant and Blackberry seeds",
+    "text_es": "Semillas: Berenjena y Mora"
+   },
+   {
+    "level": 10,
+    "text_en": "Hot Pepper, Green Bell Pepper, Red Bell Pepper, Yellow Bell Pepper and Sweet Potato seeds",
+    "text_es": "Semillas: Chile Picante, Pimiento Verde, Pimiento Rojo, Pimiento Amarillo y Batata"
+   },
+   {
+    "level": 11,
+    "text_en": "Strawberry seeds",
+    "text_es": "Semillas de fresa"
+   },
+   {
+    "level": 12,
+    "text_en": "Cauliflower, Blueberry and Frostberry seeds",
+    "text_es": "Semillas: Coliflor, Arándano y Baya de Escarcha"
+   },
+   {
+    "level": 13,
+    "text_en": "Cantaloupe and Watermelon seeds",
+    "text_es": "Semillas: Melón y Sandía"
+   },
+   {
+    "level": 14,
+    "text_en": "Beetroot and Asparagus seeds",
+    "text_es": "Semillas: Remolacha y Espárrago"
+   },
+   {
+    "level": 15,
+    "text_en": "Pumpkin and Aloe seeds\nCrops that grow back now give five harvests",
+    "text_es": "Calabaza y Aloe seeds\nCrops that grow back now give five harvests"
+   },
+   {
+    "level": 16,
+    "text_en": "Grapes and Ice Melon seeds",
+    "text_es": "Semillas: Uvas y Melón de Hielo"
+   },
+   {
+    "level": 17,
+    "text_en": "Pineapple seeds",
+    "text_es": "Semillas de piña"
+   },
+   {
+    "level": 18,
+    "text_en": "Rare Honeydew Melon seeds",
+    "text_es": "Semillas raras: Melón Dulce"
+   },
+   {
+    "level": 20,
+    "text_en": "Rare Purple Cauliflower seeds",
+    "text_es": "Semillas raras: Coliflor Morada"
+   },
+   {
+    "level": 22,
+    "text_en": "Rare Snow Pea seeds",
+    "text_es": "Semillas raras: Guisante de Nieve"
+   },
+   {
+    "level": 24,
+    "text_en": "Rare Golden Beet seeds",
+    "text_es": "Semillas raras: Remolacha Dorada"
+   },
+   {
+    "level": 26,
+    "text_en": "Rare Black Tomato seeds",
+    "text_es": "Semillas raras: Tomate Negro"
+   },
+   {
+    "level": 28,
+    "text_en": "Rare Blue Corn seeds",
+    "text_es": "Semillas raras: Maíz Azul"
+   },
+   {
+    "level": 30,
+    "text_en": "Rare Dragon Fruit seeds",
+    "text_es": "Semillas raras: Fruta del Dragón"
+   }
+  ],
+  "perks": [],
+  "coming": [
+   {
+    "en": "Somewhere in Bloomshire there is an orchard that only the best farmers can reach. Its trees give fruit every few days, and more of them open up to you as you level.",
+    "es": "En algún lugar de Bloomshire hay un huerto al que solo los mejores granjeros pueden llegar. Sus árboles dan fruta cada pocos días, y se abren más a medida que subes de nivel."
+   }
+  ]
+ },
+ {
+  "id": "woodcutting",
+  "maxLevel": 30,
+  "name_en": "Woodcutting",
+  "name_es": "Tala",
+  "unlocks": [],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "1% chance of one more Wood each time",
+    "text_es": "1% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 2,
+    "text_en": "2% chance of one more Wood each time",
+    "text_es": "2% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 3,
+    "text_en": "3% chance of one more Wood each time",
+    "text_es": "3% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 4,
+    "text_en": "4% chance of one more Wood each time",
+    "text_es": "4% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 5,
+    "text_en": "5% chance of one more Wood each time",
+    "text_es": "5% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 6,
+    "text_en": "6% chance of one more Wood each time",
+    "text_es": "6% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 7,
+    "text_en": "7% chance of one more Wood each time",
+    "text_es": "7% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 8,
+    "text_en": "8% chance of one more Wood each time",
+    "text_es": "8% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 9,
+    "text_en": "9% chance of one more Wood each time",
+    "text_es": "9% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 10,
+    "text_en": "10% chance of one more Wood each time",
+    "text_es": "10% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 11,
+    "text_en": "11% chance of one more Wood each time",
+    "text_es": "11% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 12,
+    "text_en": "12% chance of one more Wood each time",
+    "text_es": "12% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 13,
+    "text_en": "13% chance of one more Wood each time",
+    "text_es": "13% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 14,
+    "text_en": "14% chance of one more Wood each time",
+    "text_es": "14% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 15,
+    "text_en": "15% chance of one more Wood each time",
+    "text_es": "15% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 16,
+    "text_en": "16% chance of one more Wood each time",
+    "text_es": "16% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 17,
+    "text_en": "17% chance of one more Wood each time",
+    "text_es": "17% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 18,
+    "text_en": "18% chance of one more Wood each time",
+    "text_es": "18% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 19,
+    "text_en": "19% chance of one more Wood each time",
+    "text_es": "19% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 20,
+    "text_en": "20% chance of one more Wood each time",
+    "text_es": "20% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 21,
+    "text_en": "21% chance of one more Wood each time",
+    "text_es": "21% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 22,
+    "text_en": "22% chance of one more Wood each time",
+    "text_es": "22% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 23,
+    "text_en": "23% chance of one more Wood each time",
+    "text_es": "23% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 24,
+    "text_en": "24% chance of one more Wood each time",
+    "text_es": "24% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 25,
+    "text_en": "25% chance of one more Wood each time",
+    "text_es": "25% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 26,
+    "text_en": "26% chance of one more Wood each time",
+    "text_es": "26% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 27,
+    "text_en": "27% chance of one more Wood each time",
+    "text_es": "27% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 28,
+    "text_en": "28% chance of one more Wood each time",
+    "text_es": "28% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 29,
+    "text_en": "29% chance of one more Wood each time",
+    "text_es": "29% de probabilidad de un Madera más cada vez"
+   },
+   {
+    "level": 30,
+    "text_en": "30% chance of one more Wood each time",
+    "text_es": "30% de probabilidad de un Madera más cada vez"
+   }
+  ],
+  "coming": [
+   {
+    "en": "New looks for your axe are on the way.",
+    "es": "Vienen looks nuevos para tu hacha."
+   }
+  ]
+ },
+ {
+  "id": "mining",
+  "maxLevel": 30,
+  "name_en": "Mining",
+  "name_es": "Minería",
+  "unlocks": [
+   {
+    "level": 5,
+    "text_en": "Iron Ore, found now and then when you break rocks in Stonepeak and the caves",
+    "text_es": "Mineral de Hierro, que aparece de vez en cuando al romper rocas en Stonepeak y las cuevas"
+   },
+   {
+    "level": 10,
+    "text_en": "Platinum Ore, found now and then when you break rocks in the caves",
+    "text_es": "Mineral de Platino, que aparece de vez en cuando al romper rocas en las cuevas"
+   },
+   {
+    "level": 15,
+    "text_en": "Crimson Ore, found now and then when you break rocks in the Gloom",
+    "text_es": "Mineral Carmesí, que aparece de vez en cuando al romper rocas en la Penumbra"
+   },
+   {
+    "level": 20,
+    "text_en": "Frost Ore, found now and then when you break rocks in the crystal caves",
+    "text_es": "Mineral de Escarcha, que aparece de vez en cuando al romper rocas en las cuevas de cristal"
+   },
+   {
+    "level": 25,
+    "text_en": "Shadow Ore, found now and then when you break rocks in the deep Gloom and the Sunken Vault",
+    "text_es": "Mineral de Sombra, que aparece de vez en cuando al romper rocas en la Penumbra profunda y la Bóveda Hundida"
+   },
+   {
+    "level": 30,
+    "text_en": "Obsidian Ore, found now and then when you break rocks in the bottom of the Sunken Vault",
+    "text_es": "Mineral de Obsidiana, que aparece de vez en cuando al romper rocas en el fondo de la Bóveda Hundida"
+   }
+  ],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "1% chance of one more ore or stone each time",
+    "text_es": "1% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 2,
+    "text_en": "2% chance of one more ore or stone each time",
+    "text_es": "2% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 3,
+    "text_en": "3% chance of one more ore or stone each time",
+    "text_es": "3% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 4,
+    "text_en": "4% chance of one more ore or stone each time",
+    "text_es": "4% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 5,
+    "text_en": "5% chance of one more ore or stone each time",
+    "text_es": "5% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 6,
+    "text_en": "6% chance of one more ore or stone each time",
+    "text_es": "6% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 7,
+    "text_en": "7% chance of one more ore or stone each time",
+    "text_es": "7% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 8,
+    "text_en": "8% chance of one more ore or stone each time",
+    "text_es": "8% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 9,
+    "text_en": "9% chance of one more ore or stone each time",
+    "text_es": "9% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 10,
+    "text_en": "10% chance of one more ore or stone each time",
+    "text_es": "10% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 11,
+    "text_en": "11% chance of one more ore or stone each time",
+    "text_es": "11% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 12,
+    "text_en": "12% chance of one more ore or stone each time",
+    "text_es": "12% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 13,
+    "text_en": "13% chance of one more ore or stone each time",
+    "text_es": "13% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 14,
+    "text_en": "14% chance of one more ore or stone each time",
+    "text_es": "14% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 15,
+    "text_en": "15% chance of one more ore or stone each time",
+    "text_es": "15% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 16,
+    "text_en": "16% chance of one more ore or stone each time",
+    "text_es": "16% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 17,
+    "text_en": "17% chance of one more ore or stone each time",
+    "text_es": "17% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 18,
+    "text_en": "18% chance of one more ore or stone each time",
+    "text_es": "18% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 19,
+    "text_en": "19% chance of one more ore or stone each time",
+    "text_es": "19% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 20,
+    "text_en": "20% chance of one more ore or stone each time",
+    "text_es": "20% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 21,
+    "text_en": "21% chance of one more ore or stone each time",
+    "text_es": "21% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 22,
+    "text_en": "22% chance of one more ore or stone each time",
+    "text_es": "22% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 23,
+    "text_en": "23% chance of one more ore or stone each time",
+    "text_es": "23% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 24,
+    "text_en": "24% chance of one more ore or stone each time",
+    "text_es": "24% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 25,
+    "text_en": "25% chance of one more ore or stone each time",
+    "text_es": "25% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 26,
+    "text_en": "26% chance of one more ore or stone each time",
+    "text_es": "26% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 27,
+    "text_en": "27% chance of one more ore or stone each time",
+    "text_es": "27% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 28,
+    "text_en": "28% chance of one more ore or stone each time",
+    "text_es": "28% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 29,
+    "text_en": "29% chance of one more ore or stone each time",
+    "text_es": "29% de probabilidad de un mineral o piedra más cada vez"
+   },
+   {
+    "level": 30,
+    "text_en": "30% chance of one more ore or stone each time",
+    "text_es": "30% de probabilidad de un mineral o piedra más cada vez"
+   }
+  ],
+  "coming": [
+   {
+    "en": "New looks for your pickaxe are on the way.",
+    "es": "Vienen looks nuevos para tu pico."
+   }
+  ]
+ },
+ {
+  "id": "fishing",
+  "maxLevel": 30,
+  "name_en": "Fishing",
+  "name_es": "Pesca",
+  "unlocks": [
+   {
+    "level": 2,
+    "text_en": "Sardine in the sea, very rare\nShad in the river, very rare",
+    "text_es": "Sardina en the sea, very rare\nShad in the river, muy raro"
+   },
+   {
+    "level": 3,
+    "text_en": "Large Mouth Bass in the lakes, very rare",
+    "text_es": "Róbalo de Boca Grande en los lagos, muy raro"
+   },
+   {
+    "level": 4,
+    "text_en": "Anchovy in the sea, very rare",
+    "text_es": "Anchoa en el mar, muy raro"
+   },
+   {
+    "level": 5,
+    "text_en": "Walleye in the river, very rare",
+    "text_es": "Lucioperca en el río, muy raro"
+   },
+   {
+    "level": 6,
+    "text_en": "Smallmouth Bass in the lakes, very rare",
+    "text_es": "Róbalo de Boca Pequeña en los lagos, muy raro"
+   },
+   {
+    "level": 7,
+    "text_en": "Herring in the sea, very rare",
+    "text_es": "Arenque en el mar, muy raro"
+   },
+   {
+    "level": 8,
+    "text_en": "Bullhead Catfish in the river at night, very rare",
+    "text_es": "Bagre Cabeza de Toro en the river at night, muy raro"
+   },
+   {
+    "level": 9,
+    "text_en": "Bream in the sea, very rare",
+    "text_es": "Brema en el mar, muy raro"
+   },
+   {
+    "level": 10,
+    "text_en": "Flounder in the sea, very rare",
+    "text_es": "Platija en el mar, muy raro"
+   },
+   {
+    "level": 12,
+    "text_en": "Red Mullet in the sea, very rare",
+    "text_es": "Salmonete en el mar, muy raro"
+   },
+   {
+    "level": 13,
+    "text_en": "Sea Bullhead in the sea, very rare",
+    "text_es": "Escorpión de Mar en el mar, muy raro"
+   },
+   {
+    "level": 14,
+    "text_en": "Goby in the sea, very rare",
+    "text_es": "Gobio en el mar, muy raro"
+   },
+   {
+    "level": 15,
+    "text_en": "Dorado in the river, very rare",
+    "text_es": "Dorado en el río, muy raro"
+   },
+   {
+    "level": 16,
+    "text_en": "Clownfish in the sea, very rare",
+    "text_es": "Pez Payaso en el mar, muy raro"
+   },
+   {
+    "level": 17,
+    "text_en": "Halibut in the sea, very rare",
+    "text_es": "Fletán en el mar, muy raro"
+   },
+   {
+    "level": 18,
+    "text_en": "Faeries Fish in Everbloom, very rare",
+    "text_es": "Pez de las Hadas en Flor Eterna, muy raro"
+   },
+   {
+    "level": 19,
+    "text_en": "Red Snapper in the sea, very rare",
+    "text_es": "Pargo Rojo en el mar, muy raro"
+   },
+   {
+    "level": 20,
+    "text_en": "Salmon in the river, very rare\nGlacier Fish in the ice holes of Frosthaven, very rare",
+    "text_es": "Salmón en the river, very rare\nGlacier Fish in the ice holes de Frosthaven, muy raro"
+   },
+   {
+    "level": 21,
+    "text_en": "Lingcod in the sea, very rare",
+    "text_es": "Lingcod en el mar, muy raro"
+   },
+   {
+    "level": 22,
+    "text_en": "Crimson Snapper in the sea, very rare",
+    "text_es": "Pargo Carmesí en el mar, muy raro"
+   },
+   {
+    "level": 23,
+    "text_en": "Pufferfish in the sea, very rare",
+    "text_es": "Pez Globo en el mar, muy raro"
+   },
+   {
+    "level": 24,
+    "text_en": "Bone Fish in the river at night, very rare",
+    "text_es": "Pez Hueso en the river at night, muy raro"
+   },
+   {
+    "level": 25,
+    "text_en": "Lionfish in the sea, very rare",
+    "text_es": "Pez León en el mar, muy raro"
+   },
+   {
+    "level": 26,
+    "text_en": "Zombie Fish in the lakes at night, very rare",
+    "text_es": "Pez Zombi en the lakes at night, muy raro"
+   },
+   {
+    "level": 27,
+    "text_en": "Regal Blue Tang in the sea, very rare",
+    "text_es": "Tang Azul Real en el mar, muy raro"
+   },
+   {
+    "level": 28,
+    "text_en": "Dynamite Fish in the river, very rare",
+    "text_es": "Pez Dinamita en el río, muy raro"
+   },
+   {
+    "level": 30,
+    "text_en": "Sturgeon in the river, very rare",
+    "text_es": "Esturión en el río, muy raro"
+   }
+  ],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "1% chance of one more fish each time",
+    "text_es": "1% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 2,
+    "text_en": "2% chance of one more fish each time",
+    "text_es": "2% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 3,
+    "text_en": "3% chance of one more fish each time",
+    "text_es": "3% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 4,
+    "text_en": "4% chance of one more fish each time",
+    "text_es": "4% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 5,
+    "text_en": "5% chance of one more fish each time",
+    "text_es": "5% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 6,
+    "text_en": "6% chance of one more fish each time",
+    "text_es": "6% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 7,
+    "text_en": "7% chance of one more fish each time",
+    "text_es": "7% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 8,
+    "text_en": "8% chance of one more fish each time",
+    "text_es": "8% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 9,
+    "text_en": "9% chance of one more fish each time",
+    "text_es": "9% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 10,
+    "text_en": "10% chance of one more fish each time",
+    "text_es": "10% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 11,
+    "text_en": "11% chance of one more fish each time",
+    "text_es": "11% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 12,
+    "text_en": "12% chance of one more fish each time",
+    "text_es": "12% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 13,
+    "text_en": "13% chance of one more fish each time",
+    "text_es": "13% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 14,
+    "text_en": "14% chance of one more fish each time",
+    "text_es": "14% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 15,
+    "text_en": "15% chance of one more fish each time",
+    "text_es": "15% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 16,
+    "text_en": "16% chance of one more fish each time",
+    "text_es": "16% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 17,
+    "text_en": "17% chance of one more fish each time",
+    "text_es": "17% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 18,
+    "text_en": "18% chance of one more fish each time",
+    "text_es": "18% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 19,
+    "text_en": "19% chance of one more fish each time",
+    "text_es": "19% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 20,
+    "text_en": "20% chance of one more fish each time",
+    "text_es": "20% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 21,
+    "text_en": "21% chance of one more fish each time",
+    "text_es": "21% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 22,
+    "text_en": "22% chance of one more fish each time",
+    "text_es": "22% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 23,
+    "text_en": "23% chance of one more fish each time",
+    "text_es": "23% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 24,
+    "text_en": "24% chance of one more fish each time",
+    "text_es": "24% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 25,
+    "text_en": "25% chance of one more fish each time",
+    "text_es": "25% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 26,
+    "text_en": "26% chance of one more fish each time",
+    "text_es": "26% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 27,
+    "text_en": "27% chance of one more fish each time",
+    "text_es": "27% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 28,
+    "text_en": "28% chance of one more fish each time",
+    "text_es": "28% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 29,
+    "text_en": "29% chance of one more fish each time",
+    "text_es": "29% de probabilidad de un pescado más cada vez"
+   },
+   {
+    "level": 30,
+    "text_en": "30% chance of one more fish each time",
+    "text_es": "30% de probabilidad de un pescado más cada vez"
+   }
+  ],
+  "coming": [
+   {
+    "en": "A big boat is coming. Sail it out to sea and you might land a fish nobody can catch from the shore, like the Anglerfish or the Devil Fish.",
+    "es": "Se acerca un bote grande. Navégalo mar adentro y quizás pesques algo que nadie puede atrapar desde la orilla, como el Pez Rape o el Pez Diablo."
+   },
+   {
+    "en": "New looks for your fishing rod are on the way.",
+    "es": "Vienen looks nuevos para tu caña de pescar."
+   }
+  ]
+ },
+ {
+  "id": "foraging",
+  "maxLevel": 30,
+  "name_en": "Foraging",
+  "name_es": "Recolección",
+  "unlocks": [
+   {
+    "level": 1,
+    "text_en": "Butterflies (meadows, Whisperwood, Moonmere, Stonepeak, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 2,
+    "text_en": "Cabbage White (meadows, Moonmere, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 3,
+    "text_en": "Wood White (meadows, Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 4,
+    "text_en": "Orange Tip (meadows, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 5,
+    "text_en": "Red Admiral (meadows, Stonepeak, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 6,
+    "text_en": "Hairstreak Butterfly (meadows, Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 7,
+    "text_en": "Cloudless Sulphur (meadows, Stonepeak, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 8,
+    "text_en": "European Peacock (meadows, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 9,
+    "text_en": "Migrant Butterfly (meadows, Stonepeak, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 10,
+    "text_en": "Monarch Butterfly (meadows, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 11,
+    "text_en": "Glider Butterfly (Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 12,
+    "text_en": "Cinnabar Moth (meadows, Whisperwood, at night)",
+    "text_es": null
+   },
+   {
+    "level": 13,
+    "text_en": "Peacock Pansy (Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 14,
+    "text_en": "Eggfly (Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 15,
+    "text_en": "Diadem butterfly (Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 16,
+    "text_en": "Azure Butterfly (Moonmere, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 17,
+    "text_en": "Periander Metalmark (Stonepeak, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 18,
+    "text_en": "Silkmoth (Whisperwood, at night)",
+    "text_es": null
+   },
+   {
+    "level": 19,
+    "text_en": "Io Moth (Whisperwood, Moonmere, at night)",
+    "text_es": null
+   },
+   {
+    "level": 20,
+    "text_en": "Emperor Butterfly (Whisperwood, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 21,
+    "text_en": "Glasswing Butterfly (Moonmere, Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 22,
+    "text_en": "Sheep Moth (Stonepeak, at night)",
+    "text_es": null
+   },
+   {
+    "level": 23,
+    "text_en": "Birdwing Butterfly (Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 24,
+    "text_en": "Ulysses Butterfly (Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 26,
+    "text_en": "Morpho Butterfly (Everbloom)",
+    "text_es": null
+   },
+   {
+    "level": 28,
+    "text_en": "Luna Moth (Moonmere, at night)",
+    "text_es": null
+   },
+   {
+    "level": 30,
+    "text_en": "Goliath Birdwing (Everbloom)",
+    "text_es": null
+   }
+  ],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "1% chance of one more find each time",
+    "text_es": "1% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 2,
+    "text_en": "2% chance of one more find each time",
+    "text_es": "2% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 3,
+    "text_en": "3% chance of one more find each time",
+    "text_es": "3% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 4,
+    "text_en": "4% chance of one more find each time",
+    "text_es": "4% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 5,
+    "text_en": "5% chance of one more find each time",
+    "text_es": "5% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 6,
+    "text_en": "6% chance of one more find each time",
+    "text_es": "6% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 7,
+    "text_en": "7% chance of one more find each time",
+    "text_es": "7% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 8,
+    "text_en": "8% chance of one more find each time",
+    "text_es": "8% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 9,
+    "text_en": "9% chance of one more find each time",
+    "text_es": "9% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 10,
+    "text_en": "10% chance of one more find each time",
+    "text_es": "10% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 11,
+    "text_en": "11% chance of one more find each time",
+    "text_es": "11% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 12,
+    "text_en": "12% chance of one more find each time",
+    "text_es": "12% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 13,
+    "text_en": "13% chance of one more find each time",
+    "text_es": "13% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 14,
+    "text_en": "14% chance of one more find each time",
+    "text_es": "14% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 15,
+    "text_en": "15% chance of one more find each time",
+    "text_es": "15% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 16,
+    "text_en": "16% chance of one more find each time",
+    "text_es": "16% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 17,
+    "text_en": "17% chance of one more find each time",
+    "text_es": "17% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 18,
+    "text_en": "18% chance of one more find each time",
+    "text_es": "18% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 19,
+    "text_en": "19% chance of one more find each time",
+    "text_es": "19% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 20,
+    "text_en": "20% chance of one more find each time",
+    "text_es": "20% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 21,
+    "text_en": "21% chance of one more find each time",
+    "text_es": "21% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 22,
+    "text_en": "22% chance of one more find each time",
+    "text_es": "22% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 23,
+    "text_en": "23% chance of one more find each time",
+    "text_es": "23% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 24,
+    "text_en": "24% chance of one more find each time",
+    "text_es": "24% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 25,
+    "text_en": "25% chance of one more find each time",
+    "text_es": "25% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 26,
+    "text_en": "26% chance of one more find each time",
+    "text_es": "26% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 27,
+    "text_en": "27% chance of one more find each time",
+    "text_es": "27% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 28,
+    "text_en": "28% chance of one more find each time",
+    "text_es": "28% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 29,
+    "text_en": "29% chance of one more find each time",
+    "text_es": "29% de probabilidad de un buscar más cada vez"
+   },
+   {
+    "level": 30,
+    "text_en": "30% chance of one more find each time",
+    "text_es": "30% de probabilidad de un buscar más cada vez"
+   }
+  ],
+  "coming": []
+ },
+ {
+  "id": "cooking",
+  "maxLevel": 30,
+  "name_en": "Cooking",
+  "name_es": "Cocina",
+  "unlocks": [
+   {
+    "level": 1,
+    "text_en": "Boiled Egg, Fried Fish, Parsnip Soup, Vegetable Plate, Moonlight Stew and Smoked Eel",
+    "text_es": "Huevo Cocido, Pescado Frito, Sopa de Chirivía, Plato de Verduras, Guiso de Luz de Luna y Anguila Ahumada"
+   },
+   {
+    "level": 2,
+    "text_en": "Baked Potato, Bread and Fried Egg",
+    "text_es": "Papa al Horno, Pan y Huevo Frito"
+   },
+   {
+    "level": 3,
+    "text_en": "Corn on the Cob and Fried Mushrooms",
+    "text_es": "Mazorca de Maíz y Setas Fritas"
+   },
+   {
+    "level": 4,
+    "text_en": "Garden Salad, Hash Browns, Kale Chips, Omelette and Popcorn",
+    "text_es": "Ensalada Verde, Papas Ralladas, Chips de Col Rizada, Omelette y Palomitas"
+   },
+   {
+    "level": 5,
+    "text_en": "Pancakes, Rice Ball and Rice Bowl",
+    "text_es": "Panqueques, Bola de Arroz y Tazón de Arroz"
+   },
+   {
+    "level": 6,
+    "text_en": "Coleslaw, Cucumber Salad, Fish Tacos, Hearty Stew, Honey Toast and Roast Drumstick",
+    "text_es": "Ensalada de Col, Ensalada de Pepino, Tacos de Pescado, Guiso Sustancioso, Tostada de Miel y Muslo Asado"
+   },
+   {
+    "level": 7,
+    "text_en": "Bean Hotpot, Cheese Toast, Chicken Soup and Vegetable Stir Fry",
+    "text_es": "Olla de Frijoles, Tostada de Queso, Sopa de Gallina y Salteado de Verduras"
+   },
+   {
+    "level": 8,
+    "text_en": "Bacon and Eggs, Carrot Cake, Fruit Jam, Strawberry Milkshake and Turnip Mash",
+    "text_es": "Tocino con Huevos, Pastel de Zanahoria, Mermelada, Batido de Fresa y Puré de Nabo"
+   },
+   {
+    "level": 9,
+    "text_en": "Blackberry Cobbler, Butter Cookies, Duck Egg Custard and Eggplant Parmigiana",
+    "text_es": "Cobbler de Moras, Galletas de Mantequilla, Flan de Huevo de Pato y Berenjena a la Parmesana"
+   },
+   {
+    "level": 10,
+    "text_en": "Goat Cheese Salad, Ice Cream, Spicy Tacos and Stuffed Peppers",
+    "text_es": "Ensalada de Queso de Cabra, Helado, Tacos Picantes y Pimientos Rellenos"
+   },
+   {
+    "level": 11,
+    "text_en": "Berry Pie, Fairy Rose Tea, Fish Pie, Glazed Yams and Roast Duck",
+    "text_es": "Pastel de Bayas, Té de Rosa de Hada, Pastel de Pescado, Batatas Glaseadas y Pato Asado"
+   },
+   {
+    "level": 12,
+    "text_en": "Frostberry Tart, Fruit Salad, Honey-Glazed Bacon, Quiche and Strawberry Tart",
+    "text_es": "Tarta de Baya de Escarcha, Ensalada de Frutas, Tocino Glaseado con Miel, Quiche y Tarta de Fresa"
+   },
+   {
+    "level": 13,
+    "text_en": "Honey Cake, Shepherd's Pie and Stuffed Mushrooms",
+    "text_es": "Pastel de Miel, Pastel del Pastor y Setas Rellenas"
+   },
+   {
+    "level": 14,
+    "text_en": "Beetroot Soup, Cake, Fireheart Chili and Mutton Stew",
+    "text_es": "Sopa de Remolacha, Pastel, Chili Corazón de Fuego y Guiso de Carne de cordero"
+   },
+   {
+    "level": 15,
+    "text_en": "Casserole, Goat Curry and Pumpkin Soup",
+    "text_es": "Cazuela, Curry de Cabra y Sopa de Calabaza"
+   },
+   {
+    "level": 16,
+    "text_en": "Ice Melon Sorbet, Pork Roast and Roast Dinner",
+    "text_es": "Sorbete de Melón de Hielo, Carne de cerdo Asada y Cena Asada"
+   },
+   {
+    "level": 17,
+    "text_en": "Beef Stew and Pumpkin Pie",
+    "text_es": "Guiso de Carne de res y Tarta de Calabaza"
+   },
+   {
+    "level": 18,
+    "text_en": "Fruit Smoothie, Hamburger and Sweet Berry Cake",
+    "text_es": "Batido de Frutas, Hamburguesa y Pastel Dulce de Bayas"
+   },
+   {
+    "level": 19,
+    "text_en": "Cheesecake, Sashimi and Tropical Salad",
+    "text_es": "Pastel de Queso, Sashimi y Ensalada Tropical"
+   },
+   {
+    "level": 20,
+    "text_en": "Grape Juice, Lasagne and Maki Sushi",
+    "text_es": "Jugo de Uva, Lasaña y Maki Sushi"
+   },
+   {
+    "level": 21,
+    "text_en": "Cioppino and Sunday Roast",
+    "text_es": "Cioppino y Asado Dominical"
+   },
+   {
+    "level": 22,
+    "text_en": "Mushroom Risotto",
+    "text_es": "Risotto de Setas"
+   },
+   {
+    "level": 23,
+    "text_en": "Beef Wellington and Truffle Risotto",
+    "text_es": "Wellington de Carne de res y Risotto de Trufa"
+   },
+   {
+    "level": 24,
+    "text_en": "Harvest Cake",
+    "text_es": "Pastel de la Cosecha"
+   },
+   {
+    "level": 25,
+    "text_en": "Golden Bisque and The Harvest Feast",
+    "text_es": "Crema Dorada y La Fiesta de la Cosecha"
+   }
+  ],
+  "perks": [],
+  "coming": [
+   {
+    "en": "New dishes are coming, and some of their ingredients will only turn up during events.",
+    "es": "Vienen platos nuevos, y algunos de sus ingredientes solo aparecerán durante eventos."
+   }
+  ]
+ },
+ {
+  "id": "crafting",
+  "maxLevel": 30,
+  "name_en": "Crafting",
+  "name_es": "Artesanía",
+  "unlocks": [
+   {
+    "level": 1,
+    "text_en": "Wooden Plank from 3 Wood, at the Carpenter's\nCopper Bar from 2 Copper Ore, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 2,
+    "text_en": "Rope from 3 Wheat, at the Carpenter's",
+    "text_es": null
+   },
+   {
+    "level": 3,
+    "text_en": "Repair Kit from 2 Wooden Plank and 1 Copper Bar, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 4,
+    "text_en": "Cut Rose Quartz from 2 Rose Quartz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 5,
+    "text_en": "Broom Charm from 1 Rope, 1 Cut Rose Quartz and 1 Marigold, at the Carpenter's",
+    "text_es": null
+   },
+   {
+    "level": 6,
+    "text_en": "Cut Topaz from 2 Topaz, at the Forge\nIron Bar from 2 Iron Ore, at the Forge\nIron Sword from 3 Iron Bar and 1 Wooden Plank, at the Forge\nIron Bow from 3 Iron Bar, 2 Wooden Plank and 2 Rope, at the Forge\nIron Staff from 3 Iron Bar, 2 Wooden Plank and 1 Cut Topaz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 7,
+    "text_en": "Vine Ring from 1 Rope and 2 Wooden Plank, at the Carpenter's",
+    "text_es": null
+   },
+   {
+    "level": 8,
+    "text_en": "Cut Sapphire from 2 Sapphire, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 9,
+    "text_en": "Cloth from 2 Wool, at the loom",
+    "text_es": null
+   },
+   {
+    "level": 10,
+    "text_en": "Topaz Ring from 1 Copper Bar and 1 Cut Topaz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 11,
+    "text_en": "Platinum Bar from 2 Platinum Ore, at the Forge\nBronze Sword from 6 Copper Bar, 2 Iron Bar and 1 Wooden Plank, at the Forge\nBronze Bow from 6 Copper Bar, 2 Iron Bar, 2 Wooden Plank and 2 Rope, at the Forge\nBronze Staff from 6 Copper Bar, 2 Iron Bar, 2 Wooden Plank and 1 Cut Topaz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 12,
+    "text_en": "Cut Emerald from 2 Emerald, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 13,
+    "text_en": "Gold Bar from 2 Gold Ore, at the Forge",
+    "text_es": "Oro Bar from 2 Gold Ore, at the Forge"
+   },
+   {
+    "level": 14,
+    "text_en": "Cut Amethyst from 2 Amethyst, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 15,
+    "text_en": "Amethyst Ring from 1 Gold Bar and 1 Cut Amethyst, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 16,
+    "text_en": "Crimson Bar from 2 Crimson Ore, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 17,
+    "text_en": "Cut Ruby from 2 Ruby, at the Forge\nGold Sword from 4 Gold Bar, 2 Platinum Bar, 1 Cut Emerald and 1 Wooden Plank, at the Forge\nGold Bow from 4 Gold Bar, 2 Platinum Bar, 1 Cut Emerald, 2 Wooden Plank and 2 Rope, at the Forge\nGold Staff from 4 Gold Bar, 2 Platinum Bar, 1 Cut Emerald, 2 Wooden Plank and 1 Cut Topaz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 18,
+    "text_en": "Sapphire Amulet from 1 Gold Bar, 1 Cut Sapphire and 1 Cloth, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 19,
+    "text_en": "Frost Bar from 2 Frost Ore, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 20,
+    "text_en": "Ruby Ring from 1 Gold Bar and 1 Cut Ruby, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 22,
+    "text_en": "Cut Diamond from 2 Diamond, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 23,
+    "text_en": "Shadow Bar from 2 Shadow Ore, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 24,
+    "text_en": "Emerald Amulet from 1 Gold Bar, 1 Cut Emerald and 1 Rope, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 25,
+    "text_en": "Amethyst Sword from 4 Shadow Bar, 2 Gold Bar, 2 Cut Amethyst and 1 Wooden Plank, at the Forge\nAmethyst Bow from 4 Shadow Bar, 2 Gold Bar, 2 Cut Amethyst, 2 Wooden Plank and 2 Rope, at the Forge\nAmethyst Staff from 4 Shadow Bar, 2 Gold Bar, 2 Cut Amethyst, 2 Wooden Plank and 1 Cut Topaz, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 26,
+    "text_en": "Diamond Ring from 1 Gold Bar and 1 Cut Diamond, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 27,
+    "text_en": "Obsidian Bar from 2 Obsidian Ore, at the Forge",
+    "text_es": null
+   },
+   {
+    "level": 28,
+    "text_en": "Royal Amulet from 2 Gold Bar, 1 Cut Diamond, 1 Cut Ruby and 1 Cloth, at the Forge",
+    "text_es": null
+   }
+  ],
+  "perks": [],
+  "coming": []
+ },
+ {
+  "id": "combat",
+  "maxLevel": 30,
+  "name_en": "Combat",
+  "name_es": "Combate",
+  "unlocks": [],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "Base damage 5, Health 100",
+    "text_es": "Daño base 5, Salud 100"
+   },
+   {
+    "level": 2,
+    "text_en": "Base damage 5, Health 102",
+    "text_es": "Daño base 5, Salud 102"
+   },
+   {
+    "level": 3,
+    "text_en": "Base damage 6, Health 103",
+    "text_es": "Daño base 6, Salud 103"
+   },
+   {
+    "level": 4,
+    "text_en": "Base damage 6, Health 105",
+    "text_es": "Daño base 6, Salud 105"
+   },
+   {
+    "level": 5,
+    "text_en": "Base damage 7, Health 107",
+    "text_es": "Daño base 7, Salud 107"
+   },
+   {
+    "level": 6,
+    "text_en": "Base damage 7, Health 109",
+    "text_es": "Daño base 7, Salud 109"
+   },
+   {
+    "level": 7,
+    "text_en": "Base damage 8, Health 110",
+    "text_es": "Daño base 8, Salud 110"
+   },
+   {
+    "level": 8,
+    "text_en": "Base damage 8, Health 112",
+    "text_es": "Daño base 8, Salud 112"
+   },
+   {
+    "level": 9,
+    "text_en": "Base damage 9, Health 114",
+    "text_es": "Daño base 9, Salud 114"
+   },
+   {
+    "level": 10,
+    "text_en": "Base damage 9, Health 116",
+    "text_es": "Daño base 9, Salud 116"
+   },
+   {
+    "level": 11,
+    "text_en": "Base damage 10, Health 117",
+    "text_es": "Daño base 10, Salud 117"
+   },
+   {
+    "level": 12,
+    "text_en": "Base damage 10, Health 119",
+    "text_es": "Daño base 10, Salud 119"
+   },
+   {
+    "level": 13,
+    "text_en": "Base damage 11, Health 121",
+    "text_es": "Daño base 11, Salud 121"
+   },
+   {
+    "level": 14,
+    "text_en": "Base damage 11, Health 122",
+    "text_es": "Daño base 11, Salud 122"
+   },
+   {
+    "level": 15,
+    "text_en": "Base damage 12, Health 124",
+    "text_es": "Daño base 12, Salud 124"
+   },
+   {
+    "level": 16,
+    "text_en": "Base damage 12, Health 126",
+    "text_es": "Daño base 12, Salud 126"
+   },
+   {
+    "level": 17,
+    "text_en": "Base damage 13, Health 128",
+    "text_es": "Daño base 13, Salud 128"
+   },
+   {
+    "level": 18,
+    "text_en": "Base damage 13, Health 129",
+    "text_es": "Daño base 13, Salud 129"
+   },
+   {
+    "level": 19,
+    "text_en": "Base damage 14, Health 131",
+    "text_es": "Daño base 14, Salud 131"
+   },
+   {
+    "level": 20,
+    "text_en": "Base damage 14, Health 133",
+    "text_es": "Daño base 14, Salud 133"
+   },
+   {
+    "level": 21,
+    "text_en": "Base damage 15, Health 134",
+    "text_es": "Daño base 15, Salud 134"
+   },
+   {
+    "level": 22,
+    "text_en": "Base damage 15, Health 136",
+    "text_es": "Daño base 15, Salud 136"
+   },
+   {
+    "level": 23,
+    "text_en": "Base damage 16, Health 138",
+    "text_es": "Daño base 16, Salud 138"
+   },
+   {
+    "level": 24,
+    "text_en": "Base damage 16, Health 140",
+    "text_es": "Daño base 16, Salud 140"
+   },
+   {
+    "level": 25,
+    "text_en": "Base damage 17, Health 141",
+    "text_es": "Daño base 17, Salud 141"
+   },
+   {
+    "level": 26,
+    "text_en": "Base damage 17, Health 143",
+    "text_es": "Daño base 17, Salud 143"
+   },
+   {
+    "level": 27,
+    "text_en": "Base damage 18, Health 145",
+    "text_es": "Daño base 18, Salud 145"
+   },
+   {
+    "level": 28,
+    "text_en": "Base damage 18, Health 147",
+    "text_es": "Daño base 18, Salud 147"
+   },
+   {
+    "level": 29,
+    "text_en": "Base damage 19, Health 148",
+    "text_es": "Daño base 19, Salud 148"
+   },
+   {
+    "level": 30,
+    "text_en": "Base damage 19, Health 150",
+    "text_es": "Daño base 19, Salud 150"
+   }
+  ],
+  "coming": []
+ },
+ {
+  "id": "husbandry",
+  "maxLevel": 30,
+  "name_en": "Animal Husbandry",
+  "name_es": "Ganadería",
+  "unlocks": [
+   {
+    "level": 1,
+    "text_en": "Chickens (Egg, Chicken Meat)",
+    "text_es": null
+   },
+   {
+    "level": 2,
+    "text_en": "Ducks (Duck Egg, Duck Meat)",
+    "text_es": null
+   },
+   {
+    "level": 3,
+    "text_en": "Beehives (Honey)",
+    "text_es": null
+   },
+   {
+    "level": 4,
+    "text_en": "Sheep (Wool, Mutton)",
+    "text_es": null
+   },
+   {
+    "level": 5,
+    "text_en": "Goats (Goat Milk, Goat Meat)",
+    "text_es": null
+   },
+   {
+    "level": 6,
+    "text_en": "Pigs (Truffle, Pork)",
+    "text_es": null
+   },
+   {
+    "level": 7,
+    "text_en": "Cows (Milk, Beef)",
+    "text_es": null
+   }
+  ],
+  "perks": [],
+  "coming": [
+   {
+    "en": "Ostriches are coming to Hollin's Farm, and your animals will start giving bigger eggs and more milk.",
+    "es": "Llegan avestruces a la Granja de Hollin, y tus animales empezarán a dar huevos más grandes y más leche."
+   }
+  ]
+ },
+ {
+  "id": "exploration",
+  "maxLevel": 30,
+  "name_en": "Exploration",
+  "name_es": "Exploración",
+  "unlocks": [],
+  "perks": [
+   {
+    "level": 1,
+    "text_en": "Your mount goes 2% further on its stamina",
+    "text_es": "Tu montura llega un 2% más lejos con su resistencia"
+   },
+   {
+    "level": 2,
+    "text_en": "Your mount goes 4% further on its stamina",
+    "text_es": "Tu montura llega un 4% más lejos con su resistencia"
+   },
+   {
+    "level": 3,
+    "text_en": "Your mount goes 6% further on its stamina",
+    "text_es": "Tu montura llega un 6% más lejos con su resistencia"
+   },
+   {
+    "level": 4,
+    "text_en": "Your mount goes 8% further on its stamina",
+    "text_es": "Tu montura llega un 8% más lejos con su resistencia"
+   },
+   {
+    "level": 5,
+    "text_en": "Your mount goes 10% further on its stamina",
+    "text_es": "Tu montura llega un 10% más lejos con su resistencia"
+   },
+   {
+    "level": 6,
+    "text_en": "Your mount goes 12% further on its stamina",
+    "text_es": "Tu montura llega un 12% más lejos con su resistencia"
+   },
+   {
+    "level": 7,
+    "text_en": "Your mount goes 14% further on its stamina",
+    "text_es": "Tu montura llega un 14% más lejos con su resistencia"
+   },
+   {
+    "level": 8,
+    "text_en": "Your mount goes 16% further on its stamina",
+    "text_es": "Tu montura llega un 16% más lejos con su resistencia"
+   },
+   {
+    "level": 9,
+    "text_en": "Your mount goes 18% further on its stamina",
+    "text_es": "Tu montura llega un 18% más lejos con su resistencia"
+   },
+   {
+    "level": 10,
+    "text_en": "Your mount goes 20% further on its stamina",
+    "text_es": "Tu montura llega un 20% más lejos con su resistencia"
+   },
+   {
+    "level": 11,
+    "text_en": "Your mount goes 22% further on its stamina",
+    "text_es": "Tu montura llega un 22% más lejos con su resistencia"
+   },
+   {
+    "level": 12,
+    "text_en": "Your mount goes 24% further on its stamina",
+    "text_es": "Tu montura llega un 24% más lejos con su resistencia"
+   },
+   {
+    "level": 13,
+    "text_en": "Your mount goes 26% further on its stamina",
+    "text_es": "Tu montura llega un 26% más lejos con su resistencia"
+   },
+   {
+    "level": 14,
+    "text_en": "Your mount goes 28% further on its stamina",
+    "text_es": "Tu montura llega un 28% más lejos con su resistencia"
+   },
+   {
+    "level": 15,
+    "text_en": "Your mount goes 30% further on its stamina",
+    "text_es": "Tu montura llega un 30% más lejos con su resistencia"
+   },
+   {
+    "level": 16,
+    "text_en": "Your mount goes 32% further on its stamina",
+    "text_es": "Tu montura llega un 32% más lejos con su resistencia"
+   },
+   {
+    "level": 17,
+    "text_en": "Your mount goes 34% further on its stamina",
+    "text_es": "Tu montura llega un 34% más lejos con su resistencia"
+   },
+   {
+    "level": 18,
+    "text_en": "Your mount goes 36% further on its stamina",
+    "text_es": "Tu montura llega un 36% más lejos con su resistencia"
+   },
+   {
+    "level": 19,
+    "text_en": "Your mount goes 38% further on its stamina",
+    "text_es": "Tu montura llega un 38% más lejos con su resistencia"
+   },
+   {
+    "level": 20,
+    "text_en": "Your mount goes 40% further on its stamina",
+    "text_es": "Tu montura llega un 40% más lejos con su resistencia"
+   },
+   {
+    "level": 21,
+    "text_en": "Your mount goes 42% further on its stamina",
+    "text_es": "Tu montura llega un 42% más lejos con su resistencia"
+   },
+   {
+    "level": 22,
+    "text_en": "Your mount goes 44% further on its stamina",
+    "text_es": "Tu montura llega un 44% más lejos con su resistencia"
+   },
+   {
+    "level": 23,
+    "text_en": "Your mount goes 46% further on its stamina",
+    "text_es": "Tu montura llega un 46% más lejos con su resistencia"
+   },
+   {
+    "level": 24,
+    "text_en": "Your mount goes 48% further on its stamina",
+    "text_es": "Tu montura llega un 48% más lejos con su resistencia"
+   },
+   {
+    "level": 25,
+    "text_en": "Your mount goes 50% further on its stamina",
+    "text_es": "Tu montura llega un 50% más lejos con su resistencia"
+   },
+   {
+    "level": 26,
+    "text_en": "Your mount goes 52% further on its stamina",
+    "text_es": "Tu montura llega un 52% más lejos con su resistencia"
+   },
+   {
+    "level": 27,
+    "text_en": "Your mount goes 54% further on its stamina",
+    "text_es": "Tu montura llega un 54% más lejos con su resistencia"
+   },
+   {
+    "level": 28,
+    "text_en": "Your mount goes 56% further on its stamina",
+    "text_es": "Tu montura llega un 56% más lejos con su resistencia"
+   },
+   {
+    "level": 29,
+    "text_en": "Your mount goes 58% further on its stamina",
+    "text_es": "Tu montura llega un 58% más lejos con su resistencia"
+   },
+   {
+    "level": 30,
+    "text_en": "Your mount goes 60% further on its stamina",
+    "text_es": "Tu montura llega un 60% más lejos con su resistencia"
+   }
+  ],
+  "coming": []
+ }
+]

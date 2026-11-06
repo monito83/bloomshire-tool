@@ -1,0 +1,14 @@
+{
+ "gameVersion": "4ccdce8f2b1e",
+ "rulesHash": "30fde05c1702",
+ "downloadedAt": "2026-11-05T20:56:33",
+ "generatedAt": "2026-11-06T00:59:38.674Z",
+ "counts": {
+  "codex": 360,
+  "skills": 10,
+  "beasts": 64,
+  "regions": 13,
+  "places": 64
+ },
+ "note": "Datos generados con scripts/build_official_data.mjs a partir del juego Bloomshire. Textos del juego, uso con credito."
+}

@@ -3,6 +3,8 @@ import React, { useState, useMemo } from 'react';
 import { Search, MapPin, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import itemEncyclopediaData from '../../../../public/data/bloomshire/item_encyclopedia.json';
+import useOfficialData from '../official/useOfficialData';
+import { baseLang, pickLang, normalizeText } from '../logbook/logbookModel';
 import { 
   ItemSprite, 
   getItemIcon, 
@@ -10,8 +12,51 @@ import {
   itemMatchesCategory 
 } from '../bloomshireHelpers';
 
+const RARITY_STYLE = {
+  Common: 'border-slate-600 text-slate-300',
+  Uncommon: 'border-emerald-500/50 text-emerald-300',
+  Rare: 'border-sky-500/50 text-sky-300',
+  Epic: 'border-fuchsia-500/50 text-fuchsia-300',
+  Legendary: 'border-amber-400/60 text-amber-300'
+};
+
+/** Bloque con los datos oficiales del Codice del juego para un item. */
+function OfficialCodexInfo({ entry, lang, t }) {
+  const gives = pickLang(entry, 'gives', lang) || [];
+  const xp = pickLang(entry, 'xp', lang) || [];
+  const about = pickLang(entry, 'about', lang);
+  const worth = pickLang(entry, 'worth', lang);
+  if (!gives.length && !xp.length && !about && !worth) return null;
+  return (
+    <div className="p-2 rounded-xl bg-gradient-to-br from-sky-500/[0.07] to-transparent border border-sky-500/25 text-[11px] leading-snug space-y-1">
+      <div className="text-[9.5px] font-bold text-sky-300/90 uppercase tracking-wider flex items-center gap-1">
+        <span>📖</span>
+        <span>{t('codex.title')}</span>
+      </div>
+      {about && <div className="text-slate-300 italic">{about}</div>}
+      {gives.map((g, i) => <div key={`g${i}`} className="text-emerald-300/90">✦ {g}</div>)}
+      {xp.map((x, i) => <div key={`x${i}`} className="text-purple-300/90">⬆ {x}</div>)}
+      {worth && <div className="text-amber-300/90">🪙 {worth}</div>}
+    </div>
+  );
+}
+
 export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
-  const { t } = useTranslation('items');
+  const { t, i18n } = useTranslation('items');
+  const lang = baseLang(i18n.language);
+  const codex = useOfficialData('codex');
+  const codexMeta = useOfficialData('meta');
+  const codexById = useMemo(() => new Map((codex?.items || []).map((c) => [c.id, c])), [codex]);
+  const officialOf = (item) => codexById.get(item.id) || null;
+  const displayName = (item) => {
+    const c = officialOf(item);
+    return c ? pickLang(c, 'name', lang) : (item.nameEs || item.id);
+  };
+  const obtainText = (item) => {
+    const c = officialOf(item);
+    const from = c ? pickLang(c, 'from', lang) || [] : [];
+    return from.length ? from.join(' · ') : item.howToGet;
+  };
   const [itemSearchQuery, setItemSearchQuery] = useState('');
   const [itemCategoryFilter, setItemCategoryFilter] = useState('all');
   const [itemViewMode, setItemViewMode] = useState('grid');
@@ -39,10 +84,12 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
       const inHow = (item.howToGet || '').toLowerCase().includes(q);
       const inLoc = (item.mapLocation?.label || '').toLowerCase().includes(q);
       const inUsed = Array.isArray(item.usedIn) && item.usedIn.some(u => u.toLowerCase().includes(q));
+      const c = codexById.get(item.id);
+      const inCodex = Boolean(c) && normalizeText([c.name_en, c.name_es, ...(c.from_en || []), ...(c.from_es || [])].join(' ')).includes(normalizeText(q));
 
-      return inName || inCat || inHow || inLoc || inUsed;
+      return inName || inCat || inHow || inLoc || inUsed || inCodex;
     });
-  }, [itemSearchQuery, itemCategoryFilter]);
+  }, [itemSearchQuery, itemCategoryFilter, codexById]);
 
   return (
     <div className="h-full overflow-y-auto p-5 space-y-4 custom-scrollbar">
@@ -62,6 +109,14 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
             <div className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[11px] font-bold">
               {t('itemsCount', { count: filteredEncyclopediaItems.length })}
             </div>
+            {codex && codexMeta && (
+              <div
+                className="px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[11px] font-bold cursor-default"
+                title={t('codex.badgeTooltip', { version: codexMeta.gameVersion, date: String(codexMeta.downloadedAt || '').slice(0, 10) })}
+              >
+                {t('codex.badge')}
+              </div>
+            )}
             <div className="flex items-center bg-[#080d17] p-0.5 rounded-lg border border-slate-800">
               <button
                 onClick={() => setItemViewMode('grid')}
@@ -157,8 +212,8 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
                     <div className="flex items-center gap-2.5 min-w-0 flex-1">
                       <ItemSprite name={item.nameEs || item.id} id={item.id} fallback={item.icon || getItemIcon(item.cat)} size={26} className="shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <div className="font-bold text-white text-xs leading-snug truncate" title={item.nameEs || item.id}>
-                          {item.nameEs || item.id}
+                        <div className="font-bold text-white text-xs leading-snug truncate" title={displayName(item)}>
+                          {displayName(item)}
                         </div>
                         <div className="text-[10px] text-slate-400 font-mono truncate mt-0.5">
                           <span className="text-amber-400/90 font-semibold">{item.id}</span> • {item.categoryLabel || getItemCategoryLabel(item.cat)}
@@ -190,14 +245,21 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
                   </div>
 
                   {/* Sub-fila de badges adicionales */}
-                  {item.skillReq && (
+                  {(item.skillReq || officialOf(item)?.rarity) && (
                     <div className="flex items-center gap-1">
-                      <span 
-                        className="px-1.5 py-0.2 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[9.5px] font-mono font-bold"
-                        title={t('card.skillReqTooltip', { req: item.skillReq })}
-                      >
-                        {t('card.skillReq', { req: item.skillReq })}
-                      </span>
+                      {officialOf(item)?.rarity && (
+                        <span className={`px-1.5 rounded border text-[9.5px] font-bold ${RARITY_STYLE[officialOf(item).rarity] || RARITY_STYLE.Common}`}>
+                          {t(`codex.rarity.${officialOf(item).rarity}`, { defaultValue: officialOf(item).rarity })}
+                        </span>
+                      )}
+                      {item.skillReq && (
+                        <span 
+                          className="px-1.5 py-0.2 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[9.5px] font-mono font-bold"
+                          title={t('card.skillReqTooltip', { req: item.skillReq })}
+                        >
+                          {t('card.skillReq', { req: item.skillReq })}
+                        </span>
+                      )}
                     </div>
                   )}
 
@@ -207,13 +269,15 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
                       <span>🧭</span>
                       <span>{t('card.obtain')}</span>
                     </div>
-                    <div className="text-slate-200 text-[11.5px] font-medium leading-relaxed">{item.howToGet}</div>
-                    {item.details && (
+                    <div className="text-slate-200 text-[11.5px] font-medium leading-relaxed">{obtainText(item)}</div>
+                    {item.details && !(officialOf(item)?.gives_en || []).length && (
                       <div className="text-[10.5px] text-amber-300/80 mt-1 font-mono">
                         📌 {item.details}
                       </div>
                     )}
                   </div>
+
+                  {officialOf(item) && <OfficialCodexInfo entry={officialOf(item)} lang={lang} t={t} />}
 
                   {/* Se pide en (colapsable) */}
                   {hasUsedIn && (
@@ -278,14 +342,14 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
                   <ItemSprite name={item.nameEs || item.id} id={item.id} fallback={item.icon || getItemIcon(item.cat)} size={24} className="shrink-0" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-white text-xs truncate">{item.nameEs || item.id}</span>
+                      <span className="font-bold text-white text-xs truncate">{displayName(item)}</span>
                       <span className="text-[9.5px] text-amber-400/90 font-mono">({item.id})</span>
                       <span className="text-[10px] bg-slate-800/80 text-slate-300 px-1.5 py-0.2 rounded border border-slate-700">
                         {item.categoryLabel || getItemCategoryLabel(item.cat)}
                       </span>
                     </div>
                     <div className="text-[10.5px] text-slate-400 truncate mt-0.5">
-                      🧭 {item.howToGet}
+                      🧭 {obtainText(item)}
                     </div>
                   </div>
                 </div>

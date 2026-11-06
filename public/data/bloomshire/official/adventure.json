@@ -1,0 +1,1035 @@
+{
+ "regions": [
+  {
+   "id": "home",
+   "map": "home_island",
+   "name_en": "Home Island",
+   "name_es": "Isla Natal",
+   "about_en": "Your own island, south of town across the water. Nothing hostile ever comes here.",
+   "about_es": "Tu propia isla, al sur del pueblo, al otro lado del agua. Nada hostil llega aquí jamás.",
+   "hint_en": "Your own island, across the water from town.",
+   "hint_es": "Tu propia isla, al otro lado del agua desde el pueblo.",
+   "places": [
+    {
+     "id": "cottage",
+     "map": "home_island",
+     "at": [
+      384,
+      240
+     ],
+     "name_en": "Your Cottage",
+     "name_es": "Tu Cabaña",
+     "words_en": "Your home. Sleep in your bed for energy or health, cook at your stove, and keep what you cannot carry in your chests.",
+     "words_es": "Tu hogar. Duerme en tu cama para recuperar energía o salud, cocina en tu estufa y guarda lo que no puedas cargar en tus cofres.",
+     "way_en": "The door in the middle of the island.",
+     "way_es": "La puerta en medio de la isla."
+    },
+    {
+     "id": "field",
+     "map": "home_island",
+     "at": [
+      288,
+      232
+     ],
+     "name_en": "Your Field",
+     "name_es": "Tu Campo",
+     "words_en": "Your own field. Till it, sow it, water it and bring in the harvest, every crop yours alone.",
+     "words_es": "Tu propio campo. Ara, siembra, riega y cosecha; cada cultivo es solo tuyo.",
+     "way_en": "West of your cottage.",
+     "way_es": "Al oeste de tu cabaña."
+    },
+    {
+     "id": "jetty",
+     "map": "home_island",
+     "at": [
+      320,
+      395
+     ],
+     "name_en": "The Jetty",
+     "name_es": "El Muelle",
+     "words_en": "Your boat waits here. Row across to Bloomshire and back whenever you like.",
+     "words_es": "Tu bote espera aquí. Rema hasta Bloomshire y de vuelta cuando quieras.",
+     "way_en": "The south side of the island.",
+     "way_es": "El lado sur de la isla."
+    }
+   ]
+  },
+  {
+   "id": "town",
+   "map": "bloomshire",
+   "name_en": "Bloomshire",
+   "name_es": null,
+   "about_en": "The town, where you buy, sell, bank and pick up most quests. Nothing hostile ever comes in.",
+   "about_es": "El pueblo, donde compras, vendes, usas el banco y recoges la mayoría de las misiones. Nada hostil entra aquí jamás.",
+   "hint_en": "Row across from your island and you are there.",
+   "hint_es": "Rema desde tu isla y ya estás allí.",
+   "places": [
+    {
+     "id": "square",
+     "map": "bloomshire",
+     "at": [
+      2984,
+      2143
+     ],
+     "name_en": "The Square",
+     "name_es": "La Plaza",
+     "words_en": "The heart of town, with its fountain. Every farmer passes through, and the town gathers here for its fireworks.",
+     "words_es": "El corazón del pueblo, con su fuente. Todos los granjeros pasan por aquí, y el pueblo se reúne para los fuegos artificiales.",
+     "way_en": "The middle of town, north of the jetty.",
+     "way_es": "El centro del pueblo, al norte del muelle."
+    },
+    {
+     "id": "market",
+     "map": "bloomshire",
+     "at": [
+      3095,
+      2600
+     ],
+     "name_en": "The Market Hall",
+     "name_es": "El Mercado Cubierto",
+     "words_en": "Rowan's hall, where farmers sell to each other. Chests and the Snowman are sold here too.",
+     "words_es": "El salón de Rowan, donde los granjeros se venden entre sí. Aquí también se venden Cofres y el Muñeco de Nieve.",
+     "way_en": "South of the square.",
+     "way_es": "Al sur de la plaza."
+    },
+    {
+     "id": "general",
+     "map": "bloomshire",
+     "at": [
+      2745,
+      2060
+     ],
+     "name_en": "The General Store",
+     "name_es": "La Tienda General",
+     "words_en": "Odette buys almost anything and pins the town's orders on her board. Her backpack gives you ten more slots.",
+     "words_es": "Odette compra casi de todo y fija los pedidos del pueblo en su tablero. Su mochila te da diez espacios más.",
+     "way_en": "West of the square.",
+     "way_es": "Al oeste de la plaza."
+    },
+    {
+     "id": "seeds",
+     "map": "bloomshire",
+     "at": [
+      3193,
+      2100
+     ],
+     "name_en": "The Seed and Tool Shop",
+     "name_es": "Semillas y Útiles",
+     "words_en": "Hazel sells seeds for every season and the basic tools.",
+     "words_es": "Hazel vende semillas de todas las estaciones y las herramientas básicas.",
+     "way_en": "North of the square.",
+     "way_es": "Al norte de la plaza."
+    },
+    {
+     "id": "forge",
+     "map": "bloomshire",
+     "at": [
+      3326,
+      2005
+     ],
+     "name_en": "The Forge",
+     "name_es": "La Herrería",
+     "words_en": "Bram sells axes and pickaxes, and his anvil makes swords, bows and staffs from bars and gems.",
+     "words_es": "Bram vende hachas y picos, y su yunque hace espadas, arcos y bastones a partir de barras y gemas.",
+     "way_en": "North east of the square.",
+     "way_es": "Al noreste de la plaza."
+    },
+    {
+     "id": "carpenter",
+     "map": "bloomshire",
+     "at": [
+      3597,
+      1975
+     ],
+     "name_en": "The Carpenter's",
+     "name_es": "La Carpintería",
+     "words_en": "Pell's workbench turns wood into planks and much more. The Woodlot behind it is where wood is cut.",
+     "words_es": "La mesa de trabajo de Pell convierte madera en tablones y mucho más. El Lote de Madera detrás de ella es donde se corta la madera.",
+     "way_en": "The east side of town, by the Woodlot.",
+     "way_es": "El lado este del pueblo, junto al Lote de Madera."
+    },
+    {
+     "id": "bakery",
+     "map": "bloomshire",
+     "at": [
+      2306,
+      2006
+     ],
+     "name_en": "The Bakery",
+     "name_es": "La Panadería",
+     "words_en": "Tamsin cooks the town's dishes, and her stove is free to use.",
+     "words_es": "Tamsin cocina los platillos del pueblo, y su estufa es de uso gratis.",
+     "way_en": "The west side of town.",
+     "way_es": "El lado oeste del pueblo."
+    },
+    {
+     "id": "bank",
+     "map": "bloomshire",
+     "at": [
+      3498,
+      2380
+     ],
+     "name_en": "The Bank",
+     "name_es": "El Banco",
+     "words_en": "Farthing keeps your Gold safe. The Exchange next door swaps coins between farmers.",
+     "words_es": "Farthing guarda tu Oro a salvo. La Casa de Cambio de al lado cambia monedas entre granjeros.",
+     "way_en": "East of the square.",
+     "way_es": "Al este de la plaza."
+    },
+    {
+     "id": "fisher",
+     "map": "bloomshire",
+     "at": [
+      2855,
+      2660
+     ],
+     "name_en": "The Fisherman's Cottage",
+     "name_es": "La Cabaña del Pescador",
+     "words_en": "Wren sells rods and buys the fish you catch.",
+     "words_es": "Wren vende cañas y compra los peces que pescas.",
+     "way_en": "By the river, near the jetty.",
+     "way_es": "Junto al río, cerca del muelle."
+    },
+    {
+     "id": "jetty",
+     "map": "bloomshire",
+     "at": [
+      2690,
+      3000
+     ],
+     "name_en": "The Jetty and the Golden Boat",
+     "name_es": "El Muelle y el Bote Dorado",
+     "words_en": "Your boat home leaves here, and the golden boat crosses to the VIP Quarter.",
+     "words_es": "Tu bote a casa sale de aquí, y el bote dorado cruza al Barrio VIP.",
+     "way_en": "The south of town.",
+     "way_es": "El sur del pueblo."
+    }
+   ]
+  },
+  {
+   "id": "moonmere",
+   "map": "bloomshire",
+   "name_en": "Moonmere",
+   "name_es": null,
+   "about_en": "The great lake north of town, with the best fishing in Bloomshire and the end of the Founding Farmers' story.",
+   "about_es": "El gran lago al norte del pueblo, con la mejor pesca de Bloomshire y el final de la historia de los Granjeros Fundadores.",
+   "hint_en": "Somewhere north of town, past the last houses, there is water.",
+   "hint_es": "En algún lugar al norte del pueblo, pasando las últimas casas, hay agua.",
+   "places": [
+    {
+     "id": "ring",
+     "map": "bloomshire",
+     "at": [
+      2880,
+      624
+     ],
+     "name_en": "The Stone Ring",
+     "name_es": "El Círculo de Piedra",
+     "words_en": "Twelve old standing stones in the middle of the lake. Stepping stones run out to them from the meadow on the south shore.",
+     "words_es": "Doce piedras erguidas antiguas en el centro del lago. Piedras de paso llevan hasta ellas desde el prado en la orilla sur.",
+     "way_en": "The middle of the lake.",
+     "way_es": "El centro del lago."
+    },
+    {
+     "id": "lagoon",
+     "map": "bloomshire",
+     "at": [
+      2352,
+      480
+     ],
+     "name_en": "The Lagoon Village",
+     "name_es": "El Pueblo de la Laguna",
+     "words_en": "Where the merfolk live, out on the water. Sylmare speaks for them.",
+     "words_es": "Donde vive la gente del mar, sobre el agua. Sylmare habla por ellos.",
+     "way_en": "The west side of the lake.",
+     "way_es": "El lado oeste del lago."
+    },
+    {
+     "id": "fairy",
+     "map": "bloomshire",
+     "at": [
+      3376,
+      500
+     ],
+     "name_en": "The Moon Fairy's Island",
+     "name_es": "La Isla del Hada de la Luna",
+     "words_en": "A little island with the Moon Fairy's shrine.",
+     "words_es": "Una pequeña isla con el santuario del Hada de la Luna.",
+     "way_en": "The east side of the lake.",
+     "way_es": "El lado este del lago."
+    },
+    {
+     "id": "pool",
+     "map": "bloomshire",
+     "at": [
+      3664,
+      190
+     ],
+     "name_en": "Marven's Pool",
+     "name_es": "Estanque de Marven",
+     "words_en": "Marven, the lake's mermaid, keeps to her pool below the falls. The Ghost Catfish bites only at Moonmere, and only at night.",
+     "words_es": "Marven, la sirena del lago, se queda en su poza bajo las cascadas. El Bagre Fantasma solo muerde en Moonmere, y solo de noche.",
+     "way_en": "The north east corner, below the falls.",
+     "way_es": "La esquina noreste, debajo de las cataratas."
+    },
+    {
+     "id": "oldcave",
+     "map": "bloomshire",
+     "at": [
+      2904,
+      230
+     ],
+     "name_en": "The Old Cave",
+     "name_es": "La Cueva Vieja",
+     "words_en": "A flooded cave of drowned spiders and old chests. It takes a Bronze pickaxe to get in.",
+     "words_es": "Una cueva inundada de arañas ahogadas y cofres viejos. Hace falta un pico de Bronce para entrar.",
+     "way_en": "The north shore.",
+     "way_es": "La orilla norte."
+    }
+   ]
+  },
+  {
+   "id": "southvale",
+   "map": "bloomshire",
+   "name_en": "The Southvale",
+   "name_es": "El Valle del Sur",
+   "about_en": "Farms, orchards and meadows south of town, on the way to the sea.",
+   "about_es": "Granjas, huertos y prados al sur del pueblo, camino al mar.",
+   "hint_en": "Follow the road south out of town.",
+   "hint_es": "Sigue el camino al sur del pueblo.",
+   "places": [
+    {
+     "id": "hollin",
+     "map": "bloomshire",
+     "at": [
+      2088,
+      3880
+     ],
+     "name_en": "Hollin's Farm",
+     "name_es": "Granja de Hollin",
+     "words_en": "Hollin keeps the town's animals. Feed them and they give eggs, milk and wool.",
+     "words_es": "Hollin cuida los animales del pueblo. Aliméntalos y te darán huevos, leche y lana.",
+     "way_en": "Down the road south of town, on the west side.",
+     "way_es": "Por el camino al sur del pueblo, del lado oeste."
+    },
+    {
+     "id": "windmill",
+     "map": "bloomshire",
+     "at": [
+      3776,
+      4104
+     ],
+     "name_en": "The Windmill Rise",
+     "name_es": "La Colina del Molino",
+     "words_en": "The windmill on its hill, turning over the fields.",
+     "words_es": "El molino en su colina, girando sobre los campos.",
+     "way_en": "The east side of the Southvale.",
+     "way_es": "El lado este de Southvale."
+    },
+    {
+     "id": "orchard",
+     "map": "bloomshire",
+     "at": [
+      3872,
+      4936
+     ],
+     "name_en": "Ashby's Orchard",
+     "name_es": "Huerto de Ashby",
+     "words_en": "Rows of fruit trees in Ashby's keeping.",
+     "words_es": "Hileras de árboles frutales al cuidado de Ashby.",
+     "way_en": "The south east of the Southvale.",
+     "way_es": "El sureste del Valle del Sur."
+    },
+    {
+     "id": "halfway",
+     "map": "bloomshire",
+     "at": [
+      3336,
+      3928
+     ],
+     "name_en": "The Halfway House",
+     "name_es": "La Casa a Medio Camino",
+     "words_en": "An inn halfway between the town and the sea.",
+     "words_es": "Una posada a medio camino entre el pueblo y el mar.",
+     "way_en": "The middle of the Southvale, by the road.",
+     "way_es": "El centro del Valle del Sur, junto al camino."
+    },
+    {
+     "id": "meadows",
+     "map": "bloomshire",
+     "at": [
+      2768,
+      5280
+     ],
+     "name_en": "The Salt Meadows",
+     "name_es": "Los Prados de Sal",
+     "words_en": "Wide meadows where the vale meets the sea air.",
+     "words_es": "Amplios prados donde el valle se encuentra con el aire del mar.",
+     "way_en": "The south of the Southvale, above the Bay.",
+     "way_es": "El sur del Valle del Sur, encima de la Bahía."
+    }
+   ]
+  },
+  {
+   "id": "bay",
+   "map": "bloomshire",
+   "name_en": "Bloomshire Bay",
+   "name_es": "Bahía de Bloomshire",
+   "about_en": "The coast. A beach, a hamlet, a lighthouse and the sea, where the sea fish bite.",
+   "about_es": "La costa. Una playa, una aldea, un faro y el mar, donde muerden los peces de mar.",
+   "hint_en": "Keep going south until the land runs out.",
+   "hint_es": "Sigue hacia el sur hasta que se acabe la tierra.",
+   "places": [
+    {
+     "id": "hamlet",
+     "map": "bloomshire",
+     "at": [
+      3488,
+      5984
+     ],
+     "name_en": "The Hamlet",
+     "name_es": "La Aldea",
+     "words_en": "A little fishing hamlet above the beach.",
+     "words_es": "Una pequeña aldea de pescadores sobre la playa.",
+     "way_en": "The middle of the Bay.",
+     "way_es": "El centro de la Bahía."
+    },
+    {
+     "id": "beach",
+     "map": "bloomshire",
+     "at": [
+      2192,
+      6480
+     ],
+     "name_en": "Sunny Beach",
+     "name_es": "Playa Soleada",
+     "words_en": "Sand and sea. Cast from the shore for Sardines, Herring and the sea's rarer fish.",
+     "words_es": "Arena y mar. Lanza la caña desde la orilla para pescar Sardinas, Arenques y los peces más raros del mar.",
+     "way_en": "The west of the Bay.",
+     "way_es": "El oeste de la Bahía."
+    },
+    {
+     "id": "pier",
+     "map": "bloomshire",
+     "at": [
+      3440,
+      6720
+     ],
+     "name_en": "The Dock and the Long Pier",
+     "name_es": "El Muelle y el Embarcadero Largo",
+     "words_en": "The pier runs far out over the water, the best spot to fish the deep sea.",
+     "words_es": "El muelle se extiende muy lejos sobre el agua, el mejor lugar para pescar en alta mar.",
+     "way_en": "South of the hamlet.",
+     "way_es": "Al sur de la aldea."
+    },
+    {
+     "id": "lighthouse",
+     "map": "bloomshire",
+     "at": [
+      4288,
+      6256
+     ],
+     "name_en": "The Lighthouse",
+     "name_es": "El Faro",
+     "words_en": "The lighthouse on the point, watching over the Bay.",
+     "words_es": "El faro en la punta, vigilando la Bahía.",
+     "way_en": "The east of the Bay.",
+     "way_es": "El este de la Bahía."
+    },
+    {
+     "id": "pools",
+     "map": "bloomshire",
+     "at": [
+      4096,
+      6544
+     ],
+     "name_en": "The Tide Pools",
+     "name_es": "Las Pozas de Marea",
+     "words_en": "Rock pools left by the tide, below the lighthouse.",
+     "words_es": "Pozas de marea dejadas por la marea, bajo el faro.",
+     "way_en": "Below the lighthouse.",
+     "way_es": "Bajo el faro."
+    }
+   ]
+  },
+  {
+   "id": "whisperwood",
+   "map": "whisperwood",
+   "name_en": "Whisperwood",
+   "name_es": null,
+   "about_en": "A great wood west of town. Friendly near the road, stranger the deeper you go.",
+   "about_es": "Un gran bosque al oeste del pueblo. Amigable cerca del camino, más extraño cuanto más adentro vas.",
+   "hint_en": "Head west from town, in under the trees.",
+   "hint_es": "Ve al oeste desde el pueblo, bajo los árboles.",
+   "places": [
+    {
+     "id": "fairyring",
+     "map": "whisperwood",
+     "at": [
+      1416,
+      488
+     ],
+     "name_en": "The Fairy Ring",
+     "name_es": "El Círculo de las Hadas",
+     "words_en": "A ring of mushrooms deep in the north of the wood.",
+     "words_es": "Un anillo de hongos en lo profundo del norte del bosque.",
+     "way_en": "The far north of Whisperwood.",
+     "way_es": "El extremo norte de Whisperwood."
+    },
+    {
+     "id": "charcoal",
+     "map": "whisperwood",
+     "at": [
+      1416,
+      2664
+     ],
+     "name_en": "The Charcoal Burners' Clearing",
+     "name_es": "El Claro de los Carboneros",
+     "words_en": "A clearing where the charcoal burners work.",
+     "words_es": "Un claro donde trabajan los carboneros.",
+     "way_en": "The east side, halfway along the wood.",
+     "way_es": "El lado este, a mitad del bosque."
+    },
+    {
+     "id": "meadow",
+     "map": "whisperwood",
+     "at": [
+      1424,
+      3248
+     ],
+     "name_en": "The Deer Meadow",
+     "name_es": "El Prado de los Ciervos",
+     "words_en": "An open meadow among the trees, where the deer graze.",
+     "words_es": "Un prado abierto entre los árboles, donde pastan los ciervos.",
+     "way_en": "The east side, south of the clearing.",
+     "way_es": "El lado este, al sur del claro."
+    },
+    {
+     "id": "herbalist",
+     "map": "whisperwood",
+     "at": [
+      1432,
+      3928
+     ],
+     "name_en": "The Herbalist's Cottage",
+     "name_es": "La Cabaña del Herbolario",
+     "words_en": "A cottage among the herbs, deep in the south woods.",
+     "words_es": "Una cabaña entre hierbas, en lo profundo del bosque sur.",
+     "way_en": "The south east of the wood.",
+     "way_es": "El sureste del bosque."
+    },
+    {
+     "id": "foresters",
+     "map": "whisperwood",
+     "at": [
+      168,
+      4120
+     ],
+     "name_en": "The Foresters' Camp",
+     "name_es": "El Campamento de los Guardabosques",
+     "words_en": "The foresters' camp on the west edge of the wood.",
+     "words_es": "El campamento de los leñadores en el borde oeste del bosque.",
+     "way_en": "The far south west.",
+     "way_es": "El extremo suroeste."
+    },
+    {
+     "id": "glimmer",
+     "map": "whisperwood",
+     "at": [
+      464,
+      1730
+     ],
+     "name_en": "Glimmer Hollow",
+     "name_es": "Hondonada del Destello",
+     "words_en": "A cave of shining stones, gentle for a first mine. Glimmer spiders and crystal slimes, and Quartz for the early quests.",
+     "words_es": "Una cueva de piedras brillantes, suave para una primera mina. Arañas destello y slimes de cristal, y Cuarzo para las primeras misiones.",
+     "way_en": "The west side, north of the middle.",
+     "way_es": "El lado oeste, al norte del centro."
+    }
+   ]
+  },
+  {
+   "id": "stonepeak",
+   "map": "stonepeak",
+   "name_en": "Stonepeak",
+   "name_es": null,
+   "about_en": "Old mining country east of town, home to most of the caves, with golems and orcs on its slopes.",
+   "about_es": "Antigua zona minera al este del pueblo, hogar de la mayoría de las cuevas, con gólems y orcos en sus laderas.",
+   "hint_en": "Head east from town, where the road starts to climb.",
+   "hint_es": "Ve al este desde el pueblo, donde el camino empieza a subir.",
+   "places": [
+    {
+     "id": "yard",
+     "map": "stonepeak",
+     "at": [
+      352,
+      2392
+     ],
+     "name_en": "The Stonecutters' Yard",
+     "name_es": "El Patio de los Canteros",
+     "words_en": "Where the stone of Stonepeak is cut and stacked.",
+     "words_es": "Donde se corta y se apila la piedra de Stonepeak.",
+     "way_en": "The west side, south of the caves.",
+     "way_es": "El lado oeste, al sur de las cuevas."
+    },
+    {
+     "id": "beacon",
+     "map": "stonepeak",
+     "at": [
+      840,
+      3256
+     ],
+     "name_en": "The Old Beacon",
+     "name_es": "La Vieja Baliza",
+     "words_en": "An old beacon on the heights.",
+     "words_es": "Un viejo faro en las alturas.",
+     "way_en": "The middle of the south slopes.",
+     "way_es": "El centro de las laderas del sur."
+    },
+    {
+     "id": "gems",
+     "map": "stonepeak",
+     "at": [
+      504,
+      3136
+     ],
+     "name_en": "The Gem Hunters' Camp",
+     "name_es": "El Campamento de los Cazadores de Gemas",
+     "words_en": "Gem hunters camp here between their trips into the caves.",
+     "words_es": "Los cazadores de gemas acampan aquí entre sus viajes a las cuevas.",
+     "way_en": "The west side, by Topaz Drift.",
+     "way_es": "El lado oeste, junto a Topaz Drift."
+    },
+    {
+     "id": "trout",
+     "map": "stonepeak",
+     "at": [
+      1272,
+      2472
+     ],
+     "name_en": "The Trout Bend",
+     "name_es": "El Recodo de la Trucha",
+     "words_en": "A bend in the river where the trout rest.",
+     "words_es": "Un recodo del río donde descansan las truchas.",
+     "way_en": "The east side, by the river.",
+     "way_es": "El lado este, junto al río."
+    },
+    {
+     "id": "tarn",
+     "map": "stonepeak",
+     "at": [
+      1120,
+      144
+     ],
+     "name_en": "The Frozen Tarn",
+     "name_es": "La Laguna Helada",
+     "words_en": "A little lake that never thaws, high in the north.",
+     "words_es": "Un pequeño lago que nunca se deshiela, en lo alto del norte.",
+     "way_en": "The far north.",
+     "way_es": "El extremo norte."
+    },
+    {
+     "id": "gloomdoor",
+     "map": "stonepeak",
+     "at": [
+      1296,
+      860
+     ],
+     "name_en": "The Caves of Stonepeak",
+     "name_es": "Las Cuevas de Stonepeak",
+     "words_en": "The way into the Old Working, the Green Vein, the Gloom and the Sunken Vault, with Topaz Drift further south.",
+     "words_es": "El camino hacia la Mina Vieja, la Veta Verde, la Penumbra y la Bóveda Hundida, con Topaz Drift más al sur.",
+     "way_en": "The north of Stonepeak.",
+     "way_es": "El norte de Stonepeak."
+    }
+   ]
+  },
+  {
+   "id": "caves",
+   "map": "cave_gloom",
+   "name_en": "The Caves",
+   "name_es": "Las Cuevas",
+   "about_en": "Very dark, full of ore, gems and spiders. Your pickaxe decides what breaks, and broken rock grows back.",
+   "about_es": "Muy oscura, llena de mineral, gemas y arañas. Tu pico decide qué se rompe, y la roca rota vuelve a crecer.",
+   "hint_en": "Somewhere under the hills. Bring a pickaxe.",
+   "hint_es": "En algún lugar bajo las colinas. Trae un pico.",
+   "places": [
+    {
+     "id": "oldworking",
+     "map": "cave_old_working",
+     "at": null,
+     "name_en": "The Old Working",
+     "name_es": "La Mina Vieja",
+     "words_en": "Two gentle levels for a first mine. Pit and tunnel spiders and cave slimes, and ore for the early quests.",
+     "words_es": "Dos niveles suaves para una primera mina. Arañas de pozo y de túnel, y slimes de cueva, con mineral para las misiones iniciales.",
+     "way_en": "Stonepeak, the north west.",
+     "way_es": "Stonepeak, el noroeste."
+    },
+    {
+     "id": "topaz",
+     "map": "cave_topaz_drift",
+     "at": null,
+     "name_en": "Topaz Drift",
+     "name_es": "Deriva de Topacio",
+     "words_en": "Topaz spiders and crystal slimes among the topaz.",
+     "words_es": "Arañas de topacio y slimes de cristal entre el topacio.",
+     "way_en": "Stonepeak, the south west.",
+     "way_es": "Stonepeak, el suroeste."
+    },
+    {
+     "id": "greenvein",
+     "map": "cave_green_vein",
+     "at": null,
+     "name_en": "The Green Vein",
+     "name_es": "La Veta Verde",
+     "words_en": "Venom spiders, and their poison. Emeralds in the walls.",
+     "words_es": "Arañas venenosas y su veneno. Esmeraldas en las paredes.",
+     "way_en": "Stonepeak, the north.",
+     "way_es": "Stonepeak, el norte."
+    },
+    {
+     "id": "gloom",
+     "map": "cave_gloom",
+     "at": null,
+     "name_en": "The Gloom",
+     "name_es": "La Penumbra",
+     "words_en": "Three levels of burning things. Ember and cinder spiders, lava slimes, and the Bone Spider at the bottom.",
+     "words_es": "Tres niveles de cosas ardientes. Arañas de brasa y de ceniza, slimes de lava, y la Araña Huesuda al fondo.",
+     "way_en": "Stonepeak, the north east.",
+     "way_es": "Stonepeak, el noreste."
+    },
+    {
+     "id": "vault",
+     "map": "cave_vault",
+     "at": null,
+     "name_en": "The Sunken Vault",
+     "name_es": "La Bóveda Hundida",
+     "words_en": "Gilded spiders and their poison, and the Vault Queen in the delvers' treasury below.",
+     "words_es": "Arañas doradas y su veneno, y la Reina de la Bóveda en el tesoro de los excavadores, más abajo.",
+     "way_en": "Stonepeak, the east.",
+     "way_es": "Stonepeak, el este."
+    },
+    {
+     "id": "oldcave2",
+     "map": "cave_old_cave",
+     "at": null,
+     "name_en": "The Old Cave",
+     "name_es": "La Cueva Vieja",
+     "words_en": "Drowned spiders under Moonmere. It takes a Bronze pickaxe to get in.",
+     "words_es": "Arañas ahogadas bajo Moonmere. Hace falta un pico de Bronce para entrar.",
+     "way_en": "Moonmere, the north shore.",
+     "way_es": "Moonmere, la orilla norte."
+    },
+    {
+     "id": "hollow2",
+     "map": "cave_glimmer",
+     "at": null,
+     "name_en": "Glimmer Hollow",
+     "name_es": "Hondonada del Destello",
+     "words_en": "Shining stones, glimmer spiders and crystal slimes.",
+     "words_es": "Piedras brillantes, arañas destello y slimes de cristal.",
+     "way_en": "Whisperwood, the west side.",
+     "way_es": "Whisperwood, el lado oeste."
+    }
+   ]
+  },
+  {
+   "id": "frosthaven",
+   "map": "frosthaven",
+   "name_en": "Frosthaven",
+   "name_es": null,
+   "about_en": "A land of snow that never melts, opened by the story. The frost folk live here, and the cold slows you down.",
+   "about_es": "Una tierra de nieve que nunca se derrite, abierta por la historia. Aquí vive la gente de la escarcha, y el frío te hace más lento.",
+   "hint_en": "Somewhere high in the mountains, where the story leads.",
+   "hint_es": "En algún lugar en lo alto de las montañas, donde la historia te lleva.",
+   "places": [
+    {
+     "id": "village",
+     "map": "frosthaven",
+     "at": [
+      700,
+      760
+     ],
+     "name_en": "The Frost Village",
+     "name_es": "El Pueblo de Escarcha",
+     "words_en": "The frost folk's houses around their frozen ponds.",
+     "words_es": "Las casas del pueblo de escarcha alrededor de sus estanques helados.",
+     "way_en": "The west of Frosthaven.",
+     "way_es": "El oeste de Frosthaven."
+    },
+    {
+     "id": "lake",
+     "map": "frosthaven",
+     "at": [
+      1640,
+      900
+     ],
+     "name_en": "The Frozen Lake",
+     "name_es": "El Lago Congelado",
+     "words_en": "Fish through the ice for the Glacier Fish, found nowhere else.",
+     "words_es": "Pesca bajo el hielo para conseguir el Pez Glaciar, que no se encuentra en ningún otro lugar.",
+     "way_en": "The middle of Frosthaven.",
+     "way_es": "El centro de Frosthaven."
+    },
+    {
+     "id": "beds",
+     "map": "frosthaven",
+     "at": [
+      2432,
+      896
+     ],
+     "name_en": "The Seed Beds in the Wood",
+     "name_es": "Los Semilleros del Bosque",
+     "words_en": "Seed beds where Fireheart Peppers grow, the only place they do. Ice wolves and frost golems roam close by.",
+     "words_es": "Semilleros donde crecen los Pimientos Corazón de Fuego, el único lugar donde lo hacen. Lobos de hielo y gólems de escarcha rondan cerca.",
+     "way_en": "The wood in the east.",
+     "way_es": "El bosque del este."
+    }
+   ]
+  },
+  {
+   "id": "everbloom",
+   "map": "everbloom",
+   "name_en": "The Everbloom",
+   "name_es": "El Everbloom",
+   "about_en": "A land of flowers and fairy trees around the great Heart Tree, opened by the story.",
+   "about_es": "Una tierra de flores y árboles de hadas alrededor del gran Árbol del Corazón, abierta por la historia.",
+   "hint_en": "Behind an old gate deep in the woods, when the story opens it.",
+   "hint_es": "Detrás de una vieja puerta en lo profundo del bosque, cuando la historia la abre.",
+   "places": [
+    {
+     "id": "heart",
+     "map": "everbloom",
+     "at": [
+      1300,
+      230
+     ],
+     "name_en": "The Heart Tree",
+     "name_es": "El Árbol del Corazón",
+     "words_en": "The great tree at the heart of the Everbloom.",
+     "words_es": "El gran árbol en el corazón de la Flor Eterna.",
+     "way_en": "The north of the Everbloom.",
+     "way_es": "El norte del Everbloom."
+    },
+    {
+     "id": "water",
+     "map": "everbloom",
+     "at": [
+      500,
+      1460
+     ],
+     "name_en": "The Clear Waters",
+     "name_es": "Las Aguas Claras",
+     "words_en": "Clear water where the Faeries Fish swims, found nowhere else.",
+     "words_es": "Agua clara donde nada el Pez de las Hadas, que no se encuentra en ningún otro lugar.",
+     "way_en": "The south west.",
+     "way_es": "El suroeste."
+    },
+    {
+     "id": "bed",
+     "map": "everbloom",
+     "at": [
+      1900,
+      1300
+     ],
+     "name_en": "The Seed Bed",
+     "name_es": "El Semillero",
+     "words_en": "The only place the Fairy Rose grows. Thorn blooms wait nearby.",
+     "words_es": "El único lugar donde crece la Rosa de Hada. Hay Flores de Espina cerca.",
+     "way_en": "The east of the Everbloom.",
+     "way_es": "El este de la Flor Eterna."
+    }
+   ]
+  },
+  {
+   "id": "barrowmire",
+   "map": "barrowmire",
+   "name_en": "The Barrowmire",
+   "name_es": "El Pantano de los Túmulos",
+   "about_en": "A dark marsh of graves and mist where the dead do not rest, opened by the story.",
+   "about_es": "Un pantano oscuro de tumbas y niebla donde los muertos no descansan, abierto por la historia.",
+   "hint_en": "Down a sealed stair in the woods, when the story opens it.",
+   "hint_es": "Por una escalera sellada en el bosque, cuando la historia la abre.",
+   "places": [
+    {
+     "id": "graves",
+     "map": "barrowmire",
+     "at": [
+      1280,
+      400
+     ],
+     "name_en": "The Graves",
+     "name_es": "Las Tumbas",
+     "words_en": "Skeletons climb out of the ground here, and liches throw curses and roots.",
+     "words_es": "Aquí los esqueletos salen de la tierra, y los liches lanzan maldiciones y raíces.",
+     "way_en": "The north of the Barrowmire.",
+     "way_es": "El norte del Pantano de los Túmulos."
+    },
+    {
+     "id": "mist",
+     "map": "barrowmire",
+     "at": [
+      1100,
+      1300
+     ],
+     "name_en": "The Misty Paths",
+     "name_es": "Los Senderos Brumosos",
+     "words_en": "Paths through the marsh, with ghouls and grave bats in the mist.",
+     "words_es": "Senderos por el pantano, con necrófagos y murciélagos de tumba entre la niebla.",
+     "way_en": "The south of the Barrowmire.",
+     "way_es": "El sur del Pantano de los Túmulos."
+    }
+   ]
+  },
+  {
+   "id": "dreaming",
+   "map": "dreaming_fields",
+   "name_en": "The Dreaming Fields",
+   "name_es": "Los Campos del Sueño",
+   "about_en": "A dream of a place, pale and still, reached through the story.",
+   "about_es": "Un lugar como un sueño, pálido y quieto, al que se llega a través de la historia.",
+   "hint_en": "At the end of an old road out of the woods, when the story leads you there.",
+   "hint_es": "Al final de un viejo camino que sale del bosque, cuando la historia te lleva allí.",
+   "places": [
+    {
+     "id": "road",
+     "map": "dreaming_fields",
+     "at": [
+      880,
+      900
+     ],
+     "name_en": "The Rainbow Road",
+     "name_es": "El camino Rainbow",
+     "words_en": "One long road of every colour, washing across the fields.",
+     "words_es": "Un largo camino de todos los colores, extendiéndose por los campos.",
+     "way_en": "From the south, up the middle.",
+     "way_es": "Desde el sur, subiendo por el medio."
+    },
+    {
+     "id": "mirror",
+     "map": "dreaming_fields",
+     "at": [
+      380,
+      340
+     ],
+     "name_en": "The Mirror Pool",
+     "name_es": "La Poza Espejo",
+     "words_en": "A pool that shows the town by night.",
+     "words_es": "Un estanque que muestra el pueblo de noche.",
+     "way_en": "The north west.",
+     "way_es": "El noroeste."
+    },
+    {
+     "id": "doors",
+     "map": "dreaming_fields",
+     "at": [
+      1126,
+      150
+     ],
+     "name_en": "The Lone Doors",
+     "name_es": "Las Puertas Solitarias",
+     "words_en": "Doors standing alone in the fields. Walk through one and you come out of another.",
+     "words_es": "Puertas solas en medio de los campos. Atraviesa una y sales por otra.",
+     "way_en": "Here and there in the fields.",
+     "way_es": "Aquí y allá, por los campos."
+    }
+   ]
+  },
+  {
+   "id": "vip",
+   "map": "vip_quarter",
+   "name_en": "The VIP Quarter",
+   "name_es": "El Barrio VIP",
+   "about_en": "A quarter of gardens and fine houses for VIP farmers, across the water on the golden boat.",
+   "about_es": "Un barrio de jardines y casas finas para granjeros VIP, al otro lado del agua en el bote dorado.",
+   "hint_en": "Only the golden boat goes there.",
+   "hint_es": "Solo el Bote Dorado llega hasta allí.",
+   "places": [
+    {
+     "id": "garden",
+     "map": "vip_quarter",
+     "at": [
+      384,
+      80
+     ],
+     "name_en": "The Celestial Garden",
+     "name_es": "El Jardín Celestial",
+     "words_en": "Set your premium crops on its pedestals and they harvest $AVYN while your pass lasts.",
+     "words_es": "Coloca tus cultivos premium en sus pedestales y cosecharán $AVYN mientras dure tu pase.",
+     "way_en": "The middle of the Quarter.",
+     "way_es": "El centro del Barrio."
+    },
+    {
+     "id": "beds",
+     "map": "vip_quarter",
+     "at": [
+      144,
+      376
+     ],
+     "name_en": "The Premium Beds",
+     "name_es": "Las Camas Premium",
+     "words_en": "Plant Premium Seeds here. No hoe, no water, and they never wither while you wait.",
+     "words_es": "Planta aquí Semillas Premium. Sin azada, sin agua, y nunca se marchitan mientras esperas.",
+     "way_en": "The west side of the Quarter.",
+     "way_es": "El lado oeste del Barrio."
+    },
+    {
+     "id": "vipshop",
+     "map": "vip_quarter",
+     "at": [
+      640,
+      412
+     ],
+     "name_en": "The VIP Shop",
+     "name_es": "La Tienda VIP",
+     "words_en": "Celeste sells Premium Seeds and the VIP Chest.",
+     "words_es": "Celeste vende Semillas Premium y el Cofre VIP.",
+     "way_en": "The east side of the Quarter.",
+     "way_es": "El lado este del Barrio."
+    },
+    {
+     "id": "library",
+     "map": "vip_quarter",
+     "at": [
+      128,
+      236
+     ],
+     "name_en": "The Library",
+     "name_es": "La Biblioteca",
+     "words_en": "Go in and read the books on its shelves.",
+     "words_es": "Entra y lee los libros de sus estantes.",
+     "way_en": "The north west of the Quarter.",
+     "way_es": "El noroeste del Barrio."
+    },
+    {
+     "id": "colosseum",
+     "map": "vip_quarter",
+     "at": [
+      690,
+      456
+     ],
+     "name_en": "The Colosseum",
+     "name_es": "El Coliseo",
+     "words_en": "Six waves of creatures to fight through, for Farming Points, Gold and sometimes Premium Seeds.",
+     "words_es": "Seis oleadas de criaturas que enfrentar, por Puntos de Cultivo, Oro y a veces Semillas Premium.",
+     "way_en": "The east edge of the Quarter.",
+     "way_es": "El borde este del Barrio."
+    },
+    {
+     "id": "steps",
+     "map": "vip_quarter",
+     "at": [
+      80,
+      282
+     ],
+     "name_en": "The Dungeon Steps",
+     "name_es": "Los Escalones de la Mazmorra",
+     "words_en": "The way down to the Dungeon, the Drowned Keep and the Bone Crypt. Choose one weapon and a difficulty, and go down.",
+     "words_es": "El camino hacia la Mazmorra, la Fortaleza Ahogada y la Cripta de Huesos. Elige un arma y una dificultad, y desciende.",
+     "way_en": "Past the west hedge of the Quarter.",
+     "way_es": "Pasando el seto oeste del Barrio."
+    }
+   ]
+  }
+ ]
+}
