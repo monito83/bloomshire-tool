@@ -43,7 +43,7 @@ describe('Respaldo en la nube con freno (Fast Origin Transfer de Vercel)', () =>
   });
 
   // (desde la fase 16 la logica vive en src/components/bloomshire/state/: se lee todo junto)
-  const appSource = () => ['src/components/BloomshireCommand.jsx', 'src/components/bloomshire/state/useCloudBackup.js', 'src/components/bloomshire/state/useCompanionSync.js']
+  const appSource = () => ['src/components/BloomshireCommand.jsx', 'src/components/bloomshire/state/useCloudBackup.js', 'src/components/bloomshire/state/useCompanionSync.js', 'src/components/bloomshire/app/ProfileModal.jsx']
     .map((f) => fs.readFileSync(f, 'utf8')).join('\n');
 
   it('la herramienta ya no sube la partida completa en cada mensaje de la extension', () => {
