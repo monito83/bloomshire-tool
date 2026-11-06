@@ -81,6 +81,7 @@ export default function TabRouter({
             setShowConnectModal={setShowConnectModal}
             getPlayerItemQty={getPlayerItemQty}
             openItemsSearch={openItemsSearch}
+            setActiveTab={setActiveTab}
           />
         )}
 

@@ -135,8 +135,7 @@
     "notGated": "No bloquea",
     "level": "Nv {{n}}",
     "xpTotal": "XP total: {{xp}}",
-    "farmingCap": "⚠️ <b>Cómo desbloquear Cultivo nivel 6:</b> tu Cultivo está en <b>nivel {{farming}}</b> (el tope actual). Como <b>{{min}}</b> está en <b>nivel {{minLevel}}</b> (2 + 3 = 5), subí <b>Recolección</b> (setas Silvercap y Glowcap en Whisperwood) y <b>Cocina</b> (estufa de Tamsin) a <b>nivel 3 (650 XP)</b>.",
-    "findMushrooms": "🔎 Buscar setas Silvercap y Glowcap",
+    "farmingCap": "⚠️ <b>Cultivo topeado en nivel {{farming}}.</b> Ninguna habilidad puede estar más de 3 niveles por encima de la más baja. Tu más baja es <b>{{min}}</b> (nivel {{minLevel}}): subila a <b>nivel {{next}} ({{xp}} XP)</b> para destrabar Cultivo.",
     "names": {
       "farming": "Cultivo",
       "woodcutting": "Tala",

@@ -4,24 +4,8 @@
     "odette": "📜 Pedidos diarios de Odette",
     "ready_one": "{{count}} listo",
     "ready_other": "{{count}} listos",
-    "arbitrage": "⚖️ Calculadora de arbitraje (vender crudo o cocinar)",
-    "new": "NUEVO",
     "radar": "📈 Radar de mercado (Rowan)",
     "hot": "HOT"
-  },
-  "arb": {
-    "title": "⚖️ Arbitraje: ¿vender crudo a Wren o cocinar en la estufa?",
-    "subtitle": "Ganancia neta: descuenta lo que valdría venderlo crudo, el costo de los insumos comprados y <b>1⚡ de energía</b> en la estufa.",
-    "cost": "Costo fijo de cocción: 1⚡ por plato",
-    "locateTitle": "Ubicar la estufa en el Mega-Atlas",
-    "locate": "Ubicar estufa",
-    "bag": "Mochila: {{n}}x",
-    "noStock": "Sin stock",
-    "raw": "CRUDO",
-    "mats": "INSUMOS",
-    "sale": "VENTA",
-    "totalTitle": "Ganancia total con tu stock actual",
-    "noMats": "Sin insumos extra (0g)"
   },
   "liq": {
     "lockedTitle": "Liquidador de inventario y almacenes",
@@ -77,11 +61,11 @@
     "townSlots_other": "🏬 Cofre del pueblo: {{count}} espacios"
   },
   "odette": {
-    "lockedTitle": "Pedidos diarios de Odette (+25% de oro)",
-    "lockedDesc": "Mirá tus encargos diarios de hoy, su recompensa en oro y dónde entregarlos vinculando tu partida con la extensión Bloomshire Companion.",
+    "lockedTitle": "Pedidos diarios de Odette",
+    "lockedDesc": "Mirá los pedidos de hoy, cuánto oro y experiencia dan y dónde entregarlos, vinculando tu partida con la extensión Bloomshire Companion.",
     "title": "📜 Tablón de pedidos diarios de Odette",
     "badge": "PEDIDOS DIARIOS",
-    "desc": "Odette ofrece <b>6 + ⌊nivel / 3⌋ pedidos diarios</b> (hasta 16) en el tablón de su tienda general en Bloomshire. Paga cerca del <b>50% del precio de venta en tienda</b> y da experiencia para tus oficios.",
+    "desc": "Odette tiene <b>6 pedidos, más 1 cada 3 niveles de Cultivo</b> (hasta 16) en el tablón de su tienda general. Cada uno paga en oro <b>la mitad de lo que vale la mercadería</b>, más experiencia, y a veces algo de $AVYN. Al entregar uno aparece otro.",
     "ready": "Listos para entregar",
     "readyCount": "{{n}} de {{total}}",
     "shopLabel": "🏬 Tienda general de Odette (tablón de pedidos)",
@@ -90,7 +74,7 @@
     "available": "Disponibles: <b>{{n}} pedidos</b>",
     "potential": "Oro posible: +{{gold}}g",
     "xp": "XP sumable: +{{xp}} XP",
-    "renew": "💡 Los pedidos se renuevan cada día con el ciclo del servidor",
+    "renew": "💡 El tablón cambia cada día a las 00:00 UTC",
     "waiting": "Esperando la sincronización de pedidos",
     "waitingDesc": "Los pedidos de Odette son distintos para cada jugador y cambian a las 00:00 UTC. Abrí el juego con la extensión <b>Bloomshire Companion</b> para ver los de hoy.",
     "connect": "🎮 Conectar con Companion",

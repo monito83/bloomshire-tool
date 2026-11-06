@@ -11,6 +11,14 @@ export default function CalcTab({
   playerPerks = null 
 }) {
   const { t, i18n } = useTranslation('calc');
+  const calcEn = String(i18n.language || '').toLowerCase().startsWith('en');
+  // Nombres del juego (codice oficial) y tiempo de cada recurso segun sus reglas (golpes de pico y hacha)
+  const itemName = (item) => (calcEn ? item.name_en : item.name_es) || item.name;
+  const growLabel = (item, minutes) => {
+    if (calcSkill === 'farming') return item.growTxt || `${minutes} min`;
+    if (item.hits) return item.toolTier ? t(item.toolKind === 'axe' ? 'grow.axeHits' : 'grow.pickHits', { n: item.hits, tool: t(`grow.tiers.${item.toolTier}`) }) : t('grow.hits', { n: item.hits });
+    return '—';
+  };
   const [calcSkill, setCalcSkill] = useState('farming');
   const [calcLevelFilter, setCalcLevelFilter] = useState('all');
   const [calcSort, setCalcSort] = useState('xpEnergy_desc');
@@ -31,7 +39,7 @@ export default function CalcTab({
 
     if (calcLevelFilter !== 'all') {
       if (calcLevelFilter === 'vip' || calcLevelFilter === 'special') {
-        list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misi'))));
+        list = list.filter(x => (x.level ?? 1) >= 15);
       } else {
         const targetLv = parseInt(calcLevelFilter, 10);
         list = list.filter(x => (x.level ?? 1) <= targetLv || targetLv >= 10);
@@ -189,7 +197,7 @@ export default function CalcTab({
                 <Trans
                   i18nKey="simulator.withEnergy"
                   ns="calc"
-                  values={{ energy: simEnergyVal, crop: topCrop.name.split('(')[0].trim() }}
+                  values={{ energy: simEnergyVal, crop: itemName(topCrop) }}
                   components={{ bold: <b /> }}
                 />
               </span>
@@ -302,7 +310,6 @@ export default function CalcTab({
                 <th className="p-3">{t('table.headers.xpPerMin')}</th>
                 <th className="p-3">{t('table.headers.goldPerMin')}</th>
                 {calcSkill === 'farming' && <th className="p-3">{t('table.headers.totalPlots', { plots: availablePlots })}</th>}
-                <th className="p-3">{t('table.headers.tip')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 font-medium">
@@ -321,7 +328,7 @@ export default function CalcTab({
                 return (
                   <tr key={idx} className="hover:bg-slate-800/40 transition-colors">
                     <td className="p-3 font-bold text-white flex items-center gap-1.5 whitespace-nowrap">
-                      {item.name}
+                      {itemName(item)}
                     </td>
                     {calcSkill === 'farming' && (
                       <td className="p-3 whitespace-nowrap">
@@ -332,12 +339,12 @@ export default function CalcTab({
                           item.season === 'Fall' ? 'bg-orange-950/80 text-orange-300 border border-orange-700/50' :
                           'bg-emerald-950/80 text-emerald-300 border border-emerald-700/50'
                         }`}>
-                          {item.seasonLabel || t('table.allYear')}
+                          {item.season && item.season !== 'all' ? t(`filters.seasons.${item.season}`) : t('table.allYear')}
                         </span>
                       </td>
                     )}
                     <td className="p-3 font-mono text-cyan-300 whitespace-nowrap">
-                      {item.growTxt || `${adjustedTime} min`}
+                      {growLabel(item, adjustedTime)}
                       {hasFoundersTimeBonus && <span className="text-[10px] text-emerald-400 ml-1">(-20%)</span>}
                     </td>
                     <td className="p-3 whitespace-nowrap">
@@ -422,7 +429,6 @@ export default function CalcTab({
                         </div>
                       </td>
                     )}
-                    <td className="p-3 text-[11px] text-slate-400 italic max-w-xs">{item.tip || '-'}</td>
                   </tr>
                 );
               })}

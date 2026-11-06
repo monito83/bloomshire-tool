@@ -26,9 +26,10 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
     expect(html).toContain('Remaining Energy Simulator');
   });
 
-  it('renders InventoryTab in arbitrage subtab without throwing', () => {
-    const html = renderToString(<InventoryTab isConnected={false} initialSubTab="arbitrage" />);
-    expect(html).toContain('Arbitrage');
+  it('InventoryTab ya no tiene la calculadora de arbitraje (datos inventados)', () => {
+    const html = renderToString(<InventoryTab isConnected={false} />);
+    expect(html).not.toContain('Arbitrage');
+    expect(html).toContain('Market radar');
   });
 
   it('renders InventoryTab in liquidation (locked) subtab without throwing', () => {
@@ -86,13 +87,18 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
 
   it('renders AdvisorTab when locked (unconnected) without throwing', () => {
     const html = renderToString(<AdvisorTab isConnected={false} />);
-    expect(html).toContain('Asesor Táctico Copilot IA');
+    expect(html).toContain('AI Copilot');
     expect(html).toContain('Connect game');
   });
 
   it('renders SystemTab without throwing', () => {
     const html = renderToString(<SystemTab />);
-    expect(html).toContain('Diagnóstico');
+    expect(html).toContain('System log');
+  });
+
+  it('AdvisorTab conectado no se rompe (antes leia un estado que no recibia)', () => {
+    const html = renderToString(<AdvisorTab isConnected />);
+    expect(html).toContain('paused for now');
   });
 
   it('renders BloomshireCommand root component without crashing in free guide mode', () => {

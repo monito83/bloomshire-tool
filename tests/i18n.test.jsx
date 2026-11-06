@@ -320,7 +320,12 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/app/HeaderHud.jsx',
       'src/components/bloomshire/app/MainNav.jsx',
       'src/components/bloomshire/tabs/QuestsTab.jsx',
-      'src/components/bloomshire/tabs/MonitorsTab.jsx'
+      'src/components/bloomshire/tabs/MonitorsTab.jsx',
+      'src/components/bloomshire/tabs/NpcsTab.jsx',
+      'src/components/bloomshire/tabs/SystemTab.jsx',
+      'src/components/bloomshire/tabs/AdvisorTab.jsx',
+      'src/components/bloomshire/tabs/InventoryTab.jsx',
+      'src/components/bloomshire/tabs/CalcTab.jsx'
     ];
 
     for (const filePath of targetFiles) {

@@ -15,14 +15,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 2,
-      "regrowGrowTxt": "2 min (1x)",
       "regrowNet": 20,
       "regrowXp": 5,
       "regrowXpMin": 2.5,
       "regrowGoldMin": 10,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "⭐ ¡La mejor y más barata para subir Cultivo a Nv 5 rápidamente!"
+      "id": "Carrot",
+      "name_en": "Carrot 🥕",
+      "name_es": "Zanahoria 🥕"
     },
     {
       "name": "Patata (Potato) 🥔",
@@ -39,14 +39,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 8,
-      "regrowGrowTxt": "8 min (1x)",
       "regrowNet": 52,
       "regrowXp": 10,
       "regrowXpMin": 1.25,
       "regrowGoldMin": 6.5,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Equilibrio excelente en fases tempranas."
+      "id": "Potato",
+      "name_en": "Potato 🥔",
+      "name_es": "Papa 🥔"
     },
     {
       "name": "Repollo (Cabbage) 🥬",
@@ -63,14 +63,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 20,
-      "regrowGrowTxt": "20 min (1x)",
       "regrowNet": 120,
       "regrowXp": 17,
       "regrowXpMin": 0.85,
       "regrowGoldMin": 6,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Buena ganancia neta para nivel 3."
+      "id": "Cabbage",
+      "name_en": "Cabbage 🥬",
+      "name_es": "Repollo 🥬"
     },
     {
       "name": "Coliflor (Cauliflower) 🥦",
@@ -87,14 +87,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 90,
-      "regrowGrowTxt": "1h 30m (1x)",
       "regrowNet": 575,
       "regrowXp": 47,
       "regrowXpMin": 0.52,
       "regrowGoldMin": 6.39,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Excelente venta individual en primavera."
+      "id": "Cauliflower",
+      "name_en": "Cauliflower 🥦",
+      "name_es": "Coliflor 🥦"
     },
     {
       "name": "Fresa (Strawberry) 🍓",
@@ -111,14 +111,14 @@
       "regrowMinutes": 60,
       "harvests": 5,
       "regrowTotalMinutes": 320,
-      "regrowGrowTxt": "5h 20m (5x)",
       "regrowNet": 4455,
       "regrowXp": 215,
       "regrowXpMin": 0.67,
       "regrowGoldMin": 13.92,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "🍓 Rebrota cada 60 min (5 cosechas por semilla). ¡Muy rentable!"
+      "id": "Strawberry",
+      "name_en": "Strawberry 🍓",
+      "name_es": "Fresa 🍓"
     },
     {
       "name": "Tomate (Tomato) 🍅",
@@ -135,14 +135,14 @@
       "regrowMinutes": 35,
       "harvests": 5,
       "regrowTotalMinutes": 185,
-      "regrowGrowTxt": "3h 5m (5x)",
       "regrowNet": 2450,
       "regrowXp": 145,
       "regrowXpMin": 0.78,
       "regrowGoldMin": 13.24,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🍅 Rebrota cada 35 min (5 cosechas por semilla)."
+      "id": "Tomato",
+      "name_en": "Tomato 🍅",
+      "name_es": "Tomate 🍅"
     },
     {
       "name": "Trigo (Wheat) 🌾",
@@ -159,14 +159,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 92,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 6.13,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Materia prima esencial para Pan y cerveza."
+      "id": "Wheat",
+      "name_en": "Wheat 🌾",
+      "name_es": "Trigo 🌾"
     },
     {
       "name": "Girasol (Sunflower) 🌻",
@@ -183,14 +183,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 35,
-      "regrowGrowTxt": "35 min (1x)",
       "regrowNet": 210,
       "regrowXp": 24,
       "regrowXpMin": 0.69,
       "regrowGoldMin": 6,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Flor de verano vendida en la Botica de Hazel."
+      "id": "Sunflower",
+      "name_en": "Sunflower 🌻",
+      "name_es": "Girasol 🌻"
     },
     {
       "name": "Maíz (Corn) 🌽",
@@ -207,14 +207,14 @@
       "regrowMinutes": 30,
       "harvests": 5,
       "regrowTotalMinutes": 160,
-      "regrowGrowTxt": "2h 40m (5x)",
       "regrowNet": 2205,
       "regrowXp": 135,
       "regrowXpMin": 0.84,
       "regrowGoldMin": 13.78,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "🌽 Rebrota cada 30 min (5 cosechas). Gran rendimiento de otoño."
+      "id": "Corn",
+      "name_en": "Corn 🌽",
+      "name_es": "Maíz 🌽"
     },
     {
       "name": "Judías Verdes (Green Beans) 🫛",
@@ -231,14 +231,14 @@
       "regrowMinutes": 40,
       "harvests": 5,
       "regrowTotalMinutes": 210,
-      "regrowGrowTxt": "3h 30m (5x)",
       "regrowNet": 2720,
       "regrowXp": 155,
       "regrowXpMin": 0.74,
       "regrowGoldMin": 12.95,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫛 Rebrota cada 40 min (5 cosechas)."
+      "id": "Green Beans",
+      "name_en": "Green Beans 🫛",
+      "name_es": "Habichuelas Verdes 🫛"
     },
     {
       "name": "Melón Cantalupo (Cantaloupe) 🍈",
@@ -255,14 +255,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 100,
-      "regrowGrowTxt": "1h 40m (1x)",
       "regrowNet": 625,
       "regrowXp": 50,
       "regrowXpMin": 0.5,
       "regrowGoldMin": 6.25,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Fruta dulce de verano con alto margen de venta."
+      "id": "Cantaloupe",
+      "name_en": "Cantaloupe 🍈",
+      "name_es": "Melón 🍈"
     },
     {
       "name": "Caléndula (Marigold) 🌼",
@@ -279,14 +279,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 20,
-      "regrowGrowTxt": "20 min (1x)",
       "regrowNet": 120,
       "regrowXp": 17,
       "regrowXpMin": 0.85,
       "regrowGoldMin": 6,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Flor medicinal vendida en la Botica de Hazel."
+      "id": "Marigold",
+      "name_en": "Marigold 🌼",
+      "name_es": "Caléndula 🌼"
     },
     {
       "name": "Batata (Sweet Potato) 🍠",
@@ -303,14 +303,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 70,
-      "regrowGrowTxt": "1h 10m (1x)",
       "regrowNet": 435,
       "regrowXp": 39,
       "regrowXpMin": 0.56,
       "regrowGoldMin": 6.21,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Cultivo sólido y nutritivo de otoño."
+      "id": "Sweet Potato",
+      "name_en": "Sweet Potato 🍠",
+      "name_es": "Batata 🍠"
     },
     {
       "name": "Azafrán (Saffron) 🌾",
@@ -327,14 +327,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (1x)",
       "regrowNet": 1600,
       "regrowXp": 94,
       "regrowXpMin": 0.39,
       "regrowGoldMin": 6.67,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Especia rara y valiosa obtenida en aventuras y misiones."
+      "id": "Saffron",
+      "name_en": "Saffron 🌾",
+      "name_es": "Azafrán 🌾"
     },
     {
       "name": "Fruta Estrella (Star Fruit) ⭐",
@@ -351,14 +351,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 300,
-      "regrowGrowTxt": "5h (1x)",
       "regrowNet": 2050,
       "regrowXp": 111,
       "regrowXpMin": 0.37,
       "regrowGoldMin": 6.83,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "⭐ Fruta estelar mítica. Ingrediente clave para Moonlight Stew."
+      "id": "Star Fruit",
+      "name_en": "Star Fruit ⭐",
+      "name_es": "Carambola ⭐"
     },
     {
       "name": "Cebolla (Onion) 🧅",
@@ -375,14 +375,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 12,
-      "regrowGrowTxt": "12 min (1x)",
       "regrowNet": 75,
       "regrowXp": 12,
       "regrowXpMin": 1,
       "regrowGoldMin": 6.25,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Crecimiento rápido de primavera, clave para Hearty Stew."
+      "id": "Onion",
+      "name_en": "Onion 🧅",
+      "name_es": "Cebolla 🧅"
     },
     {
       "name": "Berenjena (Eggplant) 🍆",
@@ -399,14 +399,14 @@
       "regrowMinutes": 45,
       "harvests": 5,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (5x)",
       "regrowNet": 3330,
       "regrowXp": 175,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 13.88,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "🍆 Rebrota cada 45 min (5 cosechas por semilla)."
+      "id": "Eggplant",
+      "name_en": "Eggplant 🍆",
+      "name_es": "Berenjena 🍆"
     },
     {
       "name": "Sandía (Watermelon) 🍉",
@@ -423,14 +423,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 110,
-      "regrowGrowTxt": "1h 50m (1x)",
       "regrowNet": 700,
       "regrowXp": 54,
       "regrowXpMin": 0.49,
       "regrowGoldMin": 6.36,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Gran venta estival de 1.400 de oro por fruto."
+      "id": "Watermelon",
+      "name_en": "Watermelon 🍉",
+      "name_es": "Sandía 🍉"
     },
     {
       "name": "Remolacha (Beetroot) 🟣",
@@ -447,14 +447,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 120,
-      "regrowGrowTxt": "2h (1x)",
       "regrowNet": 775,
       "regrowXp": 57,
       "regrowXpMin": 0.47,
       "regrowGoldMin": 6.46,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Tubérculo de otoño de alto valor en tienda."
+      "id": "Beetroot",
+      "name_en": "Beetroot 🟣",
+      "name_es": "Remolacha 🟣"
     },
     {
       "name": "Calabaza (Pumpkin) 🎃",
@@ -471,14 +471,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 180,
-      "regrowGrowTxt": "3h (1x)",
       "regrowNet": 1150,
       "regrowXp": 76,
       "regrowXpMin": 0.42,
       "regrowGoldMin": 6.39,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Cosecha pesada de otoño, 2.350 oro de venta."
+      "id": "Pumpkin",
+      "name_en": "Pumpkin 🎃",
+      "name_es": "Calabaza 🎃"
     },
     {
       "name": "Uvas (Grapes) 🍇",
@@ -495,14 +495,14 @@
       "regrowMinutes": 90,
       "harvests": 5,
       "regrowTotalMinutes": 510,
-      "regrowGrowTxt": "8h 30m (5x)",
       "regrowNet": 8775,
       "regrowXp": 335,
       "regrowXpMin": 0.66,
       "regrowGoldMin": 17.21,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "🍇 Rebrota cada 90 min (5 cosechas). Gran retorno a largo plazo."
+      "id": "Grapes",
+      "name_en": "Grapes 🍇",
+      "name_es": "Uvas 🍇"
     },
     {
       "name": "Chile Picante (Hot Pepper) 🌶️",
@@ -519,14 +519,14 @@
       "regrowMinutes": 45,
       "harvests": 5,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (5x)",
       "regrowNet": 3330,
       "regrowXp": 175,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 13.88,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🌶️ Rebrota cada 45 min (5 cosechas). Ingrediente para platos picantes."
+      "id": "Hot Pepper",
+      "name_en": "Hot Pepper 🌶️",
+      "name_es": "Chile Picante 🌶️"
     },
     {
       "name": "Espárrago (Asparagus) 🌱",
@@ -543,14 +543,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 120,
-      "regrowGrowTxt": "2h (1x)",
       "regrowNet": 775,
       "regrowXp": 57,
       "regrowXpMin": 0.47,
       "regrowGoldMin": 6.46,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Cosecha de primavera de alto margen."
+      "id": "Asparagus",
+      "name_en": "Asparagus 🌱",
+      "name_es": "Espárrago 🌱"
     },
     {
       "name": "Arándano (Blueberry) 🫐",
@@ -567,14 +567,14 @@
       "regrowMinutes": 60,
       "harvests": 5,
       "regrowTotalMinutes": 330,
-      "regrowGrowTxt": "5h 30m (5x)",
       "regrowNet": 5175,
       "regrowXp": 235,
       "regrowXpMin": 0.71,
       "regrowGoldMin": 15.68,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "🫐 Rebrota cada 60 min (5 cosechas). Cosecha reina de primavera."
+      "id": "Blueberry",
+      "name_en": "Blueberry 🫐",
+      "name_es": "Arándano 🫐"
     },
     {
       "name": "Brócoli (Broccoli) 🥦",
@@ -591,14 +591,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 30,
-      "regrowGrowTxt": "30 min (1x)",
       "regrowNet": 175,
       "regrowXp": 22,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 5.83,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Cultivo sano de primavera de 30 minutos."
+      "id": "Broccoli",
+      "name_en": "Broccoli 🥦",
+      "name_es": "Brócoli 🥦"
     },
     {
       "name": "Chirivía (Parsnip) 🥔",
@@ -615,14 +615,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 5,
-      "regrowGrowTxt": "5 min (1x)",
       "regrowNet": 36,
       "regrowXp": 8,
       "regrowXpMin": 1.6,
       "regrowGoldMin": 7.2,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Excelente rendimiento y balance en fases tempranas."
+      "id": "Parsnip",
+      "name_en": "Parsnip 🥔",
+      "name_es": "Chirivía 🥔"
     },
     {
       "name": "Arroz (Rice) 🌾",
@@ -639,14 +639,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 30,
-      "regrowGrowTxt": "30 min (1x)",
       "regrowNet": 175,
       "regrowXp": 22,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 5.83,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Cereal básico de primavera para recetas de cocina."
+      "id": "Rice",
+      "name_en": "Rice 🌾",
+      "name_es": "Arroz 🌾"
     },
     {
       "name": "Cebollín (Spring Onion) 🧅",
@@ -663,14 +663,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 6,
-      "regrowGrowTxt": "6 min (1x)",
       "regrowNet": 44,
       "regrowXp": 9,
       "regrowXpMin": 1.5,
       "regrowGoldMin": 7.33,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Crecimiento súper rápido de 6 minutos."
+      "id": "Spring Onion",
+      "name_en": "Spring Onion 🧅",
+      "name_es": "Cebolleta 🧅"
     },
     {
       "name": "Frijol Adzuki (Adzuki Bean) 🫘",
@@ -687,14 +687,14 @@
       "regrowMinutes": 35,
       "harvests": 5,
       "regrowTotalMinutes": 185,
-      "regrowGrowTxt": "3h 5m (5x)",
       "regrowNet": 2450,
       "regrowXp": 145,
       "regrowXpMin": 0.78,
       "regrowGoldMin": 13.24,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫘 Rebrota cada 35 min (5 cosechas). Excelente en verano."
+      "id": "Adzuki Bean",
+      "name_en": "Adzuki Bean 🫘",
+      "name_es": "Frijol Adzuki 🫘"
     },
     {
       "name": "Pimiento Verde (Green Bell Pepper) 🫑",
@@ -711,14 +711,14 @@
       "regrowMinutes": 45,
       "harvests": 5,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (5x)",
       "regrowNet": 3330,
       "regrowXp": 175,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 13.88,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫑 Rebrota cada 45 min (5 cosechas)."
+      "id": "Green Bell Pepper",
+      "name_en": "Green Bell Pepper 🫑",
+      "name_es": "Pimiento Verde 🫑"
     },
     {
       "name": "Pimiento Rojo (Red Bell Pepper) 🌶️",
@@ -735,14 +735,14 @@
       "regrowMinutes": 45,
       "harvests": 5,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (5x)",
       "regrowNet": 3330,
       "regrowXp": 175,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 13.88,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫑 Rebrota cada 45 min (5 cosechas)."
+      "id": "Red Bell Pepper",
+      "name_en": "Red Bell Pepper 🌶️",
+      "name_es": "Pimiento Rojo 🌶️"
     },
     {
       "name": "Pimiento Amarillo (Yellow Bell Pepper) 🫑",
@@ -759,14 +759,14 @@
       "regrowMinutes": 45,
       "harvests": 5,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (5x)",
       "regrowNet": 3330,
       "regrowXp": 175,
       "regrowXpMin": 0.73,
       "regrowGoldMin": 13.88,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫑 Rebrota cada 45 min (5 cosechas)."
+      "id": "Yellow Bell Pepper",
+      "name_en": "Yellow Bell Pepper 🫑",
+      "name_es": "Pimiento Amarillo 🫑"
     },
     {
       "name": "Mora (Blackberry) 🫐",
@@ -783,14 +783,14 @@
       "regrowMinutes": 40,
       "harvests": 5,
       "regrowTotalMinutes": 210,
-      "regrowGrowTxt": "3h 30m (5x)",
       "regrowNet": 2720,
       "regrowXp": 155,
       "regrowXpMin": 0.74,
       "regrowGoldMin": 12.95,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🫐 Rebrota cada 40 min (5 cosechas por semilla)."
+      "id": "Blackberry",
+      "name_en": "Blackberry 🫐",
+      "name_es": "Mora 🫐"
     },
     {
       "name": "Pepino (Cucumber) 🥒",
@@ -807,14 +807,14 @@
       "regrowMinutes": 30,
       "harvests": 5,
       "regrowTotalMinutes": 160,
-      "regrowGrowTxt": "2h 40m (5x)",
       "regrowNet": 2205,
       "regrowXp": 135,
       "regrowXpMin": 0.84,
       "regrowGoldMin": 13.78,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "🥒 Rebrota cada 30 min (5 cosechas)."
+      "id": "Cucumber",
+      "name_en": "Cucumber 🥒",
+      "name_es": "Pepino 🥒"
     },
     {
       "name": "Piña (Pineapple) 🍍",
@@ -831,14 +831,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 240,
-      "regrowGrowTxt": "4h (1x)",
       "regrowNet": 1600,
       "regrowXp": 94,
       "regrowXpMin": 0.39,
       "regrowGoldMin": 6.67,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Fruta tropical de verano, 3.250 oro de venta."
+      "id": "Pineapple",
+      "name_en": "Pineapple 🍍",
+      "name_es": "Piña 🍍"
     },
     {
       "name": "Aloe Vera 🪴",
@@ -855,14 +855,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 150,
-      "regrowGrowTxt": "2h 30m (1x)",
       "regrowNet": 975,
       "regrowXp": 67,
       "regrowXpMin": 0.45,
       "regrowGoldMin": 6.5,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Planta medicinal vendida en la Botica de Hazel."
+      "id": "Aloe Vera 🪴",
+      "name_en": "Aloe Vera 🪴",
+      "name_es": "Aloe Vera 🪴"
     },
     {
       "name": "Semilla Premium (Premium Seed) ✨",
@@ -879,14 +879,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. No se vende a NPCs; comercia en Rowan P2P."
+      "id": "Premium Seed",
+      "name_en": "Premium Seed ✨",
+      "name_es": "Semilla Premium ✨"
     },
     {
       "name": "Pimiento Fuego Solar (Sunfire Pepper) 🌶️",
@@ -903,14 +903,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Buffs de combate y comercio P2P en Rowan."
+      "id": "Sunfire Pepper",
+      "name_en": "Sunfire Pepper 🌶️",
+      "name_es": "Pimiento de Fuego Solar 🌶️"
     },
     {
       "name": "Fresa Diamante (Diamond Strawberry) 🍓",
@@ -927,14 +927,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Ingrediente de Tartas de Diamante."
+      "id": "Diamond Strawberry",
+      "name_en": "Diamond Strawberry 🍓",
+      "name_es": "Fresa de Diamante 🍓"
     },
     {
       "name": "Arándano Zafiro (Sapphire Blueberry) 🫐",
@@ -951,14 +951,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Usada para Mermelada de Zafiro (+regen)."
+      "id": "Sapphire Blueberry",
+      "name_en": "Sapphire Blueberry 🫐",
+      "name_es": "Arándano de Zafiro 🫐"
     },
     {
       "name": "Calabaza Dorada (Golden Pumpkin) 🎃",
@@ -975,14 +975,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Pastel Dorado (+50⚡) y comercio P2P."
+      "id": "Golden Pumpkin",
+      "name_en": "Golden Pumpkin 🎃",
+      "name_es": "Calabaza Dorada 🎃"
     },
     {
       "name": "Uvas de Cristal (Crystal Grapes) 🍇",
@@ -999,14 +999,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Alta demanda en Market Hall."
+      "id": "Crystal Grapes",
+      "name_en": "Crystal Grapes 🍇",
+      "name_es": "Uvas de Cristal 🍇"
     },
     {
       "name": "Flor Estelar (Starbloom) 🌸",
@@ -1023,14 +1023,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Flor exótica para elixires y mercado P2P."
+      "id": "Starbloom",
+      "name_en": "Starbloom 🌸",
+      "name_es": "Flor Estelar 🌸"
     },
     {
       "name": "Piña Celestial (Celestial Pineapple) 🍍",
@@ -1047,14 +1047,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 15,
-      "regrowGrowTxt": "15 min (1x)",
       "regrowNet": 0,
       "regrowXp": 14,
       "regrowXpMin": 0.93,
       "regrowGoldMin": 0,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cosecha VIP de 15 min. Fruta sagrada para buffs de resistencia."
+      "id": "Celestial Pineapple",
+      "name_en": "Celestial Pineapple 🍍",
+      "name_es": "Piña Celestial 🍍"
     },
     {
       "name": "Winter Kale (Col de Invierno) 🥬❄️",
@@ -1071,14 +1071,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 20,
-      "regrowGrowTxt": "20 min (1x)",
       "regrowNet": 120,
       "regrowXp": 17,
       "regrowXpMin": 0.85,
       "regrowGoldMin": 6,
       "season": "Winter",
-      "seasonLabel": "Invierno ❄️",
-      "tip": "Crecimiento rápido de 20 min en invierno. ¡Ideal para frío!"
+      "id": "Winter Kale",
+      "name_en": "Winter Kale 🥬❄️",
+      "name_es": "Col de Invierno 🥬❄️"
     },
     {
       "name": "Snow Turnip (Nabo de Nieve) ❄️",
@@ -1095,14 +1095,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 45,
-      "regrowGrowTxt": "45 min (1x)",
       "regrowNet": 270,
       "regrowXp": 29,
       "regrowXpMin": 0.64,
       "regrowGoldMin": 6,
       "season": "Winter",
-      "seasonLabel": "Invierno ❄️",
-      "tip": "Tubérculo de invierno de 45 min con 545 oro de venta."
+      "id": "Snow Turnip",
+      "name_en": "Snow Turnip ❄️",
+      "name_es": "Nabo de Nieve ❄️"
     },
     {
       "name": "Frostberry (Baya de Escarcha) 🫐❄️",
@@ -1119,14 +1119,14 @@
       "regrowMinutes": 60,
       "harvests": 5,
       "regrowTotalMinutes": 330,
-      "regrowGrowTxt": "5h 30m (5x)",
       "regrowNet": 5175,
       "regrowXp": 235,
       "regrowXpMin": 0.71,
       "regrowGoldMin": 15.68,
       "season": "Winter",
-      "seasonLabel": "Invierno ❄️",
-      "tip": "🫐❄️ Rebrota cada 60 min (5 cosechas). Baya reina invernal."
+      "id": "Frostberry",
+      "name_en": "Frostberry 🫐❄️",
+      "name_es": "Baya de Escarcha 🫐❄️"
     },
     {
       "name": "Ice Melon (Melón de Hielo) 🍈❄️",
@@ -1143,14 +1143,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 150,
-      "regrowGrowTxt": "2h 30m (1x)",
       "regrowNet": 975,
       "regrowXp": 67,
       "regrowXpMin": 0.45,
       "regrowGoldMin": 6.5,
       "season": "Winter",
-      "seasonLabel": "Invierno ❄️",
-      "tip": "Fruta gélida de invierno, 1.950 oro de venta."
+      "id": "Ice Melon",
+      "name_en": "Ice Melon 🍈❄️",
+      "name_es": "Melón de Hielo 🍈❄️"
     },
     {
       "name": "Pimiento Corazón de Fuego (Fireheart Pepper) 🌶️🔥",
@@ -1167,14 +1167,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 180,
-      "regrowGrowTxt": "3h (1x)",
       "regrowNet": 1150,
       "regrowXp": 76,
       "regrowXpMin": 0.42,
       "regrowGoldMin": 6.39,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Cultivo especial de fuego para alquimia y platos de élite."
+      "id": "Fireheart Pepper",
+      "name_en": "Fireheart Pepper 🌶️🔥",
+      "name_es": "Pimiento Corazón de Fuego 🌶️🔥"
     },
     {
       "name": "Rosa de Hada (Fairy Rose) 🌹✨",
@@ -1191,14 +1191,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 110,
-      "regrowGrowTxt": "1h 50m (1x)",
       "regrowNet": 700,
       "regrowXp": 54,
       "regrowXpMin": 0.49,
       "regrowGoldMin": 6.36,
       "season": "all",
-      "seasonLabel": "Todo el Año 🌐",
-      "tip": "Flor feérica de gran rareza obtenida en eventos y misiones."
+      "id": "Fairy Rose",
+      "name_en": "Fairy Rose 🌹✨",
+      "name_es": "Rosa de Hada 🌹✨"
     },
     {
       "name": "Melón Verde (Honeydew Melon) 🍈",
@@ -1215,14 +1215,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 270,
-      "regrowGrowTxt": "4h 30m (1x)",
       "regrowNet": 2200,
       "regrowXp": 103,
       "regrowXpMin": 0.38,
       "regrowGoldMin": 8.15,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Fruta avanzada de verano (Nv 18), 5.550 oro de venta."
+      "id": "Honeydew Melon",
+      "name_en": "Honeydew Melon 🍈",
+      "name_es": "Melón Dulce 🍈"
     },
     {
       "name": "Coliflor Violeta (Purple Cauliflower) 🥦🟣",
@@ -1239,14 +1239,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 300,
-      "regrowGrowTxt": "5h (1x)",
       "regrowNet": 2500,
       "regrowXp": 111,
       "regrowXpMin": 0.37,
       "regrowGoldMin": 8.33,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Cultivo élite de primavera (Nv 20), 6.250 oro de venta."
+      "id": "Purple Cauliflower",
+      "name_en": "Purple Cauliflower 🥦🟣",
+      "name_es": "Coliflor Morada 🥦🟣"
     },
     {
       "name": "Snow Pea (Guisante de Nieve) 🫛❄️",
@@ -1263,14 +1263,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 330,
-      "regrowGrowTxt": "5h 30m (1x)",
       "regrowNet": 2750,
       "regrowXp": 119,
       "regrowXpMin": 0.36,
       "regrowGoldMin": 8.33,
       "season": "Winter",
-      "seasonLabel": "Invierno ❄️",
-      "tip": "Cultivo maestro de invierno (Nv 22), 6.900 oro de venta."
+      "id": "Snow Pea",
+      "name_en": "Snow Pea 🫛❄️",
+      "name_es": "Guisante de Nieve 🫛❄️"
     },
     {
       "name": "Remolacha Dorada (Golden Beet) 🟡",
@@ -1287,14 +1287,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 360,
-      "regrowGrowTxt": "6h (1x)",
       "regrowNet": 3050,
       "regrowXp": 127,
       "regrowXpMin": 0.35,
       "regrowGoldMin": 8.47,
       "season": "Spring",
-      "seasonLabel": "Primavera 🌸",
-      "tip": "Cosecha maestra de primavera (Nv 24), 7.650 oro de venta."
+      "id": "Golden Beet",
+      "name_en": "Golden Beet 🟡",
+      "name_es": "Remolacha Dorada 🟡"
     },
     {
       "name": "Tomate Negro (Black Tomato) 🍅🖤",
@@ -1311,14 +1311,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 390,
-      "regrowGrowTxt": "6h 30m (1x)",
       "regrowNet": 3350,
       "regrowXp": 134,
       "regrowXpMin": 0.34,
       "regrowGoldMin": 8.59,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "Cultivo legendario de verano (Nv 26), 8.350 oro de venta."
+      "id": "Black Tomato",
+      "name_en": "Black Tomato 🍅🖤",
+      "name_es": "Tomate Negro 🍅🖤"
     },
     {
       "name": "Maíz Azul (Blue Corn) 🌽🔵",
@@ -1335,14 +1335,14 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 420,
-      "regrowGrowTxt": "7h (1x)",
       "regrowNet": 3600,
       "regrowXp": 142,
       "regrowXpMin": 0.34,
       "regrowGoldMin": 8.57,
       "season": "Fall",
-      "seasonLabel": "Otoño 🍂",
-      "tip": "Cereal mítico de otoño (Nv 28), 9.000 oro de venta."
+      "id": "Blue Corn",
+      "name_en": "Blue Corn 🌽🔵",
+      "name_es": "Maíz Azul 🌽🔵"
     },
     {
       "name": "Fruta del Dragón (Dragon Fruit) 🐉",
@@ -1359,21 +1359,20 @@
       "regrowMinutes": null,
       "harvests": 1,
       "regrowTotalMinutes": 480,
-      "regrowGrowTxt": "8h (1x)",
       "regrowNet": 4200,
       "regrowXp": 157,
       "regrowXpMin": 0.33,
       "regrowGoldMin": 8.75,
       "season": "Summer",
-      "seasonLabel": "Verano ☀️",
-      "tip": "👑 Cosecha cumbre de Bloomshire (Nv 30). Venta: 10.500g, XP: 157."
+      "id": "Dragon Fruit",
+      "name_en": "Dragon Fruit 🐉",
+      "name_es": "Fruta del Dragón 🐉"
     }
   ],
   "mining": [
     {
       "name": "Mena de Cobre (Copper Ore) 🧱",
       "grow": 1,
-      "growTxt": "3 golpes (Hierro)",
       "level": 1,
       "cost": 0,
       "sell": 81,
@@ -1381,12 +1380,15 @@
       "xp": 12,
       "xpMin": 4,
       "goldMin": 27,
-      "tip": "Metal inicial abundante en niveles superficiales de la cueva."
+      "id": "Copper Ore",
+      "name_en": "Copper Ore 🧱",
+      "name_es": "Mena de Cobre 🧱",
+      "hits": 3,
+      "toolTier": 1
     },
     {
       "name": "Cuarzo (Quartz) 💎",
       "grow": 1,
-      "growTxt": "3 golpes (Hierro)",
       "level": 1,
       "cost": 0,
       "sell": 81,
@@ -1394,12 +1396,15 @@
       "xp": 12,
       "xpMin": 4,
       "goldMin": 27,
-      "tip": "Cristal translúcido para artesanías y joyería."
+      "id": "Quartz",
+      "name_en": "Quartz 💎",
+      "name_es": "Cuarzo 💎",
+      "hits": 3,
+      "toolTier": 1
     },
     {
       "name": "Cuarzo Rosa (Rose Quartz) 🌸",
       "grow": 1,
-      "growTxt": "3 golpes (Hierro)",
       "level": 1,
       "cost": 0,
       "sell": 97,
@@ -1407,12 +1412,15 @@
       "xp": 15,
       "xpMin": 5,
       "goldMin": 32.3,
-      "tip": "Mineral rosado apreciado en regalos."
+      "id": "Rose Quartz",
+      "name_en": "Rose Quartz 🌸",
+      "name_es": "Cuarzo Rosa 🌸",
+      "hits": 3,
+      "toolTier": 1
     },
     {
       "name": "Topacio (Topaz) 💛",
       "grow": 1,
-      "growTxt": "4 golpes (Bronce)",
       "level": 2,
       "cost": 0,
       "sell": 210,
@@ -1420,12 +1428,15 @@
       "xp": 25,
       "xpMin": 6.25,
       "goldMin": 52.5,
-      "tip": "Gema dorada brillante de nivel intermedio."
+      "id": "Topaz",
+      "name_en": "Topaz 💛",
+      "name_es": "Topacio 💛",
+      "hits": 4,
+      "toolTier": 2
     },
     {
       "name": "Zafiro (Sapphire) 💙",
       "grow": 1,
-      "growTxt": "4 golpes (Bronce)",
       "level": 2,
       "cost": 0,
       "sell": 210,
@@ -1433,12 +1444,15 @@
       "xp": 25,
       "xpMin": 6.25,
       "goldMin": 52.5,
-      "tip": "Piedra preciosa azul intenso requerida en encargos de lujo."
+      "id": "Sapphire",
+      "name_en": "Sapphire 💙",
+      "name_es": "Zafiro 💙",
+      "hits": 4,
+      "toolTier": 2
     },
     {
       "name": "Piedra Lunar (Moonstone) 🌙",
       "grow": 1,
-      "growTxt": "4 golpes (Bronce)",
       "level": 2,
       "cost": 0,
       "sell": 250,
@@ -1446,12 +1460,15 @@
       "xp": 30,
       "xpMin": 7.5,
       "goldMin": 62.5,
-      "tip": "Mineral místico con resplandor plateado."
+      "id": "Moonstone",
+      "name_en": "Moonstone 🌙",
+      "name_es": "Piedra Lunar 🌙",
+      "hits": 4,
+      "toolTier": 2
     },
     {
       "name": "Esmeralda (Emerald) 💚",
       "grow": 1,
-      "growTxt": "5 golpes (Oro)",
       "level": 3,
       "cost": 0,
       "sell": 475,
@@ -1459,12 +1476,15 @@
       "xp": 45,
       "xpMin": 9,
       "goldMin": 95,
-      "tip": "Gema verde de gran valor en el mercado de Rowan."
+      "id": "Emerald",
+      "name_en": "Emerald 💚",
+      "name_es": "Esmeralda 💚",
+      "hits": 5,
+      "toolTier": 3
     },
     {
       "name": "Amatista (Amethyst) 💜",
       "grow": 1,
-      "growTxt": "5 golpes (Oro)",
       "level": 3,
       "cost": 0,
       "sell": 475,
@@ -1472,12 +1492,15 @@
       "xp": 45,
       "xpMin": 9,
       "goldMin": 95,
-      "tip": "Cristal púrpura para forja avanzada de útiles de amatista."
+      "id": "Amethyst",
+      "name_en": "Amethyst 💜",
+      "name_es": "Amatista 💜",
+      "hits": 5,
+      "toolTier": 3
     },
     {
       "name": "Rubí (Ruby) ❤️",
       "grow": 1,
-      "growTxt": "5 golpes (Oro)",
       "level": 3,
       "cost": 0,
       "sell": 590,
@@ -1485,12 +1508,15 @@
       "xp": 55,
       "xpMin": 11,
       "goldMin": 118,
-      "tip": "Gema de fuego rarísima en cuevas profundas."
+      "id": "Ruby",
+      "name_en": "Ruby ❤️",
+      "name_es": "Rubí ❤️",
+      "hits": 5,
+      "toolTier": 3
     },
     {
       "name": "Mena de Oro (Gold Ore) 🪙",
       "grow": 1,
-      "growTxt": "6 golpes (Amatista)",
       "level": 4,
       "cost": 0,
       "sell": 1150,
@@ -1498,12 +1524,15 @@
       "xp": 90,
       "xpMin": 15,
       "goldMin": 191.6,
-      "tip": "Metal precioso para la forja suprema."
+      "id": "Gold Ore",
+      "name_en": "Gold Ore 🪙",
+      "name_es": "Mineral de Oro 🪙",
+      "hits": 6,
+      "toolTier": 4
     },
     {
       "name": "Diamante (Diamond) 💠",
       "grow": 1,
-      "growTxt": "6 golpes (Amatista)",
       "level": 4,
       "cost": 0,
       "sell": 2300,
@@ -1511,14 +1540,17 @@
       "xp": 150,
       "xpMin": 25,
       "goldMin": 383.3,
-      "tip": "¡El mineral más valioso del juego! Se encuentra en las vetas más profundas."
+      "id": "Diamond",
+      "name_en": "Diamond 💠",
+      "name_es": "Diamante 💠",
+      "hits": 6,
+      "toolTier": 4
     }
   ],
   "foraging": [
     {
       "name": "Madera (Wood) 🪵",
       "grow": 1,
-      "growTxt": "4 hachazos",
       "level": 1,
       "cost": 0,
       "sell": 29,
@@ -1526,12 +1558,16 @@
       "xp": 8,
       "xpMin": 2,
       "goldMin": 7.25,
-      "tip": "Recurso básico talando árboles silvestres con el hacha."
+      "id": "Wood",
+      "name_en": "Wood 🪵",
+      "name_es": "Madera 🪵",
+      "hits": 4,
+      "toolTier": 1,
+      "toolKind": "axe"
     },
     {
       "name": "Piedra (Stone) 🪨",
       "grow": 1,
-      "growTxt": "3 golpes",
       "level": 1,
       "cost": 0,
       "sell": 14,
@@ -1539,12 +1575,14 @@
       "xp": 5,
       "xpMin": 1.67,
       "goldMin": 4.67,
-      "tip": "Piedra común extraída de cantos rodados."
+      "id": "Stone",
+      "name_en": "Stone 🪨",
+      "name_es": "Piedra 🪨",
+      "hits": 3
     },
     {
       "name": "Hongo Sombrero Plateado (Silvercap) 🍄",
       "grow": 30,
-      "growTxt": "30 min regrow",
       "level": 1,
       "cost": 0,
       "sell": 160,
@@ -1552,12 +1590,13 @@
       "xp": 25,
       "xpMin": 0.83,
       "goldMin": 5.33,
-      "tip": "Hongo raro silvestre en Deep Forest. Ingrediente de Moonlight Stew."
+      "id": "Silvercap Mushroom",
+      "name_en": "Silvercap Mushroom 🍄",
+      "name_es": "Hongo Sombrerillo Plateado 🍄"
     },
     {
       "name": "Hongo Luminoso (Glowcap) 🍄",
       "grow": 30,
-      "growTxt": "30 min regrow",
       "level": 2,
       "cost": 0,
       "sell": 210,
@@ -1565,12 +1604,13 @@
       "xp": 30,
       "xpMin": 1,
       "goldMin": 7,
-      "tip": "Hongo bioluminiscente de los claros oscuros del bosque."
+      "id": "Glowcap Mushroom",
+      "name_en": "Glowcap Mushroom 🍄",
+      "name_es": "Hongo Casquete Luminoso 🍄"
     },
     {
       "name": "Mariposa Silvestre (Butterfly) 🦋",
       "grow": 1,
-      "growTxt": "Instantáneo",
       "level": 1,
       "cost": 0,
       "sell": 73,
@@ -1578,14 +1618,15 @@
       "xp": 12,
       "xpMin": 12,
       "goldMin": 73,
-      "tip": "Capturada con la red de insectos; intercambiable por piedras en el puesto."
+      "id": "Butterfly",
+      "name_en": "Butterfly 🦋",
+      "name_es": "Mariposa 🦋"
     }
   ],
   "fishing": [
     {
       "name": "Carpa (Carp) 🐟",
       "grow": 1,
-      "growTxt": "Río común",
       "level": 1,
       "cost": 0,
       "sell": 53,
@@ -1593,12 +1634,13 @@
       "xp": 10,
       "xpMin": 10,
       "goldMin": 53,
-      "tip": "Pez común de río. Ingrediente único de Pescado Frito (+5⚡)."
+      "id": "Carp",
+      "name_en": "Carp 🐟",
+      "name_es": "Carpa 🐟"
     },
     {
       "name": "Cacho (Chub) 🐟",
       "grow": 1,
-      "growTxt": "Río común",
       "level": 1,
       "cost": 0,
       "sell": 59,
@@ -1606,12 +1648,13 @@
       "xp": 11,
       "xpMin": 11,
       "goldMin": 59,
-      "tip": "Pez común veloz de fácil captura."
+      "id": "Chub",
+      "name_en": "Chub 🐟",
+      "name_es": "Cacho 🐟"
     },
     {
       "name": "Pez Sol (Sunfish) 🐟",
       "grow": 1,
-      "growTxt": "Aguas calmas",
       "level": 1,
       "cost": 0,
       "sell": 66,
@@ -1619,12 +1662,13 @@
       "xp": 12,
       "xpMin": 12,
       "goldMin": 66,
-      "tip": "Pez diurno de aguas tranquilas."
+      "id": "Sunfish",
+      "name_en": "Sunfish 🐟",
+      "name_es": "Pez Sol 🐟"
     },
     {
       "name": "Perca (Perch) 🐟",
       "grow": 1,
-      "growTxt": "Río medio",
       "level": 1,
       "cost": 0,
       "sell": 81,
@@ -1632,12 +1676,13 @@
       "xp": 15,
       "xpMin": 15,
       "goldMin": 81,
-      "tip": "Pez depredador de agua dulce."
+      "id": "Perch",
+      "name_en": "Perch 🐟",
+      "name_es": "Perca 🐟"
     },
     {
       "name": "Lucio (Pike Fish) 🐟",
       "grow": 1,
-      "growTxt": "Río profundo",
       "level": 2,
       "cost": 0,
       "sell": 150,
@@ -1645,12 +1690,13 @@
       "xp": 24,
       "xpMin": 24,
       "goldMin": 150,
-      "tip": "Pez grande y fuerte. Necesario para Estofado Contundente (+22⚡)."
+      "id": "Pike Fish",
+      "name_en": "Pike Fish 🐟",
+      "name_es": "Lucio 🐟"
     },
     {
       "name": "Trucha Tigre (Tiger Trout) 🐟",
       "grow": 1,
-      "growTxt": "Río rápido",
       "level": 2,
       "cost": 0,
       "sell": 210,
@@ -1658,12 +1704,13 @@
       "xp": 30,
       "xpMin": 30,
       "goldMin": 210,
-      "tip": "Pez moteado de gran vigor y alto precio."
+      "id": "Tiger Trout",
+      "name_en": "Tiger Trout 🐟",
+      "name_es": "Trucha Tigre 🐟"
     },
     {
       "name": "Bagre Fantasma (Ghost Catfish) 👻",
       "grow": 1,
-      "growTxt": "Moonmere (Noche)",
       "level": 3,
       "cost": 0,
       "sell": 515,
@@ -1671,12 +1718,13 @@
       "xp": 65,
       "xpMin": 65,
       "goldMin": 515,
-      "tip": "¡Pez legendario de Moonmere! Solo de noche. Ingrediente de Moonlight Stew."
+      "id": "Ghost Catfish",
+      "name_en": "Ghost Catfish 👻",
+      "name_es": "Bagre Fantasma 👻"
     },
     {
       "name": "Pez Dorado (Golden Fish) 👑",
       "grow": 1,
-      "growTxt": "Río raro",
       "level": 3,
       "cost": 0,
       "sell": 905,
@@ -1684,7 +1732,9 @@
       "xp": 100,
       "xpMin": 100,
       "goldMin": 905,
-      "tip": "¡Pez mitológico! Máximo valor de venta de la pesca."
+      "id": "Golden Fish",
+      "name_en": "Golden Fish 👑",
+      "name_es": "Pez Dorado 👑"
     }
   ]
 }

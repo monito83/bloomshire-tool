@@ -11,7 +11,8 @@ import {
 import { 
   DASHBOARD_QUEST_CATALOG, 
   LockedModuleScreen,
-  localizeQuest
+  localizeQuest,
+  dailyTaskName
 } from '../bloomshireHelpers';
 import { CANONICAL_SKILLS } from '../bloomshireEngine';
 
@@ -874,7 +875,7 @@ export default function QuestsTab({
                         <span className="text-lg">{task.icon || '🌱'}</span>
                         <div>
                           <div className={`text-xs font-bold ${task.done ? 'line-through text-slate-400' : 'text-slate-100'}`}>
-                            {t(`monitors:daily.${task.id}`, { defaultValue: task.label })}
+                            {dailyTaskName(task, i18n.language, t)}
                           </div>
                           <div className="text-[10px] font-mono text-slate-400">
                             {t('daily.goal', { count: task.target })}
@@ -1074,16 +1075,8 @@ export default function QuestsTab({
                 {skillsMeta.isFarmingCapped && (
                   <div className="p-3 bg-rose-950/40 border border-rose-500/40 rounded-lg text-xs text-rose-200 leading-relaxed flex flex-wrap items-center justify-between gap-2">
                     <span>
-                      <Trans t={t} i18nKey="skills.farmingCap" values={{ farming: farmingLevel, min: minSkillNames, minLevel: skillsMeta.minSkillLevel }} components={{ b: <b /> }} />
+                      <Trans t={t} i18nKey="skills.farmingCap" values={{ farming: farmingLevel, min: minSkillNames, minLevel: skillsMeta.minSkillLevel, next: (skillsMeta.minSkillLevel || 1) + 1, xp: fmt(Math.round(100 * (skillsMeta.minSkillLevel || 1) ** 2.7)) }} components={{ b: <b /> }} />
                     </span>
-                    <button
-                      onClick={() => {
-                        if (openItemsSearch) openItemsSearch('Silvercap');
-                      }}
-                      className="px-2.5 py-1 bg-amber-500 text-slate-950 font-black rounded text-[11px] cursor-pointer shrink-0"
-                    >
-                      {t('skills.findMushrooms')}
-                    </button>
                   </div>
                 )}
               </div>

@@ -684,9 +684,11 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
             ? '🌿 Invernadero'
             : (isTown ? '🌻 Huerto de la Aldea' : '🚜 Parcela de Cultivo'));
 
+      // placeKey / labelKey: la tool los muestra en el idioma elegido (locLabel y label quedan de respaldo)
+      const placeKey = isHome ? 'home' : (isGreenhouse ? 'greenhouse' : (isTown ? 'town' : 'field'));
       const atlasTarget = isHome
-        ? { label: '🏡 Parcela de Tu Cabaña (Home Island)', regionId: 'home_island', subZoneId: 'home_cottage_sub', wx: 4034, wy: 10012, worldRect: [3930, 9930, 220, 220] }
-        : { label: '🌻 Huerto Central (Bloomshire Town)', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5400, wy: 4500, worldRect: [5300, 4400, 250, 250] };
+        ? { label: '🏡 Parcela de Tu Cabaña (Home Island)', labelKey: 'atlas:crops.home', regionId: 'home_island', subZoneId: 'home_cottage_sub', wx: 4034, wy: 10012, worldRect: [3930, 9930, 220, 220] }
+        : { label: '🌻 Huerto Central (Bloomshire Town)', labelKey: 'atlas:crops.town', regionId: 'bloomshire_town', subZoneId: 'bloomshire_town_sub_1_bloomshire', wx: 5400, wy: 4500, worldRect: [5300, 4400, 250, 250] };
 
       const timeBucket = cr.readyAt ? Math.round(cr.readyAt / 10000) : 'needs_water';
       const grpKey = cr.seedId + '_' + locLabel + '_' + timeBucket;
@@ -698,6 +700,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           icon: cr.icon,
           count: 0,
           location: locLabel,
+          placeKey,
           atlasTarget,
           growMinutes: cr.growMinutes,
           plantedAt: cr.plantedAt,
@@ -722,17 +725,20 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
     const now = Date.now() + serverTimeOffset;
 
     const potDefs = [
-      { key: 'pot', place: 'Stove', name: 'Cocina / Fogón', icon: '🍲', location: '🏡 Cabaña / Panadería' },
-      { key: 'craftPot', place: 'Anvil', name: 'Forja / Banco de Trabajo', icon: '⚒️', location: '⚒️ Herrería de Bram / Carpintería' },
-      { key: 'millPot', place: 'Mill', name: 'Molino de Agua', icon: '🌾', location: '🌾 Granja de Hollin (Molino)' },
-      { key: 'dairyPot', place: 'Dairy', name: 'Quesería', icon: '🧀', location: '🧀 Granja de Hollin (Lácteos)' },
-      { key: 'loomPot', place: 'Loom', name: 'Telar', icon: '🧵', location: '🧵 Taller Textil' }
+      // Un "pot" por lugar (rules.js POT_KEY / BENCH_POT). Desde el 2026-11-05 el yunque de Bram tiene el suyo
+      // (anvilPot) y el banco de Pell sigue en craftPot. placeKey: la tool lo muestra traducido.
+      { key: 'pot', placeKey: 'cook', icon: '🍲', location: '🏡 Cabaña / Panadería' },
+      { key: 'craftPot', placeKey: 'bench', icon: '🪵', location: '🪵 Carpintería de Pell' },
+      { key: 'anvilPot', placeKey: 'anvil', icon: '⚒️', location: '⚒️ Herrería de Bram' },
+      { key: 'millPot', placeKey: 'mill', icon: '🌾', location: '🌾 Granja de Hollin (Molino)' },
+      { key: 'dairyPot', placeKey: 'dairy', icon: '🧀', location: '🧀 Granja de Hollin (Lácteos)' },
+      { key: 'loomPot', placeKey: 'loom', icon: '🧵', location: '🧵 Taller Textil' }
     ];
 
     potDefs.forEach(pDef => {
       const p = save[pDef.key];
       if (p && (p.ready || p.dish || p.item)) {
-        const dishName = p.dish || p.item || 'Producción';
+        const dishName = p.dish || p.item || '';
         const count = p.n || 1;
         const readyAt = p.ready || (now + 60000);
         const remainingMs = Math.max(0, readyAt - now);
@@ -744,6 +750,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           icon: pDef.icon,
           count,
           location: pDef.location,
+          placeKey: pDef.placeKey,
           readyAt,
           remainingMs,
           isDone,

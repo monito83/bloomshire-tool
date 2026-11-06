@@ -12,7 +12,6 @@
     "layerDoors": "🚪 Caves",
     "layerNpcs": "👤 NPCs",
     "layerClues": "✨ Secrets",
-    "layerRoute": "🧭 Daily route",
     "zoomOut": "Zoom out",
     "zoomIn": "Zoom in",
     "center": "Center the whole continent",
@@ -45,71 +44,6 @@
     "npcs": "Characters",
     "clues": "Quest clues"
   },
-  "route": {
-    "title": "DAILY FARMING ROUTE (8 STOPS)",
-    "close": "Close the route",
-    "hint": "Tap a stop to go there and focus the map on it:",
-    "loot": "📦 Loot: {{loot}}",
-    "stop": "Stop {{n}}: {{name}}",
-    "steps": {
-      "1": {
-        "name": "Dara's Orchard (cherry trees)",
-        "short": "Dara's Orchard (cherries)",
-        "cost": "0⚡",
-        "action": "Pick Grey Cherries from the northern trees and look for Hollis's Lost Hen.",
-        "loot": "4x Grey Cherries (+0⚡) • Husbandry quest"
-      },
-      "2": {
-        "name": "Town plots",
-        "short": "Town plots",
-        "cost": "1⚡ per watering",
-        "action": "Harvest the ripe vegetables and buy seeds at Hazel's shop to replant.",
-        "loot": "Carrots, Potatoes or Wheat • Farming XP"
-      },
-      "3": {
-        "name": "River and Central Bridge",
-        "short": "Central Bridge (fishing)",
-        "cost": "2⚡ per cast",
-        "action": "Fish the river's swirls by day for Carp, Perch and Chub.",
-        "loot": "3-5x river fish • Fishing XP"
-      },
-      "4": {
-        "name": "Whisperwood entrance",
-        "short": "Whisperwood entrance",
-        "cost": "3⚡ per tree",
-        "action": "Chop logs and fallen oaks at the forest edge to stock up on wood for crafting.",
-        "loot": "10x Wood • 2x Fine Wood"
-      },
-      "5": {
-        "name": "Mushroom Dell",
-        "short": "Mushroom Dell (Silvercap)",
-        "cost": "0⚡",
-        "action": "Walk in the shade of the giant south-west oaks to gather wild Silvercap mushrooms.",
-        "loot": "6-10x Silvercap Mushrooms (for cooking and quests)"
-      },
-      "6": {
-        "name": "The Hidden Glade",
-        "short": "Hidden Glade (Glowcap)",
-        "cost": "0⚡",
-        "action": "Walk between the old columns to pick the purple Glowcap mushrooms and trace the arch's runes.",
-        "loot": "3-5x Glowcap Mushrooms • Juniper / Moon quest"
-      },
-      "7": {
-        "name": "Moonmere Lake (altar and pier)",
-        "short": "Moonmere Lake (altar)",
-        "cost": "2⚡ per cast",
-        "action": "Fish the deep northern water (Tiger Trout / Ghost Fish) and leave offerings at the shrine.",
-        "loot": "Magic fish • Chapter 18 progress"
-      },
-      "8": {
-        "name": "Tamsin's Bakery or your cottage",
-        "short": "Tamsin's Bakery (cooking)",
-        "cost": "1⚡ per dish",
-        "action": "Use the stove to cook the day's fish and mushrooms and fill Odette's orders.",
-        "loot": "Cooked dishes • Gold • Cooking XP"
-      }
-    }
-  },
   "pin": {
     "title": "📍 MARKED ON THE MAP:",
     "remove": "Remove the marker",
@@ -133,22 +67,34 @@
     "building": "🏠 Building: {{name}}",
     "close": "Close (Esc)",
     "usual": "📍 Usually at:",
-    "schedule": "⏰ Schedule:",
     "gifts": "Likes to receive:",
-    "center": "Center the camera on {{name}}",
-    "defaultGifts": "Wildflowers, Honey, Cherry pie"
+    "center": "Center the camera on {{name}}"
   },
   "panel": {
     "centerTitle": "Center the camera on this sub-zone",
     "center": "🎯 Center here",
     "official": "Official name on the map (M key): \"{{name}}\"",
-    "finds": "What you find in this sub-zone:",
     "doors": "Caves, mines, shops and entrances ({{n}}):",
     "npcs": "👥 Villagers in this sub-zone ({{n}}):",
     "npcsHint": "Click to see their card",
     "npcTitle": "See {{name}}'s card",
     "clues": "✨ Quest clues and secrets ({{n}}):",
     "siblings": "Other sub-zones of {{name}}:",
-    "pick": "Pick a region or sub-zone on the map or in the list on the left to see everything in it."
+    "pick": "Pick a region or sub-zone on the map or in the list on the left to see everything in it.",
+    "doorTo": "🚪 Way to {{name}}",
+    "cave": "🕳️ Cave: {{name}}"
+  },
+  "stations": {
+    "market": "🏛️ Market Hall (Rowan)",
+    "bench": "🪵 Pell's Carpenter (workbench)",
+    "forge": "⚒️ Bram's Blacksmith (forge and anvil)",
+    "cook": "🍲 Tamsin's Bakery (stove)",
+    "home": "🏡 Your cottage stove (Home Island)",
+    "mill": "🌊 Mill and dairy (Hollin's farm, Southvale)",
+    "loom": "🧵 Tilly's tailor (loom)"
+  },
+  "crops": {
+    "home": "🏡 Your cottage plot (Home Island)",
+    "town": "🌻 Central garden (Bloomshire town)"
   }
 }

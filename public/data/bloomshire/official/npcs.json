@@ -1,0 +1,2772 @@
+{
+ "hazel": {
+  "name": "Hazel",
+  "title_en": "Seed & Tool",
+  "title_es": "Semillas y Útiles",
+  "intro_en": [
+   "Oh! Sorry, I didn't hear the door. Are you new?",
+   "Then you'll be needing seeds. Everyone starts with seeds.",
+   "I'm Hazel. Start with carrots or parsnips. They're very hard to get wrong."
+  ],
+  "intro_es": [
+   "¡Ah! Perdón, no escuché la puerta. ¿Eres nuevo?",
+   "Entonces vas a necesitar semillas. Todos empiezan con semillas.",
+   "Soy Hazel. Empieza con zanahorias o chirivías. Son muy difíciles de arruinar."
+  ],
+  "loved": [
+   {
+    "id": "Star Fruit",
+    "en": "Star Fruit",
+    "es": "Carambola"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Cantaloupe",
+    "en": "Cantaloupe",
+    "es": "Melón"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   }
+  ],
+  "hated": []
+ },
+ "odette": {
+  "name": "Odette",
+  "title_en": "General Store",
+  "title_es": "Tienda General",
+  "intro_en": [
+   "Welcome! Mind the step, it's been loose since spring.",
+   "A bit of everything. Wood, stone, bread, and whatever people bring in.",
+   "I'm Odette. If you have something you don't need, I'll probably buy it."
+  ],
+  "intro_es": [
+   "¡Bienvenido! Cuidado con el escalón, está flojo desde primavera.",
+   "Un poco de todo. Madera, piedra, pan, y lo que la gente traiga.",
+   "Soy Odette. Si tienes algo que no necesitas, seguro te lo compro."
+  ],
+  "loved": [
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "food"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Wood",
+    "en": "Wood",
+    "es": "Madera"
+   },
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   }
+  ],
+  "hated": []
+ },
+ "bram": {
+  "name": "Bram",
+  "title_en": "The Forge",
+  "title_es": "La Herrería",
+  "intro_en": [
+   "Careful. The anvil's still hot.",
+   "Bram. I make the tools in this town, and I mend the ones people break.",
+   "Iron first. Then bronze, gold, amethyst. Better metal lasts longer."
+  ],
+  "intro_es": [
+   "Cuidado. El yunque todavía está caliente.",
+   "Bram. Yo hago las herramientas de este pueblo, y arreglo las que la gente rompe.",
+   "Primero hierro. Luego bronce, oro, amatista. El metal mejor dura más."
+  ],
+  "loved": [
+   {
+    "id": "Ruby",
+    "en": "Ruby",
+    "es": "Rubí"
+   },
+   {
+    "id": "Gold Ore",
+    "en": "Gold Ore",
+    "es": "Mineral de Oro"
+   },
+   {
+    "id": "Spicy Tacos",
+    "en": "Spicy Tacos",
+    "es": "Tacos Picantes"
+   },
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "ore"
+   },
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Roast Dinner",
+    "en": "Roast Dinner",
+    "es": "Cena Asada"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Fruit Smoothie",
+    "en": "Fruit Smoothie",
+    "es": "Batido de Frutas"
+   }
+  ]
+ },
+ "pell": {
+  "name": "Pell",
+  "title_en": "Carpenter",
+  "title_es": "Carpintero",
+  "intro_en": [
+   "Watch your feet. There's sawdust everywhere.",
+   "Always. If it's not a fence, it's a roof.",
+   "Pell. Carpenter. If you've got timber, I'll buy it. All of it."
+  ],
+  "intro_es": [
+   "Cuidado con tus pies. Hay aserrín por todas partes.",
+   "Siempre. Si no es una cerca, es un techo.",
+   "Pell. Carpintero. Si tienes madera, te la compro. Toda."
+  ],
+  "loved": [
+   {
+    "id": "Roast Dinner",
+    "en": "Roast Dinner",
+    "es": "Cena Asada"
+   },
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Blackberry Cobbler",
+    "en": "Blackberry Cobbler",
+    "es": "Cobbler de Moras"
+   },
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Wood",
+    "en": "Wood",
+    "es": "Madera"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Baked Potato",
+    "en": "Baked Potato",
+    "es": "Papa al Horno"
+   },
+   {
+    "id": "Corn on the Cob",
+    "en": "Corn on the Cob",
+    "es": "Mazorca de Maíz"
+   },
+   {
+    "cat": "food"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   },
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ]
+ },
+ "wren": {
+  "name": "Wren",
+  "title_en": "Fisher",
+  "title_es": "Pescador",
+  "intro_en": [
+   "Shh. You'll scare the fish.",
+   "No, I'm joking. They're all out in the river.",
+   "Wren. I buy fish and I sell rods. That's the whole business."
+  ],
+  "intro_es": [
+   "Shh. Vas a espantar a los peces.",
+   "No, es broma. Están todos afuera en el río.",
+   "Wren. Compro pescado y vendo cañas. Ese es todo el negocio."
+  ],
+  "loved": [
+   {
+    "id": "Fish Tacos",
+    "en": "Fish Tacos",
+    "es": "Tacos de Pescado"
+   },
+   {
+    "id": "Sashimi",
+    "en": "Sashimi",
+    "es": null
+   },
+   {
+    "id": "Golden Fish",
+    "en": "Golden Fish",
+    "es": "Pez Dorado"
+   },
+   {
+    "id": "Tiger Trout",
+    "en": "Tiger Trout",
+    "es": "Trucha Tigre"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "fish"
+   },
+   {
+    "id": "Fried Fish",
+    "en": "Fried Fish",
+    "es": "Pescado Frito"
+   },
+   {
+    "id": "Corn on the Cob",
+    "en": "Corn on the Cob",
+    "es": "Mazorca de Maíz"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Hash Browns",
+    "en": "Hash Browns",
+    "es": "Papas Ralladas"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   },
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ]
+ },
+ "tamsin": {
+  "name": "Tamsin",
+  "title_en": "The Bakery",
+  "title_es": "La Panadería",
+  "intro_en": [
+   "Hello! Something smells good, doesn't it? That's me.",
+   "I'm Tamsin. Bread in the morning, stew at night, and cake when I'm in a good mood.",
+   "You look like you skip breakfast. Don't. You'll need the energy."
+  ],
+  "intro_es": [
+   "¡Hola! Algo huele bien, ¿no? Ese soy yo.",
+   "Soy Tamsin. Pan en la mañana, guiso de noche, y pastel cuando estoy de buen humor.",
+   "Te ves como si te saltaras el desayuno. No lo hagas. Vas a necesitar la energía."
+  ],
+  "loved": [
+   {
+    "id": "Wheat",
+    "en": "Wheat",
+    "es": "Trigo"
+   },
+   {
+    "id": "Strawberry",
+    "en": "Strawberry",
+    "es": "Fresa"
+   },
+   {
+    "id": "Blackberry",
+    "en": "Blackberry",
+    "es": "Mora"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   }
+  ],
+  "hated": []
+ },
+ "juniper": {
+  "name": "Juniper",
+  "title_en": "The Apothecary",
+  "title_es": "La Botica",
+  "intro_en": [
+   "Hm? Oh, hello. Don't touch the blue jars.",
+   "Things that grow where they shouldn't. I'm Juniper.",
+   "I sell herbs, flowers, and the seeds that grow them. And I buy what you find in the wild."
+  ],
+  "intro_es": [
+   "¿Eh? Ah, hola. No toques los frascos azules.",
+   "Cosas que crecen donde no deberían. Soy Juniper.",
+   "Vendo hierbas, flores y las semillas que las hacen crecer. Y compro lo que encuentres en el campo."
+  ],
+  "loved": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   },
+   {
+    "id": "Silvercap Mushroom",
+    "en": "Silvercap Mushroom",
+    "es": "Hongo Sombrerillo Plateado"
+   },
+   {
+    "id": "Saffron",
+    "en": "Saffron",
+    "es": "Azafrán"
+   },
+   {
+    "id": "Aloe",
+    "en": "Aloe",
+    "es": null
+   },
+   {
+    "id": "Amethyst",
+    "en": "Amethyst",
+    "es": "Amatista"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "forage"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Garden Salad",
+    "en": "Garden Salad",
+    "es": "Ensalada Verde"
+   },
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   },
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   }
+  ]
+ },
+ "rowan": {
+  "name": "Rowan",
+  "title_en": "The Market Hall",
+  "title_es": "El Mercado Cubierto",
+  "intro_en": [
+   "Welcome to the Market Hall. First time?",
+   "Farmers set out stalls here and sell to each other. You pick the price.",
+   "I'm Rowan. I keep the stalls fair and the floor swept."
+  ],
+  "intro_es": [
+   "Bienvenido al Mercado Cubierto. ¿Primera vez?",
+   "Los granjeros ponen puestos aquí y se venden entre ellos. Tú pones el precio.",
+   "Soy Rowan. Mantengo los puestos justos y el piso barrido."
+  ],
+  "loved": [
+   {
+    "id": "Watermelon",
+    "en": "Watermelon",
+    "es": "Sandía"
+   },
+   {
+    "id": "Fruit Salad",
+    "en": "Fruit Salad",
+    "es": "Ensalada de Frutas"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "farthing": {
+  "name": "Farthing",
+  "title_en": "The Bank",
+  "title_es": "El Banco",
+  "intro_en": [
+   "Good day. Farthing, of the Bloomshire Bank.",
+   "Every town needs somewhere safe to keep its Gold.",
+   "Put by what you don't need to carry. It'll be here when you come back."
+  ],
+  "intro_es": [
+   "Buen día. Farthing, del Banco de Bloomshire.",
+   "Todo pueblo necesita un lugar seguro para guardar su Oro.",
+   "Deja lo que no necesitas cargar. Aquí va a estar cuando vuelvas."
+  ],
+  "loved": [
+   {
+    "id": "Gold Ore",
+    "en": "Gold Ore",
+    "es": "Mineral de Oro"
+   },
+   {
+    "id": "Diamond",
+    "en": "Diamond",
+    "es": "Diamante"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Emerald",
+    "en": "Emerald",
+    "es": "Esmeralda"
+   },
+   {
+    "id": "Sapphire",
+    "en": "Sapphire",
+    "es": "Zafiro"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "hated": []
+ },
+ "quill": {
+  "name": "Quill",
+  "title_en": "The Exchange",
+  "title_es": "La Casa de Cambio",
+  "intro_en": [
+   "Ah, a newcomer. Welcome to the Exchange.",
+   "Coins, mostly. My materials counter is closed for a while.",
+   "I'm Quill. Farmers post their own offers on my board. Gold, Shards, even $AVYN."
+  ],
+  "intro_es": [
+   "Ah, un recién llegado. Bienvenido a la Casa de Cambio.",
+   "Monedas, sobre todo. Mi mostrador de materiales está cerrado por un tiempo.",
+   "Soy Quill. Los granjeros publican sus propias ofertas en mi tablero. Oro, Fragmentos, hasta $AVYN."
+  ],
+  "loved": [
+   {
+    "id": "Diamond",
+    "en": "Diamond",
+    "es": "Diamante"
+   },
+   {
+    "id": "Golden Fish",
+    "en": "Golden Fish",
+    "es": "Pez Dorado"
+   },
+   {
+    "id": "Star Fruit",
+    "en": "Star Fruit",
+    "es": "Carambola"
+   },
+   {
+    "id": "Saffron",
+    "en": "Saffron",
+    "es": "Azafrán"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Emerald",
+    "en": "Emerald",
+    "es": "Esmeralda"
+   },
+   {
+    "id": "Sapphire",
+    "en": "Sapphire",
+    "es": "Zafiro"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   },
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Strawberry Tart",
+    "en": "Strawberry Tart",
+    "es": "Tarta de Fresa"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Wood",
+    "en": "Wood",
+    "es": "Madera"
+   },
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   },
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "tilly": {
+  "name": "Tilly",
+  "title_en": "The Tailor",
+  "title_es": "El Sastre",
+  "intro_en": [
+   "Oh, hello! Don't mind the pins.",
+   "I'm Tilly. I make clothes, I mend clothes, and I complain about the price of cloth.",
+   "New cloth is on its way. When it comes, I'll make you something nice."
+  ],
+  "intro_es": [
+   "¡Ah, hola! No te fijes en los alfileres.",
+   "Soy Tilly. Hago ropa, remiendo ropa y me quejo del precio de la tela.",
+   "La tela nueva está en camino. Cuando llegue, te haré algo lindo."
+  ],
+  "loved": [
+   {
+    "id": "Amethyst",
+    "en": "Amethyst",
+    "es": "Amatista"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   },
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   }
+  ],
+  "disliked": [
+   {
+    "cat": "fish"
+   }
+  ],
+  "hated": []
+ },
+ "maren": {
+  "name": "Maren",
+  "title_en": "The Elder",
+  "title_es": "El Anciano",
+  "intro_en": [
+   "Hello. You must be the one Marlow pulled out of the river.",
+   "It does here. There's not much else to do in the evenings.",
+   "I'm Maren. I'm the Elder, which mostly means people bring me their problems."
+  ],
+  "intro_es": [
+   "Hola. Debes ser a quien Marlow sacó del río.",
+   "Aquí sí. No hay mucho más que hacer por las tardes.",
+   "Soy Maren. Soy la Anciana, lo que básicamente significa que la gente me trae sus problemas."
+  ],
+  "loved": [
+   {
+    "id": "Pumpkin Soup",
+    "en": "Pumpkin Soup",
+    "es": "Sopa de Calabaza"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "food"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": []
+ },
+ "marlow": {
+  "name": "Marlow",
+  "title_en": "The Old Farmer",
+  "title_es": "El Granjero Viejo",
+  "intro_en": [],
+  "intro_es": null,
+  "loved": [
+   {
+    "id": "Parsnip Soup",
+    "en": "Parsnip Soup",
+    "es": "Sopa de Chirivía"
+   },
+   {
+    "id": "Carrot Cake",
+    "en": "Carrot Cake",
+    "es": "Pastel de Zanahoria"
+   },
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Carrot",
+    "en": "Carrot",
+    "es": "Zanahoria"
+   },
+   {
+    "cat": "fish"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   }
+  ],
+  "hated": []
+ },
+ "hollis": {
+  "name": "Hollis",
+  "title_en": "Animal Keeper",
+  "title_es": "Cuidador de Animales",
+  "intro_en": [
+   "Easy there. The goats don't know you yet.",
+   "I'm Hollis. I look after the town's animals. Chickens, goats, and one very stubborn cow.",
+   "Move slowly round them. They'll come to you when they're ready."
+  ],
+  "intro_es": [
+   "Tranquilo. Las cabras todavía no te conocen.",
+   "Soy Hollis. Cuido a los animales del pueblo. Gallinas, cabras y una vaca muy terca.",
+   "Muévete despacio cerca de ellos. Vendrán a ti cuando estén listos."
+  ],
+  "loved": [
+   {
+    "id": "Pumpkin",
+    "en": "Pumpkin",
+    "es": "Calabaza"
+   },
+   {
+    "id": "Cabbage",
+    "en": "Cabbage",
+    "es": "Repollo"
+   },
+   {
+    "id": "Carrot",
+    "en": "Carrot",
+    "es": "Zanahoria"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Wheat",
+    "en": "Wheat",
+    "es": "Trigo"
+   },
+   {
+    "id": "Corn",
+    "en": "Corn",
+    "es": "Maíz"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "hated": []
+ },
+ "nixie": {
+  "name": "Nixie",
+  "title_en": "The Mermaid",
+  "title_es": "La Sirena",
+  "intro_en": [
+   "Oh! Hello! Nobody ever stops at the pond.",
+   "I'm Nixie. The pond is mine. It used to be bigger.",
+   "I hear everything in this town. People talk by the water and forget I'm in it."
+  ],
+  "intro_es": [
+   "¡Ah! ¡Hola! Nadie se detiene nunca en el estanque.",
+   "Soy Nixie. El estanque es mío. Antes era más grande.",
+   "Lo escucho todo en este pueblo. La gente habla junto al agua y se olvida de que estoy ahí."
+  ],
+  "loved": [
+   {
+    "id": "Quartz",
+    "en": "Quartz",
+    "es": "Cuarzo"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   },
+   {
+    "id": "Diamond",
+    "en": "Diamond",
+    "es": "Diamante"
+   },
+   {
+    "id": "Sapphire",
+    "en": "Sapphire",
+    "es": "Zafiro"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "ore"
+   }
+  ],
+  "disliked": [
+   {
+    "cat": "food"
+   }
+  ],
+  "hated": []
+ },
+ "dunn": {
+  "name": "Dunn",
+  "title_en": "Head Miner",
+  "title_es": "Jefe de Mineros",
+  "intro_en": [
+   "You're not one of mine. Lost?",
+   "Well, stay back from the gorge edge. It crumbles.",
+   "Dunn. I run the camp. Mostly I stop the tunnels falling in."
+  ],
+  "intro_es": [
+   "No eres de los míos. ¿Estás perdido?",
+   "Bueno, mantente alejado del borde del desfiladero. Se desmorona.",
+   "Dunn. Dirijo el campamento. Sobre todo evito que los túneles se derrumben."
+  ],
+  "loved": [
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Topaz",
+    "en": "Topaz",
+    "es": "Topacio"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "ore"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "marven": {
+  "name": "Marven",
+  "title_en": "The Lake Mermaid",
+  "title_es": "La Sirena del Lago",
+  "intro_en": [
+   "You found my pool. Not many do.",
+   "Marven. I've lived in this lake since before there was a town.",
+   "Those stones out in the water stood on dry land once. That's how long."
+  ],
+  "intro_es": [
+   "Encontraste mi estanque. No muchos lo hacen.",
+   "Marven. He vivido en este lago desde antes de que existiera el pueblo.",
+   "Esas piedras allá en el agua alguna vez estuvieron en tierra firme. Así de antiguo es esto."
+  ],
+  "loved": [
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   },
+   {
+    "id": "Sapphire",
+    "en": "Sapphire",
+    "es": "Zafiro"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "fish"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "sylmare": {
+  "name": "Sylmare",
+  "title_en": "Speaker for the Lagoon",
+  "title_es": "Portavoz de la Laguna",
+  "intro_en": [
+   "A land walker on our planks.",
+   "I'm Sylmare. I speak for the lagoon when it needs speaking for.",
+   "You may walk the planks. Please keep out of the houses."
+  ],
+  "intro_es": [
+   "Un caminante de tierra en nuestras tablas.",
+   "Soy Sylmare. Hablo por la laguna cuando hace falta que alguien hable por ella.",
+   "Puedes caminar por las tablas. Por favor, no entres en las casas."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "elyria": {
+  "name": "Elyria",
+  "title_en": "The Lagoon's Singer",
+  "title_es": "La Cantora de la Laguna",
+  "intro_en": [
+   "Oh. You can hear me?",
+   "I'm Elyria. I keep the lagoon's songs. Somebody has to remember them.",
+   "Most of them are only half there now. The old words went grey with the river."
+  ],
+  "intro_es": [
+   "Oh. ¿Puedes oírme?",
+   "Soy Elyria. Guardo las canciones de la laguna. Alguien tiene que recordarlas.",
+   "La mayoría ya solo están a medias. Las palabras antiguas se volvieron grises con el río."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "virella": {
+  "name": "Virella",
+  "title_en": "The Lagoon's Scout",
+  "title_es": "La Exploradora de la Laguna",
+  "intro_en": [
+   "Stop there. Who let you out on the planks?",
+   "Hm. I'm Virella. I watch the water. All of it.",
+   "If you fall in, I'm not fishing you out."
+  ],
+  "intro_es": [
+   "Alto ahí. ¿Quién te dejó salir a las tablas?",
+   "Hm. Soy Virella. Vigilo el agua. Toda.",
+   "Si caes, no pienso sacarte."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "miralys": {
+  "name": "Miralys",
+  "title_en": "The Net Weaver",
+  "title_es": "La Tejedora de Redes",
+  "intro_en": [
+   "Careful, careful, you're standing on my net.",
+   "That one. No, that one. I'm Miralys. I make the nets, and I mend them, which is most of the work."
+  ],
+  "intro_es": [
+   "Cuidado, cuidado, estás parado sobre mi red.",
+   "Esa. No, esa otra. Soy Miralys. Hago las redes y las remiendo, que es la mayor parte del trabajo."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "silas": {
+  "name": "Silas",
+  "title_en": "The Gravedigger",
+  "title_es": "El Sepulturero",
+  "intro_en": [
+   "Mind where you stand. Some of them are shallow.",
+   "Silas. I dig the graves and I keep them. Have done since I was a lad.",
+   "The night folk bury their own. I just make sure nobody forgets where."
+  ],
+  "intro_es": [
+   "Fíjate dónde pisas. Algunas partes son poco profundas.",
+   "Silas. Yo cavo las tumbas y las cuido. Lo hago desde que era un muchacho.",
+   "La gente de la noche entierra a los suyos. Yo solo me aseguro de que nadie olvide dónde."
+  ],
+  "loved": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   },
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "fish"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "wick": {
+  "name": "Wick",
+  "title_en": "The Ferryman",
+  "title_es": "El Barquero",
+  "intro_en": [
+   "Need the boat? Everybody needs the boat sooner or later.",
+   "Wick. I row the marsh: the hollow, the isles, the far shore under the tower, the chapel.",
+   "Old Elias had the boat before me. He never took a coin for it, and nor do I."
+  ],
+  "intro_es": [
+   "¿Necesitas el bote? Todos necesitan el bote tarde o temprano.",
+   "Wick. Remo por el pantano: la hondonada, las islas, la orilla lejana bajo la torre, la capilla.",
+   "El viejo Elias tenía el bote antes que yo. Nunca cobró una moneda por él, y yo tampoco."
+  ],
+  "loved": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "sable": {
+  "name": "Sable",
+  "title_en": "The Night Market",
+  "title_es": "El Mercado Nocturno",
+  "intro_en": [
+   "A day-walker, at the market. How brave.",
+   "Sable. I keep the market when the court is awake.",
+   "Smoked eel, the best in the marsh. And I buy what the marsh gives you: fish, Glowcaps."
+  ],
+  "intro_es": [
+   "Una caminante del día, en el mercado. Qué valentía.",
+   "Sable. Cuido el mercado cuando la corte está despierta.",
+   "Anguila ahumada, la mejor del pantano. Y compro lo que el pantano te dé: pescado, Casquetes Luminosos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "vesper": {
+  "name": "Vesper",
+  "title_en": "The Lamplighter",
+  "title_es": "El Farolero",
+  "intro_en": [
+   "Careful. You're standing in my light.",
+   "Vesper. I light the fires along the causeway. They burn green. They always have.",
+   "Sit a while. I hear everything the night says."
+  ],
+  "intro_es": [
+   "Cuidado. Estás parado en mi luz.",
+   "Vesper. Enciendo los fuegos a lo largo de la calzada. Arden verdes. Siempre lo han hecho.",
+   "Siéntate un rato. Escucho todo lo que dice la noche."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "jory": {
+  "name": "Jory",
+  "title_en": "Old Sailor",
+  "title_es": "Viejo Marinero",
+  "intro_en": [
+   "Ahoy. Don't see many new faces on these docks.",
+   "Forty years at sea, and I ended up on a river. Funny how that goes.",
+   "Name's Jory. I mend nets now, and tell stories to anyone who'll sit still."
+  ],
+  "intro_es": [
+   "Ey. No se ven muchas caras nuevas en estos muelles.",
+   "Cuarenta años en el mar, y terminé en un río. Qué curioso cómo pasan las cosas.",
+   "Me llamo Jory. Ahora remiendo redes, y le cuento historias a quien se quede quieto a escuchar."
+  ],
+  "loved": [
+   {
+    "id": "Golden Fish",
+    "en": "Golden Fish",
+    "es": "Pez Dorado"
+   },
+   {
+    "id": "Ghost Catfish",
+    "en": "Ghost Catfish",
+    "es": "Bagre Fantasma"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "fish"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "greta": {
+  "name": "Greta",
+  "title_en": "Schoolteacher",
+  "title_es": "Maestra",
+  "intro_en": [
+   "Hello! Are you a new parent? No, you look too lost for that.",
+   "It is. I'm Greta. I teach the children letters, sums and good manners.",
+   "Some days the manners are the hardest part."
+  ],
+  "intro_es": [
+   "¡Hola! ¿Eres un nuevo padre? No, te ves demasiado perdido para eso.",
+   "Lo soy. Soy Greta. Les enseño a los niños a leer, a sumar y a tener buenos modales.",
+   "Algunos días los buenos modales son lo más difícil."
+  ],
+  "loved": [
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   },
+   {
+    "id": "Strawberry Tart",
+    "en": "Strawberry Tart",
+    "es": "Tarta de Fresa"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   }
+  ],
+  "hated": []
+ },
+ "mabel": {
+  "name": "Mabel",
+  "title_en": "Pond Keeper",
+  "title_es": "Guardián del Estanque",
+  "intro_en": [
+   "Hello, dear. Would you like to feed the ducks?",
+   "They're greedy things, but I love them. That one's Pudding.",
+   "I'm Mabel. I've lived in Bloomshire all my life."
+  ],
+  "intro_es": [
+   "Hola, cariño. ¿Quieres darle de comer a los patos?",
+   "Son unos glotones, pero los adoro. Esa es Pudding.",
+   "Soy Mabel. He vivido en Bloomshire toda mi vida."
+  ],
+  "loved": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Corn",
+    "en": "Corn",
+    "es": "Maíz"
+   }
+  ],
+  "disliked": [
+   {
+    "cat": "fish"
+   }
+  ],
+  "hated": []
+ },
+ "ansel": {
+  "name": "Ansel",
+  "title_en": "Chapel Keeper",
+  "title_es": "Guardián de la Capilla",
+  "intro_en": [
+   "Hello, friend. The chapel's open to anyone who wants a quiet moment.",
+   "I look after it. I ring the bell, sweep the floor and keep the graves tidy.",
+   "I'm Ansel. It's peaceful work. I recommend it."
+  ],
+  "intro_es": [
+   "Hola, amigo. La capilla está abierta para quien quiera un momento de calma.",
+   "Yo lo cuido. Toco la campana, barro el piso y mantengo las tumbas ordenadas.",
+   "Soy Ansel. Es un trabajo tranquilo. Lo recomiendo."
+  ],
+  "loved": [
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   },
+   {
+    "id": "Pumpkin Soup",
+    "en": "Pumpkin Soup",
+    "es": "Sopa de Calabaza"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "dara": {
+  "name": "Dara",
+  "title_en": "Orchard Keeper",
+  "title_es": "Guardián del Huerto",
+  "intro_en": [
+   "Careful where you step. The fallen cherries are slippery.",
+   "The orchard belongs to the town. I just look after it.",
+   "I'm Dara. Cherries, oranges, and apricots that never quite ripen."
+  ],
+  "intro_es": [
+   "Cuidado dónde pisas. Las cerezas caídas son resbalosas.",
+   "El huerto es del pueblo. Yo solo lo cuido.",
+   "Soy Dara. Cerezas, naranjas y albaricoques que nunca terminan de madurar."
+  ],
+  "loved": [
+   {
+    "id": "Blackberry Cobbler",
+    "en": "Blackberry Cobbler",
+    "es": "Cobbler de Moras"
+   },
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   },
+   {
+    "id": "Strawberry",
+    "en": "Strawberry",
+    "es": "Fresa"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "cole": {
+  "name": "Cole",
+  "title_en": "Farmhand",
+  "title_es": "Peón de granja",
+  "intro_en": [
+   "Morning. You here to help, or just to look at the cows?",
+   "Either way, you're welcome. They're good cows. Better company than most people.",
+   "I'm Cole. I work the paddock for Hollis. Feeding, mucking out, the lot."
+  ],
+  "intro_es": [
+   "Buenos días. ¿Vienes a ayudar, o solo a mirar las vacas?",
+   "De cualquier forma, eres bienvenido. Son buenas vacas. Mejor compañía que la mayoría de la gente.",
+   "Soy Cole. Trabajo en el corral para Hollis. Alimentar, limpiar, de todo."
+  ],
+  "loved": [
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Roast Dinner",
+    "en": "Roast Dinner",
+    "es": "Cena Asada"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "food"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "fenwick": {
+  "name": "Fenwick",
+  "title_en": "Postmaster",
+  "title_es": "Jefe de Correos",
+  "intro_en": [
+   "Letters! No? Sorry, I say that to everyone.",
+   "Postmaster, if you please. I'm Fenwick. Every letter in Bloomshire goes through my hands.",
+   "Nothing happens here without me hearing about it."
+  ],
+  "intro_es": [
+   "¡Cartas! ¿No? Perdón, le digo eso a todo el mundo.",
+   "Jefe de Correos, si no te molesta. Soy Fenwick. Cada carta en Bloomshire pasa por mis manos.",
+   "Aquí no pasa nada sin que yo me entere."
+  ],
+  "loved": [
+   {
+    "id": "Corn on the Cob",
+    "en": "Corn on the Cob",
+    "es": "Mazorca de Maíz"
+   },
+   {
+    "id": "Casserole",
+    "en": "Casserole",
+    "es": "Cazuela"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "ivy": {
+  "name": "Ivy",
+  "title_en": "Flower Seller",
+  "title_es": "Vendedora de flores",
+  "intro_en": [
+   "Flowers? Fresh this morning. Well, yesterday. Mostly fresh.",
+   "Thank you! I'm Ivy. I grow them myself, out past the allotments.",
+   "People buy them for birthdays, for apologies, and for no reason at all."
+  ],
+  "intro_es": [
+   "¿Flores? Frescas esta mañana. Bueno, de ayer. Casi frescas.",
+   "¡Gracias! Soy Ivy. Las cultivo yo misma, más allá de las parcelas.",
+   "La gente las compra para cumpleaños, para disculpas, y sin ninguna razón."
+  ],
+  "loved": [
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Saffron",
+    "en": "Saffron",
+    "es": "Azafrán"
+   },
+   {
+    "id": "Strawberry",
+    "en": "Strawberry",
+    "es": "Fresa"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "otto": {
+  "name": "Otto",
+  "title_en": "Lamplighter",
+  "title_es": "Farolero",
+  "intro_en": [
+   "Evening. Or it will be, soon. Then I get to work.",
+   "I light the lamps. Every one of them, every night, all over town.",
+   "I'm Otto. It's a long walk, but I like seeing the town in the dark."
+  ],
+  "intro_es": [
+   "Buenas tardes. O pronto lo serán. Entonces me pongo a trabajar.",
+   "Yo enciendo las lámparas. Todas, cada noche, por todo el pueblo.",
+   "Soy Otto. Es una caminata larga, pero me gusta ver el pueblo de noche."
+  ],
+  "loved": [
+   {
+    "id": "Fried Fish",
+    "en": "Fried Fish",
+    "es": "Pescado Frito"
+   },
+   {
+    "id": "Hash Browns",
+    "en": "Hash Browns",
+    "es": "Papas Ralladas"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "lena": {
+  "name": "Lena",
+  "title_en": "Gardener",
+  "title_es": "Jardinero",
+  "intro_en": [
+   "Oh, hello! Sorry, I've got mud on everything.",
+   "Beans, mostly. And cabbages. And one very ambitious pumpkin.",
+   "I'm Lena. These allotments are for anyone in town who wants a patch."
+  ],
+  "intro_es": [
+   "¡Ah, hola! Perdón, tengo barro en todo.",
+   "Frijoles, sobre todo. Y repollos. Y una calabaza muy ambiciosa.",
+   "Soy Lena. Estas parcelas son para cualquiera del pueblo que quiera una."
+  ],
+  "loved": [
+   {
+    "id": "Cabbage",
+    "en": "Cabbage",
+    "es": "Repollo"
+   },
+   {
+    "id": "Cauliflower",
+    "en": "Cauliflower",
+    "es": "Coliflor"
+   },
+   {
+    "id": "Broccoli",
+    "en": "Broccoli",
+    "es": "Brócoli"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   }
+  ],
+  "hated": []
+ },
+ "hugo": {
+  "name": "Hugo",
+  "title_en": "The Miller",
+  "title_es": "El Molinero",
+  "intro_en": [
+   "Hello there! Don't stand too close to the sails.",
+   "It is. Hugo, the miller. Wheat goes in, flour comes out.",
+   "Tamsin buys most of my flour. Without me, there's no bread in Bloomshire."
+  ],
+  "intro_es": [
+   "¡Hola! No te pares muy cerca de las velas.",
+   "Así es. Hugo, el molinero. Entra el trigo, sale la harina.",
+   "Tamsin me compra casi toda la harina. Sin mí, no habría pan en Bloomshire."
+  ],
+  "loved": [
+   {
+    "id": "Wheat",
+    "en": "Wheat",
+    "es": "Trigo"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Corn",
+    "en": "Corn",
+    "es": "Maíz"
+   }
+  ],
+  "disliked": [],
+  "hated": []
+ },
+ "rosa": {
+  "name": "Rosa",
+  "title_en": "Reader",
+  "title_es": "Lector",
+  "intro_en": [
+   "Hm? Oh, sorry. I was in the middle of a chapter.",
+   "A story about sailors lost at sea. Jory lent it to me. I think it's about him.",
+   "I'm Rosa. I come here every afternoon when the weather's nice."
+  ],
+  "intro_es": [
+   "¿Eh? Ah, perdón. Estaba a mitad de un capítulo.",
+   "Una historia sobre marineros perdidos en el mar. Me la prestó Jory. Creo que es sobre él.",
+   "Soy Rosa. Vengo aquí todas las tardes cuando hace buen clima."
+  ],
+  "loved": [
+   {
+    "id": "Strawberry Tart",
+    "en": "Strawberry Tart",
+    "es": "Tarta de Fresa"
+   },
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   },
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   },
+   {
+    "id": "Fruit Jam",
+    "en": "Fruit Jam",
+    "es": "Mermelada"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   },
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   }
+  ],
+  "disliked": [
+   {
+    "cat": "fish"
+   },
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "jasper": {
+  "name": "Jasper",
+  "title_en": "Boatwright",
+  "title_es": "Constructor de Botes",
+  "intro_en": [
+   "Mind the tar, it's still wet.",
+   "Jasper. I mend the town's boats, and build a new one when somebody's brave enough to pay for it.",
+   "If yours ever leaks, bring her here. I won't laugh. Much."
+  ],
+  "intro_es": [
+   "Cuidado con el alquitrán, todavía está húmedo.",
+   "Jasper. Arreglo los botes del pueblo, y construyo uno nuevo cuando alguien se anima a pagarlo.",
+   "Si el tuyo alguna vez hace agua, tráelo aquí. No me voy a reír. Mucho."
+  ],
+  "loved": [
+   {
+    "id": "Fried Fish",
+    "en": "Fried Fish",
+    "es": "Pescado Frito"
+   },
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Sapphire",
+    "en": "Sapphire",
+    "es": "Zafiro"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Wood",
+    "en": "Wood",
+    "es": "Madera"
+   },
+   {
+    "cat": "fish"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Corn on the Cob",
+    "en": "Corn on the Cob",
+    "es": "Mazorca de Maíz"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   },
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ]
+ },
+ "felix": {
+  "name": "Felix",
+  "title_en": "Fiddler",
+  "title_es": "Violinista",
+  "intro_en": [
+   "A new face! Stop, stop, I need a rhyme for you.",
+   "Felix. I play by the fountain, for coins and for the pigeons, who are a tough crowd.",
+   "Come back when I've thought of a rhyme. It might take a while."
+  ],
+  "intro_es": [
+   "¡Una cara nueva! Espera, espera, necesito una rima para ti.",
+   "Felix. Toco junto a la fuente, por monedas y para las palomas, que son un público difícil.",
+   "Vuelve cuando se me ocurra una rima. Puede tardar un rato."
+  ],
+  "loved": [
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Strawberry Tart",
+    "en": "Strawberry Tart",
+    "es": "Tarta de Fresa"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   },
+   {
+    "id": "Fruit Jam",
+    "en": "Fruit Jam",
+    "es": "Mermelada"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   },
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "rhys": {
+  "name": "Rhys",
+  "title_en": "Farmhand",
+  "title_es": "Peón de granja",
+  "intro_en": [
+   "Oh, hello. Sorry, I was miles away. Thinking about beans.",
+   "Rhys. I work Hazel's fields by the greenhouse. Turning soil, mostly. And thinking about beans.",
+   "If you ever need a hand with your own field, ask. I like digging."
+  ],
+  "intro_es": [
+   "Ah, hola. Perdona, estaba en las nubes. Pensando en frijoles.",
+   "Rhys. Trabajo los campos de Hazel junto al invernadero. Sobre todo volteando la tierra. Y pensando en frijoles.",
+   "Si alguna vez necesitas una mano con tu propio campo, pídemela. Me gusta cavar."
+  ],
+  "loved": [
+   {
+    "id": "Pumpkin Soup",
+    "en": "Pumpkin Soup",
+    "es": "Sopa de Calabaza"
+   },
+   {
+    "id": "Roast Dinner",
+    "en": "Roast Dinner",
+    "es": "Cena Asada"
+   },
+   {
+    "id": "Baked Potato",
+    "en": "Baked Potato",
+    "es": "Papa al Horno"
+   },
+   {
+    "id": "Star Fruit",
+    "en": "Star Fruit",
+    "es": "Carambola"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Hearty Stew",
+    "en": "Hearty Stew",
+    "es": "Guiso Sustancioso"
+   },
+   {
+    "id": "Corn on the Cob",
+    "en": "Corn on the Cob",
+    "es": "Mazorca de Maíz"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Butterfly",
+    "en": "Butterfly",
+    "es": "Mariposa"
+   },
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "clara": {
+  "name": "Clara",
+  "title_en": "Baker's Apprentice",
+  "title_es": "Aprendiz de Panadería",
+  "intro_en": [
+   "Oh! Hello! You're the one from the river, aren't you? Everybody's been talking.",
+   "Clara. Tamsin's niece. I do the early bake, and the late bake, and most of the bakes in between.",
+   "Come by in the morning. The first buns come out at six, and they're the best ones."
+  ],
+  "intro_es": [
+   "¡Ay! ¡Hola! Tú eres el del río, ¿verdad? Todos han estado hablando de eso.",
+   "Clara. Sobrina de Tamsin. Hago la hornada temprana, la tardía, y casi todas las de en medio.",
+   "Pasa por la mañana. Los primeros panecillos salen a las seis, y son los mejores."
+  ],
+  "loved": [
+   {
+    "id": "Strawberry",
+    "en": "Strawberry",
+    "es": "Fresa"
+   },
+   {
+    "id": "Blackberry Cobbler",
+    "en": "Blackberry Cobbler",
+    "es": "Cobbler de Moras"
+   },
+   {
+    "id": "Wheat",
+    "en": "Wheat",
+    "es": "Trigo"
+   },
+   {
+    "id": "Fruit Jam",
+    "en": "Fruit Jam",
+    "es": "Mermelada"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "crop"
+   },
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   },
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ]
+ },
+ "elsie": {
+  "name": "Elsie",
+  "title_en": "Painter",
+  "title_es": "Pintor",
+  "intro_en": [
+   "Oh. Don't mind me. I'm trying to catch the light before it moves.",
+   "Elsie. I paint. Mostly the river, sometimes the people who walk by it.",
+   "You'd make a good painting. Something about the way you stand."
+  ],
+  "intro_es": [
+   "Ah. No me hagas caso. Intento atrapar la luz antes de que cambie.",
+   "Elsie. Pinto. Sobre todo el río, a veces a la gente que pasa por él.",
+   "Serías un buen cuadro. Algo en tu forma de pararte."
+  ],
+  "loved": [
+   {
+    "id": "Amethyst",
+    "en": "Amethyst",
+    "es": "Amatista"
+   },
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Saffron",
+    "en": "Saffron",
+    "es": "Azafrán"
+   },
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Garden Salad",
+    "en": "Garden Salad",
+    "es": "Ensalada Verde"
+   },
+   {
+    "id": "Fruit Salad",
+    "en": "Fruit Salad",
+    "es": "Ensalada de Frutas"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   },
+   {
+    "id": "Popcorn",
+    "en": "Popcorn",
+    "es": "Palomitas"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "willa": {
+  "name": "Willa",
+  "title_en": "Beekeeper",
+  "title_es": "Apicultor",
+  "intro_en": [
+   "Careful, slow steps! The bees don't mind you if you don't mind them.",
+   "Willa. These are my bees. Well. I'm their Willa, is more how they see it.",
+   "Come by when the clover's out. The honey tastes like summer."
+  ],
+  "intro_es": [
+   "¡Cuidado, pasos lentos! A las abejas no les importas si tú no les importas a ellas.",
+   "Willa. Estas son mis abejas. Bueno. Más bien soy su Willa, así es como ellas lo ven.",
+   "Pasa cuando florezca el trébol. La miel sabe a verano."
+  ],
+  "loved": [
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   },
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "forage"
+   },
+   {
+    "id": "Strawberry",
+    "en": "Strawberry",
+    "es": "Fresa"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Fruit Smoothie",
+    "en": "Fruit Smoothie",
+    "es": "Batido de Frutas"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   },
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   }
+  ]
+ },
+ "faelan": {
+  "name": "Faelan",
+  "title_en": "Bloom Warden",
+  "title_es": "Guardiana del Florecer",
+  "intro_en": [
+   "A human. Here. The arch let you through?",
+   "Faelan. I keep the paths of the elf city, and the gardens round the Heart Tree.",
+   "No human has walked here in my lifetime. Forgive me if I stare."
+  ],
+  "intro_es": [
+   "Un humano. Aquí. ¿El arco te dejó pasar?",
+   "Faelan. Cuido los senderos de la Ciudad Élfica y los jardines alrededor del Árbol del Corazón.",
+   "Ningún humano ha caminado aquí en toda mi vida. Perdona si te miro fijo."
+  ],
+  "loved": [
+   {
+    "id": "Moonstone",
+    "en": "Moonstone",
+    "es": "Piedra Lunar"
+   },
+   {
+    "id": "Star Fruit",
+    "en": "Star Fruit",
+    "es": "Carambola"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Blueberry",
+    "en": "Blueberry",
+    "es": "Arándano"
+   }
+  ],
+  "liked": [
+   {
+    "cat": "forage"
+   },
+   {
+    "id": "Bread",
+    "en": "Bread",
+    "es": "Pan"
+   },
+   {
+    "id": "Fruit Salad",
+    "en": "Fruit Salad",
+    "es": "Ensalada de Frutas"
+   },
+   {
+    "id": "Amethyst",
+    "en": "Amethyst",
+    "es": "Amatista"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Hot Pepper",
+    "en": "Hot Pepper",
+    "es": "Chile Picante"
+   },
+   {
+    "id": "Stone",
+    "en": "Stone",
+    "es": "Piedra"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Marsh Eel",
+    "en": "Marsh Eel",
+    "es": "Anguila de Pantano"
+   }
+  ]
+ },
+ "liora": {
+  "name": "Liora",
+  "title_en": "Fountain Singer",
+  "title_es": "Cantora de la Fuente",
+  "intro_en": [
+   "Oh! A human! Stand still, let me look at you.",
+   "Liora. I sing the evening song at the fountain. Every evening, the same song, since I was small.",
+   "You are the most interesting thing that has happened here in years."
+  ],
+  "intro_es": [
+   "¡Oh! ¡Un humano! Quédate quieto, déjame mirarte.",
+   "Liora. Canto la canción del atardecer en la fuente. Todas las tardes, la misma canción, desde que era pequeña.",
+   "Eres lo más interesante que ha pasado aquí en años."
+  ],
+  "loved": [
+   {
+    "id": "Cake",
+    "en": "Cake",
+    "es": "Pastel"
+   },
+   {
+    "id": "Strawberry Tart",
+    "en": "Strawberry Tart",
+    "es": "Tarta de Fresa"
+   },
+   {
+    "id": "Rose Quartz",
+    "en": "Rose Quartz",
+    "es": "Cuarzo Rosa"
+   },
+   {
+    "id": "Grape Juice",
+    "en": "Grape Juice",
+    "es": "Jugo de Uva"
+   }
+  ],
+  "liked": [
+   {
+    "id": "Marigold",
+    "en": "Marigold",
+    "es": "Caléndula"
+   },
+   {
+    "id": "Sunflower",
+    "en": "Sunflower",
+    "es": "Girasol"
+   },
+   {
+    "id": "Berry Pie",
+    "en": "Berry Pie",
+    "es": "Pastel de Bayas"
+   },
+   {
+    "id": "Fruit Jam",
+    "en": "Fruit Jam",
+    "es": "Mermelada"
+   },
+   {
+    "id": "Amethyst",
+    "en": "Amethyst",
+    "es": "Amatista"
+   }
+  ],
+  "disliked": [
+   {
+    "id": "Carp",
+    "en": "Carp",
+    "es": "Carpa"
+   },
+   {
+    "id": "Wood",
+    "en": "Wood",
+    "es": "Madera"
+   }
+  ],
+  "hated": [
+   {
+    "id": "Glowcap Mushroom",
+    "en": "Glowcap Mushroom",
+    "es": "Hongo Casquete Luminoso"
+   }
+  ]
+ },
+ "aurel": {
+  "name": "Aurel",
+  "title_en": "Tomb Keeper",
+  "title_es": "Guardián de la Tumba",
+  "intro_en": [
+   "You came up the old road? Hardly anybody did, until this spring.",
+   "I'm Aurel. I keep the tombs. Somebody has to sweep the names clean.",
+   "My family has done it since the floods. I'm the last of us."
+  ],
+  "intro_es": [
+   "¿Subiste por el camino viejo? Casi nadie lo hacía, hasta esta primavera.",
+   "Soy Aurel. Cuido las tumbas. Alguien tiene que limpiar los nombres.",
+   "Mi familia lo ha hecho desde las inundaciones. Soy el último de nosotros."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "nella": {
+  "name": "Nella",
+  "title_en": "Stallkeeper",
+  "title_es": "Encargado del Puesto",
+  "intro_en": [
+   "Oh! A customer! Well. A visitor. Close enough.",
+   "Olives, figs, whatever the hills give. More of us come up from the river villages every month.",
+   "I'm Nella. This was my grandmother's stall. Her grandmother's too."
+  ],
+  "intro_es": [
+   "¡Oh, un cliente! Bueno... un visitante. Casi lo mismo.",
+   "Aceitunas, higos, lo que las colinas den. Cada mes llegan más de nosotros desde los pueblos del río.",
+   "Soy Nella. Este era el puesto de mi abuela. Y de la abuela de ella también."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "teodor": {
+  "name": "Teodor",
+  "title_en": "Fruit Seller",
+  "title_es": "Vendedor de Frutas",
+  "intro_en": [
+   "Figs! Grapes! Olives cured three ways! Oh. You are new.",
+   "It's market day. The first real one up here since my father was a boy.",
+   "I'm Teodor. We came up from the river villages in the spring, a few families at first."
+  ],
+  "intro_es": [
+   "¡Higos! ¡Uvas! ¡Aceitunas curadas de tres maneras! Ah. Eres nuevo.",
+   "Es día de mercado. El primero de verdad aquí arriba desde que mi padre era niño.",
+   "Soy Teodor. Subimos desde los pueblos del río en primavera, unas pocas familias al principio."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "brenna": {
+  "name": "Brenna",
+  "title_en": "Mason",
+  "title_es": "Albañil",
+  "intro_en": [
+   "Mind your head. Stone falls up here. Usually on purpose.",
+   "I'm Brenna. Mason, like my mother. We're putting the aqueduct back.",
+   "One span at a time. Cut the stone, lift the stone, shout at the stone."
+  ],
+  "intro_es": [
+   "Cuidado con la cabeza. Aquí arriba caen piedras. Casi siempre a propósito.",
+   "Soy Brenna. Albañil, como mi madre. Estamos reconstruyendo el acueducto.",
+   "Un tramo a la vez. Corta la piedra, levanta la piedra, grítale a la piedra."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "sefa": {
+  "name": "Sefa",
+  "title_en": "Shepherd",
+  "title_es": "Pastor",
+  "intro_en": [
+   "Shh. They are nearly asleep.",
+   "The sheep. And the goats, though goats never sleep, they only pretend.",
+   "I'm Sefa. I brought the flock up when the grass came back. My grandfather kept sheep on these same fields."
+  ],
+  "intro_es": [
+   "Shh. Ya casi están dormidos.",
+   "Las ovejas. Y las cabras, aunque las cabras nunca duermen, solo fingen.",
+   "Soy Sefa. Traje el rebaño cuando volvió la hierba. Mi abuelo tenía ovejas en estos mismos campos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "corin": {
+  "name": "Corin",
+  "title_en": "Vintner",
+  "title_es": "Vinatero",
+  "intro_en": [
+   "Careful, those are this year's. Well. This year's first.",
+   "Nobody's, for a long time. Now mine, until somebody argues.",
+   "I'm Corin. The vines went wild but they never stopped fruiting. I'm cutting them back to something sensible."
+  ],
+  "intro_es": [
+   "Cuidado, esas son de este año. Bueno. Las primeras de este año.",
+   "De nadie, por mucho tiempo. Ahora es mío, hasta que alguien lo discuta.",
+   "Soy Corin. Las vides crecieron silvestres, pero nunca dejaron de dar fruto. Las estoy podando hasta dejarlas razonables."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "pim": {
+  "name": "Pim",
+  "title_en": "Fisher",
+  "title_es": "Pescador",
+  "intro_en": [
+   "Quiet, please. The fish can hear you think.",
+   "Not yet. I'm Pim. I fish the river for the market, and I mend nets for the camp when it rains.",
+   "My family came up from the river villages with Teodor's. The boat on the bank was my grandfather's."
+  ],
+  "intro_es": [
+   "Silencio, por favor. Los peces pueden oírte pensar.",
+   "Todavía no. Soy Pim. Pesco en el río para el mercado, y remiendo redes para el campamento cuando llueve.",
+   "Mi familia vino de los pueblos del río con la de Teodor. El bote en la orilla era de mi abuelo."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "oriel": {
+  "name": "Oriel",
+  "title_en": "Pilgrim",
+  "title_es": "Peregrino",
+  "intro_en": [
+   "Peace to you, traveller.",
+   "Waiting, mostly. I'm Oriel. I walked here from the coast, as the old pilgrims did.",
+   "They came to the Saint's door at dawn, every one of them, to ask her blessing on the road ahead."
+  ],
+  "intro_es": [
+   "Paz a ti, viajero.",
+   "Esperando, sobre todo. Soy Oriel. Caminé hasta aquí desde la costa, como hacían los antiguos peregrinos.",
+   "Llegaron a la puerta de la Santa al amanecer, todos ellos, a pedirle su bendición para el camino que les esperaba."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "aldous": {
+  "name": "Aldous",
+  "title_en": "Scholar",
+  "title_es": "Erudito",
+  "intro_en": [
+   "Ah! Do not step there. That is very old dirt.",
+   "I'm Aldous. I study the old kingdom, which is why I am covered in it.",
+   "The Sun King left three gifts to this land, the old books say. Daybreak, Mending and Aegis."
+  ],
+  "intro_es": [
+   "¡Ah! No pises ahí. Esa es tierra muy antigua.",
+   "Soy Aldous. Estudio el antiguo reino, por eso estoy cubierto de él.",
+   "El Rey Sol dejó tres regalos a esta tierra, dicen los libros antiguos. Amanecer, Reparación y Égida."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "hakon": {
+  "name": "Hakon",
+  "title_en": "Ice Fisher",
+  "title_es": "Pescador de Hielo",
+  "intro_en": [
+   "Shh. You will scare them back under the ice.",
+   "I'm Hakon. I keep the holes open and the village fed. Every morning I chop them clear again.",
+   "The lake freezes a hand thick in one night. The fish do not mind. They are slow and fat and very foolish."
+  ],
+  "intro_es": [
+   "Shh. Los vas a asustar y se irán bajo el hielo otra vez.",
+   "Soy Hakon. Mantengo los agujeros abiertos y al pueblo alimentado. Cada mañana los despejo de nuevo.",
+   "El lago se congela el grosor de una mano en una sola noche. A los peces no les importa. Son lentos, gordos y muy tontos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "sigrun": {
+  "name": "Sigrun",
+  "title_en": "Smith",
+  "title_es": "Herrero",
+  "intro_en": [
+   "Stand back from the sparks. They do not care whose coat they land on.",
+   "I'm Sigrun. My forge has burned since my grandmother's grandmother lit it.",
+   "Spearheads, mostly, this winter. And nails. Always nails."
+  ],
+  "intro_es": [
+   "Aléjate de las chispas. No les importa en el abrigo de quién caigan.",
+   "Soy Sigrun. Mi herrería ha ardido desde que la encendió la abuela de mi abuela.",
+   "Puntas de lanza, sobre todo, este invierno. Y clavos. Siempre clavos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "bjorn": {
+  "name": "Bjorn",
+  "title_en": "Woodcutter",
+  "title_es": "Leñador",
+  "intro_en": [
+   "Mind the chips. They fly further than you think.",
+   "It is never a lot of logs. Not in Frosthaven. I'm Bjorn.",
+   "Every house burns through a woodpile a week in the deep winter. I cut, Sigrun forges, Hakon fishes."
+  ],
+  "intro_es": [
+   "Cuidado con las astillas. Vuelan más lejos de lo que crees.",
+   "Nunca es mucha leña. No en Frosthaven. Soy Bjorn.",
+   "Cada casa gasta una pila de leña a la semana en pleno invierno. Yo corto, Sigrun forja, Hakon pesca."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "ylva": {
+  "name": "Ylva",
+  "title_en": "Path Keeper",
+  "title_es": "Guardián del Sendero",
+  "intro_en": [
+   "Morning! Mind where you step, I have only done this bit.",
+   "Every path in the village, every morning. I'm Ylva.",
+   "It snows in the night, I shovel in the day. The snow and I have an understanding."
+  ],
+  "intro_es": [
+   "¡Buenos días! Ten cuidado dónde pisas, apenas he hecho esta parte.",
+   "Cada camino del pueblo, cada mañana. Soy Ylva.",
+   "Nieva de noche, yo palo de día. La nieve y yo nos entendemos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "gunnar": {
+  "name": "Gunnar",
+  "title_en": "Elder",
+  "title_es": "Anciano",
+  "intro_en": [
+   "Sit, sit. The stones are warm by the springs. One of the few warm things left.",
+   "I'm Gunnar. The oldest, at least. Elder is a word other people use.",
+   "The springs come up warm from deep under the valley. The first frost folk built their houses round them, and so here we all are."
+  ],
+  "intro_es": [
+   "Siéntate, siéntate. Las piedras están tibias junto a los manantiales. Una de las pocas cosas tibias que quedan.",
+   "Soy Gunnar. El más viejo, al menos. Anciano es una palabra que usan otros.",
+   "Los manantiales brotan tibios desde las profundidades del valle. La primera gente de la escarcha construyó sus casas alrededor, y así es como todos terminamos aquí."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "liv": {
+  "name": "Liv",
+  "title_en": "Musician",
+  "title_es": "Músico",
+  "intro_en": [
+   "Oh! Was I too loud? The cold makes everything ring.",
+   "A winter song. The old frost songs, the ones the children learn. I'm Liv.",
+   "There is a song for every season, but here it is mostly winter, so I know the winter ones best."
+  ],
+  "intro_es": [
+   "¡Ay! ¿Hablé muy fuerte? El frío hace que todo resuene.",
+   "Una canción de invierno. Las viejas canciones de escarcha, las que aprenden los niños. Soy Liv.",
+   "Hay una canción para cada estación, pero aquí casi siempre es invierno, así que conozco mejor las de invierno."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "toke": {
+  "name": "Toke",
+  "title_en": "Watchman",
+  "title_es": "Vigilante",
+  "intro_en": [
+   "Halt. Oh. You are not from the north. Good.",
+   "Whatever comes down. I'm Toke. I keep the watch at the foot of the stair.",
+   "Up there is the Frost Wraith's step, and past it the far north, where the frost begins."
+  ],
+  "intro_es": [
+   "Alto. Ah. Tú no eres del norte. Qué bueno.",
+   "Lo que sea que baje. Soy Toke. Hago guardia al pie de la escalera.",
+   "Allá arriba está el escalón del Espectro de Escarcha, y más allá el lejano norte, donde comienza la escarcha."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "inga": {
+  "name": "Inga",
+  "title_en": "Fishmonger",
+  "title_es": "Pescadero",
+  "intro_en": [
+   "Fresh fish! Frozen fish! All the fish here is frozen fish, really.",
+   "Hakon, mostly, out on the lake. I'm Inga. I salt them, dry them and sell them.",
+   "Furs too, yes. Hare and fox, from the trappers up the valley. Warm as an oven."
+  ],
+  "intro_es": [
+   "¡Pescado fresco! ¡Pescado congelado! En realidad, todo el pescado de aquí está congelado.",
+   "Hakon, sobre todo, allá en el lago. Yo soy Inga. Los salo, los seco y los vendo.",
+   "Pieles también, sí. De liebre y zorro, de los trampero del valle. Calientan como un horno."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "eira": {
+  "name": "Eira",
+  "title_en": "Hunter",
+  "title_es": "Cazador",
+  "intro_en": [
+   "Easy. Come in to the fire, slowly. You walk like a deer, and I nearly took you for one.",
+   "Through the winter, yes. I'm Eira. Hare and fox, mostly, for their furs. Inga sells them in the village.",
+   "The wood is quiet in the snow. You hear everything coming a long way off."
+  ],
+  "intro_es": [
+   "Tranquilo. Acércate al fuego, despacio. Caminas como un ciervo, y casi te confundo con uno.",
+   "Durante el invierno, sí. Soy Eira. Liebre y zorro, sobre todo, por sus pieles. Inga las vende en el pueblo.",
+   "El bosque está silencioso en la nieve. Se oye todo lo que se acerca desde muy lejos."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "celeste": {
+  "name": "Celeste",
+  "title_en": "The VIP Shop",
+  "title_es": "La Tienda VIP",
+  "intro_en": [
+   "Welcome to the VIP Shop. Do come in.",
+   "Premium Seeds. Only those. I'm Celeste.",
+   "Plant one in the premium beds outside. In fifteen minutes you'll see what it became."
+  ],
+  "intro_es": [
+   "Bienvenido a la Tienda VIP. Entra, por favor.",
+   "Semillas Premium. Solo eso. Soy Celeste.",
+   "Planta una en las camas premium de afuera. En quince minutos verás en qué se convirtió."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "augustin": {
+  "name": "Augustin",
+  "title_en": "The VIP Exchange",
+  "title_es": "La Casa de Cambio VIP",
+  "intro_en": [
+   "Ah. A visitor. Please, mind the ledgers.",
+   "Not quite. I'm Augustin. I keep the Exchange.",
+   "We open soon. Everything must balance first. To the last coin."
+  ],
+  "intro_es": [
+   "Ah. Una visita. Por favor, ten cuidado con los libros de cuentas.",
+   "No exactamente. Soy Augustin. Yo cuido la Casa de Cambio.",
+   "Abrimos pronto. Todo debe cuadrar primero. Hasta la última moneda."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "sylvie": {
+  "name": "Sylvie",
+  "title_en": "The Library",
+  "title_es": "La Biblioteca",
+  "intro_en": [
+   "Shh. Oh, sorry. Hello.",
+   "You can. That's what the shelves are for. I'm Sylvie.",
+   "Press E at a shelf to read. And please put nothing back in the wrong place."
+  ],
+  "intro_es": [
+   "Shh. Ay, perdón. Hola.",
+   "Puedes. Para eso están los estantes. Soy Sylvie.",
+   "Presiona E en un estante para leer. Y por favor, no pongas nada en el lugar equivocado."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "pemberton": {
+  "name": "Pemberton",
+  "title_en": "The Manor",
+  "title_es": "La Mansión",
+  "intro_en": [
+   "Good day. Welcome to the Manor.",
+   "Pemberton. I keep the house in order.",
+   "The rooms are yours to wander. Please don't touch the vases."
+  ],
+  "intro_es": [
+   "Buen día. Bienvenido a la Mansión.",
+   "Pemberton. Mantengo la casa en orden.",
+   "Los cuartos son tuyos para recorrer. Por favor, no toques los floreros."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "fern": {
+  "name": "Fern",
+  "title_en": "The Greenhouse",
+  "title_es": "El Invernadero",
+  "intro_en": [
+   "Oh, hello! Careful, the ferns are shy.",
+   "Thank you. I'm Fern. Yes, really. My mother thought it was funny.",
+   "Everything in here is for looking at. The premium beds outside are for growing."
+  ],
+  "intro_es": [
+   "¡Ah, hola! Cuidado, los helechos son tímidos.",
+   "Gracias. Soy Fern. Sí, de verdad. Mi madre pensó que era gracioso.",
+   "Todo aquí es solo para mirar. Las camas premium de afuera son para cultivar."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "theo": {
+  "name": "Theo",
+  "title_en": "The Golden Boat",
+  "title_es": "El Bote Dorado",
+  "intro_en": [
+   "Welcome ashore! Mind the step.",
+   "Isn't she? Gold to the waterline. I'm Theo.",
+   "I row pass holders between town and the Quarter. Any time, any weather."
+  ],
+  "intro_es": [
+   "¡Bienvenido a tierra! Cuidado con el escalón.",
+   "¿Verdad que es hermosa? Dorada hasta la línea de flotación. Soy Theo.",
+   "Llevo en bote a los que tienen pase entre el pueblo y el Barrio. A cualquier hora, con cualquier clima."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "iris": {
+  "name": "Iris",
+  "title_en": "The Celestial Garden",
+  "title_es": "El Jardín Celestial",
+  "intro_en": [
+   "Hello. You've found the Celestial Garden.",
+   "I'm Iris. I look after the pedestals.",
+   "Set Crystal Grapes, a Starbloom or a Celestial Pineapple on one. It harvests $AVYN for you every day."
+  ],
+  "intro_es": [
+   "Hola. Encontraste el Jardín Celestial.",
+   "Soy Iris. Cuido los pedestales.",
+   "Coloca Uvas de Cristal, una Flor Estelar o una Piña Celestial en uno. Cosechará $AVYN para ti todos los días."
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ },
+ "amelia": {
+  "name": "Lady Amelia",
+  "title_en": "Resident",
+  "title_es": "Residente",
+  "intro_en": [
+   "Oh, a new face! How delightful.",
+   "Near the Manor, darling. I'm Lady Amelia.",
+   "The fountain is lovely at this hour. It's always this hour here, you know."
+  ],
+  "intro_es": [
+   "¡Ah, una cara nueva! Qué encantador.",
+   "Cerca de la Mansión, querido. Soy la Dama Amelia.",
+   "La fuente es hermosa a esta hora. Aquí siempre es esta hora, ¿sabes?"
+  ],
+  "loved": [],
+  "liked": [],
+  "disliked": [],
+  "hated": []
+ }
+}

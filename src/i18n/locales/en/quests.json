@@ -135,8 +135,7 @@
     "notGated": "Doesn't gate",
     "level": "Lv {{n}}",
     "xpTotal": "Total XP: {{xp}}",
-    "farmingCap": "⚠️ <b>How to unlock Farming level 6:</b> your Farming is at <b>level {{farming}}</b> (the current cap). Since <b>{{min}}</b> is at <b>level {{minLevel}}</b> (2 + 3 = 5), raise <b>Foraging</b> (Silvercap and Glowcap mushrooms in Whisperwood) and <b>Cooking</b> (Tamsin's stove) to <b>level 3 (650 XP)</b>.",
-    "findMushrooms": "🔎 Find Silvercap and Glowcap mushrooms",
+    "farmingCap": "⚠️ <b>Farming is capped at level {{farming}}.</b> No skill can be more than 3 levels above your lowest. Your lowest is <b>{{min}}</b> (level {{minLevel}}): raise it to <b>level {{next}} ({{xp}} XP)</b> to unlock Farming.",
     "names": {
       "farming": "Farming",
       "woodcutting": "Woodcutting",

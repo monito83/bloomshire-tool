@@ -4,24 +4,8 @@
     "odette": "📜 Odette's daily orders",
     "ready_one": "{{count}} ready",
     "ready_other": "{{count}} ready",
-    "arbitrage": "⚖️ Arbitrage calculator (sell raw or cook)",
-    "new": "NEW",
     "radar": "📈 Market radar (Rowan)",
     "hot": "HOT"
-  },
-  "arb": {
-    "title": "⚖️ Arbitrage: sell raw to Wren or cook it at the stove?",
-    "subtitle": "Net profit: takes off what it would sell for raw, the cost of the bought ingredients and <b>1⚡ of energy</b> at the stove.",
-    "cost": "Fixed cooking cost: 1⚡ per dish",
-    "locateTitle": "Find the stove on the Mega-Atlas",
-    "locate": "Find stove",
-    "bag": "Backpack: {{n}}x",
-    "noStock": "None in stock",
-    "raw": "RAW",
-    "mats": "INGREDIENTS",
-    "sale": "SALE",
-    "totalTitle": "Total profit with your current stock",
-    "noMats": "No extra ingredients (0g)"
   },
   "liq": {
     "lockedTitle": "Inventory and storage liquidator",
@@ -77,11 +61,11 @@
     "townSlots_other": "🏬 Town chest: {{count}} slots"
   },
   "odette": {
-    "lockedTitle": "Odette's daily orders (+25% gold)",
-    "lockedDesc": "See today's daily orders, their gold reward and where to deliver them by linking your game with the Bloomshire Companion extension.",
+    "lockedTitle": "Odette's daily orders",
+    "lockedDesc": "See today's orders, the gold and experience they give and where to deliver them by linking your game with the Bloomshire Companion extension.",
     "title": "📜 Odette's daily order board",
     "badge": "DAILY ORDERS",
-    "desc": "Odette posts <b>6 + ⌊level / 3⌋ daily orders</b> (up to 16) on the board of her general store in Bloomshire. She pays about <b>50% of the shop sell price</b> and gives experience for your trades.",
+    "desc": "Odette has <b>6 orders, plus 1 for every 3 Farming levels</b> (up to 16) on her general store's board. Each pays <b>half of what the goods are worth</b> in gold, plus experience, and now and then some $AVYN. Deliver one and a new one appears.",
     "ready": "Ready to deliver",
     "readyCount": "{{n}} of {{total}}",
     "shopLabel": "🏬 Odette's general store (order board)",
@@ -90,7 +74,7 @@
     "available": "Available: <b>{{n}} orders</b>",
     "potential": "Possible gold: +{{gold}}g",
     "xp": "XP to earn: +{{xp}} XP",
-    "renew": "💡 Orders renew every day with the server cycle",
+    "renew": "💡 The board changes every day at 00:00 UTC",
     "waiting": "Waiting for your orders to sync",
     "waitingDesc": "Odette's orders are different for every player and change at 00:00 UTC. Open the game with the <b>Bloomshire Companion</b> extension to see today's.",
     "connect": "🎮 Connect with Companion",

@@ -77,14 +77,14 @@
     "locate": "Find the cottage on the Mega-Atlas"
   },
   "village": {
-    "title": "☀️ Village hours",
-    "day": "Daytime:",
-    "dayValue": "07:00 to 20:00 (shops open)",
-    "night": "Night and rain:",
-    "nightValue": "20:00 to 07:00 (NPCs at home)",
+    "title": "☀️ Day and night in the valley",
+    "day": "One game day:",
+    "dayValue": "8 real hours (6 h of daylight, 2 h of night)",
+    "night": "Daylight:",
+    "nightValue": "05:00 to 21:00 on the game clock",
     "odette": "Odette's orders:",
-    "odetteValue": "6 daily orders available",
-    "tip": "💡 When it rains or at night, NPCs aren't at their outdoor spots. Go inside their houses or wait until 07:00."
+    "odetteValue": "6, plus 1 for every 3 Farming levels (up to 16)",
+    "tip": "💡 At night and in rain, townsfolk go indoors. Come back in the morning or look for them inside."
   },
   "card": {
     "withered": "🥀 WITHERED",
@@ -111,6 +111,19 @@
     "plot": "🌱 Garden plot",
     "locate": "See it on the Mega-Atlas",
     "removeTitle": "Remove this timer",
-    "remove": "✕ Done"
+    "remove": "✕ Done",
+    "production": "Production",
+    "places": {
+      "cook": "🏡 Stove (cottage / bakery)",
+      "bench": "🪵 Pell's workbench (carpentry)",
+      "anvil": "⚒️ Bram's anvil (forge)",
+      "mill": "🌾 Hollin's mill",
+      "dairy": "🧀 Hollin's dairy",
+      "loom": "🧵 Tilly's loom",
+      "home": "🏡 Home Island (your cottage)",
+      "greenhouse": "🌿 Greenhouse",
+      "town": "🌻 Village garden",
+      "field": "🚜 Farm plot"
+    }
   }
 }

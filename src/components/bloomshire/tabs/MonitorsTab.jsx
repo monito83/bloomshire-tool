@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, BookOpen } from 'lucide-react';
-import { LockedModuleScreen, LiveCropOrTimerCard } from '../bloomshireHelpers';
+import { LockedModuleScreen, LiveCropOrTimerCard, dailyTaskName } from '../bloomshireHelpers';
 
 export default function MonitorsTab({
   isConnected,
@@ -29,7 +29,7 @@ export default function MonitorsTab({
   energyMeta = {},
   setActiveTab
 }) {
-  const { t } = useTranslation('monitors');
+  const { t, i18n } = useTranslation('monitors');
   if (!isConnected) {
     return (
       <LockedModuleScreen
@@ -241,8 +241,8 @@ export default function MonitorsTab({
               >
                 <div className="flex items-center gap-2 overflow-hidden">
                   <span className="text-base">{task.icon || '🌱'}</span>
-                  <span className={`text-[11px] font-semibold truncate ${task.done ? 'line-through text-slate-400' : 'text-slate-100'}`} title={t(`daily.${task.id}`, { defaultValue: task.label })}>
-                    {t(`daily.${task.id}`, { defaultValue: task.label })}
+                  <span className={`text-[11px] font-semibold truncate ${task.done ? 'line-through text-slate-400' : 'text-slate-100'}`} title={dailyTaskName(task, i18n.language, t)}>
+                    {dailyTaskName(task, i18n.language, t)}
                   </span>
                 </div>
                 <input

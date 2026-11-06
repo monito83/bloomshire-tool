@@ -1,0 +1,12 @@
+{
+  "search": "🔍 Buscar aldeano por nombre, oficio, lugar o regalo...",
+  "showing": "Mostrando {{n}} de {{total}}",
+  "grid": "🔲 Cuadrícula",
+  "list": "📋 Lista",
+  "giftsNote": "Regalos según el juego: uno por día a cada aldeano. Lo que ama suma más amistad; lo que odia, resta.",
+  "loves": "💖 Ama",
+  "likes": "🙂 Le gusta",
+  "hates": "Odia: {{list}}",
+  "locate": "Ubicar a {{name}} en el Mega-Atlas",
+  "locateLabel": "📍 {{name}} ({{title}}) — {{place}}"
+}

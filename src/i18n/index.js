@@ -13,6 +13,7 @@ import enCompendium from './locales/en/compendium.json';
 import enUpdates from './locales/en/updates.json';
 import enMarket from './locales/en/market.json';
 import enSession from './locales/en/session.json';
+import enNpcs from './locales/en/npcs.json';
 import enAtlas from './locales/en/atlas.json';
 import enInventory from './locales/en/inventory.json';
 import enQuests from './locales/en/quests.json';
@@ -30,6 +31,7 @@ import esCompendium from './locales/es/compendium.json';
 import esUpdates from './locales/es/updates.json';
 import esMarket from './locales/es/market.json';
 import esSession from './locales/es/session.json';
+import esNpcs from './locales/es/npcs.json';
 import esAtlas from './locales/es/atlas.json';
 import esInventory from './locales/es/inventory.json';
 import esQuests from './locales/es/quests.json';
@@ -90,6 +92,7 @@ i18n
         updates: enUpdates,
         market: enMarket,
         session: enSession,
+        npcs: enNpcs,
         atlas: enAtlas,
         inventory: enInventory,
         quests: enQuests,
@@ -108,6 +111,7 @@ i18n
         updates: esUpdates,
         market: esMarket,
         session: esSession,
+        npcs: esNpcs,
         atlas: esAtlas,
         inventory: esInventory,
         quests: esQuests,
@@ -116,7 +120,7 @@ i18n
     },
     lng: initialLang,
     fallbackLng: DEFAULT_LANGUAGE,
-    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium', 'updates', 'market', 'session', 'monitors', 'quests', 'inventory', 'atlas'],
+    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium', 'updates', 'market', 'session', 'monitors', 'quests', 'inventory', 'atlas', 'npcs'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: {

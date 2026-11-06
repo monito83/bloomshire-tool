@@ -77,14 +77,14 @@
     "locate": "Ubicar la cabaña en el Mega-Atlas"
   },
   "village": {
-    "title": "☀️ Horarios de la aldea",
-    "day": "Horario diurno:",
-    "dayValue": "07:00 a 20:00 (tiendas abiertas)",
-    "night": "Noche y lluvia:",
-    "nightValue": "20:00 a 07:00 (NPCs en sus casas)",
+    "title": "☀️ Día y noche en el valle",
+    "day": "Un día del juego:",
+    "dayValue": "8 h reales (6 h de día y 2 h de noche)",
+    "night": "De día:",
+    "nightValue": "05:00 a 21:00 del reloj del juego",
     "odette": "Pedidos de Odette:",
-    "odetteValue": "6 pedidos diarios disponibles",
-    "tip": "💡 Si llueve o es de noche, los NPCs no están en sus puestos de afuera. Entrá a sus casas o esperá a las 07:00."
+    "odetteValue": "6, más 1 cada 3 niveles de Cultivo (hasta 16)",
+    "tip": "💡 De noche y con lluvia, los aldeanos se van a sus casas. Volvé a la mañana o buscalos adentro."
   },
   "card": {
     "withered": "🥀 MARCHITO",
@@ -111,6 +111,19 @@
     "plot": "🌱 Parcela en el huerto",
     "locate": "Ver ubicación en el Mega-Atlas",
     "removeTitle": "Quitar este temporizador",
-    "remove": "✕ Listo"
+    "remove": "✕ Listo",
+    "production": "Producción",
+    "places": {
+      "cook": "🏡 Estufa (cabaña / panadería)",
+      "bench": "🪵 Banco de Pell (carpintería)",
+      "anvil": "⚒️ Yunque de Bram (herrería)",
+      "mill": "🌾 Molino de Hollin",
+      "dairy": "🧀 Lechería de Hollin",
+      "loom": "🧵 Telar de Tilly",
+      "home": "🏡 Home Island (tu cabaña)",
+      "greenhouse": "🌿 Invernadero",
+      "town": "🌻 Huerto de la aldea",
+      "field": "🚜 Parcela de cultivo"
+    }
   }
 }

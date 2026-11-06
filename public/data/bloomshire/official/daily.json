@@ -1,0 +1,116 @@
+{
+ "water15": {
+  "en": "Water 15 crops",
+  "es": "Riega 15 cultivos",
+  "n": 15,
+  "tier": "easy"
+ },
+ "harvest10": {
+  "en": "Harvest 10 crops",
+  "es": "Cosecha 10 cultivos",
+  "n": 10,
+  "tier": "easy"
+ },
+ "forage4": {
+  "en": "Pick 4 mushrooms in the wild",
+  "es": "Recolecta 4 hongos silvestres",
+  "n": 4,
+  "tier": "easy"
+ },
+ "chop2": {
+  "en": "Fell 2 trees in the Woodlot",
+  "es": "Tala 2 árboles en el Lote de Madera",
+  "n": 2,
+  "tier": "easy"
+ },
+ "fish5": {
+  "en": "Catch 5 fish",
+  "es": "Pesca 5 peces",
+  "n": 5,
+  "tier": "easy"
+ },
+ "kill5": {
+  "en": "Defeat 5 creatures",
+  "es": "Derrota a 5 criaturas",
+  "n": 5,
+  "tier": "easy"
+ },
+ "cook5": {
+  "en": "Cook 5 dishes",
+  "es": "Cocina 5 platillos",
+  "n": 5,
+  "tier": "medium"
+ },
+ "mine15": {
+  "en": "Break 15 rocks",
+  "es": "Rompe 15 rocas",
+  "n": 15,
+  "tier": "medium"
+ },
+ "net3": {
+  "en": "Net 3 butterflies",
+  "es": "Atrapa 3 mariposas",
+  "n": 3,
+  "tier": "medium"
+ },
+ "order2": {
+  "en": "Fill 2 orders at the General Store",
+  "es": "Completa 2 pedidos en la Tienda General",
+  "n": 2,
+  "tier": "medium"
+ },
+ "kill20": {
+  "en": "Defeat 20 creatures",
+  "es": "Derrota a 20 criaturas",
+  "n": 20,
+  "tier": "medium"
+ },
+ "fish12": {
+  "en": "Catch 12 fish",
+  "es": "Pesca 12 peces",
+  "n": 12,
+  "tier": "medium"
+ },
+ "harvest30": {
+  "en": "Harvest 30 crops",
+  "es": "Cosecha 30 cultivos",
+  "n": 30,
+  "tier": "medium"
+ },
+ "boss1": {
+  "en": "Defeat a boss",
+  "es": "Derrota a un jefe",
+  "n": 1,
+  "tier": "hard"
+ },
+ "kill50": {
+  "en": "Defeat 50 creatures",
+  "es": "Derrota a 50 criaturas",
+  "n": 50,
+  "tier": "hard"
+ },
+ "fish25": {
+  "en": "Catch 25 fish",
+  "es": "Pesca 25 peces",
+  "n": 25,
+  "tier": "hard"
+ },
+ "cook15": {
+  "en": "Cook 15 dishes",
+  "es": "Cocina 15 platillos",
+  "n": 15,
+  "tier": "hard"
+ },
+ "mine40": {
+  "en": "Break 40 rocks",
+  "es": "Rompe 40 rocas",
+  "n": 40,
+  "tier": "hard"
+ },
+ "order5": {
+  "en": "Fill 5 orders at the General Store",
+  "es": "Completa 5 pedidos en la Tienda General",
+  "n": 5,
+  "tier": "hard"
+ }
+}

@@ -38,5 +38,12 @@
     "badge": "Modo guía libre activo",
     "connect": "🎮 Conectar partida / Companion",
     "back": "← Volver al Mega-Atlas HD"
+  },
+  "giftCats": {
+    "crop": "Cualquier cultivo",
+    "fish": "Cualquier pescado",
+    "forage": "Cualquier cosa silvestre",
+    "food": "Cualquier plato",
+    "ore": "Cualquier mineral"
   }
 }

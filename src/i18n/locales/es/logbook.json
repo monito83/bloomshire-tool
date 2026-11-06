@@ -1,8 +1,8 @@
 {
   "hero": {
     "kicker": "Guía de campo de la comunidad",
-    "title": "Bitácora de Leonman",
-    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, escritos por Leonman y compartidos con toda la comunidad.",
+    "title": "Bitácora y guías",
+    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, compartidos con toda la comunidad.",
     "credit": "Contenido de Leonman, publicado con su permiso."
   },
   "nav": {
@@ -46,7 +46,7 @@
     "entries_one": "{{count}} entrada",
     "entries_other": "{{count}} entradas",
     "emptyTitle": "La bitácora todavía está en blanco",
-    "emptyBody": "Las primeras guías de Leonman van a aparecer acá apenas se publiquen."
+    "emptyBody": "Las primeras guías van a aparecer acá apenas se publiquen."
   },
   "section": {
     "subsections": "Subsecciones",

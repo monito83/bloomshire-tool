@@ -48,7 +48,8 @@ export default function InventoryTab({
   inventoryCatalogData: propCatalogData,
   initialSubTab,
   getPlayerItemQty: propGetPlayerItemQty,
-  openItemsSearch
+  openItemsSearch,
+  setActiveTab
 }) {
   const { t, i18n } = useTranslation('inventory');
   const isEn = String(i18n.language || '').toLowerCase().startsWith('en');
@@ -58,7 +59,7 @@ export default function InventoryTab({
   const inventoryCatalogData = propCatalogData || defaultInventoryCatalog;
   const [economySubTab, setEconomySubTab] = useState(() => {
     if (initialSubTab) return initialSubTab;
-    return (walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x')) ? 'liquidation' : 'arbitrage';
+    return (walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x')) ? 'liquidation' : 'market_radar';
   });
   const [inventorySearchQuery, setInventorySearchQuery] = useState('');
   const [inventorySortBy, setInventorySortBy] = useState('owned_desc');
@@ -222,7 +223,7 @@ export default function InventoryTab({
 
   return (
             <div className="flex flex-col h-full w-full overflow-hidden p-4 gap-3">
-              {/* Selector de Sub-herramientas de Economía */}
+              {/* Selector de Sub-herramientas de Economia */}
               <div className="flex items-center gap-2 bg-[#0a1224] p-1.5 rounded-xl border border-indigo-950/80 shrink-0">
                 <button
                   onClick={() => setEconomySubTab('liquidation')}
@@ -250,19 +251,6 @@ export default function InventoryTab({
                   )}
                 </button>
                 <button
-                  onClick={() => setEconomySubTab('arbitrage')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                    economySubTab === 'arbitrage'
-                      ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800'
-                  }`}
-                >
-                  <span>{t('tabs.arbitrage')}</span>
-                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                    {t('tabs.new')}
-                  </span>
-                </button>
-                <button
                   onClick={() => setEconomySubTab('market_radar')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                     economySubTab === 'market_radar'
@@ -277,269 +265,6 @@ export default function InventoryTab({
                 </button>
               </div>
 
-              {/* Sub-vista 1: Arbitraje y Lucro de Cocina (Tarjetas compactas en cuadrícula 4-6 columnas) */}
-              {economySubTab === 'arbitrage' && (
-                <div className="flex-1 flex flex-col gap-3.5 overflow-y-auto pr-1">
-                  <div className="p-3.5 bg-[#0e172c] border-2 border-amber-500/60 rounded-xl shadow-lg">
-                    <div className="flex items-center justify-between gap-3 flex-wrap">
-                      <div>
-                        <div className="text-sm font-black text-amber-400 flex items-center gap-2">
-                          <span className="uppercase">{t('arb.title')}</span>
-                        </div>
-                        <div className="text-xs text-slate-300 mt-1 leading-relaxed">
-                          <Trans t={t} i18nKey="arb.subtitle" components={{ b: <b /> }} />
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="px-3 py-1 rounded-lg bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                          <Zap className="w-3.5 h-3.5 text-cyan-400" />
-                          <span>{t('arb.cost')}</span>
-                        </div>
-                        <button
-                          onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS.cook)}
-                          className="px-3 py-1 rounded-lg bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-                          title={t('arb.locateTitle')}
-                        >
-                          <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                          <span>{t('arb.locate')}</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Cuadrícula compacta de Arbitraje (4-6 columnas estilo Buscador de Ítems) */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2.5">
-                    {[
-                      {
-                        rawId: 'Carp',
-                        rawItem: 'Carpa (Carp)',
-                        rawPrice: 53,
-                        secondMats: '1x Harina (15g)',
-                        matsEn: '1x Flour (15g)',
-                        matsCost: 15,
-                        energyCost: 1,
-                        cookedItem: 'Fish Pie (Tarta de Pescado)',
-                        cookedPrice: 165,
-                        reqSkill: 'Cocina Lv 11',
-                        xp: 55,
-                        icon: '🐟',
-                        netProfit: 97, // 165 - (53 + 15) = 97
-                        mult: '+142%',
-                        goldPerEnergy: '+97g / 1⚡'
-                      },
-                      {
-                        rawId: 'Perch',
-                        rawItem: 'Perca (Perch)',
-                        rawPrice: 81,
-                        secondMats: '1x Papa (45g)',
-                        matsEn: '1x Potato (45g)',
-                        matsCost: 45,
-                        energyCost: 1,
-                        cookedItem: 'Fish Stew (Guiso de Pescado)',
-                        cookedPrice: 210,
-                        reqSkill: 'Cocina Lv 8',
-                        xp: 50,
-                        icon: '🐟',
-                        netProfit: 84, // 210 - (81 + 45) = 84
-                        mult: '+103%',
-                        goldPerEnergy: '+84g / 1⚡'
-                      },
-                      {
-                        rawId: 'Silvercap Mushroom',
-                        rawItem: 'Silvercap Mushroom',
-                        rawPrice: 60,
-                        secondMats: 'Sin insumos extra (0g)',
-                        matsCost: 0,
-                        energyCost: 1,
-                        cookedItem: 'Fried Mushrooms (Setas Salteadas)',
-                        cookedPrice: 180,
-                        reqSkill: 'Cocina Lv 3',
-                        xp: 60,
-                        icon: '🍄',
-                        netProfit: 120, // 180 - 60 = 120
-                        mult: '+200%',
-                        goldPerEnergy: '+120g / 1⚡'
-                      },
-                      {
-                        rawId: 'Carrot',
-                        rawItem: 'Zanahoria (Carrot)',
-                        rawPrice: 40,
-                        secondMats: '1x Chirivía (25g)',
-                        matsEn: '1x Parsnip (25g)',
-                        matsCost: 25,
-                        energyCost: 1,
-                        cookedItem: 'Vegetable Plate (Plato Verduras)',
-                        cookedPrice: 95,
-                        reqSkill: 'Cocina Lv 1',
-                        xp: 30,
-                        icon: '🥕',
-                        netProfit: 30, // 95 - (40 + 25) = 30
-                        mult: '+75%',
-                        goldPerEnergy: '+30g / 1⚡'
-                      },
-                      {
-                        rawId: 'Potato',
-                        rawItem: 'Papa / Patata (Potato)',
-                        rawPrice: 45,
-                        secondMats: 'Sin insumos extra (0g)',
-                        matsCost: 0,
-                        energyCost: 1,
-                        cookedItem: 'Baked Potato (Papa Asada)',
-                        cookedPrice: 110,
-                        reqSkill: 'Cocina Lv 2',
-                        xp: 35,
-                        icon: '🥔',
-                        netProfit: 65, // 110 - 45 = 65
-                        mult: '+144%',
-                        goldPerEnergy: '+65g / 1⚡'
-                      },
-                      {
-                        rawId: 'Pike',
-                        rawItem: 'Lucio (Pike)',
-                        rawPrice: 150,
-                        secondMats: '1x Mantequilla (35g)',
-                        matsEn: '1x Butter (35g)',
-                        matsCost: 35,
-                        energyCost: 1,
-                        cookedItem: 'Roast Fish Platter (Bandeja Asada)',
-                        cookedPrice: 340,
-                        reqSkill: 'Cocina Lv 15',
-                        xp: 75,
-                        icon: '🐟',
-                        netProfit: 155, // 340 - (150 + 35) = 155
-                        mult: '+103%',
-                        goldPerEnergy: '+155g / 1⚡'
-                      },
-                      {
-                        rawId: 'Chub',
-                        rawItem: 'Cacho (Chub)',
-                        rawPrice: 32,
-                        secondMats: '1x Aceite (10g)',
-                        matsEn: '1x Oil (10g)',
-                        matsCost: 10,
-                        energyCost: 1,
-                        cookedItem: 'Fried Fish (Pescado Frito)',
-                        cookedPrice: 90,
-                        reqSkill: 'Cocina Lv 4',
-                        xp: 40,
-                        icon: '🐟',
-                        netProfit: 48, // 90 - (32 + 10) = 48
-                        mult: '+114%',
-                        goldPerEnergy: '+48g / 1⚡'
-                      },
-                      {
-                        rawId: 'Wheat',
-                        rawItem: 'Trigo Cosechado',
-                        rawPrice: 185,
-                        secondMats: 'Molienda Harina (10g)',
-                        matsEn: 'Milling flour (10g)',
-                        matsCost: 10,
-                        energyCost: 1,
-                        cookedItem: 'Bread (Pan Casero)',
-                        cookedPrice: 280,
-                        reqSkill: 'Cocina Lv 5',
-                        xp: 45,
-                        icon: '🌾',
-                        netProfit: 85, // 280 - (185 + 10) = 85
-                        mult: '+44%',
-                        goldPerEnergy: '+85g / 1⚡'
-                      }
-                    ].map((arb, i) => {
-                      const owned = getPlayerItemQty({ id: arb.rawId });
-                      const totalPotentialProfit = owned > 0 ? arb.netProfit * owned : arb.netProfit;
-
-                      return (
-                        <div 
-                          key={i} 
-                          className="p-3 bg-[#0c1322] border border-indigo-950/90 hover:border-amber-500/60 rounded-xl shadow-md flex flex-col justify-between gap-2.5 transition-all"
-                        >
-                          {/* Fila 1: Ícono + Nombre Crudo + Lucro Neto */}
-                          <div className="flex flex-col gap-2">
-                            <div className="flex items-start justify-between gap-1.5 min-w-0">
-                              <div className="flex items-center gap-1.5 min-w-0 flex-1">
-                                <ItemSprite name={arb.rawItem} id={arb.rawId} fallback={arb.icon || '🐟'} size={24} className="shrink-0" />
-                                <div className="min-w-0 flex-1">
-                                  <div className="font-bold text-xs text-white truncate leading-tight" title={isEn ? arb.rawId : arb.rawItem}>
-                                    {isEn ? arb.rawId : arb.rawItem}
-                                  </div>
-                                  <div className="text-[10px] text-slate-400 font-mono mt-0.5">
-                                    {owned > 0 ? (
-                                      <span className="text-emerald-400 font-bold bg-emerald-950/60 px-1 py-0.2 rounded border border-emerald-500/30">
-                                        {t('arb.bag', { n: owned })}
-                                      </span>
-                                    ) : (
-                                      <span className="text-slate-500">{t('arb.noStock')}</span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-
-                              <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-black text-[11px] font-mono shrink-0">
-                                +{arb.netProfit}g
-                              </span>
-                            </div>
-
-                            {/* Fila 2: Plato Resultado + Nivel de Cocina */}
-                            <div className="p-2 bg-[#080d18] rounded-lg border border-slate-800/80 flex flex-col gap-1">
-                              <div className="flex items-center justify-between text-xs font-semibold text-amber-200">
-                                <span className="truncate flex items-center gap-1">
-                                  <span>🍳</span>
-                                  <span className="truncate">{isEn ? arb.cookedItem.split(' (')[0] : arb.cookedItem}</span>
-                                </span>
-                                <span className="text-[10px] text-purple-300 font-mono font-bold shrink-0 ml-1">
-                                  +{arb.xp} XP
-                                </span>
-                              </div>
-                              <div className="text-[10.5px] text-slate-400 truncate">
-                                🛒 {isEn ? (arb.matsCost > 0 ? arb.matsEn : t('arb.noMats')) : arb.secondMats}
-                              </div>
-                            </div>
-
-                            {/* Fila 3: Micro-desglose financiero */}
-                            <div className="grid grid-cols-3 gap-1 p-1.5 bg-[#091122] rounded-lg border border-slate-800/60 text-[10.5px] text-center font-mono">
-                              <div>
-                                <div className="text-[9px] text-slate-400 font-bold">{t('arb.raw')}</div>
-                                <div className="text-amber-300 font-bold">{arb.rawPrice}g</div>
-                              </div>
-                              <div>
-                                <div className="text-[9px] text-slate-400 font-bold">{t('arb.mats')}</div>
-                                <div className="text-slate-300 font-semibold">{arb.matsCost > 0 ? `-${arb.matsCost}g` : '0g'}</div>
-                              </div>
-                              <div>
-                                <div className="text-[9px] text-slate-400 font-bold">{t('arb.sale')}</div>
-                                <div className="text-emerald-400 font-bold">{arb.cookedPrice}g</div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Pie de Tarjeta: Rinde de Energía + Lucro Total + Ubicar */}
-                          <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-1 text-[10px] font-mono">
-                            <span className="text-cyan-300 font-bold">
-                              ⚡ {arb.goldPerEnergy}
-                            </span>
-
-                            <div className="flex items-center gap-1.5 shrink-0">
-                              {owned > 0 && (
-                                <span className="text-amber-300 font-bold" title={t('arb.totalTitle')}>
-                                  +{fmt(arb.netProfit * owned)}g
-                                </span>
-                              )}
-                              <button
-                                onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS.cook)}
-                                className="w-6 h-6 rounded bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center cursor-pointer transition-all shrink-0"
-                                title={t('arb.locateTitle')}
-                              >
-                                <MapPin className="w-3 h-3 text-amber-400" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
               {/* Sub-vista 2: Liquidador de Inventario (Full-Width, sin Odette lateral, tarjetas legibles) */}
               {economySubTab === 'liquidation' && (
                 !isConnected ? (
@@ -547,7 +272,7 @@ export default function InventoryTab({
                     title={t('liq.lockedTitle')}
                     description={t('liq.lockedDesc')}
                     onConnect={() => setShowConnectModal(true)}
-                    onBack={() => setEconomySubTab('arbitrage')}
+                    onBack={() => setActiveTab && setActiveTab('mega_atlas')}
                   />
                 ) : (
                 <div className="flex-1 flex flex-col gap-3.5 overflow-y-auto pr-1">
@@ -619,7 +344,7 @@ export default function InventoryTab({
                       </div>
                     </div>
 
-                    {/* Botones de Filtro por Almacén: Todo / Mochila / Cofre Casa / Cofre Pueblo */}
+                    {/* Botones de Filtro por Almacen: Todo / Mochila / Cofre Casa / Cofre Pueblo */}
                     <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-slate-800/80">
                       <span className="text-[10.5px] font-bold text-slate-400 uppercase mr-1">{t('liq.filter')}</span>
                       {[
@@ -680,7 +405,7 @@ export default function InventoryTab({
                     </div>
                   </div>
 
-                  {/* Cuadrícula de Liquidación: 2 filas por tarjeta, nombres sin recortar y sin solapamiento */}
+                  {/* Cuadricula de Liquidacion: 2 filas por tarjeta, nombres sin recortar y sin solapamiento */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2.5">
                     {sortedInventoryCatalog.map(item => {
                       const qty = itemQuantities[item.id] || 0;
@@ -699,7 +424,7 @@ export default function InventoryTab({
                               : 'bg-[#0a0f1a] border-slate-800/60 opacity-60 hover:opacity-95'
                           }`}
                         >
-                          {/* Fila Superior: Ícono + Nombre Completo + Subtotal */}
+                          {/* Fila Superior: Icono + Nombre Completo + Subtotal */}
                           <div className="flex items-start justify-between gap-2 min-w-0">
                             <div className="flex items-center gap-2 min-w-0 flex-1">
                               <ItemSprite name={item.name} id={item.id} fallback={item.icon || '📦'} size={24} className="shrink-0" />
@@ -815,18 +540,18 @@ export default function InventoryTab({
                 )
               )}
 
-              {/* Sub-vista 3: Pedidos Diarios de Odette (Módulo Propio y Dedicado) */}
+              {/* Sub-vista 3: Pedidos Diarios de Odette (Modulo Propio y Dedicado) */}
               {economySubTab === 'odette' && (
                 !isConnected ? (
                   <LockedModuleScreen
                     title={t('odette.lockedTitle')}
                     description={t('odette.lockedDesc')}
                     onConnect={() => setShowConnectModal(true)}
-                    onBack={() => setEconomySubTab('arbitrage')}
+                    onBack={() => setActiveTab && setActiveTab('mega_atlas')}
                   />
                 ) : (
                 <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-1">
-                  {/* Hero Banner de Odette con Retrato Oficial y Estadísticas */}
+                  {/* Hero Banner de Odette con Retrato Oficial y Estadisticas */}
                   <div className="p-4 bg-[#0d162b] border-2 border-amber-500/60 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3.5">
                       <NpcAvatar npcId="odette" name="Odette" size={56} className="border-2 border-amber-500/60 shadow-lg rounded-2xl shrink-0" />
@@ -889,7 +614,7 @@ export default function InventoryTab({
                     </div>
                   </div>
 
-                  {/* Cuadrícula de Pedidos Diarios (3 columnas amplias y detalladas) */}
+                  {/* Cuadricula de Pedidos Diarios (3 columnas amplias y detalladas) */}
                   {activeOrders.length === 0 ? (
                     <div className="p-8 bg-[#0a1020] border border-slate-800 rounded-xl text-center flex flex-col items-center justify-center gap-3 my-4">
                       <span className="text-4xl">📜</span>
@@ -925,7 +650,7 @@ export default function InventoryTab({
                           }`}
                         >
                           <div>
-                            {/* Cabecera: Ícono + Cantidad/Nombre + Estado */}
+                            {/* Cabecera: Icono + Cantidad/Nombre + Estado */}
                             <div className="flex items-start justify-between gap-2">
                               <div className="flex items-center gap-2.5 min-w-0">
                                 <ItemSprite name={ord.item} fallback={ord.icon || '📦'} size={28} className="shrink-0" />
@@ -1034,14 +759,14 @@ export default function InventoryTab({
                 )
               )}
 
-              {/* Sub-vista 4: Radar de Rotación de Mercado (Market Hall / Rowan) */}
+              {/* Sub-vista 4: Radar de Rotacion de Mercado (Market Hall / Rowan) */}
               {economySubTab === 'market_radar' && (
                 !isConnected ? (
                   <LockedModuleScreen
                     title={t('radar.lockedTitle')}
                     description={t('radar.lockedDesc')}
                     onConnect={() => setShowConnectModal(true)}
-                    onBack={() => setEconomySubTab('arbitrage')}
+                    onBack={() => setActiveTab && setActiveTab('mega_atlas')}
                   />
                 ) : (
                 <MarketRadar

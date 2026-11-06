@@ -1,0 +1,12 @@
+{
+  "search": "🔍 Search villagers by name, trade, place or gift...",
+  "showing": "Showing {{n}} of {{total}}",
+  "grid": "🔲 Grid",
+  "list": "📋 List",
+  "giftsNote": "Gifts as the game has them: one a day for each villager. What they love counts most for friendship; what they hate costs some.",
+  "loves": "💖 Loves",
+  "likes": "🙂 Likes",
+  "hates": "Hates: {{list}}",
+  "locate": "Find {{name}} on the Mega-Atlas",
+  "locateLabel": "📍 {{name}} ({{title}}) — {{place}}"
+}

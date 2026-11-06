@@ -91,13 +91,6 @@ const cropMeta = {
   'Dragon Fruit': { es: 'Fruta del Dragón', emoji: '🐉', tip: '👑 Cosecha cumbre de Bloomshire (Nv 30). Venta: 10.500g, XP: 157.' }
 };
 
-const seasonLabels = {
-  all: 'Todo el Año 🌐',
-  Spring: 'Primavera 🌸',
-  Summer: 'Verano ☀️',
-  Fall: 'Otoño 🍂',
-  Winter: 'Invierno ❄️'
-};
 
 async function main() {
   console.log('⚡ Cargando módulos canónicos del juego...');
@@ -304,7 +297,6 @@ async function main() {
   const generatedFarming = detailedCrops.map(c => {
     const meta = cropMeta[c.name] || { es: c.name, emoji: '🌱', tip: 'Cultivo de Bloomshire.' };
     const season = c.seasons[0] || 'all';
-    const seasonLabel = seasonLabels[season] || 'Todo el Año 🌐';
     const cost = c.seedPrice ?? 0;
     const sell = c.cropSellValue;
     const net = sell - cost;
@@ -341,15 +333,12 @@ async function main() {
     const regrowXpMin = parseFloat((regrowTotalXp / regrowTotalMinutes).toFixed(2));
     const regrowGoldMin = parseFloat((regrowTotalNet / regrowTotalMinutes).toFixed(2));
 
-    let regrowGrowTxt = `${regrowTotalMinutes} min (${regrowHarvests}x)`;
-    if (regrowTotalMinutes >= 60) {
-      const h = Math.floor(regrowTotalMinutes / 60);
-      const m = regrowTotalMinutes % 60;
-      regrowGrowTxt = m > 0 ? `${h}h ${m}m (${regrowHarvests}x)` : `${h}h (${regrowHarvests}x)`;
-    }
 
     return {
       name: nameFormatted,
+      id: c.name,
+      name_en: `${c.name} ${meta.emoji}`.trim(),
+      name_es: `${meta.es.replace(/\s*\(.*\)$/, '')} ${meta.emoji}`.trim(),
       grow,
       growTxt,
       level: c.requiredLevel,
@@ -363,14 +352,11 @@ async function main() {
       regrowMinutes: c.regrowMinutes || null,
       harvests: regrowHarvests,
       regrowTotalMinutes,
-      regrowGrowTxt,
       regrowNet: regrowTotalNet,
       regrowXp: regrowTotalXp,
       regrowXpMin,
       regrowGoldMin,
-      season,
-      seasonLabel,
-      tip: meta.tip
+      season
     };
   });
 
