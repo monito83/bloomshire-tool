@@ -53,34 +53,34 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
       (typeof window !== 'undefined' ? window.ethereum : null);
 
     if (!activeProvider) {
-      setConnectFeedback({ type: 'error', text: 'No se detectó ninguna billetera Web3 (MetaMask, Backpack, Rabby, etc.) en este navegador.' });
+      setConnectFeedback({ type: 'error', key: 'feedback.noWallet' });
       return;
     }
     try {
-      setConnectFeedback({ type: 'loading', text: 'Solicitando conexión con tu billetera Web3...' });
+      setConnectFeedback({ type: 'loading', key: 'feedback.requesting' });
       const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
       const account = accounts && accounts[0] ? accounts[0].toLowerCase() : null;
       if (!account) {
-        setConnectFeedback({ type: 'error', text: 'No se seleccionó ninguna cuenta en la billetera.' });
+        setConnectFeedback({ type: 'error', key: 'feedback.noAccount' });
         return;
       }
 
-      setConnectFeedback({ type: 'loading', text: 'Obteniendo reto criptográfico de firma (nonce)...' });
+      setConnectFeedback({ type: 'loading', key: 'feedback.nonce' });
       const nonceRes = await fetch(`/api/auth?action=nonce&wallet=${encodeURIComponent(account)}`);
       if (!nonceRes.ok) {
         const errJson = await nonceRes.json().catch(() => ({}));
-        setConnectFeedback({ type: 'error', text: errJson.error || 'Error al obtener reto de firma del servidor.' });
+        setConnectFeedback(errJson.error ? { type: 'error', text: errJson.error } : { type: 'error', key: 'feedback.nonceError' });
         return;
       }
       const { nonce, message } = await nonceRes.json();
 
-      setConnectFeedback({ type: 'loading', text: 'Firma el mensaje en tu billetera para verificar tu identidad (sin costo de gas)...' });
+      setConnectFeedback({ type: 'loading', key: 'feedback.sign' });
       const signature = await activeProvider.request({
         method: 'personal_sign',
         params: [message, account]
       });
 
-      setConnectFeedback({ type: 'loading', text: 'Verificando firma con el servidor...' });
+      setConnectFeedback({ type: 'loading', key: 'feedback.verifying' });
       const verifyRes = await fetch('/api/auth?action=verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -89,7 +89,7 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
 
       if (!verifyRes.ok) {
         const errJson = await verifyRes.json().catch(() => ({}));
-        setConnectFeedback({ type: 'error', text: errJson.error || 'Firma inválida.' });
+        setConnectFeedback(errJson.error ? { type: 'error', text: errJson.error } : { type: 'error', key: 'feedback.badSignature' });
         return;
       }
 
@@ -103,7 +103,7 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
       setSessionToken(token);
       setIsPremiumUnlocked(true);
 
-      setConnectFeedback({ type: 'success', text: `¡Sesión autenticada con éxito! (${account.slice(0, 6)}...)` });
+      setConnectFeedback({ type: 'success', key: 'feedback.authOk', params: { wallet: account.slice(0, 6) } });
 
       // Cargar partida privada sincronizada
       const syncRes = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(account)}`, {
@@ -121,7 +121,7 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
       }
       setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 1500);
     } catch (err) {
-      setConnectFeedback({ type: 'error', text: err.message || 'Firma cancelada o rechazada en la billetera.' });
+      setConnectFeedback(err.message ? { type: 'error', text: err.message } : { type: 'error', key: 'feedback.signRejected' });
     }
   };
 
@@ -160,7 +160,8 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
               disconnectRef.current();
               setConnectFeedback({
                 type: 'error',
-                text: `Se detectó cambio de cuenta en el juego (${reportedExtWallet.slice(0, 6)}...${reportedExtWallet.slice(-4)}). Tu sesión anterior fue cerrada por seguridad. Por favor, vuelve a firmar con la nueva wallet.`
+                key: 'feedback.walletChanged',
+                params: { wallet: `${reportedExtWallet.slice(0, 6)}...${reportedExtWallet.slice(-4)}` }
               });
               setShowConnectModal(true);
               return;

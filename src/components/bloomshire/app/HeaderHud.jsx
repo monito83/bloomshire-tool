@@ -15,7 +15,7 @@ export default function HeaderHud({
   const { t: tHeader, i18n } = useTranslation('header');
   return (
       <header className="px-4 py-2 bg-[#080d19] border-b border-slate-800/80 flex items-center justify-between gap-3 shadow-md shrink-0">
-        {/* Izquierda: Indicadores de Estado Estilo Boceto (Píldoras redondeadas con alto contraste) */}
+        {/* Izquierda: Indicadores de Estado Estilo Boceto (Pildoras redondeadas con alto contraste) */}
         <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-0.5">
           {/* Logo & Marca */}
           <div className="flex items-center gap-2 shrink-0 pr-1">
@@ -27,7 +27,7 @@ export default function HeaderHud({
 
           {isConnected && walletAddress && walletAddress !== 'null' && walletAddress.startsWith('0x') ? (
             <>
-              {/* Píldora de Oro */}
+              {/* Pildora de Oro */}
               <div 
                 className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#12192a] border border-amber-500/30 text-amber-300 font-bold text-xs shadow-sm shrink-0" 
                 title={tHeader('gold.tooltip', { amount: new Intl.NumberFormat(i18n.language || 'en').format(gold) })}
@@ -36,7 +36,7 @@ export default function HeaderHud({
                 <span>{gold >= 1000 ? tHeader('gold.displayK', { amount: (gold / 1000).toFixed(1) }) : tHeader('gold.display', { amount: new Intl.NumberFormat(i18n.language || 'en').format(gold) })}</span>
               </div>
 
-              {/* Píldora de Energía */}
+              {/* Pildora de Energia */}
               {energyMeta.isJamActive && (
                 <div
                   className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-indigo-950/70 border border-indigo-400/50 text-indigo-300 font-bold text-xs shadow-sm shrink-0 animate-pulse"
@@ -116,7 +116,7 @@ export default function HeaderHud({
           )}
         </div>
 
-        {/* Derecha: Selector de Idioma + Botón Sync estilo Boceto + Desconectar + Colapsar */}
+        {/* Derecha: Selector de Idioma + Boton Sync estilo Boceto + Desconectar + Colapsar */}
         <div className="flex items-center gap-2 shrink-0">
           <LanguageSwitcher />
           {isConnected && (

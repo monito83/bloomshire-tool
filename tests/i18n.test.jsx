@@ -314,7 +314,11 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/market/MarketRadar.jsx',
       'src/components/bloomshire/market/MarketItemModal.jsx',
       'src/components/bloomshire/market/MarketCharts.jsx',
-      'src/components/bloomshire/market/marketBits.jsx'
+      'src/components/bloomshire/market/marketBits.jsx',
+      'src/components/bloomshire/app/ProfileModal.jsx',
+      'src/components/bloomshire/app/ConnectModal.jsx',
+      'src/components/bloomshire/app/HeaderHud.jsx',
+      'src/components/bloomshire/app/MainNav.jsx'
     ];
 
     for (const filePath of targetFiles) {
@@ -408,10 +412,15 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       const itemsHtml = renderToString(<ItemsTab getPlayerItemQty={() => 0} locateInMegaAtlas={() => {}} />);
       const calcHtml = renderToString(<CalcTab currentEnergy={80} maxEnergy={80} farmingLevel={1} />);
 
-      // Normalizacion de artefactos SSR de React (<!-- -->) y formateo estandar Intl.NumberFormat(i18n.language)
+      // Normalizacion de artefactos SSR de React (<!-- -->) y formateo estandar Intl.NumberFormat(i18n.language).
+      // Los iconos de items (dibujo del juego o emoji de respaldo) se igualan: el robot de actualizacion
+      // agrega dibujos nuevos y eso no debe romper este test de textos.
       const normalize = (html) =>
         html
           .replace(/<!-- -->/g, '')
+          .replace(/<link rel="preload" as="image" href="[^"]*"\/>/g, '')
+          .replace(/<img src="[^"]*" alt="[^"]*" class="shrink-0 object-contain inline-block select-none[^"]*" style="width:\d+px;height:\d+px;image-rendering:pixelated"\/>/g, '[icon]')
+          .replace(/<span class="shrink-0 select-none[^"]*" style="font-size:\d+px">[^<]*<\/span>/g, '[icon]')
           .replace(/\+(\d)\.(\d{3})g/g, '+$1$2g');
 
       expect(normalize(craftBenchHtml)).toBe(normalize(baseline.craftBench));

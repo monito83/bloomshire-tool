@@ -1,5 +1,6 @@
 // src/components/bloomshire/tabs/SystemTab.jsx
 import React from 'react';
+import { DATA_GAME_VERSION } from '../state/useSystemUpdates';
 import { 
   BookOpen, 
   Compass, 
@@ -14,7 +15,7 @@ import {
 export default function SystemTab({
   toolVersion = 'v1.0.2',
   gameBuildStatus = 'synced',
-  gameBuildHash = 'a70eb5dd5113',
+  gameBuildHash = DATA_GAME_VERSION,
   lastUpdateCheck = 'hace instantes',
   handleCheckUpdates,
   isCheckingUpdates = false,

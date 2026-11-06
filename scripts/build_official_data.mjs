@@ -249,6 +249,38 @@ for (const id of [...wanted].sort()) {
   portraitArt++;
 }
 
+// Items del Codice que no tienen dibujo en la herramienta: se recortan de las hojas del juego (catalog.js ITEMS.icon =
+// [archivo, sx, sy], 16x16) y se suman a item_icons_map.json. Los dibujos que ya existen no se tocan.
+const ITEM_OUT = path.join(ROOT, 'public/data/bloomshire/items');
+const ICON_MAP_FILE = path.join(ROOT, 'public/data/bloomshire/item_icons_map.json');
+const iconMap = JSON.parse(fs.readFileSync(ICON_MAP_FILE, 'utf8'));
+const iconMapBefore = JSON.stringify(iconMap);
+const itemFile = (id) => String(id).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+let itemArt = 0;
+for (const it of codex.items) {
+  const keys = [it.id, it.name_en, it.name_es].filter(Boolean).map((k) => String(k).toLowerCase());
+  if (keys.some((k) => iconMap[k] || iconMap[k.replace(/ /g, '_')])) continue;
+  const icon = catalog.ITEMS?.[it.id]?.icon;
+  if (!Array.isArray(icon) || !icon[0] || String(icon[0]).startsWith('art:')) continue;
+  const [file, sx = 0, sy = 0] = icon;
+  const name = itemFile(it.id);
+  const outFile = path.join(ITEM_OUT, `${name}.png`);
+  const f = packFile(file);
+  if (f) {
+    // (siempre el cuadro de 16x16 en sx, sy, como lo dibuja el juego: los archivos de comida y armas traen dos
+    //  cuadros lado a lado y el cofre VIP dos de alto -- revisado contra el juego el 2026-11-06)
+    const out = blit(blank(16, 16), readPng(f), sx, sy, 16, 16);
+    if (!opaqueBox(out, 0, 0, 16, 16)) continue;
+    writePng(outFile, out);
+    itemArt++;
+  } else if (!fs.existsSync(outFile)) {
+    continue;   // (sin la hoja en esta pasada y sin dibujo previo)
+  }
+  const url = `/data/bloomshire/items/${name}.png`;
+  for (const k of new Set([...keys, name])) if (!iconMap[k]) iconMap[k] = url;
+}
+if (JSON.stringify(iconMap) !== iconMapBefore) fs.writeFileSync(ICON_MAP_FILE, `${JSON.stringify(iconMap, null, 2)}\n`, 'utf8');
+
 fs.writeFileSync(path.join(SRC, 'assets_needed.txt'), `${[...needed].sort().join('\n')}\n`, 'utf8');
 
 // ---------------------------------------------------------------------------
@@ -338,8 +370,8 @@ const esShare = (items, key) => {
 console.log(`Datos oficiales: version ${meta.gameVersion} (reglas ${meta.rulesHash})${changedFiles.length ? ` -- cambiaron: ${changedFiles.join(', ')}` : ' -- sin cambios en los datos'}`);
 console.log(`  codice ${meta.counts.codex} cosas (nombres en espanol ${esShare(codex.items, 'name')}%), ${meta.counts.skills} habilidades,`);
 console.log(`  ${meta.counts.beasts} criaturas, ${meta.counts.regions} regiones / ${meta.counts.places} lugares -> ${path.relative(ROOT, OUT)}`);
-console.log(`  arte: ${beastArt} miniaturas de criaturas, ${portraitArt} retratos de aldeanos`);
+console.log(`  arte: ${beastArt} miniaturas de criaturas, ${portraitArt} retratos de aldeanos, ${itemArt} dibujos de items`);
 if (missing.length) {
   console.log(`  FALTAN ${new Set(missing).size} imagenes del juego (listadas en ${path.relative(ROOT, path.join(SRC, 'assets_needed.txt'))}).`);
-  console.log('  Corre de nuevo game-sources/descargar_fuentes.ps1 para bajarlas y despues npm run build:official.');
+  console.log('  Las baja `npm run game:update` (o el robot de actualizacion).');
 }

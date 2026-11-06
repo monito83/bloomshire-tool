@@ -2,21 +2,27 @@
 // Modal de conexión: firma SIWE, extensión o lectura pública.
 // Movido tal cual desde BloomshireCommand (docs/REFACTOR_SPEC.md, fase 4).
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 export default function ConnectModal({
     applyIncomingSync, connectCode, connectFeedback, handleConnectAndSignWallet, injectedWallets, setConnectCode,
     setConnectFeedback, setShowConnectModal, setViewOnlyWallet
   }) {
+  const { t } = useTranslation('session');
+  const feedbackText = connectFeedback
+    ? (connectFeedback.key ? t(connectFeedback.key, connectFeedback.params) : connectFeedback.text)
+    : '';
   return (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
                   <div className="bg-[#0b1428] border-2 border-amber-500/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
                     <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                       <div className="flex items-center gap-2">
                         <span className="text-xl">🎮</span>
-                        <h3 className="text-base font-black text-amber-400">Vincular Partida • Bloomshire Companion</h3>
+                        <h3 className="text-base font-black text-amber-400">{t('connect.title')}</h3>
                       </div>
                       <button
                         onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
+                        aria-label={t('connect.close')}
                         className="text-slate-400 hover:text-white text-lg font-bold cursor-pointer"
                       >
                         ✕
@@ -24,16 +30,16 @@ export default function ConnectModal({
                     </div>
 
                     <div className="space-y-4 text-xs">
-                      {/* Opción 1: Firma Web3 Segura (SIWE) */}
+                      {/* Opcion 1: Firma Web3 Segura (SIWE) */}
                       <div className="p-4 bg-gradient-to-br from-[#101b33] to-[#0a1426] border border-cyan-500/40 rounded-xl space-y-2.5 shadow-lg relative overflow-hidden">
                         <div className="absolute top-2 right-2 px-2 py-0.5 bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold rounded-full border border-cyan-500/30">
-                          RECOMENDADO
+                          {t('connect.recommended')}
                         </div>
                         <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>🛡️ Opción 1: Autenticación Criptográfica Web3</span>
+                          <span>{t('connect.o1Title')}</span>
                         </div>
                         <p className="text-slate-300 leading-relaxed text-[11px]">
-                          Firma un mensaje criptográfico con tu billetera (MetaMask, Rabby o navegador) para verificar tu propiedad. <b>Sin costo de gas</b>. Protege tu partida en la nube para que nadie más pueda ver ni sobrescribir tus datos en Supabase.
+                          <Trans t={t} i18nKey="connect.o1Body" components={{ b: <b /> }} />
                         </p>
                         <div className="pt-1">
                           <button
@@ -41,13 +47,13 @@ export default function ConnectModal({
                             onClick={() => handleConnectAndSignWallet()}
                             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-900/30 transition-all active:scale-[0.98]"
                           >
-                            <span>🔐 Conectar y Firmar con Billetera (Web3)</span>
+                            <span>{t('connect.o1Button')}</span>
                           </button>
                         </div>
                         {injectedWallets.length > 1 && (
                           <div className="space-y-1.5 pt-1">
                             <div className="text-[10px] text-cyan-300 font-bold uppercase tracking-wider">
-                              Seleccionar Billetera (EIP-6963):
+                              {t('connect.pickWallet')}
                             </div>
                             <div className="flex items-center gap-2 flex-wrap">
                               {injectedWallets.map(w => (
@@ -65,22 +71,22 @@ export default function ConnectModal({
                           </div>
                         )}
                         <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
-                          <span>✓ Compatible con EVM (Ethereum / Arbitrum)</span>
+                          <span>{t('connect.evm')}</span>
                           <span>•</span>
-                          <span>✓ Sesión JWT segura de 24 horas (renovable)</span>
+                          <span>{t('connect.jwt')}</span>
                         </div>
                       </div>
 
-                      {/* Opción 2: Extensión */}
+                      {/* Opcion 2: Extension */}
                       <div className="p-4 bg-[#101b33] border border-amber-500/30 rounded-xl space-y-2">
                         <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>⚡ Opción 2: Sincronización Automática (Extensión)</span>
+                          <span>{t('connect.o2Title')}</span>
                         </div>
                         <p className="text-slate-300 leading-relaxed text-[11px]">
-                          La extensión oficial <b>Bloomshire Companion</b> lee tu partida localmente en tu navegador con 0 latencia:
+                          <Trans t={t} i18nKey="connect.o2Body" components={{ b: <b /> }} />
                         </p>
                         <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200/90 text-[10.5px]">
-                          ℹ️ <b>Nota:</b> La extensión sincroniza tus existencias locales. Para desbloquear los módulos con candado (Misiones, Liquidador y Asesor IA), firma con tu billetera en la <b>Opción 1</b>.
+                          <Trans t={t} i18nKey="connect.o2Note" components={{ b: <b /> }} />
                         </div>
                         <div className="pt-1 pb-1">
                           <button
@@ -88,7 +94,7 @@ export default function ConnectModal({
                             onClick={() => {
                               window.postMessage({ type: 'FORCE_SYNC_ALL', force: true }, '*');
                               document.dispatchEvent(new CustomEvent('monios_force_sync', { detail: { force: true } }));
-                              setConnectFeedback({ type: 'info', text: '📡 Señal emitida. Buscando extensión Bloomshire Companion...' });
+                              setConnectFeedback({ type: 'info', key: 'feedback.searching' });
                               setTimeout(() => {
                                 const snap = localStorage.getItem('bloomshire_cached_snapshot');
                                 const w = localStorage.getItem('bloomshire_wallet');
@@ -97,46 +103,37 @@ export default function ConnectModal({
                                     const parsed = JSON.parse(snap);
                                     if (parsed && (parsed.gold > 0 || (parsed.inventory && parsed.inventory.length > 0))) {
                                       applyIncomingSync(parsed, 'cache');
-                                      setConnectFeedback({ 
-                                        type: 'success', 
-                                        text: '¡Partida vinculada desde la caché de la extensión! Recuerda firmar en la Opción 1 para desbloquear los candados.' 
-                                      });
+                                      setConnectFeedback({ type: 'success', key: 'feedback.linkedCache' });
                                       return;
                                     }
                                   } catch (_) {}
                                 }
                                 if (w && w.startsWith('0x')) {
-                                  setConnectFeedback({ 
-                                    type: 'success', 
-                                    text: `¡Partida vinculada a ${w.slice(0, 6)}...! Recuerda firmar en la Opción 1 para desbloquear los candados.` 
-                                  });
+                                  setConnectFeedback({ type: 'success', key: 'feedback.linkedWallet', params: { wallet: w.slice(0, 6) } });
                                 } else {
-                                  setConnectFeedback({ 
-                                    type: 'info', 
-                                    text: '⚠️ Señal enviada. Si estás en Incógnito, recuerda habilitar la extensión en chrome://extensions. O abre bloomshire.xyz/play en otra pestaña y pulsa "Forzar Sincronización" en el icono de la extensión.' 
-                                  });
+                                  setConnectFeedback({ type: 'info', key: 'feedback.notFound' });
                                 }
                               }, 1500);
                             }}
                             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all active:scale-[0.98]"
                           >
-                            <span>⚡ Detectar / Sincronizar Extensión Companion</span>
+                            <span>{t('connect.o2Button')}</span>
                           </button>
                         </div>
                         <ol className="list-decimal list-inside space-y-1 text-slate-300 pl-1 text-[11px]">
-                          <li>Instala la extensión en Chrome / Brave / Edge.</li>
-                          <li>Abre tu partida en <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold">bloomshire.xyz/play/</a>.</li>
-                          <li>Esta tool detectará tu inventario, oro y cultivos en menos de 1 segundo.</li>
+                          <li>{t('connect.o2Step1')}</li>
+                          <li><Trans t={t} i18nKey="connect.o2Step2" components={{ a: <a href="https://bloomshire.xyz/play/" target="_blank" rel="noreferrer" className="text-amber-400 underline font-bold" /> }} /></li>
+                          <li>{t('connect.o2Step3')}</li>
                         </ol>
                       </div>
 
-                      {/* Opción 3: Modo Lectura Pública */}
+                      {/* Opcion 3: Modo Lectura Publica */}
                       <div className="p-4 bg-[#101b33] border border-slate-800 rounded-xl space-y-2.5">
                         <div className="font-bold text-white text-sm flex items-center gap-2">
-                          <span>🔍 Opción 3: Modo Lectura Pública (Manual)</span>
+                          <span>{t('connect.o3Title')}</span>
                         </div>
                         <p className="text-slate-400 text-[11px]">
-                          Ingresa una wallet (<code className="text-cyan-300 font-mono">0x...</code>) para ver sus NFTs on-chain públicos en modo solo lectura (sin modificar datos):
+                          <Trans t={t} i18nKey="connect.o3Body" components={{ code: <code className="text-cyan-300 font-mono" /> }} />
                         </p>
                         <div className="flex items-center gap-2">
                           <input
@@ -156,45 +153,45 @@ export default function ConnectModal({
                                 setViewOnlyWallet(targetWallet);
 
                                 try {
-                                  setConnectFeedback({ type: 'loading', text: 'Consultando perfil on-chain en el servidor...' });
+                                  setConnectFeedback({ type: 'loading', key: 'feedback.lookingUp' });
                                   const res = await fetch(`/api/bloomshire-advisor?action=sync&wallet=${encodeURIComponent(targetWallet)}`);
                                   if (res.ok) {
                                     const json = await res.json();
                                     if (json.onChain) {
-                                      setConnectFeedback({ type: 'success', text: `Perfil público consultado (${targetWallet.slice(0, 6)}... - ${json.onChain.farmersCount ?? 0} Farmers). Modo solo lectura.` });
+                                      setConnectFeedback({ type: 'success', key: 'feedback.publicProfile', params: { wallet: targetWallet.slice(0, 6), farmers: json.onChain.farmersCount ?? 0 } });
                                     } else {
-                                      setConnectFeedback({ type: 'info', text: `Wallet ${targetWallet.slice(0, 6)}... vinculada en modo solo lectura.` });
+                                      setConnectFeedback({ type: 'info', key: 'feedback.readOnly', params: { wallet: targetWallet.slice(0, 6) } });
                                     }
                                   }
                                 } catch (_) {
-                                  setConnectFeedback({ type: 'info', text: `Wallet ${targetWallet.slice(0, 6)}... vinculada en modo solo lectura.` });
+                                  setConnectFeedback({ type: 'info', key: 'feedback.readOnly', params: { wallet: targetWallet.slice(0, 6) } });
                                 }
                                 setTimeout(() => { setShowConnectModal(false); setConnectFeedback(null); }, 2000);
                               } else {
-                                setConnectFeedback({ type: 'error', text: 'Dirección inválida. Debe ser una dirección de Ethereum válida de 42 caracteres (0x...).' });
+                                setConnectFeedback({ type: 'error', key: 'feedback.badAddress' });
                               }
                             }}
                             className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg text-xs cursor-pointer transition-all border border-slate-700 shrink-0"
                           >
-                            Ver Perfil
+                            {t('connect.o3Button')}
                           </button>
                         </div>
                       </div>
 
                       {connectFeedback && (
                         <div className={`p-2.5 rounded-lg text-xs font-bold ${connectFeedback.type === 'success' ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : connectFeedback.type === 'loading' ? 'bg-amber-950/60 text-amber-300 border border-amber-500/40 animate-pulse' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
-                          {connectFeedback.text}
+                          {feedbackText}
                         </div>
                       )}
                     </div>
 
                     <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
-                      <span className="text-slate-500">¿Dudas? Consulta la guía en el Mega-Atlas.</span>
+                      <span className="text-slate-500">{t('connect.help')}</span>
                       <button
                         onClick={() => { setShowConnectModal(false); setConnectFeedback(null); }}
                         className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg font-bold cursor-pointer"
                       >
-                        Cerrar
+                        {t('connect.close')}
                       </button>
                     </div>
                   </div>
