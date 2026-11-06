@@ -85,7 +85,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
   let cmdRefreshTimer = null;
   let lastKnownSave = window.__bloomshire_master_save || null;
   let serverTimeOffset = 0; // Desfase entre el reloj del servidor Bloomshire y el reloj local
-  let latestMarketTrades = null;
   let activeFarmKey = 'farm.home';
   let cachedWallet = (function () {
     try { return localStorage.getItem('bloomshire_wallet'); } catch (_) { return null; }
@@ -911,7 +910,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           })(),
           _activeCrops: extractActiveCrops(save),
           _liveProductionPots: extractActiveProductionPots(save),
-          _marketTrades: latestMarketTrades,
           _activeGameBuild: getDetectedGameBuild(),
           _serverTimeOffset: serverTimeOffset
         }
@@ -1310,9 +1308,9 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           const live = window.__bloomshire_live_doc;
           if (live) dispatchState(live, true);
         }, 130);
-      } else if (url.includes('api/offers')) {
+      } else if (url.includes('api/offers') && resp.ok) {
         ownJson(resp).then(offersData => {
-          latestMarketTrades = offersData;
+          if (!offersData || (!Array.isArray(offersData.stalls) && !Array.isArray(offersData.recent))) return;
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT',
             offers: offersData,
@@ -1424,9 +1422,15 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
     } else if (e.data?.type === '__FETCH_MARKET_OFFERS_REQ') {
       console.log('[Bloomshire Companion Hook] Consulta manual on-demand de /play/api/offers solicitada');
       _origFetch('/play/api/offers', { credentials: 'same-origin', cache: 'no-store' })
-        .then(r => r.json())
+        .then(r => {
+          if (r.status === 401) { const err = new Error('signed_out'); err.reason = 'signed_out'; throw err; }
+          if (!r.ok) { const err = new Error('HTTP ' + r.status); err.reason = 'game_error'; throw err; }
+          return r.json();
+        })
         .then(offersData => {
-          latestMarketTrades = offersData;
+          if (!offersData || typeof offersData !== 'object' || (!Array.isArray(offersData.stalls) && !Array.isArray(offersData.recent))) {
+            const err = new Error('unexpected_board'); err.reason = 'game_error'; throw err;
+          }
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT',
             offers: offersData,
@@ -1437,7 +1441,8 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           console.warn('[Bloomshire Companion Hook] Error al obtener /play/api/offers:', err);
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT_ERROR',
-            error: err.message
+            error: err.message,
+            reason: err.reason || 'game_error'
           }, '*');
         });
     } else if (e.data?.type === 'SYNC_BLOOMSHIRE_REAL_MAPS') {

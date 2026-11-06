@@ -771,7 +771,6 @@
       activeCrops: save._activeCrops || [],
       liveProductionPots: save._liveProductionPots || [],
       dailyTasks: save._dailyTasks || save.tasks || save.dailyTasks || [],
-      marketTrades: save._marketTrades || null,
       serverTimeOffset: save._serverTimeOffset || 0,
       activeGameBuild: save._activeGameBuild || "a70eb5dd5113",
       stale: Boolean(save?.stale),
@@ -834,6 +833,23 @@
         });
         sendSnapshotToBackground(parsed, Boolean(event.data.force));
       }
+    } else if (event.data?.type === '__BLOOMSHIRE_MARKET_SNAPSHOT' && event.data.offers) {
+      // Tablero del Mercado (api/offers): al background, que lo reparte a las pestanas de Bloomshire Tool
+      try {
+        chrome.runtime.sendMessage({
+          type: 'BLOOMSHIRE_MARKET_SNAPSHOT',
+          offers: event.data.offers,
+          timestamp: event.data.timestamp || Date.now()
+        }, () => { try { const _ = chrome.runtime?.lastError; } catch (_) {} });
+      } catch (err) { }
+    } else if (event.data?.type === '__BLOOMSHIRE_MARKET_SNAPSHOT_ERROR') {
+      try {
+        chrome.runtime.sendMessage({
+          type: 'BLOOMSHIRE_MARKET_SNAPSHOT_ERROR',
+          error: String(event.data.error || ''),
+          reason: String(event.data.reason || 'game_error')
+        }, () => { try { const _ = chrome.runtime?.lastError; } catch (_) {} });
+      } catch (err) { }
     } else if (event.data?.type === '__BLOOMSHIRE_MAP_IMAGE' && event.data.payload) {
       const mapPayload = event.data.payload;
       try {

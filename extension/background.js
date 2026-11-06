@@ -163,6 +163,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return false;
   }
 
+  if (message.type === 'BLOOMSHIRE_MARKET_SNAPSHOT_ERROR') {
+    chrome.tabs.query({}, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id && isToolUrl(tab.url || '')) {
+          chrome.tabs.sendMessage(tab.id, {
+            type: 'BLOOMSHIRE_INJECT_MARKET_ERROR',
+            error: message.error || '',
+            reason: message.reason || 'game_error'
+          }).catch(() => {});
+        }
+      });
+    });
+    sendResponse({ status: 'market_error_broadcasted' });
+    return false;
+  }
+
   if (message.type === 'REQUEST_MARKET_SALES_SYNC') {
     console.log('[Background] Petición manual REQUEST_MARKET_SALES_SYNC recibida de Bloomshire Tool');
     chrome.tabs.query({}, (tabs) => {
