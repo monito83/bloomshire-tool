@@ -11,9 +11,12 @@ export default function ProfileModal({
     walletAddress
   }) {
   const { t } = useTranslation('session');
-  const speedPct = playerPerks?.fast
-    ? Math.round((1 - playerPerks.fast) * 100)
+  // Beneficios segun el juego (save.perks, los calcula el servidor del juego). Sin partida sincronizada de
+  // esta wallet, se estiman con sus Farmers on-chain: mascota desde 3, -20% de crecimiento desde 7, -30% desde 15.
+  const speedPct = playerPerks
+    ? (playerPerks.fast ? Math.round((1 - playerPerks.fast) * 100) : 0)
     : farmersOwned >= 15 ? 30 : farmersOwned >= 7 ? 20 : 0;
+  const hasPet = playerPerks ? Boolean(playerPerks.pet || playerPerks.petChoice) : farmersOwned >= 3;
   return (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-[#0b1428] border-2 border-amber-500/70 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150">
@@ -83,13 +86,13 @@ export default function ProfileModal({
                     <span className="text-xl">🐾</span>
                     <div>
                       <div className="font-bold text-white text-[11px]">{t('profile.pet')}</div>
-                      <div className="text-[10px] text-purple-300 font-mono font-bold">{t('profile.petValue')}</div>
+                      <div className="text-[10px] text-purple-300 font-mono font-bold">{hasPet ? t('profile.petValue') : t('profile.petNone')}</div>
                     </div>
                   </div>
                   <div className="p-2.5 bg-[#0f172a] border border-cyan-500/30 rounded-xl flex items-center gap-2.5">
                     <span className="text-xl">🔋</span>
                     <div>
-                      <div className="font-bold text-white text-[11px]">{t(isVip ? 'profile.staminaVip' : farmersOwned > 0 ? 'profile.staminaHolder' : 'profile.staminaBase')}</div>
+                      <div className="font-bold text-white text-[11px]">{t(isVip ? 'profile.staminaVip' : (playerPerks || farmersOwned > 0) ? 'profile.staminaHolder' : 'profile.staminaBase')}</div>
                       <div className="text-[10px] text-cyan-300 font-mono font-bold">{maxEnergy}⚡ {isVip ? t('profile.regen') : ''}</div>
                     </div>
                   </div>

@@ -15,7 +15,7 @@
     "speedPct": "-{{pct}}% growth",
     "speedNone": "No bonus (< 7 Farmers)",
     "pet": "Farm pet",
-    "petValue": "Dog active (+10% drop)",
+    "petValue": "Unlocked",
     "staminaVip": "VIP stamina",
     "staminaHolder": "Holder stamina",
     "staminaBase": "Base stamina",
@@ -26,7 +26,8 @@
     "cloudNeedSign": "To save your game to the cloud you need to sign in with your wallet.",
     "cloudOk": "Game backed up to Supabase with your signature!",
     "cloudError": "Authorization error while backing up to the cloud.",
-    "disconnect": "🔴 Disconnect session"
+    "disconnect": "🔴 Disconnect session",
+    "petNone": "From 3 Founding Farmers"
   },
   "connect": {
     "title": "Link your game • Bloomshire Companion",

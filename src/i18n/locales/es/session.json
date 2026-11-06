@@ -15,7 +15,7 @@
     "speedPct": "-{{pct}}% crecimiento",
     "speedNone": "Sin bono (< 7 Farmers)",
     "pet": "Mascota de granja",
-    "petValue": "Perro activo (+10% drop)",
+    "petValue": "Habilitada",
     "staminaVip": "Estamina VIP",
     "staminaHolder": "Estamina Holder",
     "staminaBase": "Estamina base",
@@ -26,7 +26,8 @@
     "cloudNeedSign": "Para guardar tu partida en la nube necesitás autenticar tu wallet con tu firma.",
     "cloudOk": "¡Partida respaldada en Supabase con tu firma!",
     "cloudError": "Error de autorización al respaldar en la nube.",
-    "disconnect": "🔴 Desconectar sesión"
+    "disconnect": "🔴 Desconectar sesión",
+    "petNone": "Desde 3 Founding Farmers"
   },
   "connect": {
     "title": "Vincular partida • Bloomshire Companion",

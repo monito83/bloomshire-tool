@@ -117,6 +117,7 @@ export default function BloomshireCommand() {
       localStorage.removeItem('bloomshire_cached_farmers');
       localStorage.removeItem('bloomshire_cached_is_vip');
       localStorage.removeItem('bloomshire_cached_perks');
+      localStorage.removeItem('bloomshire_cached_perks_wallet');
       localStorage.removeItem('bloomshire_cached_active_quest');
       localStorage.removeItem('bloomshire_prod_timers');
       localStorage.removeItem('bloomshire_daily_tasks');

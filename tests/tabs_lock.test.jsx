@@ -10,6 +10,8 @@ import CraftTab from '../src/components/bloomshire/tabs/CraftTab';
 import NpcsTab from '../src/components/bloomshire/tabs/NpcsTab';
 import MonitorsTab from '../src/components/bloomshire/tabs/MonitorsTab';
 import AdvisorTab from '../src/components/bloomshire/tabs/AdvisorTab';
+import ProfileModal from '../src/components/bloomshire/app/ProfileModal';
+import i18nProfile from '../src/i18n';
 import SystemTab from '../src/components/bloomshire/tabs/SystemTab';
 import BloomshireCommand from '../src/components/BloomshireCommand';
 
@@ -97,5 +99,24 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
     const html = renderToString(<BloomshireCommand />);
     expect(html).toContain('BLOOMSHIRE');
     expect(html).toContain('Free Community Guide');
+  });
+});
+
+
+describe('ProfileModal: beneficios de la cuenta vinculada', () => {
+  const base = { walletAddress: '0xabc', maxEnergy: 100, isVip: false, setShowProfileModal: () => {}, setShowConnectModal: () => {}, handleDisconnect: () => {} };
+  it('wallet sin Farmers ni partida: sin bono de velocidad ni mascota', async () => {
+    await i18nProfile.changeLanguage('es');
+    const html = renderToString(<ProfileModal {...base} farmersOwned={0} playerPerks={null} />);
+    expect(html).toContain('Sin bono');
+    expect(html).toContain('Desde 3 Founding Farmers');
+    expect(html).toContain('Estamina base');
+  });
+  it('usa los beneficios de la partida (save.perks) cuando estan', async () => {
+    await i18nProfile.changeLanguage('es');
+    const html = renderToString(<ProfileModal {...base} farmersOwned={10} playerPerks={{ fast: 0.8, pet: true }} maxEnergy={150} />);
+    expect(html).toContain('-20% crecimiento');
+    expect(html).toContain('Habilitada');
+    expect(html).toContain('Estamina Holder');
   });
 });
