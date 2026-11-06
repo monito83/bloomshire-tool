@@ -35,5 +35,18 @@
     "locateTitle": "Ubicar \"{{location}}\" en el Mega-Atlas",
     "youHave": "📦 Tienes: {{count}}",
     "zeroStock": "0 en stock"
+  },
+  "codex": {
+    "title": "Códice oficial",
+    "badge": "📖 Códice oficial",
+    "badgeTooltip": "Los efectos, la experiencia, el origen y el valor salen del Códice del propio juego (versión {{version}}, descargada el {{date}}).",
+    "rarity": {
+      "Common": "Común",
+      "Uncommon": "Poco común",
+      "Rare": "Raro",
+      "Epic": "Épico",
+      "Legendary": "Legendario",
+      "Premium": "Premium"
+    }
   }
 }

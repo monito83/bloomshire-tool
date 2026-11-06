@@ -35,5 +35,18 @@
     "locateTitle": "Locate \"{{location}}\" in the Mega-Atlas",
     "youHave": "📦 You have: {{count}}",
     "zeroStock": "0 in stock"
+  },
+  "codex": {
+    "title": "Official Codex",
+    "badge": "📖 Official Codex",
+    "badgeTooltip": "Effects, experience, origin and value come from the game's own Codex (version {{version}}, downloaded {{date}}).",
+    "rarity": {
+      "Common": "Common",
+      "Uncommon": "Uncommon",
+      "Rare": "Rare",
+      "Epic": "Epic",
+      "Legendary": "Legendary",
+      "Premium": "Premium"
+    }
   }
 }
