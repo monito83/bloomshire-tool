@@ -113,6 +113,8 @@
 .lb-fade { animation: lb-fade-in 260ms ease-out both; }
 .lb-pop { animation: lb-pop-in 160ms ease-out both; }
 .lb-float { animation: lb-float 2.4s ease-in-out infinite; }
+@keyframes lb-shimmer-move { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+.lb-shimmer { animation: lb-shimmer-move 6s linear infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .lb-fade, .lb-pop, .lb-float { animation: none; }
+  .lb-fade, .lb-pop, .lb-float, .lb-shimmer { animation: none; }
 }

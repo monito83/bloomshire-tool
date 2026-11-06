@@ -9,7 +9,7 @@ const KNOWN_ERRORS = new Set([
   'invalid_password', 'too_many_attempts', 'not_configured', 'not_available', 'unauthorized', 'title_required',
   'invalid_slug', 'slug_taken', 'section_required', 'invalid_section', 'invalid_parent', 'cycle', 'confirm_mismatch',
   'invalid_cover', 'invalid_place', 'too_large', 'network_error', 'invalid_file_type', 'file_too_large', 'invalid_file',
-  'invalid_image', 'upload_failed'
+  'invalid_image', 'upload_failed', 'seed_conflict'
 ]);
 
 export function useAdminErrorText() {

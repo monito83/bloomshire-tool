@@ -2,7 +2,8 @@
   "hero": {
     "kicker": "Guía de campo de la comunidad",
     "title": "Bitácora y guías",
-    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, compartidos con toda la comunidad."
+    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, compartidos con toda la comunidad.",
+    "tour": "¿Primera vez? Hacé el recorrido"
   },
   "nav": {
     "home": "Bitácora",
@@ -237,7 +238,8 @@
       "file_too_large": "El archivo pesa más de 10 MB.",
       "invalid_file": "El archivo no es válido.",
       "invalid_image": "No se pudo leer la imagen.",
-      "upload_failed": "Falló la subida. Probá de nuevo."
+      "upload_failed": "Falló la subida. Probá de nuevo.",
+      "seed_conflict": "Una entrada o sección tuya usa el mismo nombre de enlace que una oficial. Cambiale el nombre de enlace y probá de nuevo."
     },
     "upload": {
       "dropImage": "Arrastrá una imagen acá o hacé clic para elegirla",
@@ -254,7 +256,12 @@
     "seed": {
       "button": "Contenido inicial",
       "title": "Borra todas las secciones, entradas y lugares, y carga las guías hechas con datos del juego",
-      "prompt": "Esto BORRA todo el contenido de la bitácora y carga las guías iniciales (guías del juego, jefes y armas). Escribí {{word}} para confirmar:"
+      "prompt": "Esto BORRA todo el contenido de la bitácora y carga el contenido oficial (recorrido por la tool, guías del juego, jefes y armas). Escribí {{word}} para confirmar:",
+      "upsert": "Actualizar oficial",
+      "upsertTitle": "Agrega o actualiza el contenido oficial (recorrido, guías del juego, jefes y armas) sin tocar lo que escribiste",
+      "upsertConfirm": "¿Actualizar el contenido oficial (recorrido, guías del juego, jefes y armas)? Las entradas oficiales se reemplazan por la última versión; todo lo que escribiste vos queda como está.",
+      "upsertDone_one": "Contenido oficial actualizado ({{count}} entrada).",
+      "upsertDone_other": "Contenido oficial actualizado ({{count}} entradas)."
     },
     "sprites": {
       "open": "Elegir un sprite del juego",

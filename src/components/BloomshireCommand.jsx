@@ -55,6 +55,11 @@ export default function BloomshireCommand() {
   const [itemsSearchSeed, setItemsSearchSeed] = useState('');
   useEffect(() => { if (activeTab !== 'items') setItemsSearchSeed(''); }, [activeTab]);
   const openItemsSearch = (query) => { setItemsSearchSeed(query || ''); setActiveTab('items'); };
+  // Boton "Guia de uso" de la cabecera: Bitacora > Como usar la tool
+  const openToolGuide = () => {
+    try { window.location.hash = '#logbook/how-to-use'; } catch { /* sin ventana */ }
+    setActiveTab('logbook');
+  };
   const { dailyTasks, setDailyTasks, toggleDailyTask, dailyTasksCompletedCount } = tasks;
   const {
     activeCrops, setActiveCrops, productionTimers, setProductionTimers, soundAlarmEnabled, setSoundAlarmEnabled,
@@ -159,6 +164,7 @@ export default function BloomshireCommand() {
         setShowProfileModal={setShowProfileModal}
         shards={shards}
         walletAddress={walletAddress}
+        onOpenGuide={openToolGuide}
       />
 
       {/* 2. Menú principal */}

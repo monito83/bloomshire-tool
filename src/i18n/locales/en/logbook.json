@@ -2,7 +2,8 @@
   "hero": {
     "kicker": "Community field guide",
     "title": "Logbook & Guides",
-    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, shared with the whole community."
+    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, shared with the whole community.",
+    "tour": "New here? Take the tour"
   },
   "nav": {
     "home": "Logbook",
@@ -237,7 +238,8 @@
       "file_too_large": "The file is larger than 10 MB.",
       "invalid_file": "The file is not valid.",
       "invalid_image": "The image could not be read.",
-      "upload_failed": "The upload failed. Try again."
+      "upload_failed": "The upload failed. Try again.",
+      "seed_conflict": "An entry or section you made uses the same link name as an official one. Change its link name and try again."
     },
     "upload": {
       "dropImage": "Drag an image here, or click to choose",
@@ -254,7 +256,12 @@
     "seed": {
       "button": "Starter content",
       "title": "Deletes every section, entry and place, and loads the guides made from game data",
-      "prompt": "This DELETES all logbook content and loads the starter guides (game guides, bosses and weapons). Type {{word}} to confirm:"
+      "prompt": "This DELETES all logbook content and loads the official content (tool tour, game guides, bosses and weapons). Type {{word}} to confirm:",
+      "upsert": "Update official",
+      "upsertTitle": "Adds or updates the official content (tour, game guides, bosses and weapons) without touching what you wrote",
+      "upsertConfirm": "Update the official content (tour, game guides, bosses and weapons)? Official entries are replaced with the latest version; everything you wrote yourself stays as it is.",
+      "upsertDone_one": "Official content updated ({{count}} entry).",
+      "upsertDone_other": "Official content updated ({{count}} entries)."
     },
     "sprites": {
       "open": "Pick a game sprite",

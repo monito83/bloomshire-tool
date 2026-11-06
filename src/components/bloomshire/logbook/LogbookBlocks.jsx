@@ -9,7 +9,8 @@ import LogbookMarkdown, { MarkdownTable, parseMarkdownTable } from './LogbookMar
 import {
   pickLang,
   mediaUrl,
-  isGameMedia,
+  isGameSprite,
+  imagePath,
   youTubeEmbedUrl,
   youTubeThumbUrl,
   placeLabel
@@ -122,10 +123,13 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
   const [failed, setFailed] = useState(false);
   // Sprites chicos (pixel art) se amplian sin suavizado para que no queden borrosos
   const [pixelated, setPixelated] = useState(false);
-  const url = mediaUrl(mediaBase, image.path);
+  const path = imagePath(image, lang);
+  const url = mediaUrl(mediaBase, path);
   const alt = pickLang(image, 'alt', lang);
   const caption = pickLang(image, 'caption', lang);
-  const sprite = isGameMedia(image.path);
+  const sprite = isGameSprite(path);
+  // Capturas de la guia de la tool: van en un marco de ventana
+  const shot = !sprite && String(path).startsWith('game/guide/');
   if (!url || failed) {
     return (
       <div className="flex aspect-video items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-900/50 text-xs text-slate-500">
@@ -138,11 +142,21 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
       <button
         type="button"
         onClick={onOpen}
-        className="group relative block w-full overflow-hidden rounded-xl border border-slate-700/70 bg-slate-950 cursor-zoom-in"
+        className={`group relative block w-full overflow-hidden rounded-xl border bg-slate-950 cursor-zoom-in ${
+          shot ? 'border-slate-700 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.9)] transition-all duration-300 hover:border-amber-500/40 hover:shadow-[0_24px_60px_-24px_rgba(245,158,11,0.35)]' : 'border-slate-700/70'
+        }`}
         aria-label={alt || t('blocks.openImage')}
       >
+        {shot && (
+          <span aria-hidden="true" className="flex items-center gap-1.5 border-b border-slate-800 bg-[#0d1628] px-3 py-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-rose-500/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+            <span className="ml-2 truncate font-mono text-[10px] text-slate-500">bloomshire-tool.vercel.app</span>
+          </span>
+        )}
         {sprite ? (
-          <SpriteStage path={image.path} mediaBase={mediaBase} alt={alt} size={compact ? 'tile' : 'figure'} onError={() => setFailed(true)} />
+          <SpriteStage path={path} mediaBase={mediaBase} alt={alt} size={compact ? 'tile' : 'figure'} onError={() => setFailed(true)} />
         ) : (
         <img
           src={url}
@@ -153,7 +167,7 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
           height={image.height || undefined}
           onError={() => setFailed(true)}
           onLoad={(e) => setPixelated(e.currentTarget.naturalWidth > 0 && e.currentTarget.naturalWidth <= 128)}
-          className={`w-full ${compact ? (pixelated ? 'aspect-[4/3] object-contain p-6' : 'aspect-[4/3] object-cover') : 'max-h-[560px] object-contain'} transition-transform duration-500 group-hover:scale-[1.02]`}
+          className={`w-full ${shot ? 'block transition-transform duration-500' : ''} ${compact ? (pixelated ? 'aspect-[4/3] object-contain p-6' : 'aspect-[4/3] object-cover') : 'max-h-[560px] object-contain'} transition-transform duration-500 group-hover:scale-[1.02]`}
           style={{ imageRendering: pixelated ? 'pixelated' : 'auto' }}
         />
         )}
@@ -233,7 +247,7 @@ export default function LogbookBlocks({ blocks, lang, mediaBase, placesByKey, on
           case 'gallery': {
             const caption = pickLang(b, 'caption', lang);
             // Solo sprites del juego: fila compacta con el nombre de cada uno
-            if (b.images.every((img) => isGameMedia(img.path))) {
+            if (b.images.every((img) => isGameSprite(img.path))) {
               return (
                 <figure key={key} className="space-y-2">
                   <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">

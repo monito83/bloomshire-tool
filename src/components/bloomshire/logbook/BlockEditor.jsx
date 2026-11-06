@@ -9,7 +9,7 @@ import { Field, inputCls } from './adminUi';
 import PlaceSearch from './PlaceSearch';
 import { PlaceChip } from './LogbookBlocks';
 import MediaDropzone, { UploadContext } from './MediaDropzone';
-import { parseYouTubeId, CALLOUT_VARIANTS, mediaUrl, isGameMedia } from './logbookModel';
+import { parseYouTubeId, CALLOUT_VARIANTS, mediaUrl, isGameSprite } from './logbookModel';
 
 export const BLOCK_ICONS = {
   text: '¶', heading: 'H', image: '🖼️', gallery: '🎞️', youtube: '▶', table: '▦',
@@ -183,8 +183,8 @@ export default function BlockEditor({ block, onChange, patch, editLang, corpus, 
                       <img
                         src={mediaUrl(mediaBase, im.path)}
                         alt=""
-                        className={`max-h-full max-w-full object-contain ${isGameMedia(im.path) ? 'h-1/2' : ''}`}
-                        style={isGameMedia(im.path) ? { imageRendering: 'pixelated' } : undefined}
+                        className={`max-h-full max-w-full object-contain ${isGameSprite(im.path) ? 'h-1/2' : ''}`}
+                        style={isGameSprite(im.path) ? { imageRendering: 'pixelated' } : undefined}
                       />
                     )}
                     <span className="absolute left-1.5 top-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-black text-amber-200">#{i + 1}</span>
