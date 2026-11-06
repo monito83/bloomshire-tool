@@ -12,13 +12,19 @@
  *      npm run build:official -- --src game-sources/v-4ccdce8f2b1e
  *
  * Salida: public/data/bloomshire/official/{meta,codex,skills,bestiary,adventure}.json
+ * Arte: public/data/bloomshire/beasts/<criatura>.png (primer cuadro de reposo, recortado como en el
+ * Bestiario del juego) y retratos faltantes en public/data/bloomshire/portraits/<aldeano>.png.
+ * El arte se lee de game-sources/v-<version>/pack/...; los archivos que hagan falta se listan en
+ * game-sources/v-<version>/assets_needed.txt y los baja descargar_fuentes.ps1 en su siguiente pasada.
  * Los textos en espanol son null cuando el juego todavia no los traduce (se muestra el ingles).
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
+import crypto from 'crypto';
 import { installShims } from './lib/gameShims.mjs';
+import { readPng, blank, blit, opaqueBox, writePng } from './lib/gameArt.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -175,6 +181,73 @@ const adventure = {
 };
 
 // ---------------------------------------------------------------------------
+// Arte: miniaturas de criaturas y retratos de aldeanos
+// ---------------------------------------------------------------------------
+const PACK = path.join(SRC, 'pack');
+const needed = new Set();
+const missing = [];
+const packFile = (p) => {
+  needed.add(p);
+  const f = path.join(PACK, ...p.split('/'));
+  if (!fs.existsSync(f)) { missing.push(p); return null; }
+  return f;
+};
+
+// Criaturas: como drawBeast() de bestiary.js -- hoja de reposo, mirando hacia abajo, recortada a lo que se dibuja
+const BEAST_OUT = path.join(ROOT, 'public/data/bloomshire/beasts');
+let beastArt = 0;
+for (const b of bestiary.beasts) {
+  const a = rules.ENEMIES[b.id]?.art;
+  if (!a?.anim?.idle) continue;
+  const [file, frames = 1, col0 = 0, fixedRow = null] = a.anim.idle;
+  const f = packFile(`${a.dir}/${file}.png`);
+  if (!f) continue;
+  const sheet = readPng(f);
+  const c = a.cell;
+  const row = fixedRow ?? (a.rows === 4 ? Math.max(0, (a.order ?? ['down', 'up', 'right', 'left']).indexOf('down')) : a.rows === 8 ? Math.max(0, (a.order8 ?? ['down']).indexOf('down')) : 0);
+  let box = null;
+  for (let i = 0; i < frames; i++) {
+    const fb = opaqueBox(sheet, (col0 + i) * c, row * c, c, c);
+    if (!fb) continue;
+    box = box ? (() => {
+      const x0 = Math.min(box.x, fb.x), y0 = Math.min(box.y, fb.y);
+      return { x: x0, y: y0, w: Math.max(box.x + box.w, fb.x + fb.w) - x0, h: Math.max(box.y + box.h, fb.y + fb.h) - y0 };
+    })() : fb;
+  }
+  if (!box) continue;
+  const out = blit(blank(box.w, box.h), sheet, col0 * c + box.x, row * c + box.y, box.w, box.h);
+  writePng(path.join(BEAST_OUT, `${b.id}.png`), out);
+  b.art = `beasts/${b.id}.png`;
+  beastArt++;
+}
+
+// Aldeanos: solo los retratos que faltan o que son la imagen de relleno repetida
+const PORTRAITS = path.join(ROOT, 'public/data/bloomshire/portraits');
+const npcsMod = await mod('game/npcs.js');
+const md5 = (f) => crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex');
+const existing = fs.existsSync(PORTRAITS) ? fs.readdirSync(PORTRAITS).filter((f) => f.endsWith('.png')) : [];
+const byHash = new Map();
+for (const f of existing) { const h = md5(path.join(PORTRAITS, f)); byHash.set(h, [...(byHash.get(h) || []), f.replace(/\.png$/, '')]); }
+const placeholders = new Set([...byHash.values()].filter((ids) => ids.length > 1).flat());
+const ALIASES = { tamzin: 'tamsin', virelia: 'virella' };
+const wanted = new Set([...placeholders, ...Object.keys(npcsMod.NPCS).filter((id) => !existing.includes(`${id}.png`))]);
+let portraitArt = 0;
+for (const id of [...wanted].sort()) {
+  const def = npcsMod.NPCS[ALIASES[id] || id];
+  if (!def) continue;
+  const layers = def.premade?.portrait ? [def.premade.portrait] : def.face ? [def.face] : def.look ? npcsMod.portraitLayers(def.look) : [];
+  const files = layers.map(packFile);
+  if (!files.length || files.some((x) => !x)) continue;
+  const out = blank(64, 64);
+  for (const f of files) blit(out, readPng(f), 0, 0, 64, 64, 0, 0, true);
+  if (!opaqueBox(out, 0, 0, 64, 64)) continue;
+  writePng(path.join(PORTRAITS, `${id}.png`), out);
+  portraitArt++;
+}
+
+fs.writeFileSync(path.join(SRC, 'assets_needed.txt'), `${[...needed].sort().join('\n')}\n`, 'utf8');
+
+// ---------------------------------------------------------------------------
 // Escritura
 // ---------------------------------------------------------------------------
 const versionTxt = fs.existsSync(path.join(SRC, 'VERSION.txt')) ? fs.readFileSync(path.join(SRC, 'VERSION.txt'), 'utf8') : '';
@@ -208,3 +281,8 @@ const esShare = (items, key) => {
 console.log(`Datos oficiales: version ${meta.gameVersion} (reglas ${meta.rulesHash})`);
 console.log(`  codice ${meta.counts.codex} cosas (nombres en espanol ${esShare(codex.items, 'name')}%), ${meta.counts.skills} habilidades,`);
 console.log(`  ${meta.counts.beasts} criaturas, ${meta.counts.regions} regiones / ${meta.counts.places} lugares -> ${path.relative(ROOT, OUT)}`);
+console.log(`  arte: ${beastArt} miniaturas de criaturas, ${portraitArt} retratos de aldeanos`);
+if (missing.length) {
+  console.log(`  FALTAN ${new Set(missing).size} imagenes del juego (listadas en ${path.relative(ROOT, path.join(SRC, 'assets_needed.txt'))}).`);
+  console.log('  Corre de nuevo game-sources/descargar_fuentes.ps1 para bajarlas y despues npm run build:official.');
+}

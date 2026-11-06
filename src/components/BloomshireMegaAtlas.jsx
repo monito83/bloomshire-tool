@@ -26,6 +26,9 @@ import {
 } from 'lucide-react';
 import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
 import RegionCompendium from './bloomshire/official/RegionCompendium';
+import BeastSearchResults from './bloomshire/official/BeastSearchResults';
+import useOfficialData from './bloomshire/official/useOfficialData';
+import { searchBeasts, atlasRegionsOfBeast } from './bloomshire/official/compendiumModel';
 import mapsMetaData from '../../public/data/bloomshire/maps/maps_meta.json';
 import npcsCatalog from '../../public/data/bloomshire/npcs.json';
 import npcLooksData from '../../public/data/bloomshire/npc_looks.json';
@@ -276,6 +279,8 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
 
   // Buscador y Capas visibles
   const [searchQuery, setSearchQuery] = useState('');
+  const [focusBeast, setFocusBeast] = useState(null); // { id, ts } criatura elegida en el buscador
+  const bestiaryData = useOfficialData('bestiary');
   const [showPixelArtLayer, setShowPixelArtLayer] = useState(true);
   const [showSubZonesLayer, setShowSubZonesLayer] = useState(true);
   const [showLabelsLayer, setShowLabelsLayer] = useState(true);
@@ -429,6 +434,20 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
     return out;
   }, [realMaps]);
 
+  // Regiones donde viven las criaturas que coinciden con la busqueda (Bestiario oficial)
+  const beastRegionIds = useMemo(
+    () => new Set(searchBeasts(bestiaryData, searchQuery).flatMap((b) => atlasRegionsOfBeast(b))),
+    [bestiaryData, searchQuery]
+  );
+
+  const handlePickBeast = (regionId, beastId) => {
+    const reg = megaAtlasData.regions.find((r) => r.id === regionId);
+    if (!reg) return;
+    handleSelectRegion(reg);
+    setRightPanelOpen(true);
+    setFocusBeast({ id: beastId, ts: Date.now() });
+  };
+
   // Filtrado de regiones y sub-zonas en el árbol lateral
   const filteredRegions = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -453,10 +472,11 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
 
         if (regMatches) return r;
         if (matchingSubs.length > 0) return { ...r, subZones: matchingSubs };
+        if (beastRegionIds.has(r.id)) return r;
         return null;
       })
       .filter(Boolean);
-  }, [searchQuery]);
+  }, [searchQuery, beastRegionIds]);
 
   // Auto-enfoque suave (Fly-To) hacia una caja [wx, wy, w, h] en el lienzo de 8650 x 10650
   const focusOnWorldRect = useCallback((rect, targetZoom = 2.4) => {
@@ -768,7 +788,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 <Search className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Buscar zona, sub-zona, pez, cueva, NPC..."
+                  placeholder="Buscar zona, sub-zona, pez, cueva, NPC, criatura..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="bg-transparent border-none text-xs text-slate-200 placeholder-amber-200/40 outline-none w-full"
@@ -799,6 +819,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
 
             {/* Lista Jerárquica de las 12 Regiones y sus 111 Sub-Zonas */}
             <div className="flex-1 overflow-y-auto p-2.5 space-y-1.5">
+              <BeastSearchResults query={searchQuery} regions={megaAtlasData.regions} onPick={handlePickBeast} />
               {filteredRegions.map(reg => {
                 const isRegSel = selectedRegionId === reg.id;
                 const isExpanded = Boolean(expandedRegions[reg.id] || searchQuery.trim().length > 0);
@@ -1838,7 +1859,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 )}
 
                 {/* Datos oficiales del juego: libro de exploracion y Bestiario de la region */}
-                <RegionCompendium regionId={selectedRegionId} />
+                <RegionCompendium regionId={selectedRegionId} focusBeast={focusBeast} />
 
                 {/* Todas las sub-zonas hermanas de esta región */}
                 <div className="mt-auto pt-3 border-t border-slate-800/60">

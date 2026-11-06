@@ -25,5 +25,9 @@
     "search": "Filtrar criaturas…",
     "clear": "Borrar filtro",
     "source": "Datos del Bestiario del propio juego."
+  },
+  "search": {
+    "title": "Criaturas ({{count}})",
+    "goTo": "Ver esta región en el mapa"
   }
 }

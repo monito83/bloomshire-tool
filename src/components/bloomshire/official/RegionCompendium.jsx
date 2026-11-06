@@ -2,11 +2,12 @@
 // Panel del Mega-Atlas con los datos oficiales del juego para la region elegida:
 // libro de exploracion (para que sirve la zona y sus lugares) y Bestiario
 // (criaturas, estadisticas, ataques, recompensas y debilidades de los jefes).
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Heart, Swords, Wind, Coins, Trophy, Search, X } from 'lucide-react';
 import useOfficialData from './useOfficialData';
-import { beastsForRegion, adventureForRegion, FAMILY_ICONS, WEAPON_ICONS, goldRange } from './compendiumModel';
+import BeastIcon from './BeastIcon';
+import { beastsForRegion, adventureForRegion, WEAPON_ICONS, goldRange } from './compendiumModel';
 import { baseLang, pickLang, normalizeText } from '../logbook/logbookModel';
 
 const fmt = (n, lang) => (Number.isFinite(n) ? new Intl.NumberFormat(lang).format(n) : '—');
@@ -41,16 +42,24 @@ function Stat({ icon: Icon, value, label, cls }) {
   );
 }
 
-function BeastCard({ beast, families, lang }) {
+function BeastCard({ beast, families, lang, focus = null }) {
   const { t } = useTranslation('compendium');
   const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  // Abrir y mostrar la ficha cuando se la eligio desde el buscador del Mega-Atlas
+  useEffect(() => {
+    if (!focus) return;
+    setOpen(true);
+    const timer = setTimeout(() => { try { ref.current && ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch { /* noop */ } }, 80);
+    return () => clearTimeout(timer);
+  }, [focus]);
   const family = families.get(beast.family);
   const facts = pickLang(beast, 'facts', lang) || [];
   const isBoss = beast.stats.boss;
   return (
-    <div className={`rounded-lg border transition-colors ${isBoss ? 'border-rose-500/40 bg-rose-500/[0.05]' : 'border-slate-800 bg-[#0c1424]'} ${open ? 'border-amber-500/40' : ''}`}>
+    <div ref={ref} className={`rounded-lg border transition-colors ${isBoss ? 'border-rose-500/40 bg-rose-500/[0.05]' : 'border-slate-800 bg-[#0c1424]'} ${open ? 'border-amber-500/40' : ''}`}>
       <button type="button" onClick={() => setOpen((o) => !o)} className="flex w-full items-center gap-2 px-2.5 py-2 text-left cursor-pointer" aria-expanded={open}>
-        <span className="text-base" aria-hidden="true">{FAMILY_ICONS[beast.family] || '❔'}</span>
+        <BeastIcon beast={beast} size={30} />
         <span className="min-w-0 flex-1">
           <span className="flex items-center gap-1.5">
             <span className="truncate text-[12px] font-bold text-slate-100">{pickLang(beast, 'name', lang)}</span>
@@ -102,13 +111,14 @@ function BeastCard({ beast, families, lang }) {
   );
 }
 
-export default function RegionCompendium({ regionId }) {
+export default function RegionCompendium({ regionId, focusBeast = null }) {
   const { t, i18n } = useTranslation('compendium');
   const lang = baseLang(i18n.language);
   const bestiary = useOfficialData('bestiary');
   const adventure = useOfficialData('adventure');
   const [query, setQuery] = useState('');
   const [allPlaces, setAllPlaces] = useState(false);
+  useEffect(() => { if (focusBeast) setQuery(''); }, [focusBeast]);
 
   const families = useMemo(() => new Map((bestiary?.families || []).map((f) => [f.id, f])), [bestiary]);
   const beasts = useMemo(() => beastsForRegion(bestiary, regionId), [bestiary, regionId]);
@@ -171,7 +181,9 @@ export default function RegionCompendium({ regionId }) {
             </div>
           )}
           <div className="space-y-1.5">
-            {shown.map((b) => <BeastCard key={b.id} beast={b} families={families} lang={lang} />)}
+            {shown.map((b) => (
+              <BeastCard key={b.id} beast={b} families={families} lang={lang} focus={focusBeast && focusBeast.id === b.id ? focusBeast.ts : null} />
+            ))}
           </div>
           <p className="text-[9.5px] text-slate-600">{t('bestiary.source')}</p>
         </Section>

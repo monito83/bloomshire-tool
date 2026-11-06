@@ -8,7 +8,7 @@ import megaAtlas from '../public/data/bloomshire/mega_atlas_data.json';
 import RegionCompendium from '../src/components/bloomshire/official/RegionCompendium';
 import { primeOfficialData } from '../src/components/bloomshire/official/useOfficialData';
 import {
-  BEAST_PLACE_TO_ATLAS, ADVENTURE_TO_ATLAS, beastsForRegion, adventureForRegion, goldRange
+  BEAST_PLACE_TO_ATLAS, ADVENTURE_TO_ATLAS, beastsForRegion, adventureForRegion, goldRange, searchBeasts, atlasRegionsOfBeast
 } from '../src/components/bloomshire/official/compendiumModel';
 
 const read = (n) => JSON.parse(fs.readFileSync(`public/data/bloomshire/official/${n}.json`, 'utf8'));
@@ -51,6 +51,13 @@ describe('Bestiario y libro de exploracion en el Mega-Atlas: modelo', () => {
     const firstBoss = list.findIndex((b) => b.stats.boss);
     if (firstBoss >= 0) expect(list.slice(firstBoss).every((b) => b.stats.boss)).toBe(true);
     expect(beastsForRegion(bestiary, 'home_island')).toEqual([]);
+  });
+
+  it('buscar criaturas por nombre en ingles o espanol, sin tildes', () => {
+    expect(searchBeasts(bestiary, 'bone spider')[0].id).toBe('bone_spider');
+    expect(searchBeasts(bestiary, 'arana huesuda')[0].id).toBe('bone_spider');
+    expect(searchBeasts(bestiary, 'x')).toEqual([]);
+    expect(atlasRegionsOfBeast(bestiary.beasts.find((b) => b.id === 'bone_spider'))).toEqual(['stonepeak', 'vip_quarter']);
   });
 
   it('goldRange', () => {

@@ -25,5 +25,9 @@
     "search": "Filter creatures…",
     "clear": "Clear filter",
     "source": "Data from the game's own Bestiary."
+  },
+  "search": {
+    "title": "Creatures ({{count}})",
+    "goTo": "Show this region on the map"
   }
 }

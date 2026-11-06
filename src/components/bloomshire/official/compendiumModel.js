@@ -83,5 +83,23 @@ export function adventureForRegion(adventure, atlasRegionId) {
   return { region, places: [...(region ? region.places : []), ...caves] };
 }
 
+/** Regiones del Mega-Atlas donde vive una criatura (sin repetir, en orden). */
+export function atlasRegionsOfBeast(beast) {
+  const out = [];
+  for (const p of beast?.places || []) for (const r of BEAST_PLACE_TO_ATLAS[p] || []) if (!out.includes(r)) out.push(r);
+  return out;
+}
+
+const fold = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/** Criaturas cuyo nombre (EN/ES) o familia contiene lo buscado (desde 2 letras). */
+export function searchBeasts(bestiary, query) {
+  const q = fold(query).trim();
+  if (!bestiary || q.length < 2) return [];
+  return bestiary.beasts
+    .filter((b) => fold(`${b.name_en} ${b.name_es || ''}`).includes(q))
+    .sort((a, b) => Number(fold(b.name_en).startsWith(q) || fold(b.name_es).startsWith(q)) - Number(fold(a.name_en).startsWith(q) || fold(a.name_es).startsWith(q)) || a.tier - b.tier);
+}
+
 /** Rango de oro "10-25" o null. */
 export const goldRange = (gold) => (Array.isArray(gold) && gold.length === 2 ? `${gold[0]}-${gold[1]}` : null);
