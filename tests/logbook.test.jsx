@@ -186,7 +186,7 @@ describe('Bitacora: pestaña', () => {
   it('portada en espanol', async () => {
     await i18n.changeLanguage('es');
     const html = renderToString(<LogbookTab initialData={DEMO_INDEX} initialPath="" />);
-    expect(html).toContain('Bitácora de Leonman');
+    expect(html).toContain('Bitácora y guías');
     expect(html).toContain('Guías');
   });
 

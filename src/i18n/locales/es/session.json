@@ -84,5 +84,49 @@
     "checkFailed": "No se pudo consultar el juego. Datos de la tool: versión {{ours}}.",
     "mapsLog": "Pedido de recarga de mapas enviado a la extensión.",
     "scanLog": "Pedido de escaneo enviado a la extensión ({{module}})."
+  },
+  "settings": {
+    "title": "Datos de la tool",
+    "data": "Datos del juego: versión {{version}} • generados el {{date}}",
+    "check": "🔍 Comparar con el juego",
+    "checking": "Comparando...",
+    "cards": {
+      "quests": "Misiones",
+      "atlas": "Mega-Atlas",
+      "npcs": "Aldeanos y criaturas",
+      "crops": "Cultivos y temporizadores",
+      "craft": "Crafteo y códice",
+      "energy": "Cama y energía"
+    },
+    "rows": {
+      "inGame": "Misiones del juego:",
+      "following": "Activas en tu partida:",
+      "missing": "Insumos que faltan:",
+      "regions": "Regiones:",
+      "places": "Lugares del libro de exploración:",
+      "subzones": "Sub-zonas del Atlas:",
+      "npcs": "Aldeanos:",
+      "beasts": "Criaturas del Bestiario:",
+      "crops": "Cultivos:",
+      "growing": "Plantados ahora:",
+      "timers": "Lotes en curso:",
+      "recipes": "Recetas:",
+      "codex": "Cosas en el códice:",
+      "sleepLeft": "Sueño que queda hoy:",
+      "reset": "Reinicio:"
+    },
+    "log": "Registro del sistema",
+    "clear": "Limpiar registro",
+    "empty": "Registro vacío."
+  },
+  "advisor": {
+    "lockedTitle": "Copilot con IA",
+    "lockedDesc": "Consejos sobre qué plantar, vender o entregar según lo que tenés en la mochila y los cofres, conectando tu partida con la extensión Bloomshire Companion.",
+    "paused": "🤖 Copilot con IA: en pausa por ahora.\n\nSe va a activar cuando termine la etapa de pruebas. Mientras tanto podés usar la Calculadora, el Mega-Atlas y la enciclopedia de Ítems.",
+    "thinking": "Analizando tu partida...",
+    "placeholder": "Preguntá sobre siembra, energía, pedidos de Odette o misiones...",
+    "send": "Enviar",
+    "empty": "Sin respuesta.",
+    "error": "⚠️ No se pudo contactar al Copilot. Revisá tu conexión e intentá de nuevo."
   }
 }

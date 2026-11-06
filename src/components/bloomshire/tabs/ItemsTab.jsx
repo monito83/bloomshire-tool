@@ -55,8 +55,13 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialS
   const obtainText = (item) => {
     const c = officialOf(item);
     const from = c ? pickLang(c, 'from', lang) || [] : [];
-    return from.length ? from.join(' · ') : item.howToGet;
+    return from.length ? from.join(' · ') : (isEn ? '' : item.howToGet);
   };
+  // Textos de la tool en el idioma elegido (la enciclopedia guarda el espanol y su version _en)
+  const isEn = lang === 'en';
+  const reqText = (item) => (isEn ? item.skillReq_en : item.skillReq) || '';
+  const usedInList = (item) => (isEn && Array.isArray(item.usedIn_en) ? item.usedIn_en : item.usedIn) || [];
+  const placeText = (item) => (isEn ? item.mapLocation?.label_en : item.mapLocation?.label) || item.mapLocation?.label || '';
   const [itemSearchQuery, setItemSearchQuery] = useState(initialSearch || '');
   const [itemCategoryFilter, setItemCategoryFilter] = useState('all');
   const [itemViewMode, setItemViewMode] = useState('grid');
@@ -245,19 +250,19 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialS
                   </div>
 
                   {/* Sub-fila de badges adicionales */}
-                  {(item.skillReq || officialOf(item)?.rarity) && (
+                  {(reqText(item) || officialOf(item)?.rarity) && (
                     <div className="flex items-center gap-1">
                       {officialOf(item)?.rarity && (
                         <span className={`px-1.5 rounded border text-[9.5px] font-bold ${RARITY_STYLE[officialOf(item).rarity] || RARITY_STYLE.Common}`}>
                           {t(`codex.rarity.${officialOf(item).rarity}`, { defaultValue: officialOf(item).rarity })}
                         </span>
                       )}
-                      {item.skillReq && (
+                      {reqText(item) && (
                         <span 
                           className="px-1.5 py-0.2 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[9.5px] font-mono font-bold"
-                          title={t('card.skillReqTooltip', { req: item.skillReq })}
+                          title={t('card.skillReqTooltip', { req: reqText(item) })}
                         >
-                          {t('card.skillReq', { req: item.skillReq })}
+                          {t('card.skillReq', { req: reqText(item) })}
                         </span>
                       )}
                     </div>
@@ -291,7 +296,7 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialS
                       </button>
                       {isExpandedUsedIn && (
                         <div className="flex flex-wrap gap-1 mt-1.5 pt-1.5 border-t border-slate-800/60 animate-fadeIn">
-                          {item.usedIn.map((u, i) => (
+                          {usedInList(item).map((u, i) => (
                             <span
                               key={i}
                               className={`text-[10px] px-2 py-0.5 rounded font-medium ${
@@ -313,12 +318,12 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialS
                 {item.mapLocation && (
                   <div className="pt-1.5 border-t border-slate-800/60 flex items-center justify-between gap-1.5">
                     <span className="text-[9.5px] text-slate-400 truncate">
-                      📍 {item.mapLocation.label}
+                      📍 {placeText(item)}
                     </span>
                     <button
-                      onClick={() => locateInMegaAtlas && locateInMegaAtlas(item.mapLocation)}
+                      onClick={() => locateInMegaAtlas && locateInMegaAtlas({ ...item.mapLocation, label: placeText(item) })}
                       className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
-                      title={t('card.locateTitle', { location: item.mapLocation.label || item.nameEs })}
+                      title={t('card.locateTitle', { location: placeText(item) || displayName(item) })}
                     >
                       <MapPin className="w-3 h-3" />
                     </button>
@@ -369,9 +374,9 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialS
                   )}
                   {item.mapLocation && (
                     <button
-                      onClick={() => locateInMegaAtlas && locateInMegaAtlas(item.mapLocation)}
+                      onClick={() => locateInMegaAtlas && locateInMegaAtlas({ ...item.mapLocation, label: placeText(item) })}
                       className="w-7 h-7 rounded-lg bg-[#141d2e] hover:bg-amber-500/20 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                      title={t('card.locateTitle', { location: item.mapLocation.label || item.nameEs })}
+                      title={t('card.locateTitle', { location: placeText(item) || displayName(item) })}
                     >
                       <MapPin className="w-3.5 h-3.5" />
                     </button>

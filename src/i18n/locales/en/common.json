@@ -38,5 +38,12 @@
     "badge": "Free guide mode on",
     "connect": "🎮 Connect game / Companion",
     "back": "← Back to the Mega-Atlas HD"
+  },
+  "giftCats": {
+    "crop": "Any crop",
+    "fish": "Any fish",
+    "forage": "Anything foraged",
+    "food": "Any dish",
+    "ore": "Any ore"
   }
 }

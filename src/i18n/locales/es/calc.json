@@ -74,13 +74,23 @@
       "goldPerEnergy": "🪙 Oro / ⚡",
       "xpPerMin": "XP / Min",
       "goldPerMin": "Oro / Min",
-      "totalPlots": "Total x{{plots}} Parcelas",
-      "tip": "Consejo Táctico"
+      "totalPlots": "Total x{{plots}} Parcelas"
     },
     "allYear": "Todo el Año 🌐",
     "levelBadge": "Nv {{level}}",
     "regrowBadge": "Rebrote (5x)",
     "regrowLevel": "Nv 15+: {{val}}",
     "consumption": "Consumo: {{energy}}⚡"
+  },
+  "grow": {
+    "hits": "{{n}} golpes",
+    "pickHits": "{{n}} golpes (pico de {{tool}})",
+    "axeHits": "{{n}} hachazos (hacha de {{tool}})",
+    "tiers": {
+      "1": "hierro",
+      "2": "bronce",
+      "3": "oro",
+      "4": "amatista"
+    }
   }
 }

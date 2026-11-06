@@ -34,8 +34,24 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Vegetable Plate (x1)",
+      "🍳 Cooking (lv 6): Coleslaw (x1)",
+      "🍳 Cooking (lv 7): Chicken Soup (x1)",
+      "🍳 Cooking (lv 7): Vegetable Stir Fry (x1)",
+      "🍳 Cooking (lv 8): Carrot Cake (x3)",
+      "🍳 Cooking (lv 13): Shepherd's Pie (x1)",
+      "🍳 Cooking (lv 14): Beetroot Soup (x1)",
+      "🍳 Cooking (lv 14): Mutton Stew (x1)",
+      "🍳 Cooking (lv 15): Pumpkin Soup (x1)",
+      "🍳 Cooking (lv 17): Beef Stew (x1)",
+      "🍳 Cooking (lv 21): Sunday Roast (x1)",
+      "📜 Quest \"Fresh for the Bakery\" (s_tamsin): asks for x4"
+    ]
   },
   {
     "id": "Potato",
@@ -71,8 +87,23 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Vegetable Plate (x1)",
+      "🍳 Cooking (lv 2): Baked Potato (x2)",
+      "🍳 Cooking (lv 4): Hash Browns (x3)",
+      "🍳 Cooking (lv 6): Hearty Stew (x1)",
+      "🍳 Cooking (lv 6): Roast Drumstick (x1)",
+      "🍳 Cooking (lv 11): Fish Pie (x2)",
+      "🍳 Cooking (lv 13): Shepherd's Pie (x2)",
+      "🍳 Cooking (lv 15): Casserole (x2)",
+      "🍳 Cooking (lv 16): Roast Dinner (x2)",
+      "🍳 Cooking (lv 17): Beef Stew (x2)",
+      "🍳 Cooking (lv 21): Sunday Roast (x2)"
+    ]
   },
   {
     "id": "Cabbage",
@@ -103,8 +134,18 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 4): Garden Salad (x1)",
+      "🍳 Cooking (lv 6): Coleslaw (x2)",
+      "🍳 Cooking (lv 10): Goat Cheese Salad (x1)",
+      "🍳 Cooking (lv 16): Pork Roast (x1)",
+      "📜 Quest \"Lena's Garden\" (sd_lena): asks for x12",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x5"
+    ]
   },
   {
     "id": "Cauliflower",
@@ -130,8 +171,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 15): Casserole (x1)"
+    ]
   },
   {
     "id": "Strawberry",
@@ -165,8 +211,21 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 8): Fruit Jam (x2)",
+      "🍳 Cooking (lv 8): Strawberry Milkshake (x1)",
+      "🍳 Cooking (lv 12): Fruit Salad (x1)",
+      "🍳 Cooking (lv 12): Strawberry Tart (x3)",
+      "🍳 Cooking (lv 14): Cake (x1)",
+      "🍳 Cooking (lv 18): Fruit Smoothie (x1)",
+      "🍳 Cooking (lv 18): Sweet Berry Cake (x1)",
+      "🍳 Cooking (lv 19): Cheesecake (x1)",
+      "🍳 Cooking (lv 24): Harvest Cake (x1)"
+    ]
   },
   {
     "id": "Tomato",
@@ -203,8 +262,24 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 4): Garden Salad (x1)",
+      "🍳 Cooking (lv 4): Omelette (x1)",
+      "🍳 Cooking (lv 6): Fish Tacos (x1)",
+      "🍳 Cooking (lv 7): Bean Hotpot (x1)",
+      "🍳 Cooking (lv 7): Cheese Toast (x1)",
+      "🍳 Cooking (lv 9): Eggplant Parmigiana (x2)",
+      "🍳 Cooking (lv 10): Goat Cheese Salad (x1)",
+      "🍳 Cooking (lv 13): Stuffed Mushrooms (x1)",
+      "🍳 Cooking (lv 14): Fireheart Chili (x1)",
+      "🍳 Cooking (lv 18): Hamburger (x1)",
+      "🍳 Cooking (lv 20): Lasagne (x2)",
+      "🍳 Cooking (lv 21): Cioppino (x1)"
+    ]
   },
   {
     "id": "Wheat",
@@ -235,8 +310,18 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "⚙️ Made at the mill: Flour (x2)",
+      "⚙️ Made at the mill: Hay (x2)",
+      "🔨 Crafting (lv 2): Rope (x3)",
+      "📜 Quest \"The Gate Song\" (bk24): asks for x60",
+      "📜 Quest \"Grist for the Mill\" (sd_hugo): asks for x20",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x5"
+    ]
   },
   {
     "id": "Sunflower",
@@ -260,8 +345,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Corn",
@@ -291,8 +378,17 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 3): Corn on the Cob (x2)",
+      "🍳 Cooking (lv 4): Popcorn (x3)",
+      "🍳 Cooking (lv 6): Fish Tacos (x1)",
+      "🍳 Cooking (lv 10): Spicy Tacos (x1)",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x5"
+    ]
   },
   {
     "id": "Green Beans",
@@ -319,8 +415,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 7): Bean Hotpot (x1)",
+      "🍳 Cooking (lv 7): Vegetable Stir Fry (x1)"
+    ]
   },
   {
     "id": "Cantaloupe",
@@ -347,8 +449,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 12): Fruit Salad (x1)",
+      "🍳 Cooking (lv 19): Tropical Salad (x1)"
+    ]
   },
   {
     "id": "Marigold",
@@ -380,8 +488,19 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🔨 Crafting (lv 5): Broom Charm (x1)",
+      "📜 Quest \"Market Day\" (bk10): asks for x1",
+      "📜 Quest \"The Lagoon\" (bk21): asks for x20",
+      "📜 Quest \"Moonsight\" (bk23): asks for x25",
+      "📜 Quest \"The Gate Song\" (bk24): asks for x40",
+      "📜 Quest \"A Flower for Every Table\" (sd_ivy): asks for x15",
+      "📜 Quest \"Flowers for the Bees\" (sd_willa): asks for x15"
+    ]
   },
   {
     "id": "Sweet Potato",
@@ -409,8 +528,15 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 11): Glazed Yams (x3)",
+      "🍳 Cooking (lv 11): Roast Duck (x1)",
+      "🍳 Cooking (lv 16): Pork Roast (x1)"
+    ]
   },
   {
     "id": "Saffron",
@@ -434,8 +560,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Star Fruit",
@@ -462,8 +590,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Moonlight Stew (x1)",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x1"
+    ]
   },
   {
     "id": "Onion",
@@ -503,8 +637,27 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 4): Hash Browns (x1)",
+      "🍳 Cooking (lv 4): Omelette (x1)",
+      "🍳 Cooking (lv 6): Coleslaw (x1)",
+      "🍳 Cooking (lv 6): Cucumber Salad (x1)",
+      "🍳 Cooking (lv 6): Hearty Stew (x1)",
+      "🍳 Cooking (lv 7): Bean Hotpot (x1)",
+      "🍳 Cooking (lv 7): Chicken Soup (x1)",
+      "🍳 Cooking (lv 14): Beetroot Soup (x1)",
+      "🍳 Cooking (lv 14): Mutton Stew (x1)",
+      "🍳 Cooking (lv 15): Goat Curry (x1)",
+      "🍳 Cooking (lv 15): Pumpkin Soup (x1)",
+      "🍳 Cooking (lv 16): Pork Roast (x1)",
+      "🍳 Cooking (lv 17): Beef Stew (x1)",
+      "🍳 Cooking (lv 21): Cioppino (x1)",
+      "🍳 Cooking (lv 25): Golden Bisque (x1)"
+    ]
   },
   {
     "id": "Eggplant",
@@ -530,8 +683,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 9): Eggplant Parmigiana (x2)"
+    ]
   },
   {
     "id": "Watermelon",
@@ -557,8 +715,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 19): Tropical Salad (x1)"
+    ]
   },
   {
     "id": "Beetroot",
@@ -586,8 +749,15 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 14): Beetroot Soup (x2)",
+      "🍳 Cooking (lv 16): Roast Dinner (x1)",
+      "⚙️ Made at the mill: Sugar (x1)"
+    ]
   },
   {
     "id": "Pumpkin",
@@ -616,8 +786,16 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 15): Pumpkin Soup (x1)",
+      "🍳 Cooking (lv 17): Pumpkin Pie (x2)",
+      "🍳 Cooking (lv 25): Golden Bisque (x1)",
+      "🍳 Cooking (lv 25): The Harvest Feast (x1)"
+    ]
   },
   {
     "id": "Grapes",
@@ -646,8 +824,16 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 19): Tropical Salad (x1)",
+      "🍳 Cooking (lv 20): Grape Juice (x3)",
+      "🍳 Cooking (lv 24): Harvest Cake (x1)",
+      "🍳 Cooking (lv 25): The Harvest Feast (x1)"
+    ]
   },
   {
     "id": "Hot Pepper",
@@ -674,8 +860,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Spicy Tacos (x2)",
+      "🍳 Cooking (lv 15): Goat Curry (x1)"
+    ]
   },
   {
     "id": "Asparagus",
@@ -705,8 +897,17 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 12): Quiche (x1)",
+      "🍳 Cooking (lv 15): Casserole (x1)",
+      "🍳 Cooking (lv 16): Roast Dinner (x1)",
+      "🍳 Cooking (lv 22): Mushroom Risotto (x1)",
+      "🍳 Cooking (lv 25): Golden Bisque (x1)"
+    ]
   },
   {
     "id": "Blueberry",
@@ -735,8 +936,16 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 11): Berry Pie (x3)",
+      "🍳 Cooking (lv 12): Fruit Salad (x1)",
+      "🍳 Cooking (lv 18): Fruit Smoothie (x1)",
+      "🍳 Cooking (lv 18): Sweet Berry Cake (x1)"
+    ]
   },
   {
     "id": "Broccoli",
@@ -764,8 +973,15 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 5): Rice Bowl (x1)",
+      "🍳 Cooking (lv 7): Vegetable Stir Fry (x1)",
+      "🍳 Cooking (lv 15): Casserole (x1)"
+    ]
   },
   {
     "id": "Parsnip",
@@ -793,8 +1009,15 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Parsnip Soup (x2)",
+      "🍳 Cooking (lv 7): Chicken Soup (x1)",
+      "📜 Quest \"Fresh for the Bakery\" (s_tamsin): asks for x2"
+    ]
   },
   {
     "id": "Rice",
@@ -827,8 +1050,20 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 5): Rice Ball (x2)",
+      "🍳 Cooking (lv 5): Rice Bowl (x2)",
+      "🍳 Cooking (lv 7): Vegetable Stir Fry (x1)",
+      "🍳 Cooking (lv 10): Stuffed Peppers (x2)",
+      "🍳 Cooking (lv 15): Goat Curry (x2)",
+      "🍳 Cooking (lv 20): Maki Sushi (x2)",
+      "🍳 Cooking (lv 22): Mushroom Risotto (x2)",
+      "🍳 Cooking (lv 23): Truffle Risotto (x2)"
+    ]
   },
   {
     "id": "Spring Onion",
@@ -857,8 +1092,16 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 2): Baked Potato (x1)",
+      "🍳 Cooking (lv 2): Fried Egg (x1)",
+      "🍳 Cooking (lv 5): Rice Bowl (x1)",
+      "🍳 Cooking (lv 20): Maki Sushi (x1)"
+    ]
   },
   {
     "id": "Adzuki Bean",
@@ -885,8 +1128,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 7): Bean Hotpot (x1)",
+      "🍳 Cooking (lv 14): Fireheart Chili (x1)"
+    ]
   },
   {
     "id": "Green Bell Pepper",
@@ -912,8 +1161,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Stuffed Peppers (x1)"
+    ]
   },
   {
     "id": "Red Bell Pepper",
@@ -939,8 +1193,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Stuffed Peppers (x1)"
+    ]
   },
   {
     "id": "Yellow Bell Pepper",
@@ -966,8 +1225,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Stuffed Peppers (x1)"
+    ]
   },
   {
     "id": "Blackberry",
@@ -994,8 +1258,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 9): Blackberry Cobbler (x3)",
+      "🍳 Cooking (lv 18): Sweet Berry Cake (x1)"
+    ]
   },
   {
     "id": "Cucumber",
@@ -1024,8 +1294,16 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 6): Cucumber Salad (x2)",
+      "🍳 Cooking (lv 10): Goat Cheese Salad (x1)",
+      "🍳 Cooking (lv 19): Sashimi (x1)",
+      "🍳 Cooking (lv 20): Maki Sushi (x1)"
+    ]
   },
   {
     "id": "Pineapple",
@@ -1053,8 +1331,15 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 18): Fruit Smoothie (x1)",
+      "🍳 Cooking (lv 19): Tropical Salad (x1)",
+      "🍳 Cooking (lv 24): Harvest Cake (x1)"
+    ]
   },
   {
     "id": "Aloe",
@@ -1080,8 +1365,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 20): Grape Juice (x1)"
+    ]
   },
   {
     "id": "Premium Seed",
@@ -1105,8 +1395,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Sunfire Pepper",
@@ -1130,8 +1422,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Diamond Strawberry",
@@ -1155,8 +1449,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Sapphire Blueberry",
@@ -1180,8 +1476,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Golden Pumpkin",
@@ -1205,8 +1503,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Crystal Grapes",
@@ -1230,8 +1530,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Starbloom",
@@ -1255,8 +1557,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Celestial Pineapple",
@@ -1280,8 +1584,10 @@
         9800,
         740,
         540
-      ]
-    }
+      ],
+      "label_en": "VIP Quarter: premium shop and greenhouse"
+    },
+    "skillReq_en": "VIP Pass / VIP Quarter"
   },
   {
     "id": "Winter Kale",
@@ -1308,8 +1614,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 4): Kale Chips (x2)",
+      "📜 Quest \"The Winter Garden\" (sd_lena_winter): asks for x15"
+    ]
   },
   {
     "id": "Snow Turnip",
@@ -1336,8 +1648,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 8): Turnip Mash (x2)",
+      "🍳 Cooking (lv 14): Mutton Stew (x1)"
+    ]
   },
   {
     "id": "Frostberry",
@@ -1364,8 +1682,14 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Ice Cream (x1)",
+      "🍳 Cooking (lv 12): Frostberry Tart (x3)"
+    ]
   },
   {
     "id": "Ice Melon",
@@ -1391,8 +1715,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 16): Ice Melon Sorbet (x1)"
+    ]
   },
   {
     "id": "Fireheart Pepper",
@@ -1418,8 +1747,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 14): Fireheart Chili (x1)"
+    ]
   },
   {
     "id": "Fairy Rose",
@@ -1445,8 +1779,13 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 11): Fairy Rose Tea (x1)"
+    ]
   },
   {
     "id": "Honeydew Melon",
@@ -1470,8 +1809,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Purple Cauliflower",
@@ -1495,8 +1836,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Snow Pea",
@@ -1520,8 +1863,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Golden Beet",
@@ -1545,8 +1890,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Black Tomato",
@@ -1570,8 +1917,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Blue Corn",
@@ -1595,8 +1944,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Dragon Fruit",
@@ -1620,8 +1971,10 @@
         4220,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Hazel's Seed & Tool shop"
+    },
+    "skillReq_en": "Farming lv 1"
   },
   {
     "id": "Carp",
@@ -1647,8 +2000,13 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Fried Fish (x1)"
+    ]
   },
   {
     "id": "Perch",
@@ -1676,8 +2034,15 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 6): Fish Tacos (x1)",
+      "🍳 Cooking (lv 21): Cioppino (x1)",
+      "📜 Quest \"The Fisherman's Memory\" (ff02): asks for x1"
+    ]
   },
   {
     "id": "Pike Fish",
@@ -1705,8 +2070,15 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 6): Hearty Stew (x1)",
+      "🍳 Cooking (lv 11): Fish Pie (x1)",
+      "🍳 Cooking (lv 21): Cioppino (x1)"
+    ]
   },
   {
     "id": "Sunfish",
@@ -1732,8 +2104,13 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "📜 Quest \"The Fisherman's Memory\" (ff02): asks for x1"
+    ]
   },
   {
     "id": "Chub",
@@ -1760,8 +2137,14 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 5): Rice Ball (x1)",
+      "📜 Quest \"The Fisherman's Memory\" (ff02): asks for x1"
+    ]
   },
   {
     "id": "Tiger Trout",
@@ -1791,8 +2174,17 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Spicy Tacos (x1)",
+      "🍳 Cooking (lv 16): Roast Dinner (x1)",
+      "🍳 Cooking (lv 20): Maki Sushi (x1)",
+      "🍳 Cooking (lv 21): Cioppino (x1)",
+      "📜 Quest \"The One That Got Away\" (s_wren): asks for x1"
+    ]
   },
   {
     "id": "Golden Fish",
@@ -1820,8 +2212,15 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 19): Sashimi (x1)",
+      "🍳 Cooking (lv 25): Golden Bisque (x1)",
+      "📜 Quest \"Two More Pieces\" (ff15): asks for x1"
+    ]
   },
   {
     "id": "Ghost Catfish",
@@ -1850,8 +2249,16 @@
         3192,
         1696,
         352
-      ]
-    }
+      ],
+      "label_en": "Moonmere Lake (lake fishing and Marven's pool)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Moonlight Stew (x1)",
+      "📜 Quest \"Marven's Pool\" (bk18): asks for x3",
+      "📜 Quest \"Grey Water\" (bk22): asks for x5",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x1"
+    ]
   },
   {
     "id": "Marsh Eel",
@@ -1878,8 +2285,14 @@
         2200,
         896,
         1056
-      ]
-    }
+      ],
+      "label_en": "Bone wastes and Barrowmire plots (Night Court)"
+    },
+    "skillReq_en": "Fishing lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Smoked Eel (x2)",
+      "📜 Quest \"Supper for the Gravedigger\" (s_silas3): asks for x1"
+    ]
   },
   {
     "id": "Sardine",
@@ -1903,8 +2316,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 2"
   },
   {
     "id": "Shad",
@@ -1928,8 +2343,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 2"
   },
   {
     "id": "Large Mouth Bass",
@@ -1953,8 +2370,10 @@
         3192,
         1696,
         352
-      ]
-    }
+      ],
+      "label_en": "Moonmere Lake (lake fishing and Marven's pool)"
+    },
+    "skillReq_en": "Fishing lv 3"
   },
   {
     "id": "Anchovy",
@@ -1978,8 +2397,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 4"
   },
   {
     "id": "Walleye",
@@ -2003,8 +2424,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 5"
   },
   {
     "id": "Smallmouth Bass",
@@ -2028,8 +2451,10 @@
         3192,
         1696,
         352
-      ]
-    }
+      ],
+      "label_en": "Moonmere Lake (lake fishing and Marven's pool)"
+    },
+    "skillReq_en": "Fishing lv 6"
   },
   {
     "id": "Herring",
@@ -2053,8 +2478,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 7"
   },
   {
     "id": "Bullhead Catfish",
@@ -2078,8 +2505,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 8"
   },
   {
     "id": "Bream",
@@ -2103,8 +2532,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 9"
   },
   {
     "id": "Flounder",
@@ -2128,8 +2559,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 10"
   },
   {
     "id": "Salmon",
@@ -2153,8 +2586,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 20"
   },
   {
     "id": "Red Mullet",
@@ -2178,8 +2613,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 12"
   },
   {
     "id": "Sea Bullhead",
@@ -2203,8 +2640,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 13"
   },
   {
     "id": "Goby",
@@ -2228,8 +2667,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 14"
   },
   {
     "id": "Dorado",
@@ -2253,8 +2694,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 15"
   },
   {
     "id": "Clownfish",
@@ -2278,8 +2721,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 16"
   },
   {
     "id": "Halibut",
@@ -2303,8 +2748,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 17"
   },
   {
     "id": "Faeries Fish",
@@ -2328,8 +2775,10 @@
         3192,
         1696,
         352
-      ]
-    }
+      ],
+      "label_en": "Moonmere Lake (lake fishing and Marven's pool)"
+    },
+    "skillReq_en": "Fishing lv 18"
   },
   {
     "id": "Red Snapper",
@@ -2353,8 +2802,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 19"
   },
   {
     "id": "Glacier Fish",
@@ -2378,8 +2829,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 20"
   },
   {
     "id": "Lingcod",
@@ -2403,8 +2856,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 21"
   },
   {
     "id": "Crimson Snapper",
@@ -2428,8 +2883,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 22"
   },
   {
     "id": "Pufferfish",
@@ -2453,8 +2910,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 23"
   },
   {
     "id": "Bone Fish",
@@ -2478,8 +2937,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 24"
   },
   {
     "id": "Lionfish",
@@ -2503,8 +2964,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 25"
   },
   {
     "id": "Zombie Fish",
@@ -2528,8 +2991,10 @@
         3192,
         1696,
         352
-      ]
-    }
+      ],
+      "label_en": "Moonmere Lake (lake fishing and Marven's pool)"
+    },
+    "skillReq_en": "Fishing lv 26"
   },
   {
     "id": "Regal Blue Tang",
@@ -2553,8 +3018,10 @@
         8696,
         352,
         448
-      ]
-    }
+      ],
+      "label_en": "The Long Pier - Bloomshire Bay (sea fishing)"
+    },
+    "skillReq_en": "Fishing lv 27"
   },
   {
     "id": "Dynamite Fish",
@@ -2578,8 +3045,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 28"
   },
   {
     "id": "Sturgeon",
@@ -2603,8 +3072,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 30"
   },
   {
     "id": "Albacore",
@@ -2628,8 +3099,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 20"
   },
   {
     "id": "Tuna",
@@ -2653,8 +3126,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 22"
   },
   {
     "id": "Blobfish",
@@ -2678,8 +3153,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 25"
   },
   {
     "id": "Devil Fish",
@@ -2703,8 +3180,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 28"
   },
   {
     "id": "Anglerfish",
@@ -2728,8 +3207,10 @@
         5176,
         576,
         608
-      ]
-    }
+      ],
+      "label_en": "Town river and river dock (river fishing)"
+    },
+    "skillReq_en": "Fishing lv 30"
   },
   {
     "id": "Wood",
@@ -2763,8 +3244,21 @@
         3928,
         192,
         160
-      ]
-    }
+      ],
+      "label_en": "The Woodlot (Pell)"
+    },
+    "skillReq_en": "Woodcutting lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 1): Wooden Plank (x3)",
+      "📜 Quest \"The Lagoon\" (bk21): asks for x80",
+      "📜 Quest \"Timber\" (g_wood): asks for x15",
+      "📜 Quest \"The Woodlot\" (g_woodlot): asks for x20",
+      "📜 Quest \"The Shrinking Pond\" (sd_mabel): asks for x10",
+      "📜 Quest \"Nets for the Harbour\" (sd_wren): asks for x5",
+      "📜 Quest \"Cole's Woodpile\" (sd_cole): asks for x40",
+      "📜 Quest \"Mending the Fence\" (sd_dara): asks for x25",
+      "📜 Quest \"Timber for the Bridge\" (s_pell): asks for x10"
+    ]
   },
   {
     "id": "Stone",
@@ -2794,8 +3288,17 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "📜 Quest \"The Lagoon\" (bk21): asks for x40",
+      "📜 Quest \"Stone and Ore\" (g_mine): asks for x10",
+      "📜 Quest \"The Shrinking Pond\" (sd_mabel): asks for x15",
+      "📜 Quest \"Mending the Fence\" (sd_dara): asks for x15",
+      "📜 Quest \"The Miners' Camp\" (ff08): asks for x25"
+    ]
   },
   {
     "id": "Copper Ore",
@@ -2825,8 +3328,17 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 1): Copper Bar (x2)",
+      "📜 Quest \"Ore for the Forge\" (sd_bram): asks for x20",
+      "📜 Quest \"The Miners' Camp\" (ff08): asks for x20",
+      "📜 Quest \"The Lever Handle\" (ff11): asks for x15",
+      "📜 Quest \"Ore for the Forge\" (s_bram): asks for x5"
+    ]
   },
   {
     "id": "Quartz",
@@ -2852,8 +3364,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "📜 Quest \"Skipping Rhyme\" (bk08): asks for x1"
+    ]
   },
   {
     "id": "Rose Quartz",
@@ -2879,8 +3396,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 4): Cut Rose Quartz (x2)"
+    ]
   },
   {
     "id": "Topaz",
@@ -2906,8 +3428,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 6): Cut Topaz (x2)"
+    ]
   },
   {
     "id": "Sapphire",
@@ -2933,8 +3460,13 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 8): Cut Sapphire (x2)"
+    ]
   },
   {
     "id": "Moonstone",
@@ -2958,8 +3490,10 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+"
   },
   {
     "id": "Emerald",
@@ -2986,8 +3520,14 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 12): Cut Emerald (x2)",
+      "📜 Quest \"The Lever Handle\" (ff11): asks for x3"
+    ]
   },
   {
     "id": "Amethyst",
@@ -3013,8 +3553,13 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 14): Cut Amethyst (x2)"
+    ]
   },
   {
     "id": "Ruby",
@@ -3041,8 +3586,14 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 17): Cut Ruby (x2)",
+      "📜 Quest \"Marven's Request\" (ff18): asks for x2"
+    ]
   },
   {
     "id": "Gold Ore",
@@ -3069,8 +3620,14 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 13): Gold Bar (x2)",
+      "📜 Quest \"The Founders' Map\" (ff16): asks for x5"
+    ]
   },
   {
     "id": "Diamond",
@@ -3096,8 +3653,13 @@
         2680,
         320,
         256
-      ]
-    }
+      ],
+      "label_en": "Deep quarry and Green Vein / The Gloom caves (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 4+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 22): Cut Diamond (x2)"
+    ]
   },
   {
     "id": "Iron Ore",
@@ -3124,8 +3686,14 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 6): Iron Bar (x2)",
+      "📜 Quest \"Ore for the Forge\" (sd_bram): asks for x5"
+    ]
   },
   {
     "id": "Platinum Ore",
@@ -3151,8 +3719,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 11): Platinum Bar (x2)"
+    ]
   },
   {
     "id": "Crimson Ore",
@@ -3178,8 +3751,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 16): Crimson Bar (x2)"
+    ]
   },
   {
     "id": "Frost Ore",
@@ -3205,8 +3783,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 19): Frost Bar (x2)"
+    ]
   },
   {
     "id": "Shadow Ore",
@@ -3232,8 +3815,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 23): Shadow Bar (x2)"
+    ]
   },
   {
     "id": "Obsidian Ore",
@@ -3259,8 +3847,13 @@
         3032,
         256,
         224
-      ]
-    }
+      ],
+      "label_en": "The Quarry and The Old Working cave (Stonepeak)"
+    },
+    "skillReq_en": "Mining lv 1+",
+    "usedIn_en": [
+      "🔨 Crafting (lv 27): Obsidian Bar (x2)"
+    ]
   },
   {
     "id": "Butterfly",
@@ -3286,8 +3879,13 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 1",
+    "usedIn_en": [
+      "📜 Quest \"Wings for a Painting\" (s_elsie): asks for x1"
+    ]
   },
   {
     "id": "Cabbage White",
@@ -3311,8 +3909,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 2"
   },
   {
     "id": "Wood White",
@@ -3336,8 +3936,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 3"
   },
   {
     "id": "Orange Tip",
@@ -3361,8 +3963,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 4"
   },
   {
     "id": "Red Admiral",
@@ -3386,8 +3990,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 5"
   },
   {
     "id": "Hairstreak Butterfly",
@@ -3411,8 +4017,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 6"
   },
   {
     "id": "Cloudless Sulphur",
@@ -3436,8 +4044,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 7"
   },
   {
     "id": "European Peacock",
@@ -3461,8 +4071,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 8"
   },
   {
     "id": "Migrant Butterfly",
@@ -3486,8 +4098,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 9"
   },
   {
     "id": "Monarch Butterfly",
@@ -3511,8 +4125,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 10"
   },
   {
     "id": "Glider Butterfly",
@@ -3536,8 +4152,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 11"
   },
   {
     "id": "Cinnabar Moth",
@@ -3561,8 +4179,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 12"
   },
   {
     "id": "Peacock Pansy",
@@ -3586,8 +4206,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 13"
   },
   {
     "id": "Eggfly",
@@ -3611,8 +4233,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 14"
   },
   {
     "id": "Diadem butterfly",
@@ -3636,8 +4260,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 15"
   },
   {
     "id": "Azure Butterfly",
@@ -3661,8 +4287,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 16"
   },
   {
     "id": "Periander Metalmark",
@@ -3686,8 +4314,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 17"
   },
   {
     "id": "Silkmoth",
@@ -3711,8 +4341,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 18"
   },
   {
     "id": "Io Moth",
@@ -3736,8 +4368,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 19"
   },
   {
     "id": "Emperor Butterfly",
@@ -3761,8 +4395,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 20"
   },
   {
     "id": "Glasswing Butterfly",
@@ -3786,8 +4422,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 21"
   },
   {
     "id": "Sheep Moth",
@@ -3811,8 +4449,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 22"
   },
   {
     "id": "Birdwing Butterfly",
@@ -3836,8 +4476,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 23"
   },
   {
     "id": "Ulysses Butterfly",
@@ -3861,8 +4503,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 24"
   },
   {
     "id": "Morpho Butterfly",
@@ -3886,8 +4530,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 26"
   },
   {
     "id": "Luna Moth",
@@ -3911,8 +4557,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 28"
   },
   {
     "id": "Goliath Birdwing",
@@ -3936,8 +4584,10 @@
         5272,
         352,
         352
-      ]
-    }
+      ],
+      "label_en": "Deer meadow and woodcutters' clearing (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 30"
   },
   {
     "id": "Egg",
@@ -3973,8 +4623,23 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 1): Boiled Egg (x1)",
+      "🍳 Cooking (lv 2): Fried Egg (x1)",
+      "🍳 Cooking (lv 4): Omelette (x2)",
+      "🍳 Cooking (lv 5): Pancakes (x1)",
+      "🍳 Cooking (lv 8): Bacon and Eggs (x2)",
+      "🍳 Cooking (lv 8): Carrot Cake (x1)",
+      "🍳 Cooking (lv 12): Quiche (x2)",
+      "🍳 Cooking (lv 13): Honey Cake (x1)",
+      "🍳 Cooking (lv 14): Cake (x1)",
+      "🍳 Cooking (lv 18): Sweet Berry Cake (x1)",
+      "📜 Quest \"Eggs for the Bakery\" (sd_clara): asks for x12"
+    ]
   },
   {
     "id": "Duck Egg",
@@ -4000,8 +4665,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 2",
+    "usedIn_en": [
+      "🍳 Cooking (lv 9): Duck Egg Custard (x1)"
+    ]
   },
   {
     "id": "Honey",
@@ -4034,8 +4704,20 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 3",
+    "usedIn_en": [
+      "🍳 Cooking (lv 6): Honey Toast (x1)",
+      "🍳 Cooking (lv 11): Fairy Rose Tea (x1)",
+      "🍳 Cooking (lv 11): Glazed Yams (x1)",
+      "🍳 Cooking (lv 11): Roast Duck (x1)",
+      "🍳 Cooking (lv 12): Honey-Glazed Bacon (x1)",
+      "🍳 Cooking (lv 13): Honey Cake (x1)",
+      "🍳 Cooking (lv 24): Harvest Cake (x1)",
+      "📜 Quest \"Honey for the Paints\" (sd_elsie): asks for x5"
+    ]
   },
   {
     "id": "Wool",
@@ -4061,8 +4743,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 4",
+    "usedIn_en": [
+      "🔨 Crafting (lv 9): Cloth (x2)"
+    ]
   },
   {
     "id": "Goat Milk",
@@ -4088,8 +4775,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 5",
+    "usedIn_en": [
+      "⚙️ Made at the dairy: Goat Cheese (x2)"
+    ]
   },
   {
     "id": "Truffle",
@@ -4115,8 +4807,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 6",
+    "usedIn_en": [
+      "🍳 Cooking (lv 23): Truffle Risotto (x1)"
+    ]
   },
   {
     "id": "Milk",
@@ -4148,8 +4845,19 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 7",
+    "usedIn_en": [
+      "🍳 Cooking (lv 5): Pancakes (x1)",
+      "🍳 Cooking (lv 8): Strawberry Milkshake (x1)",
+      "🍳 Cooking (lv 9): Duck Egg Custard (x1)",
+      "🍳 Cooking (lv 14): Cake (x1)",
+      "⚙️ Made at the dairy: Cream (x1)",
+      "⚙️ Made at the dairy: Butter (x1)",
+      "⚙️ Made at the dairy: Cheese (x2)"
+    ]
   },
   {
     "id": "Chicken Meat",
@@ -4178,8 +4886,16 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 1",
+    "usedIn_en": [
+      "🍳 Cooking (lv 6): Roast Drumstick (x1)",
+      "🍳 Cooking (lv 7): Chicken Soup (x1)",
+      "🍳 Cooking (lv 21): Sunday Roast (x1)",
+      "🍳 Cooking (lv 25): The Harvest Feast (x1)"
+    ]
   },
   {
     "id": "Duck Meat",
@@ -4205,8 +4921,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 2",
+    "usedIn_en": [
+      "🍳 Cooking (lv 11): Roast Duck (x1)"
+    ]
   },
   {
     "id": "Mutton",
@@ -4233,8 +4954,14 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 4",
+    "usedIn_en": [
+      "🍳 Cooking (lv 13): Shepherd's Pie (x1)",
+      "🍳 Cooking (lv 14): Mutton Stew (x1)"
+    ]
   },
   {
     "id": "Goat Meat",
@@ -4260,8 +4987,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 5",
+    "usedIn_en": [
+      "🍳 Cooking (lv 15): Goat Curry (x1)"
+    ]
   },
   {
     "id": "Pork",
@@ -4289,8 +5021,15 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 6",
+    "usedIn_en": [
+      "🍳 Cooking (lv 8): Bacon and Eggs (x1)",
+      "🍳 Cooking (lv 12): Honey-Glazed Bacon (x1)",
+      "🍳 Cooking (lv 16): Pork Roast (x1)"
+    ]
   },
   {
     "id": "Beef",
@@ -4321,8 +5060,18 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Husbandry lv 7",
+    "usedIn_en": [
+      "🍳 Cooking (lv 14): Fireheart Chili (x1)",
+      "🍳 Cooking (lv 17): Beef Stew (x1)",
+      "🍳 Cooking (lv 18): Hamburger (x1)",
+      "🍳 Cooking (lv 20): Lasagne (x1)",
+      "🍳 Cooking (lv 23): Beef Wellington (x1)",
+      "🍳 Cooking (lv 25): The Harvest Feast (x1)"
+    ]
   },
   {
     "id": "Boiled Egg",
@@ -4346,8 +5095,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Fried Fish",
@@ -4371,8 +5122,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Parsnip Soup",
@@ -4398,8 +5151,13 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1",
+    "usedIn_en": [
+      "📜 Quest \"Soup for the Lamplighter\" (sd_otto): asks for x5"
+    ]
   },
   {
     "id": "Vegetable Plate",
@@ -4423,8 +5181,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Baked Potato",
@@ -4448,8 +5208,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 2"
   },
   {
     "id": "Bread",
@@ -4473,8 +5235,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 2"
   },
   {
     "id": "Fried Egg",
@@ -4498,8 +5262,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 2"
   },
   {
     "id": "Corn on the Cob",
@@ -4523,8 +5289,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 3"
   },
   {
     "id": "Fried Mushrooms",
@@ -4548,8 +5316,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 3"
   },
   {
     "id": "Garden Salad",
@@ -4573,8 +5343,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 4"
   },
   {
     "id": "Hash Browns",
@@ -4598,8 +5370,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 4"
   },
   {
     "id": "Kale Chips",
@@ -4623,8 +5397,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 4"
   },
   {
     "id": "Omelette",
@@ -4648,8 +5424,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 4"
   },
   {
     "id": "Popcorn",
@@ -4673,8 +5451,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 4"
   },
   {
     "id": "Pancakes",
@@ -4698,8 +5478,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 5"
   },
   {
     "id": "Rice Ball",
@@ -4723,8 +5505,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 5"
   },
   {
     "id": "Rice Bowl",
@@ -4748,8 +5532,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 5"
   },
   {
     "id": "Coleslaw",
@@ -4773,8 +5559,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Cucumber Salad",
@@ -4798,8 +5586,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Fish Tacos",
@@ -4823,8 +5613,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Hearty Stew",
@@ -4848,8 +5640,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Honey Toast",
@@ -4873,8 +5667,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Roast Drumstick",
@@ -4898,8 +5694,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 6"
   },
   {
     "id": "Bean Hotpot",
@@ -4923,8 +5721,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 7"
   },
   {
     "id": "Cheese Toast",
@@ -4948,8 +5748,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 7"
   },
   {
     "id": "Chicken Soup",
@@ -4973,8 +5775,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 7"
   },
   {
     "id": "Vegetable Stir Fry",
@@ -4998,8 +5802,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 7"
   },
   {
     "id": "Bacon and Eggs",
@@ -5023,8 +5829,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 8"
   },
   {
     "id": "Carrot Cake",
@@ -5048,8 +5856,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 8"
   },
   {
     "id": "Fruit Jam",
@@ -5073,8 +5883,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 8"
   },
   {
     "id": "Strawberry Milkshake",
@@ -5098,8 +5910,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 8"
   },
   {
     "id": "Turnip Mash",
@@ -5123,8 +5937,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 8"
   },
   {
     "id": "Blackberry Cobbler",
@@ -5148,8 +5964,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 9"
   },
   {
     "id": "Butter Cookies",
@@ -5173,8 +5991,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 9"
   },
   {
     "id": "Duck Egg Custard",
@@ -5198,8 +6018,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 9"
   },
   {
     "id": "Eggplant Parmigiana",
@@ -5223,8 +6045,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 9"
   },
   {
     "id": "Goat Cheese Salad",
@@ -5248,8 +6072,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 10"
   },
   {
     "id": "Ice Cream",
@@ -5273,8 +6099,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 10"
   },
   {
     "id": "Spicy Tacos",
@@ -5298,8 +6126,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 10"
   },
   {
     "id": "Stuffed Peppers",
@@ -5323,8 +6153,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 10"
   },
   {
     "id": "Berry Pie",
@@ -5348,8 +6180,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 11"
   },
   {
     "id": "Fairy Rose Tea",
@@ -5373,8 +6207,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 11"
   },
   {
     "id": "Fish Pie",
@@ -5398,8 +6234,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 11"
   },
   {
     "id": "Glazed Yams",
@@ -5423,8 +6261,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 11"
   },
   {
     "id": "Roast Duck",
@@ -5448,8 +6288,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 11"
   },
   {
     "id": "Frostberry Tart",
@@ -5473,8 +6315,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 12"
   },
   {
     "id": "Fruit Salad",
@@ -5498,8 +6342,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 12"
   },
   {
     "id": "Honey-Glazed Bacon",
@@ -5523,8 +6369,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 12"
   },
   {
     "id": "Quiche",
@@ -5548,8 +6396,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 12"
   },
   {
     "id": "Strawberry Tart",
@@ -5573,8 +6423,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 12"
   },
   {
     "id": "Honey Cake",
@@ -5598,8 +6450,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 13"
   },
   {
     "id": "Shepherd's Pie",
@@ -5623,8 +6477,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 13"
   },
   {
     "id": "Stuffed Mushrooms",
@@ -5648,8 +6504,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 13"
   },
   {
     "id": "Beetroot Soup",
@@ -5673,8 +6531,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 14"
   },
   {
     "id": "Cake",
@@ -5698,8 +6558,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 14"
   },
   {
     "id": "Fireheart Chili",
@@ -5723,8 +6585,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 14"
   },
   {
     "id": "Mutton Stew",
@@ -5748,8 +6612,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 14"
   },
   {
     "id": "Casserole",
@@ -5773,8 +6639,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 15"
   },
   {
     "id": "Goat Curry",
@@ -5798,8 +6666,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 15"
   },
   {
     "id": "Pumpkin Soup",
@@ -5823,8 +6693,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 15"
   },
   {
     "id": "Ice Melon Sorbet",
@@ -5848,8 +6720,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 16"
   },
   {
     "id": "Pork Roast",
@@ -5873,8 +6747,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 16"
   },
   {
     "id": "Roast Dinner",
@@ -5898,8 +6774,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 16"
   },
   {
     "id": "Beef Stew",
@@ -5923,8 +6801,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 17"
   },
   {
     "id": "Pumpkin Pie",
@@ -5948,8 +6828,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 17"
   },
   {
     "id": "Fruit Smoothie",
@@ -5973,8 +6855,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 18"
   },
   {
     "id": "Hamburger",
@@ -5998,8 +6882,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 18"
   },
   {
     "id": "Sweet Berry Cake",
@@ -6023,8 +6909,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 18"
   },
   {
     "id": "Cheesecake",
@@ -6048,8 +6936,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 19"
   },
   {
     "id": "Sashimi",
@@ -6073,8 +6963,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 19"
   },
   {
     "id": "Tropical Salad",
@@ -6098,8 +6990,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 19"
   },
   {
     "id": "Grape Juice",
@@ -6123,8 +7017,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 20"
   },
   {
     "id": "Lasagne",
@@ -6148,8 +7044,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 20"
   },
   {
     "id": "Maki Sushi",
@@ -6173,8 +7071,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 20"
   },
   {
     "id": "Cioppino",
@@ -6198,8 +7098,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 21"
   },
   {
     "id": "Sunday Roast",
@@ -6223,8 +7125,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 21"
   },
   {
     "id": "Mushroom Risotto",
@@ -6248,8 +7152,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 22"
   },
   {
     "id": "Beef Wellington",
@@ -6273,8 +7179,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 23"
   },
   {
     "id": "Truffle Risotto",
@@ -6298,8 +7206,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 23"
   },
   {
     "id": "Harvest Cake",
@@ -6323,8 +7233,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 24"
   },
   {
     "id": "Golden Bisque",
@@ -6348,8 +7260,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 25"
   },
   {
     "id": "The Harvest Feast",
@@ -6373,8 +7287,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 25"
   },
   {
     "id": "Moonlight Stew",
@@ -6400,8 +7316,13 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1",
+    "usedIn_en": [
+      "📜 Quest \"Marven's Request\" (ff18): asks for x1"
+    ]
   },
   {
     "id": "Smoked Eel",
@@ -6425,8 +7346,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Sunfire Chili",
@@ -6450,8 +7373,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Sapphire Jam",
@@ -6475,8 +7400,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Diamond Tart",
@@ -6500,8 +7427,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Golden Pie",
@@ -6525,8 +7454,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Swiftwind Tonic",
@@ -6550,8 +7481,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Warlord's Stew",
@@ -6575,8 +7508,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Golden Feast",
@@ -6600,8 +7535,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Enchanted Egg",
@@ -6625,8 +7562,10 @@
         4180,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Odette's General Store and order board"
+    },
+    "skillReq_en": ""
   },
   {
     "id": "Mirror Pond Pearl",
@@ -6650,8 +7589,10 @@
         4180,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Odette's General Store and order board"
+    },
+    "skillReq_en": ""
   },
   {
     "id": "Silver Looking Glass",
@@ -6675,8 +7616,10 @@
         4180,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Odette's General Store and order board"
+    },
+    "skillReq_en": ""
   },
   {
     "id": "Energy Refill",
@@ -6700,8 +7643,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Tamsin's Bakery (public stove)"
+    },
+    "skillReq_en": "Cooking lv 1"
   },
   {
     "id": "Marked Driftwood",
@@ -6727,8 +7672,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Fisherman's Memory\" (ff02): asks for x1"
+    ]
   },
   {
     "id": "Tobin's Trail Log",
@@ -6752,8 +7702,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Hunter's Journal",
@@ -6777,8 +7729,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Old Token",
@@ -6804,8 +7758,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Forgotten Shrine\" (ff07): uses x1"
+    ]
   },
   {
     "id": "Silvercap Mushroom",
@@ -6839,8 +7798,21 @@
         5208,
         384,
         256
-      ]
-    }
+      ],
+      "label_en": "Mushroom Dell (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 1+",
+    "usedIn_en": [
+      "🍳 Cooking (lv 3): Fried Mushrooms (x2)",
+      "🍳 Cooking (lv 13): Stuffed Mushrooms (x2)",
+      "🍳 Cooking (lv 22): Mushroom Risotto (x1)",
+      "🍳 Cooking (lv 23): Beef Wellington (x2)",
+      "🍳 Cooking (lv 1): Moonlight Stew (x2)",
+      "📜 Quest \"What Grows Wild\" (g_forage): asks for x3",
+      "📜 Quest \"Juniper's Shelves\" (sd_juniper): asks for x10",
+      "📜 Quest \"Clear Eyes\" (ff05): asks for x3",
+      "📜 Quest \"From Whisperwood\" (s_juniper): asks for x2"
+    ]
   },
   {
     "id": "Glowcap Mushroom",
@@ -6873,8 +7845,20 @@
         2744,
         384,
         352
-      ]
-    }
+      ],
+      "label_en": "The Hidden Glade and Deep Forest (Whisperwood)"
+    },
+    "skillReq_en": "Foraging lv 1+",
+    "usedIn_en": [
+      "🍳 Cooking (lv 13): Stuffed Mushrooms (x1)",
+      "🍳 Cooking (lv 22): Mushroom Risotto (x1)",
+      "📜 Quest \"The Stones in the Lake\" (bk19): asks for x20",
+      "📜 Quest \"Moonsight\" (bk23): asks for x25",
+      "📜 Quest \"The Gate Song\" (bk24): asks for x20",
+      "📜 Quest \"Juniper's Shelves\" (sd_juniper): asks for x5",
+      "📜 Quest \"Clear Eyes\" (ff05): asks for x1",
+      "📜 Quest \"Supper for the Gravedigger\" (s_silas3): asks for x3"
+    ]
   },
   {
     "id": "Barrow Ring",
@@ -6900,8 +7884,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"What the Barrow Lost\" (s_silas2): uses x1"
+    ]
   },
   {
     "id": "Crypt Key",
@@ -6925,8 +7914,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Clearsight Tonic",
@@ -6952,8 +7943,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Mirror Pond\" (ff06): uses x1"
+    ]
   },
   {
     "id": "Mirror Charm",
@@ -6979,8 +7975,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Forgotten Shrine\" (ff07): uses x1"
+    ]
   },
   {
     "id": "Map Piece I",
@@ -7006,8 +8007,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Two More Pieces\" (ff15): asks for x1"
+    ]
   },
   {
     "id": "Map Piece II",
@@ -7033,8 +8039,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Two More Pieces\" (ff15): asks for x1"
+    ]
   },
   {
     "id": "Map Piece III",
@@ -7060,8 +8071,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Two More Pieces\" (ff15): asks for x1"
+    ]
   },
   {
     "id": "Map Piece IV",
@@ -7087,8 +8103,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Two More Pieces\" (ff15): asks for x1"
+    ]
   },
   {
     "id": "Founders' Map",
@@ -7112,8 +8133,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Lucky Pick",
@@ -7139,8 +8162,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Miners' Camp\" (ff08): asks for x1"
+    ]
   },
   {
     "id": "Foreman's Record",
@@ -7164,8 +8192,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Haskett's Note",
@@ -7191,8 +8221,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Lever Handle\" (ff11): asks for x1"
+    ]
   },
   {
     "id": "Lever Handle",
@@ -7218,8 +8253,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Lever in the Dark\" (ff12): uses x1"
+    ]
   },
   {
     "id": "Delvers' Key",
@@ -7243,8 +8283,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Delvers' Record",
@@ -7268,8 +8310,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Pry Bar",
@@ -7295,8 +8339,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Founders' Map\" (ff16): uses x1"
+    ]
   },
   {
     "id": "Founders' Letter",
@@ -7320,8 +8369,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Founders' Seal",
@@ -7347,8 +8398,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Marven's Request\" (ff18): asks for x1"
+    ]
   },
   {
     "id": "Moon Pearl",
@@ -7374,8 +8430,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Marven's Request\" (ff18): asks for x1"
+    ]
   },
   {
     "id": "Founding Farmers Scroll",
@@ -7399,8 +8460,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Wild Seeds",
@@ -7426,8 +8489,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Unusual Seeds\" (s_hazel): asks for x1"
+    ]
   },
   {
     "id": "Letter for Greta",
@@ -7453,8 +8521,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Letters for the Valley\" (sd_fenwick): asks for x1"
+    ]
   },
   {
     "id": "Letter for Hugo",
@@ -7480,8 +8553,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Letters for the Valley\" (sd_fenwick): asks for x1"
+    ]
   },
   {
     "id": "Letter for Lena",
@@ -7507,8 +8585,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Letters for the Valley\" (sd_fenwick): asks for x1"
+    ]
   },
   {
     "id": "Old Road Map",
@@ -7532,8 +8615,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Rubbing of the Arch",
@@ -7557,8 +8642,10 @@
         2744,
         384,
         352
-      ]
-    }
+      ],
+      "label_en": "The Hidden Glade and Deep Forest (Whisperwood)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Stone Rubbing",
@@ -7584,8 +8671,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Stones in the Lake\" (bk19): asks for x4"
+    ]
   },
   {
     "id": "Glowcap Lantern",
@@ -7611,8 +8703,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Lagoon\" (bk21): asks for x1"
+    ]
   },
   {
     "id": "Pearl Comb",
@@ -7638,8 +8735,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Lagoon\" (bk21): asks for x1"
+    ]
   },
   {
     "id": "Grey Scale",
@@ -7665,8 +8767,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Grey Water\" (bk22): asks for x1"
+    ]
   },
   {
     "id": "Moon Offering",
@@ -7692,8 +8799,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Moonsight\" (bk23): uses x1"
+    ]
   },
   {
     "id": "Moon Fairy's Blessing",
@@ -7719,8 +8831,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Moonsight\" (bk23): uses x1"
+    ]
   },
   {
     "id": "Gate Song Verse",
@@ -7746,8 +8863,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"Moonsight\" (bk23): asks for x3"
+    ]
   },
   {
     "id": "Ledger Page",
@@ -7773,8 +8895,13 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest",
+    "usedIn_en": [
+      "📜 Quest \"The Missing Ledger\" (sd_farthing): asks for x3"
+    ]
   },
   {
     "id": "The Gate Song",
@@ -7798,8 +8925,10 @@
         3860,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Juniper's Apothecary (west of town)"
+    },
+    "skillReq_en": "Story quest"
   },
   {
     "id": "Flour",
@@ -7845,8 +8974,33 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 2): Bread (x1)",
+      "🍳 Cooking (lv 5): Pancakes (x1)",
+      "🍳 Cooking (lv 6): Honey Toast (x1)",
+      "🍳 Cooking (lv 7): Cheese Toast (x1)",
+      "🍳 Cooking (lv 8): Carrot Cake (x1)",
+      "🍳 Cooking (lv 9): Blackberry Cobbler (x1)",
+      "🍳 Cooking (lv 9): Butter Cookies (x1)",
+      "🍳 Cooking (lv 11): Berry Pie (x1)",
+      "🍳 Cooking (lv 12): Frostberry Tart (x1)",
+      "🍳 Cooking (lv 12): Quiche (x1)",
+      "🍳 Cooking (lv 12): Strawberry Tart (x1)",
+      "🍳 Cooking (lv 13): Honey Cake (x2)",
+      "🍳 Cooking (lv 14): Cake (x2)",
+      "🍳 Cooking (lv 17): Pumpkin Pie (x1)",
+      "🍳 Cooking (lv 18): Hamburger (x1)",
+      "🍳 Cooking (lv 18): Sweet Berry Cake (x2)",
+      "🍳 Cooking (lv 19): Cheesecake (x1)",
+      "🍳 Cooking (lv 20): Lasagne (x2)",
+      "🍳 Cooking (lv 23): Beef Wellington (x1)",
+      "🍳 Cooking (lv 24): Harvest Cake (x2)",
+      "🍳 Cooking (lv 25): The Harvest Feast (x1)"
+    ]
   },
   {
     "id": "Sugar",
@@ -7882,8 +9036,23 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 8): Carrot Cake (x1)",
+      "🍳 Cooking (lv 8): Strawberry Milkshake (x1)",
+      "🍳 Cooking (lv 9): Butter Cookies (x1)",
+      "🍳 Cooking (lv 9): Duck Egg Custard (x1)",
+      "🍳 Cooking (lv 10): Ice Cream (x1)",
+      "🍳 Cooking (lv 11): Berry Pie (x1)",
+      "🍳 Cooking (lv 12): Frostberry Tart (x1)",
+      "🍳 Cooking (lv 14): Cake (x1)",
+      "🍳 Cooking (lv 16): Ice Melon Sorbet (x1)",
+      "🍳 Cooking (lv 17): Pumpkin Pie (x1)",
+      "🍳 Cooking (lv 19): Cheesecake (x1)"
+    ]
   },
   {
     "id": "Cream",
@@ -7914,8 +9083,18 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Ice Cream (x1)",
+      "🍳 Cooking (lv 11): Fish Pie (x1)",
+      "🍳 Cooking (lv 12): Quiche (x1)",
+      "🍳 Cooking (lv 12): Strawberry Tart (x1)",
+      "🍳 Cooking (lv 16): Ice Melon Sorbet (x1)",
+      "🍳 Cooking (lv 19): Cheesecake (x1)"
+    ]
   },
   {
     "id": "Butter",
@@ -7953,8 +9132,25 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 4): Popcorn (x1)",
+      "🍳 Cooking (lv 6): Honey Toast (x1)",
+      "🍳 Cooking (lv 8): Turnip Mash (x1)",
+      "🍳 Cooking (lv 9): Blackberry Cobbler (x1)",
+      "🍳 Cooking (lv 9): Butter Cookies (x1)",
+      "🍳 Cooking (lv 11): Berry Pie (x1)",
+      "🍳 Cooking (lv 11): Fish Pie (x1)",
+      "🍳 Cooking (lv 12): Strawberry Tart (x1)",
+      "🍳 Cooking (lv 13): Shepherd's Pie (x1)",
+      "🍳 Cooking (lv 17): Pumpkin Pie (x1)",
+      "🍳 Cooking (lv 21): Sunday Roast (x1)",
+      "🍳 Cooking (lv 23): Beef Wellington (x1)",
+      "🍳 Cooking (lv 23): Truffle Risotto (x1)"
+    ]
   },
   {
     "id": "Cheese",
@@ -7985,8 +9181,18 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 7): Cheese Toast (x1)",
+      "🍳 Cooking (lv 9): Eggplant Parmigiana (x1)",
+      "🍳 Cooking (lv 18): Hamburger (x1)",
+      "🍳 Cooking (lv 19): Cheesecake (x1)",
+      "🍳 Cooking (lv 20): Lasagne (x1)",
+      "🍳 Cooking (lv 23): Truffle Risotto (x1)"
+    ]
   },
   {
     "id": "Goat Cheese",
@@ -8012,8 +9218,13 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm",
+    "usedIn_en": [
+      "🍳 Cooking (lv 10): Goat Cheese Salad (x1)"
+    ]
   },
   {
     "id": "Hay",
@@ -8037,8 +9248,10 @@
         5816,
         560,
         528
-      ]
-    }
+      ],
+      "label_en": "Hollin's Farm (water mill, dairy and pens - Southvale)"
+    },
+    "skillReq_en": "Cooking / Farm"
   },
   {
     "id": "Repair Kit",
@@ -8062,8 +9275,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Broom Charm",
@@ -8087,8 +9302,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Iron Sword",
@@ -8112,8 +9329,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Iron Bow",
@@ -8137,8 +9356,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Iron Staff",
@@ -8162,8 +9383,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Bronze Sword",
@@ -8187,8 +9410,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Bronze Bow",
@@ -8212,8 +9437,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Bronze Staff",
@@ -8237,8 +9464,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Gold Sword",
@@ -8262,8 +9491,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Gold Bow",
@@ -8287,8 +9518,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Gold Staff",
@@ -8312,8 +9545,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Amethyst Sword",
@@ -8337,8 +9572,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Amethyst Bow",
@@ -8362,8 +9599,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Amethyst Staff",
@@ -8387,8 +9626,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Wooden Plank",
@@ -8428,8 +9669,27 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 1",
+    "usedIn_en": [
+      "🔨 Crafting (lv 3): Repair Kit (x2)",
+      "🔨 Crafting (lv 6): Iron Sword (x1)",
+      "🔨 Crafting (lv 6): Iron Bow (x2)",
+      "🔨 Crafting (lv 6): Iron Staff (x2)",
+      "🔨 Crafting (lv 7): Vine Ring (x2)",
+      "🔨 Crafting (lv 11): Bronze Sword (x1)",
+      "🔨 Crafting (lv 11): Bronze Bow (x2)",
+      "🔨 Crafting (lv 11): Bronze Staff (x2)",
+      "🔨 Crafting (lv 17): Gold Sword (x1)",
+      "🔨 Crafting (lv 17): Gold Bow (x2)",
+      "🔨 Crafting (lv 17): Gold Staff (x2)",
+      "🔨 Crafting (lv 25): Amethyst Sword (x1)",
+      "🔨 Crafting (lv 25): Amethyst Bow (x2)",
+      "🔨 Crafting (lv 25): Amethyst Staff (x2)",
+      "📜 Quest \"Planks for the Boats\" (sd_jasper): asks for x15"
+    ]
   },
   {
     "id": "Copper Bar",
@@ -8459,8 +9719,17 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 1",
+    "usedIn_en": [
+      "🔨 Crafting (lv 3): Repair Kit (x1)",
+      "🔨 Crafting (lv 10): Topaz Ring (x1)",
+      "🔨 Crafting (lv 11): Bronze Sword (x6)",
+      "🔨 Crafting (lv 11): Bronze Bow (x6)",
+      "🔨 Crafting (lv 11): Bronze Staff (x6)"
+    ]
   },
   {
     "id": "Rope",
@@ -8493,8 +9762,20 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 2",
+    "usedIn_en": [
+      "🔨 Crafting (lv 5): Broom Charm (x1)",
+      "🔨 Crafting (lv 6): Iron Bow (x2)",
+      "🔨 Crafting (lv 7): Vine Ring (x1)",
+      "🔨 Crafting (lv 11): Bronze Bow (x2)",
+      "🔨 Crafting (lv 17): Gold Bow (x2)",
+      "🔨 Crafting (lv 24): Emerald Amulet (x1)",
+      "🔨 Crafting (lv 25): Amethyst Bow (x2)",
+      "📜 Quest \"Planks for the Boats\" (sd_jasper): asks for x5"
+    ]
   },
   {
     "id": "Cut Rose Quartz",
@@ -8520,8 +9801,13 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 4",
+    "usedIn_en": [
+      "🔨 Crafting (lv 5): Broom Charm (x1)"
+    ]
   },
   {
     "id": "Cut Topaz",
@@ -8551,8 +9837,17 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 6",
+    "usedIn_en": [
+      "🔨 Crafting (lv 6): Iron Staff (x1)",
+      "🔨 Crafting (lv 10): Topaz Ring (x1)",
+      "🔨 Crafting (lv 11): Bronze Staff (x1)",
+      "🔨 Crafting (lv 17): Gold Staff (x1)",
+      "🔨 Crafting (lv 25): Amethyst Staff (x1)"
+    ]
   },
   {
     "id": "Iron Bar",
@@ -8583,8 +9878,18 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 6",
+    "usedIn_en": [
+      "🔨 Crafting (lv 6): Iron Sword (x3)",
+      "🔨 Crafting (lv 6): Iron Bow (x3)",
+      "🔨 Crafting (lv 6): Iron Staff (x3)",
+      "🔨 Crafting (lv 11): Bronze Sword (x2)",
+      "🔨 Crafting (lv 11): Bronze Bow (x2)",
+      "🔨 Crafting (lv 11): Bronze Staff (x2)"
+    ]
   },
   {
     "id": "Vine Ring",
@@ -8608,8 +9913,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 7"
   },
   {
     "id": "Cut Sapphire",
@@ -8635,8 +9942,13 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 8",
+    "usedIn_en": [
+      "🔨 Crafting (lv 18): Sapphire Amulet (x1)"
+    ]
   },
   {
     "id": "Cloth",
@@ -8663,8 +9975,14 @@
         4460,
         260,
         240
-      ]
-    }
+      ],
+      "label_en": "Tilly's tailor (loom)"
+    },
+    "skillReq_en": "Crafting lv 9",
+    "usedIn_en": [
+      "🔨 Crafting (lv 18): Sapphire Amulet (x1)",
+      "🔨 Crafting (lv 28): Royal Amulet (x1)"
+    ]
   },
   {
     "id": "Topaz Ring",
@@ -8688,8 +10006,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 10"
   },
   {
     "id": "Platinum Bar",
@@ -8717,8 +10037,15 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 11",
+    "usedIn_en": [
+      "🔨 Crafting (lv 17): Gold Sword (x2)",
+      "🔨 Crafting (lv 17): Gold Bow (x2)",
+      "🔨 Crafting (lv 17): Gold Staff (x2)"
+    ]
   },
   {
     "id": "Cut Emerald",
@@ -8747,8 +10074,16 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 12",
+    "usedIn_en": [
+      "🔨 Crafting (lv 17): Gold Sword (x1)",
+      "🔨 Crafting (lv 17): Gold Bow (x1)",
+      "🔨 Crafting (lv 17): Gold Staff (x1)",
+      "🔨 Crafting (lv 24): Emerald Amulet (x1)"
+    ]
   },
   {
     "id": "Gold Bar",
@@ -8785,8 +10120,24 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 13",
+    "usedIn_en": [
+      "🔨 Crafting (lv 15): Amethyst Ring (x1)",
+      "🔨 Crafting (lv 17): Gold Sword (x4)",
+      "🔨 Crafting (lv 17): Gold Bow (x4)",
+      "🔨 Crafting (lv 17): Gold Staff (x4)",
+      "🔨 Crafting (lv 18): Sapphire Amulet (x1)",
+      "🔨 Crafting (lv 20): Ruby Ring (x1)",
+      "🔨 Crafting (lv 24): Emerald Amulet (x1)",
+      "🔨 Crafting (lv 25): Amethyst Sword (x2)",
+      "🔨 Crafting (lv 25): Amethyst Bow (x2)",
+      "🔨 Crafting (lv 25): Amethyst Staff (x2)",
+      "🔨 Crafting (lv 26): Diamond Ring (x1)",
+      "🔨 Crafting (lv 28): Royal Amulet (x2)"
+    ]
   },
   {
     "id": "Cut Amethyst",
@@ -8815,8 +10166,16 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 14",
+    "usedIn_en": [
+      "🔨 Crafting (lv 15): Amethyst Ring (x1)",
+      "🔨 Crafting (lv 25): Amethyst Sword (x2)",
+      "🔨 Crafting (lv 25): Amethyst Bow (x2)",
+      "🔨 Crafting (lv 25): Amethyst Staff (x2)"
+    ]
   },
   {
     "id": "Amethyst Ring",
@@ -8840,8 +10199,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 15"
   },
   {
     "id": "Crimson Bar",
@@ -8865,8 +10226,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 16"
   },
   {
     "id": "Cut Ruby",
@@ -8893,8 +10256,14 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 17",
+    "usedIn_en": [
+      "🔨 Crafting (lv 20): Ruby Ring (x1)",
+      "🔨 Crafting (lv 28): Royal Amulet (x1)"
+    ]
   },
   {
     "id": "Sapphire Amulet",
@@ -8918,8 +10287,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 18"
   },
   {
     "id": "Frost Bar",
@@ -8943,8 +10314,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 19"
   },
   {
     "id": "Ruby Ring",
@@ -8968,8 +10341,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 20"
   },
   {
     "id": "Cut Diamond",
@@ -8996,8 +10371,14 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 22",
+    "usedIn_en": [
+      "🔨 Crafting (lv 26): Diamond Ring (x1)",
+      "🔨 Crafting (lv 28): Royal Amulet (x1)"
+    ]
   },
   {
     "id": "Shadow Bar",
@@ -9025,8 +10406,15 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 23",
+    "usedIn_en": [
+      "🔨 Crafting (lv 25): Amethyst Sword (x4)",
+      "🔨 Crafting (lv 25): Amethyst Bow (x4)",
+      "🔨 Crafting (lv 25): Amethyst Staff (x4)"
+    ]
   },
   {
     "id": "Emerald Amulet",
@@ -9050,8 +10438,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 24"
   },
   {
     "id": "Diamond Ring",
@@ -9075,8 +10465,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 26"
   },
   {
     "id": "Obsidian Bar",
@@ -9100,8 +10492,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 27"
   },
   {
     "id": "Royal Amulet",
@@ -9125,8 +10519,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 28"
   },
   {
     "id": "tool:axe",
@@ -9150,8 +10546,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:pickaxe",
@@ -9175,8 +10573,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:rod",
@@ -9200,8 +10600,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:hoe",
@@ -9225,8 +10627,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:can",
@@ -9250,8 +10654,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:sickle",
@@ -9275,8 +10681,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:bugnet",
@@ -9300,8 +10708,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:flute",
@@ -9325,8 +10735,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:shovel",
@@ -9350,8 +10762,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:sword",
@@ -9375,8 +10789,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:bow",
@@ -9400,8 +10816,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:staff",
@@ -9425,8 +10843,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:frosthoe",
@@ -9450,8 +10870,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:frostcan",
@@ -9475,8 +10897,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "tool:frostsickle",
@@ -9500,8 +10924,10 @@
         4120,
         280,
         240
-      ]
-    }
+      ],
+      "label_en": "Bram's Blacksmith (anvil and forge)"
+    },
+    "skillReq_en": "Forge / Combat"
   },
   {
     "id": "Chest",
@@ -9525,8 +10951,10 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 1"
   },
   {
     "id": "VIP Chest",
@@ -9550,7 +10978,9 @@
         4100,
         300,
         240
-      ]
-    }
+      ],
+      "label_en": "Pell's Carpenter (workbench)"
+    },
+    "skillReq_en": "Crafting lv 1"
   }
 ]

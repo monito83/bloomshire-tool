@@ -18,7 +18,6 @@ import {
   MousePointer,
   ChevronsUpDown,
   MapPin,
-  Compass,
   PanelLeftClose,
   PanelLeftOpen,
   PanelRightClose,
@@ -31,54 +30,10 @@ import BeastSearchResults from './bloomshire/official/BeastSearchResults';
 import useOfficialData from './bloomshire/official/useOfficialData';
 import { searchBeasts, atlasRegionsOfBeast } from './bloomshire/official/compendiumModel';
 import mapsMetaData from '../../public/data/bloomshire/maps/maps_meta.json';
-import npcsCatalog from '../../public/data/bloomshire/npcs.json';
+import { officialNpc, pickEnEs, giftName, OFFICIAL_QUESTS_CLUES } from './bloomshire/bloomshireHelpers';
 import npcLooksData from '../../public/data/bloomshire/npc_looks.json';
 
 // Coordenadas exactas de ensamblaje de los 10 mapas exteriores reales en el lienzo unificado (8650 x 10650 px)
-// Guía canónica paso a paso para la Ruta Diaria de Farmeo (Daily Loop)
-const DAILY_ROUTE_STEPS = [
-  {
-    n: 1,
-    x: 5542,
-    y: 3706
-  },
-  {
-    n: 2,
-    x: 5990,
-    y: 4420,
-  },
-  {
-    n: 3,
-    x: 5120,
-    y: 4420,
-  },
-  {
-    n: 4,
-    x: 4580,
-    y: 4420,
-  },
-  {
-    n: 5,
-    x: 3320,
-    y: 5240,
-  },
-  {
-    n: 6,
-    x: 3672,
-    y: 4584,
-  },
-  {
-    n: 7,
-    x: 5712,
-    y: 3256,
-  },
-  {
-    n: 8,
-    x: 5106,
-    y: 4246,
-  }
-];
-
 const REAL_MAP_SLOTS = [
   { mapId: 'bloomshire', label: 'Bloomshire Central (Moonmere, Pueblo, Southvale, Bahía)', ox: 2800, oy: 2200, w: 5632, h: 7424 },
   { mapId: 'whisperwood', label: 'Bosque Whisperwood', ox: 2800, oy: 2200, w: 1792, h: 5504 },
@@ -212,6 +167,22 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
   // Nombres de zona: el oficial del juego en ingles, el de la tool en espanol
   const subName = (s) => (atlasEn ? (s?.nameEn || s?.nameEs) : s?.nameEs) || '';
   const regName = (r) => (atlasEn ? (r?.enName || r?.name) : r?.name) || '';
+  // Pistas de misiones: el texto del juego (quests.json _clues) y la mision a la que pertenecen
+  const clueKeyOf = (c) => c?.clueKey || String(c?.id || '').replace(/_\d+$/, '');
+  const clueLabel = (c) => {
+    const o = OFFICIAL_QUESTS_CLUES[clueKeyOf(c)];
+    if (!o) return c?.name || '';
+    const text = atlasEn ? o.text_en : (o.text_es || o.text_en);
+    const quest = atlasEn ? o.quest_en : (o.quest_es || o.quest_en);
+    return quest ? `✨ ${text} (${quest})` : `✨ ${text}`;
+  };
+  // Puertas del mapa: el nombre del lugar es el del juego; solo se traduce el prefijo
+  const doorLabel = (d) => {
+    const name = String(d?.name || '');
+    const m = name.match(/^🚪 Paso a (.+)$/) || name.match(/^🕳️ Cueva: (.+)$/);
+    if (!m) return name;
+    return name.startsWith('🚪') ? tA('panel.doorTo', { name: m[1] }) : tA('panel.cave', { name: m[1] });
+  };
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Estado de cámara (Zoom & Pan sobre el lienzo de 8650 x 10650)
@@ -262,7 +233,6 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
   const [showDoorsLayer, setShowDoorsLayer] = useState(true);
   const [showNpcsLayer, setShowNpcsLayer] = useState(true);
   const [showCluesLayer, setShowCluesLayer] = useState(true);
-  const [showDailyRouteLayer, setShowDailyRouteLayer] = useState(false);
 
   // Cargar mapas reales guardados en IndexedDB al montar y escuchar nuevos mapas desde la extensión
   const ingestMapPayload = useCallback((payload) => {
@@ -438,10 +408,9 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
           s.nameEs.toLowerCase().includes(q) ||
           s.nameEn.toLowerCase().includes(q) ||
           s.desc.toLowerCase().includes(q) ||
-          (s.finds || []).some(f => f.toLowerCase().includes(q)) ||
           (s.npcs || []).some(n => n.name.toLowerCase().includes(q)) ||
           (s.doors || []).some(d => d.name.toLowerCase().includes(q)) ||
-          (s.clues || []).some(c => c.name.toLowerCase().includes(q))
+          (s.clues || []).some(c => clueLabel(c).toLowerCase().includes(q))
         );
 
         if (regMatches) return r;
@@ -475,7 +444,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
   // Escuchar peticiones externas de "📍 Ubicar en el Mapa" (desde Crafteo, Cocina, Misiones, Buscador de Ítems o NPCs)
   useEffect(() => {
     if (!focusTarget) return;
-    const { regionId, subZoneId, wx, wy, worldRect, label } = focusTarget;
+    const { regionId, subZoneId, wx, wy, worldRect, label, labelKey } = focusTarget;
     if (regionId) {
       setSelectedRegionId(regionId);
       setExpandedRegions(prev => ({ ...prev, [regionId]: true }));
@@ -491,7 +460,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
       setActivePin({
         wx: Number(wx),
         wy: Number(wy),
-        label: label || tA('pin.default')
+        label: (labelKey ? tA(labelKey) : label) || tA('pin.default')
       });
     }
     const targetRect =
@@ -632,7 +601,6 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             { label: tA('toolbar.layerDoors'), state: showDoorsLayer, set: setShowDoorsLayer },
             { label: tA('toolbar.layerNpcs'), state: showNpcsLayer, set: setShowNpcsLayer },
             { label: tA('toolbar.layerClues'), state: showCluesLayer, set: setShowCluesLayer },
-            { label: tA('toolbar.layerRoute'), state: showDailyRouteLayer, set: setShowDailyRouteLayer }
           ].map((layer, idx) => (
             <button
               key={idx}
@@ -903,58 +871,6 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             }`}
         >
           {/* GUÍA PASO A PASO INTERACTIVA DE LA RUTA DIARIA (CUANDO SE ACTIVA LA CAPA) */}
-          {showDailyRouteLayer && (
-            <div className="absolute top-3 left-3 z-30 max-w-sm w-86 bg-[#1a0f07]/95 border-2 border-[#ffcf5a] rounded-xl shadow-2xl p-3 text-slate-200 backdrop-blur-md overflow-hidden flex flex-col gap-2 transition-all">
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
-                <div className="flex items-center gap-1.5 font-black text-xs text-amber-300">
-                  <Compass className="w-4 h-4 text-amber-300 animate-spin" />
-                  <span>{tA('route.title')}</span>
-                </div>
-                <button
-                  onClick={() => setShowDailyRouteLayer(false)}
-                  className="p-1 rounded hover:bg-[#141d2e] text-amber-200 cursor-pointer"
-                  title={tA('route.close')}
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              <div className="text-[11px] text-amber-200/90 leading-tight">
-                {tA('route.hint')}
-              </div>
-
-              <div className="flex flex-col gap-1.5 max-h-76 overflow-y-auto pr-1">
-                {DAILY_ROUTE_STEPS.map(st => (
-                  <button
-                    key={st.n}
-                    onClick={() => {
-                      focusOnWorldRect([st.x - 180, st.y - 180, 360, 360], 3.2);
-                      setActivePin({ wx: st.x, wy: st.y, label: tA('route.stop', { n: st.n, name: tA(`route.steps.${st.n}.name`) }) });
-                    }}
-                    className="p-2 rounded-lg bg-[#0e1628] hover:bg-[#162035] border border-slate-800/80 hover:border-[#ffcf5a] text-left transition-all cursor-pointer flex items-start gap-2 group"
-                  >
-                    <span className="w-5 h-5 rounded-full bg-[#ffcf5a] text-[#1c0f05] font-black text-[11px] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
-                      {st.n}
-                    </span>
-                    <div className="flex-1">
-                      <div className="font-bold text-xs text-white group-hover:text-amber-300 flex items-center justify-between">
-                        <span>{tA(`route.steps.${st.n}.name`)}</span>
-                        <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/30">
-                          {tA(`route.steps.${st.n}.cost`)}
-                        </span>
-                      </div>
-                      <div className="text-[10.5px] text-amber-200/90 mt-0.5 leading-snug font-medium">
-                        {tA(`route.steps.${st.n}.action`)}
-                      </div>
-                      <div className="text-[9.5px] text-amber-400/90 font-mono mt-0.5">
-                        {tA('route.loot', { loot: tA(`route.steps.${st.n}.loot`) })}
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Banner de Pin Ubicado cuando se viene desde "📍 Ubicar en el Mapa" */}
           {activePin && (
@@ -1075,7 +991,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   <span className="text-amber-300/75 font-mono text-[11px]">({hoveredSubZoneObj.nameEn})</span></>)}
                 </div>
                 <div className="text-[11px] text-slate-200 font-semibold">
-                  {hoveredSubZoneObj.regionName} • {(hoveredSubZoneObj.finds || []).slice(0, 2).join(' · ')}
+                  {hoveredSubZoneObj.regionName}
                 </div>
               </div>
               <span className="text-[#f2c55c] text-xs">◆</span>
@@ -1434,39 +1350,6 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 })}
 
               {/* CAPA: RUTA DIARIA DE FARMEO (DAILY LOOP DE SETAS Y RECURSOS) */}
-              {showDailyRouteLayer && (
-                <g pointerEvents="none">
-                  <polyline
-                    points="5542,3706 5990,4420 5120,4420 4580,4420 3320,5240 3672,4584 5712,3256 5106,4246"
-                    fill="none"
-                    stroke="#ffcf5a"
-                    strokeWidth="14"
-                    strokeDasharray="24 14"
-                    strokeLinecap="round"
-                  />
-                  {[
-                    { n: 1, x: 5542, y: 3706 },
-                    { n: 2, x: 5990, y: 4420 },
-                    { n: 3, x: 5120, y: 4420 },
-                    { n: 4, x: 4580, y: 4420 },
-                    { n: 5, x: 3320, y: 5240 },
-                    { n: 6, x: 3672, y: 4584 },
-                    { n: 7, x: 5712, y: 3256 },
-                    { n: 8, x: 5106, y: 4246 }
-                  ].map(wp => (
-                    <g key={wp.n}>
-                      <circle cx={wp.x} cy={wp.y} r="32" fill="#ffcf5a" stroke="#1c0f05" strokeWidth="6" />
-                      <text cx={wp.x} cy={wp.y + 11} textAnchor="middle" fill="#1c0f05" fontSize="28" fontWeight="900">
-                        {wp.n}
-                      </text>
-                      <rect x={wp.x - 130} y={wp.y + 42} width="260" height="38" rx="8" fill="#1e130c" stroke="#ffcf5a" strokeWidth="3" />
-                      <text cx={wp.x} cy={wp.y + 67} textAnchor="middle" fill="#ffe292" fontSize="18" fontWeight="bold">
-                        {tA(`route.steps.${wp.n}.short`)}
-                      </text>
-                    </g>
-                  ))}
-                </g>
-              )}
 
               {/* CAPA 4: LOS 57 NPCS - PINES ESTÉTICOS Y LIGEROS ESTILO BOCETO */}
               {showNpcsLayer &&
@@ -1612,10 +1495,18 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
           {/* TARJETA FLOTANTE DE PERSONAJE (HUD OBSIDIAN - SIN ABRIR LA BARRA LATERAL) */}
           {selectedNpc && (() => {
             const idKey = selectedNpc.id.toLowerCase();
-            const npcMeta = npcsCatalog.find(x => x.name.toLowerCase() === selectedNpc.name.toLowerCase() || x.id.toLowerCase() === idKey);
-            const gifts = (npcMeta?.desc || '').includes('Regalo:')
-              ? [npcMeta.desc.split('Regalo:')[1].trim()]
-              : [tA('npc.defaultGifts')];
+            // Titulo, presentacion y regalos: los del juego (official/npcs.json); el lugar, la sub-zona donde esta
+            const off = officialNpc(idKey);
+            const npcTitle = pickEnEs(off, 'title', i18nA.language);
+            const npcIntro = (atlasEn ? off?.intro_en : (off?.intro_es || off?.intro_en)) || [];
+            const gifts = (off?.loved || []).map((g) => giftName(g, i18nA.language, tA));
+            let npcSub = null;
+            for (const reg of megaAtlasData.regions) {
+              for (const s of reg.subZones || []) {
+                const [rx, ry, rw, rh] = s.worldRect || [];
+                if (s.worldRect && selectedNpc.wx >= rx && selectedNpc.wx <= rx + rw && selectedNpc.wy >= ry && selectedNpc.wy <= ry + rh && (!npcSub || !s.isRootBox)) npcSub = s;
+              }
+            }
 
             return (
               <div
@@ -1635,7 +1526,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                         </span>
                       </div>
                       <div className="text-xs text-amber-300 font-semibold truncate mt-0.5">
-                        {npcMeta?.title || (selectedNpc.inBuilding ? tA('npc.inBuilding', { name: selectedNpc.inBuilding }) : tA('npc.fallbackTitle'))}
+                        {npcTitle || (selectedNpc.inBuilding ? tA('npc.inBuilding', { name: selectedNpc.inBuilding }) : tA('npc.fallbackTitle'))}
                       </div>
                       {selectedNpc.inBuilding && (
                         <div className="text-[10.5px] text-slate-400 mt-0.5 truncate">
@@ -1660,39 +1551,28 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   <div className="p-2.5 rounded-xl bg-[#0d1527] border border-slate-800/80 space-y-1.5">
                     <div className="flex items-center justify-between text-[11px]">
                       <span className="text-slate-400 font-medium">{tA('npc.usual')}</span>
-                      <span className="text-slate-200 font-bold">{npcMeta?.loc || selectedNpc.map}</span>
+                      <span className="text-slate-200 font-bold">{npcSub ? subName(npcSub) : selectedNpc.map}</span>
                     </div>
-                    {npcMeta?.schedule && (
-                      <div className="flex items-center justify-between text-[11px]">
-                        <span className="text-slate-400 font-medium">{tA('npc.schedule')}</span>
-                        <span className="text-purple-300 font-mono text-[11px] font-bold">{npcMeta.schedule}</span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Cita Textual Oficial del Personaje */}
-                  {npcMeta?.quote && (
+                  {npcIntro.length > 0 && (
                     <div className="p-2.5 rounded-xl bg-[#11192e] border-l-2 border-amber-400 text-[11px] text-amber-100/90 leading-relaxed italic shadow-inner">
-                      &quot;{npcMeta.quote}&quot;
+                      &quot;{npcIntro.join(' ')}&quot;
                     </div>
                   )}
 
-                  {/* Descripción o Consejos */}
-                  {npcMeta?.desc && (
-                    <p className="text-[11px] text-slate-300 leading-relaxed bg-[#080d17]/60 p-2.5 rounded-xl border border-slate-800/60">
-                      {npcMeta.desc}
-                    </p>
+                  {/* Regalos que ama (hearts.js TASTES) */}
+                  {gifts.length > 0 && (
+                    <div className="p-2 rounded-xl bg-[#141f17] border border-emerald-500/30 flex items-center justify-between gap-2 text-[10.5px]">
+                      <span className="text-emerald-300 font-bold flex items-center gap-1.5 shrink-0">
+                        <span>🎁</span> {tA('npc.gifts')}
+                      </span>
+                      <span className="text-emerald-100 font-semibold text-right">
+                        {gifts.join(', ')}
+                      </span>
+                    </div>
                   )}
-
-                  {/* Regalos Favoritos */}
-                  <div className="p-2 rounded-xl bg-[#141f17] border border-emerald-500/30 flex items-center justify-between text-[10.5px]">
-                    <span className="text-emerald-300 font-bold flex items-center gap-1.5">
-                      <span>🎁</span> {tA('npc.gifts')}
-                    </span>
-                    <span className="text-emerald-100 font-semibold truncate max-w-[160px]">
-                      {gifts.join(', ')}
-                    </span>
-                  </div>
 
                   {/* Botón de acción: Centrar en el mapa */}
                   <button
@@ -1736,28 +1616,6 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   <div className="text-xs font-mono text-amber-400">
                     {tA('panel.official', { name: selectedSubZone.nameEn })}
                   </div>
-                  <p className="text-xs text-slate-200/90 mt-2 leading-relaxed">
-                    {selectedSubZone.desc}
-                  </p>
-                </div>
-
-                {/* QUÉ ENCUENTRAS AQUÍ (CON SPRITES PIXEL-ART OFICIALES) */}
-                <div className="bg-[#0e1628] border border-slate-700/70 rounded-xl p-3 shadow-inner">
-                  <div className="text-[11px] font-black text-amber-300 uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <img src={PUBLIC_SPRITES.wood} alt="" className="w-4 h-4" style={{ imageRendering: 'pixelated' }} />
-                    <span>{tA('panel.finds')}</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {(selectedSubZone.finds || []).map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="text-xs text-slate-200 bg-[#080d17] border border-slate-800/80 px-2.5 py-1.5 rounded-lg font-medium flex items-center gap-2"
-                      >
-                        <span className="text-amber-300">◆</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
                 {/* PUERTAS, CUEVAS Y EDIFICIOS EN ESTA SUB-ZONA */}
@@ -1773,7 +1631,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                           key={idx}
                           className="text-xs text-amber-100 bg-[#080d17] border border-amber-500/30 px-2.5 py-1.5 rounded-lg font-semibold"
                         >
-                          {d.name}
+                          {doorLabel(d)}
                         </div>
                       ))}
                     </div>
@@ -1825,7 +1683,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                           key={idx}
                           className="text-xs text-purple-100 bg-purple-950/60 border border-purple-500/30 px-2.5 py-1.5 rounded-lg font-semibold"
                         >
-                          {c.name}
+                          {clueLabel(c)}
                         </div>
                       ))}
                     </div>

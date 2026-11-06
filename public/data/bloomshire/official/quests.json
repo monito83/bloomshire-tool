@@ -2004,5 +2004,610 @@
     "text_en": "Elsie paints by the main road, west of the General Store. Beehives are kept at Hollin's Farm."
    }
   ]
+ },
+ "_clues": {
+  "wreck": {
+   "quest": "ff01",
+   "quest_en": "A Strange Find",
+   "quest_es": "Un Hallazgo Extraño",
+   "text_en": "Look at the find by the river",
+   "text_es": "Mirar el hallazgo junto al río",
+   "place_en": "The riverbank",
+   "place_es": "La orilla del río"
+  },
+  "trail_marker": {
+   "quest": "ff03",
+   "quest_en": "The Trailhead",
+   "quest_es": "El Inicio del Sendero",
+   "text_en": "Find the marker at the lodge",
+   "text_es": "Encuentra el marcador en el refugio",
+   "place_en": "Trailhead lodge",
+   "place_es": "Refugio del Sendero"
+  },
+  "hunter_box": {
+   "quest": "ff03",
+   "quest_en": "The Trailhead",
+   "quest_es": "El Inicio del Sendero",
+   "text_en": "Look in the chest by the hunter's fire",
+   "text_es": "Mirar en el cofre junto a la fogata del cazador",
+   "place_en": "The Hunter's Camp",
+   "place_es": "El Campamento del Cazador"
+  },
+  "token_hollow": {
+   "quest": "ff04",
+   "quest_en": "The Moonstone Circle",
+   "quest_es": "El Círculo de Piedra Lunar",
+   "text_en": "Look in the moonstone's hollow",
+   "text_es": "Mirar en el hueco de la piedra lunar",
+   "place_en": "Moonstone Circle",
+   "place_es": "Círculo de Piedra Lunar"
+  },
+  "hollow_carving": {
+   "quest": "ff05",
+   "quest_en": "Clear Eyes",
+   "quest_es": "Ojos Claros",
+   "text_en": "Find the mark among the caps",
+   "text_es": "Encuentra la marca entre las tapas",
+   "place_en": "Mushroom Hollow",
+   "place_es": "Hondonada de los Hongos"
+  },
+  "pond_reflection": {
+   "quest": "ff06",
+   "quest_en": "Mirror Pond",
+   "quest_es": "Estanque Espejo",
+   "text_en": "Use the tonic there at night",
+   "text_es": "Usa el tónico ahí por la noche",
+   "place_en": "Mirror Pond",
+   "place_es": "Estanque Espejo"
+  },
+  "grotto_charm": {
+   "quest": "ff06",
+   "quest_en": "Mirror Pond",
+   "quest_es": "Estanque Espejo",
+   "text_en": "Search the grotto",
+   "text_es": "Busca en la gruta",
+   "place_en": "The grotto under the pond",
+   "place_es": "La gruta bajo el estanque"
+  },
+  "shrine_socket": {
+   "quest": "ff07",
+   "quest_en": "The Forgotten Shrine",
+   "quest_es": "El Santuario Olvidado",
+   "text_en": "Find where the charm and the token fit",
+   "text_es": "Encuentra dónde encajan el amuleto y la ficha",
+   "place_en": "The Forgotten Shrine",
+   "place_es": "El Santuario Olvidado"
+  },
+  "camp_notice": {
+   "quest": "ff08",
+   "quest_en": "The Miners' Camp",
+   "quest_es": "El Campamento de los Mineros",
+   "text_en": "Read the notices at Stonepeak",
+   "text_es": "Lee los avisos en Stonepeak",
+   "place_en": "Stonepeak",
+   "place_es": null
+  },
+  "lucky_pick": {
+   "quest": "ff08",
+   "quest_en": "The Miners' Camp",
+   "quest_es": "El Campamento de los Mineros",
+   "text_en": "Find the lucky pick",
+   "text_es": "Encuentra el pico de la suerte",
+   "place_en": "The Old Working, lower level",
+   "place_es": "La Mina Vieja, nivel inferior"
+  },
+  "tarn_post": {
+   "quest": "ff09",
+   "quest_en": "Haskett's Strongbox",
+   "quest_es": "Cofre Fuerte de Haskett",
+   "text_en": "Read the marks on the tarn jetty",
+   "text_es": "Lee las marcas del embarcadero de la laguna",
+   "place_en": "The tarn jetty",
+   "place_es": "El embarcadero de la laguna"
+  },
+  "cairn": {
+   "quest": "ff09",
+   "quest_en": "Haskett's Strongbox",
+   "quest_es": "Cofre Fuerte de Haskett",
+   "text_en": "Look at the cairn",
+   "text_es": "Mira el montículo de piedras",
+   "place_en": "The cairn",
+   "place_es": "El montículo de piedras"
+  },
+  "company_board": {
+   "quest": "ff09",
+   "quest_en": "Haskett's Strongbox",
+   "quest_es": "Cofre Fuerte de Haskett",
+   "text_en": "Read the company board",
+   "text_es": "Lee el tablón de la compañía",
+   "place_en": "The High Shelf",
+   "place_es": "La Cornisa Alta"
+  },
+  "graves": {
+   "quest": "ff09",
+   "quest_en": "Haskett's Strongbox",
+   "quest_es": "Cofre Fuerte de Haskett",
+   "text_en": "Look at the miners' graves",
+   "text_es": "Mirar las tumbas de los mineros",
+   "place_en": "The miners' graves",
+   "place_es": "Las tumbas de los mineros"
+  },
+  "foreman_note": {
+   "quest": "ff10",
+   "quest_en": "The Green Vein",
+   "quest_es": "La Veta Verde",
+   "text_en": "Find what Haskett left",
+   "text_es": "Encuentra lo que dejó Haskett",
+   "place_en": "The Green Vein",
+   "place_es": "La Veta Verde"
+  },
+  "gloom_lever": {
+   "quest": "ff12",
+   "quest_en": "The Lever in the Dark",
+   "quest_es": "La Palanca en la Oscuridad",
+   "text_en": "Fit the handle to the lever",
+   "text_es": "Encaja el mango en la palanca",
+   "place_en": "The red deep",
+   "place_es": "El Abismo Rojo"
+  },
+  "quarry_log": {
+   "quest": "ff13",
+   "quest_en": "The Last Cart",
+   "quest_es": "La Última Carreta",
+   "text_en": "Read the quarry's loading log",
+   "text_es": "Lee el registro de carga de la cantera",
+   "place_en": "The Quarry",
+   "place_es": "La Cantera"
+  },
+  "compound_ledger": {
+   "quest": "ff13",
+   "quest_en": "The Last Cart",
+   "quest_es": "La Última Carreta",
+   "text_en": "Read the compound's gate book",
+   "text_es": "Lee el libro de la puerta del recinto",
+   "place_en": "The Ruined Compound",
+   "place_es": "El Recinto en Ruinas"
+  },
+  "gorge_ruts": {
+   "quest": "ff13",
+   "quest_en": "The Last Cart",
+   "quest_es": "La Última Carreta",
+   "text_en": "Follow the ruts in the gorge",
+   "text_es": "Sigue las rodadas en el desfiladero",
+   "place_en": "The Gorge",
+   "place_es": "El Desfiladero"
+  },
+  "vault_record": {
+   "quest": "ff14",
+   "quest_en": "The Sunken Vault",
+   "quest_es": "La Bóveda Hundida",
+   "text_en": "Search the treasury",
+   "text_es": "Busca en la tesorería",
+   "place_en": "The delvers' treasury",
+   "place_es": "La tesorería de los excavadores"
+  },
+  "old_cave_fragment": {
+   "quest": "ff15",
+   "quest_en": "Two More Pieces",
+   "quest_es": "Dos Piezas Más",
+   "text_en": "Search the delvers' last dig",
+   "text_es": "Busca en la última excavación de los excavadores",
+   "place_en": "The Old Cave",
+   "place_es": "La Cueva Vieja"
+  },
+  "founders_cache": {
+   "quest": "ff16",
+   "quest_en": "The Founders' Map",
+   "quest_es": "El Mapa de los Fundadores",
+   "text_en": "Find the X on the map",
+   "text_es": "Encuentra la X en el mapa",
+   "place_en": "Moonmere",
+   "place_es": null
+  },
+  "tide_stone": {
+   "quest": "ff17",
+   "quest_en": "The Lake Remembers",
+   "quest_es": "El Lago Recuerda",
+   "text_en": "The Tide Stone",
+   "text_es": "La Piedra de la Marea",
+   "place_en": "The Tide Stone",
+   "place_es": "La Piedra de la Marea"
+  },
+  "bottle": {
+   "quest": "ff17",
+   "quest_en": "The Lake Remembers",
+   "quest_es": "El Lago Recuerda",
+   "text_en": "The message in a bottle",
+   "text_es": "El mensaje en una botella",
+   "place_en": "A message in a bottle",
+   "place_es": "Un mensaje en una botella"
+  },
+  "sunken_boat": {
+   "quest": "ff17",
+   "quest_en": "The Lake Remembers",
+   "quest_es": "El Lago Recuerda",
+   "text_en": "The sunken boat",
+   "text_es": "El bote hundido",
+   "place_en": "A sunken boat",
+   "place_es": "Un bote hundido"
+  },
+  "houseboat": {
+   "quest": "ff17",
+   "quest_en": "The Lake Remembers",
+   "quest_es": "El Lago Recuerda",
+   "text_en": "The houseboat",
+   "text_es": "La casa flotante",
+   "place_en": "The houseboat",
+   "place_es": "La casa flotante"
+  },
+  "glowing_stump": {
+   "quest": "ff17",
+   "quest_en": "The Lake Remembers",
+   "quest_es": "El Lago Recuerda",
+   "text_en": "The glowing stump",
+   "text_es": "El tocón brillante",
+   "place_en": "A glowing stump",
+   "place_es": "Un tocón brillante"
+  },
+  "old_cave_pearl": {
+   "quest": "ff18",
+   "quest_en": "Marven's Request",
+   "quest_es": "El Encargo de Marven",
+   "text_en": "Find Marven's pearl",
+   "text_es": "Encuentra la perla de Marven",
+   "place_en": "The Old Cave",
+   "place_es": "La Cueva Vieja"
+  },
+  "stray_hen": {
+   "quest": "s_hollis",
+   "quest_en": "One Wandered Off",
+   "quest_es": "Uno Se Fue",
+   "text_en": "Find the pale gold hen",
+   "text_es": "Encuentra la gallina dorada pálida",
+   "place_en": "The orchard",
+   "place_es": "El huerto"
+  },
+  "unmarked": {
+   "quest": "s_silas1",
+   "quest_en": "A Name for the Unmarked",
+   "quest_es": "Un Nombre para el Sin Nombre",
+   "text_en": "Look at the stone with no name",
+   "text_es": "Mira la piedra sin nombre",
+   "place_en": "The graveyard",
+   "place_es": "El cementerio"
+  },
+  "register": {
+   "quest": "s_silas1",
+   "quest_en": "A Name for the Unmarked",
+   "quest_es": "Un Nombre para el Sin Nombre",
+   "text_en": "Look in the chapel's burial register",
+   "text_es": "Revisa el registro de entierros de la capilla",
+   "place_en": "The ruined chapel",
+   "place_es": "La capilla en ruinas"
+  },
+  "loose_board": {
+   "quest": "s_silas2",
+   "quest_en": "What the Barrow Lost",
+   "quest_es": "Lo Que el Túmulo Perdió",
+   "text_en": "Find what the stilt folk hid",
+   "text_es": "Encuentra lo que escondió la gente del pueblo sobre pilotes",
+   "place_en": "The stilt village",
+   "place_es": "El pueblo sobre pilotes"
+  },
+  "barrow_door": {
+   "quest": "s_silas2",
+   "quest_en": "What the Barrow Lost",
+   "quest_es": "Lo Que el Túmulo Perdió",
+   "text_en": "Give the ring back to the barrow",
+   "text_es": "Devuelve el anillo al túmulo",
+   "place_en": "The barrows in the north west",
+   "place_es": "Los túmulos del noroeste"
+  },
+  "wild_seeds": {
+   "quest": "s_hazel",
+   "quest_en": "Unusual Seeds",
+   "quest_es": "Semillas Inusuales",
+   "text_en": "Find seeds in the bramble patch",
+   "text_es": "Busca semillas en el zarzal",
+   "place_en": "The bramble patch",
+   "place_es": "El zarzal"
+  },
+  "founders_walk": {
+   "quest": "bk07",
+   "quest_en": "The Founders' Walk",
+   "quest_es": "El Paseo de los Fundadores",
+   "text_en": "Walk the Founders' Walk",
+   "text_es": "Recorre el Paseo de los Fundadores",
+   "place_en": "The Founders' Walk",
+   "place_es": "El Paseo de los Fundadores"
+  },
+  "pier_night": {
+   "quest": "bk09",
+   "quest_en": "The Bay",
+   "quest_es": "La Bahía",
+   "text_en": "Watch the water from the end of the pier at night",
+   "text_es": "Observa el agua desde el final del muelle por la noche",
+   "place_en": "The end of the Long Pier",
+   "place_es": "El final del Muelle Largo"
+  },
+  "grey_cherries": {
+   "quest": "bk11",
+   "quest_en": "Grey Cherries",
+   "quest_es": "Cerezas Grises",
+   "text_en": "Look at the grey trees",
+   "text_es": "Mira los árboles grises",
+   "place_en": "The orchard's north west corner",
+   "place_es": "La esquina noroeste del huerto"
+  },
+  "lamp_jetty": {
+   "quest": "bk12",
+   "quest_en": "Otto's Round",
+   "quest_es": "La Ronda de Otto",
+   "text_en": "Light the jetty road lamp",
+   "text_es": "Enciende la lámpara del camino del muelle",
+   "place_en": "The jetty road lamp",
+   "place_es": "La farola del camino al muelle"
+  },
+  "lamp_chapel": {
+   "quest": "bk12",
+   "quest_en": "Otto's Round",
+   "quest_es": "La Ronda de Otto",
+   "text_en": "Light the chapel lamp",
+   "text_es": "Enciende la lámpara de la capilla",
+   "place_en": "The chapel lamp",
+   "place_es": "La lámpara de la capilla"
+  },
+  "lamp_west": {
+   "quest": "bk12",
+   "quest_en": "Otto's Round",
+   "quest_es": "La Ronda de Otto",
+   "text_en": "Light the west road lamp",
+   "text_es": "Enciende la lámpara del camino del oeste",
+   "place_en": "The west road lamp",
+   "place_es": "El farol del camino oeste"
+  },
+  "grey_ground": {
+   "quest": "bk13",
+   "quest_en": "Whisperwood",
+   "quest_es": null,
+   "text_en": "Find the grey in the deep wood",
+   "text_es": "Encuentra al gris en el Bosque Profundo",
+   "place_en": "The grey ground in the deep wood",
+   "place_es": "El suelo gris en el Bosque Profundo"
+  },
+  "glade_arch": {
+   "quest": "bk14",
+   "quest_en": "The Hidden Glade",
+   "quest_es": "El Claro Escondido",
+   "text_en": "Look at the arch of roots",
+   "text_es": "Mira el arco de raíces",
+   "place_en": "The arch of roots",
+   "place_es": "El arco de raíces"
+  },
+  "glade_altar": {
+   "quest": "bk14",
+   "quest_en": "The Hidden Glade",
+   "quest_es": "El Claro Escondido",
+   "text_en": "Look at the carved slab",
+   "text_es": "Mira la losa tallada",
+   "place_en": "The stone slab",
+   "place_es": "La losa de piedra"
+  },
+  "shade_0": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the red one",
+   "text_es": "Despierta al rojo",
+   "place_en": "The Horned Lord",
+   "place_es": "El Señor Cornudo"
+  },
+  "shade_1": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the orange one",
+   "text_es": "Despierta al naranja",
+   "place_en": "The Ash King",
+   "place_es": "El Rey de Ceniza"
+  },
+  "shade_2": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the amber one",
+   "text_es": "Despierta al ámbar",
+   "place_en": "The Sun King",
+   "place_es": "El Rey Sol"
+  },
+  "shade_3": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the gold one",
+   "text_es": "Despierta al dorado",
+   "place_en": "The Golden Paladin",
+   "place_es": "El Paladín Dorado"
+  },
+  "shade_4": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the green one",
+   "text_es": "Despierta al verde",
+   "place_en": "The Bloom Queen",
+   "place_es": "La Reina de las Flores"
+  },
+  "shade_5": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the teal one",
+   "text_es": "Despierta al verde azulado",
+   "place_en": "The Obsidian Warden",
+   "place_es": "El Guardián de Obsidiana"
+  },
+  "shade_6": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the blue one",
+   "text_es": "Despierta al azul",
+   "place_en": "The Frost Wraith",
+   "place_es": "El Espectro de Escarcha"
+  },
+  "shade_7": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the indigo one",
+   "text_es": "Despierta al índigo",
+   "place_en": "The Night Stalker",
+   "place_es": "El Acechador Nocturno"
+  },
+  "shade_8": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the violet one",
+   "text_es": "Despierta al violeta",
+   "place_en": "The Shadow Knight",
+   "place_es": "El Caballero de las Sombras"
+  },
+  "shade_9": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the pink one",
+   "text_es": "Despierta al rosa",
+   "place_en": "The Fairy Knight",
+   "place_es": "El Caballero Hada"
+  },
+  "shade_10": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the white one",
+   "text_es": "Despierta al blanco",
+   "place_en": "The Saint",
+   "place_es": "El Santo"
+  },
+  "shade_11": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Wake the silver one",
+   "text_es": "Despierta al plateado",
+   "place_en": "The Moon Fairy",
+   "place_es": "El Hada de la Luna"
+  },
+  "pavement": {
+   "quest": "bk16",
+   "quest_en": "Every Colour",
+   "quest_es": "Todos los Colores",
+   "text_en": "Step into the middle of the ring",
+   "text_es": "Entra al centro del círculo",
+   "place_en": "The heart of the pavement",
+   "place_es": "El corazón del empedrado"
+  },
+  "moon_stone_n": {
+   "quest": "bk19",
+   "quest_en": "The Stones in the Lake",
+   "quest_es": "Las Piedras en el Lago",
+   "text_en": "Read the north stone",
+   "text_es": "Lee la piedra del norte",
+   "place_en": "The north stone",
+   "place_es": "La piedra del norte"
+  },
+  "moon_stone_e": {
+   "quest": "bk19",
+   "quest_en": "The Stones in the Lake",
+   "quest_es": "Las Piedras en el Lago",
+   "text_en": "Read the east stone",
+   "text_es": "Lee la piedra del este",
+   "place_en": "The east stone",
+   "place_es": "La piedra del este"
+  },
+  "moon_stone_s": {
+   "quest": "bk19",
+   "quest_en": "The Stones in the Lake",
+   "quest_es": "Las Piedras en el Lago",
+   "text_en": "Read the south stone",
+   "text_es": "Lee la piedra del sur",
+   "place_en": "The south stone",
+   "place_es": "La piedra del sur"
+  },
+  "moon_stone_w": {
+   "quest": "bk19",
+   "quest_en": "The Stones in the Lake",
+   "quest_es": "Las Piedras en el Lago",
+   "text_en": "Read the west stone",
+   "text_es": "Lee la piedra del oeste",
+   "place_en": "The west stone",
+   "place_es": "La piedra del oeste"
+  },
+  "grey_wake": {
+   "quest": "bk22",
+   "quest_en": "Grey Water",
+   "quest_es": "Agua gris",
+   "text_en": "Watch the deep water at night",
+   "text_es": "Vigila las aguas profundas de noche",
+   "place_en": "The deep water",
+   "place_es": "El agua profunda"
+  },
+  "grey_scale": {
+   "quest": "bk22",
+   "quest_en": "Grey Water",
+   "quest_es": "Agua gris",
+   "text_en": "Search the south shore",
+   "text_es": "Busca en la orilla sur",
+   "place_en": "Something in the mud",
+   "place_es": "Algo en el barro"
+  },
+  "moon_shrine": {
+   "quest": "bk23",
+   "quest_en": "Moonsight",
+   "quest_es": "Visión Lunar",
+   "text_en": "Take the offering to the shrine at night",
+   "text_es": "Lleva la ofrenda al santuario de noche",
+   "place_en": "The Moon Fairy's shrine",
+   "place_es": "El santuario del Hada de la Luna"
+  },
+  "verse_falls": {
+   "quest": "bk23",
+   "quest_en": "Moonsight",
+   "quest_es": "Visión Lunar",
+   "text_en": "Look on the falls shelf at night",
+   "text_es": "Mira en la cornisa de las cataratas de noche",
+   "place_en": "A light on the falls shelf",
+   "place_es": "Una luz en la cornisa de las cataratas"
+  },
+  "verse_meadow": {
+   "quest": "bk23",
+   "quest_en": "Moonsight",
+   "quest_es": "Visión Lunar",
+   "text_en": "Look in the meadow at night",
+   "text_es": "Mira en el prado de noche",
+   "place_en": "A light in the meadow",
+   "place_es": "Una luz en el prado"
+  },
+  "verse_lagoon": {
+   "quest": "bk23",
+   "quest_en": "Moonsight",
+   "quest_es": "Visión Lunar",
+   "text_en": "Look by the lagoon pier at night",
+   "text_es": "Mira junto al muelle de la laguna de noche",
+   "place_en": "A light by the pier",
+   "place_es": "Una luz junto al muelle"
+  },
+  "gate_song": {
+   "quest": "bk24",
+   "quest_en": "The Gate Song",
+   "quest_es": "La Canción de la Puerta",
+   "text_en": "Go to the festival at the fountain at night",
+   "text_es": "Ve al festival en la fuente de noche",
+   "place_en": "The shell fountain",
+   "place_es": "La fuente de conchas"
+  }
  }
 }

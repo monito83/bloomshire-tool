@@ -238,6 +238,49 @@ for (const q of [...(questsMod.QUESTS || []), ...(book1.BOOK1 || [])]) {
     steps: q.steps.map((st) => ({ name_en: st?.text || null, text_en: st?.where || null }))
   };
 }
+// Pistas de las misiones (pasos "clue": un lugar del mapa marcado clue:<clave>), con su texto en en/es
+const cluesOut = {};
+for (const q of [...(questsMod.QUESTS || []), ...(book1.BOOK1 || [])]) {
+  const walk = (st) => {
+    if (!st || typeof st !== 'object') return;
+    if (Array.isArray(st)) { st.forEach(walk); return; }
+    if (st.kind === 'clue' && st.clue && !cluesOut[st.clue]) {
+      const text = tr(st.text), place = tr(st.place), quest = tr(q.name);
+      cluesOut[st.clue] = { quest: String(q.id).toLowerCase(), quest_en: quest.en, quest_es: quest.es, text_en: text.en, text_es: text.es, place_en: place.en, place_es: place.es };
+    }
+    Object.values(st).forEach((v) => { if (v && typeof v === 'object') walk(v); });
+  };
+  walk(q?.steps || []);
+}
+questsOut._clues = cluesOut;
+
+// Aldeanos: titulo, presentacion y regalos (hearts.js TASTES), en/es con el traductor del juego
+const heartsMod = await mod('game/hearts.js');
+const npcDefs = await mod('game/npcs.js');
+const giftList = (list) => (list || []).map((x) => {
+  const sx = String(x);
+  if (sx.startsWith('cat:')) return { cat: sx.slice(4) };
+  const v = tr(sx);
+  return { id: sx, en: v.en, es: v.es };
+});
+// Tareas diarias (rules.js DAILY_POOL): texto en/es, meta y dificultad
+const dailyOut = {};
+for (const d of rules.DAILY_POOL || []) {
+  const v = tr(d.text);
+  dailyOut[d.id] = { en: v.en, es: v.es, n: d.n, tier: d.tier };
+}
+const npcsOut = {};
+for (const [id, def] of Object.entries(npcDefs.NPCS || {})) {
+  const title = tr(def.title || '');
+  const intro = (Array.isArray(def.intro) ? def.intro : []).filter((l) => typeof l === 'string' && !l.includes('{')).slice(0, 3).map((l) => tr(l));
+  const taste = heartsMod.TASTES?.[id] || {};
+  npcsOut[id] = {
+    name: def.name || id,
+    title_en: title.en || null, title_es: title.es,
+    intro_en: intro.map((x) => x.en), intro_es: intro.some((x) => x.es) ? intro.map((x) => x.es ?? x.en) : null,
+    loved: giftList(taste.loved), liked: giftList(taste.liked), disliked: giftList(taste.disliked), hated: giftList(taste.hated)
+  };
+}
 
 // Aldeanos: solo los retratos que faltan o que son la imagen de relleno repetida
 const PORTRAITS = path.join(ROOT, 'public/data/bloomshire/portraits');
@@ -323,7 +366,7 @@ const prev = { meta: readPrev('meta.json'), codex: readPrev('codex.json'), besti
 
 // Solo se escribe lo que cambio: asi una corrida sin novedades no genera commits.
 const changedFiles = [];
-for (const [name, data] of Object.entries({ 'codex.json': codex, 'skills.json': skills, 'bestiary.json': bestiary, 'adventure.json': adventure, 'quests.json': questsOut })) {
+for (const [name, data] of Object.entries({ 'codex.json': codex, 'skills.json': skills, 'bestiary.json': bestiary, 'adventure.json': adventure, 'quests.json': questsOut, 'npcs.json': npcsOut, 'daily.json': dailyOut })) {
   const file = path.join(OUT, name);
   const text = serialize(data);
   if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== text) {

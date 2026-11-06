@@ -74,13 +74,23 @@
       "goldPerEnergy": "🪙 Gold / ⚡",
       "xpPerMin": "XP / Min",
       "goldPerMin": "Gold / Min",
-      "totalPlots": "Total x{{plots}} Plots",
-      "tip": "Tactical Tip"
+      "totalPlots": "Total x{{plots}} Plots"
     },
     "allYear": "All Year 🌐",
     "levelBadge": "Lvl {{level}}",
     "regrowBadge": "Regrowth (5x)",
     "regrowLevel": "Lvl 15+: {{val}}",
     "consumption": "Consumption: {{energy}}⚡"
+  },
+  "grow": {
+    "hits": "{{n}} hits",
+    "pickHits": "{{n}} hits ({{tool}} pickaxe)",
+    "axeHits": "{{n}} chops ({{tool}} axe)",
+    "tiers": {
+      "1": "Iron",
+      "2": "Bronze",
+      "3": "Gold",
+      "4": "Amethyst"
+    }
   }
 }

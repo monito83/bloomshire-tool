@@ -84,5 +84,49 @@
     "checkFailed": "Couldn't reach the game. Tool data: version {{ours}}.",
     "mapsLog": "Map reload request sent to the extension.",
     "scanLog": "Scan request sent to the extension ({{module}})."
+  },
+  "settings": {
+    "title": "Tool data",
+    "data": "Game data: version {{version}} • generated {{date}}",
+    "check": "🔍 Compare with the game",
+    "checking": "Comparing...",
+    "cards": {
+      "quests": "Quests",
+      "atlas": "Mega-Atlas",
+      "npcs": "Villagers and creatures",
+      "crops": "Crops and timers",
+      "craft": "Crafting and codex",
+      "energy": "Bed and energy"
+    },
+    "rows": {
+      "inGame": "Quests in the game:",
+      "following": "Active in your game:",
+      "missing": "Materials missing:",
+      "regions": "Regions:",
+      "places": "Exploration book places:",
+      "subzones": "Atlas sub-zones:",
+      "npcs": "Villagers:",
+      "beasts": "Bestiary creatures:",
+      "crops": "Crops:",
+      "growing": "Planted now:",
+      "timers": "Batches in progress:",
+      "recipes": "Recipes:",
+      "codex": "Things in the codex:",
+      "sleepLeft": "Sleep left today:",
+      "reset": "Reset:"
+    },
+    "log": "System log",
+    "clear": "Clear log",
+    "empty": "Log is empty."
+  },
+  "advisor": {
+    "lockedTitle": "AI Copilot",
+    "lockedDesc": "Tips on what to plant, sell or deliver based on what's in your backpack and chests, by connecting your game with the Bloomshire Companion extension.",
+    "paused": "🤖 AI Copilot: paused for now.\n\nIt will be turned on once the testing stage is over. Meanwhile you can use the Calculator, the Mega-Atlas and the Items encyclopedia.",
+    "thinking": "Looking at your game...",
+    "placeholder": "Ask about planting, energy, Odette's orders or quests...",
+    "send": "Send",
+    "empty": "No answer.",
+    "error": "⚠️ Couldn't reach the Copilot. Check your connection and try again."
   }
 }

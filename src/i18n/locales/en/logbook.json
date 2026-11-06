@@ -1,8 +1,8 @@
 {
   "hero": {
     "kicker": "Community field guide",
-    "title": "Leonman's Logbook",
-    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, written by Leonman and shared with the whole community.",
+    "title": "Logbook & Guides",
+    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, shared with the whole community.",
     "credit": "Content by Leonman, published with his permission."
   },
   "nav": {
@@ -46,7 +46,7 @@
     "entries_one": "{{count}} entry",
     "entries_other": "{{count}} entries",
     "emptyTitle": "The logbook is still blank",
-    "emptyBody": "Leonman's first guides will appear here as soon as they are published."
+    "emptyBody": "The first guides will appear here as soon as they are published."
   },
   "section": {
     "subsections": "Subsections",

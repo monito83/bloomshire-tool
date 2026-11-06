@@ -4,6 +4,8 @@ import { MapPin } from 'lucide-react';
 import itemIconsMap from '../../../public/data/bloomshire/item_icons_map.json';
 import CANONICAL_QUEST_CATALOG from '../../data/canonicalQuests.json';
 import OFFICIAL_QUESTS_EN from '../../../public/data/bloomshire/official/quests.json';
+import OFFICIAL_NPCS_DATA from '../../../public/data/bloomshire/official/npcs.json';
+import OFFICIAL_DAILY from '../../../public/data/bloomshire/official/daily.json';
 import defaultInventoryCatalog from '../../../public/data/bloomshire/inventory_catalog.json';
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -76,39 +78,23 @@ export const getStorageType = (areaRaw) => {
   return 'CC';
 };
 
-export const NPC_FAVORITE_GIFTS = {
-  clara: ['🍓 Frutilla', '🌾 Harina', '🍯 Miel'],
-  tamsin: ['🌾 Trigo', '🥚 Huevos', '🍬 Azúcar'],
-  wren: ['🐟 Perca', '🐟 Carpa', '🪱 Cebo'],
-  bram: ['⛏️ Lingote Hierro', '⛏️ Lingote Cobre', '⬛ Carbón'],
-  juniper: ['🍄 Glowcap', '🍄 Silvercap', '🌿 Raíces'],
-  hollis: ['🥛 Leche', '🌾 Heno', '🍎 Manzana'],
-  willa: ['🍯 Miel', '🌸 Flor Silvestre', '🥞 Panal'],
-  dara: ['🍒 Cerezos Grises', '💧 Agua Pura', '🌱 Abono'],
-  odette: ['💎 Joyas', '💎 Amatista', '🪙 Moneda Antigua'],
-  pell: ['🪵 Madera Noble', '🪵 Tablas Roble', '🔩 Clavos'],
-  tilly: ['🧵 Tela', '🧶 Lana', '🪡 Hilo de Seda'],
-  hazel: ['🌱 Semilla de Calabaza', '💧 Regadera', '🌾 Fertilizante'],
-  maren: ['🐟 Trucha Tigre', '🍞 Pan Casero', '🍄 Setas'],
-  greta: ['🥛 Queso de Cabra', '🥚 Huevos Frescos', '🌾 Heno'],
-  cole: ['⛏️ Mineral de Estaño', '⬛ Carbón', '🍖 Carne Asada'],
-  dunn: ['⛏️ Mineral de Hierro', '⛏️ Pizarra', '🍞 Ración Minera'],
-  silas: ['🕯️ Vela de Cera', '🌸 Caléndula Lunar', '📜 Pergamino'],
-  marven: ['🐟 Pez Fantasma', '⭐ Fruta Estelar', '🍄 Glowcap']
+// Aldeanos segun el juego (official/npcs.json, lo genera build_official_data): titulo, presentacion y regalos
+// (hearts.js TASTES: loved / liked / disliked / hated), en ingles y en espanol con el traductor del juego.
+// Pistas de misiones del mapa (quests.json _clues): texto, lugar y mision, en/es
+export const OFFICIAL_QUESTS_CLUES = OFFICIAL_QUESTS_EN._clues || {};
+export const OFFICIAL_NPCS = OFFICIAL_NPCS_DATA;
+export const officialNpc = (id) => OFFICIAL_NPCS[String(id || '').toLowerCase()] || null;
+const isEnLang = (lang) => String(lang || '').toLowerCase().startsWith('en');
+/** Texto en el idioma elegido de un campo con _en / _es (el ingles si el juego no lo traduce). */
+export const pickEnEs = (obj, key, lang) => (obj ? (isEnLang(lang) ? obj[`${key}_en`] : (obj[`${key}_es`] ?? obj[`${key}_en`])) : null);
+/** Nombre de una tarea diaria: el texto del juego (official/daily.json) o la clave de la tool, en el idioma elegido. */
+export const dailyTaskName = (task, lang, t) => {
+  const o = OFFICIAL_DAILY[task?.id];
+  if (o) return (isEnLang(lang) ? o.en : (o.es || o.en)) || task.label;
+  return t(`monitors:daily.${task?.id}`, { defaultValue: task?.label || '' });
 };
-
-export const getNpcFavoriteGifts = (npc) => {
-  if (!npc) return ['🍞 Pan Casero', '🌸 Flores', '🍎 Fruta'];
-  const id = (npc.id || '').toLowerCase().trim();
-  if (NPC_FAVORITE_GIFTS[id]) return NPC_FAVORITE_GIFTS[id];
-  const title = (npc.title || '').toLowerCase();
-  if (title.includes('bake') || title.includes('panad') || title.includes('cook')) return ['🌾 Harina', '🥚 Huevos', '🍯 Miel'];
-  if (title.includes('fish') || title.includes('pesc')) return ['🐟 Carpa', '🐟 Perca', '🪱 Cebo'];
-  if (title.includes('smith') || title.includes('herr') || title.includes('miner')) return ['⛏️ Lingote Cobre', '⛏️ Lingote Hierro', '⬛ Carbón'];
-  if (title.includes('farm') || title.includes('cultiv')) return ['🌾 Trigo', '🥕 Zanahoria', '🥔 Papa'];
-  if (title.includes('animal') || title.includes('pastor')) return ['🥛 Leche', '🌾 Heno', '🍎 Manzana'];
-  return ['🍞 Pan Casero', '🌸 Flores Silvestres', '🍯 Miel'];
-};
+/** Nombre de un regalo ({ id, en, es } o { cat }) en el idioma elegido; t traduce las categorias (common:giftCats). */
+export const giftName = (g, lang, t) => (g?.cat ? t(`common:giftCats.${g.cat}`, { defaultValue: g.cat }) : (isEnLang(lang) ? g?.en : (g?.es || g?.en)) || '');
 
 export const getItemCategoryLabel = (cat) => {
   if (i18n && typeof i18n.t === 'function') {
@@ -444,6 +430,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '⚖️ Mercado Central (Rowan) — Market Hall de Bloomshire',
     stationDesc: 'En la plaza central de Bloomshire Town, habla con Rowan en el Market Hall para comprar y vender artículos.',
     label: '🏛️ Market Hall (Rowan)',
+    labelKey: 'atlas:stations.market',
     regionId: 'bloomshire_town',
     subZoneId: 'bloomshire_town_sub_1_bloomshire',
     wx: 5740,
@@ -454,6 +441,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '🪵 Banco de Trabajo — Carpintería de Pell (Noreste del Pueblo)',
     stationDesc: 'Camina al este desde la Plaza Central y sube hacia el noreste hasta The Carpenter\'s Shop (Pell).',
     label: '🪵 Carpintería de Pell (Banco de Trabajo)',
+    labelKey: 'atlas:stations.bench',
     regionId: 'bloomshire_town',
     subZoneId: 'bloomshire_town_sub_1_bloomshire',
     wx: 6397,
@@ -464,6 +452,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '⚒️ La Forja y Yunque — Herrería de Bram (Este de la Plaza)',
     stationDesc: 'Camina al este desde la Plaza Central pasando la Tienda de Semillas hasta The Forge (Bram).',
     label: '⚒️ Herrería de Bram (Forja y Yunque)',
+    labelKey: 'atlas:stations.forge',
     regionId: 'bloomshire_town',
     subZoneId: 'bloomshire_town_sub_1_bloomshire',
     wx: 6126,
@@ -474,6 +463,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '🍲 Estufa de Cocina — Panadería de Tamsin (Oeste) o Tu Cabaña (Home Island)',
     stationDesc: 'Puedes cocinar en la estufa pública de The Bakery (Tamsin, al oeste del puente) o en la estufa dentro de tu Cabaña.',
     label: '🍲 Panadería de Tamsin (Estufa de Cocina)',
+    labelKey: 'atlas:stations.cook',
     regionId: 'bloomshire_town',
     subZoneId: 'bloomshire_town_sub_1_bloomshire',
     wx: 5106,
@@ -481,6 +471,7 @@ export const CRAFT_STATION_LOCATIONS = {
     worldRect: [4960, 4120, 280, 240],
     altHomeLocation: {
       label: '🏡 Estufa de Tu Cabaña (Home Island)',
+      labelKey: 'atlas:stations.home',
       regionId: 'home_island',
       subZoneId: 'home_cottage_sub',
       wx: 4034,
@@ -492,6 +483,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '🌊 Molino de Agua & 🥛 Lechería — Granja de Hollin (Southvale)',
     stationDesc: 'Sal por el camino sur de Bloomshire hacia Southvale y entra a la Granja de Hollin (Oeste) para moler Harina, Azúcar, Arroz y batir Mantequilla/Queso.',
     label: '🌊 Molino y Lechería (Granja de Hollin - Southvale)',
+    labelKey: 'atlas:stations.mill',
     regionId: 'southvale',
     subZoneId: 'southvale_sub_19_hollin_s_farm',
     wx: 4888,
@@ -502,6 +494,7 @@ export const CRAFT_STATION_LOCATIONS = {
     stationName: '🧵 Telar de Sastrería — Taller de Tilly (Orilla Oeste del Pueblo)',
     stationDesc: 'Cruza el puente al oeste de la Plaza Central y baja unos pasos hasta The Tailor\'s (Tilly) para tejer Tela (Cloth) con Lana.',
     label: '🧵 Sastrería de Tilly (Telar de Tela)',
+    labelKey: 'atlas:stations.loom',
     regionId: 'bloomshire_town',
     subZoneId: 'bloomshire_town_sub_1_bloomshire',
     wx: 4992,
@@ -552,7 +545,9 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
   // Lugar del temporizador manual: se guarda la clave (home, bakery...) y se muestra traducido;
   // los temporizadores viejos guardaron el texto en espanol y se muestran tal cual.
   const placeKey = { home: 'placeHome', bakery: 'placeBakery', bench: 'placeBench', forge: 'placeForge', mill: 'placeMill' }[item.location];
-  const locationText = placeKey ? t(`modal.${placeKey}`) : item.location;
+  const locationText = item.placeKey
+    ? t(`card.places.${item.placeKey}`, { defaultValue: item.location })
+    : placeKey ? t(`modal.${placeKey}`) : item.location;
   const [ticker, setTicker] = useState(() => Date.now());
 
   useEffect(() => {
@@ -664,7 +659,7 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
             <span className="text-xl">{item.icon || '🌱'}</span>
             <div>
               <div className="font-bold text-white text-sm leading-tight flex items-center gap-1.5 flex-wrap">
-                <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name}</span>
+                <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name || t('card.production')}</span>
               </div>
               <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
                 <span>{isCrop ? t('card.crop') : t('card.crafting')}</span>
