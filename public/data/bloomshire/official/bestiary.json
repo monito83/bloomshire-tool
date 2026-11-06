@@ -160,7 +160,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/slime.png"
   },
   {
    "id": "blue_slime",
@@ -193,7 +194,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/blue_slime.png"
   },
   {
    "id": "pink_slime",
@@ -226,7 +228,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/pink_slime.png"
   },
   {
    "id": "cave_slime",
@@ -261,7 +264,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/cave_slime.png"
   },
   {
    "id": "crystal_slime",
@@ -295,7 +299,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/crystal_slime.png"
   },
   {
    "id": "lava_slime",
@@ -330,7 +335,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/lava_slime.png"
   },
   {
    "id": "storm_slime",
@@ -372,7 +378,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/storm_slime.png"
   },
   {
    "id": "frost_slime",
@@ -407,7 +414,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/frost_slime.png"
   },
   {
    "id": "storm_slime_king",
@@ -447,7 +455,8 @@
    "weapons": {
     "immune": "blade",
     "weak": "staff"
-   }
+   },
+   "art": "beasts/storm_slime_king.png"
   },
   {
    "id": "tide_slime_king",
@@ -488,7 +497,8 @@
    "weapons": {
     "immune": "blade",
     "weak": "bow"
-   }
+   },
+   "art": "beasts/tide_slime_king.png"
   },
   {
    "id": "mire_slime_king",
@@ -531,7 +541,8 @@
    "weapons": {
     "immune": "bow",
     "weak": "staff"
-   }
+   },
+   "art": "beasts/mire_slime_king.png"
   },
   {
    "id": "gale_slime_king",
@@ -574,7 +585,8 @@
    "weapons": {
     "immune": "staff",
     "weak": "blade"
-   }
+   },
+   "art": "beasts/gale_slime_king.png"
   },
   {
    "id": "flytrap",
@@ -609,7 +621,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/flytrap.png"
   },
   {
    "id": "bulb_plant",
@@ -642,7 +655,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/bulb_plant.png"
   },
   {
    "id": "thorn_bloom",
@@ -676,7 +690,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/thorn_bloom.png"
   },
   {
    "id": "wolf",
@@ -709,7 +724,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/wolf.png"
   },
   {
    "id": "grey_wolf",
@@ -741,7 +757,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/grey_wolf.png"
   },
   {
    "id": "dark_wolf",
@@ -774,7 +791,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/dark_wolf.png"
   },
   {
    "id": "ice_wolf",
@@ -808,7 +826,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/ice_wolf.png"
   },
   {
    "id": "cave_bat",
@@ -848,7 +867,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/cave_bat.png"
   },
   {
    "id": "giant_rat",
@@ -882,7 +902,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/giant_rat.png"
   },
   {
    "id": "plague_rat",
@@ -918,7 +939,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/plague_rat.png"
   },
   {
    "id": "gloom_rat",
@@ -954,7 +976,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/gloom_rat.png"
   },
   {
    "id": "goblin",
@@ -991,7 +1014,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/goblin.png"
   },
   {
    "id": "goblin_raider",
@@ -1028,7 +1052,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/goblin_raider.png"
   },
   {
    "id": "goblin_rogue",
@@ -1064,7 +1089,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/goblin_rogue.png"
   },
   {
    "id": "goblin_warchief",
@@ -1102,7 +1128,8 @@
    "weapons": {
     "immune": "bow",
     "weak": "blade"
-   }
+   },
+   "art": "beasts/goblin_warchief.png"
   },
   {
    "id": "orc",
@@ -1142,7 +1169,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/orc.png"
   },
   {
    "id": "orc_reaver",
@@ -1176,7 +1204,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/orc_reaver.png"
   },
   {
    "id": "orc_warlord",
@@ -1223,7 +1252,8 @@
    "weapons": {
     "immune": "blade",
     "weak": "bow"
-   }
+   },
+   "art": "beasts/orc_warlord.png"
   },
   {
    "id": "pit_spider",
@@ -1256,7 +1286,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/pit_spider.png"
   },
   {
    "id": "tunnel_spider",
@@ -1289,7 +1320,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/tunnel_spider.png"
   },
   {
    "id": "glimmer_spider",
@@ -1321,7 +1353,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/glimmer_spider.png"
   },
   {
    "id": "pale_spider",
@@ -1354,7 +1387,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/pale_spider.png"
   },
   {
    "id": "topaz_spider",
@@ -1387,7 +1421,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/topaz_spider.png"
   },
   {
    "id": "drowned_spider",
@@ -1423,7 +1458,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/drowned_spider.png"
   },
   {
    "id": "venom_spider",
@@ -1459,7 +1495,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/venom_spider.png"
   },
   {
    "id": "ember_spider",
@@ -1497,7 +1534,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/ember_spider.png"
   },
   {
    "id": "cinder_spider",
@@ -1535,7 +1573,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/cinder_spider.png"
   },
   {
    "id": "gilded_spider",
@@ -1574,7 +1613,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/gilded_spider.png"
   },
   {
    "id": "bone_spider",
@@ -1616,7 +1656,8 @@
    "weapons": {
     "immune": "bow",
     "weak": "blade"
-   }
+   },
+   "art": "beasts/bone_spider.png"
   },
   {
    "id": "vault_queen",
@@ -1658,7 +1699,8 @@
    "weapons": {
     "immune": "blade",
     "weak": "staff"
-   }
+   },
+   "art": "beasts/vault_queen.png"
   },
   {
    "id": "earth_golem",
@@ -1696,7 +1738,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/earth_golem.png"
   },
   {
    "id": "crystal_golem",
@@ -1738,7 +1781,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/crystal_golem.png"
   },
   {
    "id": "frost_golem",
@@ -1780,7 +1824,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/frost_golem.png"
   },
   {
    "id": "boss_crystal_golem",
@@ -1825,7 +1870,8 @@
    "weapons": {
     "immune": "staff",
     "weak": "blade"
-   }
+   },
+   "art": "beasts/boss_crystal_golem.png"
   },
   {
    "id": "boss_frost_golem",
@@ -1870,7 +1916,8 @@
    "weapons": {
     "immune": "bow",
     "weak": "staff"
-   }
+   },
+   "art": "beasts/boss_frost_golem.png"
   },
   {
    "id": "skeleton",
@@ -1904,7 +1951,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/skeleton.png"
   },
   {
    "id": "skeleton_guard",
@@ -1941,7 +1989,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/skeleton_guard.png"
   },
   {
    "id": "skeleton_knight",
@@ -1982,7 +2031,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/skeleton_knight.png"
   },
   {
    "id": "ghoul",
@@ -2019,7 +2069,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/ghoul.png"
   },
   {
    "id": "grave_bat",
@@ -2053,7 +2104,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/grave_bat.png"
   },
   {
    "id": "lich_adept",
@@ -2087,7 +2139,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/lich_adept.png"
   },
   {
    "id": "lich_mage",
@@ -2121,7 +2174,8 @@
     "gold": null,
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/lich_mage.png"
   },
   {
    "id": "lich",
@@ -2162,7 +2216,8 @@
    "weapons": {
     "immune": "staff",
     "weak": "bow"
-   }
+   },
+   "art": "beasts/lich.png"
   },
   {
    "id": "pale_ghost",
@@ -2196,7 +2251,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/pale_ghost.png"
   },
   {
    "id": "shade_ghost",
@@ -2232,7 +2288,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/shade_ghost.png"
   },
   {
    "id": "crimson_ghost",
@@ -2268,7 +2325,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/crimson_ghost.png"
   },
   {
    "id": "imp",
@@ -2302,7 +2360,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/imp.png"
   },
   {
    "id": "cinder_imp",
@@ -2338,7 +2397,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/cinder_imp.png"
   },
   {
    "id": "hellfire_imp",
@@ -2374,7 +2434,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/hellfire_imp.png"
   },
   {
    "id": "beholder",
@@ -2408,7 +2469,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/beholder.png"
   },
   {
    "id": "ember_beholder",
@@ -2444,7 +2506,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/ember_beholder.png"
   },
   {
    "id": "elder_beholder",
@@ -2482,7 +2545,8 @@
     ],
     "boss": false
    },
-   "weapons": null
+   "weapons": null,
+   "art": "beasts/elder_beholder.png"
   }
  ]
 }
