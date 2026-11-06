@@ -1,3 +1,40 @@
 {
- "updates": []
+ "updates": [
+  {
+   "at": "2026-11-06T15:25:17.825Z",
+   "from": {
+    "gameVersion": "4ccdce8f2b1e",
+    "rulesHash": "30fde05c1702"
+   },
+   "to": {
+    "gameVersion": "47558e0af5e8",
+    "rulesHash": "9d7301a0248c"
+   },
+   "files": [
+    "codex.json"
+   ],
+   "items": {
+    "added": [],
+    "removed": [],
+    "changed": [
+     {
+      "id": "tool:rod",
+      "name_en": "Fishing rod",
+      "name_es": "Caña de pescar",
+      "fields": [
+       "from_en"
+      ]
+     }
+    ],
+    "changedCount": 1
+   },
+   "beasts": {
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "changedCount": 0
+   },
+   "skills": []
+  }
+ ]
 }
