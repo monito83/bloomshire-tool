@@ -45,5 +45,29 @@
     "forage": "Cualquier cosa silvestre",
     "food": "Cualquier plato",
     "ore": "Cualquier mineral"
+  },
+  "about": {
+    "title": "Sobre Bloomshire Tool",
+    "subtitle": "Una herramienta gratuita, hecha por la comunidad y para la comunidad.",
+    "close": "Cerrar",
+    "disclaimerTitle": "Antes de usarla",
+    "notOfficial": "Es una herramienta de la comunidad, no oficial. No la hace, ni la avala, ni la mantiene el equipo de Bloomshire.",
+    "mayErr": "Los datos salen del juego y se actualizan seguido, pero pueden tener errores o quedar atrasados después de una actualización. Chequeá en el juego lo que sea importante.",
+    "noSecrets": "La tool nunca te pide tu frase semilla ni tu clave privada, y firmar para entrar nunca mueve fondos.",
+    "contactTitle": "¿Encontraste un error o tenés una idea?",
+    "contactBody": "Errores, sugerencias y mejoras son bienvenidos. Escribime por Discord:",
+    "coffeeTitle": "Invitame un cafecito",
+    "coffeeBody": "Si la tool te sirve, podés invitarme un cafecito mandando lo que quieras a esta wallet. Ayuda a mantenerla online y a seguir sumando cosas. ¡Es totalmente opcional!",
+    "walletLabel": "wallet",
+    "walletNote": "Dirección EVM. Fijate siempre que termine en …{{end}}. Nunca te voy a pedir que firmes nada para donar.",
+    "copy": "Copiar {{what}}",
+    "copyShort": "Copiar",
+    "copied": "¡Copiado!",
+    "thanks": "¡Gracias por jugar y compartir!",
+    "footer": "Herramienta de la comunidad, no oficial ni asociada a Bloomshire. Puede contener errores.",
+    "footerShort": "Herramienta no oficial de la comunidad",
+    "footerDiscord": "Errores e ideas: {{user}} en Discord",
+    "discordTitle": "Copiar mi usuario de Discord",
+    "footerCoffee": "Invitame un cafecito"
   }
 }

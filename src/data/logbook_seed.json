@@ -1,6 +1,6 @@
 {
   "version": "47558e0af5e8",
-  "generatedAt": "2026-11-06T18:28:29.934Z",
+  "generatedAt": "2026-11-06T19:06:35.081Z",
   "sections": [
     {
       "id": "b018a1eb-decd-5203-9cd7-f6518fd820c0",
@@ -110,6 +110,14 @@
           "title_es": "",
           "md_en": "The tool reads public game data and, if you install the extension, your own game. It never plays for you and never changes anything in your game.",
           "md_es": "La tool lee datos públicos del juego y, si instalás la extensión, tu propia partida. Nunca juega por vos ni cambia nada en tu partida."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title_en": "Unofficial tool",
+          "title_es": "Herramienta no oficial",
+          "md_en": "Bloomshire Tool is an **unofficial community tool**: it is not made or endorsed by the Bloomshire team, and it may contain mistakes or fall behind after a game update. Found a bug or have an idea? Write to **monito83** on Discord. If the tool helps you, the **Buy me a coffee** button at the bottom of the screen has the details.",
+          "md_es": "Bloomshire Tool es una **herramienta de la comunidad, no oficial**: no la hace ni la avala el equipo de Bloomshire, y puede tener errores o quedar atrasada después de una actualización del juego. ¿Encontraste un error o tenés una idea? Escribile a **monito83** por Discord. Si la tool te sirve, el botón **Invitame un cafecito** al pie de la pantalla tiene los datos."
         }
       ]
     },

@@ -12,6 +12,7 @@ import MainNav from './bloomshire/app/MainNav';
 import TabRouter from './bloomshire/app/TabRouter';
 import ProfileModal from './bloomshire/app/ProfileModal';
 import ConnectModal from './bloomshire/app/ConnectModal';
+import AppFooter from './bloomshire/app/AppFooter';
 
 // Estado y lógica (docs/REFACTOR_SPEC.md, fase 3): cada archivo es dueño de sus datos
 import useWalletSession from './bloomshire/state/useWalletSession';
@@ -284,6 +285,9 @@ export default function BloomshireCommand() {
           />
         )}
       </div>
+
+      {/* 4. Pie: aviso no oficial, contacto y cafecito */}
+      <AppFooter />
     </div>
   );
 }

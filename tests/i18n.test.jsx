@@ -317,6 +317,7 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/market/marketBits.jsx',
       'src/components/bloomshire/app/ProfileModal.jsx',
       'src/components/bloomshire/app/ConnectModal.jsx',
+      'src/components/bloomshire/app/AppFooter.jsx',
       'src/components/bloomshire/app/HeaderHud.jsx',
       'src/components/bloomshire/app/MainNav.jsx',
       'src/components/bloomshire/tabs/QuestsTab.jsx',
