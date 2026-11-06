@@ -108,7 +108,7 @@ import {
   getSharedAudioContext,
   playChimeAlarm
 } from './bloomshire/bloomshireHelpers';
-import { slimSnapshot, backupFingerprint, backupDecision } from './bloomshire/cloudBackup';
+import { slimSnapshot, backupFingerprint, backupDecision, CLOUD_BACKUP_AUTO } from './bloomshire/cloudBackup';
 
 // Re-exportar helpers para máxima compatibilidad hacia atrás
 export {
@@ -327,7 +327,7 @@ export default function BloomshireCommand() {
   }, [lastSyncTime, i18n.language]);
   const lastExtensionSyncAtRef = useRef(0);
 
-  // Respaldo en la nube con freno (ver cloudBackup.js): como mucho cada 5 min y solo si cambio algo importante
+  // Respaldo en la nube con freno (ver cloudBackup.js): apagado por ahora; prendido, sube como mucho cada 10 min y solo si cambio algo importante
   const cloudBackupRef = useRef({ last: null, pending: null, timer: null });
   const flushCloudBackup = () => {
     const box = cloudBackupRef.current;
@@ -350,6 +350,7 @@ export default function BloomshireCommand() {
     }).catch(() => {});
   };
   const queueCloudBackup = (wallet, data, token) => {
+    if (!CLOUD_BACKUP_AUTO) return;
     const box = cloudBackupRef.current;
     const fp = backupFingerprint(data);
     const decision = backupDecision(box.last, fp);

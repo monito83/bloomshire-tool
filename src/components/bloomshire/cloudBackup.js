@@ -8,7 +8,11 @@
 //  - solo si cambio algo que importa (oro, inventario, pedidos, misiones, habilidades, nivel, VIP),
 //  - y sin los datos pesados que la nube no usa (el tablero del mercado, el desglose de habilidades).
 
-export const BACKUP_MIN_INTERVAL_MS = 5 * 60e3;
+// Respaldo automatico APAGADO (2026-11-06): nadie usa la herramienta desde otro dispositivo y el Fast Origin
+// Transfer de Vercel quedo al 82 %. Para volver a prenderlo, poner true (sube como mucho cada 10 min).
+// El boton manual "Guardar en la nube" sigue funcionando.
+export const CLOUD_BACKUP_AUTO = false;
+export const BACKUP_MIN_INTERVAL_MS = 10 * 60e3;
 
 const HEAVY_KEYS = ['marketTrades', 'skillsBreakdown', 'skillsMeta', '_fromExtension', '_userForced'];
 

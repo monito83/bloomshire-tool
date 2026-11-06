@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
-import { slimSnapshot, backupFingerprint, backupDecision, BACKUP_MIN_INTERVAL_MS } from '../src/components/bloomshire/cloudBackup';
+import { slimSnapshot, backupFingerprint, backupDecision, BACKUP_MIN_INTERVAL_MS, CLOUD_BACKUP_AUTO } from '../src/components/bloomshire/cloudBackup';
 
 const base = {
   wallet: '0xabc', gold: 1000, shards: 5, farmingLevel: 7, isVip: false, currentEnergy: 80,
@@ -48,6 +48,13 @@ describe('Respaldo en la nube con freno (Fast Origin Transfer de Vercel)', () =>
     expect(autoPushes).toBe(2); // el respaldo con freno y el boton manual "Guardar en la nube"
     expect(src).toContain('queueCloudBackup(effectiveWallet.toLowerCase(), data, currentToken)');
     expect(src).toContain('slimSnapshot(p.data)');
+  });
+
+  it('el respaldo automatico esta apagado por ahora y prendido sube como mucho cada 10 min', () => {
+    expect(CLOUD_BACKUP_AUTO).toBe(false);
+    expect(BACKUP_MIN_INTERVAL_MS).toBe(10 * 60e3);
+    const src = fs.readFileSync('src/components/BloomshireCommand.jsx', 'utf8');
+    expect(src).toContain('if (!CLOUD_BACKUP_AUTO) return;');
   });
 
   it('la extension ya no mete el tablero del mercado en cada partida', () => {
