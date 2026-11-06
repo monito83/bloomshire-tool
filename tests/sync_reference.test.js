@@ -45,6 +45,16 @@ describe('Bloomshire Companion - Synchronizer Reference & Read-Only Safety', () 
       expect(capturedLog).toBe('[Hook] referencia viva fijada desde /play/api/state');
     });
 
+    it('una vez fijada, un api/state posterior NO reemplaza la referencia viva (el juego copia adentro con #adopt)', () => {
+      const sessionSave = { energy: { v: 48, at: 1000 } };
+      const later = { energy: { v: 48, at: 1000 } };
+      const live = captureLiveDoc(null, { save: sessionSave }, '/play/api/state');
+      const after = captureLiveDoc(live, { save: later }, '/play/api/state?t=2');
+      expect(after).toBe(sessionSave);
+      sessionSave.energy = { v: 95, at: 5000 }; // el juego sigue jugando sobre su objeto
+      expect(after.energy.v).toBe(95);
+    });
+
     it('refuses to overwrite live doc from api/cmd', () => {
       const activeSave = { energy: { v: 140 } };
       const ephemeralCmdSave = { energy: { v: 139 } };
@@ -118,6 +128,14 @@ describe('Bloomshire Companion - Synchronizer Reference & Read-Only Safety', () 
     it('contains no guessing overlay (liveFarmOverlay, deletedCellKeys)', () => {
       expect(hookSource).not.toMatch(/liveFarmOverlay/);
       expect(hookSource).not.toMatch(/deletedCellKeys/);
+    });
+
+    it('las copias propias (resp.clone) nunca se usan como referencia viva', () => {
+      const src = fs.readFileSync(path.resolve('extension/content_hook.js'), 'utf8');
+      expect(src).not.toMatch(/resp\.clone\(\)\.json\(\)/);
+      expect(src).toMatch(/if \(ownClones\.has\(this\)\) return data;/);
+      // fetch y XHR ya no fijan la referencia: solo el json() del propio juego
+      expect((src.match(/captureLiveDoc\(prev, data/g) || []).length).toBe(1);
     });
 
     it('contains no admin-only window.bloomshire?.play references', () => {

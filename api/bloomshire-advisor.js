@@ -261,7 +261,7 @@ async function getSnapshotFromSupabase(wallet) {
 const WALLET_REGEX = /^0x[0-9a-fA-F]{40}$/;
 
 async function handleSync(req, res) {
-  // Push Snapshot from MoniOS / Bloomshire Companion Extension
+  // Push Snapshot desde la extensión Bloomshire Companion
   if (req.method === 'POST' && (req.query?.action === 'push_snapshot' || req.body?.action === 'push_snapshot' || req.body?.snapshot)) {
     const snap = req.body?.snapshot || req.body;
     const snapWallet = (snap?.wallet || req.body?.wallet || req.query?.wallet || '').trim();
@@ -418,7 +418,7 @@ async function handleSync(req, res) {
     try {
       const headers = {
         'Accept': 'application/json',
-        'User-Agent': 'MoniOS-Bloomshire-Bridge/1.0'
+        'User-Agent': 'Bloomshire-Tool-Bridge/1.0'
       };
       if (sessionCookie) headers['Cookie'] = sessionCookie;
 

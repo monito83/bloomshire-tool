@@ -59,7 +59,7 @@ function ensureBloomshireInjected(tabId) {
   }
 }
 
-// Reenviar datos a pestañas de MoniOS (con control de errores sin bucles)
+// Reenviar datos a las pestañas de Bloomshire Tool (con control de errores sin bucles)
 function broadcastToMonios(data, force = false) {
   if (!data) return;
   chrome.tabs.query({}, (tabs) => {
@@ -164,7 +164,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === 'REQUEST_MARKET_SALES_SYNC') {
-    console.log('[Background] Petición manual REQUEST_MARKET_SALES_SYNC recibida de MoniOS');
+    console.log('[Background] Petición manual REQUEST_MARKET_SALES_SYNC recibida de Bloomshire Tool');
     chrome.tabs.query({}, (tabs) => {
       let bloomshireTabFound = false;
       tabs.forEach(tab => {

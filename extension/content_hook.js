@@ -10,8 +10,12 @@ function shouldCaptureLiveDoc(url) {
   return true;
 }
 
+// La referencia viva se fija UNA sola vez: el primer api/state es el que el juego adopta como session.save
+// (game/session.js Session.open). Despues el juego copia cada save nuevo DENTRO de ese mismo objeto (#adopt),
+// asi que un api/state posterior trae un objeto que el juego nunca usa: tomarlo congelaria la lectura.
 function captureLiveDoc(currentRef, data, url, onCaptured) {
   if (!shouldCaptureLiveDoc(url)) return currentRef;
+  if (currentRef && typeof currentRef === 'object') return currentRef;
   const newSave = (data && typeof data === 'object' && data.save && typeof data.save === 'object') ? data.save : null;
   if (newSave && newSave !== currentRef) {
     if (typeof onCaptured === 'function') {
@@ -31,8 +35,17 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
   // Hook directo a Response.prototype.json para capturar la referencia viva en memoria del save (doc)
   // ÚNICAMENTE desde GET api/state (el juego adopta datos sobre este mismo objeto en #adopt)
   const _origResponseJson = Response.prototype.json;
+  // Respuestas clonadas por esta extension: se leen solo para metadatos (hora del servidor, mercado, mapas).
+  // Su JSON es una COPIA que el juego nunca modifica, asi que jamas se usa como referencia viva.
+  const ownClones = new WeakSet();
+  const ownJson = (resp) => {
+    const c = resp.clone();
+    ownClones.add(c);
+    return c.json();
+  };
   Response.prototype.json = async function () {
     const data = await _origResponseJson.apply(this, arguments);
+    if (ownClones.has(this)) return data;
     try {
       const respUrl = this.url || '';
       if (data && typeof data === 'object') {
@@ -1276,7 +1289,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
     try {
       const url = reqUrl || (typeof args[0] === 'string' ? args[0] : (args[0]?.url || ''));
       if (url.includes('/api/session') || url.includes('/play/api/door')) {
-        resp.clone().json().then(sessData => {
+        ownJson(resp).then(sessData => {
           const acc = sessData?.account || sessData?.player;
           if (acc?.id) {
             cachedWallet = acc.id;
@@ -1284,24 +1297,13 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           }
         }).catch(() => {});
       } else if (shouldCaptureLiveDoc(url)) {
-        resp.clone().json().then(data => {
+        // (la referencia viva la fija el Response.prototype.json del propio juego; aca solo la hora del servidor)
+        ownJson(resp).then(data => {
           updateServerTimeOffset(resp, data);
-          if (data && data.save) {
-            const prev = window.__bloomshire_live_doc;
-            const next = captureLiveDoc(prev, data, url, (newRef, u) => {
-              console.log(`[Hook] referencia viva fijada desde ${u}`);
-            });
-            if (next && next !== prev) {
-              window.__bloomshire_live_doc = next;
-              window.__bloomshire_master_save = next;
-              lastKnownSave = next;
-              dispatchState(next, true);
-            }
-          }
         }).catch(() => {});
       } else if (url.includes('api/cmd') || url.includes('api/trade') || url.includes('api/crypto')) {
         // Al volver la respuesta (100–150 ms después, para que el #adopt del juego termine)
-        resp.clone().json().then(data => {
+        ownJson(resp).then(data => {
           updateServerTimeOffset(resp, data);
         }).catch(() => {});
         setTimeout(() => {
@@ -1309,7 +1311,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           if (live) dispatchState(live, true);
         }, 130);
       } else if (url.includes('api/offers')) {
-        resp.clone().json().then(offersData => {
+        ownJson(resp).then(offersData => {
           latestMarketTrades = offersData;
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT',
@@ -1321,7 +1323,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
         const m = /api\/maps\/([a-zA-Z0-9_-]+)/.exec(url);
         const mapId = m ? decodeURIComponent(m[1]) : null;
         if (mapId && ATLAS_MAP_IDS.has(mapId)) {
-          resp.clone().json().then(mapJson => {
+          ownJson(resp).then(mapJson => {
             if (mapJson && mapJson.layers) {
               rawMapJsonCache.set(mapId, mapJson);
               setTimeout(() => renderMapJsonToWebP(mapId, mapJson), 800);
@@ -1353,20 +1355,8 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
       try {
         const reqUrl = this._reqUrl || '';
         if (shouldCaptureLiveDoc(reqUrl)) {
-          const data = JSON.parse(this.responseText);
-          updateServerTimeOffset(null, data);
-          if (data && data.save) {
-            const prev = window.__bloomshire_live_doc;
-            const next = captureLiveDoc(prev, data, reqUrl, (newRef, u) => {
-              console.log(`[Hook] referencia viva fijada desde ${u}`);
-            });
-            if (next && next !== prev) {
-              window.__bloomshire_live_doc = next;
-              window.__bloomshire_master_save = next;
-              lastKnownSave = next;
-              dispatchState(next, true);
-            }
-          }
+          // (JSON.parse crea una copia que el juego no usa: solo la hora del servidor)
+          updateServerTimeOffset(null, JSON.parse(this.responseText));
         } else if (reqUrl.includes('api/cmd') || reqUrl.includes('api/trade') || reqUrl.includes('api/crypto')) {
           setTimeout(() => {
             const live = window.__bloomshire_live_doc;
@@ -1423,7 +1413,7 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
     } catch (_) {}
   }, 1000);
 
-  // Sincronización manual instantánea (botón "Sincronizar" en MoniOS o en popup de extensión)
+  // Sincronización manual instantánea (botón "Sincronizar" de Bloomshire Tool o del popup de la extensión)
   window.addEventListener('message', (e) => {
     if (e.data?.type === 'FORCE_BLOOMSHIRE_SCAN') {
       console.log('[Bloomshire Companion Hook] Sincronización manual 100% pasiva solicitada');
