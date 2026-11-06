@@ -24,7 +24,7 @@ export default function useProductionTimers() {
     name: '',
     qty: 1,
     durationMinutes: 10,
-    location: '🏡 Cabaña (Home Island)',
+    location: 'home',
     icon: '🍲'
   });
   const [serverTimeOffset, setServerTimeOffset] = useState(0);
@@ -94,7 +94,7 @@ export default function useProductionTimers() {
       name: newTimerForm.name.trim(),
       icon: newTimerForm.icon || '🍲',
       count: Math.max(1, parseInt(newTimerForm.qty, 10) || 1),
-      location: newTimerForm.location || '🏡 Cabaña (Home Island)',
+      location: newTimerForm.location || 'home',
       durationMinutes: Math.max(1, parseInt(newTimerForm.durationMinutes, 10) || 5),
       plantedAt: Date.now(),
       readyAt: itemReadyAt,

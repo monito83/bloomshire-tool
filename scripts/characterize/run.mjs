@@ -172,9 +172,9 @@ async function runScenarios(browser) {
 
   // 5) temporizador manual en Temporizadores
   await start('monitors');
-  await click(/Nuevo Lote/);
-  await page.getByPlaceholder(/Guiso de Pescado/).fill('Pan de prueba');
-  await click(/Iniciar Temporizador/);
+  await click(/Nuevo Lote/i);
+  await page.getByPlaceholder(/Guiso de Pescado/i).fill('Pan de prueba');
+  await click(/Iniciar Temporizador/i);
   await capture(page, 'scenario__add_timer');
   await dumpStorage('scenario__add_timer');
 

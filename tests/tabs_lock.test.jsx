@@ -34,25 +34,25 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
   it('renders InventoryTab in liquidation (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="liquidation" />);
     expect(html).toContain('Liquidador de Inventario');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Connect game');
   });
 
   it('renders InventoryTab in odette (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="odette" />);
     expect(html).toContain('Pedidos Diarios de Odette');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Connect game');
   });
 
   it('renders InventoryTab in market_radar (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="market_radar" />);
     expect(html).toContain('Radar de Rotación de Mercado');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Connect game');
   });
 
   it('renders QuestsTab when locked (unconnected) without throwing', () => {
     const html = renderToString(<QuestsTab isConnected={false} />);
-    expect(html).toContain('Libro de Misiones');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Quest book');
+    expect(html).toContain('Connect game');
   });
 
   it('renders CraftTab without throwing and filters up to level properly', () => {
@@ -80,14 +80,14 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
 
   it('renders MonitorsTab when locked (unconnected) without throwing', () => {
     const html = renderToString(<MonitorsTab isConnected={false} />);
-    expect(html).toContain('Temporizadores');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Timers and live production');
+    expect(html).toContain('Connect game');
   });
 
   it('renders AdvisorTab when locked (unconnected) without throwing', () => {
     const html = renderToString(<AdvisorTab isConnected={false} />);
     expect(html).toContain('Asesor Táctico Copilot IA');
-    expect(html).toContain('Conectar Partida');
+    expect(html).toContain('Connect game');
   });
 
   it('renders SystemTab without throwing', () => {

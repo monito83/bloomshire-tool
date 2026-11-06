@@ -487,6 +487,7 @@ export const CRAFT_STATION_LOCATIONS = {
 };
 
 export function LockedModuleScreen({ title, description, onConnect, onBack }) {
+  const { t } = useTranslation('common');
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 text-center min-h-[460px]">
       <div className="max-w-md w-full bg-[#0a1224] border-2 border-amber-500/40 rounded-2xl p-7 shadow-2xl flex flex-col items-center gap-4 animate-in fade-in zoom-in-95 duration-150">
@@ -496,7 +497,7 @@ export function LockedModuleScreen({ title, description, onConnect, onBack }) {
         <div className="space-y-1.5">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 font-mono text-[10px] font-bold uppercase mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-            Modo Guía Libre Activo
+            {t('locked.badge')}
           </div>
           <h2 className="text-base font-black text-white">{title}</h2>
           <p className="text-xs text-slate-400 mt-2 leading-relaxed">
@@ -508,13 +509,13 @@ export function LockedModuleScreen({ title, description, onConnect, onBack }) {
             onClick={onConnect}
             className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>🎮 Conectar Partida / Companion</span>
+            <span>{t('locked.connect')}</span>
           </button>
           <button
             onClick={onBack}
             className="w-full py-2 bg-slate-800/60 hover:bg-slate-800 text-slate-400 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer"
           >
-            ← Volver al Mega-Atlas HD
+            {t('locked.back')}
           </button>
         </div>
       </div>
@@ -523,6 +524,11 @@ export function LockedModuleScreen({ title, description, onConnect, onBack }) {
 }
 
 export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas, handleRemoveProductionTimer }) {
+  const { t } = useTranslation('monitors');
+  // Lugar del temporizador manual: se guarda la clave (home, bakery...) y se muestra traducido;
+  // los temporizadores viejos guardaron el texto en espanol y se muestran tal cual.
+  const placeKey = { home: 'placeHome', bakery: 'placeBakery', bench: 'placeBench', forge: 'placeForge', mill: 'placeMill' }[item.location];
+  const locationText = placeKey ? t(`modal.${placeKey}`) : item.location;
   const [ticker, setTicker] = useState(() => Date.now());
 
   useEffect(() => {
@@ -560,31 +566,31 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
   if (isWithered) {
     statusBadge = (
       <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-rose-500 text-slate-950 border-rose-300">
-        🥀 MARCHITO
+        {t('card.withered')}
       </span>
     );
   } else if (isReady) {
     statusBadge = (
       <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-emerald-500 text-slate-950 border-emerald-300">
-        ✨ ¡LISTO!
+        {t('card.ready')}
       </span>
     );
   } else if (isSecondWater) {
     statusBadge = (
       <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-amber-500 text-slate-950 border-amber-300 animate-pulse">
-        💧 2.° RIEGO
+        {t('card.water2')}
       </span>
     );
   } else if (isFirstWater) {
     statusBadge = (
       <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-sky-500/20 text-sky-300 border-sky-500/40">
-        💧 1.ER RIEGO
+        {t('card.water1')}
       </span>
     );
   } else if (isRained) {
     statusBadge = (
       <span className="font-mono font-black text-xs px-2 py-0.5 rounded border bg-indigo-500/30 text-indigo-200 border-indigo-400/50">
-        🌧️ LLUVIA
+        {t('card.rain')}
       </span>
     );
   } else {
@@ -595,21 +601,21 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
     );
   }
 
-  let statusDesc = `${timeStr} restantes`;
+  let statusDesc = t('card.left', { time: timeStr });
   if (isWithered) {
-    statusDesc = 'Marchito tras 5h maduro sin cosechar';
+    statusDesc = t('card.witheredDesc');
   } else if (isReady) {
     const msToWither = item.witherAt ? Math.max(0, item.witherAt - effectiveNow) : 0;
     const witherMins = Math.floor(msToWither / 60000);
-    statusDesc = msToWither > 0 ? `Marchita en ${witherMins}m (5h tope)` : '¡Listo para cosechar!';
+    statusDesc = msToWither > 0 ? t('card.withersIn', { min: witherMins }) : t('card.readyDesc');
   } else if (isSecondWater) {
-    statusDesc = '¡Requiere 2.° riego para madurar!';
+    statusDesc = t('card.water2Desc');
   } else if (isFirstWater) {
-    statusDesc = item.outdoors ? 'Requiere riego (o lluvia al aire libre) 🌧️' : 'Sin regar (crecimiento pausado)';
+    statusDesc = item.outdoors ? t('card.water1Outdoors') : t('card.water1Desc');
   } else if (isRained) {
-    statusDesc = 'Regado por lluvia (creciendo) 🌧️';
+    statusDesc = t('card.rainedDesc');
   } else if (isCrop) {
-    statusDesc = `Creciendo (etapa ${item.stage ?? 0}/${item.lastStage ?? 4})`;
+    statusDesc = t('card.growing', { stage: item.stage ?? 0, last: item.lastStage ?? 4 });
   }
 
   return (
@@ -637,20 +643,20 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
                 <span>{item.count > 1 ? `${item.count}x ` : ''}{item.name}</span>
               </div>
               <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
-                <span>{isCrop ? 'Cultivo en Parcela' : 'Cocina / Crafteo'}</span>
+                <span>{isCrop ? t('card.crop') : t('card.crafting')}</span>
                 {isCrop && item.k && item.k < 1 && (
                   <span className="px-1 py-0.2 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[9px]">
-                    ⚡ -{Math.round((1 - item.k) * 100)}% tiempo
+                    {t('card.faster', { pct: Math.round((1 - item.k) * 100) })}
                   </span>
                 )}
                 {isCrop && item.regrowMinutes && (
                   <span className="px-1 py-0.2 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono font-bold text-[9px]">
-                    🔁 Rebrote ({item.harvestCount || 1}/{item.harvests || 5})
+                    {t('card.regrow', { n: item.harvestCount || 1, total: item.harvests || 5 })}
                   </span>
                 )}
                 {isRained && (
                   <span className="px-1 py-0.2 rounded bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 font-mono font-bold text-[9px]">
-                    🌧️ Lluvia
+                    {t('card.rainChip')}
                   </span>
                 )}
               </div>
@@ -681,7 +687,7 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
             />
           </div>
           <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
-            <span>{pct}% completado</span>
+            <span>{t('card.progress', { pct })}</span>
             <span className={isWithered ? 'text-rose-400 font-bold' : isReady ? 'text-emerald-300 font-bold' : isSecondWater ? 'text-amber-300 font-bold' : isRained ? 'text-indigo-300 font-bold' : ''}>
               {statusDesc}
             </span>
@@ -691,12 +697,12 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
 
       <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs gap-1">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[11px] text-slate-300 truncate max-w-[140px]" title={item.location}>
-            {item.location || 'Huerto'}
+          <span className="text-[11px] text-slate-300 truncate max-w-[140px]" title={locationText}>
+            {locationText || t('card.garden')}
           </span>
           {isCrop && (
             <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-slate-700/60 text-emerald-400/90 bg-emerald-950/30">
-              🌱 Parcela en Huerto
+              {t('card.plot')}
             </span>
           )}
         </div>
@@ -706,7 +712,7 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
             <button
               onClick={() => locateInMegaAtlas(item.atlasTarget)}
               className="w-6 h-6 rounded-md bg-[#141d2e] hover:bg-cyan-500/20 border border-slate-700 hover:border-cyan-500/40 text-cyan-300 flex items-center justify-center cursor-pointer transition-all shrink-0"
-              title="Ver ubicación en Mega-Atlas"
+              title={t('card.locate')}
             >
               <MapPin className="w-3 h-3" />
             </button>
@@ -715,9 +721,9 @@ export function LiveCropOrTimerCard({ item, serverTimeOffset, locateInMegaAtlas,
             <button
               onClick={() => handleRemoveProductionTimer(item.id)}
               className="px-2 py-0.5 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 rounded text-[10px] font-bold cursor-pointer"
-              title="Eliminar este temporizador"
+              title={t('card.removeTitle')}
             >
-              ✕ Listo
+              {t('card.remove')}
             </button>
           )}
         </div>

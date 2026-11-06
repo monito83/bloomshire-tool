@@ -33,5 +33,10 @@
   },
   "craftMaterialsBadge": {
     "tooltip": "Required: {{req}} | You have: {{total}} (Backpack: {{m}}, Cabin: {{cc}}, Town: {{cp}})"
+  },
+  "locked": {
+    "badge": "Free guide mode on",
+    "connect": "🎮 Connect game / Companion",
+    "back": "← Back to the Mega-Atlas HD"
   }
 }
