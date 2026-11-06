@@ -1,8 +1,13 @@
 // src/components/bloomshire/tabs/CalcTab.jsx
 import React, { useState, useMemo } from 'react';
-import { Filter } from 'lucide-react';
+import { Filter, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import calcData from '../../../../public/data/bloomshire/calc_data.json';
+import { sortCalcList, nextCalcSort, parseCalcSort } from '../calcSort';
+
+// Claves de orden del desplegable y de los presets (estrategias); el resto sale de tocar una columna
+const STRATEGY_SORTS = ['xpEnergy_desc', 'goldEnergy_desc', 'xpMin_desc', 'goldMin_desc', 'time_asc', 'cost_asc', 'sell_desc'];
+const HEADER_KEY = { plots: 'totalPlots', xpEnergy: 'xpPerEnergy', goldEnergy: 'goldPerEnergy', xpMin: 'xpPerMin', goldMin: 'goldPerMin' };
 
 export default function CalcTab({ 
   currentEnergy = 80, 
@@ -21,7 +26,10 @@ export default function CalcTab({
   };
   const [calcSkill, setCalcSkill] = useState('farming');
   const [calcLevelFilter, setCalcLevelFilter] = useState('all');
+  // calcSort ordena la tabla; strategySort decide el cultivo que recomienda el simulador (no cambia al tocar columnas)
   const [calcSort, setCalcSort] = useState('xpEnergy_desc');
+  const [strategySort, setStrategySort] = useState('xpEnergy_desc');
+  const chooseStrategy = (key) => { setCalcSort(key); setStrategySort(key); };
   const [calcSeasonFilter, setCalcSeasonFilter] = useState('all');
   const [availablePlots, setAvailablePlots] = useState(8);
   const [simulatedEnergy, setSimulatedEnergy] = useState('');
@@ -46,40 +54,41 @@ export default function CalcTab({
       }
     }
 
-    const [field, dir] = calcSort.split('_');
-    list.sort((a, b) => {
-      const eA = calcSkill === 'farming' ? 2 : (a.energyCost || a.energy || 1);
-      const eB = calcSkill === 'farming' ? 2 : (b.energyCost || b.energy || 1);
-      const xpPerEA = (a.xp ?? 0) / eA;
-      const xpPerEB = (b.xp ?? 0) / eB;
-      const netA = (a.sell ?? 0) - (a.cost ?? 0);
-      const netB = (b.sell ?? 0) - (b.cost ?? 0);
-      const goldPerEA = netA / eA;
-      const goldPerEB = netB / eB;
-
-      const isMasterA = calcSkill === 'farming' && farmingLevel >= 15 && a.hasRegrow;
-      const isMasterB = calcSkill === 'farming' && farmingLevel >= 15 && b.hasRegrow;
-      const xpMinA = isMasterA ? (a.regrowXpMin ?? a.xpMin ?? 0) : (a.xpMin ?? 0);
-      const xpMinB = isMasterB ? (b.regrowXpMin ?? b.xpMin ?? 0) : (b.xpMin ?? 0);
-      const goldMinA = isMasterA ? (a.regrowGoldMin ?? a.goldMin ?? 0) : (a.goldMin ?? 0);
-      const goldMinB = isMasterB ? (b.regrowGoldMin ?? b.goldMin ?? 0) : (b.goldMin ?? 0);
-
-      let vA = 0, vB = 0;
-      if (field === 'xpEnergy') { vA = xpPerEA; vB = xpPerEB; }
-      else if (field === 'goldEnergy') { vA = goldPerEA; vB = goldPerEB; }
-      else if (field === 'xpMin') { vA = xpMinA; vB = xpMinB; }
-      else if (field === 'goldMin') { vA = goldMinA; vB = goldMinB; }
-      else if (field === 'time') { vA = a.grow ?? 1; vB = b.grow ?? 0; }
-      else if (field === 'cost') { vA = a.cost ?? 0; vB = b.cost ?? 0; }
-      else if (field === 'sell') { vA = a.sell ?? 0; vB = b.sell ?? 0; }
-      return dir === 'desc' ? vB - vA : vA - vB;
-    });
-
     return list;
-  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort, farmingLevel]);
+  }, [calcSkill, calcSeasonFilter, calcLevelFilter]);
+
+  const sortCtx = { skill: calcSkill, farmingLevel, name: itemName, locale: i18n.language };
+  const tableList = useMemo(
+    () => sortCalcList(filteredCalcList, calcSort, sortCtx),
+    [filteredCalcList, calcSort, calcSkill, farmingLevel, i18n.language]
+  );
+  const { field: sortField, dir: sortDir } = parseCalcSort(calcSort);
+  const headerLabel = (field) => t(`table.headers.${HEADER_KEY[field] || field}`, { plots: availablePlots });
+
+  // Encabezado que ordena al tocarlo (primer clic segun la columna; el segundo invierte)
+  const renderSortTh = (field, children, className = '') => {
+    const active = sortField === field;
+    const Icon = active ? (sortDir === 'asc' ? ArrowUp : ArrowDown) : ArrowUpDown;
+    return (
+      <th
+        className={className ? `p-0 ${className}` : 'p-0'}
+        aria-sort={active ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}
+      >
+        <button
+          type="button"
+          onClick={() => setCalcSort(prev => nextCalcSort(prev, field))}
+          title={t('table.sortBy', { col: headerLabel(field) })}
+          className={`group w-full p-3 flex items-center gap-1 text-left uppercase tracking-wider cursor-pointer select-none transition-colors hover:text-white hover:bg-white/5 ${active ? 'text-white' : ''}`}
+        >
+          <span className="whitespace-nowrap">{children}</span>
+          <Icon className={`w-3 h-3 shrink-0 transition-all duration-200 ${active ? 'opacity-100 text-amber-300' : 'opacity-30 group-hover:opacity-80'}`} />
+        </button>
+      </th>
+    );
+  };
 
   const simEnergyVal = simulatedEnergy !== '' ? simulatedEnergy : Math.floor(currentEnergy || 80);
-  const topCrop = filteredCalcList[0] || null;
+  const topCrop = sortCalcList(filteredCalcList, strategySort, sortCtx)[0] || null;
   const energyPerCrop = calcSkill === 'farming' ? 2 : 1;
   const cropsPossible = Math.floor(simEnergyVal / energyPerCrop);
   const batchesPossible = Math.floor(cropsPossible / Math.max(1, availablePlots));
@@ -94,9 +103,9 @@ export default function CalcTab({
           </span>
           <button
             type="button"
-            onClick={() => { setCalcSort('xpEnergy_desc'); setCalcStrategyPreset('energy'); }}
+            onClick={() => { chooseStrategy('xpEnergy_desc'); setCalcStrategyPreset('energy'); }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
-              calcSort === 'xpEnergy_desc'
+              strategySort === 'xpEnergy_desc'
                 ? 'bg-emerald-500/30 text-emerald-300 border-emerald-400 shadow-lg shadow-emerald-950/40 ring-1 ring-emerald-400/50'
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
@@ -105,9 +114,9 @@ export default function CalcTab({
           </button>
           <button
             type="button"
-            onClick={() => { setCalcSort('xpMin_desc'); setCalcStrategyPreset('speedrun'); }}
+            onClick={() => { chooseStrategy('xpMin_desc'); setCalcStrategyPreset('speedrun'); }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
-              calcSort === 'xpMin_desc'
+              strategySort === 'xpMin_desc'
                 ? 'bg-amber-500/30 text-amber-300 border-amber-400 shadow-lg shadow-amber-950/40 ring-1 ring-amber-400/50'
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
@@ -116,9 +125,9 @@ export default function CalcTab({
           </button>
           <button
             type="button"
-            onClick={() => { setCalcSort('goldEnergy_desc'); setCalcStrategyPreset('gold_energy'); }}
+            onClick={() => { chooseStrategy('goldEnergy_desc'); setCalcStrategyPreset('gold_energy'); }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
-              calcSort === 'goldEnergy_desc'
+              strategySort === 'goldEnergy_desc'
                 ? 'bg-cyan-500/30 text-cyan-300 border-cyan-400 shadow-lg shadow-cyan-950/40 ring-1 ring-cyan-400/50'
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
@@ -127,9 +136,9 @@ export default function CalcTab({
           </button>
           <button
             type="button"
-            onClick={() => { setCalcSort('goldMin_desc'); setCalcStrategyPreset('profit'); }}
+            onClick={() => { chooseStrategy('goldMin_desc'); setCalcStrategyPreset('profit'); }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
-              calcSort === 'goldMin_desc'
+              strategySort === 'goldMin_desc'
                 ? 'bg-purple-500/30 text-purple-300 border-purple-400 shadow-lg shadow-purple-950/40 ring-1 ring-purple-400/50'
                 : 'bg-[#14203d] text-slate-300 border-slate-700 hover:bg-[#1a2b52] hover:text-white'
             }`}
@@ -275,7 +284,7 @@ export default function CalcTab({
             {t('filters.sortLabel')}
             <select 
               value={calcSort} 
-              onChange={(e) => setCalcSort(e.target.value)}
+              onChange={(e) => chooseStrategy(e.target.value)}
               className="bg-[#14203d] border border-slate-700 text-amber-300 font-bold rounded px-2.5 py-1 text-xs cursor-pointer"
             >
               <option value="xpEnergy_desc">{t('filters.sort.xpEnergy_desc')}</option>
@@ -285,6 +294,11 @@ export default function CalcTab({
               <option value="time_asc">{t('filters.sort.time_asc')}</option>
               <option value="cost_asc">{t('filters.sort.cost_asc')}</option>
               <option value="sell_desc">{t('filters.sort.sell_desc')}</option>
+              {!STRATEGY_SORTS.includes(calcSort) && (
+                <option value={calcSort}>
+                  {t('filters.sort.column', { col: headerLabel(sortField), dir: t(sortDir === 'asc' ? 'filters.sort.dirAsc' : 'filters.sort.dirDesc') })}
+                </option>
+              )}
             </select>
           </div>
         </div>
@@ -296,24 +310,24 @@ export default function CalcTab({
           <table className="w-full text-left text-xs border-collapse min-w-[980px]">
             <thead>
               <tr className="bg-[#121d38] border-b border-slate-800 text-slate-300 uppercase tracking-wider text-[10.5px] font-black">
-                <th className="p-3">{t('table.headers.item')}</th>
-                {calcSkill === 'farming' && <th className="p-3">{t('table.headers.season')}</th>}
-                <th className="p-3">{t('table.headers.time')}</th>
-                <th className="p-3">{t('table.headers.level')}</th>
-                <th className="p-3">{t('table.headers.cost')}</th>
-                <th className="p-3">{t('table.headers.sell')}</th>
-                <th className="p-3">{t('table.headers.net')}</th>
-                <th className="p-3">{t('table.headers.xp')}</th>
-                <th className="p-3 text-amber-300 bg-amber-950/30 border-l border-amber-900/40">{t('table.headers.energy')}</th>
-                <th className="p-3 text-emerald-300 bg-emerald-950/30">{t('table.headers.xpPerEnergy')}</th>
-                <th className="p-3 text-cyan-300 bg-cyan-950/30 border-r border-cyan-900/40">{t('table.headers.goldPerEnergy')}</th>
-                <th className="p-3">{t('table.headers.xpPerMin')}</th>
-                <th className="p-3">{t('table.headers.goldPerMin')}</th>
-                {calcSkill === 'farming' && <th className="p-3">{t('table.headers.totalPlots', { plots: availablePlots })}</th>}
+                {renderSortTh('item', t('table.headers.item'))}
+                {calcSkill === 'farming' && renderSortTh('season', t('table.headers.season'))}
+                {renderSortTh('time', t('table.headers.time'))}
+                {renderSortTh('level', t('table.headers.level'))}
+                {renderSortTh('cost', t('table.headers.cost'))}
+                {renderSortTh('sell', t('table.headers.sell'))}
+                {renderSortTh('net', t('table.headers.net'))}
+                {renderSortTh('xp', t('table.headers.xp'))}
+                {renderSortTh('energy', t('table.headers.energy'), 'text-amber-300 bg-amber-950/30 border-l border-amber-900/40')}
+                {renderSortTh('xpEnergy', t('table.headers.xpPerEnergy'), 'text-emerald-300 bg-emerald-950/30')}
+                {renderSortTh('goldEnergy', t('table.headers.goldPerEnergy'), 'text-cyan-300 bg-cyan-950/30 border-r border-cyan-900/40')}
+                {renderSortTh('xpMin', t('table.headers.xpPerMin'))}
+                {renderSortTh('goldMin', t('table.headers.goldPerMin'))}
+                {calcSkill === 'farming' && renderSortTh('plots', t('table.headers.totalPlots', { plots: availablePlots }))}
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 font-medium">
-              {filteredCalcList.map((item, idx) => {
+              {tableList.map((item, idx) => {
                 const timeMinutes = item.grow ?? 1;
                 const adjustedTime = hasFoundersTimeBonus ? Math.max(1, Math.round(timeMinutes * 0.8)) : timeMinutes;
                 const netProfit = (item.sell ?? 0) - (item.cost ?? 0);

@@ -4,7 +4,7 @@
 // BloomshireCommand: los nombres de estado se toman de los otros hooks para no cambiar una linea de la logica.
 import { useEffect, useRef } from 'react';
 import { computeCanonicalSkillsFromRaw, computeClientLiveEnergyAndBed, computeMaxEnergy } from '../bloomshireEngine';
-import { calculateLocalQuantities } from './inventoryLocal';
+import { calculateLocalQuantities, inventorySignature } from './inventoryLocal';
 import { PERKS_WALLET_KEY } from './usePlayerState';
 import { markCompanionSeen } from './useCompanionStatus';
 
@@ -17,13 +17,23 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
     setGold, setShards, setAvyn, setIsVip, vipUntil, setVipUntil, playerPerks, setPlayerPerks,
     farmersOwned, setFarmersOwned, setMaxEnergy, setSnapshotTimestamp, setRawEnergyObj,
     setFarmingLevel, setSkillsBreakdown, setSkillsMeta, setCurrentEnergy, setEnergyMeta,
-    setActiveQuestsList, setMoonmereProgress, setRawInventory, setItemQuantities, inventoryScope,
+    setActiveQuestsList, setMoonmereProgress, rawInventory, setRawInventory, setItemQuantities, inventoryScope,
     setActiveOrders, setActiveQuest, setIsSyncStale, setLastSyncTime, setIsSyncing
   } = player;
   const { setServerTimeOffset, setActiveCrops, setProductionTimers } = timers;
   const { setDailyTasks } = tasks;
 
   const lastExtensionSyncAtRef = useRef(0);
+
+  // Los listeners de la extension se registran una sola vez: leen el filtro de almacen actual desde una ref
+  // (antes quedaba fijo en 'all' y cada sync devolvia el liquidador a "Todo junto").
+  const inventoryScopeRef = useRef(inventoryScope);
+  inventoryScopeRef.current = inventoryScope;
+  const lastInventorySigRef = useRef(null);
+  // Al desconectar se vacia el inventario: la proxima partida tiene que volver a aplicarse aunque sea igual.
+  useEffect(() => {
+    if (!rawInventory || rawInventory.length === 0) lastInventorySigRef.current = null;
+  }, [rawInventory]);
 
   // Al vincular otra wallet (firma u otra cuenta), los beneficios de la partida anterior no son suyos:
   // se borran y la estamina maxima vuelve a calcularse solo con los Farmers on-chain de la nueva.
@@ -266,8 +276,12 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
     }
 
     if (Array.isArray(data.inventory)) {
-      setRawInventory(data.inventory);
-      setItemQuantities(calculateLocalQuantities(data.inventory, inventoryScope));
+      const sig = inventorySignature(data.inventory);
+      if (sig !== lastInventorySigRef.current) {
+        lastInventorySigRef.current = sig;
+        setRawInventory(data.inventory);
+        setItemQuantities(calculateLocalQuantities(data.inventory, inventoryScopeRef.current));
+      }
     }
 
     if (Array.isArray(data.activeOrders)) {
