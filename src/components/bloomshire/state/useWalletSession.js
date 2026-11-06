@@ -18,7 +18,6 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
   useEffect(() => {
     authenticatedWalletRef.current = authenticatedWallet;
   }, [authenticatedWallet]);
-  const [viewOnlyWallet, setViewOnlyWallet] = useState(null);
   const [isPremiumUnlocked, setIsPremiumUnlocked] = useState(false);
 
   // El acceso premium exige sesión SIWE verificada por el servidor (S1)
@@ -27,7 +26,6 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
   // Settings & System Updates State
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [connectCode, setConnectCode] = useState('');
   const [connectFeedback, setConnectFeedback] = useState(null);
   const [injectedWallets, setInjectedWallets] = useState([]);
   const [selectedWalletUuid, setSelectedWalletUuid] = useState(null);
@@ -200,9 +198,9 @@ export default function useWalletSession({ applySnapshotRef, disconnectRef }) {
   return {
     walletAddress, setWalletAddress, sessionToken, setSessionToken,
     authenticatedWallet, setAuthenticatedWallet, authenticatedWalletRef, lastReportedExtensionWalletRef,
-    viewOnlyWallet, setViewOnlyWallet, isPremiumUnlocked, setIsPremiumUnlocked, isConnected,
+    isPremiumUnlocked, setIsPremiumUnlocked, isConnected,
     showConnectModal, setShowConnectModal, showProfileModal, setShowProfileModal,
-    connectCode, setConnectCode, connectFeedback, setConnectFeedback,
+    connectFeedback, setConnectFeedback,
     injectedWallets, selectedWalletUuid, setSelectedWalletUuid,
     handleConnectAndSignWallet
   };

@@ -30,26 +30,62 @@
     "petNone": "Desde 3 Founding Farmers"
   },
   "connect": {
-    "title": "Vincular partida • Bloomshire Companion",
+    "title": "Conectá tu partida",
+    "subtitle": "Dos pasos para tener la tool completa.",
     "close": "Cerrar",
-    "recommended": "RECOMENDADO",
-    "o1Title": "🛡️ Opción 1: autenticación con tu billetera (Web3)",
-    "o1Body": "Firmá un mensaje con tu billetera (MetaMask, Rabby o la del navegador) para verificar que es tuya. <b>Sin costo de gas</b>. Protege tu partida en la nube para que nadie más pueda ver ni sobrescribir tus datos.",
-    "o1Button": "🔐 Conectar y firmar con la billetera (Web3)",
-    "pickWallet": "Elegir billetera (EIP-6963):",
-    "evm": "✓ Compatible con EVM (Ethereum / Arbitrum)",
-    "jwt": "✓ Sesión segura de 24 horas (renovable)",
-    "o2Title": "⚡ Opción 2: sincronización automática (extensión)",
-    "o2Body": "La extensión <b>Bloomshire Companion</b> lee tu partida en tu navegador, al instante:",
-    "o2Note": "ℹ️ <b>Nota:</b> la extensión sincroniza tu partida. Para desbloquear los módulos con candado (Temporizadores, Misiones y Copilot), firmá con tu billetera en la <b>Opción 1</b>.",
-    "o2Button": "⚡ Detectar / sincronizar la extensión Companion",
-    "o2Step1": "Instalá la extensión en Chrome, Brave o Edge.",
-    "o2Step2": "Abrí tu partida en <a>bloomshire.xyz/play/</a>.",
-    "o2Step3": "La herramienta detecta tu inventario, oro y cultivos en menos de 1 segundo.",
-    "o3Title": "🔍 Opción 3: modo lectura pública (manual)",
-    "o3Body": "Ingresá una wallet (<code>0x...</code>) para ver sus NFTs públicos en modo solo lectura (sin modificar datos):",
-    "o3Button": "Ver perfil",
-    "help": "¿Dudas? Consultá la guía en el Mega-Atlas."
+    "progress": "{{done}} de 2 pasos",
+    "complete": "Tool completa",
+    "pickWallet": "O elegí una wallet:",
+    "help": "Todo lo demás (Atlas, ítems, crafteo, aldeanos, Bitácora) funciona sin conectar nada.",
+    "ext": {
+      "title": "Extensión Bloomshire Companion",
+      "body": "Lee tu partida en vivo desde bloomshire.xyz/play: inventario, cofres, oro, energía, cultivos y temporizadores de crafteo.",
+      "readOnly": "Solo lee: nunca cambia nada en tu partida.",
+      "checking": "Buscando…",
+      "missing": "No detectada",
+      "outdated": "v{{version}} · hay una versión nueva",
+      "outdatedOld": "Versión vieja · hay una nueva",
+      "ok": "Instalada · v{{version}}",
+      "download": "Descargar extensión v{{version}} (.zip)",
+      "update": "Descargar v{{version}} (.zip)",
+      "sync": "Sincronizar ahora",
+      "recheck": "Volver a buscar"
+    },
+    "guide": {
+      "toggle": "Cómo instalarla",
+      "toggleUpdate": "Cómo actualizarla",
+      "copy": "Copiar",
+      "s1": "Descargá el <b>.zip</b> (v{{version}}) y descomprimilo. Te queda una carpeta llamada <b>bloomshire-companion</b>.",
+      "s2": "Abrí la página de extensiones en una pestaña nueva:",
+      "s3": "Activá el <b>Modo de desarrollador</b> (el interruptor de arriba a la derecha).",
+      "s4": "Tocá <b>Cargar descomprimida</b> y elegí la carpeta <b>bloomshire-companion</b>.",
+      "s5": "Abrí tu partida en <a>bloomshire.xyz/play</a> y volvé acá: se sincroniza sola.",
+      "browsers": "Brave: brave://extensions · Edge: edge://extensions. Funciona en cualquier navegador basado en Chromium.",
+      "updateHow": "Para actualizar: reemplazá la carpeta por la nueva y tocá el botón ↻ de recargar en la tarjeta de la extensión."
+    },
+    "sign": {
+      "title": "Firmá con tu wallet",
+      "body": "Desbloquea Timers, Misiones, Copilot, Liquidador, Odette y Radar, y guarda tu partida en la nube para verla en cualquier dispositivo.",
+      "safe": "Solo firmás un mensaje: sin gas, sin transacción y sin permiso para mover fondos. La sesión dura 24 horas.",
+      "button": "Conectar y firmar",
+      "pending": "Pendiente",
+      "ok": "Firmado · {{wallet}}"
+    },
+    "tiers": {
+      "title": "Qué suma cada paso",
+      "free": {
+        "title": "Sin conectar",
+        "body": "Mega-Atlas, Bitácora, buscador de ítems, crafteo, aldeanos y calculadora."
+      },
+      "ext": {
+        "title": "+ Extensión",
+        "body": "Tu inventario, oro, energía y cultivos, en vivo."
+      },
+      "sign": {
+        "title": "+ Firma con la wallet",
+        "body": "Módulos con candado y tu partida guardada en la nube."
+      }
+    }
   },
   "feedback": {
     "noWallet": "No se detectó ninguna billetera Web3 (MetaMask, Backpack, Rabby, etc.) en este navegador.",
@@ -64,13 +100,9 @@
     "signRejected": "Firma cancelada o rechazada en la billetera.",
     "walletChanged": "Se detectó un cambio de cuenta en el juego ({{wallet}}). Tu sesión anterior se cerró por seguridad. Volvé a firmar con la nueva wallet.",
     "searching": "📡 Señal enviada. Buscando la extensión Bloomshire Companion...",
-    "linkedCache": "¡Partida vinculada desde la caché de la extensión! Recordá firmar en la Opción 1 para desbloquear los candados.",
-    "linkedWallet": "¡Partida vinculada a {{wallet}}...! Recordá firmar en la Opción 1 para desbloquear los candados.",
-    "notFound": "⚠️ Señal enviada. Si estás en modo incógnito, habilitá la extensión en chrome://extensions. O abrí bloomshire.xyz/play en otra pestaña y tocá \"Forzar sincronización\" en el ícono de la extensión.",
-    "lookingUp": "Consultando el perfil on-chain en el servidor...",
-    "publicProfile": "Perfil público consultado ({{wallet}}... - {{farmers}} Farmers). Modo solo lectura.",
-    "readOnly": "Wallet {{wallet}}... vinculada en modo solo lectura.",
-    "badAddress": "Dirección inválida. Tiene que ser una dirección de Ethereum de 42 caracteres (0x...)."
+    "linkedCache": "¡Partida sincronizada desde la extensión! Firmá con tu wallet (paso 2) para desbloquear los módulos con candado.",
+    "notFound": "⚠️ Todavía no hay datos de la partida. Abrí bloomshire.xyz/play en otra pestaña (con la extensión instalada) y probá de nuevo. En incógnito, permití la extensión en chrome://extensions.",
+    "linkedFull": "Partida sincronizada desde la extensión. ¡La tool está completa!"
   },
   "system": {
     "idle": "Los datos del juego se actualizan solos (robot diario o \"Actualizar ahora\").",

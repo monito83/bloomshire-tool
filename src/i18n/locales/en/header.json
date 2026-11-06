@@ -17,7 +17,6 @@
     "level": "Lvl {{level}}"
   },
   "mode": {
-    "readOnly": "Read-only: {{wallet}}",
     "freeGuide": "Free Community Guide",
     "connectGameTitle": "Link your game or enter key",
     "connectGameButton": "🎮 Connect Game"

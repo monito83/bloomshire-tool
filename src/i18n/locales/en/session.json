@@ -30,26 +30,62 @@
     "petNone": "From 3 Founding Farmers"
   },
   "connect": {
-    "title": "Link your game • Bloomshire Companion",
+    "title": "Connect your game",
+    "subtitle": "Two steps to unlock the whole tool.",
     "close": "Close",
-    "recommended": "RECOMMENDED",
-    "o1Title": "🛡️ Option 1: sign in with your wallet (Web3)",
-    "o1Body": "Sign a message with your wallet (MetaMask, Rabby or your browser's) to prove it's yours. <b>No gas fee</b>. It protects your cloud save so nobody else can see or overwrite your data.",
-    "o1Button": "🔐 Connect and sign with your wallet (Web3)",
-    "pickWallet": "Choose a wallet (EIP-6963):",
-    "evm": "✓ EVM compatible (Ethereum / Arbitrum)",
-    "jwt": "✓ Secure 24-hour session (renewable)",
-    "o2Title": "⚡ Option 2: automatic sync (extension)",
-    "o2Body": "The <b>Bloomshire Companion</b> extension reads your game in your browser, instantly:",
-    "o2Note": "ℹ️ <b>Note:</b> the extension syncs your game. To unlock the locked modules (Timers, Quests and Copilot), sign with your wallet in <b>Option 1</b>.",
-    "o2Button": "⚡ Detect / sync the Companion extension",
-    "o2Step1": "Install the extension in Chrome, Brave or Edge.",
-    "o2Step2": "Open your game at <a>bloomshire.xyz/play/</a>.",
-    "o2Step3": "The tool picks up your inventory, gold and crops in under a second.",
-    "o3Title": "🔍 Option 3: public read-only mode (manual)",
-    "o3Body": "Enter a wallet (<code>0x...</code>) to see its public NFTs in read-only mode (nothing is changed):",
-    "o3Button": "View profile",
-    "help": "Questions? Check the guide in the Mega-Atlas."
+    "progress": "{{done}} of 2 steps",
+    "complete": "Full tool unlocked",
+    "pickWallet": "Or choose a wallet:",
+    "help": "Everything else (Atlas, items, crafting, villagers, Logbook) works without connecting.",
+    "ext": {
+      "title": "Bloomshire Companion extension",
+      "body": "Reads your game live from bloomshire.xyz/play: inventory, chests, gold, energy, crops and crafting timers.",
+      "readOnly": "It only reads: it never changes anything in your game.",
+      "checking": "Looking for it…",
+      "missing": "Not detected",
+      "outdated": "v{{version}} · update available",
+      "outdatedOld": "Old version · update available",
+      "ok": "Installed · v{{version}}",
+      "download": "Download extension v{{version}} (.zip)",
+      "update": "Download v{{version}} (.zip)",
+      "sync": "Sync now",
+      "recheck": "Check again"
+    },
+    "guide": {
+      "toggle": "How to install it",
+      "toggleUpdate": "How to update it",
+      "copy": "Copy",
+      "s1": "Download the <b>.zip</b> (v{{version}}) and unzip it. You get a folder called <b>bloomshire-companion</b>.",
+      "s2": "Open the extensions page in a new tab:",
+      "s3": "Turn on <b>Developer mode</b> (top-right switch).",
+      "s4": "Click <b>Load unpacked</b> and pick the <b>bloomshire-companion</b> folder.",
+      "s5": "Open your game at <a>bloomshire.xyz/play</a> and come back here: it syncs on its own.",
+      "browsers": "Brave: brave://extensions · Edge: edge://extensions. Works in any Chromium browser.",
+      "updateHow": "To update: replace the folder with the new one and press the ↻ reload button on the extension's card."
+    },
+    "sign": {
+      "title": "Sign in with your wallet",
+      "body": "Unlocks Timers, Quests, Copilot, Liquidator, Odette and Radar, and keeps your game in the cloud so you see it on any device.",
+      "safe": "You only sign a message: no gas, no transaction and no permission to move funds. The session lasts 24 hours.",
+      "button": "Connect and sign",
+      "pending": "Pending",
+      "ok": "Signed · {{wallet}}"
+    },
+    "tiers": {
+      "title": "What each step adds",
+      "free": {
+        "title": "Without connecting",
+        "body": "Mega-Atlas, Logbook, item finder, crafting, villagers and calculator."
+      },
+      "ext": {
+        "title": "+ Extension",
+        "body": "Your inventory, gold, energy and crops, live."
+      },
+      "sign": {
+        "title": "+ Wallet signature",
+        "body": "Locked modules and your game saved in the cloud."
+      }
+    }
   },
   "feedback": {
     "noWallet": "No Web3 wallet (MetaMask, Backpack, Rabby, etc.) was found in this browser.",
@@ -64,13 +100,9 @@
     "signRejected": "Signature cancelled or rejected in the wallet.",
     "walletChanged": "The game switched to another account ({{wallet}}). Your previous session was closed for safety. Please sign again with the new wallet.",
     "searching": "📡 Signal sent. Looking for the Bloomshire Companion extension...",
-    "linkedCache": "Game linked from the extension's cache! Remember to sign in Option 1 to unlock the locks.",
-    "linkedWallet": "Game linked to {{wallet}}...! Remember to sign in Option 1 to unlock the locks.",
-    "notFound": "⚠️ Signal sent. If you're in incognito, enable the extension at chrome://extensions. Or open bloomshire.xyz/play in another tab and press \"Force sync\" in the extension's icon.",
-    "lookingUp": "Looking up the on-chain profile on the server...",
-    "publicProfile": "Public profile loaded ({{wallet}}... - {{farmers}} Farmers). Read-only mode.",
-    "readOnly": "Wallet {{wallet}}... linked in read-only mode.",
-    "badAddress": "Invalid address. It must be a 42-character Ethereum address (0x...)."
+    "linkedCache": "Game synced from the extension! Sign with your wallet (step 2) to unlock the locked modules.",
+    "notFound": "⚠️ No game data yet. Open bloomshire.xyz/play in another tab (with the extension installed) and try again. In incognito, allow the extension at chrome://extensions.",
+    "linkedFull": "Game synced from the extension. The whole tool is ready!"
   },
   "system": {
     "idle": "Game data updates on its own (daily robot or \"Update now\").",
