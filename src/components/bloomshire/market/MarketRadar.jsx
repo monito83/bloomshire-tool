@@ -147,8 +147,8 @@ export default function MarketRadar({
       gold24: goldOnes.reduce((a, s) => a + s.total, 0),
       stalls: stalls.length,
       unitsListed: stalls.reduce((a, o) => a + o.left, 0),
-      historyCount: feed.sales.length,
-      since: feed.sales.length ? feed.sales[feed.sales.length - 1].at : null
+      historyCount: d1.length,
+      since: d1.length ? d1[d1.length - 1].at : null
     };
   }, [feed.sales, stalls, now]);
 
@@ -161,8 +161,8 @@ export default function MarketRadar({
     if (onlyMine) rows = rows.filter((r) => stock.total[r.item] > 0);
     if (q) rows = rows.filter((r) => r.item.toLowerCase().includes(q) || nameOf(r.item).toLowerCase().includes(q));
     const key = {
-      units24: (r) => r.units24 * 1e6 + r.units7,
-      gold24: (r) => r.gold24 * 1e3 + r.gold7,
+      units24: (r) => r.units24 * 1e3 + r.sales24,
+      gold24: (r) => r.gold24,
       trend: (r) => (r.trendPct == null ? -1e9 : r.trendPct),
       price: (r) => r.ref ?? r.cheapest ?? -1,
       supply: (r) => r.unitsListed
@@ -174,7 +174,7 @@ export default function MarketRadar({
   const sparkById = useMemo(() => {
     const out = {};
     tableRows.slice(0, 120).forEach((r) => {
-      out[r.item] = itemSeries(r.item, grouped.sales[r.item] || [], { now, buckets: 14 }).map((b) => b.median);
+      out[r.item] = itemSeries(r.item, grouped.sales[r.item] || [], { now }).map((b) => b.median);
     });
     return out;
   }, [tableRows, grouped, now]);
@@ -257,7 +257,9 @@ export default function MarketRadar({
   const hasStock = Object.keys(stock.total).length > 0;
 
   return (
-    <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-1 pb-4">
+    <div className="flex-1 min-h-0 overflow-y-auto pr-1 pb-4">
+      {/* (contenido en un bloque aparte: dentro de un flex con scroll, los recuadros se achicaban y la cabecera salia cortada) */}
+      <div className="flex flex-col gap-3">
       {/* Cabecera */}
       <div className="lb-fade relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-[#0c1a2e] via-[#0b1426] to-[#0a1220] p-4 shadow-[0_0_40px_rgba(16,185,129,0.06)]">
         <div className="pointer-events-none absolute -right-16 -top-16 w-56 h-56 rounded-full bg-emerald-500/10 blur-3xl" />
@@ -305,7 +307,7 @@ export default function MarketRadar({
         <Kpi icon={Zap} label={t('kpi.sales24')} value={f.n(kpi.sales24)} hint={t('kpi.sales24Hint', { units: f.n(kpi.units24) })} />
         <Kpi icon={Coins} tone="amber" label={t('kpi.gold24')} value={f.gold(kpi.gold24)} hint={t('kpi.gold24Hint')} />
         <Kpi icon={Store} tone="sky" label={t('kpi.stalls')} value={f.n(kpi.stalls)} hint={t('kpi.stallsHint', { units: f.n(kpi.unitsListed) })} />
-        <Kpi icon={History} tone="violet" label={t('kpi.history')} value={f.n(kpi.historyCount)} hint={kpi.since ? t('kpi.historyHint', { date: f.dayTime(kpi.since) }) : t('kpi.historyEmpty')} />
+        <Kpi icon={History} tone="violet" label={t('kpi.history')} value={f.n(kpi.historyCount)} hint={kpi.since ? t('kpi.historyHint', { date: f.time(kpi.since) }) : t('kpi.historyEmpty')} />
       </div>
 
       {/* Vistas */}
@@ -456,7 +458,7 @@ export default function MarketRadar({
                         {r.last ? f.gold(r.last.price) : r.otherCoinSales ? <span className="text-slate-500">{t('table.otherCoin')}</span> : '–'}
                         {r.lastAt ? <div className="text-[10px] text-slate-500">{f.ago(r.lastAt, now)}</div> : null}
                       </td>
-                      <td className="px-2 py-2 text-right tabular-nums font-black text-emerald-300">{r.median24 != null ? f.gold(r.median24) : r.median7 != null ? <span className="text-slate-400 font-bold">{f.gold(r.median7)}*</span> : '–'}</td>
+                      <td className="px-2 py-2 text-right tabular-nums font-black text-emerald-300">{r.median24 != null ? f.gold(r.median24) : '–'}</td>
                       <td className="px-2 py-2 text-right"><TrendBadge pct={r.trendPct} f={f} /></td>
                       <td className="px-2 py-2 text-right tabular-nums text-slate-200">{f.n(r.units24)}</td>
                       <td className="px-2 py-2 text-right text-slate-300 whitespace-nowrap">{r.listings ? t('table.listings', { count: r.listings, n: f.n(r.listings), units: f.n(r.unitsListed) }) : <span className="text-slate-500">{t('table.noSupply')}</span>}</td>
@@ -547,6 +549,7 @@ export default function MarketRadar({
         ) : null}
       </div>
 
+      </div>
       {sel ? <MarketItemModal data={sel} f={f} t={t} now={now} onClose={() => setSelected(null)} /> : null}
     </div>
   );

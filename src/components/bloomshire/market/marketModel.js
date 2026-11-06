@@ -12,9 +12,12 @@
 export const MARKET_FEE_RATE = 0.025;      // catalog.js marketFee: 2.5% de lo cobrado, al vendedor
 export const HOUR = 3600e3;
 export const DAY = 24 * HOUR;
-export const SALES_KEEP_MS = 45 * DAY;     // cuanto historial guardamos en el navegador
-export const SALES_KEEP_MAX = 20000;
-export const SUPPLY_KEEP_MAX = 600;        // fotos de la oferta (una por actualizacion)
+// Solo las ultimas 24 h, en el navegador de cada jugador (sin historial compartido: no genera trafico en Vercel)
+export const SALES_KEEP_MS = DAY;
+export const SALES_KEEP_MAX = 5000;
+export const SUPPLY_KEEP_MS = DAY;          // fotos de la oferta (una por actualizacion)
+export const SUPPLY_KEEP_MAX = 300;
+export const TREND_RECENT_MS = 6 * HOUR;    // tendencia: ultimas 6 h contra las 18 h anteriores
 
 export const COIN_UNIT = { gold: 1, shards: 1, avyn: 1e6, eth: 1e9, usdg: 1e6 };
 
@@ -120,7 +123,8 @@ export function supplySnapshot(stalls, at = Date.now()) {
 }
 
 export function mergeSupply(stored, snap) {
-  const list = (Array.isArray(stored) ? stored : []).filter((s) => s && s.at && s.at !== snap.at);
+  const oldest = snap.at - SUPPLY_KEEP_MS;
+  const list = (Array.isArray(stored) ? stored : []).filter((s) => s && s.at && s.at !== snap.at && s.at >= oldest);
   list.push(snap);
   list.sort((a, b) => a.at - b.at);
   return list.slice(-SUPPLY_KEEP_MAX);
@@ -146,28 +150,26 @@ export function weightedMedian(sales) {
   return list[list.length - 1].p;
 }
 
-/** Estadisticas de un item (en Oro). `sales` y `stalls` pueden traer otros items: se filtran. */
+/** Estadisticas de un item en las ultimas 24 h (en Oro). `sales` y `stalls` pueden traer otros items: se filtran. */
 export function itemStats(item, sales, stalls, now = Date.now()) {
-  const all = (sales || []).filter((s) => s.item === item);
+  const all = (sales || []).filter((s) => s.item === item && s.at >= now - DAY);
   const gold = all.filter((s) => s.coin === 'gold');
-  const d1 = gold.filter((s) => s.at >= now - DAY);
-  const d7 = gold.filter((s) => s.at >= now - 7 * DAY);
-  const prev = gold.filter((s) => s.at < now - DAY && s.at >= now - 7 * DAY);
+  const recent = gold.filter((s) => s.at >= now - TREND_RECENT_MS);
+  const before = gold.filter((s) => s.at < now - TREND_RECENT_MS);
   const units = (list) => list.reduce((acc, s) => acc + s.n, 0);
   const goldOf = (list) => list.reduce((acc, s) => acc + s.total, 0);
 
   const live = (stalls || []).filter((o) => o.item === item && !o.tool);
   const liveGold = live.filter((o) => o.coin === 'gold').sort((a, b) => a.price - b.price);
-  const median24 = weightedMedian(d1);
-  const median7 = weightedMedian(d7);
-  const medianPrev = weightedMedian(prev);
-  const ref = median24 ?? median7 ?? weightedMedian(gold);
-  const trendPct = median24 != null && medianPrev ? ((median24 - medianPrev) / medianPrev) * 100 : null;
+  const median24 = weightedMedian(gold);
+  const medianRecent = weightedMedian(recent);
+  const medianBefore = weightedMedian(before);
+  const trendPct = medianRecent != null && medianBefore ? ((medianRecent - medianBefore) / medianBefore) * 100 : null;
 
-  // velocidad: unidades por dia sobre la ventana que de verdad tenemos cubierta
+  // velocidad: unidades por dia sobre la parte de las 24 h que de verdad tenemos cubierta
   const firstAt = gold.length ? gold[gold.length - 1].at : null;
-  const spanDays = firstAt ? Math.max(1 / 24, Math.min(7, (now - firstAt) / DAY)) : null;
-  const perDay = spanDays ? units(d7) / spanDays : 0;
+  const spanDays = firstAt ? Math.max(1 / 24, Math.min(1, (now - firstAt) / DAY)) : null;
+  const perDay = spanDays ? units(gold) / spanDays : 0;
 
   return {
     item,
@@ -177,17 +179,14 @@ export function itemStats(item, sales, stalls, now = Date.now()) {
     last: gold[0] || null,
     lastAt: all[0]?.at || null,
     median24,
-    median7,
-    ref,
+    ref: median24,
     trendPct,
-    sales24: d1.length,
-    units24: units(d1),
-    units7: units(d7),
-    gold24: goldOf(d1),
-    gold7: goldOf(d7),
+    sales24: gold.length,
+    units24: units(gold),
+    gold24: goldOf(gold),
     perDay,
-    low7: d7.length ? Math.min(...d7.map((s) => s.price)) : null,
-    high7: d7.length ? Math.max(...d7.map((s) => s.price)) : null,
+    low24: gold.length ? Math.min(...gold.map((s) => s.price)) : null,
+    high24: gold.length ? Math.max(...gold.map((s) => s.price)) : null,
     listings: live.length,
     unitsListed: live.reduce((acc, o) => acc + o.left, 0),
     cheapest: liveGold[0]?.price ?? null,
@@ -203,8 +202,8 @@ export function marketTable(sales, stalls, now = Date.now()) {
   return [...ids].map((id) => itemStats(id, sales, stalls, now));
 }
 
-/** Serie diaria (o por hora) de un item: unidades vendidas y precio mediano, para graficos. */
-export function itemSeries(item, sales, { now = Date.now(), buckets = 14, size = DAY } = {}) {
+/** Serie por hora (o por dia) de un item: unidades vendidas y precio mediano, para graficos. */
+export function itemSeries(item, sales, { now = Date.now(), buckets = 24, size = HOUR } = {}) {
   const start = Math.floor((now - buckets * size) / size) * size + size;
   const out = Array.from({ length: buckets }, (_, i) => ({ at: start + i * size, units: 0, gold: 0, median: null, list: [] }));
   (sales || []).forEach((s) => {
