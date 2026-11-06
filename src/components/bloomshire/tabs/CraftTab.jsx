@@ -17,6 +17,38 @@ export default function CraftTab({
   skillsBreakdown = null
 }) {
   const { t, i18n } = useTranslation('craft');
+  // En ingles, los textos de las recetas (que la tool guarda en espanol) se arman desde sus datos
+  const craftEn = String(i18n.language || '').toLowerCase().startsWith('en');
+  const placeKeyOf = (place) => {
+    const p = String(place || '');
+    if (/Estufa/.test(p)) return 'stove';
+    if (/Banco/.test(p)) return 'bench';
+    if (/Yunque/.test(p)) return 'anvil';
+    if (/Forja/.test(p)) return 'forge';
+    if (/Lecher/.test(p)) return 'dairy';
+    if (/Molino/.test(p)) return 'mill';
+    if (/Telar/.test(p)) return 'loom';
+    return null;
+  };
+  const recipeView = (r) => {
+    if (!craftEn || !r) return r;
+    const placeKey = placeKeyOf(r.place);
+    const place = placeKey ? t(`recipe.places.${placeKey}`) : r.place;
+    const lvl = String(r.level || '');
+    let level = lvl;
+    let m;
+    if ((m = lvl.match(/^Cocina Lv (\d+) • (.+)$/))) level = t('recipe.cookLevel', { n: m[1], tier: m[2] });
+    else if ((m = lvl.match(/^Artesan\S+ Lv (\d+) \(\+(\d+) XP\)$/))) level = t('recipe.craftLevel', { n: m[1], xp: m[2] });
+    else if ((m = lvl.match(/^Lecher\S+ \(Hollin\) • Lv (\d+)$/))) level = t('recipe.dairyLevel', { n: m[1] });
+    else if ((m = lvl.match(/^Molino \(Hollin\) • Lv (\d+)$/))) level = t('recipe.millLevel', { n: m[1] });
+    const d = String(r.desc || '');
+    let desc = d;
+    if ((m = d.match(/Tipo de plato: (\w+)/))) desc = t('recipe.cookDesc', { energy: r.energyRestore, health: r.healthRestore, kind: m[1], min: r.minutes });
+    else if ((m = d.match(/Consume (\d+)⚡ y (\d+)g en (\d+) min/))) desc = t('recipe.craftDesc', { place, energy: m[1], gold: m[2], min: m[3] });
+    else if ((m = d.match(/Produce (\d+) unidad/))) desc = t('recipe.makeDesc', { place, n: m[1] });
+    const emoji = (String(r.item || '').match(/\s(\p{Extended_Pictographic}\S*)$/u) || [])[1];
+    return { ...r, item: r.dish ? `${r.dish}${emoji ? ` ${emoji}` : ''}` : r.item, level, desc, place };
+  };
   const craftData = propCraftData || defaultCraftData;
   const [craftCategory, setCraftCategory] = useState(initialCraftCategory);
   const [craftViewMode, setCraftViewMode] = useState('grid');
@@ -427,7 +459,8 @@ export default function CraftTab({
                   </div>
                 </div>
               ) : (
-                filteredAndSortedCrafts.map((recipe, idx) => {
+                filteredAndSortedCrafts.map((recipeRaw, idx) => {
+                  const recipe = recipeView(recipeRaw);
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
                   const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
@@ -445,7 +478,7 @@ export default function CraftTab({
                         {/* Cabecera: Icono + Titulo + Status Crafteable */}
                         <div className="flex items-start justify-between gap-1.5">
                           <div className="flex items-center gap-2 min-w-0">
-                            <ItemSprite name={recipe.item} size={28} className="shrink-0" />
+                            <ItemSprite name={recipeRaw.item} size={28} className="shrink-0" />
                             <div className="min-w-0">
                               <div className="font-bold text-white text-xs truncate leading-tight">{recipe.item}</div>
                               <div className="text-[10px] text-purple-300 font-mono mt-0.5 truncate">{recipe.level}</div>
@@ -588,7 +621,8 @@ export default function CraftTab({
                   </div>
                 </div>
               ) : (
-                filteredAndSortedCrafts.map((recipe, idx) => {
+                filteredAndSortedCrafts.map((recipeRaw, idx) => {
+                  const recipe = recipeView(recipeRaw);
                   const isLoomRecipe = (recipe.place || '').toLowerCase().includes('tilly') || (recipe.item || '').toLowerCase().includes('cloth');
                   const stationTarget = isLoomRecipe ? CRAFT_STATION_LOCATIONS.loom : (CRAFT_STATION_LOCATIONS[craftCategory] || CRAFT_STATION_LOCATIONS.bench);
                   const { craftability, energyCost, energyRestore, netEnergy, goldCost, sellPrice, netGold, minutes, goldPerMin, goldPerEnergy, xpPerEnergy, xp } = recipe;
@@ -603,7 +637,7 @@ export default function CraftTab({
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                        <ItemSprite name={recipe.item} size={28} className="shrink-0" />
+                        <ItemSprite name={recipeRaw.item} size={28} className="shrink-0" />
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-bold text-white text-xs truncate">{recipe.item}</span>

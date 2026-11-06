@@ -28,24 +28,24 @@ describe('Tabs rendering in free/unconnected mode with locks (candados)', () => 
 
   it('renders InventoryTab in arbitrage subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="arbitrage" />);
-    expect(html).toContain('ARBITRAJE');
+    expect(html).toContain('Arbitrage');
   });
 
   it('renders InventoryTab in liquidation (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="liquidation" />);
-    expect(html).toContain('Liquidador de Inventario');
+    expect(html).toContain('Inventory liquidator');
     expect(html).toContain('Connect game');
   });
 
   it('renders InventoryTab in odette (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="odette" />);
-    expect(html).toContain('Pedidos Diarios de Odette');
+    expect(html).toContain('Odette');
     expect(html).toContain('Connect game');
   });
 
   it('renders InventoryTab in market_radar (locked) subtab without throwing', () => {
     const html = renderToString(<InventoryTab isConnected={false} initialSubTab="market_radar" />);
-    expect(html).toContain('Radar de Rotación de Mercado');
+    expect(html).toContain('Market radar');
     expect(html).toContain('Connect game');
   });
 
@@ -118,5 +118,12 @@ describe('ProfileModal: beneficios de la cuenta vinculada', () => {
     expect(html).toContain('-20% crecimiento');
     expect(html).toContain('Habilitada');
     expect(html).toContain('Estamina Holder');
+  });
+});
+
+describe('Buscar en Items desde otra pestana', () => {
+  it('ItemsTab arranca con la busqueda pedida', () => {
+    const html = renderToString(<ItemsTab getPlayerItemQty={() => 0} locateInMegaAtlas={() => {}} initialSearch="Silvercap" />);
+    expect(html).toContain('value="Silvercap"');
   });
 });

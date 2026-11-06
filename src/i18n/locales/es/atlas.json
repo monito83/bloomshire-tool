@@ -1,0 +1,154 @@
+{
+  "toolbar": {
+    "hideListTitle": "Ocultar la lista de zonas",
+    "showListTitle": "Mostrar la lista de zonas",
+    "hideList": "Ocultar lista",
+    "showList": "Ver lista",
+    "title": "🗺️ MEGA-ATLAS PIXEL-ART ({{n}}/10 HD)",
+    "layerArt": "🎨 Arte HD",
+    "layerSubs": "📍 Sub-zonas",
+    "layerLabels": "🪧 Carteles",
+    "layerFishing": "🐟 Pesca",
+    "layerDoors": "🚪 Cuevas",
+    "layerNpcs": "👤 NPCs",
+    "layerClues": "✨ Secretos",
+    "layerRoute": "🧭 Ruta diaria",
+    "zoomOut": "Alejar el mapa",
+    "zoomIn": "Acercar el mapa",
+    "center": "Centrar todo el continente",
+    "hidePanelTitle": "Ocultar el panel derecho",
+    "showPanelTitle": "Mostrar el panel derecho",
+    "hidePanel": "Ocultar ficha",
+    "showPanel": "Ver ficha",
+    "syncHd": "Actualizar HD: dibuja los 10 mapas reales desde el juego",
+    "export": "Descargar el pack HD de mapas (.json)",
+    "import": "Importar un pack HD guardado (.json)",
+    "exitFull": "Salir de pantalla completa (ESC)",
+    "full": "Pantalla completa"
+  },
+  "banner": {
+    "none": "Para ver las casas, árboles, caminos y ríos reales del juego, tené Bloomshire abierto en otra pestaña (recargala con F5 una vez) y tocá \"🎨 Cargar mapas reales del juego\". Quedan guardados en tu navegador.",
+    "some": "¡{{n}} de 10 mapas reales ya están cargados y guardados! {{last}}",
+    "last": "(Último: {{name}})",
+    "passive": "Solo lectura • 0 comandos enviados al servidor"
+  },
+  "list": {
+    "search": "Buscar zona, sub-zona, pez, cueva, NPC, criatura...",
+    "toggleAllTitle": "Colapsar o expandir todas las regiones de la lista",
+    "collapse": "➖ Colapsar todo",
+    "expand": "➕ Expandir todo",
+    "world": "🌍 Ver todo el mundo",
+    "subs_one": "{{count}} sub-zona",
+    "subs_other": "{{count}} sub-zonas",
+    "go": "Ir ➡️",
+    "doors": "Puertas / cuevas",
+    "npcs": "Personajes",
+    "clues": "Pistas de misión"
+  },
+  "route": {
+    "title": "ITINERARIO DIARIO DE FARMEO (8 PASOS)",
+    "close": "Cerrar el itinerario",
+    "hint": "Tocá una parada para ir y enfocar el mapa en ese punto:",
+    "loot": "📦 Botín: {{loot}}",
+    "stop": "Parada {{n}}: {{name}}",
+    "steps": {
+      "1": {
+        "name": "Huerto de Dara (Cerezos)",
+        "short": "Huerto Dara (Cerezos)",
+        "cost": "0⚡",
+        "action": "Recoger Cerezos Grises de los árboles del norte y buscar la Gallina Perdida de Hollis.",
+        "loot": "4x Cerezas Grises (+0⚡) • Misión Ganadería"
+      },
+      "2": {
+        "name": "Parcelas del Pueblo",
+        "short": "Parcelas del Pueblo",
+        "cost": "1⚡ por riego",
+        "action": "Cosechar hortalizas listas y comprar semillas en la tienda de Hazel para resembrar.",
+        "loot": "Zanahorias, Papas o Trigo • XP Cultivo"
+      },
+      "3": {
+        "name": "Río y Puente Central",
+        "short": "Puente Central (Pesca)",
+        "cost": "2⚡ por lance",
+        "action": "Pescar en los remolinos del río de día para conseguir Carpas, Percas y Cachuelos.",
+        "loot": "3-5x Peces de Río • XP Pesca"
+      },
+      "4": {
+        "name": "Entrada a Whisperwood",
+        "short": "Entrada Whisperwood",
+        "cost": "3⚡ por árbol",
+        "action": "Talar troncos y robles caídos en el linde del bosque para acumular madera para crafteo.",
+        "loot": "10x Madera • 2x Madera Noble"
+      },
+      "5": {
+        "name": "Hondonada de las Setas (Mushroom Dell)",
+        "short": "Hondonada Setas (Silvercap)",
+        "cost": "0⚡",
+        "action": "Caminar a la sombra de los robles gigantes del suroeste para cosechar setas Silvercap salvajes.",
+        "loot": "6-10x Silvercap Mushrooms (para Cocina y Misiones)"
+      },
+      "6": {
+        "name": "El Claro Escondido (The Hidden Glade)",
+        "short": "Claro Escondido (Glowcap)",
+        "cost": "0⚡",
+        "action": "Pasar entre las columnas antiguas para recoger las setas Glowcap púrpuras y calcar las runas del arco.",
+        "loot": "3-5x Glowcap Mushrooms • Misión Juniper / Moon"
+      },
+      "7": {
+        "name": "Lago Moonmere (Altar & Muelle)",
+        "short": "Lago Moonmere (Altar)",
+        "cost": "2⚡ por lance",
+        "action": "Pescar en el agua profunda del norte (Trucha Tigre / Pez Fantasma) y entregar ofrendas en el santuario.",
+        "loot": "Peces Mágicos • Progreso Cap. 18"
+      },
+      "8": {
+        "name": "Panadería de Tamsin o Tu Cabaña",
+        "short": "Panadería Tamsin (Cocinar)",
+        "cost": "1⚡ por plato",
+        "action": "Entrar a la estufa para cocinar los pescados y setas del día (ganando hasta +200% de oro) y vender pedidos en Odette.",
+        "loot": "Platos Cocinados • Oro Máximo • XP Cocina"
+      }
+    }
+  },
+  "pin": {
+    "title": "📍 UBICADO EN EL MAPA:",
+    "remove": "Quitar el marcador",
+    "default": "Ubicación elegida"
+  },
+  "tools": {
+    "hand": "Mano (mover): arrastrá por todo el mapa sin seleccionar zonas",
+    "pointer": "Puntero (seleccionar): tocá una zona para ver sus detalles",
+    "zoom": "Lupa (enfocar): clic para acercar la zona (Alt+clic para alejar)",
+    "up": "Mover arriba",
+    "left": "Mover a la izquierda",
+    "reset": "Restablecer la vista",
+    "right": "Mover a la derecha",
+    "down": "Mover abajo"
+  },
+  "travel": "Viaje rápido:",
+  "npc": {
+    "villager": "ALDEANO",
+    "fallbackTitle": "Aldeano de Bloomshire",
+    "inBuilding": "En {{name}}",
+    "building": "🏠 Edificio: {{name}}",
+    "close": "Cerrar la ficha (Esc)",
+    "usual": "📍 Ubicación habitual:",
+    "schedule": "⏰ Horario:",
+    "gifts": "Le gusta recibir:",
+    "center": "Centrar la cámara en {{name}}",
+    "defaultGifts": "Flores silvestres, Miel, Tarta de cerezas"
+  },
+  "panel": {
+    "centerTitle": "Centrar la cámara en esta sub-zona",
+    "center": "🎯 Centrar acá",
+    "official": "Nombre oficial en el mapa (tecla M): \"{{name}}\"",
+    "finds": "Qué encontrás en esta sub-zona:",
+    "doors": "Cuevas, minas, tiendas y accesos ({{n}}):",
+    "npcs": "👥 Aldeanos en esta sub-zona ({{n}}):",
+    "npcsHint": "Clic para ver la ficha",
+    "npcTitle": "Ver la ficha de {{name}}",
+    "clues": "✨ Pistas de misiones y secretos ({{n}}):",
+    "siblings": "Otras sub-zonas de {{name}}:",
+    "pick": "Elegí una región o sub-zona en el mapa o en la lista de la izquierda para ver todo lo que tiene."
+  }
+}

@@ -225,6 +225,20 @@ for (const b of bestiary.beasts) {
   beastArt++;
 }
 
+// Misiones (Book One y las demas): nombre, resumen y pasos en ingles, tal como los escribe el juego. La tool tiene
+// sus misiones en espanol (src/data/canonicalQuests.json); con esto las muestra en ingles cuando se elige ese idioma.
+const book1 = await mod('game/book1.js');
+const questsMod = await mod('game/quests.js');
+const questsOut = {};
+for (const q of [...(questsMod.QUESTS || []), ...(book1.BOOK1 || [])]) {
+  if (!q?.id || !Array.isArray(q.steps)) continue;
+  questsOut[String(q.id).toLowerCase()] = {
+    name_en: q.name || null,
+    summary_en: q.summary || null,
+    steps: q.steps.map((st) => ({ name_en: st?.text || null, text_en: st?.where || null }))
+  };
+}
+
 // Aldeanos: solo los retratos que faltan o que son la imagen de relleno repetida
 const PORTRAITS = path.join(ROOT, 'public/data/bloomshire/portraits');
 const npcsMod = await mod('game/npcs.js');
@@ -309,7 +323,7 @@ const prev = { meta: readPrev('meta.json'), codex: readPrev('codex.json'), besti
 
 // Solo se escribe lo que cambio: asi una corrida sin novedades no genera commits.
 const changedFiles = [];
-for (const [name, data] of Object.entries({ 'codex.json': codex, 'skills.json': skills, 'bestiary.json': bestiary, 'adventure.json': adventure })) {
+for (const [name, data] of Object.entries({ 'codex.json': codex, 'skills.json': skills, 'bestiary.json': bestiary, 'adventure.json': adventure, 'quests.json': questsOut })) {
   const file = path.join(OUT, name);
   const text = serialize(data);
   if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== text) {

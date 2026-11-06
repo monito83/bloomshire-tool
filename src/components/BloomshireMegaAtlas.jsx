@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Maximize2,
   Minimize2,
@@ -38,75 +39,43 @@ import npcLooksData from '../../public/data/bloomshire/npc_looks.json';
 const DAILY_ROUTE_STEPS = [
   {
     n: 1,
-    name: 'Huerto de Dara (Cerezos)',
     x: 5542,
-    y: 3706,
-    cost: '0⚡',
-    action: 'Recoger Cerezos Grises de los árboles del norte y buscar la Gallina Perdida de Hollis.',
-    loot: '4x Cerezas Grises (+0⚡) • Misión Ganadería'
+    y: 3706
   },
   {
     n: 2,
-    name: 'Parcelas del Pueblo',
     x: 5990,
     y: 4420,
-    cost: '1⚡ por riego',
-    action: 'Cosechar hortalizas listas y comprar semillas en la tienda de Hazel para resembrar.',
-    loot: 'Zanahorias, Papas o Trigo • XP Cultivo'
   },
   {
     n: 3,
-    name: 'Río y Puente Central',
     x: 5120,
     y: 4420,
-    cost: '2⚡ por lance',
-    action: 'Pescar en los remolinos del río de día para conseguir Carpas, Percas y Cachuelos.',
-    loot: '3-5x Peces de Río • XP Pesca'
   },
   {
     n: 4,
-    name: 'Entrada a Whisperwood',
     x: 4580,
     y: 4420,
-    cost: '3⚡ por árbol',
-    action: 'Talar troncos y robles caídos en el linde del bosque para acumular madera para crafteo.',
-    loot: '10x Madera • 2x Madera Noble'
   },
   {
     n: 5,
-    name: 'Hondonada de las Setas (Mushroom Dell)',
     x: 3320,
     y: 5240,
-    cost: '0⚡',
-    action: 'Caminar a la sombra de los robles gigantes del suroeste para cosechar setas Silvercap salvajes.',
-    loot: '6-10x Silvercap Mushrooms (para Cocina y Misiones)'
   },
   {
     n: 6,
-    name: 'El Claro Escondido (The Hidden Glade)',
     x: 3672,
     y: 4584,
-    cost: '0⚡',
-    action: 'Pasar entre las columnas antiguas para recoger las setas Glowcap púrpuras y calcar las runas del arco.',
-    loot: '3-5x Glowcap Mushrooms • Misión Juniper / Moon'
   },
   {
     n: 7,
-    name: 'Lago Moonmere (Altar & Muelle)',
     x: 5712,
     y: 3256,
-    cost: '2⚡ por lance',
-    action: 'Pescar en el agua profunda del norte (Trucha Tigre / Pez Fantasma) y entregar ofrendas en el santuario.',
-    loot: 'Peces Mágicos • Progreso Cap. 18'
   },
   {
     n: 8,
-    name: 'Panadería de Tamsin o Tu Cabaña',
     x: 5106,
     y: 4246,
-    cost: '1⚡ por plato',
-    action: 'Entrar a la estufa para cocinar los pescados y setas del día (ganando hasta +200% de oro) y vender pedidos en Odette.',
-    loot: 'Platos Cocinados • Oro Máximo • XP Cocina'
   }
 ];
 
@@ -238,6 +207,11 @@ export function NpcAvatar({ npcId, name = '', size = 64, className = '' }) {
 }
 
 export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTarget = null }) {
+  const { t: tA, i18n: i18nA } = useTranslation('atlas');
+  const atlasEn = String(i18nA.language || '').toLowerCase().startsWith('en');
+  // Nombres de zona: el oficial del juego en ingles, el de la tool en espanol
+  const subName = (s) => (atlasEn ? (s?.nameEn || s?.nameEs) : s?.nameEs) || '';
+  const regName = (r) => (atlasEn ? (r?.enName || r?.name) : r?.name) || '';
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Estado de cámara (Zoom & Pan sobre el lienzo de 8650 x 10650)
@@ -409,7 +383,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
     if (!hoveredSubZoneId) return null;
     for (const r of megaAtlasData.regions) {
       const found = r.subZones.find(s => s.id === hoveredSubZoneId);
-      if (found) return { ...found, regionName: r.name, regionColor: r.color, regionIcon: r.icon };
+      if (found) return { ...found, regionName: regName(r), regionColor: r.color, regionIcon: r.icon };
     }
     return null;
   }, [hoveredSubZoneId]);
@@ -517,7 +491,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
       setActivePin({
         wx: Number(wx),
         wy: Number(wy),
-        label: label || 'Ubicación Seleccionada'
+        label: label || tA('pin.default')
       });
     }
     const targetRect =
@@ -635,15 +609,15 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
           <button
             onClick={() => setLeftPanelOpen(v => !v)}
             className="px-2 py-1 rounded-lg bg-[#101726] hover:bg-[#141d2e] border border-slate-800/80 text-amber-300 text-[10.5px] font-bold flex items-center gap-1 cursor-pointer"
-            title={leftPanelOpen ? 'Ocultar columna izquierda de zonas' : 'Mostrar columna izquierda de zonas'}
+            title={leftPanelOpen ? tA('toolbar.hideListTitle') : tA('toolbar.showListTitle')}
           >
             {leftPanelOpen ? <PanelLeftClose className="w-3.5 h-3.5" /> : <PanelLeftOpen className="w-3.5 h-3.5" />}
-            <span>{leftPanelOpen ? 'Ocultar Lista' : 'Ver Lista'}</span>
+            <span>{leftPanelOpen ? tA('toolbar.hideList') : tA('toolbar.showList')}</span>
           </button>
 
           <span className="px-2.5 py-1 rounded-lg bg-[#141d2e] border border-amber-500/60 text-amber-300 font-black text-xs flex items-center gap-1.5 shadow-inner">
             <img src={PUBLIC_SPRITES.chest} alt="" className="w-4 h-4 object-none" style={{ imageRendering: 'pixelated', objectPosition: '-40px 0' }} />
-            🗺️ MEGA-ATLAS PIXEL-ART ({loadedRealMapsCount}/10 HD)
+            {tA('toolbar.title', { n: loadedRealMapsCount })}
           </span>
 
         </div>
@@ -651,14 +625,14 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
         {/* Interruptores de Capas */}
         <div className="flex items-center gap-1.5 flex-wrap">
           {[
-            { label: '🎨 Arte HD', state: showPixelArtLayer, set: setShowPixelArtLayer },
-            { label: '📍 Sub-Zonas', state: showSubZonesLayer, set: setShowSubZonesLayer },
-            { label: '🪧 Carteles', state: showLabelsLayer, set: setShowLabelsLayer },
-            { label: '🐟 Pesca', state: showFishingLayer, set: setShowFishingLayer },
-            { label: '🚪 Cuevas', state: showDoorsLayer, set: setShowDoorsLayer },
-            { label: '👤 NPCs', state: showNpcsLayer, set: setShowNpcsLayer },
-            { label: '✨ Secretos', state: showCluesLayer, set: setShowCluesLayer },
-            { label: '🧭 Ruta Diaria', state: showDailyRouteLayer, set: setShowDailyRouteLayer }
+            { label: tA('toolbar.layerArt'), state: showPixelArtLayer, set: setShowPixelArtLayer },
+            { label: tA('toolbar.layerSubs'), state: showSubZonesLayer, set: setShowSubZonesLayer },
+            { label: tA('toolbar.layerLabels'), state: showLabelsLayer, set: setShowLabelsLayer },
+            { label: tA('toolbar.layerFishing'), state: showFishingLayer, set: setShowFishingLayer },
+            { label: tA('toolbar.layerDoors'), state: showDoorsLayer, set: setShowDoorsLayer },
+            { label: tA('toolbar.layerNpcs'), state: showNpcsLayer, set: setShowNpcsLayer },
+            { label: tA('toolbar.layerClues'), state: showCluesLayer, set: setShowCluesLayer },
+            { label: tA('toolbar.layerRoute'), state: showDailyRouteLayer, set: setShowDailyRouteLayer }
           ].map((layer, idx) => (
             <button
               key={idx}
@@ -677,7 +651,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <button
               onClick={() => setZoom(z => Math.max(0.75, Number((z - 0.35).toFixed(2))))}
               className="p-1 text-amber-200 hover:text-white cursor-pointer"
-              title="Alejar mapa"
+              title={tA('toolbar.zoomOut')}
             >
               <ZoomOut className="w-3.5 h-3.5" />
             </button>
@@ -687,14 +661,14 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <button
               onClick={() => setZoom(z => Math.min(15.0, Number((z + 0.35).toFixed(2))))}
               className="p-1 text-amber-200 hover:text-white cursor-pointer"
-              title="Acercar mapa"
+              title={tA('toolbar.zoomIn')}
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={handleResetView}
               className="p-1 text-amber-300 hover:text-white cursor-pointer border-l border-slate-800/80 pl-1.5"
-              title="Centrar Continente Completo"
+              title={tA('toolbar.center')}
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -703,10 +677,10 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
           <button
             onClick={() => setRightPanelOpen(v => !v)}
             className="px-2 py-1 rounded-lg bg-[#101726] hover:bg-[#141d2e] border border-slate-800/80 text-amber-300 text-[10.5px] font-bold flex items-center gap-1 cursor-pointer"
-            title={rightPanelOpen ? 'Ocultar inspector derecho' : 'Mostrar inspector derecho'}
+            title={rightPanelOpen ? tA('toolbar.hidePanelTitle') : tA('toolbar.showPanelTitle')}
           >
             {rightPanelOpen ? <PanelRightClose className="w-3.5 h-3.5" /> : <PanelRightOpen className="w-3.5 h-3.5" />}
-            <span>{rightPanelOpen ? 'Ocultar Ficha' : 'Ver Ficha'}</span>
+            <span>{rightPanelOpen ? tA('toolbar.hidePanel') : tA('toolbar.showPanel')}</span>
           </button>
 
           {/* Botones de Mapas HD & Import/Export + Pantalla Completa (Solo Iconos sobre el lateral derecho) */}
@@ -715,7 +689,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
               onClick={handleSyncRealMaps}
               disabled={isSyncingMaps}
               className="p-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 border border-emerald-400/60 text-white cursor-pointer shadow-md disabled:opacity-60"
-              title="Actualizar HD: Renderiza los 10 mapas reales desde el juego"
+              title={tA('toolbar.syncHd')}
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isSyncingMaps ? 'animate-spin' : ''}`} />
             </button>
@@ -724,7 +698,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
               <button
                 onClick={handleExportMapsPack}
                 className="p-1.5 rounded-lg bg-[#101726] hover:bg-[#162035] border border-slate-700/70 text-amber-300 cursor-pointer"
-                title="Descargar Pack HD de mapas (.json)"
+                title={tA('toolbar.export')}
               >
                 <Download className="w-3.5 h-3.5" />
               </button>
@@ -733,7 +707,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <button
               onClick={() => fileInputRef.current?.click()}
               className="p-1.5 rounded-lg bg-[#101726] hover:bg-[#162035] border border-slate-800/80 text-amber-200/80 cursor-pointer"
-              title="Importar Pack HD guardado (.json)"
+              title={tA('toolbar.import')}
             >
               <Upload className="w-3.5 h-3.5" />
             </button>
@@ -752,7 +726,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   ? 'bg-rose-700 hover:bg-rose-600 text-white border border-rose-400'
                   : 'bg-gradient-to-r from-[#e9a83a] to-[#c98219] hover:from-[#f5b94e] hover:to-[#d99126] text-[#1c0f05] border border-[#ffe292]'
                 }`}
-              title={isFullscreen ? "Salir de Pantalla Completa (ESC)" : "Pantalla Completa"}
+              title={isFullscreen ? tA('toolbar.exitFull') : tA('toolbar.full')}
             >
               {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
@@ -767,12 +741,12 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <span>✨</span>
             <span>
               {loadedRealMapsCount === 0
-                ? 'Para ver las casas, árboles, caminos y ríos reales en Pixel-Art del juego, ten abierto Bloomshire en otra pestaña (recárgala con F5 una vez) y pulsa "🎨 Cargar Mapas Reales del Juego". ¡Quedan guardados para siempre en tu navegador!'
-                : `¡${loadedRealMapsCount} de 10 mapas Pixel-Art reales ya están cargados y guardados en caché! (${lastSyncedMapName ? `Último: ${lastSyncedMapName}` : ''})`}
+                ? tA('banner.none')
+                : tA('banner.some', { n: loadedRealMapsCount, last: lastSyncedMapName ? tA('banner.last', { name: lastSyncedMapName }) : '' })}
             </span>
           </div>
           <span className="font-mono text-[10px] text-emerald-300 shrink-0">
-            Lectura pasiva • 0 comandos enviados al servidor
+            {tA('banner.passive')}
           </span>
         </div>
       )}
@@ -788,7 +762,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 <Search className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Buscar zona, sub-zona, pez, cueva, NPC, criatura..."
+                  placeholder={tA('list.search')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="bg-transparent border-none text-xs text-slate-200 placeholder-amber-200/40 outline-none w-full"
@@ -803,16 +777,16 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 <button
                   onClick={handleToggleAllRegions}
                   className="px-2 py-1 rounded bg-[#101726] hover:bg-[#162035] border border-slate-700/70 text-amber-300 font-black flex items-center gap-1 cursor-pointer transition-all"
-                  title="Colapsar o expandir todas las regiones de la columna izquierda"
+                  title={tA('list.toggleAllTitle')}
                 >
                   <ChevronsUpDown className="w-3 h-3 text-amber-300" />
-                  <span>{allRegionsExpanded ? '➖ Colapsar Todo' : '➕ Expandir Todo'}</span>
+                  <span>{allRegionsExpanded ? tA('list.collapse') : tA('list.expand')}</span>
                 </button>
                 <button
                   onClick={handleResetView}
                   className="px-2 py-1 rounded bg-[#080d17] hover:bg-[#162035] border border-slate-800/80 text-amber-300 font-bold cursor-pointer"
                 >
-                  🌍 Ver Todo el Mundo
+                  {tA('list.world')}
                 </button>
               </div>
             </div>
@@ -854,7 +828,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                         <span className="text-sm">{reg.icon}</span>
                         <div className="truncate">
                           <div className="text-xs font-black truncate flex items-center gap-1.5" style={{ color: reg.color }}>
-                            <span className="truncate">{reg.name}</span>
+                            <span className="truncate">{regName(reg)}</span>
                             {hasRealArt && (
                               <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-mono">
                                 HD
@@ -862,12 +836,12 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                             )}
                           </div>
                           <div className="text-[10px] text-amber-200/60">
-                            {visibleSubs.length} sub-zonas interactivas
+                            {tA('list.subs', { count: visibleSubs.length })}
                           </div>
                         </div>
                       </div>
                       <span className="text-[10px] font-mono bg-[#080d17] text-amber-300 px-1.5 py-0.5 rounded border border-slate-800/80">
-                        Ir ➡️
+                        {tA('list.go')}
                       </span>
                     </div>
 
@@ -892,12 +866,12 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                             >
                               <div className="truncate">
                                 <span className="mr-1">📍</span>
-                                <span>{sub.nameEs}</span>
+                                <span>{subName(sub)}</span>
                               </div>
                               <div className="flex items-center gap-1 shrink-0 text-[9.5px] font-mono">
-                                {sub.doors?.length > 0 && <span title="Puertas / Cuevas">🕳️{sub.doors.length}</span>}
-                                {sub.npcs?.length > 0 && <span title="Personajes">👤{sub.npcs.length}</span>}
-                                {sub.clues?.length > 0 && <span title="Pistas de Misión">✨{sub.clues.length}</span>}
+                                {sub.doors?.length > 0 && <span title={tA('list.doors')}>🕳️{sub.doors.length}</span>}
+                                {sub.npcs?.length > 0 && <span title={tA('list.npcs')}>👤{sub.npcs.length}</span>}
+                                {sub.clues?.length > 0 && <span title={tA('list.clues')}>✨{sub.clues.length}</span>}
                               </div>
                             </div>
                           );
@@ -934,19 +908,19 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
                 <div className="flex items-center gap-1.5 font-black text-xs text-amber-300">
                   <Compass className="w-4 h-4 text-amber-300 animate-spin" />
-                  <span>ITINERARIO DIARIO DE FARMEO (8 PASOS)</span>
+                  <span>{tA('route.title')}</span>
                 </div>
                 <button
                   onClick={() => setShowDailyRouteLayer(false)}
                   className="p-1 rounded hover:bg-[#141d2e] text-amber-200 cursor-pointer"
-                  title="Cerrar itinerario"
+                  title={tA('route.close')}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               <div className="text-[11px] text-amber-200/90 leading-tight">
-                Toca cualquier parada para viajar y enfocar el mapa en ese punto exacto:
+                {tA('route.hint')}
               </div>
 
               <div className="flex flex-col gap-1.5 max-h-76 overflow-y-auto pr-1">
@@ -955,7 +929,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     key={st.n}
                     onClick={() => {
                       focusOnWorldRect([st.x - 180, st.y - 180, 360, 360], 3.2);
-                      setActivePin({ wx: st.x, wy: st.y, label: `Parada ${st.n}: ${st.name}` });
+                      setActivePin({ wx: st.x, wy: st.y, label: tA('route.stop', { n: st.n, name: tA(`route.steps.${st.n}.name`) }) });
                     }}
                     className="p-2 rounded-lg bg-[#0e1628] hover:bg-[#162035] border border-slate-800/80 hover:border-[#ffcf5a] text-left transition-all cursor-pointer flex items-start gap-2 group"
                   >
@@ -964,16 +938,16 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     </span>
                     <div className="flex-1">
                       <div className="font-bold text-xs text-white group-hover:text-amber-300 flex items-center justify-between">
-                        <span>{st.name}</span>
+                        <span>{tA(`route.steps.${st.n}.name`)}</span>
                         <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/30">
-                          {st.cost}
+                          {tA(`route.steps.${st.n}.cost`)}
                         </span>
                       </div>
                       <div className="text-[10.5px] text-amber-200/90 mt-0.5 leading-snug font-medium">
-                        {st.action}
+                        {tA(`route.steps.${st.n}.action`)}
                       </div>
                       <div className="text-[9.5px] text-amber-400/90 font-mono mt-0.5">
-                        📦 Botín: {st.loot}
+                        {tA('route.loot', { loot: tA(`route.steps.${st.n}.loot`) })}
                       </div>
                     </div>
                   </button>
@@ -987,7 +961,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <div className="absolute top-3 right-3 z-30 flex items-center gap-2 bg-[#0e1628]/95 border-2 border-[#ffcf5a] text-amber-300 px-3.5 py-2 rounded-xl shadow-2xl">
               <MapPin className="w-4 h-4 text-amber-300 animate-bounce shrink-0" />
               <div className="text-xs">
-                <div className="font-black text-amber-300">📍 UBICADO EN EL MAPA:</div>
+                <div className="font-black text-amber-300">{tA('pin.title')}</div>
                 <div className="font-semibold text-white">{activePin.label}</div>
               </div>
               <button
@@ -996,7 +970,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   if (onClearFocusTarget) onClearFocusTarget();
                 }}
                 className="ml-2 p-1 rounded bg-[#141d2e] hover:bg-[#593a1c] text-amber-200 cursor-pointer"
-                title="Quitar marcador"
+                title={tA('pin.remove')}
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -1011,7 +985,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   ? 'bg-[#ffcf5a] text-[#1c0f05] font-black shadow'
                   : 'text-amber-300/80 hover:bg-[#101726]'
                 }`}
-              title="Mano (Mover): Arrastra libremente por todo el mapa sin seleccionar zonas"
+              title={tA('tools.hand')}
             >
               <Hand className="w-4 h-4" />
             </button>
@@ -1021,7 +995,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   ? 'bg-[#ffcf5a] text-[#1c0f05] font-black shadow'
                   : 'text-amber-300/80 hover:bg-[#101726]'
                 }`}
-              title="Puntero (Seleccionar): Haz clic en cualquier zona para ver detalles sin efecto látigo"
+              title={tA('tools.pointer')}
             >
               <MousePointer className="w-4 h-4" />
             </button>
@@ -1031,7 +1005,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   ? 'bg-[#ffcf5a] text-[#1c0f05] font-black shadow'
                   : 'text-amber-300/80 hover:bg-[#101726]'
                 }`}
-              title="Lupa (Enfocar): Clic para acercar la zona (Alt+Clic para alejar)"
+              title={tA('tools.zoom')}
             >
               <ZoomIn className="w-4 h-4" />
             </button>
@@ -1042,7 +1016,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <button
               onClick={() => setPan(p => ({ ...p, y: p.y + 140 }))}
               className="w-6 h-6 rounded bg-[#101726] hover:bg-[#ffcf5a] hover:text-[#1c0f05] text-amber-300 text-xs font-black flex items-center justify-center cursor-pointer"
-              title="Mover arriba"
+              title={tA('tools.up')}
             >
               ▲
             </button>
@@ -1050,21 +1024,21 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
               <button
                 onClick={() => setPan(p => ({ ...p, x: p.x + 140 }))}
                 className="w-6 h-6 rounded bg-[#101726] hover:bg-[#ffcf5a] hover:text-[#1c0f05] text-amber-300 text-xs font-black flex items-center justify-center cursor-pointer"
-                title="Mover izquierda"
+                title={tA('tools.left')}
               >
                 ◀
               </button>
               <button
                 onClick={handleResetView}
                 className="w-6 h-6 rounded bg-[#141d2e] hover:bg-[#ffcf5a] hover:text-[#1c0f05] text-amber-300 text-[10px] font-black flex items-center justify-center cursor-pointer"
-                title="Restablecer vista"
+                title={tA('tools.reset')}
               >
                 ●
               </button>
               <button
                 onClick={() => setPan(p => ({ ...p, x: p.x - 140 }))}
                 className="w-6 h-6 rounded bg-[#101726] hover:bg-[#ffcf5a] hover:text-[#1c0f05] text-amber-300 text-xs font-black flex items-center justify-center cursor-pointer"
-                title="Mover derecha"
+                title={tA('tools.right')}
               >
                 ▶
               </button>
@@ -1072,7 +1046,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             <button
               onClick={() => setPan(p => ({ ...p, y: p.y - 140 }))}
               className="w-6 h-6 rounded bg-[#101726] hover:bg-[#ffcf5a] hover:text-[#1c0f05] text-amber-300 text-xs font-black flex items-center justify-center cursor-pointer"
-              title="Mover abajo"
+              title={tA('tools.down')}
             >
               ▼
             </button>
@@ -1097,8 +1071,8 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     textShadow: '0 2px 0 #3b2207, 0 3px 6px #120801'
                   }}
                 >
-                  {hoveredSubZoneObj.nameEs}{' '}
-                  <span className="text-amber-300/75 font-mono text-[11px]">({hoveredSubZoneObj.nameEn})</span>
+                  {subName(hoveredSubZoneObj)}{!atlasEn && (<>{' '}
+                  <span className="text-amber-300/75 font-mono text-[11px]">({hoveredSubZoneObj.nameEn})</span></>)}
                 </div>
                 <div className="text-[11px] text-slate-200 font-semibold">
                   {hoveredSubZoneObj.regionName} • {(hoveredSubZoneObj.finds || []).slice(0, 2).join(' · ')}
@@ -1405,7 +1379,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                                 fontWeight="900"
                                 textAnchor="middle"
                               >
-                                {sub.nameEs.length > 25 ? `${sub.nameEs.slice(0, 23)}…` : sub.nameEs}
+                                {subName(sub).length > 25 ? `${subName(sub).slice(0, 23)}…` : subName(sub)}
                               </text>
                             </g>
                           )}
@@ -1471,14 +1445,14 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     strokeLinecap="round"
                   />
                   {[
-                    { n: 1, label: 'Huerto Dara (Cerezos)', x: 5542, y: 3706 },
-                    { n: 2, label: 'Parcelas del Pueblo', x: 5990, y: 4420 },
-                    { n: 3, label: 'Puente Central (Pesca)', x: 5120, y: 4420 },
-                    { n: 4, label: 'Entrada Whisperwood', x: 4580, y: 4420 },
-                    { n: 5, label: 'Hondonada Setas (Silvercap)', x: 3320, y: 5240 },
-                    { n: 6, label: 'Claro Escondido (Glowcap)', x: 3672, y: 4584 },
-                    { n: 7, label: 'Lago Moonmere (Altar)', x: 5712, y: 3256 },
-                    { n: 8, label: 'Panadería Tamsin (Cocinar)', x: 5106, y: 4246 }
+                    { n: 1, x: 5542, y: 3706 },
+                    { n: 2, x: 5990, y: 4420 },
+                    { n: 3, x: 5120, y: 4420 },
+                    { n: 4, x: 4580, y: 4420 },
+                    { n: 5, x: 3320, y: 5240 },
+                    { n: 6, x: 3672, y: 4584 },
+                    { n: 7, x: 5712, y: 3256 },
+                    { n: 8, x: 5106, y: 4246 }
                   ].map(wp => (
                     <g key={wp.n}>
                       <circle cx={wp.x} cy={wp.y} r="32" fill="#ffcf5a" stroke="#1c0f05" strokeWidth="6" />
@@ -1487,7 +1461,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                       </text>
                       <rect x={wp.x - 130} y={wp.y + 42} width="260" height="38" rx="8" fill="#1e130c" stroke="#ffcf5a" strokeWidth="3" />
                       <text cx={wp.x} cy={wp.y + 67} textAnchor="middle" fill="#ffe292" fontSize="18" fontWeight="bold">
-                        {wp.label}
+                        {tA(`route.steps.${wp.n}.short`)}
                       </text>
                     </g>
                   ))}
@@ -1621,7 +1595,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
 
           {/* Botones flotantes de Viaje Rápido en la base del Mapa con Estética Madera/Oro */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center gap-1.5 bg-[#0b1222]/95 border-2 border-slate-800/80 px-3.5 py-1.5 rounded-full shadow-2xl backdrop-blur-md">
-            <span className="text-[10px] font-black text-amber-400 uppercase mr-1">Viaje Rápido:</span>
+            <span className="text-[10px] font-black text-amber-400 uppercase mr-1">{tA('travel')}</span>
             {megaAtlasData.regions.slice(0, 8).map(r => (
               <button
                 key={r.id}
@@ -1641,7 +1615,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
             const npcMeta = npcsCatalog.find(x => x.name.toLowerCase() === selectedNpc.name.toLowerCase() || x.id.toLowerCase() === idKey);
             const gifts = (npcMeta?.desc || '').includes('Regalo:')
               ? [npcMeta.desc.split('Regalo:')[1].trim()]
-              : ['Flores Silvestres', 'Miel', 'Tarta de Cerezas'];
+              : [tA('npc.defaultGifts')];
 
             return (
               <div
@@ -1657,15 +1631,15 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <span className="font-black text-white text-base leading-tight truncate">{selectedNpc.name}</span>
                         <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/50 px-2 py-0.5 rounded-full font-mono font-bold tracking-wider">
-                          ALDEANO
+                          {tA('npc.villager')}
                         </span>
                       </div>
                       <div className="text-xs text-amber-300 font-semibold truncate mt-0.5">
-                        {npcMeta?.title || (selectedNpc.inBuilding ? `En ${selectedNpc.inBuilding}` : 'Aldeano de Bloomshire')}
+                        {npcMeta?.title || (selectedNpc.inBuilding ? tA('npc.inBuilding', { name: selectedNpc.inBuilding }) : tA('npc.fallbackTitle'))}
                       </div>
                       {selectedNpc.inBuilding && (
                         <div className="text-[10.5px] text-slate-400 mt-0.5 truncate">
-                          🏠 Edificio: {selectedNpc.inBuilding}
+                          {tA('npc.building', { name: selectedNpc.inBuilding })}
                         </div>
                       )}
                     </div>
@@ -1675,7 +1649,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   <button
                     onClick={() => setSelectedNpc(null)}
                     className="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-rose-950/80 hover:border-rose-500/60 border border-slate-700/60 text-slate-300 hover:text-white flex items-center justify-center cursor-pointer transition-all shrink-0 shadow"
-                    title="Cerrar ficha (Esc)"
+                    title={tA('npc.close')}
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -1685,12 +1659,12 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 rounded-xl bg-[#0d1527] border border-slate-800/80 space-y-1.5">
                     <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-slate-400 font-medium">📍 Ubicación habitual:</span>
+                      <span className="text-slate-400 font-medium">{tA('npc.usual')}</span>
                       <span className="text-slate-200 font-bold">{npcMeta?.loc || selectedNpc.map}</span>
                     </div>
                     {npcMeta?.schedule && (
                       <div className="flex items-center justify-between text-[11px]">
-                        <span className="text-slate-400 font-medium">⏰ Horario de rutina:</span>
+                        <span className="text-slate-400 font-medium">{tA('npc.schedule')}</span>
                         <span className="text-purple-300 font-mono text-[11px] font-bold">{npcMeta.schedule}</span>
                       </div>
                     )}
@@ -1713,7 +1687,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   {/* Regalos Favoritos */}
                   <div className="p-2 rounded-xl bg-[#141f17] border border-emerald-500/30 flex items-center justify-between text-[10.5px]">
                     <span className="text-emerald-300 font-bold flex items-center gap-1.5">
-                      <span>🎁</span> Le agrada recibir:
+                      <span>🎁</span> {tA('npc.gifts')}
                     </span>
                     <span className="text-emerald-100 font-semibold truncate max-w-[160px]">
                       {gifts.join(', ')}
@@ -1725,7 +1699,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     onClick={() => focusOnWorldRect([selectedNpc.wx - 200, selectedNpc.wy - 200, 400, 400], 4.5)}
                     className="w-full py-1.5 rounded-xl bg-[#141d2e] hover:bg-amber-400 hover:text-slate-950 border border-amber-500/60 text-amber-300 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer transition-all shadow"
                   >
-                    <span>🎯</span> Centrar cámara en {selectedNpc.name}
+                    <span>🎯</span> {tA('npc.center', { name: selectedNpc.name })}
                   </button>
                 </div>
               </div>
@@ -1743,24 +1717,24 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     <span
                       className="text-[10.5px] font-black uppercase px-2.5 py-0.5 rounded-full border border-amber-500/60 bg-[#101726] text-amber-300"
                     >
-                      {selectedRegion?.icon} {selectedRegion?.name}
+                      {selectedRegion?.icon} {regName(selectedRegion)}
                     </span>
                     <button
                       onClick={() => focusOnWorldRect(selectedSubZone.worldRect, 3.1)}
                       className="px-2 py-0.5 rounded bg-[#141d2e] hover:bg-amber-400 hover:text-slate-950 border border-amber-500/60 text-amber-300 text-[10px] font-black cursor-pointer transition-all"
-                      title="Centrar la cámara del mapa en esta sub-zona"
+                      title={tA('panel.centerTitle')}
                     >
-                      🎯 Centrar aquí
+                      {tA('panel.center')}
                     </button>
                   </div>
 
                   <h3
                     className="text-base font-black mt-2 leading-snug text-amber-300"
                   >
-                    📍 {selectedSubZone.nameEs}
+                    📍 {subName(selectedSubZone)}
                   </h3>
                   <div className="text-xs font-mono text-amber-400">
-                    Nombre oficial en mapa (Tecla M): &quot;{selectedSubZone.nameEn}&quot;
+                    {tA('panel.official', { name: selectedSubZone.nameEn })}
                   </div>
                   <p className="text-xs text-slate-200/90 mt-2 leading-relaxed">
                     {selectedSubZone.desc}
@@ -1771,7 +1745,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 <div className="bg-[#0e1628] border border-slate-700/70 rounded-xl p-3 shadow-inner">
                   <div className="text-[11px] font-black text-amber-300 uppercase tracking-wider mb-2 flex items-center gap-2">
                     <img src={PUBLIC_SPRITES.wood} alt="" className="w-4 h-4" style={{ imageRendering: 'pixelated' }} />
-                    <span>Qué encuentras en esta Sub-Zona:</span>
+                    <span>{tA('panel.finds')}</span>
                   </div>
                   <div className="space-y-1.5">
                     {(selectedSubZone.finds || []).map((item, idx) => (
@@ -1791,7 +1765,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                   <div className="bg-[#0e1628] border border-amber-500/50 rounded-xl p-3">
                     <div className="text-[11px] font-black text-amber-300 uppercase tracking-wider mb-2 flex items-center gap-2">
                       <img src={PUBLIC_SPRITES.stone} alt="" className="w-4 h-4" style={{ imageRendering: 'pixelated' }} />
-                      <span>Cuevas, Minas, Tiendas y Accesos ({selectedSubZone.doors.length}):</span>
+                      <span>{tA('panel.doors', { n: selectedSubZone.doors.length })}</span>
                     </div>
                     <div className="space-y-1">
                       {selectedSubZone.doors.map((d, idx) => (
@@ -1810,8 +1784,8 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 {selectedSubZone.npcs && selectedSubZone.npcs.length > 0 && (
                   <div className="bg-[#0e1726] border border-emerald-500/40 rounded-xl p-3">
                     <div className="text-[11px] font-black text-emerald-300 uppercase tracking-wider mb-2 flex items-center justify-between">
-                      <span>👥 Aldeanos en esta Sub-Zona ({selectedSubZone.npcs.length}):</span>
-                      <span className="text-[10px] text-slate-400 font-normal">Clic para ver ficha</span>
+                      <span>{tA('panel.npcs', { n: selectedSubZone.npcs.length })}</span>
+                      <span className="text-[10px] text-slate-400 font-normal">{tA('panel.npcsHint')}</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedSubZone.npcs.map((n, idx) => {
@@ -1827,7 +1801,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                               }
                             }}
                             className="flex items-center gap-2 px-2.5 py-1 bg-[#141f2e] hover:bg-emerald-950/90 border border-slate-700/80 hover:border-emerald-500/60 rounded-xl text-xs text-slate-200 font-bold cursor-pointer transition-all shadow-sm"
-                            title={`Ver ficha oficial de ${n.name}`}
+                            title={tA('panel.npcTitle', { name: n.name })}
                           >
                             <NpcAvatar npcId={n.name} name={n.name} size={24} className="border border-amber-500/40" />
                             <span>{n.name}</span>
@@ -1843,7 +1817,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 {selectedSubZone.clues && selectedSubZone.clues.length > 0 && (
                   <div className="bg-[#211230] border border-purple-400/50 rounded-xl p-3">
                     <div className="text-[11px] font-black text-purple-300 uppercase tracking-wider mb-2">
-                      ✨ Pistas de Misiones y Secretos Ocultos ({selectedSubZone.clues.length}):
+                      {tA('panel.clues', { n: selectedSubZone.clues.length })}
                     </div>
                     <div className="space-y-1">
                       {selectedSubZone.clues.map((c, idx) => (
@@ -1864,7 +1838,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                 {/* Todas las sub-zonas hermanas de esta región */}
                 <div className="mt-auto pt-3 border-t border-slate-800/60">
                   <div className="text-[10.5px] font-bold text-amber-400 uppercase mb-1.5">
-                    Otras Sub-Zonas de {selectedRegion?.name}:
+                    {tA('panel.siblings', { name: regName(selectedRegion) })}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {(selectedRegion?.subZones || [])
@@ -1878,7 +1852,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                               : 'bg-[#080d17] text-slate-200/80 hover:bg-[#162035] border border-slate-800/80'
                             }`}
                         >
-                          {s.nameEs}
+                          {subName(s)}
                         </button>
                       ))}
                   </div>
@@ -1886,7 +1860,7 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
               </>
             ) : (
               <div className="text-xs text-amber-200/70">
-                Selecciona cualquier región o sub-zona en el mapa o en el listado izquierdo para inspeccionar todo lo que contiene.
+                {tA('panel.pick')}
               </div>
             )}
           </aside>

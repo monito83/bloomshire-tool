@@ -10,7 +10,8 @@ import {
 } from 'lucide-react';
 import { 
   DASHBOARD_QUEST_CATALOG, 
-  LockedModuleScreen 
+  LockedModuleScreen,
+  localizeQuest
 } from '../bloomshireHelpers';
 import { CANONICAL_SKILLS } from '../bloomshireEngine';
 
@@ -38,8 +39,7 @@ export default function QuestsTab({
   locateInMegaAtlas,
   getItemStorageBreakdown,
   setActiveTab,
-  setItemCategoryFilter,
-  setItemSearchQuery
+  openItemsSearch
 }) {
   const { t, i18n } = useTranslation('quests');
   const fmt = (n) => Number(n || 0).toLocaleString(i18n.language);
@@ -106,9 +106,9 @@ export default function QuestsTab({
     || null;
 
   const normId = (targetQuest?.id || '').toLowerCase();
-  const catDef = DASHBOARD_QUEST_CATALOG[normId] ||
+  const catDef = localizeQuest(DASHBOARD_QUEST_CATALOG[normId] ||
     DASHBOARD_QUEST_CATALOG[normId.replace(/^s_/, 'sd_')] ||
-    DASHBOARD_QUEST_CATALOG[normId.replace(/^sd_/, 's_')];
+    DASHBOARD_QUEST_CATALOG[normId.replace(/^sd_/, 's_')], i18n.language);
 
   const qTitle = catDef?.name || targetQuest?.name || targetQuest?.title || (targetQuest?.id ? t('fallback.quest', { id: targetQuest.id.toUpperCase() }) : t('fallback.noQuest'));
   const isMain = targetQuest?.isMainStory || normId.startsWith('bk') || normId.startsWith('ff');
@@ -477,9 +477,9 @@ export default function QuestsTab({
               ) : (
                 activeQuestsList.map((q, idx) => {
                   const norm = (q.id || '').toLowerCase();
-                  const qCat = DASHBOARD_QUEST_CATALOG[norm] ||
+                  const qCat = localizeQuest(DASHBOARD_QUEST_CATALOG[norm] ||
                     DASHBOARD_QUEST_CATALOG[norm.replace(/^s_/, 'sd_')] ||
-                    DASHBOARD_QUEST_CATALOG[norm.replace(/^sd_/, 's_')];
+                    DASHBOARD_QUEST_CATALOG[norm.replace(/^sd_/, 's_')], i18n.language);
                   const isSelected = targetQuest && (targetQuest.id === q.id || (targetQuest.normalizedId && targetQuest.normalizedId === q.normalizedId));
                   const isMainQ = q.isMainStory || norm.startsWith('bk') || norm.startsWith('ff');
                   const title = qCat?.name || q.name || q.title || t('fallback.quest', { id: q.id.toUpperCase() });
@@ -1078,11 +1078,7 @@ export default function QuestsTab({
                     </span>
                     <button
                       onClick={() => {
-                        if (setItemCategoryFilter && setItemSearchQuery && setActiveTab) {
-                          setItemCategoryFilter('all');
-                          setItemSearchQuery('Silvercap');
-                          setActiveTab('items');
-                        }
+                        if (openItemsSearch) openItemsSearch('Silvercap');
                       }}
                       className="px-2.5 py-1 bg-amber-500 text-slate-950 font-black rounded text-[11px] cursor-pointer shrink-0"
                     >

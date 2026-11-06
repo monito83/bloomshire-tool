@@ -1,5 +1,5 @@
 // Bloomshire Tool - Live Companion & Market Radar (Modularized Architecture)
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // Importar datos canónicos JSON
 
@@ -51,6 +51,10 @@ export default function BloomshireCommand() {
     injectedWallets, handleConnectAndSignWallet
   } = wallet;
   const { activeTab, setActiveTab, atlasFocusTarget, setAtlasFocusTarget, locateInMegaAtlas } = tab;
+  // Busqueda que se abre en Items desde otra pestana ("Donde consigo X?" en Odette, setas en Misiones)
+  const [itemsSearchSeed, setItemsSearchSeed] = useState('');
+  useEffect(() => { if (activeTab !== 'items') setItemsSearchSeed(''); }, [activeTab]);
+  const openItemsSearch = (query) => { setItemsSearchSeed(query || ''); setActiveTab('items'); };
   const { dailyTasks, setDailyTasks, toggleDailyTask, dailyTasksCompletedCount } = tasks;
   const {
     activeCrops, setActiveCrops, productionTimers, setProductionTimers, soundAlarmEnabled, setSoundAlarmEnabled,
@@ -235,6 +239,8 @@ export default function BloomshireCommand() {
           toggleDeliveredItem={toggleDeliveredItem}
           updateStatusMessage={updateStatusMessage}
           walletAddress={walletAddress}
+          itemsSearchSeed={itemsSearchSeed}
+          openItemsSearch={openItemsSearch}
         />
 
         {showProfileModal && (

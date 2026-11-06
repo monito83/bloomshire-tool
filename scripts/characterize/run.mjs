@@ -92,7 +92,7 @@ async function runMode(browser, mode) {
 
     if (tab === 'inventory') {
       for (const sub of ECONOMY_SUBTABS) {
-        const btn = page.getByRole('button', { name: new RegExp(sub) }).first();
+        const btn = page.getByRole('button', { name: new RegExp(sub, 'i') }).first();
         if (await btn.count()) {
           await btn.click();
           await page.clock.runFor(300);

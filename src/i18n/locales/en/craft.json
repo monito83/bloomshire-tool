@@ -118,5 +118,23 @@
     "ingredients": "Ingredients (Your Stock):",
     "materialsReady": "Materials 100% ready",
     "locateStationItem": "Locate station for \"{{item}}\" in the Mega-Atlas"
+  },
+  "recipe": {
+    "cookLevel": "Cooking lv {{n}} • {{tier}}",
+    "craftLevel": "Crafting lv {{n}} (+{{xp}} XP)",
+    "dairyLevel": "Dairy (Hollin) • lv {{n}}",
+    "millLevel": "Mill (Hollin) • lv {{n}}",
+    "cookDesc": "+{{energy}} ⚡ energy, +{{health}} ❤️ health. Dish type: {{kind}}. Cooks at the stove in {{min}} min.",
+    "craftDesc": "Made at {{place}}. Uses {{energy}}⚡ and {{gold}}g in {{min}} min.",
+    "makeDesc": "Made at {{place}}. Makes {{n}} unit(s).",
+    "places": {
+      "stove": "Stove (Tamsin's Bakery / cottage)",
+      "bench": "Workbench (Pell's carpentry)",
+      "forge": "The forge (Bram)",
+      "anvil": "The forge and anvil (Bram)",
+      "dairy": "Dairy (Hollin's farm, Southvale)",
+      "mill": "Water mill (Hollin's farm, Southvale)",
+      "loom": "Tilly's loom (tailoring)"
+    }
   }
 }

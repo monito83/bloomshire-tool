@@ -80,3 +80,15 @@ describe('Buscador de items con el Codice oficial', () => {
     expect(es).toContain('xp de Cultivo');
   });
 });
+
+describe('Misiones en ingles (official/quests.json)', () => {
+  it('usa el nombre y los pasos del juego cuando coinciden', async () => {
+    const { localizeQuest, DASHBOARD_QUEST_CATALOG } = await import('../src/components/bloomshire/bloomshireHelpers');
+    const en = localizeQuest(DASHBOARD_QUEST_CATALOG.bk03, 'en');
+    expect(en.name).toBe('Ch. 3: First Harvest');
+    expect(en.steps[0].name).toBe('Water the carrots');
+    expect(en.steps[0].where).toContain('Ch. 3: First Harvest');
+    expect(localizeQuest(DASHBOARD_QUEST_CATALOG.bk03, 'es')).toBe(DASHBOARD_QUEST_CATALOG.bk03);
+    expect(localizeQuest(DASHBOARD_QUEST_CATALOG.sd_otto, 'en').name).toBe('Side: Soup for the Lamplighter');
+  });
+});

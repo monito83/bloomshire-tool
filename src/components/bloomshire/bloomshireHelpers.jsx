@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { MapPin } from 'lucide-react';
 import itemIconsMap from '../../../public/data/bloomshire/item_icons_map.json';
 import CANONICAL_QUEST_CATALOG from '../../data/canonicalQuests.json';
+import OFFICIAL_QUESTS_EN from '../../../public/data/bloomshire/official/quests.json';
 import defaultInventoryCatalog from '../../../public/data/bloomshire/inventory_catalog.json';
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -358,7 +359,8 @@ export function ItemSprite({ name = '', id = '', fallback = '📦', size = 20, c
 }
 
 export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const matEn = String(i18n.language || '').toLowerCase().startsWith('en');
   if (breakdown && Array.isArray(breakdown) && breakdown.length > 0) {
     return (
       <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
@@ -375,7 +377,7 @@ export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
               title={t('craftMaterialsBadge.tooltip', { req: b.req, total: b.total, m: b.m, cc: b.cc, cp: b.cp })}
             >
               <ItemSprite name={b.item} id={b.item} size={15} className="shrink-0" />
-              <span className="truncate">{b.nameEs || b.item}</span>
+              <span className="truncate">{matEn ? b.item : (b.nameEs || b.item)}</span>
               <span className={`font-bold ml-0.5 ${isOk ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {b.total}/{b.req}
               </span>
@@ -414,6 +416,28 @@ export function CraftMaterialsBadge({ mats = '', breakdown = null }) {
 }
 
 export const DASHBOARD_QUEST_CATALOG = { ...CANONICAL_QUEST_CATALOG };
+
+// Misiones en ingles: los textos originales del juego (official/quests.json, lo genera build_official_data).
+// Los pasos solo se reemplazan si el juego tiene la misma cantidad que la tool (si no, no se sabe cual es cual).
+const QUEST_PREFIX_EN = [[/^Cap\. (\d+): /, 'Ch. $1: '], [/^Secundaria: /, 'Side: ']];
+export function localizeQuest(catDef, lang) {
+  if (!catDef || !String(lang || '').toLowerCase().startsWith('en')) return catDef;
+  const en = OFFICIAL_QUESTS_EN[String(catDef.id || '').toLowerCase()];
+  const baseName = (en && en.name_en) || catDef.rawName;
+  if (!baseName) return catDef;
+  const prefix = QUEST_PREFIX_EN.reduce((acc, [re, rep]) => {
+    const m = String(catDef.name || '').match(re);
+    return acc || (m ? m[0].replace(re, rep) : '');
+  }, '');
+  const name = `${prefix}${baseName}`;
+  const swapWhere = (w) => (typeof w === 'string' && catDef.name && w.includes(catDef.name) ? w.replace(catDef.name, name) : w);
+  const sameSteps = en && Array.isArray(catDef.steps) && en.steps.length === catDef.steps.length;
+  const steps = (catDef.steps || []).map((st, i) => {
+    const e = sameSteps ? en.steps[i] : null;
+    return { ...st, name: (e && e.name_en) || st.name, text: (e && e.text_en) || st.text, where: swapWhere(st.where) };
+  });
+  return { ...catDef, name, location: swapWhere(catDef.location), steps };
+}
 
 export const CRAFT_STATION_LOCATIONS = {
   market: {

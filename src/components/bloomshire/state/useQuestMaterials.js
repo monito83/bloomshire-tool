@@ -1,9 +1,12 @@
 // src/components/bloomshire/state/useQuestMaterials.js
 // Entregas manuales de misiones e insumos que piden las misiones activas (movido tal cual).
 import { useMemo, useState } from 'react';
-import { DASHBOARD_QUEST_CATALOG, QUEST_REQUIRED_ITEMS } from '../bloomshireHelpers';
+import { useTranslation } from 'react-i18next';
+import { DASHBOARD_QUEST_CATALOG, QUEST_REQUIRED_ITEMS, localizeQuest } from '../bloomshireHelpers';
 
 export default function useQuestMaterials(activeQuestsList) {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
   // Registro local de entregas manuales de misiones (para sincronizar cuando el juego consume el item)
   const [deliveredItemsManual, setDeliveredItemsManual] = useState(() => {
     try {
@@ -34,9 +37,9 @@ export default function useQuestMaterials(activeQuestsList) {
       const qId = (q.id || '').toLowerCase().trim();
       const currentStepNum = q.step !== undefined ? q.step : ((q.stepIdx || 0) + 1);
 
-      const catDef = DASHBOARD_QUEST_CATALOG[qId]
+      const catDef = localizeQuest(DASHBOARD_QUEST_CATALOG[qId]
         || DASHBOARD_QUEST_CATALOG[qId.replace(/^sd_/, 's_')]
-        || DASHBOARD_QUEST_CATALOG[qId.replace(/^s_/, 'sd_')];
+        || DASHBOARD_QUEST_CATALOG[qId.replace(/^s_/, 'sd_')], lang);
 
       // Obtener items canónicos del paso actual (de telemetría o del catálogo)
       const rawStepItems = (Array.isArray(q.stepItems) && q.stepItems.length > 0)
@@ -98,7 +101,7 @@ export default function useQuestMaterials(activeQuestsList) {
     });
 
     return list;
-  }, [activeQuestsList, deliveredItemsManual]);
+  }, [activeQuestsList, deliveredItemsManual, lang]);
 
   return { deliveredItemsManual, toggleDeliveredItem, activeQuestMaterials };
 }
