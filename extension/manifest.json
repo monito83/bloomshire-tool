@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bloomshire Master Companion",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Extensión dedicada para Bloomshire (Season 0): sincroniza en vivo tu partida con Bloomshire Tool (bloomshire-tool.vercel.app).",
   "permissions": [
     "storage",

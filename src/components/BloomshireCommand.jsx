@@ -45,9 +45,9 @@ export default function BloomshireCommand() {
 
   const {
     walletAddress, setWalletAddress, sessionToken, setSessionToken, setAuthenticatedWallet, authenticatedWalletRef,
-    lastReportedExtensionWalletRef, viewOnlyWallet, setViewOnlyWallet, setIsPremiumUnlocked, isConnected,
+    lastReportedExtensionWalletRef, setIsPremiumUnlocked, isConnected,
     showConnectModal, setShowConnectModal, showProfileModal, setShowProfileModal,
-    connectCode, setConnectCode, connectFeedback, setConnectFeedback,
+    connectFeedback, setConnectFeedback,
     injectedWallets, handleConnectAndSignWallet
   } = wallet;
   const { activeTab, setActiveTab, atlasFocusTarget, setAtlasFocusTarget, locateInMegaAtlas } = tab;
@@ -89,7 +89,6 @@ export default function BloomshireCommand() {
     setIsSyncStale(false);
     authenticatedWalletRef.current = null;
     lastReportedExtensionWalletRef.current = null;
-    setViewOnlyWallet(null);
     setIsPremiumUnlocked(false);
     setIsVip(false);
     setVipUntil(0);
@@ -159,7 +158,6 @@ export default function BloomshireCommand() {
         setShowConnectModal={setShowConnectModal}
         setShowProfileModal={setShowProfileModal}
         shards={shards}
-        viewOnlyWallet={viewOnlyWallet}
         walletAddress={walletAddress}
       />
 
@@ -270,14 +268,13 @@ export default function BloomshireCommand() {
         {showConnectModal && (
           <ConnectModal
             applyIncomingSync={applyIncomingSync}
-            connectCode={connectCode}
             connectFeedback={connectFeedback}
             handleConnectAndSignWallet={handleConnectAndSignWallet}
             injectedWallets={injectedWallets}
-            setConnectCode={setConnectCode}
             setConnectFeedback={setConnectFeedback}
             setShowConnectModal={setShowConnectModal}
-            setViewOnlyWallet={setViewOnlyWallet}
+            isConnected={isConnected}
+            walletAddress={walletAddress}
           />
         )}
       </div>

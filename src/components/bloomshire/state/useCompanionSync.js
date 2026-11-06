@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 import { computeCanonicalSkillsFromRaw, computeClientLiveEnergyAndBed, computeMaxEnergy } from '../bloomshireEngine';
 import { calculateLocalQuantities } from './inventoryLocal';
 import { PERKS_WALLET_KEY } from './usePlayerState';
+import { markCompanionSeen } from './useCompanionStatus';
 
 export default function useCompanionSync({ wallet, player, timers, tasks, queueCloudBackup, handleDisconnect }) {
   const {
@@ -307,11 +308,13 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
     const handleCompanionMessage = (event) => {
       if (event.source !== window) return;
       if (event.data?.type === 'MONIOS_COMPANION_SYNC' && event.data.game === 'bloomshire') {
+        markCompanionSeen();
         applyIncomingSync(event.data.data, 'extension');
       }
     };
     const handleCompanionCustomEvent = (event) => {
       if (event.detail?.game === 'bloomshire') {
+        markCompanionSeen();
         applyIncomingSync(event.detail.data, 'extension');
       }
     };

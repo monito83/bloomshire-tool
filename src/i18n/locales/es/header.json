@@ -17,7 +17,6 @@
     "level": "Nv {{level}}"
   },
   "mode": {
-    "readOnly": "Lectura: {{wallet}}",
     "freeGuide": "Guía Comunitaria Libre",
     "connectGameTitle": "Vincular tu partida o ingresar clave",
     "connectGameButton": "🎮 Conectar Partida"

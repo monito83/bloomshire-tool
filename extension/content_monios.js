@@ -8,18 +8,30 @@
 
   console.log('[Bloomshire Companion] Conexión activa con Bloomshire Tool:', window.location.origin);
 
+  // Version real del manifest: la tool la usa para avisar si hay una version nueva para descargar
+  var VERSION = '0.0.0';
+  try { VERSION = chrome.runtime.getManifest().version; } catch (e) { }
+
   function announceReady() {
+    // El DOM es compartido con la pagina: la tool lo lee aunque se monte despues de este script
+    try { document.documentElement.setAttribute('data-bloomshire-companion', VERSION); } catch (e) { }
     window.postMessage({
       type: 'MONIOS_COMPANION_READY',
       game: 'bloomshire',
-      version: '1.0.0'
+      version: VERSION
     }, '*');
     document.dispatchEvent(new CustomEvent('monios_companion_ready', {
-      detail: { game: 'bloomshire', version: '1.0.0' }
+      detail: { game: 'bloomshire', version: VERSION }
     }));
   }
 
   announceReady();
+
+  // La tool pregunta "¿estas?" al abrir la ventana de conexion
+  window.addEventListener('message', function (event) {
+    if (event.source !== window || !event.data || event.data.type !== 'MONIOS_COMPANION_PING') return;
+    announceReady();
+  });
 
   // Al montar en Bloomshire Tool, pedir a background el último estado disponible de inmediato
   try {

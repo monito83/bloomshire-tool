@@ -10,7 +10,7 @@ export default function HeaderHud({
     avyn, currentEnergy, energyMeta, farmingLevel, fetchSyncFromServer, formattedLastSyncTime,
     gold, handleDisconnect, isConnected, isHeaderCollapsed, isSyncStale, isSyncing,
     isVip, maxEnergy, setIsHeaderCollapsed, setShowConnectModal, setShowProfileModal, shards,
-    viewOnlyWallet, walletAddress
+    walletAddress
   }) {
   const { t: tHeader, i18n } = useTranslation('header');
   return (
@@ -94,17 +94,10 @@ export default function HeaderHud({
             </>
           ) : (
             <div className="flex items-center gap-2">
-              {viewOnlyWallet ? (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                  <span className="font-mono">{tHeader('mode.readOnly', { wallet: `${viewOnlyWallet.slice(0, 6)}...${viewOnlyWallet.slice(-4)}` })}</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                  <span>{tHeader('mode.freeGuide')}</span>
-                </div>
-              )}
+              <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-bold text-xs shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span>{tHeader('mode.freeGuide')}</span>
+              </div>
               <button
                 onClick={() => setShowConnectModal(true)}
                 className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 hover:border-amber-400 text-amber-300 font-bold text-xs transition-all cursor-pointer"

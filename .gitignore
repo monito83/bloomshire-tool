@@ -10,3 +10,6 @@ game-sources/v-*/
 
 # Corridas de caracterizacion del refactor (scripts/characterize)
 .characterize/
+
+# Zip de la extension (se arma en cada build: scripts/build_extension_zip.mjs)
+public/downloads/
