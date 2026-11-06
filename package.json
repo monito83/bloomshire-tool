@@ -11,7 +11,9 @@
     "test": "vitest run",
     "build:official": "node scripts/build_official_data.mjs",
     "game:fetch": "node scripts/fetch_game.mjs",
-    "game:update": "node scripts/fetch_game.mjs && node scripts/build_official_data.mjs && node scripts/fetch_game.mjs --art && node scripts/build_official_data.mjs"
+    "game:update": "node scripts/fetch_game.mjs && node scripts/build_official_data.mjs && node scripts/fetch_game.mjs --art && node scripts/build_official_data.mjs",
+    "characterize": "node scripts/characterize/run.mjs",
+    "characterize:compare": "node scripts/characterize/compare.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
+    "playwright-core": "^1.65.0",
     "pngjs": "^7.0.0",
     "vite": "^8.0.10",
     "vitest": "^5.1.0"
