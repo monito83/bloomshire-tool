@@ -9,6 +9,7 @@ import enCraft from './locales/en/craft.json';
 import enItems from './locales/en/items.json';
 import enCalc from './locales/en/calc.json';
 import enLogbook from './locales/en/logbook.json';
+import enCompendium from './locales/en/compendium.json';
 
 import esCommon from './locales/es/common.json';
 import esHeader from './locales/es/header.json';
@@ -18,6 +19,7 @@ import esCraft from './locales/es/craft.json';
 import esItems from './locales/es/items.json';
 import esCalc from './locales/es/calc.json';
 import esLogbook from './locales/es/logbook.json';
+import esCompendium from './locales/es/compendium.json';
 
 export const STORAGE_LANG_KEY = 'bloomshire_lang';
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -70,6 +72,7 @@ i18n
         items: enItems,
         calc: enCalc,
         logbook: enLogbook,
+        compendium: enCompendium,
       },
       es: {
         common: esCommon,
@@ -80,11 +83,12 @@ i18n
         items: esItems,
         calc: esCalc,
         logbook: esLogbook,
+        compendium: esCompendium,
       },
     },
     lng: initialLang,
     fallbackLng: DEFAULT_LANGUAGE,
-    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook'],
+    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: {

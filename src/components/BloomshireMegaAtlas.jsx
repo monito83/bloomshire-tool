@@ -25,6 +25,7 @@ import {
   X
 } from 'lucide-react';
 import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
+import RegionCompendium from './bloomshire/official/RegionCompendium';
 import mapsMetaData from '../../public/data/bloomshire/maps/maps_meta.json';
 import npcsCatalog from '../../public/data/bloomshire/npcs.json';
 import npcLooksData from '../../public/data/bloomshire/npc_looks.json';
@@ -1835,6 +1836,9 @@ export default function BloomshireMegaAtlas({ focusTarget = null, onClearFocusTa
                     </div>
                   </div>
                 )}
+
+                {/* Datos oficiales del juego: libro de exploracion y Bestiario de la region */}
+                <RegionCompendium regionId={selectedRegionId} />
 
                 {/* Todas las sub-zonas hermanas de esta región */}
                 <div className="mt-auto pt-3 border-t border-slate-800/60">

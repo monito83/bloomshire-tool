@@ -1,0 +1,29 @@
+{
+  "boss": "Boss",
+  "weak": "Weak to {{weapon}}",
+  "immune": "Immune to {{weapon}}",
+  "weapons": {
+    "blade": "blades",
+    "bow": "bows",
+    "staff": "staves"
+  },
+  "stats": {
+    "hp": "Health",
+    "damage": "Damage per blow",
+    "speed": "Speed",
+    "gold": "Gold dropped",
+    "reward": "Bestiary reward"
+  },
+  "rewardHint": "Bestiary reward for defeating it: {{gold}} gold.",
+  "adventure": {
+    "title": "Exploration book",
+    "showAll": "Show all {{count}} places",
+    "showLess": "Show fewer"
+  },
+  "bestiary": {
+    "title": "Creatures here",
+    "search": "Filter creatures…",
+    "clear": "Clear filter",
+    "source": "Data from the game's own Bestiary."
+  }
+}
