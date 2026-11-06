@@ -41,7 +41,7 @@ function OfficialCodexInfo({ entry, lang, t }) {
   );
 }
 
-export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
+export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas, initialSearch = '' }) {
   const { t, i18n } = useTranslation('items');
   const lang = baseLang(i18n.language);
   const codex = useOfficialData('codex');
@@ -57,7 +57,7 @@ export default function ItemsTab({ getPlayerItemQty, locateInMegaAtlas }) {
     const from = c ? pickLang(c, 'from', lang) || [] : [];
     return from.length ? from.join(' · ') : item.howToGet;
   };
-  const [itemSearchQuery, setItemSearchQuery] = useState('');
+  const [itemSearchQuery, setItemSearchQuery] = useState(initialSearch || '');
   const [itemCategoryFilter, setItemCategoryFilter] = useState('all');
   const [itemViewMode, setItemViewMode] = useState('grid');
   const [expandedUsedInIds, setExpandedUsedInIds] = useState(() => new Set());

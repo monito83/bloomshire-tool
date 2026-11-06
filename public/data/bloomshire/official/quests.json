@@ -1,0 +1,2008 @@
+{
+ "q01": {
+  "name_en": "Waking Up",
+  "summary_en": "You woke up in a stranger's bed. Someone is moving about the house.",
+  "steps": [
+   {
+    "name_en": "Talk to the man in the house",
+    "text_en": "The old man is here in the house with you. Walk up to him and press E to talk."
+   }
+  ]
+ },
+ "q02": {
+  "name_en": "First Harvest",
+  "summary_en": "Marlow wants to see you grow something before you leave the island.",
+  "steps": [
+   {
+    "name_en": "Find Marlow outside the door",
+    "text_en": "Go out of the front door. Marlow is standing by the path, just outside it. The field is the patch of bare earth west of the house."
+   },
+   {
+    "name_en": "Hoe some soil in the field",
+    "text_en": "Stand in the field west of the house with the hoe in your hand and press Space. One swing turns a whole row."
+   },
+   {
+    "name_en": "Plant the seeds",
+    "text_en": "Take the seeds in hand from your hotbar, stand on the turned soil and press Space."
+   },
+   {
+    "name_en": "Tell Marlow the seeds are in",
+    "text_en": "Marlow is standing by the path outside your front door."
+   }
+  ]
+ },
+ "q03": {
+  "name_en": "Give It Some Water",
+  "summary_en": "The carrots are in. They need a drink, and a little patience.",
+  "steps": [
+   {
+    "name_en": "Water what you planted",
+    "text_en": "Take the can to your carrots west of the house and press Space. Did rain water them already? Then harvest one when it is ripe."
+   },
+   {
+    "name_en": "Harvest it with the sickle",
+    "text_en": "When the carrots have come up, stand by them with the sickle in hand and press Space."
+   },
+   {
+    "name_en": "Show Marlow your first harvest",
+    "text_en": "Marlow is by the path outside your front door."
+   }
+  ]
+ },
+ "q03c": {
+  "name_en": "A Place for Everything",
+  "summary_en": "You carry ten things in hand and five in your backpack. Marlow shows you where the rest can go.",
+  "steps": [
+   {
+    "name_en": "Hear what Marlow has to say",
+    "text_en": "Marlow is by the path outside your front door."
+   },
+   {
+    "name_en": "Put something away in a chest in the house",
+    "text_en": "The chests are in the house, two by the fireplace, a crate and one by the bed. Press E at one and drag something into it."
+   },
+   {
+    "name_en": "Tell Marlow it's put away",
+    "text_en": "Marlow is by the path outside your front door."
+   }
+  ]
+ },
+ "q04": {
+  "name_en": "The Road to Bloomshire",
+  "summary_en": "Marlow has taught you what he can on the island. Bloomshire is across the water, and he is going with you.",
+  "steps": [
+   {
+    "name_en": "Talk to Marlow",
+    "text_en": "Marlow is by the path outside your front door."
+   },
+   {
+    "name_en": "Row across to Bloomshire",
+    "text_en": "The rowing boat is tied up on the south shore of the island, below the house. Stand next to it and press E."
+   }
+  ]
+ },
+ "s_storehouse": {
+  "name_en": "The Storehouse",
+  "summary_en": "Marlow said the Storehouse in Bloomshire keeps a chest for you. Handy when your hands are full in town.",
+  "steps": [
+   {
+    "name_en": "Put something in your chest at the Storehouse",
+    "text_en": "East side of town, straight south of the Bank. Inside, the chest is on the right above a barrel. Press E and drag something in."
+   }
+  ]
+ },
+ "q05": {
+  "name_en": "A New Place",
+  "summary_en": "Marlow wants you to go round town and meet people. There's no hurry.",
+  "steps": [
+   {
+    "name_en": "Talk to Marlow by the jetty",
+    "text_en": "Marlow is on the jetty where the boat came in, at the south end of town by the river."
+   },
+   {
+    "name_en": "Meet the people of Bloomshire",
+    "text_en": "Maren is on the west bank north of the bridge, Odette by the bridge, Hazel and Bram east of the square, and Wren by the south jetties."
+   }
+  ]
+ },
+ "q06": {
+  "name_en": "Your Own Routine",
+  "summary_en": "Bloomshire isn't only farming. Marlow wants you to try a real day of it.",
+  "steps": [
+   {
+    "name_en": "Ask Marlow about a day here",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   },
+   {
+    "name_en": "Five everyday things",
+    "text_en": "Hazel's shop is just east of the square. The fields are north of the square, by the greenhouse. The river runs through the west of town."
+   },
+   {
+    "name_en": "Tell Marlow how the day went",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   }
+  ]
+ },
+ "q07": {
+  "name_en": "The Town's Work",
+  "summary_en": "You've met the town and done a day's work. Maren thinks it's time you made yourself useful.",
+  "steps": [
+   {
+    "name_en": "Talk to Maren",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "q07t": {
+  "name_en": "Something From the Kitchen",
+  "summary_en": "Tamsin says anyone can cook if they'll stand at a stove long enough.",
+  "steps": [
+   {
+    "name_en": "Talk to Tamsin at the Bakery",
+    "text_en": "The Bakery is on the west bank, right by the bridge, on the north side of the main road."
+   },
+   {
+    "name_en": "Cook something at a stove",
+    "text_en": "At the stove in the Bakery press E. Fried Fish takes two Carp. Put them in the pot, press Cook, and press Cook again when it is done."
+   },
+   {
+    "name_en": "Bring Tamsin what you cooked",
+    "text_en": "Tamsin is behind the counter in the Bakery, by the bridge."
+   }
+  ]
+ },
+ "ff01": {
+  "name_en": "A Strange Find",
+  "summary_en": "Something odd has washed up below Maren's house, and she wants you to take a look.",
+  "steps": [
+   {
+    "name_en": "Talk to Maren",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   },
+   {
+    "name_en": "Look at the find by the river",
+    "text_en": "Just below Maren's house, at the water's edge on the west bank. Look for something grey lying in the grass."
+   },
+   {
+    "name_en": "Show Maren the mark",
+    "text_en": "Maren is at her house on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "ff02": {
+  "name_en": "The Fisherman's Memory",
+  "summary_en": "Maren thinks Wren's family knows the mark on the plank.",
+  "steps": [
+   {
+    "name_en": "Ask Wren about the mark",
+    "text_en": "Wren's cottage is on the east bank of the river, down by the south jetties."
+   },
+   {
+    "name_en": "Bring Wren three fish and the plank",
+    "text_en": "Chub, Perch and Sunfish all bite in the river through town. Wren is at her cottage by the south jetties."
+   }
+  ]
+ },
+ "ff03": {
+  "name_en": "The Trailhead",
+  "summary_en": "Tobin's trail began at the lodge in Whisperwood. His log holds half of an old song for waking the stones. A hunter kept the rest.",
+  "steps": [
+   {
+    "name_en": "Go west to Whisperwood",
+    "text_en": "Take the main road west out of town, over the bridge and past the Bakery. It runs straight into Whisperwood."
+   },
+   {
+    "name_en": "Find the marker at the lodge",
+    "text_en": "Just inside Whisperwood, beside the path by the old lodge. Look for an old post with a birdhouse nailed to it."
+   },
+   {
+    "name_en": "Look in the chest by the hunter's fire",
+    "text_en": "Follow the main path west through the wood, over the stream and past the crossroads, to the camp at its far end. The chest is by the fire."
+   }
+  ]
+ },
+ "ff04": {
+  "name_en": "The Moonstone Circle",
+  "summary_en": "An old song in two halves, one in Tobin's log and one in the hunter's journal: which stone to wake first, and which last. It is written in riddles.",
+  "steps": [
+   {
+    "name_en": "Wake the six stones in order",
+    "text_en": "North of the crossroads, west of Mirror Pond. Wake them in the song's order: Tobin's Trail Log, then the Hunter's Journal."
+   },
+   {
+    "name_en": "Look in the moonstone's hollow",
+    "text_en": "The moonstone is the knot of crystal in the middle of the ring of stones."
+   }
+  ]
+ },
+ "ff05": {
+  "name_en": "Clear Eyes",
+  "summary_en": "\"The caps grow where the light does not.\" That sounds like Mushroom Hollow, in the far west of Whisperwood.",
+  "steps": [
+   {
+    "name_en": "Find the mark among the caps",
+    "text_en": "Go past the Hunter's Camp to the far west of the wood, where the trees turn teal. Look for a cut stump among the giant mushrooms."
+   },
+   {
+    "name_en": "Ask Juniper about clear eyes",
+    "text_en": "The Apothecary is the teal-roofed house on the far west side of town, north of the main road."
+   },
+   {
+    "name_en": "Bring Juniper the mushrooms",
+    "text_en": "Silvercaps are small pale blue mushrooms, thickest in Mushroom Hollow. Glowcaps are small and purple, in the wood and at Moonmere."
+   }
+  ]
+ },
+ "ff06": {
+  "name_en": "Mirror Pond",
+  "summary_en": "Juniper's tonic only works at night, by still water. Mirror Pond is the stillest water in the wood.",
+  "steps": [
+   {
+    "name_en": "Use the tonic there at night",
+    "text_en": "Follow the stream north from the bridge in the middle of Whisperwood to the pond it comes from. Go after dark."
+   },
+   {
+    "name_en": "Swim to the gap under the bank",
+    "text_en": "The gap is under the pond's north-east bank. Swim across to it."
+   },
+   {
+    "name_en": "Search the grotto",
+    "text_en": "Inside the grotto under Mirror Pond, at the foot of the far wall."
+   }
+  ]
+ },
+ "ff07": {
+  "name_en": "The Forgotten Shrine",
+  "summary_en": "The charm was cut to fit something, and so was the Old Token. There's an old shrine in the south of the wood.",
+  "steps": [
+   {
+    "name_en": "Find where the charm and the token fit",
+    "text_en": "From the crossroads in the middle of Whisperwood, take the path south to the old stone shrine. The weeping angel stands in the middle of it."
+   },
+   {
+    "name_en": "Tell Maren what you found",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "ff08": {
+  "name_en": "The Miners' Camp",
+  "summary_en": "Maren says the miners at Stonepeak keep old records. Dunn runs the camp.",
+  "steps": [
+   {
+    "name_en": "Go east to Stonepeak",
+    "text_en": "Take the main road east out of town, past the Forge and the Carpenter. It climbs up to Stonepeak."
+   },
+   {
+    "name_en": "Read the notices at Stonepeak",
+    "text_en": "There's a notice board by the road where you come in, and another at the miners' camp in the north-west."
+   },
+   {
+    "name_en": "Ask Dunn about the old records",
+    "text_en": "Dunn is by the fire at the miners' camp, in the north-west of Stonepeak."
+   },
+   {
+    "name_en": "Go down the Old Working",
+    "text_en": "The Old Working is the mine mouth south of the tarn, west of the stream. Go in and take the shaft down."
+   },
+   {
+    "name_en": "Find the lucky pick",
+    "text_en": "On the lower level, make for the far south-west corner. It fell between two rocks at the end of a side passage."
+   },
+   {
+    "name_en": "Bring Dunn his pick and ore",
+    "text_en": "Copper seams are the orange-flecked rocks in the Old Working. Stone comes from any plain rock. Pickaxes wear out: the Forge sells more."
+   }
+  ]
+ },
+ "ff09": {
+  "name_en": "Haskett's Strongbox",
+  "summary_en": "Dunn found his pick in the old foreman's house. Haskett left a strongbox with four numbers on its dial, and wrote them where he walked every day.",
+  "steps": [
+   {
+    "name_en": "Ask Dunn about the mark",
+    "text_en": "Dunn is by the fire at the miners' camp, in the north-west of Stonepeak."
+   },
+   {
+    "name_en": "Find Haskett's four numbers",
+    "text_en": "Tarn jetty: north of the camp. Cairn: the south ridge. Company board and graves: the ruined compound, up on the High Shelf to the east."
+   },
+   {
+    "name_en": "Open Haskett's strongbox",
+    "text_en": "The strongbox is bolted down by Haskett's door, next to Dunn's fire at the camp."
+   }
+  ]
+ },
+ "ff10": {
+  "name_en": "The Green Vein",
+  "summary_en": "Haskett barred the Green Vein. His record says whoever opened his box has his leave, and that he went in.",
+  "steps": [
+   {
+    "name_en": "Go into the Green Vein",
+    "text_en": "The Green Vein is the timbered drift behind the miners' camp, in the far north-west corner of Stonepeak."
+   },
+   {
+    "name_en": "Follow Haskett's trail",
+    "text_en": "Emerald wants a Gold pickaxe: there's one in the prospector's chest, at the back. Haskett's note is by the green pool."
+   }
+  ]
+ },
+ "ff11": {
+  "name_en": "The Lever Handle",
+  "summary_en": "Haskett's note says the lever in the Gloom has lost its handle, and that Bram's father made the first.",
+  "steps": [
+   {
+    "name_en": "Ask Bram about the handle",
+    "text_en": "The Forge is just east of the town square, on the north side of the east road."
+   },
+   {
+    "name_en": "Bring Bram what he asks",
+    "text_en": "Emeralds come from the Green Vein, Copper Ore from the Old Working. Gold comes from selling crops, fish and ore."
+   }
+  ]
+ },
+ "ff12": {
+  "name_en": "The Lever in the Dark",
+  "summary_en": "The lever is in the Gloom, three levels down. Haskett called it the red deep.",
+  "steps": [
+   {
+    "name_en": "Go into the Gloom",
+    "text_en": "The Gloom is at the far north end of the gorge that runs up the middle of Stonepeak. Haskett left its portcullis up."
+   },
+   {
+    "name_en": "Go down to the red deep",
+    "text_en": "In the Gloom, take the stair in the north-east down to the drowned halls, then the stair in their far south-east down again."
+   },
+   {
+    "name_en": "Fit the handle to the lever",
+    "text_en": "In the red deep, on the east wall. It's tucked behind a rock, out of the way."
+   }
+  ]
+ },
+ "ff13": {
+  "name_en": "The Last Cart",
+  "summary_en": "\"The key went with the last cart. The watcher with its number keeps it.\" The quarry sent carts east to the compound on the delvers' last day. Not all of them got there.",
+  "steps": [
+   {
+    "name_en": "Find which cart never arrived",
+    "text_en": "The quarry is the open pit in the middle of Stonepeak. The gate book is by the gargoyle at the compound's gate. The ruts run up the gorge."
+   },
+   {
+    "name_en": "Search the right watcher",
+    "text_en": "The Delvers' Court is the stone yard in the north-east, up the steps from the High Shelf. Four hooded watchers stand in it."
+   }
+  ]
+ },
+ "ff14": {
+  "name_en": "The Sunken Vault",
+  "summary_en": "The Delvers' Key opens the Sunken Vault, under their court.",
+  "steps": [
+   {
+    "name_en": "Open the Sunken Vault",
+    "text_en": "The Sunken Vault is east of the Delvers' Court, at the far edge of the High Shelf. The key opens it now."
+   },
+   {
+    "name_en": "Go down to the treasury",
+    "text_en": "Take the stair down at the back of the vault."
+   },
+   {
+    "name_en": "Search the treasury",
+    "text_en": "Search the treasury's corners. The delvers didn't leave their record in the middle of the room."
+   }
+  ]
+ },
+ "ff15": {
+  "name_en": "Two More Pieces",
+  "summary_en": "The delvers' record says the Founders tore their map in four. You have two of the pieces.",
+  "steps": [
+   {
+    "name_en": "Show Maren the delvers' record",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   },
+   {
+    "name_en": "Ask Nixie about the map",
+    "text_en": "Nixie visits the pond in the south-east corner of town, below the Market Hall."
+   },
+   {
+    "name_en": "Bring Nixie a Golden Fish",
+    "text_en": "Golden Fish swim only in the river, in town or off your island, and they rarely bite. Keep casting."
+   },
+   {
+    "name_en": "Go into the Old Cave",
+    "text_en": "Moonmere is up a north road from town. The Old Cave is the dark mouth in the cliff on its north-east ridge. It needs a Bronze pickaxe."
+   },
+   {
+    "name_en": "Search the delvers' last dig",
+    "text_en": "Inside the Old Cave, away from the water, in the far north-west corner."
+   },
+   {
+    "name_en": "Bring Maren the four pieces",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "ff16": {
+  "name_en": "The Founders' Map",
+  "summary_en": "The Founders' Map shows Moonmere and an X. Read it and find the place yourself.",
+  "steps": [
+   {
+    "name_en": "Find the X on the map",
+    "text_en": "Nobody can show you this one. Hold the Founders' Map and press Space to read it, then go to Moonmere and dig where the X is."
+   },
+   {
+    "name_en": "Ask Bram about the chest",
+    "text_en": "The Forge is just east of the town square, on the north side of the east road."
+   },
+   {
+    "name_en": "Bring Bram Gold Ore and 5,000 Gold",
+    "text_en": "Gold Ore is in the rock of the Sunken Vault's treasury, and it wants an Amethyst pickaxe. Bram is at the Forge."
+   },
+   {
+    "name_en": "Open the Founders' chest",
+    "text_en": "Go back to the chest at the X on your map, at Moonmere, with the pry bar."
+   }
+  ]
+ },
+ "ff17": {
+  "name_en": "The Lake Remembers",
+  "summary_en": "The Founders' letter talks about someone at the lake they brought gifts to every year. Moonmere might tell you more.",
+  "steps": [
+   {
+    "name_en": "Look at Moonmere's old things",
+    "text_en": "The Tide Stone by Marven's pool, a bottle in Driftwood Cove, a sunken boat, the houseboat on the east shore, a stump in Glowcap Hollow."
+   },
+   {
+    "name_en": "Find the one beneath the water",
+    "text_en": "Marven's pool is up the stone stairs in the north-west of Moonmere, on the teal shelf."
+   }
+  ]
+ },
+ "ff18": {
+  "name_en": "Marven's Request",
+  "summary_en": "Marven wants what the Founders brought her every year, and what the delvers took.",
+  "steps": [
+   {
+    "name_en": "Hear what Marven asks for",
+    "text_en": "Marven's pool is up the stone stairs in the north-west of Moonmere, on the teal shelf."
+   },
+   {
+    "name_en": "Find Marven's pearl",
+    "text_en": "In the Old Cave, in the shallows at the far end, north of the way in."
+   },
+   {
+    "name_en": "Bring Marven everything",
+    "text_en": "Star Fruit: the moonstone's seeds, Farming level 10. Ghost Catfish: Moonmere, at night. Rubies: the Gloom's red deep. Cook at any stove."
+   }
+  ]
+ },
+ "s_marlow": {
+  "name_en": "A Small Patch of Land",
+  "summary_en": "Marlow has taken on a patch by the greenhouse and wants to see it earn its keep.",
+  "steps": [
+   {
+    "name_en": "Talk to Marlow",
+    "text_en": "Marlow's house is west of the river, south of the main road, near the allotments."
+   },
+   {
+    "name_en": "Harvest three crops",
+    "text_en": "The fields are north of the town square, by the glass greenhouse."
+   },
+   {
+    "name_en": "Bring Marlow three crops",
+    "text_en": "Marlow's house is west of the river, south of the main road."
+   }
+  ]
+ },
+ "s_hollis": {
+  "name_en": "One Wandered Off",
+  "summary_en": "One of Hollis's hens has gone missing again.",
+  "steps": [
+   {
+    "name_en": "Talk to Hollis",
+    "text_en": "Hollis is on the east edge of town, south of the east road, by the houses there."
+   },
+   {
+    "name_en": "Find the pale gold hen",
+    "text_en": "The orchard is at the north edge of town, above the mill. Look under the cherry trees."
+   },
+   {
+    "name_en": "Tell Hollis where she was",
+    "text_en": "Hollis is on the east edge of town, south of the east road."
+   }
+  ]
+ },
+ "s_silas1": {
+  "name_en": "A Name for the Unmarked",
+  "summary_en": "Silas the gravedigger keeps the graves of Gloamfen. One of them has no name, and that troubles him.",
+  "steps": [
+   {
+    "name_en": "Talk to Silas the gravedigger",
+    "text_en": "Silas is by his hut, north of the graveyard, near the water."
+   },
+   {
+    "name_en": "Look at the stone with no name",
+    "text_en": "The stone with no name stands west of the chapel, on its own, nearest the willows."
+   },
+   {
+    "name_en": "Look in the chapel's burial register",
+    "text_en": "The chapel is south of Silas's hut. The register is just inside its door."
+   },
+   {
+    "name_en": "Tell Silas the name",
+    "text_en": "Silas is by his hut, north of the graveyard."
+   }
+  ]
+ },
+ "s_silas2": {
+  "name_en": "What the Barrow Lost",
+  "summary_en": "A ring was taken from one of the old barrows. Silas wants it given back before the barrow takes notice.",
+  "steps": [
+   {
+    "name_en": "Ask Silas what is wrong",
+    "text_en": "Silas is by his hut, north of the graveyard."
+   },
+   {
+    "name_en": "Find what the stilt folk hid",
+    "text_en": "The stilt village is on the water in the west. Look along the walk by the house in the north east of it."
+   },
+   {
+    "name_en": "Give the ring back to the barrow",
+    "text_en": "The big barrow in the north west, on the isle above the village. Its door faces south."
+   },
+   {
+    "name_en": "Tell Silas it is done",
+    "text_en": "Silas is by his hut, north of the graveyard."
+   }
+  ]
+ },
+ "s_silas3": {
+  "name_en": "Supper for the Gravedigger",
+  "summary_en": "Silas wants a night's supper and a light for his lamp. In return he will give you something nobody else has.",
+  "steps": [
+   {
+    "name_en": "Hear what Silas wants",
+    "text_en": "Silas is by his hut, north of the graveyard."
+   },
+   {
+    "name_en": "Bring Silas a Marsh Eel and three Glowcaps",
+    "text_en": "Fish anywhere in the marsh after dark for an eel. Glowcaps glow at the dead trees' feet: pick them with E."
+   }
+  ]
+ },
+ "s_wren": {
+  "name_en": "The One That Got Away",
+  "summary_en": "Wren remembers a fish nobody has seen in years.",
+  "steps": [
+   {
+    "name_en": "Talk to Wren",
+    "text_en": "Wren's cottage is on the east bank of the river, down by the south jetties."
+   },
+   {
+    "name_en": "Show Wren a Tiger Trout",
+    "text_en": "Tiger Trout are rare, but they bite anywhere with fish in it. Wren is at her cottage."
+   }
+  ]
+ },
+ "s_elsie": {
+  "name_en": "Wings for a Painting",
+  "summary_en": "Elsie wants to paint a butterfly, but they never sit still long enough.",
+  "steps": [
+   {
+    "name_en": "Talk to Elsie",
+    "text_en": "Elsie paints in the middle of town, at her easel between the General Store and the Bakery."
+   },
+   {
+    "name_en": "Show Elsie a Butterfly",
+    "text_en": "Butterflies flutter over the meadows and wherever flowers grow. Swing the net at one, then find Elsie at her easel."
+   }
+  ]
+ },
+ "s_juniper": {
+  "name_en": "From Whisperwood",
+  "summary_en": "Juniper is running low on Silvercaps, and they only grow out in the wood.",
+  "steps": [
+   {
+    "name_en": "Talk to Juniper",
+    "text_en": "The Apothecary is the teal-roofed house on the far west side of town, north of the main road."
+   },
+   {
+    "name_en": "Bring Juniper two Silvercaps",
+    "text_en": "Silvercaps are the small pale blue mushrooms, thickest in Mushroom Hollow in the far west of Whisperwood."
+   }
+  ]
+ },
+ "s_bram": {
+  "name_en": "Ore for the Forge",
+  "summary_en": "Bram wants copper from the mountain.",
+  "steps": [
+   {
+    "name_en": "Talk to Bram",
+    "text_en": "The Forge is just east of the town square, on the north side of the east road."
+   },
+   {
+    "name_en": "Bring Bram five Copper Ore",
+    "text_en": "Copper seams are the orange-flecked rocks in the Old Working at Stonepeak, east of town."
+   }
+  ]
+ },
+ "s_tamsin": {
+  "name_en": "Fresh for the Bakery",
+  "summary_en": "Tamsin needs fresh ingredients for the week's baking.",
+  "steps": [
+   {
+    "name_en": "Talk to Tamsin",
+    "text_en": "The Bakery is on the west bank, right by the bridge."
+   },
+   {
+    "name_en": "Bring Tamsin her vegetables",
+    "text_en": "Hazel sells carrot and parsnip seeds. Grow them yourself, then take them to the Bakery."
+   }
+  ]
+ },
+ "s_pell": {
+  "name_en": "Timber for the Bridge",
+  "summary_en": "Two planks are gone from the footbridge, and Pell needs timber to fix it.",
+  "steps": [
+   {
+    "name_en": "Talk to Pell",
+    "text_en": "The Carpenter's workshop is on the east road, past the Forge."
+   },
+   {
+    "name_en": "Bring Pell ten Wood",
+    "text_en": "Chop any tree with the axe. Pell is at his workshop on the east road."
+   }
+  ]
+ },
+ "s_hazel": {
+  "name_en": "Unusual Seeds",
+  "summary_en": "Hazel has heard about a wild plant out in Whisperwood that nobody here has ever grown.",
+  "steps": [
+   {
+    "name_en": "Talk to Hazel",
+    "text_en": "The Seed & Tool shop is just east of the town square, on the north side of the east road."
+   },
+   {
+    "name_en": "Find seeds in the bramble patch",
+    "text_en": "The bramble patch is in the far north of Whisperwood, where the river comes down. Take the path north through the wood."
+   },
+   {
+    "name_en": "Bring Hazel the wild seeds",
+    "text_en": "Hazel is at the Seed & Tool shop, just east of the square."
+   }
+  ]
+ },
+ "fg01": {
+  "name_en": "Something in the Ground",
+  "summary_en": "Marlow says a farmer should always have something growing, whatever else is going on. Start with parsnips.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Parsnips",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg02": {
+  "name_en": "Spring Onions",
+  "summary_en": "Wren cooks fish with spring onions, and the patch behind the cottage has gone to seed.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Spring Onions",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg03": {
+  "name_en": "Grist for the Mill",
+  "summary_en": "Hugo's mill is standing still. He needs wheat to grind.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Wheat",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg04": {
+  "name_en": "Potatoes for the Pies",
+  "summary_en": "Tamsin is short of potatoes for her pies.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Potatoes",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg05": {
+  "name_en": "Something Green",
+  "summary_en": "Rowan says the Market Hall has had no greens all week.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Cabbages",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg06": {
+  "name_en": "Onions for the Winter",
+  "summary_en": "Mabel says every kitchen needs onions hung up before the cold comes.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 8 Onions",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg07": {
+  "name_en": "A Second Sheaf",
+  "summary_en": "Hugo is grinding again and wants more wheat.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 8 Wheat",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 8. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg08": {
+  "name_en": "Rice for the Camp",
+  "summary_en": "The miners at Stonepeak live on rice, and Dunn says the camp's store is nearly empty.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 8 Rice",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg09": {
+  "name_en": "Greens for the Miners",
+  "summary_en": "Dunn says his miners haven't seen a green vegetable in weeks.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Broccoli",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg10": {
+  "name_en": "Marigolds for Juniper",
+  "summary_en": "Juniper makes a salve from marigolds for the miners' hands.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Marigolds",
+    "text_en": "Juniper's Apothecary sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg11": {
+  "name_en": "Corn for the Winch",
+  "summary_en": "The winch team works hungry. Corn keeps them going.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Corn",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg12": {
+  "name_en": "Sunflowers",
+  "summary_en": "Juniper presses sunflower seeds for oil and has run out.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Sunflowers",
+    "text_en": "Juniper's Apothecary sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg13": {
+  "name_en": "Tomatoes for Tamsin",
+  "summary_en": "Tamsin is making a sauce and wants tomatoes.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 6 Tomatoes",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg14": {
+  "name_en": "Something Cool",
+  "summary_en": "It is hot on the deep levels. The miners want cucumbers.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 8 Cucumbers",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 15. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg15": {
+  "name_en": "Beans for the Market",
+  "summary_en": "Rowan says the Market Hall can never get enough beans.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 10 Green Beans",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 18. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg16": {
+  "name_en": "Red Beans",
+  "summary_en": "Tamsin bakes red bean buns for the autumn fair.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 10 Adzuki Beans",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 18. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "fg17": {
+  "name_en": "The Founders' Fields",
+  "summary_en": "The Founders grew more than Star Fruit. Their fields were full. Fill yours.",
+  "steps": [
+   {
+    "name_en": "Grow and harvest 10 Eggplants",
+    "text_en": "Hazel's Seed & Tool shop sells the seeds. Plant them by the town greenhouse or at home. Needed by chapter 18. Seeds locked? Raise Farming."
+   }
+  ]
+ },
+ "bk01": {
+  "name_en": "Soup",
+  "summary_en": "You woke in a bed that isn't yours. There is a smell of soup, and somebody moving about the house.",
+  "steps": [
+   {
+    "name_en": "Talk to the man in the house",
+    "text_en": "The old man is here in the house with you. Walk up to him and press E to talk."
+   }
+  ]
+ },
+ "bk02": {
+  "name_en": "Carrots",
+  "summary_en": "Marlow wants to see you grow something before he leaves the island to you.",
+  "steps": [
+   {
+    "name_en": "Find Marlow outside the door",
+    "text_en": "Marlow is standing by the path just outside your front door. The field is the patch of bare earth west of the house."
+   },
+   {
+    "name_en": "Turn the soil in the field",
+    "text_en": "The field is the patch of bare earth west of the house. Take the hoe in hand and press Space. One swing turns a whole row."
+   },
+   {
+    "name_en": "Plant the carrot seeds",
+    "text_en": "Take the seeds in hand from your hotbar, stand on the turned soil and press Space."
+   },
+   {
+    "name_en": "Tell Marlow the seeds are in",
+    "text_en": "Marlow is standing by the path just outside your front door."
+   }
+  ]
+ },
+ "bk03": {
+  "name_en": "First Harvest",
+  "summary_en": "The carrots are in. While they grow, Marlow teaches you the rest of what he knows.",
+  "steps": [
+   {
+    "name_en": "Water the carrots",
+    "text_en": "Take the can to your carrots west of the house and press Space. If it has rained, that counts too."
+   },
+   {
+    "name_en": "Ask Marlow what to do while they grow",
+    "text_en": "Marlow is standing by the path just outside your front door."
+   },
+   {
+    "name_en": "Catch a fish off the island",
+    "text_en": "Stand at the island's shore facing the water, rod in hand. Hold Space to cast."
+   },
+   {
+    "name_en": "Harvest a carrot with the sickle",
+    "text_en": "When the carrots have come up, stand by them with the sickle in hand and press Space."
+   },
+   {
+    "name_en": "Put something away in a chest in the house",
+    "text_en": "The chests are in the house, two by the fireplace, a crate and one by the bed. Press E at one and drag something in."
+   },
+   {
+    "name_en": "Sit with Marlow",
+    "text_en": "Marlow is standing by the path just outside your front door."
+   }
+  ]
+ },
+ "bk04": {
+  "name_en": "The Crossing",
+  "summary_en": "Marlow has taught you what he can on the island. Bloomshire is across the water, and he is going with you.",
+  "steps": [
+   {
+    "name_en": "Talk to Marlow",
+    "text_en": "Marlow is standing by the path just outside your front door."
+   },
+   {
+    "name_en": "Row across to Bloomshire",
+    "text_en": "The rowing boat is tied up on the south shore of the island, below the house. Stand next to it and press E."
+   }
+  ]
+ },
+ "bk05": {
+  "name_en": "The One Marlow Pulled Out",
+  "summary_en": "Bloomshire. Everybody seems to know who you are already.",
+  "steps": [
+   {
+    "name_en": "Talk to Marlow on the jetty",
+    "text_en": "Marlow is on the jetty where the boat came in, at the south end of town by the river."
+   },
+   {
+    "name_en": "Meet Maren, Fenwick and Tamsin",
+    "text_en": "Maren lives west of the river, north of the bridge. Fenwick's post is north of the square. The Bakery is by the bridge."
+   },
+   {
+    "name_en": "Find Marlow's new house",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   }
+  ]
+ },
+ "bk06": {
+  "name_en": "Bread and Sawdust",
+  "summary_en": "Marlow says you need a routine. Meet the shopkeepers, grow something in town, and sell it.",
+  "steps": [
+   {
+    "name_en": "Ask Marlow about a day's work",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   },
+   {
+    "name_en": "Meet the shopkeepers",
+    "text_en": "Hazel, Bram and Pell are east of the square. Odette is west of it. Wren's cottage is by the south jetties."
+   },
+   {
+    "name_en": "A day's work in town",
+    "text_en": "Hazel's shop is just east of the square. The town fields are north of the square, by the greenhouse."
+   },
+   {
+    "name_en": "Tell Marlow how it went",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   }
+  ]
+ },
+ "bk07": {
+  "name_en": "The Founders' Walk",
+  "summary_en": "Ansel the chapel keeper wants to show you the twelve statues down by the harbour.",
+  "steps": [
+   {
+    "name_en": "Talk to Ansel at the chapel",
+    "text_en": "Ansel keeps the old chapel, north west of the square past the orchard."
+   },
+   {
+    "name_en": "Walk the Founders' Walk",
+    "text_en": "The Founders' Walk runs south from the Founders' Hall, by the harbour, at the south end of town."
+   },
+   {
+    "name_en": "Ask Rosa about the twelve",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   }
+  ]
+ },
+ "bk08": {
+  "name_en": "Skipping Rhyme",
+  "summary_en": "The school children have a skipping rhyme about a red star. Greta doesn't like it.",
+  "steps": [
+   {
+    "name_en": "Talk to Greta at the school",
+    "text_en": "Greta's school is in the north east of town."
+   },
+   {
+    "name_en": "Ask Mabel about the rhyme",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   },
+   {
+    "name_en": "Talk to Nixie in the pond",
+    "text_en": "Nixie is in the pond just south of the square. Stand by the water and press E."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Bring Nixie a piece of Quartz",
+    "text_en": "Quartz is in the Old Working, the mine in Stonepeak east of town. Break the pale seams. Nixie is in the pond south of the square."
+   }
+  ]
+ },
+ "bk09": {
+  "name_en": "The Bay",
+  "summary_en": "Old Jory says there's a fish in the bay as big as a boat. Nobody believes him.",
+  "steps": [
+   {
+    "name_en": "Talk to Jory",
+    "text_en": "Jory sits by the river, south west of the square."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Catch five fish in the bay",
+    "text_en": "The bay is at the far south of the map, past the south of town and the Southvale. Fish off the dock or the Long Pier."
+   },
+   {
+    "name_en": "Watch the water from the end of the pier at night",
+    "text_en": "The end of the Long Pier, in the bay at the far south. Only at night."
+   },
+   {
+    "name_en": "Tell Jory what you saw",
+    "text_en": "Jory sits by the river, south west of the square."
+   }
+  ]
+ },
+ "bk10": {
+  "name_en": "Market Day",
+  "summary_en": "Otto the lamplighter needs a favour, and he is too shy to say what it is.",
+  "steps": [
+   {
+    "name_en": "Talk to Otto",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Give Ivy a marigold you grew, from Otto",
+    "text_en": "Grow a marigold, then take it to Ivy. Ivy sells flowers just south of the square."
+   },
+   {
+    "name_en": "Tell Otto what Ivy said",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   }
+  ]
+ },
+ "bk11": {
+  "name_en": "Grey Cherries",
+  "summary_en": "Something is wrong in Dara's orchard.",
+  "steps": [
+   {
+    "name_en": "Talk to Dara in the orchard",
+    "text_en": "Dara keeps the orchard north of the square."
+   },
+   {
+    "name_en": "Look at the grey trees",
+    "text_en": "The orchard is north of the square. The grey corner is at its north west."
+   },
+   {
+    "name_en": "Ask Hollis about the grey",
+    "text_en": "Hollis keeps the animals on the east side of town."
+   },
+   {
+    "name_en": "Tell Maren",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   },
+   {
+    "name_en": "Bring Ansel and Hugo to Maren",
+    "text_en": "Ansel keeps the old chapel, north west of the square past the orchard. Hugo is by the orchard, north west of the square."
+   },
+   {
+    "name_en": "Go back to Maren",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "bk12": {
+  "name_en": "Otto's Round",
+  "summary_en": "The evenings are coming early. Otto asks for help with the lamps.",
+  "steps": [
+   {
+    "name_en": "Talk to Otto",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   },
+   {
+    "name_en": "Light three lamps after dark",
+    "text_en": "The jetty road lamp is at the south end of town, the chapel lamp north west, the west road lamp where the road leaves for the wood."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Drive off the grey wolf in Whisperwood",
+    "text_en": "Grey wolves hunt in Whisperwood, west of town. Sword in hand, Space to strike."
+   },
+   {
+    "name_en": "Tell Otto about the wolf",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   }
+  ]
+ },
+ "bk13": {
+  "name_en": "Whisperwood",
+  "summary_en": "The grey is coming out of the wood. Cole knows Whisperwood better than anyone, and he will go with you, partway.",
+  "steps": [
+   {
+    "name_en": "Talk to Cole",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Fell five trees in the Woodlot",
+    "text_en": "The Woodlot is the fenced grove just north of Pell's workshop, in town."
+   },
+   {
+    "name_en": "Find the grey in the deep wood",
+    "text_en": "The deep wood is the dark west of Whisperwood. The grey clearing is about halfway down it, west of the woodcutters' clearing."
+   },
+   {
+    "name_en": "Tell Cole what you found",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   }
+  ]
+ },
+ "bk14": {
+  "name_en": "The Hidden Glade",
+  "summary_en": "The grey runs north through the deep wood, towards an old place Cole's father called the hidden glade.",
+  "steps": [
+   {
+    "name_en": "Search the hidden glade",
+    "text_en": "The hidden glade is at the north of the deep wood, in the north west of Whisperwood. Look for a ring of old columns round a floor of stone."
+   },
+   {
+    "name_en": "Show Rosa the rubbing",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Ask Juniper about the glade",
+    "text_en": "The Apothecary is in the far west of town, on the main road before the wood."
+   }
+  ]
+ },
+ "bk15": {
+  "name_en": "The Old Map",
+  "summary_en": "Rosa has found the map. Marlow and Maren argue about what it means. Somebody has to go and look.",
+  "steps": [
+   {
+    "name_en": "See what Rosa found",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   },
+   {
+    "name_en": "Show Marlow the map",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   },
+   {
+    "name_en": "Show Maren the map",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   },
+   {
+    "name_en": "On with the story",
+    "text_en": "Nothing to do here. On you go."
+   },
+   {
+    "name_en": "Cook five dishes for the road",
+    "text_en": "Any stove will do, the Bakery's by the bridge or yours in the house on the island."
+   },
+   {
+    "name_en": "Tell Tamsin you're ready",
+    "text_en": "The Bakery is on the west bank, right by the bridge, on the north side of the main road."
+   }
+  ]
+ },
+ "bk16": {
+  "name_en": "Every Colour",
+  "summary_en": "The Old Road runs west for days, to a ring of stones on an old map.",
+  "steps": [
+   {
+    "name_en": "Take the Old Road west",
+    "text_en": "The Old Road leaves the far west edge of Whisperwood, at the end of the main road through the wood."
+   },
+   {
+    "name_en": "Wake the twelve pale shapes",
+    "text_en": "They stand round the old pavement. \"Red star rising\": the red one first, then on round the way the ring's colours run."
+   },
+   {
+    "name_en": "Step into the middle of the ring",
+    "text_en": "All twelve are awake, and the middle of the old pavement is glowing. Stand in it and press E."
+   }
+  ]
+ },
+ "bk17": {
+  "name_en": "Home Changed",
+  "summary_en": "You walk home not knowing what happened to you at the ring of stones.",
+  "steps": [
+   {
+    "name_en": "Walk home to Bloomshire",
+    "text_en": "The Old Road leads back from the south of the Dreaming Fields to Whisperwood, and the town beyond it."
+   },
+   {
+    "name_en": "Go to Marlow",
+    "text_en": "Marlow's new house is west of the river, south of the main road, near the allotments."
+   },
+   {
+    "name_en": "Go to Maren",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "bk18": {
+  "name_en": "Marven's Pool",
+  "summary_en": "Up the river to the lake. The mermaid of Moonmere asked for you by name, and the lake's fish are coming up grey.",
+  "steps": [
+   {
+    "name_en": "Go up to Moonmere",
+    "text_en": "Moonmere is the lake north of town. Walk north from the square until you reach the water."
+   },
+   {
+    "name_en": "Find Marven at her pool",
+    "text_en": "Marven's pool is in the north east corner of Moonmere, below the falls."
+   },
+   {
+    "name_en": "Catch forty fish in Moonmere",
+    "text_en": "Fish anywhere on Moonmere. The lagoon's long pier and the meadow shore are good spots."
+   },
+   {
+    "name_en": "Fish the far shores, sixty more",
+    "text_en": "Marven wants every corner of the lake fished. Try the falls shelf, the Stone Ring and the meadow shore."
+   },
+   {
+    "name_en": "Bring Marven three Ghost Catfish",
+    "text_en": "Ghost Catfish bite only in Moonmere, at night. Marven's pool is in the north east corner of Moonmere, below the falls."
+   },
+   {
+    "name_en": "Hear Marven out tomorrow",
+    "text_en": "Marven's pool is in the north east corner of Moonmere, below the falls. She asked for a day to think."
+   }
+  ]
+ },
+ "bk19": {
+  "name_en": "The Stones in the Lake",
+  "summary_en": "Twelve stones stand in a ring out in the lake. Marven says their marks only show at night.",
+  "steps": [
+   {
+    "name_en": "Read the four marked stones at night",
+    "text_en": "One marked stone on each side of the Stone Ring, in the middle of Moonmere. Stepping stones go out from the meadow. At night."
+   },
+   {
+    "name_en": "Give Rosa the four rubbings",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   },
+   {
+    "name_en": "Go back to Rosa tomorrow",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road. She asked for a whole day with the rubbings."
+   },
+   {
+    "name_en": "Pick forty things that grow wild",
+    "text_en": "Mushrooms in the wood and round the lake. Juniper wants to know you can find things before she makes you a lantern."
+   },
+   {
+    "name_en": "Bring Juniper twenty Glowcap Mushrooms",
+    "text_en": "Glowcaps grow round Moonmere and in Whisperwood. The Apothecary is in the far west of town, on the main road before the wood."
+   }
+  ]
+ },
+ "bk20": {
+  "name_en": "Nixie",
+  "summary_en": "Nixie has lived in the town pond longer than anyone remembers. Nobody ever told her where she came from.",
+  "steps": [
+   {
+    "name_en": "Nixie wants a word",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   },
+   {
+    "name_en": "Ask Marven about Nixie",
+    "text_en": "Marven's pool is in the north east corner of Moonmere, below the falls."
+   },
+   {
+    "name_en": "Cook twenty dishes",
+    "text_en": "Cook at any stove. The Bakery's by the bridge, or use yours on the island."
+   },
+   {
+    "name_en": "Bring Nixie ten dishes you cooked",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   },
+   {
+    "name_en": "Take what Nixie gives you",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   }
+  ]
+ },
+ "bk21": {
+  "name_en": "The Lagoon",
+  "summary_en": "The merfolk of the lagoon village are polite to strangers, and nothing more. You carry a comb that might change that.",
+  "steps": [
+   {
+    "name_en": "Find the speaker for the lagoon",
+    "text_en": "Sylmare is by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Show Sylmare the comb and the lantern",
+    "text_en": "Sylmare is by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Bring Miralys thirty fish for the drying racks",
+    "text_en": "Miralys mends nets by the canoe on the lagoon village's east walk, west of Moonmere."
+   },
+   {
+    "name_en": "Bring Elyria marigolds for the fountain",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Drive the slimes and flytraps off the shore",
+    "text_en": "They are along the shores of Moonmere, thickest in the meadow on the south side."
+   },
+   {
+    "name_en": "Tell Virella the shore is clear",
+    "text_en": "Virella keeps watch by the long pier out to the lagoon village, west of Moonmere."
+   },
+   {
+    "name_en": "Bring Sylmare what the walks need",
+    "text_en": "Sylmare is by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Hear what the lagoon decided",
+    "text_en": "Sylmare is by the shell fountain in the lagoon village, on the west side of Moonmere. Come back tomorrow."
+   }
+  ]
+ },
+ "bk22": {
+  "name_en": "Grey Water",
+  "summary_en": "Something big and grey moves in the deep water of the lake. It took two of Miralys's nets, and a canoe.",
+  "steps": [
+   {
+    "name_en": "Talk to Virella",
+    "text_en": "Virella keeps watch by the long pier out to the lagoon village, west of Moonmere."
+   },
+   {
+    "name_en": "Watch the deep water at night",
+    "text_en": "Watch from the stepping stones that run out to the Stone Ring from the meadow on the south shore. At night."
+   },
+   {
+    "name_en": "Fish the deep water, sixty more",
+    "text_en": "To be ready for anything that big you need hours on the water. Anywhere on Moonmere."
+   },
+   {
+    "name_en": "Track the grey",
+    "text_en": "Round Moonmere."
+   },
+   {
+    "name_en": "Show Marven the grey scale",
+    "text_en": "Ghost Catfish bite only in Moonmere, at night. Marven's pool is in the north east corner of Moonmere, below the falls."
+   },
+   {
+    "name_en": "Tell Virella what Marven said",
+    "text_en": "Virella keeps watch by the long pier out to the lagoon village, west of Moonmere. Come back tomorrow."
+   }
+  ]
+ },
+ "bk23": {
+  "name_en": "Moonsight",
+  "summary_en": "The Moon Fairy kept the lake before the merfolk came. Her shrine stands on the island east of the lake, and she shows herself only to someone she chooses.",
+  "steps": [
+   {
+    "name_en": "Talk to Elyria",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Pick fifty things that grow wild",
+    "text_en": "Anything that grows wild, anywhere. She likes people who notice."
+   },
+   {
+    "name_en": "Bring Elyria the offering",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Take the offering to the shrine at night",
+    "text_en": "The Moon Fairy's shrine is the little gazebo on the island on the east side of Moonmere. Swim across to it."
+   },
+   {
+    "name_en": "Find what the moon shows you",
+    "text_en": "At night, with the Moon Fairy's blessing. Three places round the lake shine for you now."
+   },
+   {
+    "name_en": "Bring Elyria the three verses",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere."
+   }
+  ]
+ },
+ "bk24": {
+  "name_en": "The Gate Song",
+  "summary_en": "A song nobody has sung for a hundred years. To sing it the whole lake must listen, the town and the lagoon together.",
+  "steps": [
+   {
+    "name_en": "Hear Elyria sing",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere. Come back tomorrow."
+   },
+   {
+    "name_en": "Ask Maren about a festival",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   },
+   {
+    "name_en": "Bring Tamsin twenty dishes for the feast",
+    "text_en": "The Bakery is on the west bank, right by the bridge, on the north side of the main road."
+   },
+   {
+    "name_en": "Bring Ivy forty marigolds",
+    "text_en": "Ivy sells flowers just south of the square."
+   },
+   {
+    "name_en": "Bring Hugo sixty wheat for the bread",
+    "text_en": "Hugo is by the orchard, north west of the square."
+   },
+   {
+    "name_en": "Bring Otto glowcaps and Gold for the lanterns",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   },
+   {
+    "name_en": "Tell Sylmare the town is coming",
+    "text_en": "Sylmare is by the shell fountain in the lagoon village, on the west side of Moonmere."
+   },
+   {
+    "name_en": "Find Elyria before the festival",
+    "text_en": "Elyria sings by the shell fountain in the lagoon village, on the west side of Moonmere. Come back tomorrow."
+   },
+   {
+    "name_en": "Go to the festival at the fountain at night",
+    "text_en": "The shell fountain is in the middle of the lagoon village, on the west side of Moonmere. At night."
+   },
+   {
+    "name_en": "Talk to Maren after the festival",
+    "text_en": "Maren's house is on the west bank of the river, north of the bridge."
+   }
+  ]
+ },
+ "g_storehouse": {
+  "name_en": "The Storehouse",
+  "summary_en": "Marlow says the Storehouse in town keeps a chest for you, for when your hands are full.",
+  "steps": [
+   {
+    "name_en": "Put something in your chest at the Storehouse",
+    "text_en": "The Storehouse is on the east side of town, south of the Bank. Inside, press E at your chest and drag something in."
+   }
+  ]
+ },
+ "g_fish": {
+  "name_en": "A Line in the Water",
+  "summary_en": "Wren the fisher will show you how to really fish.",
+  "steps": [
+   {
+    "name_en": "Talk to Wren",
+    "text_en": "Wren's cottage is by the south jetties."
+   },
+   {
+    "name_en": "Catch ten fish",
+    "text_en": "Any water with fish will do, the river through town, the pond or the bay to the south."
+   },
+   {
+    "name_en": "Bring Wren three fish",
+    "text_en": "Wren's cottage is by the south jetties."
+   }
+  ]
+ },
+ "g_cook": {
+  "name_en": "Tamsin's Kitchen",
+  "summary_en": "Tamsin says anybody can cook if they stand at a stove long enough.",
+  "steps": [
+   {
+    "name_en": "Talk to Tamsin",
+    "text_en": "The Bakery is on the west bank, right by the bridge, on the north side of the main road."
+   },
+   {
+    "name_en": "Cook three dishes",
+    "text_en": "Stand at the stove in the Bakery and press E. Fried Fish takes one Carp."
+   },
+   {
+    "name_en": "Bring Tamsin something you cooked",
+    "text_en": "The Bakery is on the west bank, right by the bridge, on the north side of the main road."
+   }
+  ]
+ },
+ "g_forage": {
+  "name_en": "What Grows Wild",
+  "summary_en": "Juniper at the Apothecary knows everything that grows wild in the valley.",
+  "steps": [
+   {
+    "name_en": "Talk to Juniper",
+    "text_en": "The Apothecary is in the far west of town, on the main road before the wood."
+   },
+   {
+    "name_en": "Pick five wild mushrooms",
+    "text_en": "In Whisperwood's shade, west of town. Press E by a mushroom."
+   },
+   {
+    "name_en": "Bring Juniper three silvercaps",
+    "text_en": "The Apothecary is in the far west of town."
+   }
+  ]
+ },
+ "g_wood": {
+  "name_en": "Timber",
+  "summary_en": "Cole the farmhand will show you how to fell a tree without dropping it on yourself.",
+  "steps": [
+   {
+    "name_en": "Talk to Cole",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   },
+   {
+    "name_en": "Fell five trees in the Woodlot",
+    "text_en": "The Woodlot is the fenced grove just north of Pell's workshop, in town. Axe in hand, press Space by a tree."
+   },
+   {
+    "name_en": "Bring Cole fifteen wood",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   }
+  ]
+ },
+ "g_woodlot": {
+  "name_en": "The Woodlot",
+  "summary_en": "Pell keeps the only trees in Bloomshire anyone may cut. They grow back, if you give them time.",
+  "steps": [
+   {
+    "name_en": "Talk to Pell",
+    "text_en": "Pell's workshop is on the east road, past the Forge."
+   },
+   {
+    "name_en": "Fell all six trees in the Woodlot",
+    "text_en": "The Woodlot is the fenced grove just north of Pell's workshop, in town."
+   },
+   {
+    "name_en": "Come back when they have grown, and fell all six again",
+    "text_en": "The Woodlot is the fenced grove just north of Pell's workshop, in town. A felled tree there is a tree again in six hours."
+   },
+   {
+    "name_en": "Bring Pell twenty wood",
+    "text_en": "Pell's workshop is on the east road, past the Forge."
+   }
+  ]
+ },
+ "g_mine": {
+  "name_en": "Stone and Ore",
+  "summary_en": "Bram at the Forge will teach you to work a pickaxe.",
+  "steps": [
+   {
+    "name_en": "Talk to Bram at the Forge",
+    "text_en": "The Forge is east of the square."
+   },
+   {
+    "name_en": "Break five rocks",
+    "text_en": "Stonepeak, east of town. Pickaxe in hand, press Space by a rock."
+   },
+   {
+    "name_en": "Bring Bram ten stone",
+    "text_en": "The Forge is east of the square."
+   }
+  ]
+ },
+ "g_combat": {
+  "name_en": "Blade and Bow",
+  "summary_en": "Bram says a farmer who walks in the wild had better know how to use a sword.",
+  "steps": [
+   {
+    "name_en": "Talk to Bram about fighting",
+    "text_en": "The Forge is east of the square."
+   },
+   {
+    "name_en": "Defeat three wild creatures",
+    "text_en": "Out in the wild, Whisperwood to the west or Stonepeak to the east."
+   },
+   {
+    "name_en": "Go back to Bram",
+    "text_en": "The Forge is east of the square."
+   }
+  ]
+ },
+ "g_market": {
+  "name_en": "Rowan's Rules",
+  "summary_en": "Rowan runs the Market Hall, where farmers sell to each other. There are rules.",
+  "steps": [
+   {
+    "name_en": "Talk to Rowan at the Market Hall",
+    "text_en": "The Market Hall is just south of the square."
+   },
+   {
+    "name_en": "Put something up for sale on a stall",
+    "text_en": "In the Market Hall, south of the square. Talk to Rowan and choose something to sell."
+   }
+  ]
+ },
+ "g_orders": {
+  "name_en": "The Order Board",
+  "summary_en": "Odette keeps a board of orders at the General Store, six a day.",
+  "steps": [
+   {
+    "name_en": "Talk to Odette",
+    "text_en": "The General Store is just west of the square."
+   },
+   {
+    "name_en": "Deliver an order at the General Store",
+    "text_en": "At the General Store, west of the square. Talk to Odette and open the Orders tab."
+   }
+  ]
+ },
+ "g_bank": {
+  "name_en": "Money in the Bank",
+  "summary_en": "Farthing at the Bank keeps your Gold safe.",
+  "steps": [
+   {
+    "name_en": "Talk to Farthing at the Bank",
+    "text_en": "The Bank is on the east side of town."
+   },
+   {
+    "name_en": "Put some Gold in the Bank",
+    "text_en": "At the Bank, east side of town. Talk to Farthing."
+   }
+  ]
+ },
+ "g_explore": {
+  "name_en": "The Lay of the Land",
+  "summary_en": "Rosa wants you to see the valley for yourself, all of it, and tell her what it is really like.",
+  "steps": [
+   {
+    "name_en": "Talk to Rosa",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   },
+   {
+    "name_en": "Walk into every part of the valley",
+    "text_en": "Whisperwood is west, Moonmere up the river north, Stonepeak east, the Southvale and the bay south."
+   },
+   {
+    "name_en": "Tell Rosa what you saw",
+    "text_en": "Rosa reads on the west bank by the river, south of the main road."
+   }
+  ]
+ },
+ "sd_fenwick": {
+  "name_en": "Letters for the Valley",
+  "summary_en": "Fenwick's knees are bad and his bag is full.",
+  "steps": [
+   {
+    "name_en": "Talk to Fenwick at the post",
+    "text_en": "Fenwick keeps the post just north of the town square."
+   },
+   {
+    "name_en": "Give Greta her letter",
+    "text_en": "Greta's school is in the north east of town."
+   },
+   {
+    "name_en": "Give Hugo his letter",
+    "text_en": "Hugo is by the orchard, north west of the square."
+   },
+   {
+    "name_en": "Give Lena her letter",
+    "text_en": "Lena keeps the gardens south west of town, near Marlow's house."
+   },
+   {
+    "name_en": "Go back to Fenwick",
+    "text_en": "Fenwick keeps the post just north of the town square."
+   }
+  ]
+ },
+ "sd_hugo": {
+  "name_en": "Grist for the Mill",
+  "summary_en": "Hugo's mill has stood idle all season for want of wheat.",
+  "steps": [
+   {
+    "name_en": "Talk to Hugo",
+    "text_en": "Hugo is by the orchard, north west of the square."
+   },
+   {
+    "name_en": "Bring Hugo twenty wheat",
+    "text_en": "Hugo is by the orchard, north west of the square."
+   }
+  ]
+ },
+ "sd_lena": {
+  "name_en": "Lena's Garden",
+  "summary_en": "Lena wants to fill the town's beds with cabbages before the frost.",
+  "steps": [
+   {
+    "name_en": "Talk to Lena",
+    "text_en": "Lena keeps the gardens south west of town, near Marlow's house."
+   },
+   {
+    "name_en": "Bring Lena twelve cabbages you grew",
+    "text_en": "Lena keeps the gardens south west of town, near Marlow's house."
+   }
+  ]
+ },
+ "sd_mabel": {
+  "name_en": "The Shrinking Pond",
+  "summary_en": "Mabel's pond is shrinking, and its bank is falling in.",
+  "steps": [
+   {
+    "name_en": "Talk to Mabel",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   },
+   {
+    "name_en": "Bring Mabel fifteen stone and ten wood",
+    "text_en": "The pond is just south of the square, by the Market Hall."
+   }
+  ]
+ },
+ "sd_ivy": {
+  "name_en": "A Flower for Every Table",
+  "summary_en": "Ivy wants a marigold on every table in the square for the summer dance.",
+  "steps": [
+   {
+    "name_en": "Talk to Ivy",
+    "text_en": "Ivy sells flowers just south of the square."
+   },
+   {
+    "name_en": "Bring Ivy fifteen marigolds",
+    "text_en": "Ivy sells flowers just south of the square."
+   }
+  ]
+ },
+ "sd_wren": {
+  "name_en": "Nets for the Harbour",
+  "summary_en": "Wren is mending the harbour nets and needs fish to sell for the twine.",
+  "steps": [
+   {
+    "name_en": "Talk to Wren",
+    "text_en": "Wren's cottage is by the south jetties."
+   },
+   {
+    "name_en": "Bring Wren ten fish and five wood",
+    "text_en": "Wren's cottage is by the south jetties."
+   }
+  ]
+ },
+ "sd_cole": {
+  "name_en": "Cole's Woodpile",
+  "summary_en": "Winter is coming and the town woodpile is low.",
+  "steps": [
+   {
+    "name_en": "Talk to Cole",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   },
+   {
+    "name_en": "Bring Cole forty wood",
+    "text_en": "Cole works by the greenhouse fields, north of the square."
+   }
+  ]
+ },
+ "sd_juniper": {
+  "name_en": "Juniper's Shelves",
+  "summary_en": "Juniper's shelves are bare of mushrooms, and people are coughing.",
+  "steps": [
+   {
+    "name_en": "Talk to Juniper",
+    "text_en": "The Apothecary is in the far west of town."
+   },
+   {
+    "name_en": "Bring Juniper ten silvercaps and five glowcaps",
+    "text_en": "The Apothecary is in the far west of town."
+   }
+  ]
+ },
+ "sd_dara": {
+  "name_en": "Mending the Fence",
+  "summary_en": "Dara wants a fence round the grey corner of the orchard, to keep the goats and the children out.",
+  "steps": [
+   {
+    "name_en": "Talk to Dara",
+    "text_en": "Dara keeps the orchard north of the square."
+   },
+   {
+    "name_en": "Bring Dara twenty five wood and fifteen stone",
+    "text_en": "Dara keeps the orchard north of the square."
+   }
+  ]
+ },
+ "sd_colour": {
+  "name_en": "Colour Back",
+  "summary_en": "The grey corner of Dara's orchard has not changed since you left. You have.",
+  "steps": [
+   {
+    "name_en": "Talk to Dara",
+    "text_en": "Dara keeps the orchard north of the square."
+   },
+   {
+    "name_en": "Lay your hands on the grey trees",
+    "text_en": "The grey corner is at the north west of the orchard, north of the square."
+   },
+   {
+    "name_en": "Tell Dara",
+    "text_en": "Dara keeps the orchard north of the square."
+   }
+  ]
+ },
+ "sd_greta": {
+  "name_en": "The Nature Table",
+  "summary_en": "Greta wants butterflies for the schoolroom's nature table.",
+  "steps": [
+   {
+    "name_en": "Talk to Greta",
+    "text_en": "Greta's school is in the north east of town."
+   },
+   {
+    "name_en": "Catch three butterflies with a bug net",
+    "text_en": "Hazel sells a bug net. Butterflies come out over the meadows on fine days."
+   },
+   {
+    "name_en": "Go back to Greta",
+    "text_en": "Greta's school is in the north east of town."
+   }
+  ]
+ },
+ "sd_otto": {
+  "name_en": "Soup for the Lamplighter",
+  "summary_en": "Otto lights every lamp in town, every night, and the nights are getting cold.",
+  "steps": [
+   {
+    "name_en": "Talk to Otto",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   },
+   {
+    "name_en": "Cook five bowls of Parsnip Soup",
+    "text_en": "Any stove will do, the Bakery's or your own. Each bowl takes four parsnips."
+   },
+   {
+    "name_en": "Bring Otto five bowls of Parsnip Soup",
+    "text_en": "Otto is by the Seed & Tool, just east of the square."
+   }
+  ]
+ },
+ "sd_jory": {
+  "name_en": "The Big Catch",
+  "summary_en": "Jory says he once caught a fish as long as a boat. He wants to see what you can do.",
+  "steps": [
+   {
+    "name_en": "Talk to Jory",
+    "text_en": "Jory sits by the river, south west of the square."
+   },
+   {
+    "name_en": "Catch fifteen fish",
+    "text_en": "Any water with fish will do, the river, the pond, the bay or the lake."
+   },
+   {
+    "name_en": "Bring Jory five fish",
+    "text_en": "Jory sits by the river, south west of the square."
+   }
+  ]
+ },
+ "sd_bram": {
+  "name_en": "Ore for the Forge",
+  "summary_en": "Bram has more orders for tools than ore to make them with.",
+  "steps": [
+   {
+    "name_en": "Talk to Bram",
+    "text_en": "The Forge is east of the square."
+   },
+   {
+    "name_en": "Bring Bram twenty copper ore and five iron ore",
+    "text_en": "The Forge is east of the square. Copper is in Stonepeak's caves, iron deeper down, from Mining level 5."
+   }
+  ]
+ },
+ "sd_rhys": {
+  "name_en": "Pests in the Fields",
+  "summary_en": "Something has been at the town's fields at night, and Rhys is tired of it.",
+  "steps": [
+   {
+    "name_en": "Talk to Rhys",
+    "text_en": "Rhys works the greenhouse fields north of the square, beside Cole."
+   },
+   {
+    "name_en": "Defeat fifteen wild creatures",
+    "text_en": "Out in the wild, Whisperwood to the west or Stonepeak to the east."
+   },
+   {
+    "name_en": "Go back to Rhys",
+    "text_en": "Rhys works the greenhouse fields north of the square, beside Cole."
+   }
+  ]
+ },
+ "sd_clara": {
+  "name_en": "Eggs for the Bakery",
+  "summary_en": "Clara has a cake to bake for the harvest supper and not an egg in the house.",
+  "steps": [
+   {
+    "name_en": "Talk to Clara",
+    "text_en": "Clara is outside the Bakery, on the west bank by the bridge."
+   },
+   {
+    "name_en": "Bring Clara twelve eggs",
+    "text_en": "Clara is outside the Bakery, by the bridge. Chickens lay at Hollin's Farm, south of town."
+   }
+  ]
+ },
+ "sd_jasper": {
+  "name_en": "Planks for the Boats",
+  "summary_en": "Jasper has three boats to mend before the winter storms.",
+  "steps": [
+   {
+    "name_en": "Talk to Jasper",
+    "text_en": "Jasper mends boats on the south jetties, near the river mouth."
+   },
+   {
+    "name_en": "Bring Jasper fifteen planks and five rope",
+    "text_en": "Jasper is on the south jetties. Make planks and rope at Pell's workbench, in the Carpenter's on the east road."
+   }
+  ]
+ },
+ "sd_farthing": {
+  "name_en": "The Missing Ledger",
+  "summary_en": "Three pages have gone from Farthing's ledger, and Farthing does not lose things.",
+  "steps": [
+   {
+    "name_en": "Talk to Farthing",
+    "text_en": "The Bank is on the east side of town."
+   },
+   {
+    "name_en": "Ask Odette at the General Store",
+    "text_en": "The General Store is just west of the square."
+   },
+   {
+    "name_en": "Ask Quill at the Exchange",
+    "text_en": "The Exchange is south east of the square, west of the Bank."
+   },
+   {
+    "name_en": "Ask Fenwick at the post",
+    "text_en": "Fenwick keeps the post just north of the town square."
+   },
+   {
+    "name_en": "Bring Farthing the three pages",
+    "text_en": "The Bank is on the east side of town."
+   }
+  ]
+ },
+ "sd_rowan": {
+  "name_en": "Market Day",
+  "summary_en": "Rowan wants the Market Hall busy, and it has been very quiet.",
+  "steps": [
+   {
+    "name_en": "Talk to Rowan",
+    "text_en": "The Market Hall is just south of the square."
+   },
+   {
+    "name_en": "Set out three stalls at the Market Hall",
+    "text_en": "In the Market Hall, south of the square. Talk to Rowan and choose something to sell."
+   },
+   {
+    "name_en": "Go back to Rowan",
+    "text_en": "The Market Hall is just south of the square."
+   }
+  ]
+ },
+ "sd_willa": {
+  "name_en": "Flowers for the Bees",
+  "summary_en": "Willa's bees have stripped every flower in town, and the honey is thin.",
+  "steps": [
+   {
+    "name_en": "Talk to Willa",
+    "text_en": "Willa keeps her hives at the top of town, east of the orchard."
+   },
+   {
+    "name_en": "Bring Willa fifteen marigolds you grew",
+    "text_en": "Willa keeps her hives at the top of town, east of the orchard."
+   }
+  ]
+ },
+ "sd_lena_winter": {
+  "name_en": "The Winter Garden",
+  "summary_en": "Lena wants the town beds green all winter.",
+  "steps": [
+   {
+    "name_en": "Talk to Lena",
+    "text_en": "Lena keeps the gardens south west of town, near Marlow's house."
+   },
+   {
+    "name_en": "Reach Farming level 4",
+    "text_en": "Harvest crops of any kind to raise Farming. Winter kale takes from Farming level 4."
+   },
+   {
+    "name_en": "Bring Lena fifteen winter kale you grew",
+    "text_en": "Lena keeps the gardens south west of town, near Marlow's house."
+   }
+  ]
+ },
+ "sd_elsie": {
+  "name_en": "Honey for the Paints",
+  "summary_en": "Elsie paints the valley, and her paints have run dry.",
+  "steps": [
+   {
+    "name_en": "Talk to Elsie",
+    "text_en": "Elsie paints by the main road, west of the General Store."
+   },
+   {
+    "name_en": "Bring Elsie five honey",
+    "text_en": "Elsie paints by the main road, west of the General Store. Beehives are kept at Hollin's Farm."
+   }
+  ]
+ }
+}

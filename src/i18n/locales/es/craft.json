@@ -118,5 +118,23 @@
     "ingredients": "Insumos (Tus Existencias):",
     "materialsReady": "Materiales 100% listos",
     "locateStationItem": "Ubicar estación de \"{{item}}\" en el Mega-Atlas"
+  },
+  "recipe": {
+    "cookLevel": "Cocina nv {{n}} • {{tier}}",
+    "craftLevel": "Artesanía nv {{n}} (+{{xp}} XP)",
+    "dairyLevel": "Lechería (Hollin) • nv {{n}}",
+    "millLevel": "Molino (Hollin) • nv {{n}}",
+    "cookDesc": "+{{energy}} ⚡ energía, +{{health}} ❤️ vida. Tipo de plato: {{kind}}. Se cocina en la estufa en {{min}} min.",
+    "craftDesc": "Se fabrica en {{place}}. Usa {{energy}}⚡ y {{gold}}g en {{min}} min.",
+    "makeDesc": "Se hace en {{place}}. Produce {{n}} unidad(es).",
+    "places": {
+      "stove": "Estufa (Panadería de Tamsin / cabaña)",
+      "bench": "Banco de trabajo (carpintería de Pell)",
+      "forge": "La forja (Bram)",
+      "anvil": "La forja y el yunque (Bram)",
+      "dairy": "Lechería (granja de Hollin, Southvale)",
+      "mill": "Molino de agua (granja de Hollin, Southvale)",
+      "loom": "Telar de Tilly (sastrería)"
+    }
   }
 }

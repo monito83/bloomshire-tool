@@ -29,7 +29,7 @@ export default function TabRouter({
     setAtlasFocusTarget, setDailyTasks, setInventoryScope, setItemQuantities, setNewTimerForm, setShowAddTimerModal,
     setShowConnectModal, setSoundAlarmEnabled, setSystemLogs, shards, showAddTimerModal, skillsBreakdown,
     skillsMeta, soldGoldToday, soldItemsToday, soldThingsToday, soundAlarmEnabled, systemLogs,
-    toggleDailyTask, toggleDeliveredItem, updateStatusMessage, walletAddress
+    toggleDailyTask, toggleDeliveredItem, updateStatusMessage, walletAddress, itemsSearchSeed, openItemsSearch
   }) {
   const { t: tErrors } = useTranslation('errors');
   return (
@@ -43,6 +43,7 @@ export default function TabRouter({
           <ItemsTab
             getPlayerItemQty={getPlayerItemQty}
             locateInMegaAtlas={locateInMegaAtlas}
+            initialSearch={itemsSearchSeed}
           />
         )}
 
@@ -79,6 +80,7 @@ export default function TabRouter({
             locateInMegaAtlas={locateInMegaAtlas}
             setShowConnectModal={setShowConnectModal}
             getPlayerItemQty={getPlayerItemQty}
+            openItemsSearch={openItemsSearch}
           />
         )}
 
@@ -107,6 +109,7 @@ export default function TabRouter({
             locateInMegaAtlas={locateInMegaAtlas}
             getItemStorageBreakdown={(itemObj) => getItemStorageBreakdown(itemObj, rawInventory)}
             setActiveTab={setActiveTab}
+            openItemsSearch={openItemsSearch}
           />
         )}
 
