@@ -2,8 +2,7 @@
   "hero": {
     "kicker": "Community field guide",
     "title": "Logbook & Guides",
-    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, shared with the whole community.",
-    "credit": "Content by Leonman, published with his permission."
+    "subtitle": "Guides, routes, bosses and secrets of Bloomshire, shared with the whole community."
   },
   "nav": {
     "home": "Logbook",
@@ -251,6 +250,11 @@
       "pathPlaceholder": "Paste the image link or its path in the bucket",
       "invalidPath": "That link is not from the logbook storage.",
       "pasteAnywhere": "Tip: paste a screenshot (Ctrl+V) or drop images anywhere in the editor to add them."
+    },
+    "seed": {
+      "button": "Starter content",
+      "title": "Deletes every section, entry and place, and loads the guides made from game data",
+      "prompt": "This DELETES all logbook content and loads the starter guides (game guides, bosses and weapons). Type {{word}} to confirm:"
     }
   }
 }

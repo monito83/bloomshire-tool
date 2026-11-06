@@ -1,5 +1,5 @@
 /**
- * api/logbook-admin.js — Leonman's Logbook: administracion (fase 3)
+ * api/logbook-admin.js — Bitacora y guias: administracion (fase 3)
  *
  * POST /api/logbook-admin   body JSON { action, ... }
  *   login            { password }                -> { token, expiresAt }   (sin token)
@@ -13,6 +13,8 @@
  *   entry_delete     { id, confirmSlug }
  *   upload_sign      { mime, bytes, kind }        -> { path, uploadUrl } URL firmada de Supabase Storage
  *   media_register   { path, mime, bytes, width, height, alt_en, alt_es } -> fila en logbook_media
+ *   seed_reset       { confirm: 'BORRAR TODO' }  -> borra secciones, entradas y lugares, y carga
+ *                                                  src/data/logbook_seed.json (scripts/build_logbook_seed.mjs)
  *
  * Subidas: el navegador reduce y convierte la imagen a WebP y la sube DIRECTO a
  * Supabase con la URL firmada (asi no pasa por el limite de 4,5 MB de Vercel).
@@ -37,6 +39,7 @@ import {
   wouldCreateCycle,
   sanitizeBlocks
 } from '../src/components/bloomshire/logbook/logbookModel.js';
+import LOGBOOK_SEED from '../src/data/logbook_seed.json' with { type: 'json' };
 
 const DEFAULT_SUPABASE_URL = 'https://vbefuztmqqymlotdhjvh.supabase.co';
 const JWT_ISSUER = 'bloomshire-tool';
@@ -53,6 +56,7 @@ export const UPLOAD_TYPES = {
   'image/gif': { ext: 'gif', kind: 'image' },
   'application/pdf': { ext: 'pdf', kind: 'file' }
 };
+export const SEED_CONFIRM = 'BORRAR TODO';
 export const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 const UPLOAD_PATH_RE = /^entries\/\d{4}\/\d{2}\/[0-9a-f-]{36}\.(webp|png|jpg|gif|pdf)$/;
 
@@ -317,6 +321,35 @@ const actions = {
       alt_es: text(body.alt_es)
     });
     return { ok: true, media: rows && rows[0] };
+  },
+
+  /** Reemplaza TODO el contenido por el paquete inicial (guias, jefes y armas hechos con datos del juego). */
+  async seed_reset(cfg, body) {
+    if (body.confirm !== SEED_CONFIRM) throw new HttpError(400, 'confirm_mismatch');
+    const sections = [];
+    for (const s of LOGBOOK_SEED.sections || []) {
+      const check = validateSectionInput(s);
+      if (!check.ok) throw new HttpError(500, 'seed_invalid');
+      sections.push({ id: s.id, ...check.value });
+    }
+    const entries = [];
+    for (const e of LOGBOOK_SEED.entries || []) {
+      const check = validateEntryInput(e);
+      if (!check.ok) throw new HttpError(500, 'seed_invalid');
+      entries.push({ id: e.id, ...check.value, author: 'Admin', published_at: new Date().toISOString() });
+    }
+    // Borrar todo (las entradas primero; las secciones caen en cascada con sus subsecciones)
+    await rest(cfg, 'DELETE', 'logbook_entries?id=not.is.null');
+    await rest(cfg, 'DELETE', 'logbook_sections?parent_id=not.is.null');
+    await rest(cfg, 'DELETE', 'logbook_sections?id=not.is.null');
+    await rest(cfg, 'DELETE', 'logbook_places?id=not.is.null');
+    // Cargar: secciones raiz, despues subsecciones, despues entradas
+    const roots = sections.filter((s) => !s.parent_id);
+    const children = sections.filter((s) => s.parent_id);
+    if (roots.length) await rest(cfg, 'POST', 'logbook_sections', roots);
+    if (children.length) await rest(cfg, 'POST', 'logbook_sections', children);
+    for (let i = 0; i < entries.length; i += 20) await rest(cfg, 'POST', 'logbook_entries', entries.slice(i, i + 20));
+    return { ok: true, sections: sections.length, entries: entries.length };
   },
 
   async entry_delete(cfg, body) {

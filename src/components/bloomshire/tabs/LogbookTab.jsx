@@ -1,5 +1,5 @@
 // src/components/bloomshire/tabs/LogbookTab.jsx
-// Leonman's Logbook — pestaña publica (fase 2) + modo admin (fase 3).
+// Bitacora y guias — pestaña publica (fase 2) + modo admin (fase 3).
 // Arbol dinamico de secciones, entradas en bloques, busqueda, filtro por lugar,
 // enlaces compartibles (#logbook/seccion/entrada) y salto al Mega-Atlas.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import {
   BookOpen, ScrollText, Search, X, ChevronRight, ChevronDown, ChevronLeft, ArrowLeft, ArrowRight,
   FileText, LoaderCircle, RefreshCw, Link2, Check, PanelLeft, Tag, Sparkles, Feather, TriangleAlert,
-  LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck
+  LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck, RotateCcw
 } from 'lucide-react';
 import megaAtlasData from '../../../../public/data/bloomshire/mega_atlas_data.json';
 import LogbookBlocks, { PlaceChip } from '../logbook/LogbookBlocks';
@@ -538,13 +538,28 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
     }
   }, [call, refresh]);
 
+  // Reemplaza todo por el contenido inicial (guias, jefes y armas hechos con datos del juego)
+  const seedReset = useCallback(async () => {
+    const typed = window.prompt(t('admin.seed.prompt', { word: 'BORRAR TODO' }));
+    if (typed !== 'BORRAR TODO') return;
+    try {
+      await call('seed_reset', { confirm: typed });
+      entryCache.current.clear();
+      refresh();
+      navigate('');
+    } catch (err) {
+      setAdminNotice(err);
+    }
+  }, [call, refresh, navigate, t]);
+
   const adminActions = useMemo(() => (token ? {
+    seedReset,
     move,
     editSection: (node) => setSectionModal({ initial: node }),
     newSection: (parentId) => setSectionModal({ initial: { parent_id: parentId || null } }),
     newEntry: (sectionId) => setEditing({ initial: { section_id: sectionId, status: 'draft' } }),
     editEntry: openEditor
-  } : null), [token, move, openEditor]);
+  } : null), [token, move, openEditor, seedReset]);
 
   // Despues de crear/guardar: navegar al elemento cuando ya esta en el arbol nuevo
   useEffect(() => {
@@ -612,7 +627,6 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
             {t('hero.title')}
           </h1>
           <p className="text-base leading-relaxed text-slate-300">{t('hero.subtitle')}</p>
-          <p className="text-xs text-slate-500">{t('hero.credit')}</p>
         </div>
       </section>
 
@@ -624,6 +638,11 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
           {adminActions && (
             <button type="button" onClick={() => adminActions.newSection(null)} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-gradient-to-b from-amber-400 to-amber-600 px-4 py-2.5 text-xs font-black text-[#1a1205] shadow-[0_8px_24px_-10px_rgba(245,158,11,0.8)] transition-transform hover:-translate-y-0.5 cursor-pointer">
               <FolderPlus className="h-4 w-4" /> {t('admin.actions.createFirst')}
+            </button>
+          )}
+          {adminActions && (
+            <button type="button" onClick={adminActions.seedReset} className="mt-5 ml-2 inline-flex items-center gap-2 rounded-xl border border-amber-500/40 px-4 py-2.5 text-xs font-black text-amber-200 transition-colors hover:bg-amber-500/10 cursor-pointer">
+              <RotateCcw className="h-4 w-4" /> {t('admin.seed.button')}
             </button>
           )}
         </div>
@@ -904,6 +923,9 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
             </span>
             <button type="button" onClick={() => adminActions.newSection(null)} className="ml-auto inline-flex items-center gap-1 rounded-lg border border-amber-500/40 px-2 py-1 text-[11px] font-black text-amber-200 hover:bg-amber-500/15 cursor-pointer">
               <FolderPlus className="h-3.5 w-3.5" /> {t('admin.actions.newSection')}
+            </button>
+            <button type="button" onClick={adminActions.seedReset} title={t('admin.seed.title')} className="inline-flex items-center gap-1 rounded-lg border border-rose-500/40 px-2 py-1 text-[11px] font-black text-rose-200 hover:bg-rose-500/15 cursor-pointer">
+              <RotateCcw className="h-3.5 w-3.5" /> {t('admin.seed.button')}
             </button>
           </div>
         )}

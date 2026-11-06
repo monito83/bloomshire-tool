@@ -2,8 +2,7 @@
   "hero": {
     "kicker": "Guía de campo de la comunidad",
     "title": "Bitácora y guías",
-    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, compartidos con toda la comunidad.",
-    "credit": "Contenido de Leonman, publicado con su permiso."
+    "subtitle": "Guías, rutas, jefes y secretos de Bloomshire, compartidos con toda la comunidad."
   },
   "nav": {
     "home": "Bitácora",
@@ -251,6 +250,11 @@
       "pathPlaceholder": "Pegá el enlace de la imagen o su ruta en el bucket",
       "invalidPath": "Ese enlace no es del almacenamiento de la bitácora.",
       "pasteAnywhere": "Consejo: pegá una captura (Ctrl+V) o soltá imágenes en cualquier parte del editor para agregarlas."
+    },
+    "seed": {
+      "button": "Contenido inicial",
+      "title": "Borra todas las secciones, entradas y lugares, y carga las guías hechas con datos del juego",
+      "prompt": "Esto BORRA todo el contenido de la bitácora y carga las guías iniciales (guías del juego, jefes y armas). Escribí {{word}} para confirmar:"
     }
   }
 }

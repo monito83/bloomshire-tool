@@ -1,5 +1,5 @@
 // src/components/bloomshire/logbook/logbookModel.js
-// Leonman's Logbook — modelo puro (sin React ni red): arbol de secciones,
+// Bitacora y guias — modelo puro (sin React ni red): arbol de secciones,
 // idioma con respaldo a ingles, busqueda sin tildes, lugares y validaciones.
 // Lo usan la pestaña, el servidor (api/logbook.js) y los tests.
 
