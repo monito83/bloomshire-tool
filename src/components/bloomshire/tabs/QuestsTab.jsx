@@ -1,5 +1,6 @@
 // src/components/bloomshire/tabs/QuestsTab.jsx
 import React, { useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import { 
   ChevronDown, 
   ChevronRight, 
@@ -40,6 +41,9 @@ export default function QuestsTab({
   setItemCategoryFilter,
   setItemSearchQuery
 }) {
+  const { t, i18n } = useTranslation('quests');
+  const fmt = (n) => Number(n || 0).toLocaleString(i18n.language);
+  const skillName = (key, label) => t(`skills.names.${key}`, { defaultValue: label });
   const [selectedQuestId, setSelectedQuestId] = useState(null);
   const [questSectionsOpen, setQuestSectionsOpen] = useState({
     materialTracker: true,
@@ -68,8 +72,8 @@ export default function QuestsTab({
   if (!isConnected) {
     return (
       <LockedModuleScreen
-        title="Libro de Misiones & Progresión de Historia"
-        description="Consulta el árbol de requisitos de tus misiones activas en curso, progreso del libro de Moonmere y materiales pendientes conectando tu partida con la extensión Bloomshire Companion."
+        title={t('locked.title')}
+        description={t('locked.desc')}
         onConnect={onConnect}
         onBack={onBack}
       />
@@ -106,7 +110,7 @@ export default function QuestsTab({
     DASHBOARD_QUEST_CATALOG[normId.replace(/^s_/, 'sd_')] ||
     DASHBOARD_QUEST_CATALOG[normId.replace(/^sd_/, 's_')];
 
-  const qTitle = catDef?.name || targetQuest?.name || targetQuest?.title || (targetQuest?.id ? `Misión ${targetQuest.id.toUpperCase()}` : 'Sin misión activa');
+  const qTitle = catDef?.name || targetQuest?.name || targetQuest?.title || (targetQuest?.id ? t('fallback.quest', { id: targetQuest.id.toUpperCase() }) : t('fallback.noQuest'));
   const isMain = targetQuest?.isMainStory || normId.startsWith('bk') || normId.startsWith('ff');
   
   const rawSteps = (catDef?.steps && catDef.steps.length > 0)
@@ -121,10 +125,10 @@ export default function QuestsTab({
     const sN = stepsList.length + 1;
     stepsList.push({
       step: sN,
-      name: `Paso ${sN}`,
-      text: targetQuest?.objective || targetQuest?.stepText || 'Continúa la misión en el juego.',
-      where: targetQuest?.where || catDef?.location || 'Ver indicador en el mapa',
-      npc: targetQuest?.giver || catDef?.giver || 'Vecino',
+      name: t('fallback.step', { n: sN }),
+      text: targetQuest?.objective || targetQuest?.stepText || t('fallback.continue'),
+      where: targetQuest?.where || catDef?.location || t('fallback.seeMap'),
+      npc: targetQuest?.giver || catDef?.giver || t('fallback.neighbor'),
       items: []
     });
   }
@@ -135,7 +139,7 @@ export default function QuestsTab({
     const stepToCheck = stepsList[resolvedStepNum - 1];
     if (!stepToCheck) break;
     const combined = ((stepToCheck.name || '') + ' ' + (stepToCheck.text || '')).toLowerCase();
-    const match = combined.match(/(?:nivel|level)\s*(\d+)\s*(?:de\s*)?([a-zA-Záéíóúñ]+)/i);
+    const match = combined.match(/(?:nivel|level)\s*(\d+)\s*(?:de\s*)?([a-zA-Z\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1]+)/i);
     if (match) {
       const reqLvl = parseInt(match[1], 10);
       const skWord = match[2].toLowerCase();
@@ -159,9 +163,9 @@ export default function QuestsTab({
 
   const curStepNum = Math.min(resolvedStepNum, stepsList.length);
   const curStepDef = stepsList[curStepNum - 1] || stepsList[stepsList.length - 1] || null;
-  const curStepName = curStepDef?.name || targetQuest?.stepName || `Paso ${curStepNum}`;
-  const curWhere = curStepDef?.where || targetQuest?.where || catDef?.location || 'Ver en el mapa';
-  const curNpc = curStepDef?.npc || targetQuest?.giver || catDef?.giver || 'Vecino de Bloomshire';
+  const curStepName = curStepDef?.name || targetQuest?.stepName || t('fallback.step', { n: curStepNum });
+  const curWhere = curStepDef?.where || targetQuest?.where || catDef?.location || t('fallback.seeOnMap');
+  const curNpc = curStepDef?.npc || targetQuest?.giver || catDef?.giver || t('fallback.neighborTown');
   const questReward = targetQuest?.reward || catDef?.reward || null;
 
   const cleanStepText = (() => {
@@ -170,17 +174,24 @@ export default function QuestsTab({
       return raw;
     }
     if (Array.isArray(curStepDef?.items) && curStepDef.items.length > 0) {
-      const itemsStr = curStepDef.items.map(it => `${it.needed}x ${it.name}`).join(' y ');
-      return `Reúne y entrega ${itemsStr} a ${curNpc} en ${curWhere}.`;
+      const itemsStr = curStepDef.items.map(it => `${it.needed}x ${it.name}`).join(t('fallback.and'));
+      return t('fallback.deliver', { items: itemsStr, npc: curNpc, where: curWhere });
     }
     if (curStepName.toLowerCase().includes('habla') || curStepName.toLowerCase().includes('talk')) {
-      return `Dirígete a ${curWhere} y habla con ${curNpc} para avanzar en la historia.`;
+      return t('fallback.talk', { where: curWhere, npc: curNpc });
     }
     if (curStepName.toLowerCase().includes('nivel') || curStepName.toLowerCase().includes('level')) {
-      return `Alcanza el nivel de habilidad requerido para desbloquear la siguiente etapa con ${curNpc}.`;
+      return t('fallback.level', { npc: curNpc });
     }
-    return `Cumple el objetivo "${curStepName}" con ${curNpc} en ${curWhere}.`;
+    return t('fallback.goal', { step: curStepName, npc: curNpc, where: curWhere });
   })();
+
+  const minSkillNames = (skillsMeta.minSkillsList && skillsMeta.minSkillsList.length > 0
+    ? skillsMeta.minSkillsList.map((label) => {
+        const def = CANONICAL_SKILLS.find((d) => d.label === label);
+        return def ? skillName(def.key, label) : label;
+      }).join(t('fallback.and'))
+    : skillsMeta.minSkillName) || `${skillName('foraging')}${t('fallback.and')}${skillName('cooking')}`;
 
   const questLoc = curStepDef?.coords || targetQuest?.coords || catDef?.coords || {
     label: `🎯 ${qTitle}`,
@@ -193,19 +204,19 @@ export default function QuestsTab({
 
   return (
     <div className="h-full overflow-y-auto p-5 space-y-4 custom-scrollbar">
-      {/* Barra de Control Visual: Expandir / Colapsar Todo + Toggles Rápidos */}
+      {/* Barra de Control Visual: Expandir / Colapsar Todo + Toggles Rapidos */}
       <div className="p-3 bg-[#0a1020] border border-indigo-950/90 rounded-xl flex flex-wrap items-center justify-between gap-2 shadow-md shrink-0">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-            <ChevronsUpDown className="w-4 h-4 text-amber-400" /> Vista Modular (Haz clic en cualquier caja para abrir/cerrar):
+            <ChevronsUpDown className="w-4 h-4 text-amber-400" /> {t('toolbar.hint')}
           </span>
           {[
-            { key: 'materialTracker', label: '📋 Insumos Necesarios' },
-            { key: 'dailyTasks', label: `🌱 Tareas Diarias (${dailyTasksCompletedCount}/6)` },
-            { key: 'roadmap', label: `🎯 Guía de Misiones (${activeQuestsList.length})` },
-            { key: 'skillsBook', label: '📖 10 Habilidades' },
-            { key: 'moonmereBanner', label: '🌊 Progreso Moonmere' },
-            { key: 'energyBed', label: '🛏️ Cama y Energía' }
+            { key: 'materialTracker', label: t('toolbar.materials') },
+            { key: 'dailyTasks', label: t('toolbar.daily', { done: dailyTasksCompletedCount }) },
+            { key: 'roadmap', label: t('toolbar.roadmap', { count: activeQuestsList.length }) },
+            { key: 'skillsBook', label: t('toolbar.skills') },
+            { key: 'moonmereBanner', label: t('toolbar.moonmere') },
+            { key: 'energyBed', label: t('toolbar.energy') }
           ].map(sec => (
             <button
               key={sec.key}
@@ -226,13 +237,13 @@ export default function QuestsTab({
             onClick={() => toggleAllQuestSections(true)}
             className="px-2.5 py-1 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 rounded-lg text-[11px] font-black cursor-pointer transition-all"
           >
-            ➕ Expandir Todo
+            {t('toolbar.expand')}
           </button>
           <button
             onClick={() => toggleAllQuestSections(false)}
             className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-lg text-[11px] font-bold cursor-pointer transition-all"
           >
-            ➖ Colapsar Todo
+            {t('toolbar.collapse')}
           </button>
         </div>
       </div>
@@ -251,16 +262,16 @@ export default function QuestsTab({
             )}
             <div>
               <div className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                📋 INSUMOS Y MATERIALES NECESARIOS ({activeQuestMaterials.length} Items en {activeQuestsList.length} Misiones Activas)
+                {t('materials.title', { count: activeQuestMaterials.length, quests: activeQuestsList.length })}
               </div>
               <div className="text-xs font-bold text-slate-200 mt-0.5">
-                Árbol de requisitos en tiempo real: existencias unificadas en Mochila (M), Cofre Casa (CC) y Cofre Pueblo (CP)
+                {t('materials.subtitle')}
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-slate-400 font-mono">
-              {questSectionsOpen.materialTracker ? 'Ocultar ▲' : 'Mostrar ▼'}
+              {questSectionsOpen.materialTracker ? t('toolbar.hide') : t('toolbar.show')}
             </span>
           </div>
         </button>
@@ -269,7 +280,7 @@ export default function QuestsTab({
           <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-3">
             {activeQuestMaterials.length === 0 ? (
               <div className="p-4 bg-[#0a1020] border border-slate-800 rounded-lg text-xs text-slate-300 text-center">
-                ✨ No hay misiones activas en este paso que requieran entrega de insumos. Todas tus misiones activas son de exploración, diálogo o combate.
+                {t('materials.empty')}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -299,7 +310,7 @@ export default function QuestsTab({
                           <div className="flex items-center gap-1.5">
                             {mat.delivered ? (
                               <span className="font-mono font-bold text-xs px-2 py-0.5 rounded border bg-emerald-500/20 text-emerald-300 border-emerald-500/40">
-                                Entregado ({mat.needed}/{mat.needed})
+                                {t('materials.deliveredCount', { n: mat.needed })}
                               </span>
                             ) : (
                               <span className={`font-mono font-black text-xs px-2 py-0.5 rounded border ${
@@ -319,18 +330,18 @@ export default function QuestsTab({
                               setSelectedQuestId(mat.questId);
                             }}
                             className="text-[11px] text-amber-300 hover:text-white font-semibold flex items-center gap-1 cursor-pointer transition-colors text-left"
-                            title="Ver detalle de esta misión"
+                            title={t('materials.openQuest')}
                           >
                             <span>🎯</span>
                             <span className="underline decoration-amber-500/40">{mat.questTitle}</span>
-                            <span className="text-[9px] text-slate-400 font-mono">↳ Ver Guía</span>
+                            <span className="text-[9px] text-slate-400 font-mono">{t('materials.openGuide')}</span>
                           </button>
                           <span className={`text-[9.5px] font-bold px-1.5 py-0.2 rounded border ${
                             mat.isCurrentStep
                               ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
                               : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
                           }`}>
-                            {mat.isCurrentStep ? '🚨 Paso Actual' : `⏳ Requisito Paso ${mat.targetStep}`}
+                            {mat.isCurrentStep ? t('materials.currentStep') : t('materials.stepReq', { n: mat.targetStep })}
                           </span>
                         </div>
                         {mat.hint && (
@@ -348,24 +359,24 @@ export default function QuestsTab({
                       {/* Desglose de Almacenes */}
                       <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs flex-wrap gap-1">
                         <span className={`font-black text-[11px] ${mat.delivered ? 'text-emerald-400' : isDone ? 'text-emerald-400' : 'text-rose-400'}`}>
-                          {mat.delivered ? '✓ Ya Entregado al NPC' : isDone ? '¡Listo para entregar!' : `Faltan ${missing}`}
+                          {mat.delivered ? t('materials.alreadyDelivered') : isDone ? t('materials.readyToDeliver') : t('materials.missing', { n: missing })}
                         </span>
                         <div className="flex items-center gap-1.5">
                           {!mat.delivered && (
                             <div className="flex items-center gap-1.5 font-mono text-[10px]">
                               {isGold ? (
-                                <span className="px-2 py-0.5 bg-amber-950/60 border border-amber-500/40 text-amber-300 rounded font-bold" title="Oro disponible">
-                                  🪙 Monedero: {gold.toLocaleString('es-ES')}
+                                <span className="px-2 py-0.5 bg-amber-950/60 border border-amber-500/40 text-amber-300 rounded font-bold" title={t('materials.goldTitle')}>
+                                  {t('materials.wallet', { gold: fmt(gold) })}
                                 </span>
                               ) : (
                                 <>
-                                  <span className="px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 rounded" title="En Mochila">
+                                  <span className="px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 rounded" title={t('materials.inBag')}>
                                     🎒 {bd.m}
                                   </span>
-                                  <span className="px-1.5 py-0.5 bg-amber-950/60 border border-amber-500/40 text-amber-300 rounded" title="En Cofre de la Casa">
+                                  <span className="px-1.5 py-0.5 bg-amber-950/60 border border-amber-500/40 text-amber-300 rounded" title={t('materials.inHome')}>
                                     🏡 {bd.cc}
                                   </span>
-                                  <span className="px-1.5 py-0.5 bg-purple-950/60 border border-purple-500/40 text-purple-300 rounded" title="En Cofre del Pueblo">
+                                  <span className="px-1.5 py-0.5 bg-purple-950/60 border border-purple-500/40 text-purple-300 rounded" title={t('materials.inTown')}>
                                     🏬 {bd.cp}
                                   </span>
                                 </>
@@ -379,9 +390,9 @@ export default function QuestsTab({
                                 ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200' 
                                 : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700'
                             }`}
-                            title="Marcar si ya entregaste este ítem"
+                            title={t('materials.markTitle')}
                           >
-                            {mat.delivered ? '✓ Entregado' : 'Ya lo entregué'}
+                            {mat.delivered ? t('materials.delivered') : t('materials.markDelivered')}
                           </button>
                         </div>
                       </div>
@@ -389,7 +400,7 @@ export default function QuestsTab({
                       {/* Sub-receta */}
                       {Array.isArray(mat.recipe) && mat.recipe.length > 0 && (
                         <div className="p-2 bg-[#090d1c] border border-slate-800 rounded-lg text-[10.5px] flex flex-col gap-1">
-                          <span className="text-slate-400 font-bold text-[10px] uppercase">↳ Requiere Cocinar / Craftear:</span>
+                          <span className="text-slate-400 font-bold text-[10px] uppercase">{t('materials.needsCraft')}</span>
                           {mat.recipe.map((ing, ingIdx) => {
                             const ingBd = getItemStorageBreakdown ? getItemStorageBreakdown({ id: ing.id, name: ing.name }) : { total: 0 };
                             const ingOk = ingBd.total >= ing.needed;
@@ -399,7 +410,7 @@ export default function QuestsTab({
                                   • {ing.name}: {ingBd.total}/{ing.needed}
                                 </span>
                                 <span className={ingOk ? 'text-emerald-400 text-[10px]' : 'text-rose-400 text-[10px]'}>
-                                  {ingOk ? '✅' : '❌ Falta'}
+                                  {ingOk ? '✅' : t('materials.lacking')}
                                 </span>
                               </div>
                             );
@@ -423,13 +434,13 @@ export default function QuestsTab({
             <span className="text-2xl">🌊</span>
             <div>
               <div className="text-xs font-black text-cyan-300 uppercase tracking-wider flex items-center gap-2 flex-wrap">
-                <span>EXPANSIÓN BOOK ONE: MOONMERE &amp; MISIONES</span>
+                <span className="uppercase">{t('story.title')}</span>
                 <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-[10px] font-mono font-bold">
-                  Capítulo {activeChapNum} de 24
+                  {t('story.chapter', { n: activeChapNum })}
                 </span>
               </div>
               <div className="text-xs text-slate-300 mt-0.5">
-                Progreso de Historia: <b>{completedChapCount} / {totalChapters} Capítulos Completados</b> ({progressPct}%)
+                <Trans t={t} i18nKey="story.progress" values={{ done: completedChapCount, total: totalChapters, pct: progressPct }} components={{ b: <b /> }} />
               </div>
             </div>
           </div>
@@ -445,23 +456,23 @@ export default function QuestsTab({
           </div>
         </div>
 
-        {/* Contenido: Lista de Misiones (Izquierda) + Ficha Unificada Dinámica (Derecha) */}
+        {/* Contenido: Lista de Misiones (Izquierda) + Ficha Unificada Dinamica (Derecha) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[440px]">
           {/* Columna Izquierda (4/12): Lista de Misiones Activas */}
           <div className="lg:col-span-4 border-r border-indigo-950/80 p-3.5 bg-[#080f22] flex flex-col gap-2">
             <div className="text-[11px] font-black uppercase tracking-wider text-slate-400 px-2 py-1 flex items-center justify-between border-b border-slate-800 pb-2">
               <span className="flex items-center gap-1.5">
-                <span>📜</span> Misiones Activas ({activeQuestsList.length})
+                <span>📜</span> {t('story.active', { count: activeQuestsList.length })}
               </span>
               <span className="text-[10px] font-mono text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/30">
-                En Progreso
+                {t('story.inProgress')}
               </span>
             </div>
 
             <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] custom-scrollbar pr-1">
               {activeQuestsList.length === 0 ? (
                 <div className="p-4 bg-[#0d162d] rounded-xl border border-slate-800 text-xs text-slate-400 text-center">
-                  ✨ No tienes misiones activas en este momento.
+                  {t('story.none')}
                 </div>
               ) : (
                 activeQuestsList.map((q, idx) => {
@@ -471,8 +482,8 @@ export default function QuestsTab({
                     DASHBOARD_QUEST_CATALOG[norm.replace(/^sd_/, 's_')];
                   const isSelected = targetQuest && (targetQuest.id === q.id || (targetQuest.normalizedId && targetQuest.normalizedId === q.normalizedId));
                   const isMainQ = q.isMainStory || norm.startsWith('bk') || norm.startsWith('ff');
-                  const title = qCat?.name || q.name || q.title || `Misión ${q.id.toUpperCase()}`;
-                  const giverName = qCat?.giver || q.giver || 'Vecino';
+                  const title = qCat?.name || q.name || q.title || t('fallback.quest', { id: q.id.toUpperCase() });
+                  const giverName = qCat?.giver || q.giver || t('fallback.neighbor');
                   const stepNum = q.step !== undefined ? q.step : ((q.stepIdx || 0) + 1);
                   const qSteps = (qCat?.steps && qCat.steps.length > 0) ? qCat.steps : (q.allSteps || []);
                   const qTotal = Math.max(qSteps.length, stepNum);
@@ -497,15 +508,15 @@ export default function QuestsTab({
                             ? 'bg-amber-500 text-slate-950'
                             : 'bg-slate-800 text-slate-400'
                         }`}>
-                          Paso {stepNum}/{qTotal}
+                          {t('story.stepOf', { n: stepNum, total: qTotal })}
                         </span>
                       </div>
 
                       <div className="flex items-center justify-between text-[11px] text-slate-400">
-                        <span>De <b>{giverName}</b></span>
+                        <span><Trans t={t} i18nKey="story.from" values={{ name: giverName }} components={{ b: <b /> }} /></span>
                         {isSelected && (
                           <span className="text-[10px] text-amber-300 font-bold flex items-center gap-1">
-                            <span>Siguiendo</span> <span>▶</span>
+                            <span>{t('story.following')}</span> <span>▶</span>
                           </span>
                         )}
                       </div>
@@ -516,11 +527,11 @@ export default function QuestsTab({
             </div>
           </div>
 
-          {/* Columna Derecha (8/12): Ficha Dinámica Unificada y Stepper Horizontal */}
+          {/* Columna Derecha (8/12): Ficha Dinamica Unificada y Stepper Horizontal */}
           <div className="lg:col-span-8 p-5 bg-[#0b1428] flex flex-col gap-4">
             {targetQuest ? (
               <div className="bg-gradient-to-b from-[#0f1b3b] via-[#0b1428] to-[#070d1c] border-2 border-indigo-900/60 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-                {/* 1. Cabecera Unificada de la Misión */}
+                {/* 1. Cabecera Unificada de la Mision */}
                 <div className="p-4 bg-gradient-to-r from-[#14234b] via-[#101b38] to-[#0d1630] border-b border-indigo-950/80 flex flex-wrap items-center justify-between gap-3">
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -529,11 +540,11 @@ export default function QuestsTab({
                           ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm shadow-amber-950/50'
                           : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 shadow-sm'
                       }`}>
-                        {isMain ? '⭐ Historia Principal' : '📜 Misión Secundaria'}
+                        {isMain ? t('story.main') : t('story.side')}
                       </span>
                       {targetQuest.chapter && (
                         <span className="px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-300 border border-cyan-500/30 text-[10.5px] font-mono font-bold">
-                          Capítulo {targetQuest.chapter}
+                          {t('story.chapterN', { n: targetQuest.chapter })}
                         </span>
                       )}
                       <h3 className="font-black text-white text-base tracking-wide">
@@ -541,14 +552,14 @@ export default function QuestsTab({
                       </h3>
                     </div>
                     <div className="text-xs text-slate-300 flex items-center gap-3 flex-wrap">
-                      <span>Otorgada por: <b className="text-amber-200">{curNpc}</b></span>
+                      <span><Trans t={t} i18nKey="story.giver" values={{ name: curNpc }} components={{ b: <b className="text-amber-200" /> }} /></span>
                       <span>•</span>
-                      <span>Ubicación: <b className="text-slate-200">{curWhere}</b></span>
+                      <span><Trans t={t} i18nKey="story.where" values={{ where: curWhere }} components={{ b: <b className="text-slate-200" /> }} /></span>
                       {questReward && (
                         <>
                           <span>•</span>
                           <span className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-500/30 text-[11px]">
-                            💰 {questReward.gold ? `${questReward.gold.toLocaleString('es-ES')} Oro` : 'Completar Misión'}
+                            💰 {questReward.gold ? t('story.gold', { gold: fmt(questReward.gold) }) : t('story.complete')}
                           </span>
                         </>
                       )}
@@ -559,10 +570,10 @@ export default function QuestsTab({
                     <button
                       onClick={() => locateInMegaAtlas && locateInMegaAtlas(questLoc)}
                       className="px-3.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm hover:scale-105"
-                      title="Ubicar objetivo en el Mega-Atlas"
+                      title={t('story.locateTitle')}
                     >
                       <MapPin className="w-4 h-4" />
-                      <span>Ver en Mega-Atlas</span>
+                      <span>{t('story.locate')}</span>
                     </button>
                   </div>
                 </div>
@@ -605,7 +616,7 @@ export default function QuestsTab({
                           <span className={`mt-2 text-[10px] font-black uppercase tracking-wider ${
                             isCur ? 'text-amber-300' : isDone ? 'text-emerald-400' : 'text-slate-500'
                           }`}>
-                            {isCur ? '⚡ En Curso' : isDone ? '✓ Hecho' : `Paso ${stepNum}`}
+                            {isCur ? t('story.now') : isDone ? t('story.done') : t('story.step', { n: stepNum })}
                           </span>
 
                           <span className={`text-[11px] font-bold mt-0.5 line-clamp-2 leading-tight ${
@@ -624,7 +635,7 @@ export default function QuestsTab({
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <div className="flex items-center gap-2">
                       <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10.5px] font-black uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
-                        <span>🎯</span> OBJETIVO ACTUAL (Paso {curStepNum} de {totalSteps})
+                        <span>🎯</span> {t('story.goal', { n: curStepNum, total: totalSteps })}
                       </span>
                       <span className="text-xs font-black text-white">
                         {curStepName}
@@ -644,10 +655,10 @@ export default function QuestsTab({
                     <div className="mt-1 pt-3 border-t border-slate-800/80 flex flex-col gap-2.5">
                       <div className="text-[11.5px] font-black uppercase tracking-wider text-amber-300 flex items-center justify-between flex-wrap gap-2">
                         <span className="flex items-center gap-1.5">
-                          <span>📦</span> <span>Materiales e Insumos Requeridos ({curStepDef.items.length})</span>
+                          <span>📦</span> <span>{t('story.needed', { n: curStepDef.items.length })}</span>
                         </span>
                         <span className="text-[10px] text-slate-400 font-normal">
-                          Existencias: Mochila (M) + Cofres Casa (CC) + Cofre Pueblo (CP)
+                          {t('story.stock')}
                         </span>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
@@ -675,11 +686,11 @@ export default function QuestsTab({
                                       <span>{it.name}</span>
                                       {haveEnough ? (
                                         <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                                          ¡Suficiente!
+                                          {t('story.enough')}
                                         </span>
                                       ) : (
                                         <span className="px-1.5 py-0.2 rounded text-[9.5px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
-                                          Faltan {missingCount}
+                                          {t('story.missing', { n: missingCount })}
                                         </span>
                                       )}
                                     </div>
@@ -691,7 +702,7 @@ export default function QuestsTab({
 
                                 <div className="flex flex-col items-end shrink-0">
                                   <span className={`text-xs font-mono font-black ${haveEnough ? 'text-emerald-300' : 'text-amber-300'}`}>
-                                    {isManualDelivered ? 'Entregado' : `${bd.total} / ${it.needed}`}
+                                    {isManualDelivered ? t('story.delivered') : `${bd.total} / ${it.needed}`}
                                   </span>
                                   <button
                                     onClick={() => toggleDeliveredItem && toggleDeliveredItem(targetQuest.id, it.id)}
@@ -701,7 +712,7 @@ export default function QuestsTab({
                                         : 'bg-slate-800 hover:bg-slate-700 border-slate-600 text-slate-300'
                                     }`}
                                   >
-                                    {isManualDelivered ? '✓ Entregado' : 'Marcar Entregado'}
+                                    {isManualDelivered ? t('story.deliveredBtn') : t('story.markDelivered')}
                                   </button>
                                 </div>
                               </div>
@@ -720,10 +731,10 @@ export default function QuestsTab({
                   ) : (
                     <div className="mt-1 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
                       <span className="flex items-center gap-1.5">
-                        <span>🧭</span> <span>Acción Requerida: <b>{curStepName}</b> (sin entrega de materiales en este paso)</span>
+                        <span>🧭</span> <span><Trans t={t} i18nKey="story.action" values={{ step: curStepName }} components={{ b: <b /> }} /></span>
                       </span>
                       <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/30">
-                        Exploración / Diálogo
+                        {t('story.explore')}
                       </span>
                     </div>
                   )}
@@ -731,7 +742,7 @@ export default function QuestsTab({
               </div>
             ) : (
               <div className="h-full flex items-center justify-center p-8 text-center text-slate-400 text-sm">
-                Selecciona una misión activa de la lista izquierda para ver su paso a paso en vivo.
+                {t('story.pick')}
               </div>
             )}
           </div>
@@ -739,7 +750,7 @@ export default function QuestsTab({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 shrink-0">
-        {/* Columna Izquierda (6/12): Tareas Diarias + Cama y Energía */}
+        {/* Columna Izquierda (6/12): Tareas Diarias + Cama y Energia */}
         <div className="lg:col-span-6 flex flex-col gap-4">
           {/* TAREAS DIARIAS */}
           <div className="bg-[#0e172c] border-2 border-emerald-500/50 rounded-xl shadow-lg overflow-hidden">
@@ -755,26 +766,26 @@ export default function QuestsTab({
                 )}
                 <div>
                   <div className="text-xs font-black text-emerald-400 uppercase tracking-wider flex items-center gap-2 flex-wrap">
-                    <span>🌱 Tareas Diarias (Task Center)</span>
+                    <span>{t('daily.title')}</span>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold border ${
                       dailyTasksCompletedCount === 6
                         ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                         : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
                     }`}>
-                      {dailyTasksCompletedCount}/6 Completadas
+                      {t('daily.done', { done: dailyTasksCompletedCount })}
                     </span>
                   </div>
                   <div className="text-[11px] text-slate-300 mt-0.5">
                     {dailyTasksCompletedCount === 6 ? (
-                      <span className="text-emerald-300 font-bold">🎉 ¡6 de 6 completadas! Reclama tus 10 Semillas Premium en el botón 'Task' bajo tu perfil.</span>
+                      <span className="text-emerald-300 font-bold">{t('daily.allDone')}</span>
                     ) : (
-                      <span>Recompensa al completar las 6: <b className="text-amber-300">🌱 10 Semillas Premium (Recompensa Diaria)</b></span>
+                      <span><Trans t={t} i18nKey="daily.reward" components={{ b: <b className="text-amber-300" /> }} /></span>
                     )}
                   </div>
                 </div>
               </div>
               <span className="text-[11px] text-slate-400 font-mono">
-                {questSectionsOpen.dailyTasks ? 'Ocultar ▲' : 'Mostrar ▼'}
+                {questSectionsOpen.dailyTasks ? t('toolbar.hide') : t('toolbar.show')}
               </span>
             </button>
 
@@ -783,7 +794,7 @@ export default function QuestsTab({
                 <div className="p-3 bg-[#0a1224] border border-slate-800 rounded-lg flex flex-col gap-1.5">
                   <div className="flex items-center justify-between text-xs flex-wrap gap-2">
                     <span className="text-slate-300 font-bold flex items-center gap-1.5">
-                      <span>🎁</span> <span>Progreso a 10 Semillas Premium:</span>
+                      <span>🎁</span> <span>{t('daily.progress')}</span>
                     </span>
                     <span className="font-mono font-black text-emerald-400">
                       {dailyTasksCompletedCount} / 6 ({Math.round((dailyTasksCompletedCount / 6) * 100)}%)
@@ -796,7 +807,7 @@ export default function QuestsTab({
                     />
                   </div>
                   <div className="flex items-center justify-between text-[10px] text-slate-400 mt-0.5 flex-wrap gap-2">
-                    <span>Se reinicia diariamente a las 00:00 UTC (21:00 hs Argentina).</span>
+                    <span>{t('daily.resets')}</span>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => {
@@ -811,9 +822,9 @@ export default function QuestsTab({
                           }
                         }}
                         className="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold text-[10px] transition-colors cursor-pointer"
-                        title="Marcar todas las 6 tareas del día como listas"
+                        title={t('daily.markAllTitle')}
                       >
-                        ✓ Marcar Todas Listas (6/6)
+                        {t('daily.markAll')}
                       </button>
                       <button
                         onClick={() => {
@@ -828,9 +839,9 @@ export default function QuestsTab({
                           }
                         }}
                         className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-400 font-medium text-[10px] transition-colors cursor-pointer"
-                        title="Reiniciar progreso diario"
+                        title={t('daily.resetTitle')}
                       >
-                        Reiniciar
+                        {t('daily.reset')}
                       </button>
                     </div>
                   </div>
@@ -840,48 +851,48 @@ export default function QuestsTab({
                   <div className="p-3 bg-emerald-950/40 border border-emerald-500/50 rounded-xl flex items-center justify-between gap-3 text-emerald-300 text-xs font-bold shadow-md">
                     <div className="flex items-center gap-2">
                       <span className="text-base">🌸</span>
-                      <span>Bono reclamado. Hoy conseguiste 10 Semillas Premium.</span>
+                      <span>{t('daily.claimed')}</span>
                     </div>
                     <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-[10.5px] font-mono">
-                      BONO ACTIVO
+                      {t('daily.bonus')}
                     </span>
                   </div>
                 )}
 
                 <div className="flex flex-col gap-2">
-                  {dailyTasks.map((t) => (
+                  {dailyTasks.map((task) => (
                     <div
-                      key={t.id}
-                      onClick={() => toggleDailyTask && toggleDailyTask(t.id)}
+                      key={task.id}
+                      onClick={() => toggleDailyTask && toggleDailyTask(task.id)}
                       className={`p-2.5 rounded-lg border flex items-center justify-between gap-3 cursor-pointer transition-all ${
-                        t.done
+                        task.done
                           ? 'bg-emerald-950/30 border-emerald-500/50 text-emerald-200'
                           : 'bg-[#101b33] border-slate-800 hover:border-slate-700 text-slate-300'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className="text-lg">{t.icon || '🌱'}</span>
+                        <span className="text-lg">{task.icon || '🌱'}</span>
                         <div>
-                          <div className={`text-xs font-bold ${t.done ? 'line-through text-slate-400' : 'text-slate-100'}`}>
-                            {t.label}
+                          <div className={`text-xs font-bold ${task.done ? 'line-through text-slate-400' : 'text-slate-100'}`}>
+                            {t(`monitors:daily.${task.id}`, { defaultValue: task.label })}
                           </div>
                           <div className="text-[10px] font-mono text-slate-400">
-                            Meta: {t.target} {t.target > 1 ? 'acciones' : 'acción'}
+                            {t('daily.goal', { count: task.target })}
                           </div>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-2">
                         <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold border ${
-                          t.done
+                          task.done
                             ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                             : 'bg-slate-800 text-slate-400 border-slate-700'
                         }`}>
-                          {t.done ? '✓ Completada' : 'Pendiente'}
+                          {task.done ? t('daily.completed') : t('daily.pending')}
                         </span>
                         <input
                           type="checkbox"
-                          checked={t.done}
+                          checked={task.done}
                           onChange={() => {}}
                           className="w-4 h-4 rounded accent-emerald-500 cursor-pointer pointer-events-none"
                         />
@@ -893,7 +904,7 @@ export default function QuestsTab({
             )}
           </div>
 
-          {/* MONITOR DE ENERGÍA Y CAMA */}
+          {/* MONITOR DE ENERGIA Y CAMA */}
           <div className="bg-[#0e172c] border border-cyan-500/40 rounded-xl shadow-md overflow-hidden">
             <button
               onClick={() => toggleQuestSection('energyBed')}
@@ -907,60 +918,60 @@ export default function QuestsTab({
                 )}
                 <div>
                   <div className="text-xs font-black text-cyan-400 uppercase tracking-wider">
-                    🛏️ Monitor de Energía y Cama (Season 0 Rework)
+                    {t('energy.title')}
                   </div>
                   <div className="text-[11px] text-slate-300 mt-0.5 font-mono">
-                    ⚡ {Math.floor(currentEnergy)}/{maxEnergy} • {energyMeta.canRest ? '✓ Cama Lista' : `Cama: ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
+                    ⚡ {Math.floor(currentEnergy)}/{maxEnergy} • {energyMeta.canRest ? t('energy.bedReady') : t('energy.bedIn', { wait: energyMeta.bedWaitText || energyMeta.utcCountdownStr })}
                   </div>
                 </div>
               </div>
               <span className="text-[11px] text-slate-400 font-mono">
-                {questSectionsOpen.energyBed ? 'Ocultar ▲' : 'Mostrar ▼'}
+                {questSectionsOpen.energyBed ? t('toolbar.hide') : t('toolbar.show')}
               </span>
             </button>
 
             {questSectionsOpen.energyBed && (
               <div className="px-4 pb-4 pt-2 border-t border-slate-800 flex flex-col gap-2.5">
                 <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-slate-300">Energía Actual del Personaje:</span>
+                  <span className="text-slate-300">{t('energy.current')}</span>
                   <span className="font-mono font-black text-cyan-300 text-sm">
-                    {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">{isVip ? '(+1⚡ cada 3m VIP)' : '(Regen base)'}</span>
+                    {Math.floor(currentEnergy)} / {maxEnergy} ⚡ <span className="text-[10px] text-emerald-400">{isVip ? t('energy.vipRegen') : t('energy.baseRegen')}</span>
                   </span>
                 </div>
 
                 <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-slate-300">Estado de la Cama (Reinicio 00:00 UTC):</span>
+                  <span className="text-slate-300">{t('energy.bed')}</span>
                   <span className={energyMeta.canRest ? 'text-emerald-400 font-black' : 'text-amber-300 font-black'}>
                     {energyMeta.recovering
-                      ? `💤 Recuperando (${energyMeta.recoverMinutesLeft}m restantes)`
+                      ? t('energy.recovering', { min: energyMeta.recoverMinutesLeft })
                       : energyMeta.canRest
-                      ? `✓ Cama Lista (${energyMeta.sleepLeft ?? (energyMeta.sleepADay || 200)}/${energyMeta.sleepADay || 200}⚡ hoy)`
-                      : `🏠 Cama en ${energyMeta.bedWaitText || energyMeta.utcCountdownStr}`}
+                      ? t('energy.ready', { left: energyMeta.sleepLeft ?? (energyMeta.sleepADay || 200), total: energyMeta.sleepADay || 200 })
+                      : t('energy.wait', { wait: energyMeta.bedWaitText || energyMeta.utcCountdownStr })}
                   </span>
                 </div>
 
                 <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-slate-300">Sueño Diario Usado Hoy:</span>
+                  <span className="text-slate-300">{t('energy.sleep')}</span>
                   <span className="font-mono font-bold text-amber-300">
                     {energyMeta.usedSleepToday ?? (energyMeta.sleepADay || 200)} / {energyMeta.sleepADay || 200} ⚡
                   </span>
                 </div>
 
                 <div className="p-3 bg-[#121d38] border border-slate-800 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-slate-300">Comida Consumida Hoy (Reinicio 00:00 UTC):</span>
+                  <span className="text-slate-300">{t('energy.food')}</span>
                   <span className="font-mono font-bold text-emerald-300">
                     {energyMeta.foodEatenToday || 0} / {energyMeta.foodCapToday || (isVip || energyMeta.isHolder ? 150 : 100)} ⚡
                   </span>
                 </div>
 
                 <div className="text-[11px] text-slate-400 leading-relaxed bg-[#0a1224] p-2.5 rounded-lg border border-slate-800">
-                  💡 <b>Cómo funciona el sistema de Cama, Comida y Energía:</b>
-                  <br />• Los jugadores <b>VIP</b> regeneran pasivamente <b>+1⚡ cada 3 minutos</b> (+20⚡ por hora).
+                  💡 <b>{t('energy.howTitle')}</b>
+                  <br />• <Trans t={t} i18nKey="energy.how1" components={{ b: <b /> }} />
                   {energyMeta.isJamActive && (
-                    <><br />• 🫐 <b>Mermelada de Zafiro Activa:</b> Regeneración acelerada a <b>+1.3⚡ cada 3 min</b> (+26⚡/h) durante {energyMeta.jamMinutesLeft}m restantes.</>
+                    <><br />• <Trans t={t} i18nKey="energy.jam" values={{ min: energyMeta.jamMinutesLeft }} components={{ b: <b /> }} /></>
                   )}
-                  <br />• Cuota de sueño diaria (reinicio 00:00 UTC): <b>200⚡</b> (jugador base, 2 barras de 100⚡), o <b>450⚡ / 600⚡ / 750⚡</b> (VIP u Holders, 3 a 5 barras de 150⚡ según perks/farmers).
-                  <br />• Cuota de comida diaria (reinicio 00:00 UTC, 1 barra completa por día): <b>100⚡</b> (jugador base) / <b>150⚡</b> (VIP u Holders). Los platos cocinados alimentan la barra diaria; Moonlight Stew otorga 8⚡ por plato (cuenta para la barra de comida diaria).
+                  <br />• <Trans t={t} i18nKey="energy.how2" components={{ b: <b /> }} />
+                  <br />• <Trans t={t} i18nKey="energy.how3" components={{ b: <b /> }} />
                 </div>
               </div>
             )}
@@ -982,19 +993,19 @@ export default function QuestsTab({
                 )}
                 <div>
                   <div className="text-xs font-black text-amber-400 uppercase tracking-wider">
-                    📖 Libro de Habilidades en Tiempo Real (Las 10 Habilidades de Bloomshire)
+                    {t('skills.title')}
                   </div>
                   <div className="text-[11px] text-slate-400 mt-0.5">
-                    Cultivo Nv {farmingLevel} • Mínima: {skillsMeta.minSkillName} (Nv {skillsMeta.minSkillLevel}) • Regla de 3 niveles
+                    {t('skills.summary', { farming: farmingLevel, min: minSkillNames, minLevel: skillsMeta.minSkillLevel })}
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-mono bg-rose-950/70 border border-rose-500/40 text-rose-300 px-2.5 py-1 rounded-lg font-bold">
-                  Tope Actual: Nv {skillsMeta.maxAllowedLevel || 5}
+                  {t('skills.cap', { n: skillsMeta.maxAllowedLevel || 5 })}
                 </span>
                 <span className="text-[11px] text-slate-400 font-mono">
-                  {questSectionsOpen.skillsBook ? 'Ocultar ▲' : 'Mostrar ▼'}
+                  {questSectionsOpen.skillsBook ? t('toolbar.hide') : t('toolbar.show')}
                 </span>
               </div>
             </button>
@@ -1021,26 +1032,26 @@ export default function QuestsTab({
                         <div className="flex items-center justify-between">
                           <span className="font-black text-xs text-white flex items-center gap-1.5">
                             <span>{def.icon}</span>
-                            <span>{def.label}</span>
+                            <span>{skillName(def.key, def.label)}</span>
                           </span>
                           <div className="flex items-center gap-1.5">
                             {isLowest && (
                               <span className="text-[9.5px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-1.5 py-0.5 rounded font-mono font-bold">
-                                Sube a Nv {lvl + 1}
+                                {t('skills.levelUp', { n: lvl + 1 })}
                               </span>
                             )}
                             {isCapped && (
                               <span className="text-[9.5px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-1.5 py-0.5 rounded font-mono font-bold">
-                                Tope Nv {lvl}
+                                {t('skills.capped', { n: lvl })}
                               </span>
                             )}
                             {!def.gated && (
                               <span className="text-[9.5px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-mono">
-                                No bloquea
+                                {t('skills.notGated')}
                               </span>
                             )}
                             <span className="font-mono font-black text-cyan-300 text-xs">
-                              Nv {lvl}
+                              {t('skills.level', { n: lvl })}
                             </span>
                           </div>
                         </div>
@@ -1052,7 +1063,7 @@ export default function QuestsTab({
                           />
                         </div>
                         <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                          <span>XP Total: {(sk.xp || 0).toLocaleString('es-ES')}</span>
+                          <span>{t('skills.xpTotal', { xp: fmt(sk.xp) })}</span>
                           <span>{sk.into || 0} / {sk.need || 100} XP ({sk.pct || 0}%)</span>
                         </div>
                       </div>
@@ -1063,7 +1074,7 @@ export default function QuestsTab({
                 {skillsMeta.isFarmingCapped && (
                   <div className="p-3 bg-rose-950/40 border border-rose-500/40 rounded-lg text-xs text-rose-200 leading-relaxed flex flex-wrap items-center justify-between gap-2">
                     <span>
-                      ⚠️ <b>Cómo desbloquear Cultivo Nivel 6:</b> Tu Cultivo está en <b>Nivel {farmingLevel}</b> (tope actual). Como <b>{skillsMeta.minSkillName}</b> están en <b>Nivel {skillsMeta.minSkillLevel}</b> (2 + 3 = 5), sube <b>Recolección</b> (setas Silvercap/Glowcap en Whisperwood) y <b>Cocina</b> (estufa de Tamsin) a <b>Nivel 3 (650 XP)</b>.
+                      <Trans t={t} i18nKey="skills.farmingCap" values={{ farming: farmingLevel, min: minSkillNames, minLevel: skillsMeta.minSkillLevel }} components={{ b: <b /> }} />
                     </span>
                     <button
                       onClick={() => {
@@ -1075,7 +1086,7 @@ export default function QuestsTab({
                       }}
                       className="px-2.5 py-1 bg-amber-500 text-slate-950 font-black rounded text-[11px] cursor-pointer shrink-0"
                     >
-                      🔎 Buscar Setas Silvercap/Glowcap
+                      {t('skills.findMushrooms')}
                     </button>
                   </div>
                 )}

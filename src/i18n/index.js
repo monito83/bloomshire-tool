@@ -13,6 +13,8 @@ import enCompendium from './locales/en/compendium.json';
 import enUpdates from './locales/en/updates.json';
 import enMarket from './locales/en/market.json';
 import enSession from './locales/en/session.json';
+import enQuests from './locales/en/quests.json';
+import enMonitors from './locales/en/monitors.json';
 
 import esCommon from './locales/es/common.json';
 import esHeader from './locales/es/header.json';
@@ -26,6 +28,8 @@ import esCompendium from './locales/es/compendium.json';
 import esUpdates from './locales/es/updates.json';
 import esMarket from './locales/es/market.json';
 import esSession from './locales/es/session.json';
+import esQuests from './locales/es/quests.json';
+import esMonitors from './locales/es/monitors.json';
 
 export const STORAGE_LANG_KEY = 'bloomshire_lang';
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -82,6 +86,8 @@ i18n
         updates: enUpdates,
         market: enMarket,
         session: enSession,
+        quests: enQuests,
+        monitors: enMonitors,
       },
       es: {
         common: esCommon,
@@ -96,11 +102,13 @@ i18n
         updates: esUpdates,
         market: esMarket,
         session: esSession,
+        quests: esQuests,
+        monitors: esMonitors,
       },
     },
     lng: initialLang,
     fallbackLng: DEFAULT_LANGUAGE,
-    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium', 'updates', 'market', 'session'],
+    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium', 'updates', 'market', 'session', 'monitors', 'quests'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: {
