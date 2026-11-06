@@ -5,6 +5,7 @@
 import { useEffect, useRef } from 'react';
 import { computeCanonicalSkillsFromRaw, computeClientLiveEnergyAndBed, computeMaxEnergy } from '../bloomshireEngine';
 import { calculateLocalQuantities } from './inventoryLocal';
+import { PERKS_WALLET_KEY } from './usePlayerState';
 
 export default function useCompanionSync({ wallet, player, timers, tasks, queueCloudBackup, handleDisconnect }) {
   const {
@@ -22,6 +23,24 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
   const { setDailyTasks } = tasks;
 
   const lastExtensionSyncAtRef = useRef(0);
+
+  // Al vincular otra wallet (firma u otra cuenta), los beneficios de la partida anterior no son suyos:
+  // se borran y la estamina maxima vuelve a calcularse solo con los Farmers on-chain de la nueva.
+  useEffect(() => {
+    if (!walletAddress) return;
+    let owner = null;
+    try { owner = localStorage.getItem(PERKS_WALLET_KEY); } catch (_) {}
+    if (owner && owner.toLowerCase() === walletAddress.toLowerCase()) return;
+    setPlayerPerks(null);
+    setIsVip(false);
+    setVipUntil(0);
+    setMaxEnergy(computeMaxEnergy(false, farmersOwned > 0));
+    try {
+      ['bloomshire_cached_perks', 'bloomshire_cached_is_vip', 'bloomshire_cached_vip_until', PERKS_WALLET_KEY]
+        .forEach((k) => localStorage.removeItem(k));
+    } catch (_) {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walletAddress]);
 
   // Aplicar datos entrantes de telemetría viva (con recálculo canónico de Energía, Cama UTC y 10 Skills)
   const applyIncomingSync = (data, source = 'unknown') => {
@@ -104,13 +123,18 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
       localStorage.setItem('bloomshire_cached_vip_until', String(effectiveVipUntil));
     } catch (_) {}
 
-    // Perks reales emitidos por el juego (save.perks)
-    let effectivePerks = playerPerks;
-    if (data.perks && typeof data.perks === 'object') {
-      effectivePerks = data.perks;
-      setPlayerPerks(data.perks);
-      try { localStorage.setItem('bloomshire_cached_perks', JSON.stringify(data.perks)); } catch (_) {}
-    }
+    // Perks reales emitidos por el juego (save.perks). Son de la cuenta de ESTA partida: si la partida trae
+    // el campo, manda (null = sin beneficios); si no lo trae, se conservan solo si son de la misma wallet.
+    const perksOwner = (() => { try { return localStorage.getItem(PERKS_WALLET_KEY); } catch (_) { return null; } })();
+    const sameAccount = !effectiveWallet || !perksOwner || perksOwner.toLowerCase() === effectiveWallet.toLowerCase();
+    let effectivePerks = sameAccount ? playerPerks : null;
+    if ('perks' in data) effectivePerks = (data.perks && typeof data.perks === 'object') ? data.perks : null;
+    setPlayerPerks(effectivePerks);
+    try {
+      if (effectivePerks) localStorage.setItem('bloomshire_cached_perks', JSON.stringify(effectivePerks));
+      else localStorage.removeItem('bloomshire_cached_perks');
+      if (effectiveWallet) localStorage.setItem(PERKS_WALLET_KEY, effectiveWallet.toLowerCase());
+    } catch (_) {}
 
     // El conteo de farmers sale de on-chain / sync del servidor; la extensión no lo pisa
     let effectiveFarmersCount = farmersOwned;

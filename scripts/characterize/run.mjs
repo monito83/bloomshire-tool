@@ -216,6 +216,27 @@ async function runScenarios(browser) {
   await page.clock.runFor(800);
   await capture(page, 'scenario__connect_modal');
 
+  // 11) beneficios de otra cuenta: quedo guardada la partida de 0x1111 (VIP, holder) y se vinculo 0x3333,
+  //     una wallet sin Farmers. El perfil no tiene que mostrar los beneficios de 0x1111.
+  await page.evaluate((data) => {
+    localStorage.clear();
+    localStorage.setItem('bloomshire_lang', 'es');
+    localStorage.setItem('bloomshire_active_tab', 'mega_atlas');
+    localStorage.setItem('bloomshire_wallet', '0x3333333333333333333333333333333333333333');
+    localStorage.setItem('bloomshire_cached_is_vip', 'true');
+    localStorage.setItem('bloomshire_cached_vip_until', String(data.perks.vipUntil));
+    localStorage.setItem('bloomshire_cached_perks', JSON.stringify({ ...data.perks, fast: 0.8, pet: true }));
+    localStorage.setItem('bloomshire_cached_perks_wallet', data.wallet);
+    localStorage.setItem('bloomshire_cached_farmers', '0');
+    localStorage.setItem('bloomshire_session_token', 'test-token');
+  }, snapshot);
+  await page.route('**/api/auth?action=me', (route) => route.fulfill({ status: 200, contentType: 'application/json',
+    body: JSON.stringify({ ok: true, wallet: '0x3333333333333333333333333333333333333333' }) }));
+  await page.goto(`${base}/`, { waitUntil: 'networkidle' });
+  await page.clock.runFor(800);
+  await click(/0x333/);
+  await capture(page, 'scenario__other_account_perks');
+
   fs.writeFileSync(path.join(out, 'scenario__errors.txt'), errors.join('\n') + '\n');
   await context.close();
 }

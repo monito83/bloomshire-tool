@@ -6,16 +6,27 @@ import rulesData from '../../../data/rules.json';
 import { computeCanonicalSkillsFromRaw, computeClientLiveEnergyAndBed, computeMaxEnergy } from '../bloomshireEngine';
 import { calculateLocalQuantities, getLocalStorageBreakdown, getLocalPlayerItemQty } from './inventoryLocal';
 
+// Los beneficios (perks y VIP) son de la partida de UNA cuenta: solo se usan los guardados si son de la
+// wallet vinculada ahora. Sin dueno anotado (cache vieja) no se usan: vuelven con la proxima sincronizacion.
+export const PERKS_WALLET_KEY = 'bloomshire_cached_perks_wallet';
+const cachedPerksAreMine = () => {
+  try {
+    const owner = localStorage.getItem(PERKS_WALLET_KEY);
+    const w = localStorage.getItem('bloomshire_wallet');
+    return Boolean(owner && w && owner.toLowerCase() === w.toLowerCase());
+  } catch { return false; }
+};
+
 export default function usePlayerState(i18n) {
   const [isVip, setIsVip] = useState(() => {
-    try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; }
+    try { return cachedPerksAreMine() && localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; }
   });
   const [vipUntil, setVipUntil] = useState(() => {
-    try { return Number(localStorage.getItem('bloomshire_cached_vip_until')) || 0; } catch { return 0; }
+    try { return cachedPerksAreMine() ? Number(localStorage.getItem('bloomshire_cached_vip_until')) || 0 : 0; } catch { return 0; }
   });
   const [playerPerks, setPlayerPerks] = useState(() => {
     try {
-      const cached = localStorage.getItem('bloomshire_cached_perks');
+      const cached = cachedPerksAreMine() ? localStorage.getItem('bloomshire_cached_perks') : null;
       return cached ? JSON.parse(cached) : null;
     } catch { return null; }
   });
@@ -29,9 +40,10 @@ export default function usePlayerState(i18n) {
     try { return Number(localStorage.getItem('bloomshire_cached_energy')) || 0; } catch { return 0; }
   });
   const [maxEnergy, setMaxEnergy] = useState(() => {
-    const cachedVip = (() => { try { return localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; } })();
+    const mine = cachedPerksAreMine();
+    const cachedVip = (() => { try { return mine && localStorage.getItem('bloomshire_cached_is_vip') === 'true'; } catch { return false; } })();
     const cachedFarmers = (() => { try { return Number(localStorage.getItem('bloomshire_cached_farmers')) || 0; } catch { return 0; } })();
-    const cachedPerks = (() => { try { const p = localStorage.getItem('bloomshire_cached_perks'); return p ? JSON.parse(p) : null; } catch { return null; } })();
+    const cachedPerks = (() => { try { const p = mine ? localStorage.getItem('bloomshire_cached_perks') : null; return p ? JSON.parse(p) : null; } catch { return null; } })();
     const isHolder = cachedFarmers > 0 || Boolean(cachedPerks);
     return computeMaxEnergy(cachedVip, isHolder);
   });
