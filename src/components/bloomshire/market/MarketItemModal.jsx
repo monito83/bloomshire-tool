@@ -1,7 +1,7 @@
 // src/components/bloomshire/market/MarketItemModal.jsx
 // Seguimiento de un item del mercado: recomendacion, estadisticas, precio de cada venta, volumen por dia,
 // oferta en el tiempo, puestos abiertos y ultimas ventas.
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { X, Store, TrendingUp, Lock, Info } from 'lucide-react';
 import { DAY, itemSeries, coinAmount } from './marketModel';
 import { PriceChart, VolumeBars, SupplyLine } from './MarketCharts';
@@ -19,7 +19,6 @@ function Stat({ label, value, hint }) {
 }
 
 export default function MarketItemModal({ data, f, t, now, onClose }) {
-  const [range, setRange] = useState(14);
   const { item, name, fallback, stats, sales, stalls, supply, owned, where, plan, shopUnit, quota } = data;
 
   useEffect(() => {
@@ -28,9 +27,9 @@ export default function MarketItemModal({ data, f, t, now, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  const from = now - range * DAY;
+  const from = now - DAY;
   const goldSales = useMemo(() => sales.filter((s) => s.coin === 'gold' && s.at >= from), [sales, from]);
-  const series = useMemo(() => itemSeries(item, sales, { now, buckets: range }), [item, sales, now, range]);
+  const series = useMemo(() => itemSeries(item, sales, { now }), [item, sales, now]);
   const supplyPts = useMemo(() => supply.filter((p) => p.at >= from), [supply, from]);
   const unit = (n) => t('detail.unit', { n: f.n(n) });
 
@@ -78,22 +77,13 @@ export default function MarketItemModal({ data, f, t, now, onClose }) {
             </div>
           </div>
 
-          {/* Estadisticas */}
+          {/* Estadisticas (ultimas 24 h) */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
             <Stat label={t('detail.median24')} value={f.gold(stats.median24)} />
-            <Stat label={t('detail.median7')} value={f.gold(stats.median7)} />
-            <Stat label={t('detail.range7')} value={stats.low7 != null ? `${f.n(stats.low7)}–${f.n(stats.high7)}` : '–'} />
-            <Stat label={t('detail.perDay')} value={t('detail.perDayValue', { n: f.n1(stats.perDay) })} />
+            <Stat label={t('detail.range24')} value={stats.low24 != null ? `${f.n(stats.low24)}–${f.n(stats.high24)}` : '–'} />
+            <Stat label={t('detail.sold24')} value={t('detail.unit', { n: f.n(stats.units24) })} hint={t('detail.salesCount', { n: f.n(stats.sales24) })} />
+            <Stat label={t('detail.supplyNow')} value={t('detail.unit', { n: f.n(stats.unitsListed) })} hint={t('detail.stallsCount', { count: stats.listings, n: f.n(stats.listings) })} />
             <Stat label={t('detail.trend')} value={<TrendBadge pct={stats.trendPct} f={f} />} hint={t('detail.trendHint')} />
-          </div>
-
-          {/* Rango */}
-          <div className="flex items-center gap-1 self-end bg-[#0a1224] p-1 rounded-lg border border-slate-800">
-            {[7, 14, 30].map((r) => (
-              <button key={r} type="button" onClick={() => setRange(r)} className={`px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer ${range === r ? 'bg-emerald-500 text-slate-950' : 'text-slate-300 hover:bg-slate-800'}`}>
-                {t(`detail.range.${r}`)}
-              </button>
-            ))}
           </div>
 
           <section className="rounded-xl border border-slate-800 bg-[#0a1222] p-3">
@@ -106,7 +96,7 @@ export default function MarketItemModal({ data, f, t, now, onClose }) {
                 cheapest={stats.cheapest}
                 from={from}
                 to={now}
-                formatTime={f.chartTime}
+                formatTime={f.hourTime}
                 labels={{ title: t('detail.priceTitle'), cheapest: t('table.cheapest'), gold: t('coin.gold'), unit }}
               />
             ) : <p className="text-[12px] text-slate-500 py-8 text-center">{t('detail.noData')}</p>}
@@ -116,13 +106,13 @@ export default function MarketItemModal({ data, f, t, now, onClose }) {
             <section className="rounded-xl border border-slate-800 bg-[#0a1222] p-3">
               <h4 className="text-sm font-black text-white mb-2">{t('detail.volumeTitle')}</h4>
               {series.some((b) => b.units) ? (
-                <VolumeBars width={400} buckets={series} formatTime={f.day} labels={{ title: t('detail.volumeTitle'), gold: t('coin.gold'), unit }} />
+                <VolumeBars width={400} buckets={series} formatTime={f.time} labels={{ title: t('detail.volumeTitle'), gold: t('coin.gold'), unit }} />
               ) : <p className="text-[12px] text-slate-500 py-8 text-center">{t('detail.noData')}</p>}
             </section>
             <section className="rounded-xl border border-slate-800 bg-[#0a1222] p-3">
               <h4 className="text-sm font-black text-white">{t('detail.supplyTitle')}</h4>
               <p className="text-[11px] text-slate-500 mb-2">{t('detail.supplyHint')}</p>
-              <SupplyLine width={400} points={supplyPts} formatTime={f.chartTime} labels={{ title: t('detail.supplyTitle'), unit, empty: t('detail.noData') }} />
+              <SupplyLine width={400} points={supplyPts} formatTime={f.hourTime} labels={{ title: t('detail.supplyTitle'), unit, empty: t('detail.noData') }} />
             </section>
           </div>
 

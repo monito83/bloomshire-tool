@@ -32,9 +32,9 @@
     "gold24Hint": "Gold sales only",
     "stalls": "Open stalls",
     "stallsHint": "{{units}} units for sale",
-    "history": "Saved history",
-    "historyHint": "since {{date}}",
-    "historyEmpty": "builds up with each refresh"
+    "history": "Saved sales",
+    "historyHint": "last 24 h · oldest at {{date}}",
+    "historyEmpty": "builds up with each refresh (24 h)"
   },
   "views": {
     "quick": "Quick gold",
@@ -89,7 +89,7 @@
     "sold24": "Sold 24 h",
     "supply": "Supply",
     "cheapest": "Cheapest",
-    "chart": "14 days",
+    "chart": "24 h",
     "have": "You have {{n}}",
     "noSupply": "No stalls",
     "otherCoin": "other coin",
@@ -122,22 +122,13 @@
     "youHave": "You have {{n}}",
     "where": "Backpack {{m}} · Home {{cc}} · Town {{cp}}",
     "median24": "Median 24 h",
-    "median7": "Median 7 days",
-    "range7": "7-day range",
-    "perDay": "Sales per day",
-    "perDayValue": "{{n}} u./day",
     "trend": "Trend",
-    "trendHint": "24 h vs the previous 6 days",
+    "trendHint": "last 6 h vs the previous 18 h",
     "priceTitle": "Price of each sale",
-    "priceHint": "Each dot is a sale (gold per unit). The line is the daily median; the dashed line, the cheapest stall now.",
-    "volumeTitle": "Units sold per day",
+    "priceHint": "Each dot is a sale from the last 24 h (gold per unit). The line is the hourly median; the dashed line, the cheapest stall now.",
+    "volumeTitle": "Units sold per hour",
     "supplyTitle": "Units for sale",
     "supplyHint": "How supply changed at each refresh.",
-    "range": {
-      "7": "7 days",
-      "14": "14 days",
-      "30": "30 days"
-    },
     "listingsTitle": "Open stalls now",
     "listingsEmpty": "Nobody is selling it right now.",
     "salesTitle": "Latest sales",
@@ -154,8 +145,14 @@
     "recoNone": "Not enough data yet to suggest a price.",
     "shopPrice": "Shop: {{price}} each",
     "noShop": "The shop doesn't buy it",
-    "noData": "No sales in this period.",
-    "unit": "{{n}} u."
+    "noData": "No sales in the last 24 h.",
+    "unit": "{{n}} u.",
+    "range24": "24 h range",
+    "sold24": "Sold 24 h",
+    "salesCount": "{{n}} sales",
+    "supplyNow": "Supply now",
+    "stallsCount_one": "{{n}} stall",
+    "stallsCount_other": "{{n}} stalls"
   },
   "coin": {
     "gold": "gold",
@@ -164,5 +161,5 @@
   },
   "clear": "Clear saved history",
   "clearConfirm": "Clear the sales history saved in this browser?",
-  "footer": "The game shows everyone's latest sales; the radar keeps saving them in this browser to build the history. The more often you refresh (or open the Market in-game with the tool open), the fuller it gets."
+  "footer": "The game shows everyone's latest sales; the radar keeps the last 24 h in this browser. Refresh often (or open the Market in-game with the tool open) so none are missed."
 }

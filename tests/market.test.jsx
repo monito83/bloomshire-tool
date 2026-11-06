@@ -31,8 +31,8 @@ const rawBoard = {
   recent: [
     { item: 'Copper Bar', n: 5, price: 76, total: 380, coin: 'gold', at: NOW - 1 * HOUR },
     { item: 'Copper Bar', n: 2, price: 78, total: 156, coin: 'gold', at: NOW - 3 * HOUR },
-    { item: 'Copper Bar', n: 1, price: 60, total: 60, coin: 'gold', at: NOW - 3 * DAY },
-    { item: 'Copper Bar', n: 3, price: 62, total: 186, coin: 'gold', at: NOW - 4 * DAY },
+    { item: 'Copper Bar', n: 1, price: 60, total: 60, coin: 'gold', at: NOW - 10 * HOUR },
+    { item: 'Copper Bar', n: 3, price: 62, total: 186, coin: 'gold', at: NOW - 12 * HOUR },
     { item: 'Plank', n: 10, price: 50, total: 500, coin: 'gold', at: NOW - 2 * HOUR },
     { item: 'Plank', n: 1, price: 4, total: 4, coin: 'shards', at: NOW - 2 * HOUR },
     { item: 'Plank', n: 1, price: 0, total: 0, coin: 'gold', at: NOW - 2 * HOUR }
@@ -85,6 +85,12 @@ describe('Radar de Mercado: historial acumulado', () => {
     expect(third.sales[0]).toEqual(newer);   // la mas nueva primero
   });
 
+  it('guarda solo las ultimas 24 h', () => {
+    expect(SALES_KEEP_MS).toBe(DAY);
+    const old = { item: 'Plank', n: 1, price: 50, total: 50, coin: 'gold', at: NOW - DAY - 1 };
+    expect(mergeSales([], [old], NOW).added).toBe(0);
+  });
+
   it('olvida las ventas mas viejas que el limite', () => {
     const old = { item: 'Plank', n: 1, price: 50, total: 50, coin: 'gold', at: NOW - SALES_KEEP_MS - 1 };
     expect(mergeSales([old], [], NOW).sales).toHaveLength(0);
@@ -113,19 +119,26 @@ describe('Radar de Mercado: estadisticas', () => {
     expect(weightedMedian([])).toBeNull();
   });
 
-  it('calcula precios en Oro, volumen, tendencia y oferta', () => {
+  it('calcula precios en Oro, volumen, tendencia y oferta (ultimas 24 h)', () => {
     const st = itemStats('Copper Bar', sales, b.stalls, NOW);
-    expect(st.sales24).toBe(2);
-    expect(st.units24).toBe(7);
+    expect(st.sales24).toBe(4);
+    expect(st.units24).toBe(11);
     expect(st.median24).toBe(76);
-    expect(st.median7).toBe(76);
-    expect(st.trendPct).toBeCloseTo(((76 - 62) / 62) * 100, 5);
+    expect(st.trendPct).toBeCloseTo(((76 - 62) / 62) * 100, 5);   // ultimas 6 h vs las 18 h anteriores
     expect(st.cheapest).toBe(74);                 // el de shards no cuenta como Oro
     expect(st.listings).toBe(3);
     expect(st.unitsListed).toBe(17);
-    expect(st.gold24).toBe(536);
-    expect(st.low7).toBe(60);
-    expect(st.high7).toBe(78);
+    expect(st.gold24).toBe(782);
+    expect(st.low24).toBe(60);
+    expect(st.high24).toBe(78);
+    expect(st.perDay).toBeCloseTo(22, 5);         // 11 unidades en 12 h cubiertas
+  });
+
+  it('ignora ventas de mas de 24 h aunque sigan guardadas', () => {
+    const old = { item: 'Copper Bar', n: 9, price: 999, total: 8991, coin: 'gold', at: NOW - DAY - HOUR };
+    const st = itemStats('Copper Bar', [...sales, old], b.stalls, NOW);
+    expect(st.units24).toBe(11);
+    expect(st.high24).toBe(78);
   });
 
   it('las ventas en otras monedas no ensucian el precio en Oro', () => {
@@ -141,12 +154,12 @@ describe('Radar de Mercado: estadisticas', () => {
     expect(ids).toEqual(['Copper Bar', 'Plank']);
   });
 
-  it('serie diaria con unidades y mediana', () => {
-    const s = itemSeries('Copper Bar', sales, { now: NOW, buckets: 7 });
-    expect(s).toHaveLength(7);
+  it('serie por hora con unidades y mediana', () => {
+    const s = itemSeries('Copper Bar', sales, { now: NOW });
+    expect(s).toHaveLength(24);                   // una barra por hora
     expect(s.reduce((a, x) => a + x.units, 0)).toBe(11);
-    expect(s[6].units).toBe(7);
-    expect(s[6].median).toBe(76);
+    expect(s[22].units).toBe(5);
+    expect(s[22].median).toBe(76);
   });
 
   it('precio sugerido: apenas por debajo del mas barato sin bajar del 90% de la mediana', () => {

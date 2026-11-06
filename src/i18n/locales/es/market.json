@@ -32,9 +32,9 @@
     "gold24Hint": "solo ventas en Oro",
     "stalls": "Puestos abiertos",
     "stallsHint": "{{units}} unidades a la venta",
-    "history": "Historial guardado",
-    "historyHint": "desde {{date}}",
-    "historyEmpty": "se arma con cada actualización"
+    "history": "Ventas guardadas",
+    "historyHint": "últimas 24 h · la más vieja de las {{date}}",
+    "historyEmpty": "se arma con cada actualización (24 h)"
   },
   "views": {
     "quick": "Oro rápido",
@@ -89,7 +89,7 @@
     "sold24": "Vendidos 24 h",
     "supply": "Oferta",
     "cheapest": "Más barato",
-    "chart": "14 días",
+    "chart": "24 h",
     "have": "Tenés {{n}}",
     "noSupply": "Sin puestos",
     "otherCoin": "otra moneda",
@@ -122,22 +122,13 @@
     "youHave": "Tenés {{n}}",
     "where": "Mochila {{m}} · Casa {{cc}} · Pueblo {{cp}}",
     "median24": "Mediana 24 h",
-    "median7": "Mediana 7 días",
-    "range7": "Rango 7 días",
-    "perDay": "Ventas por día",
-    "perDayValue": "{{n}} u./día",
     "trend": "Tendencia",
-    "trendHint": "24 h vs los 6 días anteriores",
+    "trendHint": "últimas 6 h vs las 18 h anteriores",
     "priceTitle": "Precio de cada venta",
-    "priceHint": "Cada punto es una venta (oro por unidad). La línea es la mediana del día; la línea punteada, el puesto más barato ahora.",
-    "volumeTitle": "Unidades vendidas por día",
+    "priceHint": "Cada punto es una venta de las últimas 24 h (oro por unidad). La línea es la mediana de cada hora; la línea punteada, el puesto más barato ahora.",
+    "volumeTitle": "Unidades vendidas por hora",
     "supplyTitle": "Unidades a la venta",
     "supplyHint": "Cómo cambió la oferta en cada actualización.",
-    "range": {
-      "7": "7 días",
-      "14": "14 días",
-      "30": "30 días"
-    },
     "listingsTitle": "Puestos abiertos ahora",
     "listingsEmpty": "Nadie lo está vendiendo ahora.",
     "salesTitle": "Últimas ventas",
@@ -154,8 +145,14 @@
     "recoNone": "Todavía no hay datos suficientes para recomendar un precio.",
     "shopPrice": "Tienda: {{price}} c/u",
     "noShop": "La tienda no lo compra",
-    "noData": "Sin ventas en este período.",
-    "unit": "{{n}} u."
+    "noData": "Sin ventas en las últimas 24 h.",
+    "unit": "{{n}} u.",
+    "range24": "Rango 24 h",
+    "sold24": "Vendidas 24 h",
+    "salesCount": "{{n}} ventas",
+    "supplyNow": "Oferta ahora",
+    "stallsCount_one": "{{n}} puesto",
+    "stallsCount_other": "{{n}} puestos"
   },
   "coin": {
     "gold": "oro",
@@ -164,5 +161,5 @@
   },
   "clear": "Borrar historial guardado",
   "clearConfirm": "¿Borrar el historial de ventas guardado en este navegador?",
-  "footer": "El juego muestra las últimas ventas de todos; el radar las va guardando en este navegador para armar el historial. Cuanto más seguido actualices (o abras el Mercado en el juego con la herramienta abierta), más completo queda."
+  "footer": "El juego muestra las últimas ventas de todos; el radar guarda las de las últimas 24 h en este navegador. Actualizá seguido (o abrí el Mercado en el juego con la herramienta abierta) para que no se pierda ninguna."
 }

@@ -20,6 +20,7 @@ export function makeFormat(lang, t) {
     day: (at) => day.format(at),
     dayTime: (at) => dayTime.format(at),
     chartTime: (at, full) => (full ? dayTime.format(at) : day.format(at)),
+    hourTime: (at, full) => (full ? dayTime.format(at) : time.format(at)),
     ago: (at, now = Date.now()) => {
       const ms = Math.max(0, now - at);
       if (ms < 60e3) return t('ago.now');
