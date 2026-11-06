@@ -76,3 +76,25 @@ describe('Ventana de conexion', () => {
     expect(html).not.toContain('Connect and sign');
   });
 });
+
+describe('Pie y "Sobre la tool"', () => {
+  afterEach(async () => { await i18n.changeLanguage('en'); });
+  it('el pie avisa que es no oficial y ofrece Discord y cafecito', async () => {
+    const { default: AppFooter } = await import('../src/components/bloomshire/app/AppFooter');
+    await i18n.changeLanguage('es');
+    const html = renderToString(<AppFooter />);
+    expect(html).toContain('no oficial ni asociada a Bloomshire');
+    expect(html).toContain('monito83');
+    expect(html).toContain('Invitame un cafecito');
+  });
+  it('la ventana tiene el aviso, el Discord, la wallet completa y su QR', async () => {
+    const { AboutModal, DONATION_WALLET, CONTACT_DISCORD } = await import('../src/components/bloomshire/app/AppFooter');
+    expect(DONATION_WALLET).toMatch(/^0x[0-9a-fA-F]{40}$/);
+    const html = renderToString(<AboutModal onClose={() => {}} />);
+    expect(html).toContain(DONATION_WALLET);
+    expect(html).toContain(CONTACT_DISCORD);
+    expect(html).toContain('unofficial community tool');
+    expect(html).toMatch(/<svg[^>]*aria-label="0xD3E0/);
+    expect(html).toContain('…89d5');
+  });
+});

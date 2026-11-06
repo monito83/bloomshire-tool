@@ -45,5 +45,29 @@
     "forage": "Anything foraged",
     "food": "Any dish",
     "ore": "Any ore"
+  },
+  "about": {
+    "title": "About Bloomshire Tool",
+    "subtitle": "A free tool made by the community, for the community.",
+    "close": "Close",
+    "disclaimerTitle": "Before you use it",
+    "notOfficial": "This is an unofficial community tool. It is not made, endorsed or supported by the Bloomshire team.",
+    "mayErr": "Data comes from the game and is updated often, but it may contain mistakes or fall behind after a game update. Double-check anything important in the game.",
+    "noSecrets": "The tool never asks for your seed phrase or private key, and signing in never moves funds.",
+    "contactTitle": "Found a bug or have an idea?",
+    "contactBody": "Mistakes, suggestions and improvements are all welcome. Write to me on Discord:",
+    "coffeeTitle": "Buy me a coffee",
+    "coffeeBody": "If the tool helps you, you can buy me a coffee by sending whatever you like to this wallet. It keeps the tool online and growing. Totally optional!",
+    "walletLabel": "wallet",
+    "walletNote": "EVM address. Always check it ends in …{{end}}. I will never ask you to sign anything to donate.",
+    "copy": "Copy {{what}}",
+    "copyShort": "Copy",
+    "copied": "Copied!",
+    "thanks": "Thanks for playing and sharing!",
+    "footer": "Unofficial community tool, not affiliated with Bloomshire. It may contain errors.",
+    "footerShort": "Unofficial community tool",
+    "footerDiscord": "Bugs & ideas: {{user}} on Discord",
+    "discordTitle": "Copy my Discord user",
+    "footerCoffee": "Buy me a coffee"
   }
 }
