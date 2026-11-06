@@ -7,3 +7,6 @@ scratch/
 
 # Descargas del juego (solo para generar los datos oficiales; no se suben)
 game-sources/v-*/
+
+# Corridas de caracterizacion del refactor (scripts/characterize)
+.characterize/

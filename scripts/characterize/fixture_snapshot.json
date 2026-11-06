@@ -1,0 +1,54 @@
+{
+  "game": "bloomshire",
+  "wallet": "0x1111111111111111111111111111111111111111",
+  "gold": 10551,
+  "currentEnergy": 95,
+  "maxEnergy": 150,
+  "rawEnergyObj": { "v": 95, "at": 1793500000000, "recovery": null, "slept": null, "sold": { "day": 20758, "gold": 1200, "n": 7, "items": { "Wheat": 5, "Coal": 2 } } },
+  "energyMeta": { "bedWaitText": "2h 10m" },
+  "isVip": true,
+  "vipUntil": 1796000000000,
+  "shards": 3057,
+  "avyn": 888000000,
+  "bank": 500,
+  "farmingLevel": 7,
+  "perks": { "vipUntil": 1796000000000 },
+  "ate": null,
+  "sold": { "day": 20758, "gold": 1200, "n": 7, "items": { "Wheat": 5, "Coal": 2 } },
+  "buffs": null,
+  "inventory": [
+    { "id": "Wheat", "name": "Wheat", "qty": 120, "area": "town" },
+    { "id": "Copper Bar", "name": "Copper Bar", "qty": 42, "area": "pack" },
+    { "id": "Coal", "name": "Coal", "qty": 30, "area": "pack" },
+    { "id": "Strawberry", "name": "Strawberry", "qty": 25, "area": "home" },
+    { "id": "Honey", "name": "Honey", "qty": 9, "area": "home" },
+    { "id": "Golden Pumpkin", "name": "Golden Pumpkin", "qty": 4, "area": "pack" },
+    { "id": "Iron Bar", "name": "Iron Bar", "qty": 6, "area": "home" },
+    { "id": "Flour", "name": "Flour", "qty": 12, "area": "pack" },
+    { "id": "Iron Pickaxe", "name": "Iron Pickaxe", "qty": 1, "area": "pack", "tier": "iron" }
+  ],
+  "activeOrders": [
+    { "id": "o1", "item": "Trigo", "rawItem": "Wheat", "n": 10, "gold": 300, "xp": 40, "skill": "farming", "done": false },
+    { "id": "o2", "item": "Barra de Cobre", "rawItem": "Copper Bar", "n": 5, "gold": 600, "xp": 60, "skill": "smithing", "done": false },
+    { "id": "o3", "item": "Miel", "rawItem": "Honey", "n": 20, "gold": 900, "xp": 80, "skill": "farming", "done": false }
+  ],
+  "activeQuest": "The Hidden Glade — Look at the arch of roots",
+  "activeQuestsList": [
+    { "id": "b1_ch12", "normalizedId": "b1_ch12", "name": "The Hidden Glade", "title": "The Hidden Glade", "chapter": 12, "step": 2, "stepIdx": 1, "totalSteps": 4, "stepName": "Roots", "objective": "Bring 6 Iron Bar to Bram", "stepText": "Bring 6 Iron Bar to Bram", "where": "Whisperwood", "coords": null, "giver": "Bram", "stepItems": [{ "id": "iron bar", "n": 6, "name": "Iron Bar" }], "allSteps": [], "progressN": 0, "targetN": 6, "isMainStory": true }
+  ],
+  "completedQuestsCount": 11,
+  "moonmereProgress": { "currentChapter": 12, "completedChapters": 11, "targetChapter": 24, "totalChaptersRequired": 24, "unlocked": false, "moonmereUnlocked": false, "moonmereIndex": 0, "totalMoonmereChapters": 7, "chaptersRemaining": 13 },
+  "activeCrops": [],
+  "liveProductionPots": [
+    { "id": "live_pot_1793500600000", "name": "Bean Hotpot", "icon": "🍲", "count": 2, "location": "🏡 Cabaña / Panadería", "readyAt": 1793500600000, "remainingMs": 600000, "isDone": false, "isLiveTelemetry": true, "type": "production" }
+  ],
+  "dailyTasks": [
+    { "id": "t1", "text": "Harvest 20 crops", "target": 20, "current": 12 },
+    { "id": "t2", "text": "Catch 5 fish", "target": 5, "current": 5, "done": true }
+  ],
+  "serverTimeOffset": 0,
+  "activeGameBuild": "4ccdce8f2b1e",
+  "stale": false,
+  "skills": { "farming": 12000, "fishing": 3000, "mining": 5000, "cooking": 800 },
+  "timestamp": 1793500000000
+}

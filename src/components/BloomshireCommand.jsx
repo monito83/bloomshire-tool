@@ -1,39 +1,13 @@
 // Bloomshire Tool - Live Companion & Market Radar (Modularized Architecture)
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { 
-  Zap, 
-  Coins, 
-  Gem, 
-  ShieldCheck, 
-  RefreshCw, 
-  ExternalLink, 
-  Search, 
-  Send, 
-  Bot, 
-  Sparkles, 
-  ShoppingBag, 
-  ArrowUpRight, 
-  Trash2, 
-  RotateCcw, 
-  Navigation, 
-  Moon, 
-  Sun, 
-  MapPin, 
-  Compass, 
-  Hammer, 
-  BookOpen, 
-  User, 
-  Check, 
-  Clock, 
-  Layers, 
-  Award,
-  ChevronRight,
+import {
+  Coins,
+  Gem,
+  RefreshCw,
+  Sparkles,
+  BookOpen,
   ChevronDown,
   ChevronUp,
-  ChevronsUpDown,
-  Filter,
-  CheckCircle2,
-  AlertCircle,
   Settings,
   LogOut,
   Map as MapIcon,
@@ -46,15 +20,8 @@ import {
 } from 'lucide-react';
 
 // Importar datos canónicos JSON
-import calcData from '../../public/data/bloomshire/calc_data.json';
-import npcsData from '../../public/data/bloomshire/npcs.json';
-import craftData from '../../public/data/bloomshire/craft_data.json';
 import inventoryCatalogData from '../../public/data/bloomshire/inventory_catalog.json';
-import itemEncyclopediaData from '../../public/data/bloomshire/item_encyclopedia.json';
-import itemIconsMap from '../../public/data/bloomshire/item_icons_map.json';
-import megaAtlasData from '../../public/data/bloomshire/mega_atlas_data.json';
-import CANONICAL_QUEST_CATALOG from '../data/canonicalQuests.json';
-import BloomshireMegaAtlas, { NpcAvatar } from './BloomshireMegaAtlas';
+import BloomshireMegaAtlas from './BloomshireMegaAtlas';
 import rulesData from '../data/rules.json';
 import ErrorBoundary from './ErrorBoundary';
 import '../i18n';
@@ -62,13 +29,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 
 // Importar lógica y fórmulas de bloomshireEngine
-import {
-  CANONICAL_SKILLS,
-  xpForLevel,
-  computeCanonicalSkillsFromRaw,
-  computeClientLiveEnergyAndBed,
-  computeMaxEnergy
-} from './bloomshire/bloomshireEngine';
+import { computeCanonicalSkillsFromRaw, computeClientLiveEnergyAndBed, computeMaxEnergy } from './bloomshire/bloomshireEngine';
 
 // Importar submódulos de pestañas desacopladas (Fase 7 Modularización)
 import ItemsTab from './bloomshire/tabs/ItemsTab';
@@ -87,60 +48,16 @@ import GameUpdatePanel from './bloomshire/admin/GameUpdatePanel';
 // Importar helpers y constantes canónicas compartidas
 import {
   getStorageType,
-  NPC_FAVORITE_GIFTS,
-  getNpcFavoriteGifts,
-  getItemCategoryLabel,
-  getItemIcon,
-  itemMatchesCategory,
-  MANUAL_NPC_COORDS,
   QUEST_REQUIRED_ITEMS,
-  ItemSprite,
-  CraftMaterialsBadge,
   DASHBOARD_QUEST_CATALOG,
-  CRAFT_STATION_LOCATIONS,
-  LockedModuleScreen,
-  LiveCropOrTimerCard,
-  getItemStorageBreakdown,
-  getRecipeCraftability,
-  calculateQuantitiesFromRaw,
-  getOrderBreakdown,
-  getOrderAvailableQty,
-  getSharedAudioContext,
-  playChimeAlarm
+  getSharedAudioContext
 } from './bloomshire/bloomshireHelpers';
-import { slimSnapshot, backupFingerprint, backupDecision, CLOUD_BACKUP_AUTO } from './bloomshire/cloudBackup';
-
-// Re-exportar helpers para máxima compatibilidad hacia atrás
-export {
-  getStorageType,
-  NPC_FAVORITE_GIFTS,
-  getNpcFavoriteGifts,
-  getItemCategoryLabel,
-  getItemIcon,
-  itemMatchesCategory,
-  MANUAL_NPC_COORDS,
-  QUEST_REQUIRED_ITEMS,
-  ItemSprite,
-  CraftMaterialsBadge,
-  DASHBOARD_QUEST_CATALOG,
-  CRAFT_STATION_LOCATIONS,
-  LockedModuleScreen,
-  LiveCropOrTimerCard,
-  getItemStorageBreakdown,
-  getRecipeCraftability,
-  calculateQuantitiesFromRaw,
-  getOrderBreakdown,
-  getOrderAvailableQty,
-  ItemsTab,
-  CalcTab,
-  InventoryTab,
-  QuestsTab,
-  CraftTab,
-  NpcsTab,
-  MonitorsTab,
-  AdvisorTab,
-  SystemTab
-};
+import {
+  slimSnapshot,
+  backupFingerprint,
+  backupDecision,
+  CLOUD_BACKUP_AUTO
+} from './bloomshire/cloudBackup';
 
 export default function BloomshireCommand() {
   const { t: tHeader, i18n } = useTranslation('header');
@@ -283,7 +200,6 @@ export default function BloomshireCommand() {
     try { return localStorage.getItem('bloomshire_cached_active_quest') || ''; } catch { return ''; }
   });
   const [activeQuestsList, setActiveQuestsList] = useState([]);
-  const [selectedQuestId, setSelectedQuestId] = useState(null);
   const [moonmereProgress, setMoonmereProgress] = useState({
     currentChapter: 0,
     completedChapters: 0,
@@ -393,7 +309,6 @@ export default function BloomshireCommand() {
   }, []);
 
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
-  const [lastUpdateCheck, setLastUpdateCheck] = useState(() => new Date().toLocaleTimeString());
   const [updateStatusMessage, setUpdateStatusMessage] = useState('Todos los módulos y catálogos están 100% sincronizados con el juego.');
   const [systemLogs, setSystemLogs] = useState([
     { id: 1, time: new Date().toLocaleTimeString(), text: 'Sistema Moni-Bot Companion v2.4 iniciado correctamente.', type: 'info' },
@@ -485,7 +400,6 @@ export default function BloomshireCommand() {
     setIsCheckingUpdates(true);
     setUpdateStatusMessage('Comprobando versión en vivo con bloomshire.xyz...');
     const nowStr = new Date().toLocaleTimeString();
-    setLastUpdateCheck(nowStr);
 
     try {
       window.postMessage({ type: 'FORCE_BLOOMSHIRE_SCAN' }, '*');
@@ -497,16 +411,13 @@ export default function BloomshireCommand() {
       if (res.ok) {
         const info = await res.json();
         setIsCheckingUpdates(false);
-        if (info.liveBuild) setGameBuildHash(info.liveBuild);
         if (info.isUpToDate) {
-          setGameBuildStatus('synced');
           setUpdateStatusMessage(`¡Sistema al día! Servidor Bloomshire en build ${info.liveBuild}.`);
           setSystemLogs(prev => [
             { id: Date.now(), time: nowStr, text: `Comprobación completada: Servidor en build ${info.liveBuild}. 100% compatible con Tool ${info.toolVersion}.`, type: 'success' },
             ...prev
           ].slice(0, 50));
         } else {
-          setGameBuildStatus('patch_detected');
           setUpdateStatusMessage(`⚠️ Nuevo parche detectado en Bloomshire: Build ${info.liveBuild} (Tool en ${info.verifiedBuild})`);
           setSystemLogs(prev => [
             { id: Date.now(), time: nowStr, text: `Alerta de Parche: Bloomshire actualizó al build ${info.liveBuild}. Catálogos locales verificados con a70eb5dd5113.`, type: 'warning' },
@@ -623,81 +534,9 @@ export default function BloomshireCommand() {
     return dailyTasks.filter(t => t.done).length;
   }, [dailyTasks]);
 
-  const [questSectionsOpen, setQuestSectionsOpen] = useState({
-    materialTracker: true,
-    dailyTasks: true,
-    moonmereBanner: true,
-    skillsBook: true,
-    energyBed: false,
-    roadmap: true
-  });
-
-  const toggleQuestSection = (sectionKey) => {
-    setQuestSectionsOpen(prev => ({
-      ...prev,
-      [sectionKey]: !prev[sectionKey]
-    }));
-  };
-
-  const toggleAllQuestSections = (openState) => {
-    setQuestSectionsOpen({
-      materialTracker: openState,
-      dailyTasks: openState,
-      moonmereBanner: openState,
-      skillsBook: openState,
-      energyBed: openState,
-      roadmap: openState
-    });
-  };
-
-  // Buscador Universal de Ítems & Enciclopedia (359 ítems del juego)
-  const [itemSearchQuery, setItemSearchQuery] = useState('');
-  const [itemCategoryFilter, setItemCategoryFilter] = useState('all');
-  const [itemViewMode, setItemViewMode] = useState('grid'); // 'grid' | 'list'
-  const [inventorySearchQuery, setInventorySearchQuery] = useState('');
-  const [inventorySortBy, setInventorySortBy] = useState('owned_desc'); // 'owned_desc' | 'qty_desc' | 'value_desc' | 'name_asc'
-  const [craftSearchQuery, setCraftSearchQuery] = useState('');
-  const [craftSortBy, setCraftSortBy] = useState('profit_desc'); // 'profit_desc' | 'energy_desc' | 'time_asc' | 'rate_desc' | 'level_asc' | 'xp_desc' | 'name_asc'
-  const [craftLevelFilter, setCraftLevelFilter] = useState('all');
-  const [craftOnlyAvailable, setCraftOnlyAvailable] = useState(false);
-  const [craftViewMode, setCraftViewMode] = useState('grid'); // 'grid' | 'list'
-  const [npcViewMode, setNpcViewMode] = useState('grid'); // 'grid' | 'list'
-  const [economySubTab, setEconomySubTab] = useState(() => {
-    try {
-      const w = localStorage.getItem('bloomshire_wallet');
-      return (w && w !== 'null' && w.startsWith('0x')) ? 'liquidation' : 'arbitrage';
-    } catch {
-      return 'arbitrage';
-    }
-  });
-  const [gameBuildHash, setGameBuildHash] = useState('a70eb5dd5113');
-  const [toolVersion] = useState('v2.5.0');
-  const [gameBuildStatus, setGameBuildStatus] = useState('synced');
-
-  const [marketFilter, setMarketFilter] = useState('all'); // 'all' | 'in_stock' | 'ultra' | 'gems' | 'vip'
-  const [marketSearch, setMarketSearch] = useState('');
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(() => {
     try { return localStorage.getItem('bloomshire_header_collapsed') === 'true'; } catch { return false; }
   });
-
-  // Calculator State
-  const [calcSkill, setCalcSkill] = useState('farming');
-  const [calcSeasonFilter, setCalcSeasonFilter] = useState('all');
-  const [calcLevelFilter, setCalcLevelFilter] = useState('all');
-  const [calcSort, setCalcSort] = useState('xpMin_desc');
-  const [calcStrategyPreset, setCalcStrategyPreset] = useState('speedrun');
-  const [simulatedEnergy, setSimulatedEnergy] = useState('');
-  const [availablePlots, setAvailablePlots] = useState(10);
-  const [hasFoundersTimeBonus, setHasFoundersTimeBonus] = useState(true);
-  const [expandedUsedInIds, setExpandedUsedInIds] = useState(() => new Set());
-  const toggleUsedIn = (itemId) => {
-    setExpandedUsedInIds(prev => {
-      const next = new Set(prev);
-      if (next.has(itemId)) next.delete(itemId);
-      else next.add(itemId);
-      return next;
-    });
-  };
 
   // Estados del Dashboard de Cosechas, Cocina y Alarmas (En Vivo)
   const [activeCrops, setActiveCrops] = useState([]);
@@ -804,96 +643,6 @@ export default function BloomshireCommand() {
     setProductionTimers(prev => prev.filter(t => t.id !== id));
   };
 
-  // Crafting State
-  const [craftCategory, setCraftCategory] = useState('bench');
-
-  // Ubicaciones exactas en el Mega-Atlas para Estaciones de Crafteo y Cocina
-  const CRAFT_STATION_LOCATIONS = {
-    market: {
-      stationName: '⚖️ Mercado Central (Rowan) — Market Hall de Bloomshire',
-      stationDesc: 'En la plaza central de Bloomshire Town, habla con Rowan en el Market Hall para comprar y vender artículos.',
-      label: '🏛️ Market Hall (Rowan)',
-      regionId: 'bloomshire_town',
-      subZoneId: 'bloomshire_town_sub_1_bloomshire',
-      wx: 5740,
-      wy: 4320,
-      worldRect: [5620, 4200, 260, 240]
-    },
-    bench: {
-      stationName: '🪵 Banco de Trabajo — Carpintería de Pell (Noreste del Pueblo)',
-      stationDesc: 'Camina al este desde la Plaza Central y sube hacia el noreste hasta The Carpenter\'s Shop (Pell).',
-      label: '🪵 Carpintería de Pell (Banco de Trabajo)',
-      regionId: 'bloomshire_town',
-      subZoneId: 'bloomshire_town_sub_1_bloomshire',
-      wx: 6397,
-      wy: 4215,
-      worldRect: [6240, 4100, 300, 240]
-    },
-    forge: {
-      stationName: '⚒️ La Forja y Yunque — Herrería de Bram (Este de la Plaza)',
-      stationDesc: 'Camina al este desde la Plaza Central pasando la Tienda de Semillas hasta The Forge (Bram).',
-      label: '⚒️ Herrería de Bram (Forja y Yunque)',
-      regionId: 'bloomshire_town',
-      subZoneId: 'bloomshire_town_sub_1_bloomshire',
-      wx: 6126,
-      wy: 4245,
-      worldRect: [5980, 4120, 280, 240]
-    },
-    cook: {
-      stationName: '🍲 Estufa de Cocina — Panadería de Tamsin (Oeste) o Tu Cabaña (Home Island)',
-      stationDesc: 'Puedes cocinar en la estufa pública de The Bakery (Tamsin, al oeste del puente) o en la estufa dentro de tu Cabaña.',
-      label: '🍲 Panadería de Tamsin (Estufa de Cocina)',
-      regionId: 'bloomshire_town',
-      subZoneId: 'bloomshire_town_sub_1_bloomshire',
-      wx: 5106,
-      wy: 4246,
-      worldRect: [4960, 4120, 280, 240],
-      altHomeLocation: {
-        label: '🏡 Estufa de Tu Cabaña (Home Island)',
-        regionId: 'home_island',
-        subZoneId: 'home_cottage_sub',
-        wx: 4034,
-        wy: 10012,
-        worldRect: [3930, 9930, 220, 220]
-      }
-    },
-    mill: {
-      stationName: '🌊 Molino de Agua & 🥛 Lechería — Granja de Hollin (Southvale)',
-      stationDesc: 'Sal por el camino sur de Bloomshire hacia Southvale y entra a la Granja de Hollin (Oeste) para moler Harina, Azúcar, Arroz y batir Mantequilla/Queso.',
-      label: '🌊 Molino y Lechería (Granja de Hollin - Southvale)',
-      regionId: 'southvale',
-      subZoneId: 'southvale_sub_19_hollin_s_farm',
-      wx: 4888,
-      wy: 6080,
-      worldRect: [4608, 5816, 560, 528]
-    },
-    loom: {
-      stationName: '🧵 Telar de Sastrería — Taller de Tilly (Orilla Oeste del Pueblo)',
-      stationDesc: 'Cruza el puente al oeste de la Plaza Central y baja unos pasos hasta The Tailor\'s (Tilly) para tejer Tela (Cloth) con Lana.',
-      label: '🧵 Sastrería de Tilly (Telar de Tela)',
-      regionId: 'bloomshire_town',
-      subZoneId: 'bloomshire_town_sub_1_bloomshire',
-      wx: 4992,
-      wy: 4589,
-      worldRect: [4860, 4460, 260, 240]
-    }
-  };
-
-  // NPCs State
-  const [npcFilter, setNpcFilter] = useState('');
-
-  // Copilot State
-  const [advisorInput, setAdvisorInput] = useState('');
-  const [advisorLoading, setAdvisorLoading] = useState(false);
-  const [advisorMessages, setAdvisorMessages] = useState([
-    {
-      id: 'init',
-      role: 'assistant',
-      content: '🤖 **Copilot IA: En Pausa Temporal (Próximamente)**\n\nEl copiloto estratégico con IA está actualmente en mantenimiento y no configurado. Se activará próximamente una vez finalizada la fase de pruebas y calibración económica. Mientras tanto, puedes consultar la Calculadora de Cultivos, el Mega-Atlas y la Enciclopedia de Ítems libremente.'
-    }
-  ]);
-  const messagesEndRef = useRef(null);
-
 
   // Helper: Obtener desglose de existencias por almacén { total, m, cc, cp }
   const getItemStorageBreakdown = (itemObj) => {
@@ -927,275 +676,6 @@ export default function BloomshireCommand() {
 
     const total = m + cc + cp;
     return { total, m, cc, cp };
-  };
-
-  // Helper: Calcular crafteabilidad y disponibilidad de materiales para una receta o plato
-  const getRecipeCraftability = (recipe) => {
-    if (!recipe) return { canCraft: false, maxBatches: 0, missingCount: 0, breakdown: [] };
-    
-    if (recipe.needs && Array.isArray(recipe.needs) && recipe.needs.length > 0) {
-      let canCraft = true;
-      let maxBatches = Infinity;
-      let missingCount = 0;
-      const breakdown = recipe.needs.map(n => {
-        const stock = getItemStorageBreakdown({ id: n.item, name: n.nameEs || n.item });
-        const req = Number(n.qty) || 1;
-        const hasEnough = stock.total >= req;
-        if (!hasEnough) {
-          canCraft = false;
-          missingCount++;
-        }
-        const possible = req > 0 ? Math.floor(stock.total / req) : 0;
-        if (possible < maxBatches) maxBatches = possible;
-        return {
-          item: n.item,
-          nameEs: n.nameEs || n.item,
-          req,
-          total: stock.total,
-          m: stock.m,
-          cc: stock.cc,
-          cp: stock.cp,
-          hasEnough
-        };
-      });
-
-      return {
-        canCraft: canCraft && maxBatches > 0 && maxBatches !== Infinity,
-        maxBatches: canCraft && maxBatches !== Infinity ? maxBatches : 0,
-        missingCount,
-        breakdown
-      };
-    }
-
-    if (recipe.mats && typeof recipe.mats === 'string') {
-      const parts = recipe.mats.split('+').map(s => s.trim()).filter(Boolean);
-      let canCraft = true;
-      let maxBatches = Infinity;
-      let missingCount = 0;
-      const breakdown = parts.map(part => {
-        const m = part.match(/^(.*?)(?:\s*(?:x\s*(\d+)|\((\d+)\)|(\d+)\s*x))?$/i);
-        const nameOnly = m && m[1] ? m[1].trim() : part;
-        const req = m && (m[2] || m[3] || m[4]) ? Number(m[2] || m[3] || m[4]) : 1;
-        const searchName = nameOnly.replace(/\s*\([^)]*\)/g, '').split(' o ')[0].trim();
-        const stock = getItemStorageBreakdown({ id: searchName, name: nameOnly });
-        const hasEnough = stock.total >= req;
-        if (!hasEnough) {
-          canCraft = false;
-          missingCount++;
-        }
-        const possible = req > 0 ? Math.floor(stock.total / req) : 0;
-        if (possible < maxBatches) maxBatches = possible;
-        return {
-          item: searchName,
-          nameEs: nameOnly,
-          req,
-          total: stock.total,
-          m: stock.m,
-          cc: stock.cc,
-          cp: stock.cp,
-          hasEnough
-        };
-      });
-
-      return {
-        canCraft: canCraft && maxBatches > 0 && maxBatches !== Infinity,
-        maxBatches: canCraft && maxBatches !== Infinity ? maxBatches : 0,
-        missingCount,
-        breakdown
-      };
-    }
-
-    return { canCraft: false, maxBatches: 0, missingCount: 0, breakdown: [] };
-  };
-
-  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas de rendimiento
-  // Helper: Lista filtrada y ordenada de recetas de crafteo / cocina con analíticas multi-variables
-  const filteredAndSortedCrafts = useMemo(() => {
-    let list = (craftData && craftData[craftCategory]) ? [...craftData[craftCategory]] : [];
-
-    if (craftSearchQuery && craftSearchQuery.trim()) {
-      const q = craftSearchQuery.toLowerCase().trim();
-      list = list.filter(r =>
-        (r.item && r.item.toLowerCase().includes(q)) ||
-        (r.dish && r.dish.toLowerCase().includes(q)) ||
-        (r.craftItem && r.craftItem.toLowerCase().includes(q)) ||
-        (r.mats && r.mats.toLowerCase().includes(q)) ||
-        (r.desc && r.desc.toLowerCase().includes(q)) ||
-        (r.place && r.place.toLowerCase().includes(q))
-      );
-    }
-
-    if (craftLevelFilter && craftLevelFilter !== 'all') {
-      if (craftLevelFilter === 'special') {
-        list = list.filter(r => !r.levelNum || r.levelNum === 0 || (r.level && (r.level.toLowerCase().includes('misi') || r.level.toLowerCase().includes('especial') || r.level.toLowerCase().includes('vip'))));
-      } else if (craftLevelFilter === '8') {
-        list = list.filter(r => (r.levelNum || 1) >= 8 && (r.levelNum || 1) < 10);
-      } else if (craftLevelFilter === '10') {
-        list = list.filter(r => (r.levelNum || 1) >= 10);
-      } else {
-        const targetNum = Number(craftLevelFilter);
-        list = list.filter(r => (r.levelNum || 1) === targetNum);
-      }
-    }
-
-    const enriched = list.map(r => {
-      const craftability = getRecipeCraftability(r);
-      const energyCost = typeof r.energyCost === 'number' ? r.energyCost : (craftCategory === 'cook' ? 1 : craftCategory === 'forge' ? 3 : 2);
-      const energyRestore = typeof r.energyRestore === 'number' ? r.energyRestore : 0;
-      const netEnergy = energyRestore - energyCost;
-
-      const goldCost = typeof r.goldCost === 'number' ? r.goldCost : 50;
-      const sellPrice = typeof r.sellPrice === 'number' ? r.sellPrice : 3000;
-      const netGold = Math.max(0, sellPrice - goldCost);
-
-      const minutes = Math.max(1, typeof r.minutes === 'number' ? r.minutes : 1);
-      const goldPerMin = Math.round(netGold / minutes);
-      const xp = typeof r.xp === 'number' ? r.xp : 25;
-      const levelNum = typeof r.levelNum === 'number' ? r.levelNum : (parseInt((r.level || '').replace(/[^0-9]/g, '')) || 1);
-      
-      const goldPerEnergy = energyCost > 0 ? Math.round(netGold / energyCost) : netGold;
-      const xpPerEnergy = energyCost > 0 ? Number((xp / energyCost).toFixed(1)) : xp;
-      const xpPerMin = Math.round(xp / minutes);
-
-      return {
-        ...r,
-        craftability,
-        energyCost,
-        energyRestore,
-        netEnergy,
-        goldCost,
-        sellPrice,
-        netGold,
-        minutes,
-        goldPerMin,
-        goldPerEnergy,
-        xpPerEnergy,
-        xpPerMin,
-        xp,
-        levelNum
-      };
-    });
-
-    let finalFiltered = enriched;
-    if (craftOnlyAvailable) {
-      finalFiltered = finalFiltered.filter(r => r.craftability.canCraft);
-    }
-
-    finalFiltered.sort((a, b) => {
-      if (craftSortBy === 'energy_desc') {
-        return (b.netEnergy || 0) - (a.netEnergy || 0);
-      }
-      if (craftSortBy === 'energy_eff_desc') {
-        return (b.goldPerEnergy || 0) - (a.goldPerEnergy || 0);
-      }
-      if (craftSortBy === 'energy_xp_desc') {
-        return (b.xpPerEnergy || 0) - (a.xpPerEnergy || 0);
-      }
-      if (craftSortBy === 'profit_desc') {
-        return (b.netGold || 0) - (a.netGold || 0);
-      }
-      if (craftSortBy === 'rate_desc') {
-        return (b.goldPerMin || 0) - (a.goldPerMin || 0);
-      }
-      if (craftSortBy === 'time_asc') {
-        return (a.minutes || 0) - (b.minutes || 0);
-      }
-      if (craftSortBy === 'xp_desc') {
-        return (b.xp || 0) - (a.xp || 0);
-      }
-      if (craftSortBy === 'name_asc') {
-        return (a.item || '').localeCompare(b.item || '');
-      }
-      return (a.levelNum || 1) - (b.levelNum || 1);
-    });
-
-    return finalFiltered;
-  }, [craftCategory, craftData, craftSearchQuery, craftSortBy, craftLevelFilter, craftOnlyAvailable, rawInventory]);
-
-  const totalCraftableInCurrentCategory = useMemo(() => {
-    const list = (craftData && craftData[craftCategory]) || [];
-    return list.filter(r => getRecipeCraftability(r).canCraft).length;
-  }, [craftCategory, craftData, rawInventory]);
-
-  // Conteo de crafteables en vivo por cada una de las 5 estaciones
-  const craftableCountsByCategory = useMemo(() => {
-    const counts = {};
-    if (!craftData) return counts;
-    ['bench', 'forge', 'cook', 'mill', 'loom'].forEach(k => {
-      const list = craftData[k] || [];
-      counts[k] = list.filter(r => getRecipeCraftability(r).canCraft).length;
-    });
-    return counts;
-  }, [craftData, rawInventory]);
-
-  // Resumen táctico de la estación actual
-  const stationSummary = useMemo(() => {
-    const list = (craftData && craftData[craftCategory]) || [];
-    let bestEnergyDish = null;
-    let bestProfitCraft = null;
-    let fastestItem = null;
-
-    list.forEach(r => {
-      const eRestore = r.energyRestore || 0;
-      if (!bestEnergyDish || eRestore > (bestEnergyDish.energyRestore || 0)) {
-        bestEnergyDish = r;
-      }
-      const netG = (r.sellPrice || 0) - (r.goldCost || 0);
-      if (!bestProfitCraft || netG > ((bestProfitCraft.sellPrice || 0) - (bestProfitCraft.goldCost || 0))) {
-        bestProfitCraft = r;
-      }
-      const mins = r.minutes || 1;
-      if (!fastestItem || mins < (fastestItem.minutes || 1)) {
-        fastestItem = r;
-      }
-    });
-
-    return {
-      total: list.length,
-      bestEnergyDish,
-      bestProfitCraft,
-      fastestItem
-    };
-  }, [craftCategory, craftData]);
-
-  // Helper: Desglose para órdenes de Odette (con coincidencia estricta para evitar confundir Madera con Blanca de Madera)
-  const getOrderBreakdown = (ord) => {
-    if (!ord) return { total: 0, m: 0, cc: 0, cp: 0 };
-    const rawKey = (ord.rawItem || '').trim();
-    const displayKey = (ord.item || '').trim();
-
-    const rawLower = rawKey.toLowerCase();
-    const dispLower = displayKey.toLowerCase();
-
-    // 1. Búsqueda directa exacta en el catálogo por ID
-    let catMatch = inventoryCatalogData.find(c => {
-      const idL = c.id.toLowerCase();
-      return (rawLower && idL === rawLower) || (dispLower && idL === dispLower);
-    });
-
-    // 2. Búsqueda exacta en matchKeys (ej. 'blanca de madera' -> 'Wood White')
-    if (!catMatch) {
-      catMatch = inventoryCatalogData.find(c => {
-        const keys = (c.matchKeys || []).map(k => k.toLowerCase());
-        return (rawLower && keys.includes(rawLower)) || (dispLower && keys.includes(dispLower));
-      });
-    }
-
-    // 3. Búsqueda exacta por nombre traducido
-    if (!catMatch) {
-      catMatch = inventoryCatalogData.find(c => {
-        const nameL = c.name.toLowerCase();
-        return (rawLower && nameL === rawLower) || (dispLower && nameL === dispLower);
-      });
-    }
-
-    // Si encontramos fila del catálogo, consultar desglose con sus claves exactas
-    if (catMatch) {
-      return getItemStorageBreakdown({ id: catMatch.id, name: catMatch.name });
-    }
-
-    // Fallback: consultar con las claves recibidas directamente
-    return getItemStorageBreakdown({ id: rawKey, name: displayKey });
   };
 
   // Helper: Mapear inventario crudo a catálogo canónico
@@ -1248,11 +728,6 @@ export default function BloomshireCommand() {
     });
 
     return counts;
-  };
-
-  // Helper: Obtener cantidad disponible en mochila/cofres para una orden de Odette
-  const getOrderAvailableQty = (ord) => {
-    return getOrderBreakdown(ord).total;
   };
 
   // Aplicar datos entrantes de telemetría viva (con recálculo canónico de Energía, Cama UTC y 10 Skills)
@@ -1401,11 +876,6 @@ export default function BloomshireCommand() {
       setCurrentEnergy(liveEAndBed.currentEnergy);
     }
     setEnergyMeta(liveEAndBed.energyMeta);
-
-    if (data.activeGameBuild) {
-      setGameBuildHash(data.activeGameBuild);
-      setGameBuildStatus(data.activeGameBuild === 'a70eb5dd5113' ? 'synced' : 'patch_detected');
-    }
 
     if (Array.isArray(data.activeQuestsList)) {
       setActiveQuestsList(data.activeQuestsList);
@@ -1706,124 +1176,6 @@ export default function BloomshireCommand() {
   const remainingGoldCap = Math.max(0, dailyGoldCap - soldGoldToday);
   const remainingThingsCap = Math.max(0, dailyThingsCap - soldThingsToday);
 
-  // Desglose de liquidación canónica: Vendible hoy en tiendas NPC vs Excedente para Mercado Rowan (P2P)
-  const liquidationBreakdown = useMemo(() => {
-    let npcSellableGold = 0;
-    let npcSellableThings = 0;
-    let p2pMarketGold = 0;
-    let p2pMarketThings = 0;
-
-    let remainingThingsBudget = remainingThingsCap;
-    let remainingGoldBudget = remainingGoldCap;
-
-    const itemDetails = {};
-
-    inventoryCatalogData.forEach(item => {
-      const owned = itemQuantities[item.id] || 0;
-      if (owned <= 0) {
-        itemDetails[item.id] = { npcSellQty: 0, npcGold: 0, p2pQty: 0, p2pGold: 0, itemQuotaLeft: dailyPerItemCap };
-        return;
-      }
-
-      const reqLevel = item.requiredLevel || 1;
-      const isLevelLocked = item.cat === 'crop' && farmingLevel < reqLevel;
-      const isNpcSellable = item.cat !== 'vip' && item.cat !== 'food' && !isLevelLocked && (item.unitNpc ?? item.unit ?? 0) > 0;
-      const npcPrice = isNpcSellable ? (item.unitNpc ?? item.unit ?? 0) : 0;
-      const p2pPrice = item.unitP2p ?? item.unit ?? 0;
-
-      if (!isNpcSellable) {
-        p2pMarketThings += owned;
-        p2pMarketGold += owned * p2pPrice;
-        itemDetails[item.id] = {
-          npcSellQty: 0,
-          npcGold: 0,
-          p2pQty: owned,
-          p2pGold: owned * p2pPrice,
-          isP2pOnly: true,
-          itemQuotaLeft: 0,
-          isLevelLocked,
-          reqLevel,
-          reason: isLevelLocked
-            ? `Requiere Nv ${reqLevel} de Cultivo para vender en tiendas NPC (SEED_SOURCES.shopAtFarmingLevel)`
-            : (item.cat === 'food' ? 'Plato Cocinado (0g en tiendas NPC, consumo o P2P)' : 'Cosecha VIP (Mercado Rowan)')
-        };
-        return;
-      }
-
-      const alreadySoldItem = Number(soldItemsToday[item.id]) || 0;
-      const itemQuotaLeft = Math.max(0, dailyPerItemCap - alreadySoldItem);
-
-      const candidateQty = Math.min(owned, itemQuotaLeft);
-      const fitThingsQty = Math.min(candidateQty, remainingThingsBudget);
-      const maxThingsByGold = npcPrice > 0 ? Math.floor(remainingGoldBudget / npcPrice) : fitThingsQty;
-      const actualNpcQty = Math.min(fitThingsQty, maxThingsByGold);
-
-      const actualNpcGold = actualNpcQty * npcPrice;
-      npcSellableThings += actualNpcQty;
-      npcSellableGold += actualNpcGold;
-      remainingThingsBudget -= actualNpcQty;
-      remainingGoldBudget -= actualNpcGold;
-
-      const surplusQty = owned - actualNpcQty;
-      const surplusGold = surplusQty * (p2pPrice || npcPrice);
-      p2pMarketThings += surplusQty;
-      p2pMarketGold += surplusGold;
-
-      itemDetails[item.id] = {
-        npcSellQty: actualNpcQty,
-        npcGold: actualNpcGold,
-        p2pQty: surplusQty,
-        p2pGold: surplusGold,
-        isP2pOnly: false,
-        itemQuotaLeft
-      };
-    });
-
-    return {
-      npcSellableGold,
-      npcSellableThings,
-      p2pMarketGold,
-      p2pMarketThings,
-      itemDetails
-    };
-  }, [itemQuantities, remainingThingsCap, remainingGoldCap, soldItemsToday, farmingLevel]);
-
-  // Calcular valor total de liquidación unificada
-  const totalLiquidationValue = useMemo(() => {
-    let sum = 0;
-    inventoryCatalogData.forEach(item => {
-      const qty = itemQuantities[item.id] || 0;
-      sum += qty * (item.unit || 0);
-    });
-    return sum;
-  }, [itemQuantities]);
-
-  // Catálogo de inventario ordenado dinámicamente (Prioridad: los que tengo > 0 primero)
-  const sortedInventoryCatalog = useMemo(() => {
-    let list = [...inventoryCatalogData];
-    if (inventorySearchQuery) {
-      const q = inventorySearchQuery.toLowerCase().trim();
-      list = list.filter(it => it.name.toLowerCase().includes(q) || it.id.toLowerCase().includes(q));
-    }
-
-    list.sort((a, b) => {
-      const qtyA = itemQuantities[a.id] || 0;
-      const qtyB = itemQuantities[b.id] || 0;
-
-      if (inventorySortBy === 'owned_desc') {
-        if ((qtyA > 0) !== (qtyB > 0)) return (qtyB > 0 ? 1 : 0) - (qtyA > 0 ? 1 : 0);
-        if (qtyB !== qtyA) return qtyB - qtyA;
-        return (b.unit || 0) - (a.unit || 0);
-      }
-      if (inventorySortBy === 'qty_desc') return qtyB - qtyA;
-      if (inventorySortBy === 'value_desc') return (b.unit || 0) - (a.unit || 0);
-      if (inventorySortBy === 'name_asc') return a.name.localeCompare(b.name);
-      return 0;
-    });
-
-    return list;
-  }, [itemQuantities, inventorySearchQuery, inventorySortBy]);
-
 
 
   // Registro local de entregas manuales de misiones (para sincronizar cuando el juego consume el item)
@@ -1922,20 +1274,6 @@ export default function BloomshireCommand() {
     return list;
   }, [activeQuestsList, deliveredItemsManual]);
 
-    // Recuento de slots
-  const inventoryCounts = useMemo(() => {
-    let hotbar = 0;
-    let homeChest = 0;
-    let townChest = 0;
-    rawInventory.forEach(it => {
-      const type = getStorageType(it.area);
-      if (type === 'M') hotbar++;
-      else if (type === 'CC') homeChest++;
-      else if (type === 'CP') townChest++;
-    });
-    return { hotbar, homeChest, townChest, total: rawInventory.length };
-  }, [rawInventory]);
-
   // Obtener cuántos ejemplares de un ítem de la enciclopedia tiene el jugador en su partida (Mochila + Cofres)
   const getPlayerItemQty = (itemObj) => {
     if (!itemObj) return 0;
@@ -1958,226 +1296,6 @@ export default function BloomshireCommand() {
     return sum;
   };
 
-
-  // Filtrado del Buscador Universal de Ítems (359 ítems oficiales de catalog.js + rules.js + quests.js)
-  const filteredEncyclopediaItems = useMemo(() => {
-    const q = itemSearchQuery.toLowerCase().trim();
-    return itemEncyclopediaData.filter(item => {
-      const matchCat = itemMatchesCategory(item, itemCategoryFilter);
-      if (!matchCat) return false;
-      if (!q) return true;
-
-      const inId = (item.id || '').toLowerCase().includes(q);
-      const inNameEs = (item.nameEs || '').toLowerCase().includes(q);
-      const inHowToGet = (item.howToGet || '').toLowerCase().includes(q);
-      const inDetails = (item.details || '').toLowerCase().includes(q);
-      const inCat = ((item.cat || '') + ' ' + (item.categoryLabel || '') + ' ' + getItemCategoryLabel(item.cat)).toLowerCase().includes(q);
-      const inUsed = (item.usedIn || []).some(u => u.toLowerCase().includes(q));
-      const inLoc = (item.mapLocation?.label || '').toLowerCase().includes(q);
-
-      return inId || inNameEs || inHowToGet || inDetails || inCat || inUsed || inLoc;
-    });
-  }, [itemSearchQuery, itemCategoryFilter]);
-
-  // Resolver coordenadas exactas en el Mega-Atlas para cualquiera de los 67 NPCs (priorizando megaAtlasData.npcs)
-  const resolveNpcMapLocation = (npc) => {
-    if (!npc) return null;
-    const nId = (npc.id || '').toLowerCase().trim();
-    const nName = (npc.name || '').toLowerCase().trim();
-
-    // 1. Prioridad: Buscar en megaAtlasData.npcs (coordenadas reales de píxel)
-    const atlasNpc = (megaAtlasData.npcs || []).find(an => {
-      const anId = (an.id || '').toLowerCase().trim();
-      const anName = (an.name || '').toLowerCase().trim();
-      return anId === nId || anName === nName || anName.startsWith(nName + ' ');
-    });
-
-    let wx = atlasNpc?.wx;
-    let wy = atlasNpc?.wy;
-    let regionId = null;
-    let subZoneId = null;
-    let subZoneName = null;
-
-    if (wx != null && wy != null) {
-      // Encontrar en qué región y subzona específica cae (wx, wy)
-      for (const reg of (megaAtlasData.regions || [])) {
-        for (const sub of (reg.subZones || [])) {
-          if (sub.worldRect) {
-            const [rx, ry, rw, rh] = sub.worldRect;
-            if (wx >= rx && wx <= rx + rw && wy >= ry && wy <= ry + rh) {
-              if (!subZoneName || (!sub.isRootBox && sub.nameEs)) {
-                regionId = reg.id;
-                subZoneId = sub.id;
-                subZoneName = sub.nameEs || sub.nameEn || sub.id;
-              }
-            }
-          }
-        }
-      }
-      if (!regionId) regionId = 'bloomshire_town';
-    } else if (MANUAL_NPC_COORDS[nId]) {
-      // 2. Coordenadas manuales verificadas
-      const manual = MANUAL_NPC_COORDS[nId];
-      wx = manual.wx;
-      wy = manual.wy;
-      regionId = manual.regionId;
-      subZoneId = manual.subZoneId;
-      subZoneName = manual.subName;
-    }
-
-    if (wx == null || wy == null) {
-      wx = 5752;
-      wy = 4472;
-      regionId = 'bloomshire_town';
-      subZoneId = 'bloomshire_town_sub_1_bloomshire';
-      subZoneName = 'Pueblo de Bloomshire';
-    }
-
-    const placeLabel = npc.loc || subZoneName || 'Bloomshire';
-
-    return {
-      label: `📍 ${npc.name} (${npc.title || 'Aldeano'}) — ${placeLabel}`,
-      regionId,
-      subZoneId,
-      wx: Number(wx),
-      wy: Number(wy),
-      worldRect: [Number(wx) - 150, Number(wy) - 140, 300, 280]
-    };
-  };
-
-  // Filtro de Calculadora
-  const filteredCalcList = useMemo(() => {
-    let list = [...(calcData[calcSkill] || [])];
-
-    // Filtro de Temporada / Época (solo para cultivo)
-    if (calcSkill === 'farming' && calcSeasonFilter !== 'all') {
-      list = list.filter(x => x.season === 'all' || x.season === calcSeasonFilter);
-    }
-
-    if (calcLevelFilter !== 'all') {
-      if (calcLevelFilter === 'vip' || calcLevelFilter === 'special') {
-        list = list.filter(x => (x.level ?? 1) >= 15 || (x.tip && (x.tip.includes('Fundadores') || x.tip.includes('VIP') || x.tip.includes('Misión'))));
-      } else {
-        const targetLv = parseInt(calcLevelFilter, 10);
-        list = list.filter(x => (x.level ?? 1) <= targetLv || targetLv >= 10);
-      }
-    }
-
-    const [field, dir] = calcSort.split('_');
-    list.sort((a, b) => {
-      const eA = calcSkill === 'farming' ? 2 : (a.energyCost || a.energy || 1);
-      const eB = calcSkill === 'farming' ? 2 : (b.energyCost || b.energy || 1);
-      const xpPerEA = (a.xp ?? 0) / eA;
-      const xpPerEB = (b.xp ?? 0) / eB;
-      const netA = (a.sell ?? 0) - (a.cost ?? 0);
-      const netB = (b.sell ?? 0) - (b.cost ?? 0);
-      const goldPerEA = netA / eA;
-      const goldPerEB = netB / eB;
-
-      const isMasterA = calcSkill === 'farming' && farmingLevel >= 15 && a.hasRegrow;
-      const isMasterB = calcSkill === 'farming' && farmingLevel >= 15 && b.hasRegrow;
-      const xpMinA = isMasterA ? (a.regrowXpMin ?? a.xpMin ?? 0) : (a.xpMin ?? 0);
-      const xpMinB = isMasterB ? (b.regrowXpMin ?? b.xpMin ?? 0) : (b.xpMin ?? 0);
-      const goldMinA = isMasterA ? (a.regrowGoldMin ?? a.goldMin ?? 0) : (a.goldMin ?? 0);
-      const goldMinB = isMasterB ? (b.regrowGoldMin ?? b.goldMin ?? 0) : (b.goldMin ?? 0);
-
-      let vA = 0, vB = 0;
-      if (field === 'xpEnergy') { vA = xpPerEA; vB = xpPerEB; }
-      else if (field === 'goldEnergy') { vA = goldPerEA; vB = goldPerEB; }
-      else if (field === 'xpMin') { vA = xpMinA; vB = xpMinB; }
-      else if (field === 'goldMin') { vA = goldMinA; vB = goldMinB; }
-      else if (field === 'time') { vA = a.grow ?? 1; vB = b.grow ?? 0; }
-      else if (field === 'cost') { vA = a.cost ?? 0; vB = b.cost ?? 0; }
-      else if (field === 'sell') { vA = a.sell ?? 0; vB = b.sell ?? 0; }
-      return dir === 'desc' ? vB - vA : vA - vB;
-    });
-
-    return list;
-  }, [calcSkill, calcSeasonFilter, calcLevelFilter, calcSort, farmingLevel]);
-
-  // Filtro de NPCs
-  const filteredNpcs = useMemo(() => {
-    const q = npcFilter.toLowerCase().trim();
-    if (!q) return npcsData;
-    return npcsData.filter(n => 
-      n.name.toLowerCase().includes(q) || 
-      n.title.toLowerCase().includes(q) || 
-      n.loc.toLowerCase().includes(q) ||
-      (n.desc && n.desc.toLowerCase().includes(q))
-    );
-  }, [npcFilter]);
-
-  // Contar órdenes listas para entregar hoy
-  const readyOrdersCount = useMemo(() => {
-    return activeOrders.filter(ord => !ord.done && getOrderAvailableQty(ord) >= (ord.n || 1)).length;
-  }, [activeOrders, itemQuantities, rawInventory]);
-
-  // Manejar chat con Copilot
-  const handleSendAdvisor = async (e) => {
-    if (e) e.preventDefault();
-    if (!advisorInput.trim() || advisorLoading) return;
-
-    const userText = advisorInput.trim();
-    setAdvisorInput('');
-    const newMsg = { id: Date.now().toString(), role: 'user', content: userText };
-    setAdvisorMessages(prev => [...prev, newMsg]);
-    setAdvisorLoading(true);
-
-    try {
-      const res = await fetch('/api/bloomshire-advisor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: userText,
-          conversation: advisorMessages.slice(-8),
-          playerSnapshot: {
-            wallet: walletAddress,
-            gold,
-            energy: currentEnergy,
-            maxEnergy,
-            shards,
-            avyn,
-            farmersCount: farmersOwned,
-            farmingLevel,
-            activeQuest,
-            activeQuestsList,
-            moonmereProgress,
-            energyMeta,
-            skillsMeta,
-            skillsBreakdown,
-            inventory: rawInventory,
-            activeOrders
-          }
-        })
-      });
-
-      if (res.ok) {
-        const json = await res.json();
-        const advisorContent = json.text || json.reply || json.advice || json.analysis || json.response || 'Asesoría táctica recibida con éxito.';
-        setAdvisorMessages(prev => [
-          ...prev, 
-          {
-            id: (Date.now() + 1).toString(),
-            role: 'assistant',
-            content: advisorContent
-          }
-        ]);
-      } else {
-        throw new Error('Advisor API error');
-      }
-    } catch (err) {
-      setAdvisorMessages(prev => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: '⚠️ No se pudo contactar con la API del asesor. Revisa tu conexión o usa la calculadora táctica integrada.'
-        }
-      ]);
-    } finally {
-      setAdvisorLoading(false);
-    }
-  };
 
   return (
     <div className="flex flex-col h-full bg-[#080d1a] text-slate-100 font-sans select-none overflow-hidden">
