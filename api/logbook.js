@@ -1,5 +1,5 @@
 /**
- * api/logbook.js — Leonman's Logbook (lectura publica, sin wallet)
+ * api/logbook.js — Bitacora y guias (lectura publica, sin wallet)
  *
  *   GET /api/logbook?action=index              -> secciones + entradas (sin bloques) + lugares propios
  *   GET /api/logbook?action=entry&id=<uuid>     -> una entrada completa (con bloques saneados)

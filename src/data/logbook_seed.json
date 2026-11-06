@@ -1,0 +1,3619 @@
+{
+  "version": "47558e0af5e8",
+  "generatedAt": "2026-11-06T16:54:41.086Z",
+  "sections": [
+    {
+      "id": "a622a72a-c88e-560b-8932-478e80140845",
+      "parent_id": null,
+      "slug": "guides",
+      "sort": 0,
+      "status": "published",
+      "icon": "📜",
+      "title_en": "Game guides",
+      "title_es": "Guías del juego",
+      "description_en": "The game's own guide, topic by topic: energy, farming, cooking, crafting, quests, money and more.",
+      "description_es": "La guía del propio juego, tema por tema: energía, cultivo, cocina, crafteo, misiones, dinero y más."
+    },
+    {
+      "id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "parent_id": null,
+      "slug": "bosses",
+      "sort": 10,
+      "status": "published",
+      "icon": "👑",
+      "title_en": "Bosses",
+      "title_es": "Jefes",
+      "description_en": "Where each boss lives, the weapon it fears, who fights beside it and what it pays.",
+      "description_es": "Dónde vive cada jefe, el arma que teme, quién pelea a su lado y qué paga."
+    },
+    {
+      "id": "d6cb3560-deb8-5d9e-a9f3-0ebff5e9c165",
+      "parent_id": null,
+      "slug": "weapons",
+      "sort": 20,
+      "status": "published",
+      "icon": "⚔️",
+      "title_en": "Weapons and combat",
+      "title_es": "Armas y combate",
+      "description_en": "How to forge every weapon, what rarity does, and the Dungeon.",
+      "description_es": "Cómo forjar cada arma, para qué sirve la rareza y la Mazmorra."
+    }
+  ],
+  "entries": [
+    {
+      "id": "9bb25ee8-d27b-5dd8-9435-55585858baa3",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "start",
+      "status": "published",
+      "author": "Admin",
+      "sort": 0,
+      "tags": [
+        "guide",
+        "start"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Your first days",
+      "title_es": "Tus primeros días",
+      "summary_en": "Marlow shows you the basics on your island, south of town.",
+      "summary_es": "Marlow te enseña lo básico en tu isla, al sur del pueblo.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting started",
+          "text_es": "Primeros pasos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Marlow shows you the basics on your island, south of town.",
+            "The gold marker shows where your quest wants you. An arrow by your farmer points the way.",
+            "The quest card says what to do next and where that person is."
+          ],
+          "items_es": [
+            "Marlow te enseña lo básico en tu isla, al sur del pueblo.",
+            "El marcador de Oro muestra adónde te lleva tu misión. Una flecha junto a tu granjero señala el camino.",
+            "La tarjeta de misión dice qué hacer después y dónde está esa persona."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Three good habits",
+          "text_es": "Tres buenos hábitos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Fill Odette's orders for Gold and experience.",
+            "Learn to cook. Food brings energy back.",
+            "Watch the green bar. Most work spends it."
+          ],
+          "items_es": [
+            "Completa los pedidos de Odette por Oro y experiencia.",
+            "Aprende a cocinar. La comida recupera energía.",
+            "Fíjate en la barra verde. La mayoría de las tareas la gastan."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Who sells what",
+          "text_es": "Quién vende qué"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Most shops are round the town square. Press E to talk, then Buy and sell.",
+            "Townsfolk go indoors at night and in rain. Come back in the morning."
+          ],
+          "items_es": [
+            "La mayoría de las tiendas están alrededor de la plaza del pueblo. Pulsa E para hablar y luego elige Comprar y vender.",
+            "La gente del pueblo entra a sus casas de noche y cuando llueve. Vuelve por la mañana."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Bags and chests",
+          "text_es": "Bolsas y cofres"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Your hotbar holds 10 things and the backpack 5 more. VIP adds a second row of 10.",
+            "Keep the rest in the chests at home or your chest at the Storehouse.",
+            "A reward that doesn't fit waits in a chest at home.",
+            "Trash cans in town take what you don't need."
+          ],
+          "items_es": [
+            "Tu barra tiene 10 espacios y la mochila 5 más. VIP añade una segunda fila de 10.",
+            "Guarda el resto en los cofres de tu hogar o en tu cofre del Almacén.",
+            "Una recompensa que no cabe espera en un cofre en casa.",
+            "Los botes de basura del pueblo se llevan lo que no necesitas."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "577b797f-72cc-588f-9f5d-26f5a1b2af86",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "controls",
+      "status": "published",
+      "author": "Admin",
+      "sort": 10,
+      "tags": [
+        "guide",
+        "controls"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Controls",
+      "title_es": "Teclas",
+      "summary_en": "Space or a click uses what is in your hand.",
+      "summary_es": "Space o un clic usa lo que tienes en la mano.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "On a computer",
+          "text_es": "En computadora"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Space or a click uses what is in your hand.",
+            "1 to 0, Q or the mouse wheel picks from the hotbar. Tab shows the VIP row.",
+            "Enter chats, F swims from a bank, C picks up and throws, X sits, Z walks slowly.",
+            "Delete throws away what is in your hand. Esc opens the menu."
+          ],
+          "items_es": [
+            "Space o un clic usa lo que tienes en la mano.",
+            "Del 1 al 0, Q o la rueda del mouse eligen de la barra. Tab muestra la fila VIP.",
+            "Enter abre el chat, F nada desde la orilla, C agarra y lanza, X se sienta, Z camina despacio.",
+            "Delete descarta lo que tienes en la mano. Esc abre el menú."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Your own keys",
+          "text_es": "Tus propias teclas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "The keys in this book are the game's own. Change any of them in Settings, under Controls.",
+            "Click a key there, then press the one you want. A key another action has swaps over.",
+            "Rather attack from the keyboard? Turn off the left click there. The right click heavy attack too.",
+            "Escape, Enter, the arrows and the hotbar's numbers always stay the same.",
+            "Your keys follow your farm to any computer. ? shows all of them."
+          ],
+          "items_es": [
+            "Las teclas de este libro son las del juego. Puedes cambiarlas en Ajustes, en Teclas.",
+            "Haz clic en una tecla ahí y luego presiona la que quieras. Si otra acción ya usa esa tecla, se intercambian.",
+            "¿Prefieres atacar desde el teclado? Desactiva el clic izquierdo ahí. El clic derecho también para el ataque pesado.",
+            "Esc, Enter, las flechas y los números de la barra rápida siempre quedan igual.",
+            "Tus teclas siguen a tu granja en cualquier computadora. ? las muestra todas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "On a phone",
+          "text_es": "En celular"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Hold the phone sideways.",
+            "Push on the left side to move. A small push walks, a full push runs.",
+            "Tap the world to use your tool. The round button talks, opens and gets you up.",
+            "Attack, Dash and Heavy have buttons. Fixed joystick and Arrow buttons are in Settings."
+          ],
+          "items_es": [
+            "Sostén el celular de lado.",
+            "Empuja hacia el lado izquierdo para moverte. Un empuje pequeño camina, un empuje lleno corre.",
+            "Toca el mundo para usar tu herramienta. El botón redondo habla, abre y te levanta.",
+            "Atacar, Impulso y Pesado tienen botones. Joystick fijo y Botones de flecha están en Ajustes."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Handy tricks",
+          "text_es": "Trucos útiles"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Click any number, a price or an amount, to type it.",
+            "Click a farmer, or their name in chat, to open their card.",
+            "Settings has sound, size, theme, language, other players, notices, damage and health numbers."
+          ],
+          "items_es": [
+            "Haz clic en cualquier número, precio o cantidad, para escribirlo.",
+            "Haz clic en un granjero, o en su nombre en el chat, para abrir su tarjeta.",
+            "Ajustes tiene sonido, tamaño, tema, idioma, otros jugadores, avisos, y números de daño y salud."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "8605ef78-22e3-5604-a29a-55952c865c5f",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "energy",
+      "status": "published",
+      "author": "Admin",
+      "sort": 20,
+      "tags": [
+        "guide",
+        "energy"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Energy and health",
+      "title_es": "Energía y salud",
+      "summary_en": "Everyone starts with 100. Founding Farmer holders and VIPs get 150.",
+      "summary_es": "Todos empiezan con 100. Los poseedores de Granjero Fundador y los VIP reciben 150.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The green bar",
+          "text_es": "La barra verde"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Everyone starts with 100. Founding Farmer holders and VIPs get 150.",
+            "Most work costs 1 a go.",
+            "The hoe, watering, the shovel, walking and talking are free.",
+            "In a fight, every third hit that lands costs 1. Misses and bosses are free."
+          ],
+          "items_es": [
+            "Todos empiezan con 100. Los poseedores de Granjero Fundador y los VIP reciben 150.",
+            "Más trabajo cuesta 1 por turno.",
+            "La azada, regar, la pala, caminar y hablar son gratis.",
+            "En combate, cada tercer golpe que acierta cuesta 1. Los fallos y los jefes son gratis."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting energy back",
+          "text_es": "Recuperar energía"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Sleep in your bed. Press E at the bed and pick Sleep for energy. 100 in 20 minutes.",
+            "Everyone sleeps 2 bars a day. Holders and VIPs sleep 3 bars, twice as fast.",
+            "Cooked food gives up to a bar a day. Raw food gives none.",
+            "An Energy Refill fills the bar at once, up to 3 a day.",
+            "With VIP, energy comes back by itself, 1 every 3 minutes. Without VIP it doesn't.",
+            "Sleep, food and refills start again at midnight UTC."
+          ],
+          "items_es": [
+            "Duerme en tu cama. Presiona E junto a la cama y elige Dormir para recuperar energía. 100 en 20 minutos.",
+            "Todos recuperan 2 barras al día durmiendo. Los poseedores y VIP recuperan 3 barras, el doble de rápido.",
+            "La comida cocinada da hasta una barra por día. La comida cruda no da nada.",
+            "Una Recarga de Energía llena la barra al instante, hasta 3 veces al día.",
+            "Con VIP, la energía se recupera sola, 1 cada 3 minutos. Sin VIP, no.",
+            "El sueño, la comida y las recargas se reinician a medianoche UTC."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The red bar",
+          "text_es": "La barra roja"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Health starts at 100 and grows to 150 at Combat 30.",
+            "Cooked food heals you, even with full energy.",
+            "Sleep for health in your bed and you're healed in full."
+          ],
+          "items_es": [
+            "La Salud empieza en 100 y sube a 150 al llegar a Combate 30.",
+            "La comida cocinada te cura, incluso con la energía llena.",
+            "Duerme para recuperar salud en tu cama y sanarás por completo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "If you fall",
+          "text_es": "Si caes"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "You wake at home. Your hotbar is left in a bag where you fell.",
+            "Only you can take it for 2 hours. After that, anyone can.",
+            "Your best tool and weapon of each kind never drop. Nor do quest things or what you bought in the last 7 days.",
+            "Goblins steal 20% of the Gold you carry, Bomb Goblins 30%. Bank your Gold first.",
+            "A pet with energy carries your things home instead. Nobody falls in town."
+          ],
+          "items_es": [
+            "Despiertas en tu hogar. Tu barra queda en una bolsa donde caíste.",
+            "Solo tú puedes tomarlo durante 2 horas. Después, cualquiera puede.",
+            "Tu mejor útil y arma de cada tipo nunca se pierden. Tampoco los objetos de misión ni lo que compraste en los últimos 7 días.",
+            "Los goblins roban el 20% del Oro que llevas, los Goblin Bomba el 30%. Guarda tu Oro en el banco primero.",
+            "Una mascota con energía lleva tus cosas a casa en tu lugar. Nadie cae en el pueblo."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "b44245d7-4e4b-5d8e-9720-2da89103b838",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "farming",
+      "status": "published",
+      "author": "Admin",
+      "sort": 30,
+      "tags": [
+        "guide",
+        "farming"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Farming",
+      "title_es": "Cultivo",
+      "summary_en": "Hoe the soil. One swing turns a whole bed.",
+      "summary_es": "Ara la tierra con la azada. Un golpe labra todo un bancal.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Grow a crop",
+          "text_es": "Cultivar una planta"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Hoe the soil. One swing turns a whole bed.",
+            "Sow one seed a square. Water it once. Rain counts.",
+            "Crops over an hour want a second drink near the end.",
+            "Harvest with the sickle when it's ripe, then hoe again.",
+            "Crops grow while you're away. Point at a square to see when it's ready."
+          ],
+          "items_es": [
+            "Ara la tierra con la azada. Un golpe labra todo un bancal.",
+            "Siembra una semilla por cuadro. Riégala una vez. La lluvia cuenta.",
+            "Los cultivos de más de una hora necesitan un segundo riego cerca del final.",
+            "Cosecha con la hoz cuando esté maduro, luego usa la azada de nuevo.",
+            "Los cultivos crecen mientras estás ausente. Señala una parcela para ver cuándo estará listo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Seasons and withering",
+          "text_es": "Estaciones y marchitamiento"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each crop has a season of 14 real days. Seven crops grow all year.",
+            "Hazel sells every season's seeds. Each one is planted only in its own season.",
+            "A ripe crop withers after 5 hours. So does one still growing when its season ends.",
+            "Clear a withered crop with the hoe or the sickle."
+          ],
+          "items_es": [
+            "Cada cultivo tiene una estación de 14 días reales. Siete cultivos crecen todo el año.",
+            "Hazel vende las Semillas de cada Estación. Cada una se planta solo en su propia Estación.",
+            "Un cultivo maduro se marchita después de 5 horas. Lo mismo pasa con uno que aún crece cuando termina su estación.",
+            "Elimina un cultivo marchito con la azada o la hoz."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting better",
+          "text_es": "Mejorar"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "New seeds unlock with Farming, up to level 17.",
+            "From Farming 15, regrowing crops give five harvests a planting.",
+            "Farming 18 to 30 opens rare crops in gold bags at Hazel's. They sell best.",
+            "Planted the wrong thing? The shovel digs it up."
+          ],
+          "items_es": [
+            "Las semillas nuevas se desbloquean con Cultivo, hasta el nivel 17.",
+            "Desde Cultivo 15, los cultivos que rebrotan dan cinco cosechas por siembra.",
+            "Cultivo 18 a 30 abre cultivos raros en bolsas doradas en lo de Hazel. Son los que mejor se venden.",
+            "¿Plantaste algo equivocado? La pala lo desentierra."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Regional crops",
+          "text_es": "Cultivos regionales"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Two crops grow only in their own region's seed bed.",
+            "No shop sells their seeds. Harvests and the region's creatures drop them."
+          ],
+          "items_es": [
+            "Dos cultivos solo crecen en el semillero de su propia región.",
+            "Ninguna tienda vende sus semillas. Las cosechas y las criaturas de la región las sueltan."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "8f46cbd5-5744-513c-91b3-5e6d0b6bdbb0",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "animals",
+      "status": "published",
+      "author": "Admin",
+      "sort": 40,
+      "tags": [
+        "guide",
+        "animals"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Animals",
+      "title_es": "Animales",
+      "summary_en": "Animals open at Farming 8, at Hollin's Farm south of town.",
+      "summary_es": "Los Animales se desbloquean en Cultivo 8, en la Granja de Hollin al sur del pueblo.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Your own animals",
+          "text_es": "Tus propios animales"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Animals open at Farming 8, at Hollin's Farm south of town.",
+            "Your first chicken is free. Press E at a pen's fence to open it.",
+            "Feed it a crop, 1 energy. Eggs come 6 hours later, duck eggs 10, honey 12.",
+            "Keep one of each kind, each opening at its Husbandry level.",
+            "Feed it within 3 days of collecting or it dies. A filled Feed Bin feeds it all day.",
+            "Chickens, ducks and beehives for now. More come later in the season."
+          ],
+          "items_es": [
+            "Los Animales se desbloquean en Cultivo 8, en la Granja de Hollin al sur del pueblo.",
+            "Tu primera gallina es gratis. Presiona E en la cerca de un corral para abrirlo.",
+            "Aliméntalo con un Cultivo, 1 de Energía. Los Huevos llegan 6 horas después, los Huevos de pato en 10, la Miel en 12.",
+            "Guarda uno de cada tipo; cada uno se desbloquea según su nivel de Ganadería.",
+            "Aliméntalo antes de que pasen 3 días desde la última recolección o morirá. Un Comedero lleno lo alimenta todo el día.",
+            "Por ahora, Gallinas, Patos y Colmenas. Más llegarán más tarde en la estación."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting old",
+          "text_es": "Envejecer"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each animal gives 120 products, as the pen shows.",
+            "After 7 days, or once old, it can go to the butcher for meat.",
+            "Shops don't buy meat. Cook it or trade it."
+          ],
+          "items_es": [
+            "Cada animal da 120 productos, como muestra el corral.",
+            "Tras 7 días, o una vez vieja, puede ir al carnicero por carne.",
+            "Las tiendas no compran carne. Cocínala o intercámbiala."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "91f9d36c-0b5b-5559-abd8-92d803c6b536",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "fishing",
+      "status": "published",
+      "author": "Admin",
+      "sort": 50,
+      "tags": [
+        "guide",
+        "fishing"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Fishing",
+      "title_es": "Pesca",
+      "summary_en": "Stand at a fishing spot facing the water. Hold Space, then let go to cast.",
+      "summary_es": "Párate en un punto de pesca mirando al agua. Mantén presionado Space y suelta para lanzar.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How to fish",
+          "text_es": "Cómo pescar"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Stand at a fishing spot facing the water. Hold Space, then let go to cast.",
+            "When a fish bites, press Space while the needle is in the green.",
+            "Fishing spots are light blue on the map, with a fish in the middle.",
+            "Each cast costs 1. Leave the hotbar alone while your line is out."
+          ],
+          "items_es": [
+            "Párate en un punto de pesca mirando al agua. Mantén presionado Space y suelta para lanzar.",
+            "Cuando un pez muerda, presiona Space mientras la aguja esté en el verde.",
+            "Los puntos de pesca son celestes en el mapa, con un pez en el medio.",
+            "Cada lanzamiento cuesta 1. No toques la barra mientras tu línea está afuera."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Better catches",
+          "text_es": "Mejores capturas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A better rod means a wider green band. Wren sells rods and buys fish.",
+            "Every water has rare fish for higher Fishing levels. Some bite only at night."
+          ],
+          "items_es": [
+            "Una mejor caña significa una banda verde más ancha. Wren vende cañas y compra pescado.",
+            "Cada agua tiene peces raros para niveles más altos de Pesca. Algunos solo muerden de noche."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "87d0478a-f18c-5cb8-a160-2aaa065ba82f",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "mining",
+      "status": "published",
+      "author": "Admin",
+      "sort": 60,
+      "tags": [
+        "guide",
+        "mining"
+      ],
+      "places": [
+        "region:stonepeak"
+      ],
+      "cover_path": null,
+      "title_en": "Mining and the caves",
+      "title_es": "Minería y las cuevas",
+      "summary_en": "Rocks give Stone, seams give ore. Ore costs 2 a blow, or 1 with a better pickaxe.",
+      "summary_es": "Las rocas dan Piedra, las vetas dan mineral. El mineral cuesta 2 por golpe, o 1 con un mejor pico.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Rocks and ore",
+          "text_es": "Rocas y mineral"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Rocks give Stone, seams give ore. Ore costs 2 a blow, or 1 with a better pickaxe.",
+            "Your pickaxe decides what breaks. Bram at the Forge sells better ones.",
+            "Seams grow back, from 20 minutes for copper to 2 hours for diamond.",
+            "From Mining 5 a break sometimes gives a rare metal. Smelt it at the Forge."
+          ],
+          "items_es": [
+            "Las rocas dan Piedra, las vetas dan mineral. El mineral cuesta 2 por golpe, o 1 con un mejor pico.",
+            "Tu pico decide qué se rompe. Bram, en la Herrería, vende mejores.",
+            "Las vetas vuelven a crecer, desde 20 minutos para el cobre hasta 2 horas para el diamante.",
+            "A partir de Minería 5, un golpe a veces da un metal raro. Fúndelo en la Herrería."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "In the caves",
+          "text_es": "En las cuevas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Caves are dark. Walk into a ladder to change levels.",
+            "The Old Working and Glimmer Hollow are gentle. Deeper caves are dangerous.",
+            "Some spiders poison you and Gloom spiders burn. Step back, eat or finish the fight.",
+            "Each cave's old chest is yours once, often with a better tool.",
+            "A door that won't open says why. Often it wants a better pickaxe."
+          ],
+          "items_es": [
+            "Las cuevas son oscuras. Camina hacia una escalera para cambiar de nivel.",
+            "La Mina Vieja y la Hondonada del Destello son tranquilas. Las cuevas más profundas son peligrosas.",
+            "Algunas arañas te envenenan y las arañas de la Penumbra queman. Retrocede, come o termina la pelea.",
+            "El cofre viejo de cada cueva es tuyo una vez, a veces con una herramienta mejor.",
+            "Una puerta que no abre dice por qué. Suele pedir un mejor pico."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "a1838111-0bb1-58ea-9480-ca44fae71608",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "woods",
+      "status": "published",
+      "author": "Admin",
+      "sort": 70,
+      "tags": [
+        "guide",
+        "woods"
+      ],
+      "places": [
+        "region:whisperwood"
+      ],
+      "cover_path": null,
+      "title_en": "Woodcutting, foraging and butterflies",
+      "title_es": "Tala, recolección y mariposas",
+      "summary_en": "Wood comes from the Woodlot in town, north of Pell's workshop.",
+      "summary_es": "La madera viene del Lote de Madera en el pueblo, al norte del taller de Pell.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Trees",
+          "text_es": "Árboles"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Wood comes from the Woodlot in town, north of Pell's workshop.",
+            "Its six maples are the only trees anyone may cut. Every farmer has their own six.",
+            "A felled tree grows back in 6 hours. It gives 3 Wood, sometimes 4.",
+            "A felled tree shows how long until it stands again.",
+            "An Iron or Bronze axe takes 4 blows, a Gold axe 3 and an Amethyst axe 2.",
+            "Axes, pickaxes and rods wear out. Other tools and weapons never do."
+          ],
+          "items_es": [
+            "La madera viene del Lote de Madera en el pueblo, al norte del taller de Pell.",
+            "Sus seis arces son los únicos árboles que se pueden talar. Cada granjero tiene sus propios seis.",
+            "Un árbol talado vuelve a crecer en 6 horas. Da 3 de Madera, a veces 4.",
+            "Un árbol talado muestra cuánto tiempo falta para que vuelva a crecer.",
+            "Un hacha de Hierro o Bronce necesita 4 golpes, un hacha de Oro 3 y un hacha de Amatista 2.",
+            "Las hachas, los picos y las cañas de pescar se desgastan. Las demás herramientas y armas nunca lo hacen."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Mushrooms",
+          "text_es": "Hongos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Wild mushrooms grow in Whisperwood and Moonmere. 1 energy to pick, back in about 30 minutes."
+          ],
+          "items_es": [
+            "Los hongos silvestres crecen en Whisperwood y Moonmere. Cuesta 1 de energía recogerlos, y vuelven en unos 30 minutos."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The bug net",
+          "text_es": "La red para insectos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Hazel sells a bug net for 2,500 Gold.",
+            "Each butterfly opens at its own Foraging level. Moths fly only at night.",
+            "Net them in the wilds, one after another. Town butterflies are only to look at.",
+            "Your first of each kind gives triple experience. Juniper buys them.",
+            "The Butterfly Book is under Foraging. Finish a set for Gold."
+          ],
+          "items_es": [
+            "Hazel vende una red para insectos por 2,500 Oro.",
+            "Cada mariposa se abre en su propio nivel de Recolección. Las polillas solo vuelan de noche.",
+            "Atrápalas en la naturaleza, una tras otra. Las mariposas del pueblo son solo para mirar.",
+            "La primera de cada tipo te da experiencia triple. Juniper las compra.",
+            "El Libro de Mariposas está en Recolección. Completa un Conjunto para ganar Oro."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "7f6df31e-d37c-5418-8dea-abf5134a9148",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "cooking",
+      "status": "published",
+      "author": "Admin",
+      "sort": 80,
+      "tags": [
+        "guide",
+        "cooking"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Cooking and dish boosts",
+      "title_es": "Cocina y bonificaciones de platos",
+      "summary_en": "Cook at your cottage stove or the Bakery. Click the pot to fill it.",
+      "summary_es": "Cocina en la Estufa de tu cabaña o en la Panadería. Haz clic en la Olla para llenarla.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Using a stove",
+          "text_es": "Usar una estufa"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Cook at your cottage stove or the Bakery. Click the pot to fill it.",
+            "One pot at a time. The timer over the stove turns gold when it's done.",
+            "84 dishes, opened by Cooking 1 to 25. Pick one to see what it takes.",
+            "Shops don't buy dishes. Sell spares at the Market Hall."
+          ],
+          "items_es": [
+            "Cocina en la Estufa de tu cabaña o en la Panadería. Haz clic en la Olla para llenarla.",
+            "Una olla a la vez. El temporizador sobre la estufa se pone dorado cuando termina.",
+            "84 platillos, se desbloquean con Cocina 1 a 25. Elige uno para ver qué necesita.",
+            "Las tiendas no compran platillos. Vende lo que te sobra en el Mercado Cubierto."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Dish boosts",
+          "text_es": "Bonos de platillos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Every dish gives a boost by its kind. Different kinds work together.",
+            "Dishes from Cooking 1 to 9 give 10% for 20 minutes, 10 to 19 give 15% for 30, 20 and up 20% for 45.",
+            "A new meal of the same kind replaces the last one."
+          ],
+          "items_es": [
+            "Cada platillo da un beneficio según su tipo. Tipos distintos se combinan.",
+            "Los platillos de Cocina 1 a 9 dan 10% durante 20 minutos, de 10 a 19 dan 15% durante 30, y de 20 en adelante 20% durante 45.",
+            "Una nueva comida del mismo tipo reemplaza a la anterior."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "6e2968ee-4ecb-5dd9-9ead-f2837d97288f",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "crafting",
+      "status": "published",
+      "author": "Admin",
+      "sort": 90,
+      "tags": [
+        "guide",
+        "crafting"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Crafting",
+      "title_es": "Artesanía",
+      "summary_en": "Pell's workbench at the Carpenter's is for wood and rope.",
+      "summary_es": "La mesa de trabajo de Pell en el Carpintero es para madera y cuerda.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Workbenches",
+          "text_es": "Mesas de trabajo"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Pell's workbench at the Carpenter's is for wood and rope.",
+            "Bram's anvil at the Forge smelts ore, cuts gems, makes weapons.",
+            "Press E, pick a recipe, add the materials and press Craft.",
+            "Each craft costs Gold and energy and gives Crafting experience.",
+            "Cut gems, rings and amulets sell well."
+          ],
+          "items_es": [
+            "La mesa de trabajo de Pell en el Carpintero es para madera y cuerda.",
+            "El yunque de Bram en la Herrería funde mineral, corta gemas y hace armas.",
+            "Presiona E, elige una receta, añade los materiales y presiona Fabricar.",
+            "Cada fabricación cuesta Oro y energía, y da experiencia de Artesanía.",
+            "Las gemas cortadas, los anillos y los amuletos se venden bien."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Weapons",
+          "text_es": "Armas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Make a sword, a bow or a staff at the Forge.",
+            "Each metal is a rarity higher and hits harder. Better metals need rare bars and gems.",
+            "A weapon is made one at a time and never wears out."
+          ],
+          "items_es": [
+            "Haz una espada, un arco o un bastón en la Herrería.",
+            "Cada metal es una rareza más alta y golpea más fuerte. Los metales mejores necesitan barras y gemas raras.",
+            "Un arma se hace de una en una y nunca se desgasta."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "3acea110-9dba-504b-9d85-c50ed75d69f0",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "skills",
+      "status": "published",
+      "author": "Admin",
+      "sort": 100,
+      "tags": [
+        "guide",
+        "skills"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Skills and levels",
+      "title_es": "Habilidades y niveles",
+      "summary_en": "Farming, Fishing, Mining, Woodcutting, Foraging, Cooking, Crafting, Combat, Animal Husbandry and Exploration.",
+      "summary_es": "Cultivo, Pesca, Minería, Tala, Recolección, Cocina, Artesanía, Combate, Ganadería y Exploración.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Ten skills",
+          "text_es": "Diez habilidades"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Farming, Fishing, Mining, Woodcutting, Foraging, Cooking, Crafting, Combat, Animal Husbandry and Exploration.",
+            "Each runs from 1 to 30. Do it to level it up.",
+            "Tap a skill in the skills book to see what each level opens."
+          ],
+          "items_es": [
+            "Cultivo, Pesca, Minería, Tala, Recolección, Cocina, Artesanía, Combate, Ganadería y Exploración.",
+            "Cada uno va de 1 a 30. Hazlo para subirlo de nivel.",
+            "Toca una habilidad en el libro de habilidades para ver qué abre cada nivel."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The three level rule",
+          "text_es": "La regla de los tres niveles"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Your skills stay within 3 levels of each other.",
+            "If one is held back, the game says which skill to raise."
+          ],
+          "items_es": [
+            "Tus habilidades se mantienen dentro de 3 niveles entre sí.",
+            "Si algo te detiene, el juego indica qué Habilidad debes subir."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "067a3eb2-452c-5ccc-b73a-0d15829cb1b1",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "combat",
+      "status": "published",
+      "author": "Admin",
+      "sort": 110,
+      "tags": [
+        "guide",
+        "combat"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Combat",
+      "title_es": "Combate",
+      "summary_en": "A blow is your strength plus your weapon's bonus. Strength grows with Combat.",
+      "summary_es": "Un golpe es tu fuerza más el bono de tu arma. La fuerza crece con Combate.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Fighting",
+          "text_es": "Pelear"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A blow is your strength plus your weapon's bonus. Strength grows with Combat.",
+            "A creature flashes just before it strikes. Step away and it misses.",
+            "At Combat 1 creatures are half strength. They reach full strength by Combat 8."
+          ],
+          "items_es": [
+            "Un golpe es tu fuerza más el bono de tu arma. La fuerza crece con Combate.",
+            "Una criatura destella justo antes de atacar. Aléjate y fallará.",
+            "En Combate 1 las criaturas tienen la mitad de fuerza. Alcanzan su fuerza completa en Combate 8."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The dash",
+          "text_es": "El impulso"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Shift is the dash, or the Dash button on a phone. Nothing hits you mid dash.",
+            "You get 2 dashes, each back in about 2.5 seconds. It works anywhere you are on foot."
+          ],
+          "items_es": [
+            "Shift es el impulso, o el botón Impulso en celular. Nada te golpea durante el impulso.",
+            "Consigues 2 impulsos, cada uno vuelve en unos 2,5 segundos. Funciona en cualquier lugar donde estés a pie."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Creatures",
+          "text_es": "Criaturas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A creature guards its own ground. It turns back at water, the town, or when it loses you.",
+            "Fight one and its friends join in. Slimes attack on sight.",
+            "A beaten creature comes back 30 minutes later, a boss after 2 hours."
+          ],
+          "items_es": [
+            "Una criatura protege su propio territorio. Da media vuelta en el agua, en el pueblo, o si te pierde de vista.",
+            "Pelea con uno y sus amigos se unen. Los Slimes atacan al verte.",
+            "Una criatura vencida vuelve 30 minutos después, un jefe tras 2 horas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Emporium weapons and heavy attacks",
+          "text_es": "Armas del Emporium y ataques pesados"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Weapons from the Emporium hit hardest, knock creatures back and have a heavy attack.",
+            "Right click or B for the heavy attack. Bows and staffs aim, then left click."
+          ],
+          "items_es": [
+            "Las armas del Emporium golpean más fuerte, hacen retroceder a las criaturas y tienen un ataque pesado.",
+            "Clic derecho o B para el ataque pesado. Los arcos y bastones apuntan, luego clic izquierdo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Bosses",
+          "text_es": "Jefes"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each boss fears one kind of weapon. It hits 15% harder, any other 20% softer.",
+            "Your first two wins over each boss every day pay Gold and 3 Premium Seeds. The first ever adds a gem.",
+            "The prize drops in a loot chest. Only you can open it for 2 hours. Bosses cost no energy.",
+            "Out of reach over a boss means cross to it. Leave its ground and it walks home, healing slowly.",
+            "Every boss leaps at a farmer who keeps away. Watch for its tell and dash out of the ring.",
+            "Arrows and bolts from far off land softer. At half health a boss rages and comes faster."
+          ],
+          "items_es": [
+            "Cada jefe teme un tipo de arma. Golpea 15% más fuerte con ella, y 20% más débil con cualquier otra.",
+            "Tus primeras dos victorias contra cada jefe cada día dan Oro y 3 Semillas Premium. La primera vez de todas también da una gema.",
+            "El premio cae en un cofre de botín. Solo tú puedes abrirlo durante 2 horas. Los jefes no consumen energía.",
+            "Fuera de alcance sobre un jefe significa que debes cruzar hacia él. Si sale de su terreno, camina de vuelta a casa, sanando lentamente.",
+            "Todo jefe salta hacia el granjero que se mantiene alejado. Fíjate en su señal y usa el impulso para salir del círculo.",
+            "Las flechas y los virotes lanzados desde lejos golpean más suave. A la mitad de su salud, un jefe se enfurece y ataca más rápido."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Riding into a fight",
+          "text_es": "Entrar a una pelea montado"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A hit throws you off a horse, a bicycle or a broomstick. It runs off for 25 seconds.",
+            "The bear never throws you. It fights beside you."
+          ],
+          "items_es": [
+            "Un golpe te tira de un caballo, una bicicleta o una escoba. Esta huye por 25 segundos.",
+            "El oso nunca te arroja. Pelea a tu lado."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "51925f04-8c61-5ecc-879e-68cabe3eefe8",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "dungeon",
+      "status": "published",
+      "author": "Admin",
+      "sort": 120,
+      "tags": [
+        "guide",
+        "dungeon"
+      ],
+      "places": [
+        "door:vip_quarter_door_7_dungeon_court"
+      ],
+      "cover_path": null,
+      "title_en": "The Dungeon",
+      "title_es": "La Mazmorra",
+      "summary_en": "It lies under the VIP Quarter, so you need VIP.",
+      "summary_es": "Está bajo el Barrio VIP, así que necesitas ser VIP.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting there",
+          "text_es": "Llegar ahí"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "It lies under the VIP Quarter, so you need VIP.",
+            "Walk west past the Library to the Dungeon Steps, between the two fires."
+          ],
+          "items_es": [
+            "Está bajo el Barrio VIP, así que necesitas ser VIP.",
+            "Camina al oeste pasando la Biblioteca hasta los Escalones de la Mazmorra, entre las dos fogatas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "One weapon",
+          "text_es": "Un arma"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Choose one weapon at the top of the stair. Only it goes down with you.",
+            "No food, no tools, no mount and no pet. Everything else waits at the top.",
+            "There is no way back up until you beat the Arch-Lich, or fall."
+          ],
+          "items_es": [
+            "Elige un arma en lo alto de la escalera. Solo esa bajará contigo.",
+            "Nada de comida, herramientas, montura ni mascota. Todo lo demás espera en la entrada.",
+            "No hay forma de volver arriba hasta que venzas al Archiliche, o caigas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Six levels",
+          "text_es": "Seis niveles"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each level gets harder the deeper you go.",
+            "Beat every creature to open the gate. The lever says how many are left.",
+            "Beat the guardian, pick a boon card, and the stair down opens."
+          ],
+          "items_es": [
+            "Cada nivel se pone más difícil mientras más profundo vas.",
+            "Vence a todas las criaturas para abrir la puerta. La palanca indica cuántas quedan.",
+            "Vence al guardián, elige una carta de bendición, y se abre la escalera hacia abajo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Eat before you go",
+          "text_es": "Come antes de salir"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Nothing can be eaten inside. Eat at the top of the stairs."
+          ],
+          "items_es": [
+            "No se puede comer nada adentro. Come arriba de las escaleras."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Cuánto paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Creatures inside drop no Gold. The run pays at the end.",
+            "A win pays Gold, and with luck Premium Seeds, Shards, ore and gems.",
+            "An early end pays a little Gold for each level cleared. Falling loses nothing.",
+            "Gold comes from your first 5 runs and first 3 wins each day."
+          ],
+          "items_es": [
+            "Las criaturas de adentro no sueltan Oro. La partida paga al final.",
+            "Una victoria paga Oro, y con suerte Semillas Premium, Fragmentos, mineral y gemas.",
+            "Terminar antes paga un poco de Oro por cada nivel superado. Caer no pierde nada.",
+            "El Oro viene de tus primeras 5 corridas y tus primeras 3 victorias de cada día."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "771bb41b-d284-58ed-8a10-584da35a77a8",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "quests",
+      "status": "published",
+      "author": "Admin",
+      "sort": 130,
+      "tags": [
+        "guide",
+        "quests"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Quests and orders",
+      "title_es": "Misiones y pedidos",
+      "summary_en": "Book One is the story. Townsfolk have jobs too.",
+      "summary_es": "Libro Uno es la historia. Los vecinos también tienen trabajos.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Quests",
+          "text_es": "Misiones"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Book One is the story. Townsfolk have jobs too.",
+            "The quest card says what to do and where.",
+            "Every quest is in the journal in the bottom bar.",
+            "Some far places stay shut until the story opens them."
+          ],
+          "items_es": [
+            "Libro Uno es la historia. Los vecinos también tienen trabajos.",
+            "La tarjeta de misión dice qué hacer y dónde.",
+            "Cada misión está en el diario, en la barra inferior.",
+            "Algunos lugares lejanos permanecen cerrados hasta que la historia los abre."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Orders",
+          "text_es": "Pedidos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "At Odette's General Store, pick Buy and sell, then Orders.",
+            "Six orders wait. Each one you deliver brings a new one.",
+            "They pay Gold and experience.",
+            "Now and then an order pays a little $AVYN too."
+          ],
+          "items_es": [
+            "En la Tienda General de Odette, elige Comprar y vender, luego Pedidos.",
+            "Seis pedidos esperan. Cada uno que entregas trae uno nuevo.",
+            "Pagan Oro y experiencia.",
+            "De vez en cuando, un pedido también paga un poco de $AVYN."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Daily tasks",
+          "text_es": "Tareas diarias"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Six tasks a day, from Tasks by the green book. All six bring 10 Premium Seeds."
+          ],
+          "items_es": [
+            "Seis tareas al día, desde Tareas junto al libro verde. Los seis traen 10 Semillas Premium."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "b9296657-b3d9-5d06-a430-864f89f53d6c",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "people",
+      "status": "published",
+      "author": "Admin",
+      "sort": 140,
+      "tags": [
+        "guide",
+        "people"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Townsfolk, friendship and gifts",
+      "title_es": "Vecinos, amistad y regalos",
+      "summary_en": "Talk to someone and ten hearts show over their name. Each heart is 100 points.",
+      "summary_es": "Habla con alguien y aparecerán diez corazones sobre su nombre. Cada corazón vale 100 puntos.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Friendship",
+          "text_es": "Amistad"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Talk to someone and ten hearts show over their name. Each heart is 100 points.",
+            "Your first chat with someone each day is worth 12 points.",
+            "Friendship pays no Gold. It earns their trust and their stories."
+          ],
+          "items_es": [
+            "Habla con alguien y aparecerán diez corazones sobre su nombre. Cada corazón vale 100 puntos.",
+            "Tu primera conversación con alguien cada día vale 12 puntos.",
+            "La amistad no paga Oro. Gana su confianza y sus historias."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How to give a gift",
+          "text_es": "Cómo dar un regalo"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Hold the gift, talk to the person and pick Give.",
+            "One gift a day for each person. Tools, weapons, seeds and quest things can't be given.",
+            "A gift they love is worth 80 points, one they like 45, anything else 20.",
+            "A gift they dislike costs 20, one they hate costs 40."
+          ],
+          "items_es": [
+            "Ten el regalo en la mano, habla con la persona y elige Dar.",
+            "Un regalo por día para cada persona. No se pueden dar herramientas, armas, semillas ni objetos de misión.",
+            "Un regalo que aman vale 80 puntos, uno que les gusta 45, cualquier otro 20.",
+            "Un regalo que no les gusta cuesta 20, uno que odian cuesta 40."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Favourite gifts",
+          "text_es": "Regalos favoritos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each card shows what that person loves.",
+            "Most folk dislike Marsh Eel and Glowcap Mushrooms."
+          ],
+          "items_es": [
+            "Cada tarjeta muestra lo que esa persona ama.",
+            "A la mayoría no le gustan la Anguila de Pantano ni los Hongos Casquete Luminoso."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Sweethearts",
+          "text_es": "Parejas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Eight people can become more than friends.",
+            "A woman farmer can court Jasper, Felix, Rhys or Faelan. A man can court Clara, Elsie, Willa or Liora.",
+            "They share something at 2, 4 and 6 hearts. At 8 they ask to walk out with you.",
+            "Say yes for 10 hearts and one last moment. Say no and stay friends."
+          ],
+          "items_es": [
+            "Ocho personas pueden llegar a ser más que amigos.",
+            "Una granjera puede cortejar a Jasper, Felix, Rhys o Faelan. Un granjero puede cortejar a Clara, Elsie, Willa o Liora.",
+            "Comparten algo a los 2, 4 y 6 corazones. A los 8 te piden salir juntos.",
+            "Di que sí por 10 corazones y un último momento. Di que no y sigan siendo amigos."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "30c1f0b1-e6d8-51ae-b872-9c1f93f5a841",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "money",
+      "status": "published",
+      "author": "Admin",
+      "sort": 150,
+      "tags": [
+        "guide",
+        "money"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Gold, Shards and $AVYN",
+      "title_es": "Oro, Fragmentos y $AVYN",
+      "summary_en": "Gold is everyday money. It stays in the game.",
+      "summary_es": "El Oro es el dinero de todos los días. Se queda en el juego.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The three coins",
+          "text_es": "Las tres monedas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Gold is everyday money. It stays in the game.",
+            "Averyn Shards are rarer. Work turns up a lucky one now and then, up to 30 a day.",
+            "$AVYN is the token, in the game for now. Some orders pay a little."
+          ],
+          "items_es": [
+            "El Oro es el dinero de todos los días. Se queda en el juego.",
+            "Los Fragmentos de Averyn son más raros. El trabajo a veces da uno con suerte, hasta 30 por día.",
+            "$AVYN es el token, por ahora dentro del juego. Algunos pedidos pagan un poco."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Bank",
+          "text_es": "El Banco"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Farthing at the Bank keeps your Gold safe from goblins.",
+            "Banked Gold isn't counted on the Gold board."
+          ],
+          "items_es": [
+            "Farthing, en el Banco, mantiene tu Oro a salvo de los goblins.",
+            "El Oro guardado en el banco no cuenta en el marcador de Oro."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "8dfbf6d0-1b4f-5905-bd7c-83038ad9660d",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "selling",
+      "status": "published",
+      "author": "Admin",
+      "sort": 160,
+      "tags": [
+        "guide",
+        "selling"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Shops, trading and the Market Hall",
+      "title_es": "Tiendas, intercambios y el Mercado Cubierto",
+      "summary_en": "Talk to a shopkeeper, then Buy and sell. Every shop pays the same.",
+      "summary_es": "Habla con un tendero y elige Comprar y vender. Todas las tiendas pagan lo mismo.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Selling to shops",
+          "text_es": "Vender a tiendas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Talk to a shopkeeper, then Buy and sell. Every shop pays the same.",
+            "Shops don't buy dishes, tools, quest things or premium crops.",
+            "Shops buy up to 15 of any one thing a day, 60 things in all, up to 12,000 Gold a day. VIPs get a quarter more.",
+            "Your first sale each day needs a small favour. The shop says what.",
+            "Sometimes you're asked to pick a picture. Get it right and it won't ask again for six hours."
+          ],
+          "items_es": [
+            "Habla con un tendero y elige Comprar y vender. Todas las tiendas pagan lo mismo.",
+            "Las tiendas no compran platillos, herramientas, objetos de misión ni cultivos premium.",
+            "Las tiendas compran hasta 15 de una misma cosa al día, 60 cosas en total, hasta 12.000 de Oro al día. Los VIP consiguen un cuarto más.",
+            "Tu primera venta de cada día necesita un pequeño favor. La tienda te dice cuál.",
+            "A veces te piden elegir una imagen. Acierta y no te lo pedirá de nuevo por seis horas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Trading",
+          "text_es": "Intercambiando"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Click a farmer and press Trade. Both add things, then both confirm.",
+            "Coins carry a 2.5% fee. Friends trade from anywhere, others on the same map.",
+            "A new farm can trade after Book One's first part.",
+            "Real money buys wait 7 days to trade. Premium Seeds don't."
+          ],
+          "items_es": [
+            "Haz clic en un granjero y presiona Intercambiar. Ambos agregan cosas, y luego ambos confirman.",
+            "Las monedas tienen una comisión del 2.5%. Los amigos pueden intercambiar desde cualquier lugar, otros solo en el mismo mapa.",
+            "Una granja nueva puede comerciar después de la primera parte de Libro Uno.",
+            "El dinero real compra esperan 7 días para poder cambiarse. Las Semillas Premium, no."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Market Hall",
+          "text_es": "El Mercado Cubierto"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Rowan runs the Marketplace. Buy what others list, or sell for Gold, Shards or $AVYN.",
+            "List as many as you like. A stall costs 2% and a sale 2.5%.",
+            "Collect your sales from the Inbox, wherever you are.",
+            "Quill at the Exchange keeps the coin board."
+          ],
+          "items_es": [
+            "Rowan dirige el Mercado. Compra lo que otros ponen en venta, o vende por Oro, Fragmentos o $AVYN.",
+            "Pon en venta tantos como quieras. Un puesto cuesta 2% y una venta 2.5%.",
+            "Recoge tus ventas desde la Bandeja de entrada, estés donde estés.",
+            "Quill, en la Casa de Cambio, lleva el tablero de monedas."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "9bc881c5-280f-5ec7-bdba-6ccdd89c7f53",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "emporium",
+      "status": "published",
+      "author": "Admin",
+      "sort": 170,
+      "tags": [
+        "guide",
+        "emporium"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "The Emporium, the VIP Pass and your wallet",
+      "title_es": "El Emporium, el Pase VIP y tu billetera",
+      "summary_en": "Open it with the golden Shop cart, bottom left.",
+      "summary_es": "Ábrelo con el carrito dorado de la Tienda, abajo a la izquierda.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Averyn Emporium",
+          "text_es": "El Averyn Emporium"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Open it with the golden Shop cart, bottom left.",
+            "Point at anything to see it in action before you buy.",
+            "A weapon, a cosmetic and a mount together are 10% off, 20% for VIPs.",
+            "Pay in USDG or ETH. What you buy waits 7 days before trading."
+          ],
+          "items_es": [
+            "Ábrelo con el carrito dorado de la Tienda, abajo a la izquierda.",
+            "Apunta a cualquier cosa para verla en acción antes de comprarla.",
+            "Un arma, un cosmético y una montura juntos tienen 10% de descuento, 20% para VIPs.",
+            "Paga en USDG o ETH. Lo que compras espera 7 días antes de poder comerciarse."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What you bought",
+          "text_es": "Lo que compraste"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Weapons go straight to your hands.",
+            "Wear a cosmetic from the Emporium. Pick it on the Outfit tab and press Wear it.",
+            "Any mount bought in the Emporium is yours to ride from the Ride and pets wheel."
+          ],
+          "items_es": [
+            "Las armas van directo a tus manos.",
+            "Usa un cosmético del Emporium. Elígelo en la pestaña Atuendo y presiona Usar.",
+            "Cualquier montura comprada en el Emporium es tuya para montar desde la rueda de Montura y mascotas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The VIP Pass",
+          "text_es": "El Pase VIP"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A week or a month, on the VIP Pass tab or at the golden boat. Renewing adds days.",
+            "VIP opens the VIP Quarter and gives 10 more hotbar slots and an energy bar of 150.",
+            "Energy comes back by itself, 1 every 3 minutes, and you sleep 3 bars, twice as fast.",
+            "10% off the Emporium, a gold name, faster cooking and more Gold from shops.",
+            "Your first pass brings 30 Premium Seeds and Frost farm tools."
+          ],
+          "items_es": [
+            "Una semana o un mes, en la pestaña Pase VIP o en el bote dorado. Renovar añade días.",
+            "VIP abre el Barrio VIP y te da 10 espacios más en la barra y una barra de energía de 150.",
+            "La energía se recupera sola, 1 cada 3 minutos, y al dormir recuperas 3 barras, el doble de rápido.",
+            "10% de descuento en el Emporium, nombre dorado, cocina más rápida y más Oro de las tiendas.",
+            "Tu primer pase trae 30 Semillas Premium y útiles de granja Frost."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Free VIP for Founders",
+          "text_es": "VIP gratis para Fundadores"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "10 or more Founding Farmers get a month free. A Mythic gets two months.",
+            "Claim it on the VIP Pass tab or at the golden boat, once.",
+            "Claim within 3 days of Season 0 opening to everyone."
+          ],
+          "items_es": [
+            "10 o más Granjeros Fundadores obtienen un mes gratis. Un Mítico obtiene dos meses.",
+            "Reclámalo en la pestaña del Pase VIP o en el Bote Dorado, una sola vez.",
+            "Reclámalo dentro de los 3 días desde que la Temporada 0 se abra a todos."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Energy Refills",
+          "text_es": "Recargas de Energía"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "One fills your bar at once. Up to 3 a day, besides food. They can't be traded."
+          ],
+          "items_es": [
+            "Uno llena tu barra al instante. Hasta 3 por día, además de la comida. No se pueden intercambiar."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Bloomshire Wallet",
+          "text_es": "La Billetera de Bloomshire"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "The Wallet button opens a wallet inside the game for purchases.",
+            "Use a password of 12 characters or more. Write down your 12 recovery words.",
+            "Nobody can reset those words. Bloomshire will never ask for them.",
+            "Robinhood Chain only. Keep a little ETH in it for fees."
+          ],
+          "items_es": [
+            "El botón de Billetera abre una billetera dentro del juego para hacer compras.",
+            "Usa una contraseña de 12 caracteres o más. Anota tus 12 palabras de recuperación.",
+            "Nadie puede restablecer esas palabras. Bloomshire nunca te las pedirá.",
+            "Solo Robinhood Chain. Guarda un poco de ETH para las comisiones."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "46f2e52a-061b-5f65-a4f6-386cd99a67ea",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "vip",
+      "status": "published",
+      "author": "Admin",
+      "sort": 180,
+      "tags": [
+        "guide",
+        "vip"
+      ],
+      "places": [
+        "region:vip_quarter"
+      ],
+      "cover_path": null,
+      "title_en": "The VIP Quarter",
+      "title_es": "El Barrio VIP",
+      "summary_en": "Take the golden boat in the harbour by the Founders' Hall. VIP only.",
+      "summary_es": "Toma el bote dorado en el puerto junto al Salón de los Fundadores. Solo VIP.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting there",
+          "text_es": "Llegar ahí"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Take the golden boat in the harbour by the Founders' Hall. VIP only.",
+            "Theo rows you over and back."
+          ],
+          "items_es": [
+            "Toma el bote dorado en el puerto junto al Salón de los Fundadores. Solo VIP.",
+            "Theo te lleva en bote de ida y vuelta."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What the Quarter is for",
+          "text_es": "Para qué es el Barrio"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Premium crops, the Dungeon and a quiet walk.",
+            "Nothing is foraged, felled or mined there. Its butterflies are only to look at.",
+            "Nothing you do in the Quarter or the Dungeon spends energy."
+          ],
+          "items_es": [
+            "Cultivos premium, la Mazmorra y un paseo tranquilo.",
+            "Ahí no se recolecta, tala ni extrae nada. Sus mariposas solo son para mirar.",
+            "Nada de lo que hagas en el Barrio o la Mazmorra gasta energía."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The VIP Shop and the premium beds",
+          "text_es": "La Tienda VIP y los bancales premium"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Celeste sells Premium Seeds and the VIP Chest.",
+            "Plant Premium Seeds in the premium beds. No hoe, no water. Grown 15 minutes later.",
+            "The VIP Chest is 40 slots for 150,000 Gold, and only you can open it."
+          ],
+          "items_es": [
+            "Celeste vende Semillas Premium y el Cofre VIP.",
+            "Planta Semillas Premium en los bancales premium. Sin azada, sin agua. Listo 15 minutos después.",
+            "El Cofre VIP tiene 40 espacios por 150,000 de Oro, y solo tú puedes abrirlo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Celestial Garden",
+          "text_es": "El Jardín Celestial"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Set Crystal Grapes, a Starbloom or a Celestial Pineapple on a pedestal.",
+            "Stack as many of one kind as you like. Each one harvests.",
+            "It harvests $AVYN every day. The rarer the crop, the more.",
+            "Collect from Iris or at a pedestal.",
+            "When your pass ends, your crops come back to your Inbox."
+          ],
+          "items_es": [
+            "Coloca Uvas de Cristal, un Starbloom o una Piña Celestial sobre un pedestal.",
+            "Apila tantos de un mismo tipo como quieras. Cada uno se cosecha.",
+            "Cosecha $AVYN todos los días. Cuanto más raro el cultivo, más recibes.",
+            "Recolecta de Iris o en un pedestal.",
+            "Cuando tu pase termine, tus cultivos volverán a tu Bandeja de entrada."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The houses",
+          "text_es": "Las casas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Sylvie's Library, Pemberton's Manor and Fern's Greenhouse are open to visit.",
+            "Augustin's Exchange opens later."
+          ],
+          "items_es": [
+            "La Biblioteca de Sylvie, la Mansión de Pemberton y el Invernadero de Fern están abiertos para visitar.",
+            "La Casa de Cambio de Augustin abre más tarde."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Dungeon and the Colosseum",
+          "text_es": "La Mazmorra y el Coliseo"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "The Dungeon is west past the Library, between the fires.",
+            "The Colosseum opens later in the season."
+          ],
+          "items_es": [
+            "El Calabozo está al oeste, pasando la Biblioteca, entre las fogatas.",
+            "El Coliseo abre más adelante en la temporada."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "418ba9bb-2586-5247-8e43-e4894daaf036",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "premium",
+      "status": "published",
+      "author": "Admin",
+      "sort": 190,
+      "tags": [
+        "guide",
+        "premium"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Premium seeds and premium dishes",
+      "title_es": "Semillas premium y platillos premium",
+      "summary_en": "Buy them from Celeste at the VIP Shop, or win them from bosses, the Dungeon and the Colosseum.",
+      "summary_es": "Cómpralos a Celeste en la Tienda VIP, o gánalos de los jefes, la Mazmorra y el Coliseo.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Premium Seeds",
+          "text_es": "Semillas Premium"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Buy them from Celeste at the VIP Shop, or win them from bosses, the Dungeon and the Colosseum.",
+            "Each grows in 15 minutes into one of seven premium crops. You find out which at harvest.",
+            "Rarely you get Crystal Grapes, Starbloom or a Celestial Pineapple, and only so many will ever grow.",
+            "Premium crops never go to a shop. Sell them to players, cook them, or set the rarest out."
+          ],
+          "items_es": [
+            "Cómpralos a Celeste en la Tienda VIP, o gánalos de los jefes, la Mazmorra y el Coliseo.",
+            "Cada uno crece en 15 minutos y se vuelve uno de siete cultivos premium. Descubres cuál al cosechar.",
+            "A veces consigues Uvas de Cristal, Starbloom o una Piña Celestial, y solo un número limitado llegará a crecer.",
+            "Los cultivos premium nunca van a una tienda. Véndelos a otros jugadores, cocínalos, o exhibe los más raros."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The premium dishes",
+          "text_es": "Los platos premium"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Cook the four common premium crops at any stove.",
+            "Each lasts 30 minutes, up to 2 hours ahead, and all four can be on at once.",
+            "They stack with meal boosts. Eat them before the Dungeon or a boss."
+          ],
+          "items_es": [
+            "Cocina los cuatro cultivos premium comunes en cualquier estufa.",
+            "Cada uno dura 30 minutos, hasta 2 horas por adelantado, y los cuatro pueden estar activos a la vez.",
+            "Se acumulan con los refuerzos de comidas. Cómelos antes del Calabozo o de un jefe."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Boss dishes",
+          "text_es": "Platillos jefe"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Swiftwind Tonic, Warlord's Stew and Golden Feast are made for boss fights. Cook them at any stove.",
+            "They need premium crops with Snow Peas, Black Tomatoes, Dragon Fruit or Blue Corn. Find any you lack at the Market.",
+            "You can have 3 on at once, even 3 of the same. Another one is not eaten until one wears off.",
+            "However much you eat, food gives at most 50% more damage, 50% quicker swings and 50% faster walking.",
+            "Dashes go up by one at most, so 3 in all, and come back at most twice as fast."
+          ],
+          "items_es": [
+            "El Tónico del Viento Veloz, el Guiso del Señor de la Guerra y el Festín Dorado están hechos para las peleas contra jefes. Cocínalos en cualquier estufa.",
+            "Necesitan cultivos premium con Guisantes de Nieve, Tomates Negros, Fruta del Dragón o Maíz Azul. Busca los que te falten en el Mercado.",
+            "Puedes tener 3 activos a la vez, incluso 3 del mismo. No se consume otro hasta que uno se acabe.",
+            "Por más que comas, la comida da como máximo 50% más de daño, golpes 50% más rápidos y 50% más velocidad al caminar.",
+            "Los impulsos suben de a uno como máximo, hasta un total de 3, y se recuperan hasta el doble de rápido como máximo."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "34d2f2be-3e69-5a84-b302-35aeea18aff8",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "mounts",
+      "status": "published",
+      "author": "Admin",
+      "sort": 200,
+      "tags": [
+        "guide",
+        "mounts"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Mounts and pets",
+      "title_es": "Monturas y mascotas",
+      "summary_en": "Holders of 5 Founding Farmers, and Legendary and Mythic holders, pick one mount for good.",
+      "summary_es": "Quienes tengan 5 Granjeros Fundadores, y los poseedores de Legendario y Mítico, eligen una montura para siempre.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Getting a mount",
+          "text_es": "Conseguir una montura"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Holders of 5 Founding Farmers, and Legendary and Mythic holders, pick one mount for good.",
+            "Any mount bought in the Emporium is yours to ride too."
+          ],
+          "items_es": [
+            "Quienes tengan 5 Granjeros Fundadores, y los poseedores de Legendario y Mítico, eligen una montura para siempre.",
+            "Cualquier montura comprada en el Emporium también es tuya para montar."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Riding",
+          "text_es": "Montar"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Press R for the Ride and pets wheel. Click a mount to ride, again to get off.",
+            "Press R twice quickly to ride your favourite.",
+            "Each mount has its own stamina bar of 100, about 25 minutes of riding.",
+            "Feed it from the wheel when it's tired. No riding indoors or in the Dungeon.",
+            "A bear fights beside you, 4 stamina a blow."
+          ],
+          "items_es": [
+            "Presiona R para la rueda de monturas y mascotas. Haz clic en una montura para montarla, y de nuevo para desmontar.",
+            "Presiona R dos veces rápido para montar a tu favorita.",
+            "Cada montura tiene su propia barra de resistencia de 100, unos 25 minutos de cabalgata.",
+            "Dale de comer de la rueda cuando esté cansado. No se puede cabalgar adentro ni en la Mazmorra.",
+            "Un oso pelea a tu lado, 4 de resistencia por golpe."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Pets",
+          "text_es": "Mascotas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Holders of 3 Founding Farmers get a cat, a dog or a rabbit. Epic and Legendary holders pick from all six.",
+            "It follows you and lights caves with its lantern. It waits at the top of the Dungeon.",
+            "Linger outside and it may find something. Press E beside it to take it.",
+            "Feed it a crop, a fish or meat when it's tired."
+          ],
+          "items_es": [
+            "Quienes tengan 3 Granjeros Fundadores reciben un gato, un perro o un conejo. Los poseedores de Épico y Legendario eligen entre los seis.",
+            "Te sigue y alumbra las cuevas con su linterna. Espera en la entrada de la Mazmorra.",
+            "Quédate afuera y puede que encuentre algo. Pulsa E junto a él para tomarlo.",
+            "Dale un cultivo, un pescado o carne cuando esté cansado."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "fafbb6a0-08ba-5f92-989b-2218c8e34765",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "world",
+      "status": "published",
+      "author": "Admin",
+      "sort": 210,
+      "tags": [
+        "guide",
+        "world"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Getting around the world",
+      "title_es": "Moverte por el mundo",
+      "summary_en": "Moonmere is north, Whisperwood west, Stonepeak east, the Southvale and the Bay south.",
+      "summary_es": "Moonmere está al norte, Whisperwood al oeste, Stonepeak al este, y el Southvale y la Bahía al sur.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The map",
+          "text_es": "El mapa"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Moonmere is north, Whisperwood west, Stonepeak east, the Southvale and the Bay south.",
+            "Press M for the map. Click it to set a red pin, and an arrow leads you there.",
+            "The arrows follow real paths.",
+            "Press K for the Codex of every item."
+          ],
+          "items_es": [
+            "Moonmere está al norte, Whisperwood al oeste, Stonepeak al este, y el Southvale y la Bahía al sur.",
+            "Presiona M para el mapa. Haz clic para poner un pin rojo, y una flecha te guiará hasta allí.",
+            "Las flechas siguen caminos reales.",
+            "Presiona K para ver el Códice de todos los artículos."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Time and weather",
+          "text_es": "Hora y clima"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "A Bloomshire day is 8 real hours, three a real day. A season is 14 real days.",
+            "Rain waters your crops. Night brings out moths and rare fish.",
+            "Townsfolk go indoors at night and in rain."
+          ],
+          "items_es": [
+            "Un día en Bloomshire dura 8 horas reales, tres por día real. Una estación dura 14 días reales.",
+            "La lluvia riega tus cultivos. La noche trae polillas y peces raros.",
+            "La gente del pueblo entra a sus casas de noche y cuando llueve."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Coming and going",
+          "text_es": "Yendo y viniendo"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Leave from home and you come back home, from anywhere else by the town fountain.",
+            "Your island and the town are always safe."
+          ],
+          "items_es": [
+            "Al salir de tu Hogar, vuelves a tu Hogar; desde cualquier otro lugar, vuelves a la fuente del Pueblo.",
+            "Tu isla y el pueblo siempre son seguros."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "993342b3-2eeb-5f87-8c80-7fda56342453",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "social",
+      "status": "published",
+      "author": "Admin",
+      "sort": 220,
+      "tags": [
+        "guide",
+        "social"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Towns, chat and friends",
+      "title_es": "Pueblos, chat y amigos",
+      "summary_en": "Five towns of up to 500 farmers. Pick one when you sign in.",
+      "summary_es": "Cinco pueblos de hasta 500 granjeros. Elige uno cuando inicies sesión.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Five towns",
+          "text_es": "Cinco pueblos"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Five towns of up to 500 farmers. Pick one when you sign in.",
+            "Your farm is the same in every town.",
+            "To change towns, sign out and in. Signing in elsewhere signs the first device out."
+          ],
+          "items_es": [
+            "Cinco pueblos de hasta 500 granjeros. Elige uno cuando inicies sesión.",
+            "Tu granja es la misma en todos los pueblos.",
+            "Para cambiar de ciudad, cierra sesión y vuelve a entrar. Iniciar sesión en otro lugar cierra la sesión del primer dispositivo."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Chat",
+          "text_es": "Chat"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Press Enter for chat. Town reaches your town, Global every town, Friends your friends.",
+            "/w and a name whispers to one farmer.",
+            "Be kind. The admins can mute."
+          ],
+          "items_es": [
+            "Presiona Enter para el chat. Pueblo llega a tu pueblo, Global a todos los pueblos, Amigos a tus amigos.",
+            "/w and a name whispers to one farmer.",
+            "Sé amable. Los administradores pueden silenciarte."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Friends, Inbox and boards",
+          "text_es": "Amigos, Bandeja de entrada y tableros"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Open a farmer's card to add a friend. Friends trade and visit each other's islands from anywhere.",
+            "The Inbox holds gifts, letters, requests and sales.",
+            "Post letters and parcels at mailboxes.",
+            "The Leaderboard ranks Farming Points and $AVYN."
+          ],
+          "items_es": [
+            "Abre la ficha de un granjero para añadirlo como amigo. Los amigos pueden intercambiar y visitar las islas del otro desde cualquier lugar.",
+            "La Bandeja de entrada guarda regalos, cartas, pedidos y ventas.",
+            "Publica cartas y paquetes en los buzones.",
+            "La Clasificación ordena por Puntos de Cultivo y $AVYN."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "01eaa41e-9caa-537d-8209-acf2e9c1e3b9",
+      "section_id": "a622a72a-c88e-560b-8932-478e80140845",
+      "slug": "founders",
+      "status": "published",
+      "author": "Admin",
+      "sort": 230,
+      "tags": [
+        "guide",
+        "founders"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Founding Farmers",
+      "title_es": "Granjeros Fundadores",
+      "summary_en": "Founding Farmers are Bloomshire's NFT farmers. Holding them gives perks.",
+      "summary_es": "Los Granjeros Fundadores son los granjeros NFT de Bloomshire. Tenerlos da beneficios.",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Perks",
+          "text_es": "Ventajas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Founding Farmers are Bloomshire's NFT farmers. Holding them gives perks.",
+            "Every holder gets more experience and an energy bar of 150 that sleeps 3 bars, twice as fast.",
+            "The more you hold, the more you get. A Mythic counts as ten, with two months of VIP."
+          ],
+          "items_es": [
+            "Los Granjeros Fundadores son los granjeros NFT de Bloomshire. Tenerlos da beneficios.",
+            "Cada poseedor recibe más experiencia y una barra de energía de 150 que al dormir recupera 3 barras, el doble de rápido.",
+            "Mientras más tengas, más recibes. Un Mítico cuenta como diez, con dos meses de VIP."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The Founding Farmers window",
+          "text_es": "La ventana de Granjeros Fundadores"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Open it from your character screen. Play as any farmer you hold and see your perks.",
+            "A missing perk says why there.",
+            "Link your other wallets in Your farmer, Wallets. It's a signed message, never a transaction.",
+            "Sell a farmer and its perks go with it."
+          ],
+          "items_es": [
+            "Ábrelo desde la pantalla de tu Personaje. Juega como cualquier granjero que tengas y mira tus beneficios.",
+            "Una ventaja que falta dice por qué ahí mismo.",
+            "Vincula tus otras billeteras en Tu granjero, Billeteras. Es un mensaje firmado, nunca una transacción.",
+            "Si vendes a un granjero, sus ventajas se van con él."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "From the game's own guide (the green book in the game).",
+          "md_es": "De la guía del propio juego (el libro verde dentro del juego)."
+        }
+      ]
+    },
+    {
+      "id": "e81363ab-7d8d-582f-ae77-d679de0f1e09",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "how-bosses-work",
+      "status": "published",
+      "author": "Admin",
+      "sort": 0,
+      "tags": [
+        "boss",
+        "combat"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "How bosses work",
+      "title_es": "Cómo funcionan los jefes",
+      "summary_en": "Each boss fears one kind of weapon (+15%), two wins a day pay Gold and Premium Seeds, and the first ever adds a gem.",
+      "summary_es": "Cada jefe teme un tipo de arma (+15%), dos victorias por día pagan oro y semillas premium, y la primera de todas suma una gema.",
+      "blocks": [
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "🗡️",
+              "value": "+15%",
+              "label_en": "Weapon it fears",
+              "label_es": "Arma que teme",
+              "hint_en": "Any other: -20%",
+              "hint_es": "Cualquier otra: -20%"
+            },
+            {
+              "icon": "🌱",
+              "value": "2 × 3",
+              "label_en": "Premium Seeds a day",
+              "label_es": "Semillas premium por día",
+              "hint_en": "First two wins over each boss",
+              "hint_es": "Primeras dos victorias sobre cada jefe"
+            },
+            {
+              "icon": "⭐",
+              "value": "1,100–1,300",
+              "label_en": "Farming Points per prize",
+              "label_es": "Puntos de granja por premio",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⏳",
+              "value": "2 h",
+              "label_en": "Back after",
+              "label_es": "Vuelve después de",
+              "hint_en": "A beaten boss returns",
+              "hint_es": "Un jefe derrotado reaparece"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "The rules",
+          "text_es": "Las reglas"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Each boss fears one kind of weapon: it hits 15% harder, any other 20% softer. Some take nothing from one kind at all.",
+            "Your first two wins over each boss every day pay Gold and 3 Premium Seeds. The very first win also gives a gem.",
+            "The prize drops in a loot chest. Only you can open it for 2 hours.",
+            "Bosses cost no energy.",
+            "Every boss leaps at a farmer who keeps away. Watch for its tell and dash out of the ring.",
+            "At half health a boss rages and comes faster. Arrows and bolts from far off land softer."
+          ],
+          "items_es": [
+            "Cada jefe teme un tipo de arma: le pega 15% más fuerte, cualquier otra 20% más suave. A algunos un tipo de arma no les hace nada.",
+            "Tus primeras dos victorias sobre cada jefe, cada día, pagan oro y 3 semillas premium. La primera victoria de todas da además una gema.",
+            "El premio cae en un cofre. Solo vos lo podés abrir durante 2 horas.",
+            "Los jefes no gastan energía.",
+            "Todo jefe salta sobre el granjero que se aleja. Mirá su aviso y salí del círculo con el dash.",
+            "Con la mitad de la vida, el jefe se enfurece y va más rápido. Las flechas y los rayos desde lejos pegan más suave."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "All bosses at a glance",
+          "text_es": "Todos los jefes de un vistazo"
+        },
+        {
+          "type": "table",
+          "md_en": "| Boss | Where | Fears | Immune to | Gold | First win |\n|---|---|---|---|---:|---|\n| Storm Slime King | Whisperwood, in the Storm Hollow | staff | sword | 1,200–1,700 | 1 Sapphire |\n| Goblin Warchief | Whisperwood, in the Goblin Camp | sword | bow | 1,200–1,700 | 2 Topaz |\n| Orc Warlord | Stonepeak's south, in the Warlord's Camp | bow | sword | 1,700–2,300 | 1 Ruby |\n| Great Crystal Golem | Stonepeak, in the Delvers' Court | sword | staff | 1,700–2,300 | 2 Amethyst |\n| Great Frost Golem | Frosthaven, before the great ice cave | staff | bow | 2,150–2,900 | 2 Moonstone |\n| Bone Spider | The Gloom's deepest cave (Stonepeak) | sword | bow | 2,150–2,900 | 1 Emerald |\n| Vault Queen | The Sunken Vault's deepest cave (Stonepeak) | staff | sword | 2,400–3,100 | 1 Diamond |\n| Arch-Lich | The Night Court (the Barrowmire), and the last level of the Dungeon | bow | staff | 2,400–3,100 | 1 Diamond |",
+          "md_es": "| Jefe | Dónde | Teme | Inmune a | Oro | Primera victoria |\n|---|---|---|---|---:|---|\n| Rey Slime de Tormenta | Whisperwood, en la Hondonada de la Tormenta | bastón | espada | 1.200–1.700 | 1 Zafiro |\n| Señor de la Guerra Goblin | Whisperwood, en el Campamento Goblin | espada | arco | 1.200–1.700 | 2 Topacio |\n| Señor de la Guerra Orco | El sur de Stonepeak, en el Campamento del Señor de la Guerra | arco | espada | 1.700–2.300 | 1 Rubí |\n| Gran Gólem de Cristal | Stonepeak, en la Corte de los Excavadores | espada | bastón | 1.700–2.300 | 2 Amatista |\n| Gran Gólem de Escarcha | Frosthaven, frente a la gran cueva de hielo | bastón | arco | 2.150–2.900 | 2 Piedra Lunar |\n| Araña Huesuda | La cueva más profunda de The Gloom (Stonepeak) | espada | arco | 2.150–2.900 | 1 Esmeralda |\n| Reina de la Bóveda | La cueva más profunda de The Sunken Vault (Stonepeak) | bastón | espada | 2.400–3.100 | 1 Diamante |\n| Archiliche | La Corte Nocturna (el Barrowmire) y el último nivel de la Mazmorra | arco | bastón | 2.400–3.100 | 1 Diamante |"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "Each boss has its own entry in this section with its arena on the Mega-Atlas.",
+          "md_es": "Cada jefe tiene su propia entrada en esta sección, con su arena en el Mega-Atlas."
+        }
+      ]
+    },
+    {
+      "id": "e222d260-b2b0-5ab4-8315-8bd3e0b22ee1",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "storm-slime-king",
+      "status": "published",
+      "author": "Admin",
+      "sort": 10,
+      "tags": [
+        "boss",
+        "storm_slime_king"
+      ],
+      "places": [
+        "sub:whisperwood_sub_15_the_storm_hollow",
+        "region:whisperwood"
+      ],
+      "cover_path": null,
+      "title_en": "Storm Slime King",
+      "title_es": "Rey Slime de Tormenta",
+      "summary_en": "Whisperwood, in the Storm Hollow. Fears the staff, immune to the sword.",
+      "summary_es": "Whisperwood, en la Hondonada de la Tormenta. Teme el bastón; la espada no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The king of the storm slimes, crowned in lightning, deep in Whisperwood. Every blow it lands shakes the ground with a shock.",
+          "md_es": "El rey de los slimes de tormenta, coronado de relámpagos, en las profundidades de Whisperwood. Cada golpe que da sacude el suelo con una descarga."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "468",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "18",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🪄",
+              "label_en": "Fears the staff (+15%)",
+              "label_es": "Teme: bastón (+15%)",
+              "hint_en": "The sword does nothing",
+              "hint_es": "Inmune: espada"
+            },
+            {
+              "icon": "🪙",
+              "value": "1,200–1,700",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "sub:whisperwood_sub_15_the_storm_hollow",
+          "note_en": "Whisperwood, in the Storm Hollow",
+          "note_es": "Whisperwood, en la Hondonada de la Tormenta"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Every blow it lands sends a shock through the ground around it: hit and step back.",
+            "Three Storm Slimes fight beside it."
+          ],
+          "items_es": [
+            "Cada golpe que da manda una descarga por el suelo alrededor: pegá y alejate.",
+            "Tres Slimes de Tormenta pelean a su lado."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 1,200–1,700 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 1 Sapphire and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 1.200–1.700 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 1 Zafiro y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **staff** and leave the sword at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **un bastón** y dejá la espada en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "3f4924ad-ed43-59a3-966f-cc57ce4943a5",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "goblin-warchief",
+      "status": "published",
+      "author": "Admin",
+      "sort": 20,
+      "tags": [
+        "boss",
+        "goblin_warchief"
+      ],
+      "places": [
+        "sub:whisperwood_sub_14_the_goblin_camp",
+        "region:whisperwood"
+      ],
+      "cover_path": null,
+      "title_en": "Goblin Warchief",
+      "title_es": "Señor de la Guerra Goblin",
+      "summary_en": "Whisperwood, in the Goblin Camp. Fears the sword, immune to the bow.",
+      "summary_es": "Whisperwood, en el Campamento Goblin. Teme la espada; el arco no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The goblin warchief of Whisperwood. Fast and fierce, it never fights without its band around it.",
+          "md_es": "El señor de la guerra goblin de Whisperwood. Rápido y feroz, nunca pelea sin su banda alrededor."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "500",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "22",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🗡️",
+              "label_en": "Fears the sword (+15%)",
+              "label_es": "Teme: espada (+15%)",
+              "hint_en": "The bow does nothing",
+              "hint_es": "Inmune: arco"
+            },
+            {
+              "icon": "🪙",
+              "value": "1,200–1,700",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "sub:whisperwood_sub_14_the_goblin_camp",
+          "note_en": "Whisperwood, in the Goblin Camp",
+          "note_es": "Whisperwood, en el Campamento Goblin"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Fast and fierce, with two Goblins and two Goblin Raiders around it.",
+            "Its great shield takes every arrow: bows do nothing."
+          ],
+          "items_es": [
+            "Rápido y feroz, con dos Goblins y dos Goblins Saqueadores alrededor.",
+            "Su gran escudo para todas las flechas: el arco no le hace nada."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 1,200–1,700 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 2 Topaz and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 1.200–1.700 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 2 Topacio y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **sword** and leave the bow at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **una espada** y dejá el arco en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "c3351d6a-33df-5dec-95b6-2b92ff3ab1c0",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "orc-warlord",
+      "status": "published",
+      "author": "Admin",
+      "sort": 30,
+      "tags": [
+        "boss",
+        "orc_warlord"
+      ],
+      "places": [
+        "sub:stonepeak_sub_18_the_warlord_s_camp",
+        "region:stonepeak"
+      ],
+      "cover_path": null,
+      "title_en": "Orc Warlord",
+      "title_es": "Señor de la Guerra Orco",
+      "summary_en": "Stonepeak's south, in the Warlord's Camp. Fears the bow, immune to the sword.",
+      "summary_es": "El sur de Stonepeak, en el Campamento del Señor de la Guerra. Teme el arco; la espada no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The warlord of Stonepeak's orcs. Its great slam knocks you senseless for a moment.",
+          "md_es": "El señor de la guerra de los orcos de Stonepeak. Su gran golpe te deja aturdido por un momento."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "560",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "36",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🏹",
+              "label_en": "Fears the bow (+15%)",
+              "label_es": "Teme: arco (+15%)",
+              "hint_en": "The sword does nothing",
+              "hint_es": "Inmune: espada"
+            },
+            {
+              "icon": "🪙",
+              "value": "1,700–2,300",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "sub:stonepeak_sub_18_the_warlord_s_camp",
+          "note_en": "Stonepeak's south, in the Warlord's Camp",
+          "note_es": "El sur de Stonepeak, en el Campamento del Señor de la Guerra"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Every third blow it slams the ground and stuns anyone it catches: dash out of the ring.",
+            "Its thick hide softens every blow. Two orcs fight beside it."
+          ],
+          "items_es": [
+            "Cada tres golpes pega contra el suelo y aturde a quien agarre: esquivá con el dash fuera del círculo.",
+            "Su cuero grueso amortigua cada golpe. Dos orcos pelean a su lado."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 1,700–2,300 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 1 Ruby and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 1.700–2.300 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 1 Rubí y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **bow** and leave the sword at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **un arco** y dejá la espada en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "3114f76d-1fd2-51fa-bb24-496f660b0e1e",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "boss-crystal-golem",
+      "status": "published",
+      "author": "Admin",
+      "sort": 40,
+      "tags": [
+        "boss",
+        "boss_crystal_golem"
+      ],
+      "places": [
+        "sub:stonepeak_sub_17_the_delvers_court",
+        "region:stonepeak"
+      ],
+      "cover_path": null,
+      "title_en": "Great Crystal Golem",
+      "title_es": "Gran Gólem de Cristal",
+      "summary_en": "Stonepeak, in the Delvers' Court. Fears the sword, immune to the staff.",
+      "summary_es": "Stonepeak, en la Corte de los Excavadores. Teme la espada; el bastón no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The Great Crystal Golem of Stonepeak. It leaps and slams the ground, cracking it all around.",
+          "md_es": "El Gran Gólem de Cristal de Stonepeak. Salta y golpea el suelo, agrietándolo a su alrededor."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "625",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "34",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🗡️",
+              "label_en": "Fears the sword (+15%)",
+              "label_es": "Teme: espada (+15%)",
+              "hint_en": "The staff does nothing",
+              "hint_es": "Inmune: bastón"
+            },
+            {
+              "icon": "🪙",
+              "value": "1,700–2,300",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "sub:stonepeak_sub_17_the_delvers_court",
+          "note_en": "Stonepeak, in the Delvers' Court",
+          "note_es": "Stonepeak, en la Corte de los Excavadores"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Every third blow it leaps and slams the ground, stunning anyone it catches.",
+            "Its stone softens every blow. Two Crystal Golems fight beside it."
+          ],
+          "items_es": [
+            "Cada tres golpes salta y golpea el suelo, aturdiendo a quien agarre.",
+            "Su piedra amortigua cada golpe. Dos Gólems de Cristal pelean a su lado."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 1,700–2,300 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 2 Amethyst and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 1.700–2.300 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 2 Amatista y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **sword** and leave the staff at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **una espada** y dejá el bastón en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "b56e0467-0c8b-595b-80f5-249a5d91a839",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "boss-frost-golem",
+      "status": "published",
+      "author": "Admin",
+      "sort": 50,
+      "tags": [
+        "boss",
+        "boss_frost_golem"
+      ],
+      "places": [
+        "region:frosthaven"
+      ],
+      "cover_path": null,
+      "title_en": "Great Frost Golem",
+      "title_es": "Gran Gólem de Escarcha",
+      "summary_en": "Frosthaven, before the great ice cave. Fears the staff, immune to the bow.",
+      "summary_es": "Frosthaven, frente a la gran cueva de hielo. Teme el bastón; el arco no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The Great Frost Golem of Frosthaven. It leaps to slam, and the ground freezes and cracks where it lands.",
+          "md_es": "El Gran Gólem de Escarcha del Refugio de Escarcha. Salta para golpear, y el suelo se congela y se agrieta donde cae."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "775",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "39",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🪄",
+              "label_en": "Fears the staff (+15%)",
+              "label_es": "Teme: bastón (+15%)",
+              "hint_en": "The bow does nothing",
+              "hint_es": "Inmune: arco"
+            },
+            {
+              "icon": "🪙",
+              "value": "2,150–2,900",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "region:frosthaven",
+          "note_en": "Frosthaven, before the great ice cave",
+          "note_es": "Frosthaven, frente a la gran cueva de hielo"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Every second blow it leaps and slams the ground, stunning anyone it catches.",
+            "Three Frost Golems fight beside it."
+          ],
+          "items_es": [
+            "Cada dos golpes salta y golpea el suelo, aturdiendo a quien agarre.",
+            "Tres Gólems de Escarcha pelean a su lado."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 2,150–2,900 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 2 Moonstone and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 2.150–2.900 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 2 Piedra Lunar y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **staff** and leave the bow at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **un bastón** y dejá el arco en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "8f890711-3a38-5231-a6a6-fab9e33d2400",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "bone-spider",
+      "status": "published",
+      "author": "Admin",
+      "sort": 60,
+      "tags": [
+        "boss",
+        "bone_spider"
+      ],
+      "places": [
+        "door:stonepeak_door_3_cave_gloom",
+        "region:stonepeak"
+      ],
+      "cover_path": null,
+      "title_en": "Bone Spider",
+      "title_es": "Araña Huesuda",
+      "summary_en": "The Gloom's deepest cave (Stonepeak). Fears the sword, immune to the bow.",
+      "summary_es": "La cueva más profunda de The Gloom (Stonepeak). Teme la espada; el arco no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "A huge spider of bone that guards the red deep of the Gloom. Its legs reach far and its poison lingers.",
+          "md_es": "Una araña enorme de hueso que guarda las profundidades rojas de la Penumbra. Sus patas alcanzan lejos y su veneno perdura."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "550",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "34",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🗡️",
+              "label_en": "Fears the sword (+15%)",
+              "label_es": "Teme: espada (+15%)",
+              "hint_en": "The bow does nothing",
+              "hint_es": "Inmune: arco"
+            },
+            {
+              "icon": "🪙",
+              "value": "2,150–2,900",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "door:stonepeak_door_3_cave_gloom",
+          "note_en": "The Gloom's deepest cave (Stonepeak)",
+          "note_es": "La cueva más profunda de The Gloom (Stonepeak)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "Its bite poisons you for a few seconds: keep your health up before you go in.",
+            "Its legs reach far, so keep your distance between blows."
+          ],
+          "items_es": [
+            "Su mordida te envenena unos segundos: entrá con la vida alta.",
+            "Sus patas llegan lejos, así que tomá distancia entre golpes."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 2,150–2,900 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 1 Emerald and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 2.150–2.900 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 1 Esmeralda y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **sword** and leave the bow at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **una espada** y dejá el arco en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "e3237632-9140-5b02-a0f2-4e513dd92021",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "vault-queen",
+      "status": "published",
+      "author": "Admin",
+      "sort": 70,
+      "tags": [
+        "boss",
+        "vault_queen"
+      ],
+      "places": [
+        "door:stonepeak_door_4_cave_vault",
+        "region:stonepeak"
+      ],
+      "cover_path": null,
+      "title_en": "Vault Queen",
+      "title_es": "Reina de la Bóveda",
+      "summary_en": "The Sunken Vault's deepest cave (Stonepeak). Fears the staff, immune to the sword.",
+      "summary_es": "La cueva más profunda de The Sunken Vault (Stonepeak). Teme el bastón; la espada no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The queen of the Sunken Vault's spiders, and the strongest poison under the ground.",
+          "md_es": "La reina de las arañas de la Bóveda Hundida, y el veneno más fuerte bajo tierra."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "700",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "39",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🪄",
+              "label_en": "Fears the staff (+15%)",
+              "label_es": "Teme: bastón (+15%)",
+              "hint_en": "The sword does nothing",
+              "hint_es": "Inmune: espada"
+            },
+            {
+              "icon": "🪙",
+              "value": "2,400–3,100",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "door:stonepeak_door_4_cave_vault",
+          "note_en": "The Sunken Vault's deepest cave (Stonepeak)",
+          "note_es": "La cueva más profunda de The Sunken Vault (Stonepeak)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "The strongest poison under the ground: its bite poisons you for a few seconds.",
+            "Bring your best weapon of the kind it fears."
+          ],
+          "items_es": [
+            "El veneno más fuerte bajo tierra: su mordida te envenena unos segundos.",
+            "Llevá tu mejor arma del tipo que teme."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 2,400–3,100 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 1 Diamond and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 2.400–3.100 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 1 Diamante y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **staff** and leave the sword at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **un bastón** y dejá la espada en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "d6edfc63-3d09-50e7-967f-4e8ec8871914",
+      "section_id": "f3b2cb3c-c4ba-5fe9-a648-c1e5831d75c4",
+      "slug": "lich",
+      "status": "published",
+      "author": "Admin",
+      "sort": 80,
+      "tags": [
+        "boss",
+        "lich"
+      ],
+      "places": [
+        "region:barrowmire",
+        "door:vip_quarter_door_7_dungeon_court"
+      ],
+      "cover_path": null,
+      "title_en": "Arch-Lich",
+      "title_es": "Archiliche",
+      "summary_en": "The Night Court (the Barrowmire), and the last level of the Dungeon. Fears the bow, immune to the staff.",
+      "summary_es": "La Corte Nocturna (el Barrowmire) y el último nivel de la Mazmorra. Teme el arco; el bastón no le hace nada.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "The Arch-Lich, lord of the dead and of the Dungeon's deepest level.",
+          "md_es": "El Archiliche, señor de los muertos y del nivel más profundo de la Mazmorra."
+        },
+        {
+          "type": "statcards",
+          "cards": [
+            {
+              "icon": "❤️",
+              "value": "1,040",
+              "label_en": "Health",
+              "label_es": "Vida",
+              "hint_en": "Bestiary value",
+              "hint_es": "Valor del Bestiario"
+            },
+            {
+              "icon": "💥",
+              "value": "34",
+              "label_en": "Damage",
+              "label_es": "Daño",
+              "hint_en": "",
+              "hint_es": ""
+            },
+            {
+              "icon": "⚔️",
+              "value": "🏹",
+              "label_en": "Fears the bow (+15%)",
+              "label_es": "Teme: arco (+15%)",
+              "hint_en": "The staff does nothing",
+              "hint_es": "Inmune: bastón"
+            },
+            {
+              "icon": "🪙",
+              "value": "2,400–3,100",
+              "label_en": "Gold per prize",
+              "label_es": "Oro por premio",
+              "hint_en": "First 2 wins a day",
+              "hint_es": "Primeras 2 victorias del día"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "Where to find it",
+          "text_es": "Dónde encontrarlo"
+        },
+        {
+          "type": "place",
+          "key": "region:barrowmire",
+          "note_en": "The Night Court (the Barrowmire), and the last level of the Dungeon",
+          "note_es": "La Corte Nocturna (el Barrowmire) y el último nivel de la Mazmorra"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "How it fights",
+          "text_es": "Cómo pelea"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "It hurls souls of fire three at a time, and they bend toward you as they fly.",
+            "It calls up skeletons to fight for it, and its old iron softens every blow."
+          ],
+          "items_es": [
+            "Lanza almas de fuego de a tres, y se curvan hacia vos mientras vuelan.",
+            "Invoca esqueletos para que peleen por él, y su hierro viejo amortigua cada golpe."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text_en": "What it pays",
+          "text_es": "Qué paga"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "First 2 wins each day: 2,400–3,100 Gold, 3 Premium Seeds and 1,100–1,300 Farming Points.",
+            "Your very first win: 1 Diamond and 2–3 Premium Seeds more."
+          ],
+          "items_es": [
+            "Primeras 2 victorias de cada día: 2.400–3.100 de oro, 3 semillas premium y 1.100–1.300 puntos de granja.",
+            "Tu primera victoria de todas: 1 Diamante y 2–3 semillas premium más."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Weapon",
+          "title_es": "Arma",
+          "md_en": "Bring a **bow** and leave the staff at home: it does nothing here. See *Weapons and combat* for how to forge one.",
+          "md_es": "Llevá **un arco** y dejá el bastón en casa: acá no hace nada. En *Armas y combate* está cómo forjarlo."
+        }
+      ]
+    },
+    {
+      "id": "5baa7976-466d-5f50-8d8e-397053a568d7",
+      "section_id": "d6cb3560-deb8-5d9e-a9f3-0ebff5e9c165",
+      "slug": "forged-weapons",
+      "status": "published",
+      "author": "Admin",
+      "sort": 0,
+      "tags": [
+        "weapon",
+        "crafting",
+        "forge"
+      ],
+      "places": [
+        "npc:bram"
+      ],
+      "cover_path": null,
+      "title_en": "Forged weapons: sword, bow and staff",
+      "title_es": "Armas forjadas: espada, arco y bastón",
+      "summary_en": "Every weapon is made at Bram's anvil at the Forge, in 4 metals from Crafting level 6 to 25.",
+      "summary_es": "Todas las armas se hacen en el yunque de Bram, en la Herrería, en 4 metales, de Artesanía nivel 6 a 25.",
+      "blocks": [
+        {
+          "type": "text",
+          "md_en": "Swords, bows and staffs are forged at **Bram's anvil**. Each metal is a step up in rarity, and rarity multiplies your blow. Bosses fear one kind of weapon, so it pays to keep one of each.",
+          "md_es": "Las espadas, los arcos y los bastones se forjan en el **yunque de Bram**. Cada metal sube un escalón de rareza, y la rareza multiplica tu golpe. Los jefes temen un tipo de arma, así que conviene tener una de cada una."
+        },
+        {
+          "type": "table",
+          "md_en": "| Weapon | Rarity | Blow | How to make it |\n|---|---|---:|---|\n| Iron Sword | Uncommon | ×1.3 | 3 Iron Bar + 1 Wooden Plank · Crafting lv 6 |\n| Iron Bow | Uncommon | ×1.3 | 3 Iron Bar + 2 Wooden Plank + 2 Rope · Crafting lv 6 |\n| Iron Staff | Uncommon | ×1.3 | 3 Iron Bar + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 6 |\n| Bronze Sword | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 1 Wooden Plank · Crafting lv 11 |\n| Bronze Bow | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 2 Wooden Plank + 2 Rope · Crafting lv 11 |\n| Bronze Staff | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 11 |\n| Gold Sword | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 1 Wooden Plank · Crafting lv 17 |\n| Gold Bow | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 2 Wooden Plank + 2 Rope · Crafting lv 17 |\n| Gold Staff | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 17 |\n| Amethyst Sword | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 1 Wooden Plank · Crafting lv 25 |\n| Amethyst Bow | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 2 Wooden Plank + 2 Rope · Crafting lv 25 |\n| Amethyst Staff | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 25 |",
+          "md_es": "| Arma | Rareza | Golpe | Cómo se hace |\n|---|---|---:|---|\n| Espada de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 1 Tabla de Madera · Artesanía nv 6 |\n| Arco de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 6 |\n| Bastón de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 6 |\n| Espada de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 1 Tabla de Madera · Artesanía nv 11 |\n| Arco de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 11 |\n| Bastón de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 11 |\n| Espada de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 1 Tabla de Madera · Artesanía nv 17 |\n| Arco de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 17 |\n| Bastón de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 17 |\n| Espada de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 1 Tabla de Madera · Artesanía nv 25 |\n| Arco de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 25 |\n| Bastón de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 25 |"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Bars first",
+          "title_es": "Primero las barras",
+          "md_en": "Every weapon needs metal bars, smelted at the same anvil from 2 ore each. Cut gems (Topaz, Emerald, Amethyst) are cut there too.",
+          "md_es": "Toda arma necesita barras de metal, que se funden en el mismo yunque con 2 minerales cada una. Las gemas talladas (Topacio, Esmeralda, Amatista) también se tallan ahí."
+        }
+      ]
+    },
+    {
+      "id": "cf4d1423-2e9b-5107-899a-7c208b294de6",
+      "section_id": "d6cb3560-deb8-5d9e-a9f3-0ebff5e9c165",
+      "slug": "which-weapon-for-each-boss",
+      "status": "published",
+      "author": "Admin",
+      "sort": 10,
+      "tags": [
+        "weapon",
+        "boss"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Which weapon for each boss",
+      "title_es": "Qué arma usar con cada jefe",
+      "summary_en": "A quick table: the weapon each boss fears and the one that does nothing.",
+      "summary_es": "Una tabla rápida: el arma que teme cada jefe y la que no le hace nada.",
+      "blocks": [
+        {
+          "type": "table",
+          "md_en": "| Boss | Bring | Leave at home |\n|---|---|---|\n| Storm Slime King | staff | sword |\n| Goblin Warchief | sword | bow |\n| Orc Warlord | bow | sword |\n| Great Crystal Golem | sword | staff |\n| Great Frost Golem | staff | bow |\n| Bone Spider | sword | bow |\n| Vault Queen | staff | sword |\n| Arch-Lich | bow | staff |",
+          "md_es": "| Jefe | Llevá | Dejá en casa |\n|---|---|---|\n| Rey Slime de Tormenta | bastón | espada |\n| Señor de la Guerra Goblin | espada | arco |\n| Señor de la Guerra Orco | arco | espada |\n| Gran Gólem de Cristal | espada | bastón |\n| Gran Gólem de Escarcha | bastón | arco |\n| Araña Huesuda | espada | arco |\n| Reina de la Bóveda | bastón | espada |\n| Archiliche | arco | bastón |"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title_en": "",
+          "title_es": "",
+          "md_en": "In the Dungeon no boss is immune: the weapon it fears still hits harder.",
+          "md_es": "En la Mazmorra ningún jefe es inmune: el arma que teme igual pega más fuerte."
+        }
+      ]
+    },
+    {
+      "id": "590a29fe-f3fd-5ef0-bbde-6fbb1b272a10",
+      "section_id": "d6cb3560-deb8-5d9e-a9f3-0ebff5e9c165",
+      "slug": "rarity",
+      "status": "published",
+      "author": "Admin",
+      "sort": 20,
+      "tags": [
+        "weapon"
+      ],
+      "places": [],
+      "cover_path": null,
+      "title_en": "Weapon rarity",
+      "title_es": "Rareza de las armas",
+      "summary_en": "What each rarity multiplies, from Common to Legendary.",
+      "summary_es": "Cuánto multiplica cada rareza, de Común a Legendaria.",
+      "blocks": [
+        {
+          "type": "table",
+          "md_en": "| Rarity | Blow | Bonus |\n|---|---:|---:|\n| Common | ×1 | +0 |\n| Uncommon | ×1.3 | +1 |\n| Rare | ×1.6 | +3 |\n| Epic | ×2 | +5 |\n| Legendary | ×2.6 | +8 |",
+          "md_es": "| Rareza | Golpe | Bono |\n|---|---:|---:|\n| Común | ×1 | +0 |\n| Poco común | ×1,3 | +1 |\n| Raro | ×1,6 | +3 |\n| Épico | ×2 | +5 |\n| Legendario | ×2,6 | +8 |"
+        },
+        {
+          "type": "text",
+          "md_en": "A blow is your strength plus your weapon's bonus, and Combat makes you stronger. At Combat 1 creatures are half strength; they reach full strength by Combat 8.",
+          "md_es": "Un golpe es tu fuerza más el bono del arma, y Combate te hace más fuerte. Con Combate 1 las criaturas tienen la mitad de su fuerza; llegan a la fuerza completa en Combate 8."
+        }
+      ]
+    },
+    {
+      "id": "2176bb8c-c367-5dff-8e00-846ee3b4ca9c",
+      "section_id": "d6cb3560-deb8-5d9e-a9f3-0ebff5e9c165",
+      "slug": "the-dungeon",
+      "status": "published",
+      "author": "Admin",
+      "sort": 30,
+      "tags": [
+        "dungeon",
+        "boss",
+        "vip"
+      ],
+      "places": [
+        "door:vip_quarter_door_7_dungeon_court",
+        "region:vip_quarter"
+      ],
+      "cover_path": null,
+      "title_en": "The Dungeon: six levels and their guardians",
+      "title_es": "La Mazmorra: seis niveles y sus guardianes",
+      "summary_en": "Under the VIP Quarter. One weapon, no food, six levels, a guardian at the end of each.",
+      "summary_es": "Debajo del Barrio VIP. Un arma, sin comida, seis niveles y un guardián al final de cada uno.",
+      "blocks": [
+        {
+          "type": "list",
+          "ordered": false,
+          "items_en": [
+            "It lies under the VIP Quarter, so you need VIP. Walk west past the Library to the Dungeon Steps.",
+            "Choose one weapon at the top of the stair: only it goes down with you. No food, no tools, no mount, no pet.",
+            "Beat every creature to open the gate, then the guardian, pick a boon card and go down.",
+            "Eat before you go: nothing can be eaten inside.",
+            "Creatures inside drop no Gold; the run pays at the end. Falling loses nothing."
+          ],
+          "items_es": [
+            "Está debajo del Barrio VIP, así que necesitás VIP. Caminá al oeste pasando la Biblioteca hasta las Escaleras de la Mazmorra.",
+            "Elegí un arma arriba de la escalera: solo esa baja con vos. Sin comida, herramientas, montura ni mascota.",
+            "Vencé a todas las criaturas para abrir la reja, después al guardián, elegí una carta de bendición y bajá.",
+            "Comé antes de entrar: adentro no se puede comer.",
+            "Las criaturas de adentro no dejan oro; la partida paga al final. Caer no te hace perder nada."
+          ]
+        },
+        {
+          "type": "table",
+          "md_en": "| Level | Guardian | Fears |\n|---:|---|---|\n| 1 | Storm Slime King | staff |\n| 2 | Goblin Warchief | sword |\n| 3 | Bone Spider | sword |\n| 4 | Orc Warlord | bow |\n| 5 | Vault Queen | staff |\n| 6 | Arch-Lich | bow |",
+          "md_es": "| Nivel | Guardián | Teme |\n|---:|---|---|\n| 1 | Rey Slime de Tormenta | bastón |\n| 2 | Señor de la Guerra Goblin | espada |\n| 3 | Araña Huesuda | espada |\n| 4 | Señor de la Guerra Orco | arco |\n| 5 | Reina de la Bóveda | bastón |\n| 6 | Archiliche | arco |"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title_en": "Pick one weapon",
+          "title_es": "Elegí un arma",
+          "md_en": "You only take one weapon down, so pick the kind most guardians fear.",
+          "md_es": "Solo bajás con un arma, así que elegí el tipo que más guardianes temen."
+        }
+      ]
+    }
+  ]
+}

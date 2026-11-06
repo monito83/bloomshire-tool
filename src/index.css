@@ -97,7 +97,7 @@
   transform: none !important;
 }
 
-/* Leonman's Logbook: micro-animaciones (respetan prefers-reduced-motion) */
+/* Bitacora y guias: micro-animaciones (respetan prefers-reduced-motion) */
 @keyframes lb-fade-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }

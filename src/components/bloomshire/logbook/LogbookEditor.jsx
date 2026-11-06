@@ -105,7 +105,7 @@ export default function LogbookEditor({ initial, tree, uiLang, corpus, placesByK
     title_es: initial.title_es || '',
     summary_en: initial.summary_en || '',
     summary_es: initial.summary_es || '',
-    author: initial.author ?? 'Leonman',
+    author: initial.author ?? 'Admin',
     tags: initial.tags || [],
     places: initial.places || [],
     cover_path: initial.cover_path || '',

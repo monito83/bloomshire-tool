@@ -1,6 +1,6 @@
 // src/components/bloomshire/logbook/logbookDemoData.js
 // Datos de DEMOSTRACION para desarrollo local (vite dev sin /api) y tests.
-// No es contenido real de Leonman: solo ejercita todos los tipos de bloque.
+// No es contenido real: solo ejercita todos los tipos de bloque.
 // Se importa de forma dinamica y solo en import.meta.env.DEV, asi no entra al build.
 
 const S_GUIDES = '11111111-1111-4111-8111-111111111111';
@@ -32,11 +32,11 @@ export const DEMO_ENTRIES = [
     places: ['region:whisperwood', 'sub:moonmere_sub_3_the_lagoon_village'],
     cover_path: null,
     sort: 0,
-    author: 'Leonman',
+    author: 'Admin',
     published_at: '2026-11-05T12:00:00Z',
     updated_at: '2026-11-05T12:00:00Z',
     blocks: [
-      { type: 'text', md_en: 'This is **demo content** used while developing locally. Real entries are written by Leonman from the admin panel.\n\nLinks work too: [the cooking section](#logbook/cooking) or an [external page](https://bloomshire.xyz).', md_es: 'Esto es **contenido de demostración** para el desarrollo local. Las entradas reales las escribe Leonman desde el panel de administración.\n\nLos enlaces también funcionan: [la sección de cocina](#logbook/cooking) o una [página externa](https://bloomshire.xyz).' },
+      { type: 'text', md_en: 'This is **demo content** used while developing locally. Real entries are written from the admin panel.\n\nLinks work too: [the cooking section](#logbook/cooking) or an [external page](https://bloomshire.xyz).', md_es: 'Esto es **contenido de demostración** para el desarrollo local. Las entradas reales se escriben desde el panel de administración.\n\nLos enlaces también funcionan: [la sección de cocina](#logbook/cooking) o una [página externa](https://bloomshire.xyz).' },
       { type: 'statcards', cards: [
         { icon: '⏱️', value: '~15 min', label_en: 'Duration', label_es: 'Duración', hint_en: 'Sample value', hint_es: 'Valor de ejemplo' },
         { icon: '⚡', value: '40', label_en: 'Energy', label_es: 'Energía', hint_en: 'Sample value', hint_es: 'Valor de ejemplo' },
@@ -68,7 +68,7 @@ export const DEMO_ENTRIES = [
     places: ['region:whisperwood', 'npc:greta'],
     cover_path: null,
     sort: 0,
-    author: 'Leonman',
+    author: 'Admin',
     published_at: '2026-11-04T12:00:00Z',
     updated_at: '2026-11-04T12:00:00Z',
     blocks: [
@@ -88,7 +88,7 @@ export const DEMO_ENTRIES = [
     places: [],
     cover_path: null,
     sort: 0,
-    author: 'Leonman',
+    author: 'Admin',
     published_at: '2026-11-03T12:00:00Z',
     updated_at: '2026-11-03T12:00:00Z',
     blocks: [
