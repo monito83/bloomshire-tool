@@ -4,3 +4,6 @@ dist
 *.local
 scratch/
 
+
+# Descargas del juego (solo para generar los datos oficiales; no se suben)
+game-sources/v-*/

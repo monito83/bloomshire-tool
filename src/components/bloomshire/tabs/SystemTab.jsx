@@ -26,10 +26,14 @@ export default function SystemTab({
   productionTimers = [],
   energyMeta = {},
   systemLogs = [],
-  setSystemLogs
+  setSystemLogs,
+  headerSlot = null
 }) {
   return (
     <div className="h-full overflow-y-auto p-5 space-y-5 custom-scrollbar max-w-6xl mx-auto w-full">
+      {/* Panel real de actualizaciones del juego (solo admin) o la cabecera anterior */}
+      {headerSlot || (
+        <>
       {/* Header Card de Estado y Actualizaciones */}
       <div className="p-5 bg-gradient-to-r from-[#0c1630] via-[#101f42] to-[#0d172e] border-2 border-indigo-500/40 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col gap-1.5">
@@ -87,6 +91,9 @@ export default function SystemTab({
           Sniffer pasivo: Activo
         </span>
       </div>
+
+        </>
+      )}
 
       {/* Grid de los 6 Módulos Locales Descargados */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

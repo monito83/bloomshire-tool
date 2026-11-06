@@ -74,6 +74,8 @@ import MonitorsTab from './bloomshire/tabs/MonitorsTab';
 import AdvisorTab from './bloomshire/tabs/AdvisorTab';
 import SystemTab from './bloomshire/tabs/SystemTab';
 import LogbookTab from './bloomshire/tabs/LogbookTab';
+import AdminGate from './bloomshire/admin/AdminGate';
+import GameUpdatePanel from './bloomshire/admin/GameUpdatePanel';
 
 // Importar helpers y constantes canónicas compartidas
 import {
@@ -2681,19 +2683,24 @@ export default function BloomshireCommand() {
         )}
 
         {activeTab === 'system' && (
-          <SystemTab
-            handleCheckUpdates={handleCheckUpdates}
-            isCheckingUpdates={isCheckingUpdates}
-            handleForceRedownload={handleForceRedownload}
-            updateStatusMessage={updateStatusMessage}
-            activeQuestsList={activeQuestsList}
-            activeQuestMaterials={activeQuestMaterials}
-            activeCrops={activeCrops}
-            productionTimers={productionTimers}
-            energyMeta={energyMeta}
-            systemLogs={systemLogs}
-            setSystemLogs={setSystemLogs}
-          />
+          <AdminGate>
+            {({ token, expiresAt, logout }) => (
+              <SystemTab
+                headerSlot={<GameUpdatePanel token={token} expiresAt={expiresAt} onLogout={logout} />}
+                handleCheckUpdates={handleCheckUpdates}
+                isCheckingUpdates={isCheckingUpdates}
+                handleForceRedownload={handleForceRedownload}
+                updateStatusMessage={updateStatusMessage}
+                activeQuestsList={activeQuestsList}
+                activeQuestMaterials={activeQuestMaterials}
+                activeCrops={activeCrops}
+                productionTimers={productionTimers}
+                energyMeta={energyMeta}
+                systemLogs={systemLogs}
+                setSystemLogs={setSystemLogs}
+              />
+            )}
+          </AdminGate>
         )}
 
         {activeTab === 'logbook' && (

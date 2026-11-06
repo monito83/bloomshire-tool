@@ -1,0 +1,67 @@
+{
+  "gate": {
+    "title": "Settings are for admins",
+    "body": "Sign in with the admin password to check game updates and manage the tool.",
+    "enter": "Enter as admin"
+  },
+  "title": "Game updates",
+  "subtitle": "The tool's data (Codex, skills, Bestiary, exploration book and art) comes straight from the game. A robot checks for a new game version every day at 06:23 and publishes the update on its own if every test passes.",
+  "check": "Check now",
+  "logout": "Log out",
+  "sessionUntil": "Session until {{time}}",
+  "live": "Game version live",
+  "tool": "Version in the tool",
+  "rules": "rules {{hash}}",
+  "generated": "Generated {{date}}",
+  "unreachable": "Could not reach the game",
+  "upToDate": "Up to date",
+  "outdated": "New game version",
+  "unknown": "Unknown",
+  "outdatedHint": "Press Update now, or wait for tomorrow's automatic check.",
+  "autoHint": "Checked automatically every day.",
+  "updateNow": "Update now",
+  "running": "Updating…",
+  "updateHint": "Downloads the game, rebuilds the data and publishes it if tests pass (about 2-4 minutes, plus Vercel's deploy).",
+  "githubMissing": "The GitHub token is not set up yet (GITHUB_UPDATE_TOKEN in Vercel): the button stays off, but the daily robot still runs.",
+  "rollback": "Each update is its own commit on main. To undo one, revert that commit on GitHub (or ask Claude) and Vercel publishes the previous version again.",
+  "runs": {
+    "title": "Robot runs",
+    "empty": "No runs yet.",
+    "details": "Details",
+    "all": "All runs",
+    "commits": "Commit history",
+    "status": {
+      "queued": "Queued",
+      "in_progress": "Running",
+      "waiting": "Waiting",
+      "pending": "Pending",
+      "requested": "Requested"
+    },
+    "conclusion": {
+      "success": "Done",
+      "failure": "Failed",
+      "cancelled": "Cancelled",
+      "skipped": "Skipped",
+      "timed_out": "Timed out"
+    },
+    "event": {
+      "schedule": "daily",
+      "workflow_dispatch": "manual",
+      "push": "push"
+    }
+  },
+  "history": {
+    "title": "What changed",
+    "empty": "No updates recorded yet: the first one appears when the game changes.",
+    "items": "Items: {{added}} new, {{removed}} removed, {{changed}} changed",
+    "beasts": "Creatures: {{added}} new, {{removed}} removed, {{changed}} changed",
+    "skills": "Skills with new unlocks:"
+  },
+  "errors": {
+    "github_not_configured": "The GitHub token is not set up (GITHUB_UPDATE_TOKEN).",
+    "github_forbidden": "GitHub rejected the token: check that it has Actions read and write permission on the repository.",
+    "github_not_found": "GitHub could not find the robot (is the workflow on main?).",
+    "github_error": "GitHub did not answer. Try again in a moment.",
+    "update_running": "An update is already running."
+  }
+}

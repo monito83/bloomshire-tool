@@ -59,7 +59,7 @@ const UPLOAD_PATH_RE = /^entries\/\d{4}\/\d{2}\/[0-9a-f-]{36}\.(webp|png|jpg|gif
 const SECTION_FIELDS = 'id,parent_id,slug,title_en,title_es,description_en,description_es,icon,sort,status,created_at,updated_at';
 const ENTRY_META_FIELDS = 'id,section_id,slug,title_en,title_es,summary_en,summary_es,tags,places,cover_path,sort,status,author,published_at,created_at,updated_at';
 
-function getConfig() {
+export function getConfig() {
   const url = (process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL).trim().replace(/\/+$/, '');
   const key = (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || '').trim();
   const secret = (process.env.SESSION_SECRET || '').trim();
@@ -134,7 +134,7 @@ async function issueToken(cfg) {
   return { token, expiresAt };
 }
 
-async function verifyToken(req, cfg) {
+export async function verifyToken(req, cfg) {
   const header = String(req.headers?.authorization || '');
   const m = header.match(/^Bearer\s+([A-Za-z0-9_\-.]+)$/);
   if (!m) return null;

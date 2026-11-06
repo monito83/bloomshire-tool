@@ -20,6 +20,7 @@ import enItems from '../src/i18n/locales/en/items.json';
 import enCalc from '../src/i18n/locales/en/calc.json';
 import enLogbook from '../src/i18n/locales/en/logbook.json';
 import enCompendium from '../src/i18n/locales/en/compendium.json';
+import enUpdates from '../src/i18n/locales/en/updates.json';
 
 import esCommon from '../src/i18n/locales/es/common.json';
 import esHeader from '../src/i18n/locales/es/header.json';
@@ -30,6 +31,7 @@ import esItems from '../src/i18n/locales/es/items.json';
 import esCalc from '../src/i18n/locales/es/calc.json';
 import esLogbook from '../src/i18n/locales/es/logbook.json';
 import esCompendium from '../src/i18n/locales/es/compendium.json';
+import esUpdates from '../src/i18n/locales/es/updates.json';
 
 import LanguageSwitcher from '../src/components/LanguageSwitcher';
 import ErrorBoundary, { ErrorBoundaryClass } from '../src/components/ErrorBoundary';
@@ -71,6 +73,7 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       { name: 'calc', en: enCalc, es: esCalc },
       { name: 'logbook', en: enLogbook, es: esLogbook },
       { name: 'compendium', en: enCompendium, es: esCompendium },
+      { name: 'updates', en: enUpdates, es: esUpdates },
     ];
 
     for (const ns of namespaces) {
@@ -305,7 +308,9 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/logbook/LogbookEditor.jsx',
       'src/components/bloomshire/logbook/BlockEditor.jsx',
       'src/components/bloomshire/logbook/MediaDropzone.jsx',
-      'src/components/bloomshire/official/RegionCompendium.jsx'
+      'src/components/bloomshire/official/RegionCompendium.jsx',
+      'src/components/bloomshire/admin/AdminGate.jsx',
+      'src/components/bloomshire/admin/GameUpdatePanel.jsx'
     ];
 
     for (const filePath of targetFiles) {

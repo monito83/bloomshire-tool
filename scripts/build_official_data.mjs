@@ -267,18 +267,67 @@ const meta = {
 };
 
 fs.mkdirSync(OUT, { recursive: true });
-const write = (name, data) => fs.writeFileSync(path.join(OUT, name), `${JSON.stringify(data, null, 1)}\n`, 'utf8');
-write('codex.json', codex);
-write('skills.json', skills);
-write('bestiary.json', bestiary);
-write('adventure.json', adventure);
-write('meta.json', meta);
+const serialize = (data) => `${JSON.stringify(data, null, 1)}\n`;
+const readPrev = (name) => { try { return JSON.parse(fs.readFileSync(path.join(OUT, name), 'utf8')); } catch { return null; } };
+const prev = { meta: readPrev('meta.json'), codex: readPrev('codex.json'), bestiary: readPrev('bestiary.json'), skills: readPrev('skills.json') };
+
+// Solo se escribe lo que cambio: asi una corrida sin novedades no genera commits.
+const changedFiles = [];
+for (const [name, data] of Object.entries({ 'codex.json': codex, 'skills.json': skills, 'bestiary.json': bestiary, 'adventure.json': adventure })) {
+  const file = path.join(OUT, name);
+  const text = serialize(data);
+  if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== text) {
+    fs.writeFileSync(file, text, 'utf8');
+    changedFiles.push(name);
+  }
+}
+const versionChanged = !prev.meta || prev.meta.gameVersion !== meta.gameVersion || prev.meta.rulesHash !== meta.rulesHash;
+if (changedFiles.length || versionChanged) fs.writeFileSync(path.join(OUT, 'meta.json'), serialize(meta), 'utf8');
+else meta.generatedAt = prev.meta.generatedAt;
+
+// Historial de cambios (las ultimas 15 actualizaciones), para el panel de Ajustes
+const brief = (x) => ({ id: x.id, name_en: x.name_en, name_es: x.name_es || null });
+function diffById(before, after, fields) {
+  const a = new Map((before || []).map((x) => [x.id, x]));
+  const b = new Map((after || []).map((x) => [x.id, x]));
+  const added = [...b.values()].filter((x) => !a.has(x.id)).map(brief);
+  const removed = [...a.values()].filter((x) => !b.has(x.id)).map(brief);
+  const changed = [];
+  for (const [id, x] of b) {
+    const old = a.get(id);
+    if (!old) continue;
+    const diff = fields.filter((f) => JSON.stringify(old[f]) !== JSON.stringify(x[f]));
+    if (diff.length) changed.push({ ...brief(x), fields: diff });
+  }
+  return { added, removed, changed };
+}
+const CHANGES = path.join(OUT, 'changes.json');
+const history = (() => { try { return JSON.parse(fs.readFileSync(CHANGES, 'utf8')); } catch { return { updates: [] }; } })();
+if (changedFiles.length && prev.codex) {
+  const items = diffById(prev.codex.items, codex.items, ['name_en', 'gives_en', 'xp_en', 'from_en', 'uses', 'worth_en', 'rarity', 'about_en']);
+  const beasts = diffById(prev.bestiary?.beasts, bestiary.beasts, ['name_en', 'stats', 'facts_en', 'places', 'reward', 'weapons']);
+  const skillUnlocks = skills.filter((sk) => {
+    const old = (prev.skills || []).find((o) => o.id === sk.id);
+    return !old || JSON.stringify(old.unlocks) !== JSON.stringify(sk.unlocks) || JSON.stringify(old.perks) !== JSON.stringify(sk.perks);
+  }).map(brief);
+  history.updates.unshift({
+    at: meta.generatedAt,
+    from: prev.meta ? { gameVersion: prev.meta.gameVersion, rulesHash: prev.meta.rulesHash } : null,
+    to: { gameVersion: meta.gameVersion, rulesHash: meta.rulesHash },
+    files: changedFiles,
+    items: { added: items.added, removed: items.removed, changed: items.changed.slice(0, 60), changedCount: items.changed.length },
+    beasts: { added: beasts.added, removed: beasts.removed, changed: beasts.changed.slice(0, 40), changedCount: beasts.changed.length },
+    skills: skillUnlocks
+  });
+  history.updates = history.updates.slice(0, 15);
+}
+if (!fs.existsSync(CHANGES) || (changedFiles.length && prev.codex)) fs.writeFileSync(CHANGES, serialize(history), 'utf8');
 
 const esShare = (items, key) => {
   const withEn = items.filter((x) => x[`${key}_en`]);
   return withEn.length ? Math.round((100 * withEn.filter((x) => x[`${key}_es`]).length) / withEn.length) : 100;
 };
-console.log(`Datos oficiales: version ${meta.gameVersion} (reglas ${meta.rulesHash})`);
+console.log(`Datos oficiales: version ${meta.gameVersion} (reglas ${meta.rulesHash})${changedFiles.length ? ` -- cambiaron: ${changedFiles.join(', ')}` : ' -- sin cambios en los datos'}`);
 console.log(`  codice ${meta.counts.codex} cosas (nombres en espanol ${esShare(codex.items, 'name')}%), ${meta.counts.skills} habilidades,`);
 console.log(`  ${meta.counts.beasts} criaturas, ${meta.counts.regions} regiones / ${meta.counts.places} lugares -> ${path.relative(ROOT, OUT)}`);
 console.log(`  arte: ${beastArt} miniaturas de criaturas, ${portraitArt} retratos de aldeanos`);
