@@ -1,0 +1,79 @@
+# Actualiza los datos oficiales del juego (Codice, habilidades, Bestiario, exploracion, arte)
+# y los publica solo si cambiaron y pasan los tests y el build.
+# - Todos los dias a las 06:23 (hora de Argentina) y a pedido (boton "Actualizar" en Ajustes
+#   de la herramienta, o "Run workflow" en GitHub > Actions).
+# - Los archivos del juego se descargan en la maquina temporal de GitHub y se descartan:
+#   nunca se suben al repositorio.
+# - Cada actualizacion es un commit propio en main: para volver atras, revertir ese commit.
+name: Actualizar datos del juego
+
+on:
+  schedule:
+    - cron: '23 9 * * *'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Motivo (opcional)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci --no-audit --no-fund
+
+      - name: Descargar el juego y generar los datos oficiales
+        run: npm run game:update
+
+      - name: Ver si cambio algo
+        id: diff
+        run: |
+          if [ -z "$(git status --porcelain -- public/data/bloomshire)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "### Sin novedades: los datos ya estan al dia con el juego." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$(node -p "require('./public/data/bloomshire/official/meta.json').gameVersion")" >> "$GITHUB_OUTPUT"
+            git status --short -- public/data/bloomshire
+          fi
+
+      - name: Tests
+        if: steps.diff.outputs.changed == 'true'
+        run: npx vitest run
+
+      - name: Build
+        if: steps.diff.outputs.changed == 'true'
+        run: npx vite build
+
+      - name: Publicar (commit en main)
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "bloomshire-tool-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/bloomshire
+          git commit -m "chore(datos): actualizar datos oficiales del juego a la version ${{ steps.diff.outputs.version }}" \
+                     -m "Generado automaticamente por .github/workflows/game-update.yml. Para volver atras: revertir este commit."
+          git push origin HEAD:main
+          {
+            echo "### Datos actualizados a la version ${{ steps.diff.outputs.version }}"
+            node -e "const c=require('./public/data/bloomshire/official/changes.json').updates[0]||{};const n=(o)=>o?((o.added||[]).length+' nuevos, '+(o.removed||[]).length+' quitados, '+(o.changedCount||0)+' con cambios'):'-';console.log('- Items: '+n(c.items));console.log('- Criaturas: '+n(c.beasts));console.log('- Habilidades con cambios: '+((c.skills||[]).length))"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -9,7 +9,9 @@
     "build:rules": "node scripts/build_rules.mjs",
     "preview": "vite preview",
     "test": "vitest run",
-    "build:official": "node scripts/build_official_data.mjs"
+    "build:official": "node scripts/build_official_data.mjs",
+    "game:fetch": "node scripts/fetch_game.mjs",
+    "game:update": "node scripts/fetch_game.mjs && node scripts/build_official_data.mjs && node scripts/fetch_game.mjs --art && node scripts/build_official_data.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",

@@ -10,6 +10,7 @@ import enItems from './locales/en/items.json';
 import enCalc from './locales/en/calc.json';
 import enLogbook from './locales/en/logbook.json';
 import enCompendium from './locales/en/compendium.json';
+import enUpdates from './locales/en/updates.json';
 
 import esCommon from './locales/es/common.json';
 import esHeader from './locales/es/header.json';
@@ -20,6 +21,7 @@ import esItems from './locales/es/items.json';
 import esCalc from './locales/es/calc.json';
 import esLogbook from './locales/es/logbook.json';
 import esCompendium from './locales/es/compendium.json';
+import esUpdates from './locales/es/updates.json';
 
 export const STORAGE_LANG_KEY = 'bloomshire_lang';
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -73,6 +75,7 @@ i18n
         calc: enCalc,
         logbook: enLogbook,
         compendium: enCompendium,
+        updates: enUpdates,
       },
       es: {
         common: esCommon,
@@ -84,11 +87,12 @@ i18n
         calc: esCalc,
         logbook: esLogbook,
         compendium: esCompendium,
+        updates: esUpdates,
       },
     },
     lng: initialLang,
     fallbackLng: DEFAULT_LANGUAGE,
-    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium'],
+    ns: ['common', 'header', 'tabs', 'errors', 'craft', 'items', 'calc', 'logbook', 'compendium', 'updates'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: {

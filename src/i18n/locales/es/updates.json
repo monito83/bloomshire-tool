@@ -1,0 +1,67 @@
+{
+  "gate": {
+    "title": "Ajustes es solo para administradores",
+    "body": "Entrá con la contraseña de admin para revisar las actualizaciones del juego y administrar la herramienta.",
+    "enter": "Entrar como admin"
+  },
+  "title": "Actualizaciones del juego",
+  "subtitle": "Los datos de la herramienta (Códice, habilidades, Bestiario, libro de exploración y arte) salen directo del juego. Un robot revisa todos los días a las 06:23 si hay una versión nueva del juego y publica la actualización solo, si pasan todos los tests.",
+  "check": "Revisar ahora",
+  "logout": "Cerrar sesión",
+  "sessionUntil": "Sesión hasta las {{time}}",
+  "live": "Versión del juego en vivo",
+  "tool": "Versión en la herramienta",
+  "rules": "reglas {{hash}}",
+  "generated": "Generada el {{date}}",
+  "unreachable": "No se pudo consultar el juego",
+  "upToDate": "Al día",
+  "outdated": "Hay una versión nueva del juego",
+  "unknown": "Sin datos",
+  "outdatedHint": "Tocá Actualizar ahora o esperá la revisión automática de mañana.",
+  "autoHint": "Se revisa sola todos los días.",
+  "updateNow": "Actualizar ahora",
+  "running": "Actualizando…",
+  "updateHint": "Descarga el juego, regenera los datos y los publica si pasan los tests (2 a 4 minutos, más el deploy de Vercel).",
+  "githubMissing": "Falta configurar el token de GitHub (GITHUB_UPDATE_TOKEN en Vercel): el botón queda desactivado, pero el robot diario funciona igual.",
+  "rollback": "Cada actualización es un commit propio en main. Para deshacer una, revertí ese commit en GitHub (o pedíselo a Claude) y Vercel vuelve a publicar la versión anterior.",
+  "runs": {
+    "title": "Corridas del robot",
+    "empty": "Todavía no hay corridas.",
+    "details": "Detalle",
+    "all": "Todas las corridas",
+    "commits": "Historial de commits",
+    "status": {
+      "queued": "En cola",
+      "in_progress": "Trabajando",
+      "waiting": "Esperando",
+      "pending": "Pendiente",
+      "requested": "Pedida"
+    },
+    "conclusion": {
+      "success": "Lista",
+      "failure": "Falló",
+      "cancelled": "Cancelada",
+      "skipped": "Omitida",
+      "timed_out": "Tiempo agotado"
+    },
+    "event": {
+      "schedule": "diaria",
+      "workflow_dispatch": "manual",
+      "push": "push"
+    }
+  },
+  "history": {
+    "title": "Qué cambió",
+    "empty": "Todavía no hay actualizaciones registradas: la primera aparece cuando cambie el juego.",
+    "items": "Ítems: {{added}} nuevos, {{removed}} quitados, {{changed}} con cambios",
+    "beasts": "Criaturas: {{added}} nuevas, {{removed}} quitadas, {{changed}} con cambios",
+    "skills": "Habilidades con desbloqueos nuevos:"
+  },
+  "errors": {
+    "github_not_configured": "Falta configurar el token de GitHub (GITHUB_UPDATE_TOKEN).",
+    "github_forbidden": "GitHub rechazó el token: revisá que tenga permiso de lectura y escritura en Actions sobre el repositorio.",
+    "github_not_found": "GitHub no encontró el robot (¿está el workflow en main?).",
+    "github_error": "GitHub no respondió. Probá de nuevo en un momento.",
+    "update_running": "Ya hay una actualización en curso."
+  }
+}
