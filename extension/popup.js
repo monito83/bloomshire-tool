@@ -58,9 +58,9 @@ document.getElementById('btnSync').addEventListener('click', () => {
     setTimeout(() => {
       chrome.storage.local.get(['latest_bloomshire_state'], (res) => {
         if (res.latest_bloomshire_state) updateUI(res.latest_bloomshire_state);
-        btn.textContent = '✓ Sincronizado con MoniOS';
+        btn.textContent = '✓ Sincronizado';
         setTimeout(() => {
-          btn.textContent = '⚡ Forzar Sincronización con MoniOS';
+          btn.textContent = '⚡ Forzar sincronización';
         }, 1500);
       });
     }, 800);

@@ -1,10 +1,12 @@
-// content_monios.js - Inyectado en MoniOS (localhost y vercel.app)
+// content_monios.js - Inyectado en Bloomshire Tool (bloomshire-tool.vercel.app y localhost).
+// (El nombre del archivo y los mensajes MONIOS_* se conservan por compatibilidad entre versiones
+//  de la extension y de la herramienta; MoniOS ya no se usa.)
 (function () {
   // SINGLETON GUARD: Prevenir ejecuciones múltiples si se reinyecta el script
   if (window.__bloomshire_monios_loaded) return;
   window.__bloomshire_monios_loaded = true;
 
-  console.log('[Bloomshire Companion MoniOS] Conexión activa en MoniOS:', window.location.origin);
+  console.log('[Bloomshire Companion] Conexión activa con Bloomshire Tool:', window.location.origin);
 
   function announceReady() {
     window.postMessage({
@@ -19,11 +21,11 @@
 
   announceReady();
 
-  // Al montar en MoniOS, pedir a background el último estado disponible de inmediato
+  // Al montar en Bloomshire Tool, pedir a background el último estado disponible de inmediato
   try {
     chrome.runtime.sendMessage({ type: 'GET_BLOOMSHIRE_STATE' }, (resp) => {
       if (resp?.data) {
-        console.log('[Bloomshire Companion MoniOS] Estado inicial entregado a MoniOS:', resp.data);
+        console.log('[Bloomshire Companion] Estado inicial entregado a Bloomshire Tool:', resp.data);
         window.postMessage({ type: 'MONIOS_COMPANION_SYNC', game: 'bloomshire', data: resp.data }, '*');
         document.dispatchEvent(new CustomEvent('monios_game_sync', { detail: { game: 'bloomshire', data: resp.data } }));
       }
@@ -60,7 +62,7 @@
       lastInjectedSig = sig;
       lastInjectedAt = now;
 
-      console.log('[Bloomshire Companion MoniOS] Telemetría inyectada en MoniOS:', {
+      console.log('[Bloomshire Companion] Telemetría inyectada en Bloomshire Tool:', {
         gold: data.gold,
         energy: data.currentEnergy,
         items: data.inventory?.length,
@@ -69,7 +71,7 @@
 
       const payloadWithSource = { ...data, _fromExtension: true, timestamp: data.timestamp || now };
 
-      // Disparar mensaje estándar a MoniOS
+      // Disparar mensaje estándar a Bloomshire Tool
       window.postMessage({
         type: 'MONIOS_COMPANION_SYNC',
         game: 'bloomshire',
@@ -86,7 +88,7 @@
 
     
     if (message.type === 'BLOOMSHIRE_INJECT_MARKET_SNAPSHOT' && message.offers) {
-      console.log('[Bloomshire Companion MoniOS] Ofertas de mercado inyectadas en MoniOS:', message.offers);
+      console.log('[Bloomshire Companion] Ofertas de mercado inyectadas en Bloomshire Tool:', message.offers);
       window.postMessage({
         type: 'MONIOS_MARKET_SNAPSHOT',
         game: 'bloomshire',
@@ -125,7 +127,7 @@
     return false;
   });
 
-  // Debounce para petición de sincronización forzada desde MoniOS
+  // Debounce para petición de sincronización forzada desde Bloomshire Tool
   let lastForceSyncSent = 0;
   function triggerForceSync() {
     const now = Date.now();
@@ -133,7 +135,7 @@
     lastForceSyncSent = now;
     try {
       chrome.runtime.sendMessage({ type: 'FORCE_SYNC_REQUEST' });
-      console.log('[Bloomshire Companion MoniOS] Petición FORCE_SYNC_REQUEST enviada a background');
+      console.log('[Bloomshire Companion] Petición FORCE_SYNC_REQUEST enviada a background');
     } catch (err) { }
   }
 
@@ -142,7 +144,7 @@
       triggerForceSync();
     
     } else if (e.data?.type === 'REQUEST_MARKET_SALES_SYNC') {
-      console.log('[Bloomshire Companion MoniOS] Petición REQUEST_MARKET_SALES_SYNC reenviada a background');
+      console.log('[Bloomshire Companion] Petición REQUEST_MARKET_SALES_SYNC reenviada a background');
       try {
         chrome.runtime.sendMessage({ type: 'REQUEST_MARKET_SALES_SYNC' }, (resp) => {
           if (resp && !resp.ok) {
