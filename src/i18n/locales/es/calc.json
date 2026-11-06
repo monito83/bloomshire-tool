@@ -56,7 +56,10 @@
       "goldMin_desc": "💰 Más rentable en Oro (Oro/min ↓)",
       "time_asc": "⏳ Menor tiempo de espera (↑)",
       "cost_asc": "🪙 Más barato de comprar (Coste ↑)",
-      "sell_desc": "💎 Mayor precio de venta (Venta ↓)"
+      "sell_desc": "💎 Mayor precio de venta (Venta ↓)",
+      "column": "↕ Columna: {{col}} ({{dir}})",
+      "dirAsc": "menor a mayor",
+      "dirDesc": "mayor a menor"
     }
   },
   "table": {
@@ -80,7 +83,8 @@
     "levelBadge": "Nv {{level}}",
     "regrowBadge": "Rebrote (5x)",
     "regrowLevel": "Nv 15+: {{val}}",
-    "consumption": "Consumo: {{energy}}⚡"
+    "consumption": "Consumo: {{energy}}⚡",
+    "sortBy": "Ordenar por {{col}} (tocá de nuevo para invertir)"
   },
   "grow": {
     "hits": "{{n}} golpes",

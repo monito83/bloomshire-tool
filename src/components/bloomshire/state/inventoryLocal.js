@@ -112,3 +112,13 @@ export function getLocalPlayerItemQty(itemObj, itemQuantities, rawInventory) {
   });
   return sum;
 }
+
+// Huella del inventario crudo (id, almacen y cantidad de cada casillero). La extension manda la partida
+// cada segundo aunque no cambie nada: con esto solo se recalculan las cantidades cuando el inventario
+// cambio de verdad, y no se pisan los ajustes manuales del liquidador (+/-, Limpiar todo).
+export function inventorySignature(rawList) {
+  if (!Array.isArray(rawList)) return '';
+  return rawList
+    .map(it => `${it?.id ?? ''}|${it?.name ?? ''}|${it?.area ?? ''}|${Number(it?.qty) || Number(it?.n) || 0}`)
+    .join(';');
+}
