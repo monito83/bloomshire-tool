@@ -8,11 +8,11 @@ import {
   Check,
   RefreshCw
 } from 'lucide-react';
+import MarketRadar from '../market/MarketRadar';
 import defaultInventoryCatalog from '../../../../public/data/bloomshire/inventory_catalog.json';
 import { NpcAvatar } from '../../BloomshireMegaAtlas';
 import {
   CRAFT_STATION_LOCATIONS,
-  MARKET_ROTATION_CATALOG,
   getStorageType,
   getItemStorageBreakdown as getItemStorageBreakdownHelper,
   calculateQuantitiesFromRaw,
@@ -34,10 +34,6 @@ export default function InventoryTab({
   setInventoryScope = () => {},
   activeOrders = [],
   activeQuestMaterials = [],
-  liveMarketOffers = null,
-  marketOffersLastUpdated = null,
-  isMarketOffersLoading = false,
-  handleRefreshMarketOffers = () => {},
   remainingThingsCap = 1500,
   remainingGoldCap = 500000,
   dailyGoldCap = 500000,
@@ -59,8 +55,6 @@ export default function InventoryTab({
   });
   const [inventorySearchQuery, setInventorySearchQuery] = useState('');
   const [inventorySortBy, setInventorySortBy] = useState('owned_desc');
-  const [marketFilter, setMarketFilter] = useState('all');
-  const [marketSearch, setMarketSearch] = useState('');
 
   // Helpers de desglose vinculados al inventario vivo
   const getItemStorageBreakdown = (itemObj) => getItemStorageBreakdownHelper(itemObj, rawInventory);
@@ -217,83 +211,6 @@ export default function InventoryTab({
     return list;
   }, [itemQuantities, inventorySearchQuery, inventorySortBy, inventoryCatalogData]);
 
-  // Oportunidades de Venta y Rotación en Mercado (Rowan)
-  const marketOpportunities = useMemo(() => {
-    const protectedMap = {};
-    if (Array.isArray(activeQuestMaterials)) {
-      activeQuestMaterials.forEach(mat => {
-        const key = (mat.id || '').toLowerCase().trim();
-        if (key) {
-          protectedMap[key] = {
-            needed: mat.needed,
-            questTitle: mat.questTitle || 'Misión Activa'
-          };
-        }
-      });
-    }
-
-    return MARKET_ROTATION_CATALOG.map(entry => {
-      const bd = getItemStorageBreakdown({ id: entry.id, name: entry.name });
-      const idKey = entry.id.toLowerCase().trim();
-      const isProtected = !!protectedMap[idKey];
-      const questProtection = protectedMap[idKey] || null;
-
-      // Cruzar con puestos vivos de Rowan si fueron descargados
-      const stallsForThis = Array.isArray(liveMarketOffers?.stalls)
-        ? liveMarketOffers.stalls.filter(s => (s.item || '').toLowerCase().trim() === idKey)
-        : [];
-      const hasLiveStalls = stallsForThis.length > 0;
-      let effectiveMinPrice = entry.minPrice;
-      let effectiveAvgPrice = entry.avgPrice;
-      let effectiveMaxPrice = entry.maxPrice;
-      let totalListedOnServer = 0;
-
-      if (hasLiveStalls) {
-        const prices = stallsForThis.map(s => Number(s.price) || 0).filter(p => p > 0);
-        if (prices.length > 0) {
-          effectiveMinPrice = Math.min(...prices);
-          effectiveMaxPrice = Math.max(...prices);
-          effectiveAvgPrice = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
-        }
-        totalListedOnServer = stallsForThis.reduce((acc, s) => acc + (Number(s.left) || 1), 0);
-      }
-
-      const totalPotentialGold = bd.total * effectiveAvgPrice;
-      const minGold = bd.total * effectiveMinPrice;
-      const maxGold = bd.total * effectiveMaxPrice;
-
-      let score = entry.volumeScore;
-      if (bd.total > 0) score += 100;
-      if (isProtected) score -= 150;
-      if (hasLiveStalls && totalListedOnServer < 15) score += 30;
-
-      let dynamicTag = entry.tag;
-      if (hasLiveStalls) {
-        if (totalListedOnServer <= 10) dynamicTag = 'Poca Oferta 🔥';
-        else if (totalListedOnServer >= 40) dynamicTag = 'Alta Competencia ⚠️';
-        else dynamicTag = `En Venta (${totalListedOnServer} un.)`;
-      }
-
-      return {
-        ...entry,
-        minPrice: effectiveMinPrice,
-        avgPrice: effectiveAvgPrice,
-        maxPrice: effectiveMaxPrice,
-        hasLiveStalls,
-        totalListedOnServer,
-        liveStallsCount: stallsForThis.length,
-        tag: dynamicTag,
-        stock: bd,
-        hasStock: bd.total > 0,
-        isProtected,
-        questProtection,
-        totalPotentialGold,
-        minGold,
-        maxGold,
-        score
-      };
-    }).sort((a, b) => b.score - a.score);
-  }, [rawInventory, activeQuestMaterials, liveMarketOffers]);
 
   return (
             <div className="flex flex-col h-full w-full overflow-hidden p-4 gap-3">
@@ -345,7 +262,7 @@ export default function InventoryTab({
                       : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <span>📈 Radar de Rotación de Mercado (Rowan)</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
+                  <span>📈 Radar de Mercado (Rowan)</span>{!isConnected && <span className="text-[10px] ml-1">🔒</span>}
                   <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-emerald-500 text-slate-950">
                     HOT
                   </span>
@@ -1125,248 +1042,13 @@ export default function InventoryTab({
                     onBack={() => setEconomySubTab('arbitrage')}
                   />
                 ) : (
-                <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-1">
-                  {/* Hero Banner de Rowan */}
-                  <div className="p-4 bg-[#0d162b] border-2 border-emerald-500/60 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-900 border-2 border-emerald-400/80 flex items-center justify-center text-3xl shadow-lg shrink-0">
-                        ⚖️
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h2 className="text-base font-black text-emerald-400">
-                            📈 RADAR DE ROTACIÓN DE MERCADO // ROWAN & MARKET HALL
-                          </h2>
-                          <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                            ESTRATEGIA DE ORO RÁPIDO
-                          </span>
-                          {marketOffersLastUpdated ? (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
-                              🟢 Ventas Vivas ({new Date(marketOffersLastUpdated).toLocaleTimeString('es-ES')})
-                            </span>
-                          ) : (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-400 bg-slate-800/60 border border-slate-700/50">
-                              ⚪ Precios Estimados
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
-                          Analiza tus existencias unificadas (Mochila, Cofre de la Casa y Cofre del Pueblo) cruzándolas con los productos de <b>mayor velocidad de compraventa</b> en el mercado. Convierte stock ocioso en oro líquido y <b>protege</b> los materiales que necesitas para tus misiones activas.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
-                      <div className="px-3.5 py-1.5 rounded-xl bg-[#091122] border border-slate-800 text-right">
-                        <div className="text-[10px] text-slate-400 uppercase font-bold">Oro Rápido Proyectado</div>
-                        <div className="font-mono text-sm font-black text-amber-400">
-                          +{marketOpportunities.filter(o => o.hasStock && !o.isProtected).reduce((sum, o) => sum + o.totalPotentialGold, 0).toLocaleString('es-ES')}g
-                        </div>
-                      </div>
-                      <div className="px-3.5 py-1.5 rounded-xl bg-[#091122] border border-slate-800 text-right">
-                        <div className="text-[10px] text-slate-400 uppercase font-bold">Items Listos en Stock</div>
-                        <div className="font-mono text-sm font-black text-emerald-400">
-                          {marketOpportunities.filter(o => o.hasStock && !o.isProtected).length} productos
-                        </div>
-                      </div>
-                      <button
-                        onClick={handleRefreshMarketOffers}
-                        disabled={isMarketOffersLoading}
-                        className="px-3.5 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs flex items-center gap-1.5 shadow-lg cursor-pointer transition-all disabled:opacity-50"
-                        title="Descargar las últimas 200 ventas y puestos activos de Rowan"
-                      >
-                        <RefreshCw className={`w-3.5 h-3.5 ${isMarketOffersLoading ? 'animate-spin' : ''}`} />
-                        <span>{isMarketOffersLoading ? 'Consultando...' : '🔍 Actualizar Ventas'}</span>
-                      </button>
-                      <button
-                        onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS.market)}
-                        className="px-3.5 py-2 bg-[#142e2b] hover:bg-[#1a3d39] border border-emerald-500/50 text-emerald-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-md"
-                        title="Ubicar el Market Hall de Rowan en el Mega-Atlas"
-                      >
-                        <MapPin className="w-4 h-4 text-emerald-400" />
-                        <span>Ubicar Market Hall</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Barra de Búsqueda y Filtros de Categoría */}
-                  <div className="flex items-center justify-between p-3 bg-[#0a101f] border border-indigo-950/80 rounded-xl text-xs flex-wrap gap-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <div className="relative">
-                        <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
-                        <input
-                          type="text"
-                          value={marketSearch}
-                          onChange={e => setMarketSearch(e.target.value)}
-                          placeholder="Buscar producto en radar..."
-                          className="pl-8 pr-3 py-1.5 bg-[#0e172c] border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 w-48 sm:w-64"
-                        />
-                      </div>
-
-                      {[
-                        { key: 'all', label: 'Todos' },
-                        { key: 'in_stock', label: 'Con Stock en Mano ✨' },
-                        { key: 'ultra', label: 'Salida Inmediata ⚡' },
-                        { key: 'gems', label: 'Gemas & Lujo 💎' },
-                        { key: 'vip', label: 'Cultivos VIP 🍓' }
-                      ].map(f => (
-                        <button
-                          key={f.key}
-                          onClick={() => setMarketFilter(f.key)}
-                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
-                            marketFilter === f.key
-                              ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
-                              : 'bg-[#101b33] border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
-                          }`}
-                        >
-                          {f.label}
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="text-[11px] text-slate-400 font-mono">
-                      🛡️ Los insumos de misión están protegidos para evitar ventas por error
-                    </div>
-                  </div>
-
-                  {/* Cuadrícula de Oportunidades de Mercado */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                    {marketOpportunities
-                      .filter(opp => {
-                        if (marketSearch.trim()) {
-                          const q = marketSearch.toLowerCase().trim();
-                          if (!opp.name.toLowerCase().includes(q) && !opp.category.toLowerCase().includes(q)) {
-                            return false;
-                          }
-                        }
-                        if (marketFilter === 'in_stock') return opp.hasStock;
-                        if (marketFilter === 'ultra') return opp.velocity === 'ultra';
-                        if (marketFilter === 'gems') return opp.category.includes('Gemas');
-                        if (marketFilter === 'vip') return opp.category.includes('VIP');
-                        return true;
-                      })
-                      .map(opp => {
-                        const isUltra = opp.velocity === 'ultra';
-                        const isHigh = opp.velocity === 'high';
-
-                        return (
-                          <div
-                            key={opp.id}
-                            className={`p-4 rounded-xl border flex flex-col justify-between gap-3 transition-all shadow-md ${
-                              opp.isProtected
-                                ? 'bg-[#18111e] border-rose-500/50 hover:border-rose-400'
-                                : opp.hasStock
-                                ? 'bg-[#0d1d22] border-emerald-500/60 shadow-emerald-950/20'
-                                : 'bg-[#0c1427] border-indigo-950/90 opacity-75 hover:opacity-100'
-                            }`}
-                          >
-                            <div>
-                              {/* Cabecera: Ícono + Nombre + Badge de Rotación */}
-                              <div className="flex items-start justify-between gap-2">
-                                <div className="flex items-center gap-2.5">
-                                  <span className="text-2xl">{opp.icon}</span>
-                                  <div>
-                                    <div className="text-sm font-bold text-white leading-tight">
-                                      {opp.name}
-                                    </div>
-                                    <div className="text-[10px] text-slate-400 mt-0.5">
-                                      {opp.category}
-                                    </div>
-                                  </div>
-                                </div>
-                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-black border shrink-0 ${
-                                  opp.isProtected
-                                    ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
-                                    : isUltra
-                                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                                    : isHigh
-                                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                                    : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                                }`}>
-                                  {opp.isProtected ? '🛑 RESERVADO' : opp.tag}
-                                </span>
-                              </div>
-
-                              {/* Alerta de Protección de Misión si corresponde */}
-                              {opp.isProtected && (
-                                <div className="mt-2.5 p-2 bg-rose-950/60 border border-rose-500/40 rounded-lg text-[11px] text-rose-200 flex items-center gap-1.5">
-                                  <span>⚠️</span>
-                                  <span>
-                                    <b>No vender:</b> Requerido para <b>{opp.questProtection?.questTitle}</b> (Necesitas {opp.questProtection?.needed}).
-                                  </span>
-                                </div>
-                              )}
-
-                              {/* Precios de Mercado y Velocidad */}
-                              <div className="mt-3 grid grid-cols-2 gap-2 bg-[#08101d] p-2.5 rounded-lg border border-slate-800/80 text-xs">
-                                <div>
-                                  <div className="text-[10px] text-slate-400 uppercase font-mono">Precio Sugerido</div>
-                                  <div className="text-amber-300 font-bold font-mono text-sm">
-                                    ~{opp.avgPrice}g <span className="text-[10px] text-slate-400 font-normal">({opp.minPrice}-{opp.maxPrice}g)</span>
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="text-[10px] text-slate-400 uppercase font-mono">Índice de Salida</div>
-                                  <div className={`font-bold font-mono text-xs ${isUltra ? 'text-amber-400' : isHigh ? 'text-emerald-400' : 'text-cyan-400'}`}>
-                                    {opp.volumeScore}% Demanda Activa
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Stock Unificado */}
-                              <div className="mt-2.5 flex items-center justify-between text-xs font-mono">
-                                <span className="text-slate-400 text-[11px]">Tu Stock:</span>
-                                <div className="flex items-center gap-1.5 text-[10px]">
-                                  <span className="px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 rounded" title="En Mochila">
-                                    🎒 {opp.stock.m}
-                                  </span>
-                                  <span className="px-1.5 py-0.5 bg-amber-950/60 border border-amber-500/40 text-amber-300 rounded" title="En Cofre de la Casa">
-                                    🏡 {opp.stock.cc}
-                                  </span>
-                                  <span className="px-1.5 py-0.5 bg-purple-950/60 border border-purple-500/40 text-purple-300 rounded" title="En Cofre del Pueblo">
-                                    🏬 {opp.stock.cp}
-                                  </span>
-                                  <span className={`px-2 py-0.5 rounded font-bold ${
-                                    opp.hasStock ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-400'
-                                  }`}>
-                                    Total: {opp.stock.total}
-                                  </span>
-                                </div>
-                              </div>
-
-                              {/* Consejo Táctico */}
-                              <div className="mt-2.5 text-[11px] text-slate-300 leading-relaxed bg-[#0a1424] p-2 rounded-lg border border-slate-800/60">
-                                💡 {opp.tip}
-                              </div>
-                            </div>
-
-                            {/* Pie de Tarjeta: Potencial de Oro y Acción */}
-                            <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-2 mt-auto">
-                              <div>
-                                <div className="text-[10px] text-slate-400 uppercase font-mono">Oro en Mano si Vendes</div>
-                                <div className={`font-mono font-black text-sm ${opp.hasStock ? 'text-amber-400' : 'text-slate-500'}`}>
-                                  {opp.hasStock ? `+${opp.totalPotentialGold.toLocaleString('es-ES')} Oro` : '0g (Sin stock)'}
-                                </div>
-                              </div>
-
-                              <button
-                                onClick={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS.market)}
-                                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                                  opp.hasStock && !opp.isProtected
-                                    ? 'bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black shadow-md'
-                                    : 'bg-[#15233d] hover:bg-[#1c3054] text-slate-300'
-                                }`}
-                                title="Publicar o Vender en Market Hall de Rowan"
-                              >
-                                <MapPin className="w-3.5 h-3.5" />
-                                <span>Vender en Rowan</span>
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>
+                <MarketRadar
+                  rawInventory={rawInventory}
+                  activeQuestMaterials={activeQuestMaterials}
+                  soldItemsToday={soldItemsToday}
+                  dailyPerItemCap={dailyPerItemCap}
+                  onLocateMarket={() => locateInMegaAtlas(CRAFT_STATION_LOCATIONS.market)}
+                />
                 )
               )}
             </div>

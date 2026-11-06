@@ -310,7 +310,11 @@ describe('Fase 8: Infraestructura y Paridad de Internacionalizacion (i18n)', () 
       'src/components/bloomshire/logbook/MediaDropzone.jsx',
       'src/components/bloomshire/official/RegionCompendium.jsx',
       'src/components/bloomshire/admin/AdminGate.jsx',
-      'src/components/bloomshire/admin/GameUpdatePanel.jsx'
+      'src/components/bloomshire/admin/GameUpdatePanel.jsx',
+      'src/components/bloomshire/market/MarketRadar.jsx',
+      'src/components/bloomshire/market/MarketItemModal.jsx',
+      'src/components/bloomshire/market/MarketCharts.jsx',
+      'src/components/bloomshire/market/marketBits.jsx'
     ];
 
     for (const filePath of targetFiles) {

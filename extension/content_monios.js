@@ -111,6 +111,16 @@
       return false;
     }
 
+    if (message.type === 'BLOOMSHIRE_INJECT_MARKET_ERROR') {
+      window.postMessage({
+        type: 'MONIOS_MARKET_SNAPSHOT_ERROR',
+        error: message.error || '',
+        reason: message.reason || 'game_error'
+      }, '*');
+      sendResponse({ status: 'market_error_delivered' });
+      return false;
+    }
+
     if (message.type === 'BLOOMSHIRE_INJECT_MAP' && message.payload) {
       const mapPayload = message.payload;
       window.postMessage({
@@ -150,6 +160,7 @@
           if (resp && !resp.ok) {
             window.postMessage({
               type: 'MONIOS_MARKET_SNAPSHOT_ERROR',
+              reason: 'no_game_tab',
               error: 'Pestaña de Bloomshire no detectada. Abre el juego para sincronizar ofertas.'
             }, '*');
           }

@@ -1,4 +1,4 @@
-// Moni-OS v1.0.2 - Live Companion & Market Radar (Modularized Architecture)
+// Bloomshire Tool - Live Companion & Market Radar (Modularized Architecture)
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { 
   Zap, 
@@ -35,7 +35,14 @@ import {
   CheckCircle2,
   AlertCircle,
   Settings,
-  LogOut
+  LogOut,
+  Map as MapIcon,
+  PackageSearch,
+  ChefHat,
+  HeartHandshake,
+  Calculator,
+  Timer,
+  ScrollText
 } from 'lucide-react';
 
 // Importar datos canónicos JSON
@@ -90,7 +97,6 @@ import {
   ItemSprite,
   CraftMaterialsBadge,
   DASHBOARD_QUEST_CATALOG,
-  MARKET_ROTATION_CATALOG,
   CRAFT_STATION_LOCATIONS,
   LockedModuleScreen,
   LiveCropOrTimerCard,
@@ -116,7 +122,6 @@ export {
   ItemSprite,
   CraftMaterialsBadge,
   DASHBOARD_QUEST_CATALOG,
-  MARKET_ROTATION_CATALOG,
   CRAFT_STATION_LOCATIONS,
   LockedModuleScreen,
   LiveCropOrTimerCard,
@@ -489,27 +494,6 @@ export default function BloomshireCommand() {
     }, 1000);
   };
 
-  const handleRefreshMarketOffers = () => {
-    setIsMarketOffersLoading(true);
-    setUpdateStatusMessage('Descargando puestos y últimas ventas de Rowan...');
-    try {
-      window.postMessage({ type: 'REQUEST_MARKET_SALES_SYNC' }, '*');
-      document.dispatchEvent(new CustomEvent('monios_request_market_sales'));
-    } catch (e) {}
-
-    setTimeout(() => {
-      setIsMarketOffersLoading(prev => {
-        if (prev) {
-          setSystemLogs(l => [
-            { id: Date.now(), time: new Date().toLocaleTimeString(), text: 'Consulta de mercado finalizada. Si no ves ventas, asegúrate de tener Bloomshire abierto con tu sesión iniciada.', type: 'info' },
-            ...l
-          ]);
-        }
-        return false;
-      });
-    }, 6000);
-  };
-
   const handleForceRedownload = (moduleKey) => {
     const nowStr = new Date().toLocaleTimeString();
     if (moduleKey === 'maps') {
@@ -650,19 +634,6 @@ export default function BloomshireCommand() {
     } catch {
       return 'arbitrage';
     }
-  });
-    const [liveMarketOffers, setLiveMarketOffers] = useState(() => {
-    try {
-      const c = localStorage.getItem('bloomshire_cached_market_offers');
-      return c ? JSON.parse(c) : null;
-    } catch { return null; }
-  });
-  const [isMarketOffersLoading, setIsMarketOffersLoading] = useState(false);
-  const [marketOffersLastUpdated, setMarketOffersLastUpdated] = useState(() => {
-    try {
-      const c = localStorage.getItem('bloomshire_cached_market_offers');
-      return c ? (JSON.parse(c)?.timestamp || null) : null;
-    } catch { return null; }
   });
   const [gameBuildHash, setGameBuildHash] = useState('a70eb5dd5113');
   const [toolVersion] = useState('v2.5.0');
@@ -1612,39 +1583,6 @@ export default function BloomshireCommand() {
     };
 
     
-    const handleMarketMessage = (event) => {
-      if (event.data?.type === 'MONIOS_MARKET_SNAPSHOT' && event.data.offers) {
-        const offers = event.data.offers;
-        const ts = event.data.timestamp || Date.now();
-        setLiveMarketOffers(offers);
-        setMarketOffersLastUpdated(ts);
-        setIsMarketOffersLoading(false);
-        setSystemLogs(l => [
-          { id: Date.now(), time: new Date(ts).toLocaleTimeString(), text: `Mercado sincronizado: ${offers.stalls?.length || 0} puestos activos descargados de Rowan.`, type: 'success' },
-          ...l
-        ].slice(0, 50));
-      }
-      if (event.data?.type === 'MONIOS_MARKET_SNAPSHOT_ERROR') {
-        setIsMarketOffersLoading(false);
-        setSystemLogs(l => [
-          { id: Date.now(), time: new Date().toLocaleTimeString(), text: `Aviso de mercado: ${event.data.error}`, type: 'warning' },
-          ...l
-        ].slice(0, 50));
-      }
-    };
-
-    const handleMarketCustomEvent = (event) => {
-      if (event.detail?.offers) {
-        const offers = event.detail.offers;
-        const ts = event.detail.timestamp || Date.now();
-        setLiveMarketOffers(offers);
-        setMarketOffersLastUpdated(ts);
-        setIsMarketOffersLoading(false);
-      }
-    };
-
-    window.addEventListener('message', handleMarketMessage);
-    document.addEventListener('monios_market_snapshot', handleMarketCustomEvent);
 
     window.addEventListener('message', handleCompanionMessage);
     document.addEventListener('monios_game_sync', handleCompanionCustomEvent);
@@ -1653,8 +1591,6 @@ export default function BloomshireCommand() {
 
     return () => {
       
-      window.removeEventListener('message', handleMarketMessage);
-      document.removeEventListener('monios_market_snapshot', handleMarketCustomEvent);
 
       window.removeEventListener('message', handleCompanionMessage);
       document.removeEventListener('monios_game_sync', handleCompanionCustomEvent);
@@ -2154,84 +2090,6 @@ export default function BloomshireCommand() {
     );
   }, [npcFilter]);
 
-  // Oportunidades de Venta y Rotación en Mercado (Rowan)
-  const marketOpportunities = useMemo(() => {
-    const protectedMap = {};
-    if (Array.isArray(activeQuestMaterials)) {
-      activeQuestMaterials.forEach(mat => {
-        const key = (mat.id || '').toLowerCase().trim();
-        if (key) {
-          protectedMap[key] = {
-            needed: mat.needed,
-            questTitle: mat.questTitle || 'Misión Activa'
-          };
-        }
-      });
-    }
-
-        return MARKET_ROTATION_CATALOG.map(entry => {
-      const bd = getItemStorageBreakdown({ id: entry.id, name: entry.name });
-      const idKey = entry.id.toLowerCase().trim();
-      const isProtected = !!protectedMap[idKey];
-      const questProtection = protectedMap[idKey] || null;
-
-      // Cruzar con puestos vivos de Rowan si fueron descargados
-      const stallsForThis = Array.isArray(liveMarketOffers?.stalls)
-        ? liveMarketOffers.stalls.filter(s => (s.item || '').toLowerCase().trim() === idKey)
-        : [];
-      const hasLiveStalls = stallsForThis.length > 0;
-      let effectiveMinPrice = entry.minPrice;
-      let effectiveAvgPrice = entry.avgPrice;
-      let effectiveMaxPrice = entry.maxPrice;
-      let totalListedOnServer = 0;
-
-      if (hasLiveStalls) {
-        const prices = stallsForThis.map(s => Number(s.price) || 0).filter(p => p > 0);
-        if (prices.length > 0) {
-          effectiveMinPrice = Math.min(...prices);
-          effectiveMaxPrice = Math.max(...prices);
-          effectiveAvgPrice = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
-        }
-        totalListedOnServer = stallsForThis.reduce((acc, s) => acc + (Number(s.left) || 1), 0);
-      }
-
-      const totalPotentialGold = bd.total * effectiveAvgPrice;
-      const minGold = bd.total * effectiveMinPrice;
-      const maxGold = bd.total * effectiveMaxPrice;
-
-      let score = entry.volumeScore;
-      if (bd.total > 0) score += 100;
-      if (isProtected) score -= 150;
-      if (hasLiveStalls && totalListedOnServer < 15) score += 30;
-
-      let dynamicTag = entry.tag;
-      if (hasLiveStalls) {
-        if (totalListedOnServer <= 10) dynamicTag = 'Poca Oferta 🔥';
-        else if (totalListedOnServer >= 40) dynamicTag = 'Alta Competencia ⚠️';
-        else dynamicTag = `En Venta (${totalListedOnServer} un.)`;
-      }
-
-      return {
-        ...entry,
-        minPrice: effectiveMinPrice,
-        avgPrice: effectiveAvgPrice,
-        maxPrice: effectiveMaxPrice,
-        hasLiveStalls,
-        totalListedOnServer,
-        liveStallsCount: stallsForThis.length,
-        tag: dynamicTag,
-        stock: bd,
-        hasStock: bd.total > 0,
-        isProtected,
-        questProtection,
-        totalPotentialGold,
-        minGold,
-        maxGold,
-        score
-      };
-    }).sort((a, b) => b.score - a.score);
-  }, [rawInventory, activeQuestMaterials]);
-
   // Contar órdenes listas para entregar hoy
   const readyOrdersCount = useMemo(() => {
     return activeOrders.filter(ord => !ord.done && getOrderAvailableQty(ord) >= (ord.n || 1)).length;
@@ -2462,27 +2320,35 @@ export default function BloomshireCommand() {
         <nav className="px-5 py-2 bg-[#0e1628] border-y border-slate-800/90 flex items-center justify-between gap-3 overflow-x-auto no-scrollbar shrink-0 shadow-sm">
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
             {[
-              { key: 'mega_atlas', label: tTabs('titles.mega_atlas') },
-              { key: 'logbook', label: tTabs('titles.logbook') },
-              { key: 'inventory', label: tTabs('titles.inventory') },
-              { key: 'items', label: tTabs('titles.items') },
-              { key: 'craft', label: tTabs('titles.craft') },
-              { key: 'npcs', label: tTabs('titles.npcs') },
-              { key: 'calc', label: tTabs('titles.calc') },
-              { key: 'monitors', label: isConnected ? tTabs('titles.monitors') : tTabs('titles.monitorsLocked') }
+              { key: 'mega_atlas', label: tTabs('titles.mega_atlas'), Icon: MapIcon },
+              { key: 'logbook', label: tTabs('titles.logbook'), Icon: BookOpen },
+              { key: 'inventory', label: tTabs('titles.inventory'), Icon: Coins },
+              { key: 'items', label: tTabs('titles.items'), Icon: PackageSearch },
+              { key: 'craft', label: tTabs('titles.craft'), Icon: ChefHat },
+              { key: 'npcs', label: tTabs('titles.npcs'), Icon: HeartHandshake },
+              { key: 'calc', label: tTabs('titles.calc'), Icon: Calculator },
+              { key: 'monitors', label: isConnected ? tTabs('titles.monitors') : tTabs('titles.monitorsLocked'), Icon: Timer }
             ].map(t => {
               const isActive = activeTab === t.key;
+              const TabIcon = t.Icon;
               return (
                 <button
                   key={t.key}
                   onClick={() => setActiveTab(t.key)}
-                  className={`px-3.5 py-1.5 rounded-xl text-[11px] uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                  className={`group px-3.5 py-1.5 rounded-xl text-[11px] uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 border ${
                     isActive
-                      ? 'bg-gradient-to-b from-amber-500/20 via-amber-500/5 to-transparent border border-amber-500/60 text-amber-200 font-black shadow-[0_0_15px_rgba(245,158,11,0.15)]'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 font-bold'
+                      ? 'bg-gradient-to-b from-amber-500/20 via-amber-500/5 to-transparent border-amber-500/60 text-amber-200 font-black shadow-[0_0_15px_rgba(245,158,11,0.15)]'
+                      : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 font-bold'
                   }`}
                 >
-                  {t.label}
+                  <TabIcon
+                    aria-hidden="true"
+                    strokeWidth={2.2}
+                    className={`w-3.5 h-3.5 shrink-0 transition-all duration-300 ${
+                      isActive ? 'text-amber-300 opacity-100' : 'opacity-60 group-hover:opacity-100 group-hover:text-amber-300/90 group-hover:-translate-y-px'
+                    }`}
+                  />
+                  <span>{t.label}</span>
                 </button>
               );
             })}
@@ -2499,6 +2365,7 @@ export default function BloomshireCommand() {
               }`}
               title={tTabs('titles.questsTitle')}
             >
+              <ScrollText aria-hidden="true" strokeWidth={2.2} className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'quests' ? 'opacity-100' : 'opacity-60'}`} />
               <span>{tTabs('titles.quests')}</span>
               {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
@@ -2512,6 +2379,7 @@ export default function BloomshireCommand() {
               }`}
               title={tTabs('titles.advisorTitle')}
             >
+              <Sparkles aria-hidden="true" strokeWidth={2.2} className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'advisor' ? 'opacity-100' : 'opacity-60'}`} />
               <span>{tTabs('titles.advisor')}</span>
               {!isConnected && <span className="text-[10px]">🔒</span>}
             </button>
@@ -2568,10 +2436,6 @@ export default function BloomshireCommand() {
             setInventoryScope={setInventoryScope}
             activeOrders={activeOrders}
             activeQuestMaterials={activeQuestMaterials}
-            liveMarketOffers={liveMarketOffers}
-            marketOffersLastUpdated={marketOffersLastUpdated}
-            isMarketOffersLoading={isMarketOffersLoading}
-            handleRefreshMarketOffers={handleRefreshMarketOffers}
             remainingThingsCap={remainingThingsCap}
             remainingGoldCap={remainingGoldCap}
             dailyGoldCap={dailyGoldCap}
