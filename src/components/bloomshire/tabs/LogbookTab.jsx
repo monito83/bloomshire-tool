@@ -10,7 +10,7 @@ import {
   LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck, RotateCcw
 } from 'lucide-react';
 import megaAtlasData from '../../../../public/data/bloomshire/mega_atlas_data.json';
-import LogbookBlocks, { PlaceChip } from '../logbook/LogbookBlocks';
+import LogbookBlocks, { PlaceChip, SpriteStage } from '../logbook/LogbookBlocks';
 import PlaceSearch from '../logbook/PlaceSearch';
 import { fetchLogbookIndex, fetchLogbookEntry, searchLogbook } from '../logbook/logbookApi';
 import { adminCall, loadAdminSession, saveAdminSession } from '../logbook/logbookAdminApi';
@@ -19,7 +19,7 @@ import SectionEditorModal from '../logbook/SectionEditorModal';
 import LogbookEditor from '../logbook/LogbookEditor';
 import {
   baseLang, pickLang, buildTree, indexTree, entryPath, flattenEntries, parseLogbookHash, buildLogbookHash,
-  buildPlaceCorpus, placeLabel, entryHasPlace, isMissingTranslation, mediaUrl, searchEntries
+  buildPlaceCorpus, placeLabel, entryHasPlace, isMissingTranslation, mediaUrl, isGameMedia, searchEntries
 } from '../logbook/logbookModel';
 
 const readHashPath = () => {
@@ -181,8 +181,12 @@ function EntryCard({ entry, lang, path, onNavigate, mediaBase, sectionLabel, sni
     >
       {cover && (
         <div className="relative h-32 w-full overflow-hidden">
-          <img src={cover} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <span className="absolute inset-0 bg-gradient-to-t from-[#0a1224] to-transparent" />
+          {isGameMedia(entry.cover_path) ? (
+            <SpriteStage path={entry.cover_path} mediaBase={mediaBase} size="card" />
+          ) : (
+            <img src={cover} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          )}
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a1224] to-transparent" />
         </div>
       )}
       <div className="flex flex-1 flex-col gap-2 p-4">
@@ -264,7 +268,17 @@ function Lightbox({ images, index, lang, mediaBase, onClose, onMove }) {
           </button>
         </>
       )}
-      {url && <img src={url} alt={pickLang(img, 'alt', lang)} className="max-h-[82vh] max-w-full rounded-xl object-contain shadow-2xl lb-pop" onClick={(e) => e.stopPropagation()} />}
+      {url && (isGameMedia(img.path) ? (
+        <img
+          src={url}
+          alt={pickLang(img, 'alt', lang)}
+          className="h-[min(60vh,28rem)] w-auto max-w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.7)] lb-pop"
+          style={{ imageRendering: 'pixelated' }}
+          onClick={(e) => e.stopPropagation()}
+        />
+      ) : (
+        <img src={url} alt={pickLang(img, 'alt', lang)} className="max-h-[82vh] max-w-full rounded-xl object-contain shadow-2xl lb-pop" onClick={(e) => e.stopPropagation()} />
+      ))}
       <div className="mt-3 flex items-center gap-3 text-sm text-slate-300" onClick={(e) => e.stopPropagation()}>
         {images.length > 1 && <span className="font-black text-amber-300">{t('blocks.imageCount', { n: index + 1, total: images.length })}</span>}
         {caption && <span className="text-slate-400">{caption}</span>}
@@ -735,8 +749,12 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
         <header className="space-y-4">
           {cover && (
             <div className="relative overflow-hidden rounded-3xl border border-slate-800">
-              <img src={cover} alt="" className="max-h-80 w-full object-cover" />
-              <span className="absolute inset-0 bg-gradient-to-t from-[#0b1428] via-transparent to-transparent" />
+              {isGameMedia(entry.cover_path) ? (
+                <SpriteStage path={entry.cover_path} mediaBase={mediaBase} size="hero" alt={pickLang(entry, 'title', lang)} />
+              ) : (
+                <img src={cover} alt="" className="max-h-80 w-full object-cover" />
+              )}
+              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b1428] via-transparent to-transparent" />
             </div>
           )}
           {entry.status === 'draft' && <DraftBadge />}

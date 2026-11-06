@@ -1,6 +1,7 @@
 // src/components/bloomshire/logbook/LogbookBlocks.jsx
 // Renderizado de los bloques de una entrada. Todo pasa por sanitizeBlock antes
-// de llegar aca; ademas solo se muestran imagenes del bucket y videos de YouTube.
+// de llegar aca; ademas solo se muestran imagenes del bucket, sprites del juego
+// y videos de YouTube.
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CirclePlay, Info, Lightbulb, TriangleAlert, Download, FileText, MapPin, Maximize2 } from 'lucide-react';
@@ -8,6 +9,7 @@ import LogbookMarkdown, { MarkdownTable, parseMarkdownTable } from './LogbookMar
 import {
   pickLang,
   mediaUrl,
+  isGameMedia,
   youTubeEmbedUrl,
   youTubeThumbUrl,
   placeLabel
@@ -74,6 +76,47 @@ function YouTubeBlock({ block, lang }) {
   );
 }
 
+// Escenario para sprites del juego: son pixel art chiquito (16-64 px), asi que
+// se amplian sin suavizado sobre un fondo con brillo segun el tipo.
+const STAGE_TONE = {
+  beasts: 'from-rose-500/45 via-violet-600/20',
+  items: 'from-amber-400/40 via-orange-600/15',
+  portraits: 'from-emerald-400/40 via-sky-600/15'
+};
+const STAGE_SIZE = {
+  card: { box: 'h-32', sprite: 'h-20' },
+  hero: { box: 'h-56 sm:h-64', sprite: 'h-36 sm:h-44' },
+  figure: { box: 'h-56', sprite: 'h-36' },
+  tile: { box: 'aspect-[4/3]', sprite: 'h-[58%]' },
+  mini: { box: 'h-24', sprite: 'h-14' }
+};
+const STAGE_DOTS = { backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)', backgroundSize: '14px 14px' };
+
+export function SpriteStage({ path, mediaBase = '', alt = '', size = 'figure', onError, className = '' }) {
+  const url = mediaUrl(mediaBase, path);
+  if (!url) return null;
+  const tone = STAGE_TONE[String(path).split('/')[1]] || STAGE_TONE.items;
+  const sz = STAGE_SIZE[size] || STAGE_SIZE.figure;
+  return (
+    <div className={`relative flex w-full items-center justify-center overflow-hidden bg-[#070d1c] ${sz.box} ${className}`}>
+      <span aria-hidden="true" className="absolute inset-0" style={STAGE_DOTS} />
+      <span aria-hidden="true" className={`absolute inset-0 bg-radial-[at_50%_55%] ${tone} to-transparent to-70% opacity-90 transition-opacity duration-500 group-hover:opacity-100`} />
+      <span aria-hidden="true" className="absolute bottom-[14%] h-3 w-1/4 rounded-[100%] bg-black/50 blur-sm" />
+      <span className={`relative flex items-end justify-center ${sz.sprite} lb-float`}>
+        <img
+          src={url}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={onError}
+          className="h-full w-auto object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.65)] transition-transform duration-500 group-hover:scale-110"
+          style={{ imageRendering: 'pixelated' }}
+        />
+      </span>
+    </div>
+  );
+}
+
 function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
   const { t } = useTranslation('logbook');
   const [failed, setFailed] = useState(false);
@@ -82,6 +125,7 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
   const url = mediaUrl(mediaBase, image.path);
   const alt = pickLang(image, 'alt', lang);
   const caption = pickLang(image, 'caption', lang);
+  const sprite = isGameMedia(image.path);
   if (!url || failed) {
     return (
       <div className="flex aspect-video items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-900/50 text-xs text-slate-500">
@@ -97,6 +141,9 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
         className="group relative block w-full overflow-hidden rounded-xl border border-slate-700/70 bg-slate-950 cursor-zoom-in"
         aria-label={alt || t('blocks.openImage')}
       >
+        {sprite ? (
+          <SpriteStage path={image.path} mediaBase={mediaBase} alt={alt} size={compact ? 'tile' : 'figure'} onError={() => setFailed(true)} />
+        ) : (
         <img
           src={url}
           alt={alt}
@@ -109,6 +156,7 @@ function ImageFigure({ image, lang, mediaBase, onOpen, compact = false }) {
           className={`w-full ${compact ? (pixelated ? 'aspect-[4/3] object-contain p-6' : 'aspect-[4/3] object-cover') : 'max-h-[560px] object-contain'} transition-transform duration-500 group-hover:scale-[1.02]`}
           style={{ imageRendering: pixelated ? 'pixelated' : 'auto' }}
         />
+        )}
         <span className="absolute right-2 top-2 rounded-lg bg-black/60 p-1.5 text-white/80 opacity-0 transition-opacity group-hover:opacity-100">
           <Maximize2 className="h-3.5 w-3.5" />
         </span>
@@ -184,6 +232,29 @@ export default function LogbookBlocks({ blocks, lang, mediaBase, placesByKey, on
 
           case 'gallery': {
             const caption = pickLang(b, 'caption', lang);
+            // Solo sprites del juego: fila compacta con el nombre de cada uno
+            if (b.images.every((img) => isGameMedia(img.path))) {
+              return (
+                <figure key={key} className="space-y-2">
+                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                    {b.images.map((img, i) => (
+                      <button
+                        key={`${key}-${i}`}
+                        type="button"
+                        onClick={() => onOpenImages && onOpenImages(b.images, i)}
+                        className="group overflow-hidden rounded-xl border border-slate-800 bg-[#0a1324] text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500/40 cursor-zoom-in"
+                      >
+                        <SpriteStage path={img.path} mediaBase={mediaBase} alt={pickLang(img, 'alt', lang)} size="mini" />
+                        {pickLang(img, 'alt', lang) && (
+                          <span className="block truncate border-t border-slate-800/80 px-2 py-1.5 text-[11px] font-bold text-slate-300 group-hover:text-amber-100">{pickLang(img, 'alt', lang)}</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  {caption && <figcaption className="text-xs italic text-slate-400">{caption}</figcaption>}
+                </figure>
+              );
+            }
             const cols = b.images.length === 1 ? 'grid-cols-1' : b.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3';
             return (
               <figure key={key} className="space-y-2">
