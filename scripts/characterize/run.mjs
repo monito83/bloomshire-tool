@@ -196,7 +196,19 @@ async function runScenarios(browser) {
   await capture(page, 'scenario__disconnect', { png: false });   // (cae en el Mega-Atlas, cuyo mapa todavia se esta dibujando)
   await dumpStorage('scenario__disconnect');
 
-  // 9) invitado: abrir el modal de conexion
+  // 9) segundo mensaje de la extension (jugaste): el HUD y los cultivos tienen que actualizarse
+  await start('monitors');
+  await page.evaluate((data) => {
+    const now = Date.now();
+    window.postMessage({ type: 'MONIOS_COMPANION_SYNC', game: 'bloomshire', data: { ...data, gold: 9847, currentEnergy: 149,
+      rawEnergyObj: { ...data.rawEnergyObj, v: 149, at: now }, timestamp: now,
+      activeCrops: [{ id: 'crop_1', name: 'Trigo', icon: '🌾', plot: 1, readyAt: now + 600000, plantedAt: now, type: 'crop' }],
+      _fromExtension: true } }, '*');
+  }, snapshot);
+  await page.clock.runFor(1000);
+  await capture(page, 'scenario__second_sync');
+
+  // 10) invitado: abrir el modal de conexion
   await page.evaluate(() => { localStorage.clear(); localStorage.setItem('bloomshire_lang', 'es'); localStorage.setItem('bloomshire_active_tab', 'items'); });
   await page.goto(`${base}/`, { waitUntil: 'networkidle' });
   await page.clock.runFor(500);
