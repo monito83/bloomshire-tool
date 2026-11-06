@@ -1,6 +1,6 @@
 {
   "version": "47558e0af5e8",
-  "generatedAt": "2026-11-06T16:54:41.086Z",
+  "generatedAt": "2026-11-06T17:33:47.813Z",
   "sections": [
     {
       "id": "a622a72a-c88e-560b-8932-478e80140845",
@@ -52,7 +52,7 @@
         "start"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/marlow.png",
       "title_en": "Your first days",
       "title_es": "Tus primeros días",
       "summary_en": "Marlow shows you the basics on your island, south of town.",
@@ -160,7 +160,7 @@
         "controls"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/hoe.png",
       "title_en": "Controls",
       "title_es": "Teclas",
       "summary_en": "Space or a click uses what is in your hand.",
@@ -276,7 +276,7 @@
         "energy"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/energy_refill.png",
       "title_en": "Energy and health",
       "title_es": "Energía y salud",
       "summary_en": "Everyone starts with 100. Founding Farmer holders and VIPs get 150.",
@@ -396,7 +396,7 @@
         "farming"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/wheat.png",
       "title_en": "Farming",
       "title_es": "Cultivo",
       "summary_en": "Hoe the soil. One swing turns a whole bed.",
@@ -510,7 +510,7 @@
         "animals"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/hollis.png",
       "title_en": "Animals",
       "title_es": "Animales",
       "summary_en": "Animals open at Farming 8, at Hollin's Farm south of town.",
@@ -584,7 +584,7 @@
         "fishing"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/wren.png",
       "title_en": "Fishing",
       "title_es": "Pesca",
       "summary_en": "Stand at a fishing spot facing the water. Hold Space, then let go to cast.",
@@ -654,7 +654,7 @@
       "places": [
         "region:stonepeak"
       ],
-      "cover_path": null,
+      "cover_path": "game/portraits/dunn.png",
       "title_en": "Mining and the caves",
       "title_es": "Minería y las cuevas",
       "summary_en": "Rocks give Stone, seams give ore. Ore costs 2 a blow, or 1 with a better pickaxe.",
@@ -730,7 +730,7 @@
       "places": [
         "region:whisperwood"
       ],
-      "cover_path": null,
+      "cover_path": "game/portraits/bjorn.png",
       "title_en": "Woodcutting, foraging and butterflies",
       "title_es": "Tala, recolección y mariposas",
       "summary_en": "Wood comes from the Woodlot in town, north of Pell's workshop.",
@@ -824,7 +824,7 @@
         "cooking"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/the_harvest_feast.png",
       "title_en": "Cooking and dish boosts",
       "title_es": "Cocina y bonificaciones de platos",
       "summary_en": "Cook at your cottage stove or the Bakery. Click the pot to fill it.",
@@ -894,7 +894,7 @@
         "crafting"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/pell.png",
       "title_en": "Crafting",
       "title_es": "Artesanía",
       "summary_en": "Pell's workbench at the Carpenter's is for wood and rope.",
@@ -966,7 +966,7 @@
         "skills"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/greta.png",
       "title_en": "Skills and levels",
       "title_es": "Habilidades y niveles",
       "summary_en": "Farming, Fishing, Mining, Woodcutting, Foraging, Cooking, Crafting, Combat, Animal Husbandry and Exploration.",
@@ -1032,7 +1032,7 @@
         "combat"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/iron_sword.png",
       "title_en": "Combat",
       "title_es": "Combate",
       "summary_en": "A blow is your strength plus your weapon's bonus. Strength grows with Combat.",
@@ -1182,7 +1182,7 @@
       "places": [
         "door:vip_quarter_door_7_dungeon_court"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/lich.png",
       "title_en": "The Dungeon",
       "title_es": "La Mazmorra",
       "summary_en": "It lies under the VIP Quarter, so you need VIP.",
@@ -1306,7 +1306,7 @@
         "quests"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/maren.png",
       "title_en": "Quests and orders",
       "title_es": "Misiones y pedidos",
       "summary_en": "Book One is the story. Townsfolk have jobs too.",
@@ -1394,7 +1394,7 @@
         "people"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/ivy.png",
       "title_en": "Townsfolk, friendship and gifts",
       "title_es": "Vecinos, amistad y regalos",
       "summary_en": "Talk to someone and ten hearts show over their name. Each heart is 100 points.",
@@ -1504,7 +1504,7 @@
         "money"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/farthing.png",
       "title_en": "Gold, Shards and $AVYN",
       "title_es": "Oro, Fragmentos y $AVYN",
       "summary_en": "Gold is everyday money. It stays in the game.",
@@ -1570,7 +1570,7 @@
         "selling"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/rowan.png",
       "title_en": "Shops, trading and the Market Hall",
       "title_es": "Tiendas, intercambios y el Mercado Cubierto",
       "summary_en": "Talk to a shopkeeper, then Buy and sell. Every shop pays the same.",
@@ -1666,7 +1666,7 @@
         "emporium"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/vip_chest.png",
       "title_en": "The Emporium, the VIP Pass and your wallet",
       "title_es": "El Emporium, el Pase VIP y tu billetera",
       "summary_en": "Open it with the golden Shop cart, bottom left.",
@@ -1820,7 +1820,7 @@
       "places": [
         "region:vip_quarter"
       ],
-      "cover_path": null,
+      "cover_path": "game/portraits/celeste.png",
       "title_en": "The VIP Quarter",
       "title_es": "El Barrio VIP",
       "summary_en": "Take the golden boat in the harbour by the Founders' Hall. VIP only.",
@@ -1966,7 +1966,7 @@
         "premium"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/celestial_pineapple.png",
       "title_en": "Premium seeds and premium dishes",
       "title_es": "Semillas premium y platillos premium",
       "summary_en": "Buy them from Celeste at the VIP Shop, or win them from bosses, the Dungeon and the Colosseum.",
@@ -2060,7 +2060,7 @@
         "mounts"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/hay.png",
       "title_en": "Mounts and pets",
       "title_es": "Monturas y mascotas",
       "summary_en": "Holders of 5 Founding Farmers, and Legendary and Mythic holders, pick one mount for good.",
@@ -2152,7 +2152,7 @@
         "world"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/wick.png",
       "title_en": "Getting around the world",
       "title_es": "Moverte por el mundo",
       "summary_en": "Moonmere is north, Whisperwood west, Stonepeak east, the Southvale and the Bay south.",
@@ -2240,7 +2240,7 @@
         "social"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/portraits/felix.png",
       "title_en": "Towns, chat and friends",
       "title_es": "Pueblos, chat y amigos",
       "summary_en": "Five towns of up to 500 farmers. Pick one when you sign in.",
@@ -2330,7 +2330,7 @@
         "founders"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/starbloom.png",
       "title_en": "Founding Farmers",
       "title_es": "Granjeros Fundadores",
       "summary_en": "Founding Farmers are Bloomshire's NFT farmers. Holding them gives perks.",
@@ -2400,7 +2400,7 @@
         "combat"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/chest.png",
       "title_en": "How bosses work",
       "title_es": "Cómo funcionan los jefes",
       "summary_en": "Each boss fears one kind of weapon (+15%), two wins a day pay Gold and Premium Seeds, and the first ever adds a gem.",
@@ -2476,6 +2476,53 @@
           "text_es": "Todos los jefes de un vistazo"
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/beasts/storm_slime_king.png",
+              "alt_en": "Storm Slime King",
+              "alt_es": "Rey Slime de Tormenta"
+            },
+            {
+              "path": "game/beasts/goblin_warchief.png",
+              "alt_en": "Goblin Warchief",
+              "alt_es": "Señor de la Guerra Goblin"
+            },
+            {
+              "path": "game/beasts/orc_warlord.png",
+              "alt_en": "Orc Warlord",
+              "alt_es": "Señor de la Guerra Orco"
+            },
+            {
+              "path": "game/beasts/boss_crystal_golem.png",
+              "alt_en": "Great Crystal Golem",
+              "alt_es": "Gran Gólem de Cristal"
+            },
+            {
+              "path": "game/beasts/boss_frost_golem.png",
+              "alt_en": "Great Frost Golem",
+              "alt_es": "Gran Gólem de Escarcha"
+            },
+            {
+              "path": "game/beasts/bone_spider.png",
+              "alt_en": "Bone Spider",
+              "alt_es": "Araña Huesuda"
+            },
+            {
+              "path": "game/beasts/vault_queen.png",
+              "alt_en": "Vault Queen",
+              "alt_es": "Reina de la Bóveda"
+            },
+            {
+              "path": "game/beasts/lich.png",
+              "alt_en": "Arch-Lich",
+              "alt_es": "Archiliche"
+            }
+          ],
+          "caption_en": "",
+          "caption_es": ""
+        },
+        {
           "type": "table",
           "md_en": "| Boss | Where | Fears | Immune to | Gold | First win |\n|---|---|---|---|---:|---|\n| Storm Slime King | Whisperwood, in the Storm Hollow | staff | sword | 1,200–1,700 | 1 Sapphire |\n| Goblin Warchief | Whisperwood, in the Goblin Camp | sword | bow | 1,200–1,700 | 2 Topaz |\n| Orc Warlord | Stonepeak's south, in the Warlord's Camp | bow | sword | 1,700–2,300 | 1 Ruby |\n| Great Crystal Golem | Stonepeak, in the Delvers' Court | sword | staff | 1,700–2,300 | 2 Amethyst |\n| Great Frost Golem | Frosthaven, before the great ice cave | staff | bow | 2,150–2,900 | 2 Moonstone |\n| Bone Spider | The Gloom's deepest cave (Stonepeak) | sword | bow | 2,150–2,900 | 1 Emerald |\n| Vault Queen | The Sunken Vault's deepest cave (Stonepeak) | staff | sword | 2,400–3,100 | 1 Diamond |\n| Arch-Lich | The Night Court (the Barrowmire), and the last level of the Dungeon | bow | staff | 2,400–3,100 | 1 Diamond |",
           "md_es": "| Jefe | Dónde | Teme | Inmune a | Oro | Primera victoria |\n|---|---|---|---|---:|---|\n| Rey Slime de Tormenta | Whisperwood, en la Hondonada de la Tormenta | bastón | espada | 1.200–1.700 | 1 Zafiro |\n| Señor de la Guerra Goblin | Whisperwood, en el Campamento Goblin | espada | arco | 1.200–1.700 | 2 Topacio |\n| Señor de la Guerra Orco | El sur de Stonepeak, en el Campamento del Señor de la Guerra | arco | espada | 1.700–2.300 | 1 Rubí |\n| Gran Gólem de Cristal | Stonepeak, en la Corte de los Excavadores | espada | bastón | 1.700–2.300 | 2 Amatista |\n| Gran Gólem de Escarcha | Frosthaven, frente a la gran cueva de hielo | bastón | arco | 2.150–2.900 | 2 Piedra Lunar |\n| Araña Huesuda | La cueva más profunda de The Gloom (Stonepeak) | espada | arco | 2.150–2.900 | 1 Esmeralda |\n| Reina de la Bóveda | La cueva más profunda de The Sunken Vault (Stonepeak) | bastón | espada | 2.400–3.100 | 1 Diamante |\n| Archiliche | La Corte Nocturna (el Barrowmire) y el último nivel de la Mazmorra | arco | bastón | 2.400–3.100 | 1 Diamante |"
@@ -2505,7 +2552,7 @@
         "sub:whisperwood_sub_15_the_storm_hollow",
         "region:whisperwood"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/storm_slime_king.png",
       "title_en": "Storm Slime King",
       "title_es": "Rey Slime de Tormenta",
       "summary_en": "Whisperwood, in the Storm Hollow. Fears the staff, immune to the sword.",
@@ -2602,6 +2649,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_staff.png",
+              "alt_en": "Iron Staff",
+              "alt_es": "Bastón de Hierro"
+            },
+            {
+              "path": "game/items/bronze_staff.png",
+              "alt_en": "Bronze Staff",
+              "alt_es": "Bastón de Bronce"
+            },
+            {
+              "path": "game/items/gold_staff.png",
+              "alt_en": "Gold Staff",
+              "alt_es": "Bastón de Oro"
+            },
+            {
+              "path": "game/items/amethyst_staff.png",
+              "alt_en": "Amethyst Staff",
+              "alt_es": "Bastón de Amatista"
+            }
+          ],
+          "caption_en": "Every staff you can forge, from weakest to strongest.",
+          "caption_es": "Todos los bastones que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -2626,7 +2700,7 @@
         "sub:whisperwood_sub_14_the_goblin_camp",
         "region:whisperwood"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/goblin_warchief.png",
       "title_en": "Goblin Warchief",
       "title_es": "Señor de la Guerra Goblin",
       "summary_en": "Whisperwood, in the Goblin Camp. Fears the sword, immune to the bow.",
@@ -2723,6 +2797,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_sword.png",
+              "alt_en": "Iron Sword",
+              "alt_es": "Espada de Hierro"
+            },
+            {
+              "path": "game/items/bronze_sword.png",
+              "alt_en": "Bronze Sword",
+              "alt_es": "Espada de Bronce"
+            },
+            {
+              "path": "game/items/gold_sword.png",
+              "alt_en": "Gold Sword",
+              "alt_es": "Espada de Oro"
+            },
+            {
+              "path": "game/items/amethyst_sword.png",
+              "alt_en": "Amethyst Sword",
+              "alt_es": "Espada de Amatista"
+            }
+          ],
+          "caption_en": "Every sword you can forge, from weakest to strongest.",
+          "caption_es": "Todas las espadas que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -2747,7 +2848,7 @@
         "sub:stonepeak_sub_18_the_warlord_s_camp",
         "region:stonepeak"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/orc_warlord.png",
       "title_en": "Orc Warlord",
       "title_es": "Señor de la Guerra Orco",
       "summary_en": "Stonepeak's south, in the Warlord's Camp. Fears the bow, immune to the sword.",
@@ -2844,6 +2945,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_bow.png",
+              "alt_en": "Iron Bow",
+              "alt_es": "Arco de Hierro"
+            },
+            {
+              "path": "game/items/bronze_bow.png",
+              "alt_en": "Bronze Bow",
+              "alt_es": "Arco de Bronce"
+            },
+            {
+              "path": "game/items/gold_bow.png",
+              "alt_en": "Gold Bow",
+              "alt_es": "Arco de Oro"
+            },
+            {
+              "path": "game/items/amethyst_bow.png",
+              "alt_en": "Amethyst Bow",
+              "alt_es": "Arco de Amatista"
+            }
+          ],
+          "caption_en": "Every bow you can forge, from weakest to strongest.",
+          "caption_es": "Todos los arcos que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -2868,7 +2996,7 @@
         "sub:stonepeak_sub_17_the_delvers_court",
         "region:stonepeak"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/boss_crystal_golem.png",
       "title_en": "Great Crystal Golem",
       "title_es": "Gran Gólem de Cristal",
       "summary_en": "Stonepeak, in the Delvers' Court. Fears the sword, immune to the staff.",
@@ -2965,6 +3093,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_sword.png",
+              "alt_en": "Iron Sword",
+              "alt_es": "Espada de Hierro"
+            },
+            {
+              "path": "game/items/bronze_sword.png",
+              "alt_en": "Bronze Sword",
+              "alt_es": "Espada de Bronce"
+            },
+            {
+              "path": "game/items/gold_sword.png",
+              "alt_en": "Gold Sword",
+              "alt_es": "Espada de Oro"
+            },
+            {
+              "path": "game/items/amethyst_sword.png",
+              "alt_en": "Amethyst Sword",
+              "alt_es": "Espada de Amatista"
+            }
+          ],
+          "caption_en": "Every sword you can forge, from weakest to strongest.",
+          "caption_es": "Todas las espadas que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -2988,7 +3143,7 @@
       "places": [
         "region:frosthaven"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/boss_frost_golem.png",
       "title_en": "Great Frost Golem",
       "title_es": "Gran Gólem de Escarcha",
       "summary_en": "Frosthaven, before the great ice cave. Fears the staff, immune to the bow.",
@@ -3085,6 +3240,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_staff.png",
+              "alt_en": "Iron Staff",
+              "alt_es": "Bastón de Hierro"
+            },
+            {
+              "path": "game/items/bronze_staff.png",
+              "alt_en": "Bronze Staff",
+              "alt_es": "Bastón de Bronce"
+            },
+            {
+              "path": "game/items/gold_staff.png",
+              "alt_en": "Gold Staff",
+              "alt_es": "Bastón de Oro"
+            },
+            {
+              "path": "game/items/amethyst_staff.png",
+              "alt_en": "Amethyst Staff",
+              "alt_es": "Bastón de Amatista"
+            }
+          ],
+          "caption_en": "Every staff you can forge, from weakest to strongest.",
+          "caption_es": "Todos los bastones que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -3109,7 +3291,7 @@
         "door:stonepeak_door_3_cave_gloom",
         "region:stonepeak"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/bone_spider.png",
       "title_en": "Bone Spider",
       "title_es": "Araña Huesuda",
       "summary_en": "The Gloom's deepest cave (Stonepeak). Fears the sword, immune to the bow.",
@@ -3206,6 +3388,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_sword.png",
+              "alt_en": "Iron Sword",
+              "alt_es": "Espada de Hierro"
+            },
+            {
+              "path": "game/items/bronze_sword.png",
+              "alt_en": "Bronze Sword",
+              "alt_es": "Espada de Bronce"
+            },
+            {
+              "path": "game/items/gold_sword.png",
+              "alt_en": "Gold Sword",
+              "alt_es": "Espada de Oro"
+            },
+            {
+              "path": "game/items/amethyst_sword.png",
+              "alt_en": "Amethyst Sword",
+              "alt_es": "Espada de Amatista"
+            }
+          ],
+          "caption_en": "Every sword you can forge, from weakest to strongest.",
+          "caption_es": "Todas las espadas que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -3230,7 +3439,7 @@
         "door:stonepeak_door_4_cave_vault",
         "region:stonepeak"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/vault_queen.png",
       "title_en": "Vault Queen",
       "title_es": "Reina de la Bóveda",
       "summary_en": "The Sunken Vault's deepest cave (Stonepeak). Fears the staff, immune to the sword.",
@@ -3327,6 +3536,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_staff.png",
+              "alt_en": "Iron Staff",
+              "alt_es": "Bastón de Hierro"
+            },
+            {
+              "path": "game/items/bronze_staff.png",
+              "alt_en": "Bronze Staff",
+              "alt_es": "Bastón de Bronce"
+            },
+            {
+              "path": "game/items/gold_staff.png",
+              "alt_en": "Gold Staff",
+              "alt_es": "Bastón de Oro"
+            },
+            {
+              "path": "game/items/amethyst_staff.png",
+              "alt_en": "Amethyst Staff",
+              "alt_es": "Bastón de Amatista"
+            }
+          ],
+          "caption_en": "Every staff you can forge, from weakest to strongest.",
+          "caption_es": "Todos los bastones que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -3351,7 +3587,7 @@
         "region:barrowmire",
         "door:vip_quarter_door_7_dungeon_court"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/lich.png",
       "title_en": "Arch-Lich",
       "title_es": "Archiliche",
       "summary_en": "The Night Court (the Barrowmire), and the last level of the Dungeon. Fears the bow, immune to the staff.",
@@ -3448,6 +3684,33 @@
           ]
         },
         {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_bow.png",
+              "alt_en": "Iron Bow",
+              "alt_es": "Arco de Hierro"
+            },
+            {
+              "path": "game/items/bronze_bow.png",
+              "alt_en": "Bronze Bow",
+              "alt_es": "Arco de Bronce"
+            },
+            {
+              "path": "game/items/gold_bow.png",
+              "alt_en": "Gold Bow",
+              "alt_es": "Arco de Oro"
+            },
+            {
+              "path": "game/items/amethyst_bow.png",
+              "alt_en": "Amethyst Bow",
+              "alt_es": "Arco de Amatista"
+            }
+          ],
+          "caption_en": "Every bow you can forge, from weakest to strongest.",
+          "caption_es": "Todos los arcos que podés forjar, del más débil al más fuerte."
+        },
+        {
           "type": "callout",
           "variant": "tip",
           "title_en": "Weapon",
@@ -3472,7 +3735,7 @@
       "places": [
         "npc:bram"
       ],
-      "cover_path": null,
+      "cover_path": "game/items/gold_sword.png",
       "title_en": "Forged weapons: sword, bow and staff",
       "title_es": "Armas forjadas: espada, arco y bastón",
       "summary_en": "Every weapon is made at Bram's anvil at the Forge, in 4 metals from Crafting level 6 to 25.",
@@ -3487,6 +3750,73 @@
           "type": "table",
           "md_en": "| Weapon | Rarity | Blow | How to make it |\n|---|---|---:|---|\n| Iron Sword | Uncommon | ×1.3 | 3 Iron Bar + 1 Wooden Plank · Crafting lv 6 |\n| Iron Bow | Uncommon | ×1.3 | 3 Iron Bar + 2 Wooden Plank + 2 Rope · Crafting lv 6 |\n| Iron Staff | Uncommon | ×1.3 | 3 Iron Bar + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 6 |\n| Bronze Sword | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 1 Wooden Plank · Crafting lv 11 |\n| Bronze Bow | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 2 Wooden Plank + 2 Rope · Crafting lv 11 |\n| Bronze Staff | Rare | ×1.6 | 6 Copper Bar + 2 Iron Bar + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 11 |\n| Gold Sword | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 1 Wooden Plank · Crafting lv 17 |\n| Gold Bow | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 2 Wooden Plank + 2 Rope · Crafting lv 17 |\n| Gold Staff | Epic | ×2 | 4 Gold Bar + 2 Platinum Bar + 1 Cut Emerald + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 17 |\n| Amethyst Sword | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 1 Wooden Plank · Crafting lv 25 |\n| Amethyst Bow | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 2 Wooden Plank + 2 Rope · Crafting lv 25 |\n| Amethyst Staff | Legendary | ×2.6 | 4 Shadow Bar + 2 Gold Bar + 2 Cut Amethyst + 2 Wooden Plank + 1 Cut Topaz · Crafting lv 25 |",
           "md_es": "| Arma | Rareza | Golpe | Cómo se hace |\n|---|---|---:|---|\n| Espada de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 1 Tabla de Madera · Artesanía nv 6 |\n| Arco de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 6 |\n| Bastón de Hierro | Poco común | ×1,3 | 3 Barra de Hierro + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 6 |\n| Espada de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 1 Tabla de Madera · Artesanía nv 11 |\n| Arco de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 11 |\n| Bastón de Bronce | Raro | ×1,6 | 6 Barra de Cobre + 2 Barra de Hierro + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 11 |\n| Espada de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 1 Tabla de Madera · Artesanía nv 17 |\n| Arco de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 17 |\n| Bastón de Oro | Épico | ×2 | 4 Barra de Oro + 2 Barra de Platino + 1 Esmeralda Cortada + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 17 |\n| Espada de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 1 Tabla de Madera · Artesanía nv 25 |\n| Arco de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 2 Tabla de Madera + 2 Cuerda · Artesanía nv 25 |\n| Bastón de Amatista | Legendario | ×2,6 | 4 Barra de Sombra + 2 Barra de Oro + 2 Amatista Cortada + 2 Tabla de Madera + 1 Topacio Cortado · Artesanía nv 25 |"
+        },
+        {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_sword.png",
+              "alt_en": "Iron Sword",
+              "alt_es": "Espada de Hierro"
+            },
+            {
+              "path": "game/items/bronze_sword.png",
+              "alt_en": "Bronze Sword",
+              "alt_es": "Espada de Bronce"
+            },
+            {
+              "path": "game/items/gold_sword.png",
+              "alt_en": "Gold Sword",
+              "alt_es": "Espada de Oro"
+            },
+            {
+              "path": "game/items/amethyst_sword.png",
+              "alt_en": "Amethyst Sword",
+              "alt_es": "Espada de Amatista"
+            },
+            {
+              "path": "game/items/iron_bow.png",
+              "alt_en": "Iron Bow",
+              "alt_es": "Arco de Hierro"
+            },
+            {
+              "path": "game/items/bronze_bow.png",
+              "alt_en": "Bronze Bow",
+              "alt_es": "Arco de Bronce"
+            },
+            {
+              "path": "game/items/gold_bow.png",
+              "alt_en": "Gold Bow",
+              "alt_es": "Arco de Oro"
+            },
+            {
+              "path": "game/items/amethyst_bow.png",
+              "alt_en": "Amethyst Bow",
+              "alt_es": "Arco de Amatista"
+            },
+            {
+              "path": "game/items/iron_staff.png",
+              "alt_en": "Iron Staff",
+              "alt_es": "Bastón de Hierro"
+            },
+            {
+              "path": "game/items/bronze_staff.png",
+              "alt_en": "Bronze Staff",
+              "alt_es": "Bastón de Bronce"
+            },
+            {
+              "path": "game/items/gold_staff.png",
+              "alt_en": "Gold Staff",
+              "alt_es": "Bastón de Oro"
+            },
+            {
+              "path": "game/items/amethyst_staff.png",
+              "alt_en": "Amethyst Staff",
+              "alt_es": "Bastón de Amatista"
+            }
+          ],
+          "caption_en": "Every forged weapon: swords, bows and staffs, by metal.",
+          "caption_es": "Todas las armas forjadas: espadas, arcos y bastones, por metal."
         },
         {
           "type": "callout",
@@ -3510,12 +3840,34 @@
         "boss"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/iron_sword.png",
       "title_en": "Which weapon for each boss",
       "title_es": "Qué arma usar con cada jefe",
       "summary_en": "A quick table: the weapon each boss fears and the one that does nothing.",
       "summary_es": "Una tabla rápida: el arma que teme cada jefe y la que no le hace nada.",
       "blocks": [
+        {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/items/iron_sword.png",
+              "alt_en": "Iron Sword",
+              "alt_es": "Espada de Hierro"
+            },
+            {
+              "path": "game/items/iron_bow.png",
+              "alt_en": "Iron Bow",
+              "alt_es": "Arco de Hierro"
+            },
+            {
+              "path": "game/items/iron_staff.png",
+              "alt_en": "Iron Staff",
+              "alt_es": "Bastón de Hierro"
+            }
+          ],
+          "caption_en": "The three kinds: sword, bow and staff.",
+          "caption_es": "Los tres tipos: espada, arco y bastón."
+        },
         {
           "type": "table",
           "md_en": "| Boss | Bring | Leave at home |\n|---|---|---|\n| Storm Slime King | staff | sword |\n| Goblin Warchief | sword | bow |\n| Orc Warlord | bow | sword |\n| Great Crystal Golem | sword | staff |\n| Great Frost Golem | staff | bow |\n| Bone Spider | sword | bow |\n| Vault Queen | staff | sword |\n| Arch-Lich | bow | staff |",
@@ -3542,7 +3894,7 @@
         "weapon"
       ],
       "places": [],
-      "cover_path": null,
+      "cover_path": "game/items/amethyst_staff.png",
       "title_en": "Weapon rarity",
       "title_es": "Rareza de las armas",
       "summary_en": "What each rarity multiplies, from Common to Legendary.",
@@ -3576,7 +3928,7 @@
         "door:vip_quarter_door_7_dungeon_court",
         "region:vip_quarter"
       ],
-      "cover_path": null,
+      "cover_path": "game/beasts/lich.png",
       "title_en": "The Dungeon: six levels and their guardians",
       "title_es": "La Mazmorra: seis niveles y sus guardianes",
       "summary_en": "Under the VIP Quarter. One weapon, no food, six levels, a guardian at the end of each.",
@@ -3604,6 +3956,43 @@
           "type": "table",
           "md_en": "| Level | Guardian | Fears |\n|---:|---|---|\n| 1 | Storm Slime King | staff |\n| 2 | Goblin Warchief | sword |\n| 3 | Bone Spider | sword |\n| 4 | Orc Warlord | bow |\n| 5 | Vault Queen | staff |\n| 6 | Arch-Lich | bow |",
           "md_es": "| Nivel | Guardián | Teme |\n|---:|---|---|\n| 1 | Rey Slime de Tormenta | bastón |\n| 2 | Señor de la Guerra Goblin | espada |\n| 3 | Araña Huesuda | espada |\n| 4 | Señor de la Guerra Orco | arco |\n| 5 | Reina de la Bóveda | bastón |\n| 6 | Archiliche | arco |"
+        },
+        {
+          "type": "gallery",
+          "images": [
+            {
+              "path": "game/beasts/storm_slime_king.png",
+              "alt_en": "Storm Slime King",
+              "alt_es": "Rey Slime de Tormenta"
+            },
+            {
+              "path": "game/beasts/goblin_warchief.png",
+              "alt_en": "Goblin Warchief",
+              "alt_es": "Señor de la Guerra Goblin"
+            },
+            {
+              "path": "game/beasts/bone_spider.png",
+              "alt_en": "Bone Spider",
+              "alt_es": "Araña Huesuda"
+            },
+            {
+              "path": "game/beasts/orc_warlord.png",
+              "alt_en": "Orc Warlord",
+              "alt_es": "Señor de la Guerra Orco"
+            },
+            {
+              "path": "game/beasts/vault_queen.png",
+              "alt_en": "Vault Queen",
+              "alt_es": "Reina de la Bóveda"
+            },
+            {
+              "path": "game/beasts/lich.png",
+              "alt_en": "Arch-Lich",
+              "alt_es": "Archiliche"
+            }
+          ],
+          "caption_en": "The six guardians, level by level.",
+          "caption_es": "Los seis guardianes, nivel por nivel."
         },
         {
           "type": "callout",

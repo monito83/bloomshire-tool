@@ -255,6 +255,23 @@
       "button": "Contenido inicial",
       "title": "Borra todas las secciones, entradas y lugares, y carga las guías hechas con datos del juego",
       "prompt": "Esto BORRA todo el contenido de la bitácora y carga las guías iniciales (guías del juego, jefes y armas). Escribí {{word}} para confirmar:"
+    },
+    "sprites": {
+      "open": "Elegir un sprite del juego",
+      "title": "Sprites del juego",
+      "hint": "Criaturas, ítems y aldeanos sacados del juego. No se sube nada y se actualizan solos con cada versión.",
+      "search": "Buscar en todos los sprites…",
+      "loading": "Cargando sprites…",
+      "failed": "No se pudieron cargar los sprites del juego. Probá de nuevo en un rato.",
+      "empty": "Ningún sprite coincide con esa búsqueda.",
+      "more": "…y {{count}} más. Afiná la búsqueda para verlos.",
+      "done_one": "Listo · 1 agregado",
+      "done_other": "Listo · {{count}} agregados",
+      "kinds": {
+        "beasts": "Criaturas",
+        "items": "Ítems",
+        "portraits": "Aldeanos"
+      }
     }
   }
 }

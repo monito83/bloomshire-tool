@@ -1,12 +1,14 @@
 // src/components/bloomshire/logbook/MediaDropzone.jsx
 // Zona para subir imagenes/PDF: clic para elegir, arrastrar y soltar, o pegar
 // (Ctrl+V) una captura. Muestra miniatura, progreso y errores. Tambien acepta
-// pegar la URL publica o la ruta del bucket (modo avanzado).
+// pegar la URL publica o la ruta del bucket (modo avanzado), o elegir un
+// sprite del juego (no se sube nada).
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageUp, FileUp, RefreshCw, Trash2, LoaderCircle, Link2, FileText } from 'lucide-react';
+import { ImageUp, FileUp, RefreshCw, Trash2, LoaderCircle, Link2, FileText, Swords } from 'lucide-react';
 import { uploadMedia, imageFilesFrom, ACCEPT_IMAGES, ACCEPT_PDF } from './logbookUpload';
-import { mediaUrl, extractMediaPath } from './logbookModel';
+import { mediaUrl, extractMediaPath, isGameMedia } from './logbookModel';
+import SpritePicker from './SpritePicker';
 import { inputCls, useAdminErrorText } from './adminUi';
 
 /** call = llamada al admin con el token; mediaBase = URL publica del bucket. */
@@ -50,14 +52,17 @@ function ProgressBar({ value }) {
  * kind: 'image' | 'pdf'. multiple: permite varios archivos (galeria).
  * onUploaded(result) se llama por cada archivo subido.
  * pendingFiles: archivos pegados/soltados fuera de la zona que hay que subir al montar.
+ * onPickSprite(sprite): eleccion de un sprite del juego; si falta se usa onPathChange(sprite.path).
  */
-export default function MediaDropzone({ kind = 'image', value = '', onUploaded, onClear, onPathChange, multiple = false, pendingFiles = null, onPendingDone, compact = false }) {
+export default function MediaDropzone({ kind = 'image', value = '', onUploaded, onClear, onPathChange, multiple = false, pendingFiles = null, onPendingDone, compact = false, onPickSprite = null }) {
   const { t } = useTranslation('logbook');
   const { mediaBase } = useContext(UploadContext);
   const { upload, progress, error, busy } = useUploader();
   const [over, setOver] = useState(false);
   const [manual, setManual] = useState(false);
   const [manualError, setManualError] = useState(false);
+  const [picking, setPicking] = useState(false);
+  const pickSprite = onPickSprite || (onPathChange ? (s) => onPathChange(s.path) : null);
   const inputRef = useRef(null);
   const isPdf = kind === 'pdf';
   const url = value ? mediaUrl(mediaBase, value) : null;
@@ -110,7 +115,7 @@ export default function MediaDropzone({ kind = 'image', value = '', onUploaded, 
             <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-rose-500/15 text-rose-300"><FileText className="h-7 w-7" /></span>
           ) : (
             <span className="flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-950">
-              {url ? <img src={url} alt="" className="max-h-full max-w-full object-contain" /> : null}
+              {url ? <img src={url} alt="" className={`max-h-full max-w-full object-contain ${isGameMedia(value) ? 'h-12' : ''}`} style={isGameMedia(value) ? { imageRendering: 'pixelated' } : undefined} /> : null}
             </span>
           )}
           <span className="min-w-0 flex-1 truncate font-mono text-[11px] text-slate-500" title={value}>{value}</span>
@@ -156,25 +161,35 @@ export default function MediaDropzone({ kind = 'image', value = '', onUploaded, 
       {error && <p className="text-xs font-bold text-rose-300" role="alert">{error}</p>}
 
       {manualError && <p className="text-xs font-bold text-rose-300" role="alert">{t('admin.upload.invalidPath')}</p>}
-      {onPathChange && (
-        manual ? (
-          <input
-            className={`${inputCls} font-mono text-xs`}
-            defaultValue={value}
-            placeholder={t('admin.upload.pathPlaceholder')}
-            autoFocus
-            onBlur={(e) => {
-              const raw = e.target.value.trim();
-              if (!raw) { setManual(false); setManualError(false); return; }
-              const path = extractMediaPath(raw);
-              if (path) { onPathChange(path); setManual(false); setManualError(false); } else setManualError(true);
-            }}
-          />
-        ) : (
-          <button type="button" onClick={() => setManual(true)} className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-500 hover:text-slate-300 cursor-pointer">
-            <Link2 className="h-3 w-3" /> {t('admin.upload.usePath')}
-          </button>
-        )
+      {picking && pickSprite && <SpritePicker multiple={multiple} onPick={pickSprite} onClose={() => setPicking(false)} />}
+      {((!isPdf && pickSprite) || onPathChange) && (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+          {!isPdf && pickSprite && !manual && (
+            <button type="button" onClick={() => setPicking(true)} className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300/80 hover:text-amber-200 cursor-pointer">
+              <Swords className="h-3 w-3" /> {t('admin.sprites.open')}
+            </button>
+          )}
+          {onPathChange && (
+            manual ? (
+              <input
+                className={`${inputCls} w-full font-mono text-xs`}
+                defaultValue={value}
+                placeholder={t('admin.upload.pathPlaceholder')}
+                autoFocus
+                onBlur={(e) => {
+                  const raw = e.target.value.trim();
+                  if (!raw) { setManual(false); setManualError(false); return; }
+                  const path = extractMediaPath(raw);
+                  if (path) { onPathChange(path); setManual(false); setManualError(false); } else setManualError(true);
+                }}
+              />
+            ) : (
+              <button type="button" onClick={() => setManual(true)} className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-500 hover:text-slate-300 cursor-pointer">
+                <Link2 className="h-3 w-3" /> {t('admin.upload.usePath')}
+              </button>
+            )
+          )}
+        </div>
       )}
     </div>
   );

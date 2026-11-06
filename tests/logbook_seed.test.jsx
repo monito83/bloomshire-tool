@@ -1,9 +1,29 @@
+import fs from 'fs';
+import path from 'path';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 import megaAtlasData from '../public/data/bloomshire/mega_atlas_data.json';
 import seed from '../src/data/logbook_seed.json';
 import handler, { SEED_CONFIRM, _resetLoginLimits } from '../api/logbook-admin.js';
-import { validateSectionInput, validateEntryInput, buildPlaceCorpus } from '../src/components/bloomshire/logbook/logbookModel';
+import {
+  validateSectionInput, validateEntryInput, buildPlaceCorpus, mediaUrl, extractMediaPath, isSafeMediaPath, isGameMedia, sanitizeBlock
+} from '../src/components/bloomshire/logbook/logbookModel';
+import { buildSpriteCatalog, filterSprites } from '../src/components/bloomshire/logbook/spriteCatalog';
+import bestiary from '../public/data/bloomshire/official/bestiary.json';
+import officialNpcs from '../public/data/bloomshire/official/npcs.json';
+import codex from '../public/data/bloomshire/official/codex.json';
+import itemIcons from '../public/data/bloomshire/item_icons_map.json';
+
+const PUBLIC = path.resolve(__dirname, '../public');
+const spriteExists = (p) => fs.existsSync(path.join(PUBLIC, mediaUrl('', p)));
+function imagesOf(entry) {
+  const out = entry.cover_path ? [entry.cover_path] : [];
+  for (const b of entry.blocks || []) {
+    if (b.type === 'image') out.push(b.path);
+    if (b.type === 'gallery') out.push(...b.images.map((im) => im.path));
+  }
+  return out;
+}
 
 const SECRET = 'y'.repeat(40);
 const PASSWORD = 'seed-test-password';
@@ -51,9 +71,57 @@ describe('Bitacora: contenido inicial (seed)', () => {
     }
   });
 
+  it('cada entrada tiene portada y todas sus imagenes son sprites del juego que existen', () => {
+    for (const e of seed.entries) {
+      expect(e.cover_path, e.slug).toBeTruthy();
+      for (const p of imagesOf(e)) {
+        expect(isGameMedia(p), `${e.slug} -> ${p}`).toBe(true);
+        expect(spriteExists(p), `${e.slug} -> ${p}`).toBe(true);
+      }
+    }
+    const bosses = seed.entries.filter((e) => e.tags.includes('boss') && e.blocks.some((b) => b.type === 'gallery'));
+    expect(bosses.length).toBeGreaterThanOrEqual(8);
+  });
+
   it('autor Admin y sin rastros de Leonman', () => {
     for (const e of seed.entries) expect(e.author).toBe('Admin');
     expect(JSON.stringify(seed)).not.toMatch(/leonman/i);
+  });
+});
+
+describe('Bitacora: sprites del juego', () => {
+  it('rutas game/ resuelven a los datos de la app sin depender del bucket', () => {
+    expect(mediaUrl('', 'game/beasts/lich.png')).toBe('/data/bloomshire/beasts/lich.png');
+    expect(mediaUrl('https://x.supabase.co/storage/v1/object/public/logbook', 'game/items/gold_sword.png')).toBe('/data/bloomshire/items/gold_sword.png');
+    expect(isSafeMediaPath('game/other/x.png')).toBe(false);
+    expect(isSafeMediaPath('game/beasts/../x.png')).toBe(false);
+    expect(isSafeMediaPath('game/beasts/Lich.PNG')).toBe(false);
+    expect(mediaUrl('', 'game/beasts/x.js')).toBeNull();
+    // Las rutas del bucket siguen igual
+    expect(isSafeMediaPath('entries/2026/11/a.webp')).toBe(true);
+  });
+
+  it('extractMediaPath acepta la URL o ruta del sprite y rechaza otras carpetas', () => {
+    expect(extractMediaPath('/data/bloomshire/beasts/lich.png')).toBe('game/beasts/lich.png');
+    expect(extractMediaPath('https://bloomshire-tool.vercel.app/data/bloomshire/items/gold_sword.png')).toBe('game/items/gold_sword.png');
+    expect(extractMediaPath('game/portraits/bram.png')).toBe('game/portraits/bram.png');
+    expect(extractMediaPath('/data/bloomshire/maps/world.png')).toBeNull();
+    expect(sanitizeBlock({ type: 'image', path: 'game/beasts/lich.png' }).path).toBe('game/beasts/lich.png');
+    expect(validateEntryInput({ section_id: seed.sections[0].id, title_en: 'x', cover_path: 'game/beasts/lich.png' }).value.cover_path).toBe('game/beasts/lich.png');
+  });
+
+  it('el catalogo del editor sale de los datos oficiales y todos los sprites existen', () => {
+    const list = buildSpriteCatalog({ bestiary, npcs: officialNpcs, codex, icons: itemIcons });
+    const by = (k) => list.filter((s) => s.kind === k);
+    expect(by('beasts').length).toBeGreaterThanOrEqual(30);
+    expect(by('items').length).toBeGreaterThanOrEqual(100);
+    expect(by('portraits').length).toBeGreaterThanOrEqual(30);
+    expect(new Set(list.map((s) => s.path)).size).toBe(list.length);
+    for (const s of list) expect(spriteExists(s.path), s.path).toBe(true);
+    const lich = list.find((s) => s.path === 'game/beasts/lich.png');
+    expect(lich.name_en).toBeTruthy();
+    expect(filterSprites(list, { query: 'espada de oro' }).some((s) => s.path === 'game/items/gold_sword.png')).toBe(true);
+    expect(filterSprites(list, { kind: 'portraits', query: 'bram' })[0].path).toBe('game/portraits/bram.png');
   });
 });
 

@@ -9,6 +9,11 @@ export const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 // Rutas dentro del bucket: solo caracteres seguros, sin "..", sin barra inicial.
 export const MEDIA_PATH_RE = /^(?!.*\.\.)(?!\/)[A-Za-z0-9][A-Za-z0-9/_.-]{0,240}$/;
 export const YOUTUBE_ID_RE = /^[A-Za-z0-9_-]{11}$/;
+// Sprites del juego que ya vienen con la app (public/data/bloomshire/...): se
+// guardan como "game/<carpeta>/<archivo>.png" y no ocupan lugar en el bucket.
+export const GAME_MEDIA_RE = /^game\/(beasts|items|portraits)\/[a-z0-9_]{1,80}\.png$/;
+export const GAME_MEDIA_ROOT = '/data/bloomshire';
+const GAME_MEDIA_URL_RE = /^(?:https?:\/\/[^/]+)?\/data\/bloomshire\/((?:beasts|items|portraits)\/[^?#]+)/;
 export const PLACE_KEY_RE = /^(region|sub|npc|door|clue|custom):[A-Za-z0-9_-]{1,80}$/;
 
 export const BLOCK_TYPES = [
@@ -224,8 +229,13 @@ export const buildLogbookHash = (path) => (path ? `${LOGBOOK_HASH_PREFIX}/${path
 // ---------------------------------------------------------------------------
 
 export function isSafeMediaPath(path) {
-  return typeof path === 'string' && MEDIA_PATH_RE.test(path);
+  if (typeof path !== 'string' || !MEDIA_PATH_RE.test(path)) return false;
+  // "game/..." queda reservado para los sprites del juego
+  return !path.startsWith('game/') || GAME_MEDIA_RE.test(path);
 }
+
+/** true si la ruta apunta a un sprite del juego (pixel art chico). */
+export const isGameMedia = (path) => typeof path === 'string' && GAME_MEDIA_RE.test(path);
 
 const PUBLIC_BUCKET_URL_RE = /^https:\/\/[A-Za-z0-9.-]+\/storage\/v1\/object\/(?:public|sign)\/logbook\/([^?#]+)/;
 
@@ -237,6 +247,9 @@ const PUBLIC_BUCKET_URL_RE = /^https:\/\/[A-Za-z0-9.-]+\/storage\/v1\/object\/(?
 export function extractMediaPath(input) {
   if (typeof input !== 'string') return null;
   let s = input.trim();
+  const g = s.match(GAME_MEDIA_URL_RE);
+  if (g) return isGameMedia(`game/${g[1]}`) ? `game/${g[1]}` : null;
+  if (/^(?:https?:\/\/[^/]+)?\/data\//.test(s)) return null; // otros datos de la app no son imagenes de la bitacora
   const m = s.match(PUBLIC_BUCKET_URL_RE);
   if (m) {
     try { s = decodeURIComponent(m[1]); } catch { return null; }
@@ -248,6 +261,7 @@ export function extractMediaPath(input) {
 /** URL publica del bucket; null si la ruta no es segura o falta la base. */
 export function mediaUrl(mediaBase, path) {
   if (!isSafeMediaPath(path)) return null;
+  if (isGameMedia(path)) return `${GAME_MEDIA_ROOT}/${path.slice(5)}`;
   const base = String(mediaBase || '');
   if (!/^https:\/\/[A-Za-z0-9.-]+\/storage\/v1\/object\/public\/logbook\/?$/.test(base) && !base.startsWith('/')) return null;
   return `${base.replace(/\/+$/, '')}/${path.split('/').map(encodeURIComponent).join('/')}`;

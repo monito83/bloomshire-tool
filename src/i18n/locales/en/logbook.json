@@ -255,6 +255,23 @@
       "button": "Starter content",
       "title": "Deletes every section, entry and place, and loads the guides made from game data",
       "prompt": "This DELETES all logbook content and loads the starter guides (game guides, bosses and weapons). Type {{word}} to confirm:"
+    },
+    "sprites": {
+      "open": "Pick a game sprite",
+      "title": "Game sprites",
+      "hint": "Creatures, items and villagers straight from the game. Nothing is uploaded, and they stay in sync with every game update.",
+      "search": "Search all sprites…",
+      "loading": "Loading sprites…",
+      "failed": "Couldn't load the game sprites. Try again in a moment.",
+      "empty": "No sprites match that search.",
+      "more": "…and {{count}} more. Narrow the search to see them.",
+      "done_one": "Done · 1 added",
+      "done_other": "Done · {{count}} added",
+      "kinds": {
+        "beasts": "Creatures",
+        "items": "Items",
+        "portraits": "Villagers"
+      }
     }
   }
 }

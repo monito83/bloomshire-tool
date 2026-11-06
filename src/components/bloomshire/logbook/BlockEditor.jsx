@@ -9,7 +9,7 @@ import { Field, inputCls } from './adminUi';
 import PlaceSearch from './PlaceSearch';
 import { PlaceChip } from './LogbookBlocks';
 import MediaDropzone, { UploadContext } from './MediaDropzone';
-import { parseYouTubeId, CALLOUT_VARIANTS, mediaUrl } from './logbookModel';
+import { parseYouTubeId, CALLOUT_VARIANTS, mediaUrl, isGameMedia } from './logbookModel';
 
 export const BLOCK_ICONS = {
   text: '¶', heading: 'H', image: '🖼️', gallery: '🎞️', youtube: '▶', table: '▦',
@@ -150,6 +150,10 @@ export default function BlockEditor({ block, onChange, patch, editLang, corpus, 
             onUploaded={(res) => apply((b) => ({ ...b, path: res.path, width: res.width, height: res.height }))}
             onClear={() => apply((b) => ({ ...b, path: '', width: null, height: null }))}
             onPathChange={(path) => apply((b) => ({ ...b, path }))}
+            onPickSprite={(sp) => apply((b) => ({
+              ...b, path: sp.path, width: null, height: null,
+              alt_en: b.alt_en || sp.name_en, alt_es: b.alt_es || sp.name_es
+            }))}
           />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {line('alt', t('admin.fields.alt'))}
@@ -175,7 +179,14 @@ export default function BlockEditor({ block, onChange, patch, editLang, corpus, 
               {images.map((im, i) => (im.path ? (
                 <div key={`${im.path}-${i}`} className="group overflow-hidden rounded-xl border border-slate-700/80 bg-[#0a1324]">
                   <div className="relative flex aspect-[4/3] items-center justify-center bg-slate-950">
-                    {mediaUrl(mediaBase, im.path) && <img src={mediaUrl(mediaBase, im.path)} alt="" className="max-h-full max-w-full object-contain" />}
+                    {mediaUrl(mediaBase, im.path) && (
+                      <img
+                        src={mediaUrl(mediaBase, im.path)}
+                        alt=""
+                        className={`max-h-full max-w-full object-contain ${isGameMedia(im.path) ? 'h-1/2' : ''}`}
+                        style={isGameMedia(im.path) ? { imageRendering: 'pixelated' } : undefined}
+                      />
+                    )}
                     <span className="absolute left-1.5 top-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-black text-amber-200">#{i + 1}</span>
                     <span className="absolute right-1.5 top-1.5 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
                       <button type="button" onClick={() => moveImg(i, -1)} disabled={i === 0} className="rounded-md bg-black/70 p-1 text-slate-200 hover:text-amber-200 disabled:opacity-30 cursor-pointer" aria-label={t('admin.actions.moveUp')}><ArrowLeft className="h-3 w-3" /></button>
@@ -204,6 +215,10 @@ export default function BlockEditor({ block, onChange, patch, editLang, corpus, 
               images: [...(b.images || []).filter((im) => im.path), { path: res.path, width: res.width, height: res.height, alt_en: '', alt_es: '' }]
             }))}
             onPathChange={(path) => apply((b) => ({ ...b, images: [...(b.images || []).filter((im) => im.path), { path, alt_en: '', alt_es: '' }] }))}
+            onPickSprite={(sp) => apply((b) => ({
+              ...b,
+              images: [...(b.images || []).filter((im) => im.path), { path: sp.path, alt_en: sp.name_en, alt_es: sp.name_es }]
+            }))}
           />
           {line('caption', t('admin.fields.caption'))}
         </div>
