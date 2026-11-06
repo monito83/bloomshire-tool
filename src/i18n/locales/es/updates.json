@@ -23,13 +23,13 @@
   "running": "Actualizando…",
   "updateHint": "Descarga el juego, regenera los datos y los publica si pasan los tests (2 a 4 minutos, más el deploy de Vercel).",
   "githubMissing": "Falta configurar el token de GitHub (GITHUB_UPDATE_TOKEN en Vercel): el botón queda desactivado, pero el robot diario funciona igual.",
-  "rollback": "Cada actualización es un commit propio en main. Para deshacer una, revertí ese commit en GitHub (o pedíselo a Claude) y Vercel vuelve a publicar la versión anterior.",
+  "rollback": "Cada actualización es un PR del robot que se mergea solo. Para deshacer una, abrí ese PR en GitHub y tocá Revert (o pedíselo a Claude); Vercel vuelve a publicar la versión anterior.",
   "runs": {
     "title": "Corridas del robot",
     "empty": "Todavía no hay corridas.",
     "details": "Detalle",
     "all": "Todas las corridas",
-    "commits": "Historial de commits",
+    "commits": "PR del robot",
     "status": {
       "queued": "En cola",
       "in_progress": "Trabajando",

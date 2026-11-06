@@ -80,7 +80,7 @@ const actions = {
       tool,
       upToDate: live ? live.gameVersion === tool.gameVersion && (!live.rulesHash || live.rulesHash === tool.rulesHash) : null,
       updates: (changes.updates || []).slice(0, 10),
-      github: { configured: Boolean(ghToken()), repo: repo(), workflowUrl: `https://github.com/${repo()}/actions/workflows/${WORKFLOW}`, commitsUrl: `https://github.com/${repo()}/commits/main` }
+      github: { configured: Boolean(ghToken()), repo: repo(), workflowUrl: `https://github.com/${repo()}/actions/workflows/${WORKFLOW}`, commitsUrl: `https://github.com/${repo()}/pulls?q=is%3Apr+head%3Abot%2F` }
     };
   },
 

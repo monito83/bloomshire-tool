@@ -4,7 +4,10 @@
 #   de la herramienta, o "Run workflow" en GitHub > Actions).
 # - Los archivos del juego se descargan en la maquina temporal de GitHub y se descartan:
 #   nunca se suben al repositorio.
-# - Cada actualizacion es un commit propio en main: para volver atras, revertir ese commit.
+# - main exige PR (regla "Proteger main"): el robot abre un PR con los cambios y lo mergea solo.
+#   Para volver atras: abrir ese PR en GitHub y tocar "Revert".
+# - Requiere en Settings > Actions > General > Workflow permissions:
+#   "Allow GitHub Actions to create and approve pull requests".
 name: Actualizar datos del juego
 
 on:
@@ -19,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: game-update
@@ -64,16 +68,27 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: npx vite build
 
-      - name: Publicar (commit en main)
+      - name: Publicar (PR del robot, mergeado automaticamente)
         if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.diff.outputs.version }}
         run: |
+          BRANCH="bot/datos-${VERSION}-${GITHUB_RUN_ID}"
           git config user.name "bloomshire-tool-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
           git add public/data/bloomshire
-          git commit -m "chore(datos): actualizar datos oficiales del juego a la version ${{ steps.diff.outputs.version }}" \
-                     -m "Generado automaticamente por .github/workflows/game-update.yml. Para volver atras: revertir este commit."
-          git push origin HEAD:main
-          {
-            echo "### Datos actualizados a la version ${{ steps.diff.outputs.version }}"
-            node -e "const c=require('./public/data/bloomshire/official/changes.json').updates[0]||{};const n=(o)=>o?((o.added||[]).length+' nuevos, '+(o.removed||[]).length+' quitados, '+(o.changedCount||0)+' con cambios'):'-';console.log('- Items: '+n(c.items));console.log('- Criaturas: '+n(c.beasts));console.log('- Habilidades con cambios: '+((c.skills||[]).length))"
-          } >> "$GITHUB_STEP_SUMMARY"
+          git commit -m "chore(datos): actualizar datos oficiales del juego a la version ${VERSION}" \
+                     -m "Generado automaticamente por .github/workflows/game-update.yml."
+          git push origin "$BRANCH"
+          SUMMARY=$(node -e "const c=require('./public/data/bloomshire/official/changes.json').updates[0]||{};const n=(o)=>o?((o.added||[]).length+' nuevos, '+(o.removed||[]).length+' quitados, '+(o.changedCount||0)+' con cambios'):'-';console.log('- Items: '+n(c.items));console.log('- Criaturas: '+n(c.beasts));console.log('- Habilidades con cambios: '+((c.skills||[]).length))")
+          BODY=$(printf 'Actualizacion automatica de los datos oficiales del juego (version %s).\n\n%s\n\nGenerado por el robot `game-update.yml`. Se mergea solo si pasaron los tests y el build. Para volver atras: boton **Revert** de este PR.' "$VERSION" "$SUMMARY")
+          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "chore(datos): datos oficiales del juego ${VERSION}" --body "$BODY")
+          echo "PR: $PR_URL"
+          if gh pr merge "$PR_URL" --merge --delete-branch; then
+            { echo "### Datos actualizados a la version ${VERSION}"; echo "$SUMMARY"; echo "PR: $PR_URL"; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            { echo "### El PR quedo abierto sin mergear: $PR_URL"; echo "Revisar la regla de main o mergearlo a mano."; } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi

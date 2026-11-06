@@ -23,13 +23,13 @@
   "running": "Updating…",
   "updateHint": "Downloads the game, rebuilds the data and publishes it if tests pass (about 2-4 minutes, plus Vercel's deploy).",
   "githubMissing": "The GitHub token is not set up yet (GITHUB_UPDATE_TOKEN in Vercel): the button stays off, but the daily robot still runs.",
-  "rollback": "Each update is its own commit on main. To undo one, revert that commit on GitHub (or ask Claude) and Vercel publishes the previous version again.",
+  "rollback": "Each update is a robot pull request that merges itself. To undo one, open that PR on GitHub and press Revert (or ask Claude); Vercel then publishes the previous version again.",
   "runs": {
     "title": "Robot runs",
     "empty": "No runs yet.",
     "details": "Details",
     "all": "All runs",
-    "commits": "Commit history",
+    "commits": "Robot pull requests",
     "status": {
       "queued": "Queued",
       "in_progress": "Running",

@@ -201,7 +201,11 @@ for (const b of bestiary.beasts) {
   if (!a?.anim?.idle) continue;
   const [file, frames = 1, col0 = 0, fixedRow = null] = a.anim.idle;
   const f = packFile(`${a.dir}/${file}.png`);
-  if (!f) continue;
+  if (!f) {
+    // (sin la hoja en esta pasada: se mantiene la miniatura ya publicada, si existe)
+    if (fs.existsSync(path.join(BEAST_OUT, `${b.id}.png`))) b.art = `beasts/${b.id}.png`;
+    continue;
+  }
   const sheet = readPng(f);
   const c = a.cell;
   const row = fixedRow ?? (a.rows === 4 ? Math.max(0, (a.order ?? ['down', 'up', 'right', 'left']).indexOf('down')) : a.rows === 8 ? Math.max(0, (a.order8 ?? ['down']).indexOf('down')) : 0);
@@ -310,7 +314,10 @@ if (changedFiles.length && prev.codex) {
     const old = (prev.skills || []).find((o) => o.id === sk.id);
     return !old || JSON.stringify(old.unlocks) !== JSON.stringify(sk.unlocks) || JSON.stringify(old.perks) !== JSON.stringify(sk.perks);
   }).map(brief);
-  history.updates.unshift({
+  const meaningful = items.added.length || items.removed.length || items.changed.length ||
+    beasts.added.length || beasts.removed.length || beasts.changed.length || skillUnlocks.length ||
+    (prev.meta && prev.meta.gameVersion !== meta.gameVersion);
+  if (meaningful) history.updates.unshift({
     at: meta.generatedAt,
     from: prev.meta ? { gameVersion: prev.meta.gameVersion, rulesHash: prev.meta.rulesHash } : null,
     to: { gameVersion: meta.gameVersion, rulesHash: meta.rulesHash },
@@ -321,7 +328,8 @@ if (changedFiles.length && prev.codex) {
   });
   history.updates = history.updates.slice(0, 15);
 }
-if (!fs.existsSync(CHANGES) || (changedFiles.length && prev.codex)) fs.writeFileSync(CHANGES, serialize(history), 'utf8');
+const recorded = history.updates[0] && history.updates[0].at === meta.generatedAt;
+if (!fs.existsSync(CHANGES) || recorded) fs.writeFileSync(CHANGES, serialize(history), 'utf8');
 
 const esShare = (items, key) => {
   const withEn = items.filter((x) => x[`${key}_en`]);
