@@ -6,7 +6,8 @@ import megaAtlasData from '../public/data/bloomshire/mega_atlas_data.json';
 import seed from '../src/data/logbook_seed.json';
 import handler, { SEED_CONFIRM, _resetLoginLimits } from '../api/logbook-admin.js';
 import {
-  validateSectionInput, validateEntryInput, buildPlaceCorpus, mediaUrl, extractMediaPath, isSafeMediaPath, isGameMedia, sanitizeBlock
+  validateSectionInput, validateEntryInput, buildPlaceCorpus, mediaUrl, extractMediaPath, isSafeMediaPath, isGameMedia, sanitizeBlock,
+  isGameSprite, imagePath
 } from '../src/components/bloomshire/logbook/logbookModel';
 import { buildSpriteCatalog, filterSprites } from '../src/components/bloomshire/logbook/spriteCatalog';
 import bestiary from '../public/data/bloomshire/official/bestiary.json';
@@ -19,8 +20,8 @@ const spriteExists = (p) => fs.existsSync(path.join(PUBLIC, mediaUrl('', p)));
 function imagesOf(entry) {
   const out = entry.cover_path ? [entry.cover_path] : [];
   for (const b of entry.blocks || []) {
-    if (b.type === 'image') out.push(b.path);
-    if (b.type === 'gallery') out.push(...b.images.map((im) => im.path));
+    if (b.type === 'image') out.push(b.path, ...(b.path_es ? [b.path_es] : []));
+    if (b.type === 'gallery') out.push(...b.images.flatMap((im) => [im.path, ...(im.path_es ? [im.path_es] : [])]));
   }
   return out;
 }
@@ -83,6 +84,26 @@ describe('Bitacora: contenido inicial (seed)', () => {
     expect(bosses.length).toBeGreaterThanOrEqual(8);
   });
 
+  it('el recorrido por la tool va primero, con capturas en los dos idiomas y enlaces internos validos', () => {
+    const tour = seed.sections[0];
+    expect(tour.slug).toBe('how-to-use');
+    const entries = seed.entries.filter((e) => e.section_id === tour.id);
+    expect(entries.length).toBeGreaterThanOrEqual(10);
+    const shots = entries.flatMap((e) => e.blocks.filter((b) => b.type === 'image'));
+    expect(shots.length).toBeGreaterThanOrEqual(10);
+    for (const b of shots) {
+      expect(b.path).toMatch(/^game\/guide\/[a-z_]+_en\.jpg$/);
+      expect(b.path_es).toBe(b.path.replace('_en.jpg', '_es.jpg'));
+    }
+    // cada [texto](#logbook/seccion/entrada) apunta a algo que existe
+    const sectionsById = new Map(seed.sections.map((s) => [s.id, s]));
+    const paths = new Set(seed.entries.map((e) => `${sectionsById.get(e.section_id).slug}/${e.slug}`));
+    const text = JSON.stringify(seed.entries);
+    const links = [...text.matchAll(/\(#logbook\/([a-z0-9/-]+)\)/g)].map((m) => m[1]);
+    expect(links.length).toBeGreaterThan(10);
+    for (const l of links) expect(paths.has(l), l).toBe(true);
+  });
+
   it('autor Admin y sin rastros de Leonman', () => {
     for (const e of seed.entries) expect(e.author).toBe('Admin');
     expect(JSON.stringify(seed)).not.toMatch(/leonman/i);
@@ -99,6 +120,20 @@ describe('Bitacora: sprites del juego', () => {
     expect(mediaUrl('', 'game/beasts/x.js')).toBeNull();
     // Las rutas del bucket siguen igual
     expect(isSafeMediaPath('entries/2026/11/a.webp')).toBe(true);
+  });
+
+  it('capturas de la guia: rutas game/guide/*.jpg, sin efecto pixel art, y version en espanol', () => {
+    expect(mediaUrl('', 'game/guide/atlas_en.jpg')).toBe('/data/bloomshire/guide/atlas_en.jpg');
+    expect(isGameMedia('game/guide/atlas_en.jpg')).toBe(true);
+    expect(isGameSprite('game/guide/atlas_en.jpg')).toBe(false);
+    expect(isGameSprite('game/beasts/lich.png')).toBe(true);
+    expect(isSafeMediaPath('game/guide/atlas.png')).toBe(false);
+    expect(extractMediaPath('/data/bloomshire/guide/items_es.jpg')).toBe('game/guide/items_es.jpg');
+    const img = sanitizeBlock({ type: 'image', path: 'game/guide/items_en.jpg', path_es: 'game/guide/items_es.jpg' });
+    expect(img.path_es).toBe('game/guide/items_es.jpg');
+    expect(imagePath(img, 'es')).toBe('game/guide/items_es.jpg');
+    expect(imagePath(img, 'en')).toBe('game/guide/items_en.jpg');
+    expect(sanitizeBlock({ type: 'image', path: 'game/guide/items_en.jpg', path_es: '../x' }).path_es).toBeUndefined();
   });
 
   it('extractMediaPath acepta la URL o ruta del sprite y rechaza otras carpetas', () => {
@@ -147,7 +182,9 @@ async function call(body, token) {
 
 describe('Bitacora admin: seed_reset', () => {
   let requests;
+  let existing;
   beforeEach(() => {
+    existing = { logbook_sections: [], logbook_entries: [] };
     _resetLoginLimits();
     process.env.SUPABASE_URL = 'https://abc.supabase.co';
     process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-key';
@@ -158,8 +195,9 @@ describe('Bitacora admin: seed_reset', () => {
       const u = new URL(url);
       const method = opts.method || 'GET';
       const body = opts.body ? JSON.parse(opts.body) : undefined;
-      requests.push({ method, table: u.pathname.split('/').pop(), query: u.search, body });
-      const data = method === 'POST' ? body : [];
+      const table = u.pathname.split('/').pop();
+      requests.push({ method, table, query: u.search, body, prefer: opts.headers?.Prefer });
+      const data = method === 'POST' ? body : method === 'GET' ? (existing[table] || []) : [];
       return { ok: true, status: method === 'DELETE' ? 204 : 200, json: async () => data, text: async () => JSON.stringify(data) };
     }));
   });
@@ -175,6 +213,28 @@ describe('Bitacora admin: seed_reset', () => {
     expect(bad.code).toBe(400);
     expect(bad.body.error).toBe('confirm_mismatch');
     expect(requests.filter((r) => r.method !== 'GET')).toHaveLength(0);
+  });
+
+  it('seed_upsert actualiza por id sin borrar nada', async () => {
+    const token = (await call({ action: 'login', password: PASSWORD })).body.token;
+    const r = await call({ action: 'seed_upsert' }, token);
+    expect(r.code).toBe(200);
+    expect(r.body).toEqual(expect.objectContaining({ ok: true, entries: seed.entries.length }));
+    expect(requests.some((q) => q.method === 'DELETE')).toBe(false);
+    const posts = requests.filter((q) => q.method === 'POST');
+    expect(posts.length).toBeGreaterThan(0);
+    for (const q of posts) expect(q.query).toBe('?on_conflict=id');
+    expect(posts.every((q) => q.prefer === 'resolution=merge-duplicates,return=minimal')).toBe(true);
+    expect(posts.filter((q) => q.table === 'logbook_entries').flatMap((q) => q.body)).toHaveLength(seed.entries.length);
+  });
+
+  it('seed_upsert no pisa lo hecho a mano: si choca un enlace devuelve 409 y no escribe', async () => {
+    existing.logbook_sections = [{ id: '99999999-9999-4999-8999-999999999999', slug: 'bosses', parent_id: null }];
+    const token = (await call({ action: 'login', password: PASSWORD })).body.token;
+    const r = await call({ action: 'seed_upsert' }, token);
+    expect(r.code).toBe(409);
+    expect(r.body.error).toBe('seed_conflict');
+    expect(requests.some((q) => q.method === 'POST')).toBe(false);
   });
 
   it('borra todo y carga secciones y entradas como Admin', async () => {

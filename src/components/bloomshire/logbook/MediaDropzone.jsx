@@ -7,7 +7,7 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import { useTranslation } from 'react-i18next';
 import { ImageUp, FileUp, RefreshCw, Trash2, LoaderCircle, Link2, FileText, Swords } from 'lucide-react';
 import { uploadMedia, imageFilesFrom, ACCEPT_IMAGES, ACCEPT_PDF } from './logbookUpload';
-import { mediaUrl, extractMediaPath, isGameMedia } from './logbookModel';
+import { mediaUrl, extractMediaPath, isGameSprite } from './logbookModel';
 import SpritePicker from './SpritePicker';
 import { inputCls, useAdminErrorText } from './adminUi';
 
@@ -115,7 +115,7 @@ export default function MediaDropzone({ kind = 'image', value = '', onUploaded, 
             <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-rose-500/15 text-rose-300"><FileText className="h-7 w-7" /></span>
           ) : (
             <span className="flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-950">
-              {url ? <img src={url} alt="" className={`max-h-full max-w-full object-contain ${isGameMedia(value) ? 'h-12' : ''}`} style={isGameMedia(value) ? { imageRendering: 'pixelated' } : undefined} /> : null}
+              {url ? <img src={url} alt="" className={`max-h-full max-w-full object-contain ${isGameSprite(value) ? 'h-12' : ''}`} style={isGameSprite(value) ? { imageRendering: 'pixelated' } : undefined} /> : null}
             </span>
           )}
           <span className="min-w-0 flex-1 truncate font-mono text-[11px] text-slate-500" title={value}>{value}</span>

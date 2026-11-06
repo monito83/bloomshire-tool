@@ -3,14 +3,14 @@
 // Movido tal cual desde BloomshireCommand (docs/REFACTOR_SPEC.md, fase 4).
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ChevronDown, ChevronUp, Gem, LogOut, RefreshCw } from 'lucide-react';
+import { ChevronDown, ChevronUp, Compass, Gem, LogOut, RefreshCw } from 'lucide-react';
 import LanguageSwitcher from '../../LanguageSwitcher';
 
 export default function HeaderHud({
     avyn, currentEnergy, energyMeta, farmingLevel, fetchSyncFromServer, formattedLastSyncTime,
     gold, handleDisconnect, isConnected, isHeaderCollapsed, isSyncStale, isSyncing,
     isVip, maxEnergy, setIsHeaderCollapsed, setShowConnectModal, setShowProfileModal, shards,
-    walletAddress
+    walletAddress, onOpenGuide = null
   }) {
   const { t: tHeader, i18n } = useTranslation('header');
   return (
@@ -109,8 +109,36 @@ export default function HeaderHud({
           )}
         </div>
 
+        {/* Centro: guia de uso (lleva a la Bitacora, seccion "Como usar la tool") */}
+        {onOpenGuide && (
+          <div className="hidden lg:flex flex-1 justify-center min-w-0 px-2">
+            <button
+              type="button"
+              onClick={onOpenGuide}
+              title={tHeader('guide.title')}
+              className="group relative shrink-0 rounded-xl bg-gradient-to-r from-amber-500/70 via-emerald-400/60 to-amber-500/70 bg-[length:200%_100%] p-px shadow-[0_0_24px_-10px_rgba(245,158,11,0.8)] transition-shadow hover:shadow-[0_0_28px_-6px_rgba(245,158,11,0.75)] lb-shimmer cursor-pointer"
+            >
+              <span className="flex items-center gap-1.5 rounded-[11px] bg-[#0d1528] px-3.5 py-1 text-xs font-black text-amber-200 transition-colors group-hover:bg-[#141f37] group-hover:text-amber-100">
+                <Compass className="h-3.5 w-3.5 text-amber-400 transition-transform duration-500 group-hover:rotate-45" />
+                {tHeader('guide.button')}
+              </span>
+            </button>
+          </div>
+        )}
+
         {/* Derecha: Selector de Idioma + Boton Sync estilo Boceto + Desconectar + Colapsar */}
         <div className="flex items-center gap-2 shrink-0">
+          {onOpenGuide && (
+            <button
+              type="button"
+              onClick={onOpenGuide}
+              title={tHeader('guide.title')}
+              aria-label={tHeader('guide.button')}
+              className="lg:hidden w-8 h-8 rounded-xl bg-[#12192a] hover:bg-[#1b253b] border border-amber-500/40 text-amber-300 flex items-center justify-center transition-all cursor-pointer"
+            >
+              <Compass className="w-4 h-4" />
+            </button>
+          )}
           <LanguageSwitcher />
           {isConnected && (
             <>

@@ -35,5 +35,9 @@
   "toggle": {
     "expand": "Expand header",
     "collapse": "Hide header"
+  },
+  "guide": {
+    "button": "How to use",
+    "title": "Quick tour of everything the tool does"
   }
 }

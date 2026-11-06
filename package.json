@@ -8,6 +8,7 @@
     "build": "vite build",
     "build:rules": "node scripts/build_rules.mjs",
     "build:extension": "node scripts/build_extension_zip.mjs",
+    "build:guide": "node scripts/build_tool_guide.mjs && node scripts/build_logbook_seed.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "build:official": "node scripts/build_official_data.mjs",

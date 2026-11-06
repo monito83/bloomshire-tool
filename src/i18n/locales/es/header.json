@@ -35,5 +35,9 @@
   "toggle": {
     "expand": "Expandir encabezado",
     "collapse": "Ocultar encabezado"
+  },
+  "guide": {
+    "button": "Guía de uso",
+    "title": "Recorrido rápido por todo lo que hace la tool"
   }
 }

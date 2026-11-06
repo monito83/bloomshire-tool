@@ -15,6 +15,8 @@
  *   media_register   { path, mime, bytes, width, height, alt_en, alt_es } -> fila en logbook_media
  *   seed_reset       { confirm: 'BORRAR TODO' }  -> borra secciones, entradas y lugares, y carga
  *                                                  src/data/logbook_seed.json (scripts/build_logbook_seed.mjs)
+ *   seed_upsert      {}                          -> crea o reemplaza por id el contenido oficial sin borrar
+ *                                                  lo escrito a mano (409 seed_conflict si choca un enlace)
  *
  * Subidas: el navegador reduce y convierte la imagen a WebP y la sube DIRECTO a
  * Supabase con la URL firmada (asi no pasa por el limite de 4,5 MB de Vercel).
@@ -167,7 +169,7 @@ class HttpError extends Error {
   }
 }
 
-async function rest(cfg, method, pathAndQuery, body) {
+async function rest(cfg, method, pathAndQuery, body, { prefer = 'return=representation' } = {}) {
   const headers = {
     apikey: cfg.key,
     Authorization: `Bearer ${cfg.key}`,
@@ -175,7 +177,7 @@ async function rest(cfg, method, pathAndQuery, body) {
   };
   if (body !== undefined) {
     headers['Content-Type'] = 'application/json';
-    headers.Prefer = 'return=representation';
+    headers.Prefer = prefer;
   }
   const res = await fetch(`${cfg.url}/rest/v1/${pathAndQuery}`, {
     method,
@@ -326,18 +328,7 @@ const actions = {
   /** Reemplaza TODO el contenido por el paquete inicial (guias, jefes y armas hechos con datos del juego). */
   async seed_reset(cfg, body) {
     if (body.confirm !== SEED_CONFIRM) throw new HttpError(400, 'confirm_mismatch');
-    const sections = [];
-    for (const s of LOGBOOK_SEED.sections || []) {
-      const check = validateSectionInput(s);
-      if (!check.ok) throw new HttpError(500, 'seed_invalid');
-      sections.push({ id: s.id, ...check.value });
-    }
-    const entries = [];
-    for (const e of LOGBOOK_SEED.entries || []) {
-      const check = validateEntryInput(e);
-      if (!check.ok) throw new HttpError(500, 'seed_invalid');
-      entries.push({ id: e.id, ...check.value, author: 'Admin', published_at: new Date().toISOString() });
-    }
+    const { sections, entries } = prepareSeed();
     // Borrar todo (las entradas primero; las secciones caen en cascada con sus subsecciones)
     await rest(cfg, 'DELETE', 'logbook_entries?id=not.is.null');
     await rest(cfg, 'DELETE', 'logbook_sections?parent_id=not.is.null');
@@ -349,6 +340,31 @@ const actions = {
     if (roots.length) await rest(cfg, 'POST', 'logbook_sections', roots);
     if (children.length) await rest(cfg, 'POST', 'logbook_sections', children);
     for (let i = 0; i < entries.length; i += 20) await rest(cfg, 'POST', 'logbook_entries', entries.slice(i, i + 20));
+    return { ok: true, sections: sections.length, entries: entries.length };
+  },
+
+  // Actualiza el contenido oficial sin borrar nada: crea o reemplaza (por id) las secciones y
+  // entradas del paquete y deja intacto todo lo que se escribio a mano.
+  async seed_upsert(cfg) {
+    const { sections, entries } = prepareSeed();
+    const [curSections, curEntries] = await Promise.all([
+      rest(cfg, 'GET', 'logbook_sections?select=id,slug,parent_id&limit=5000'),
+      rest(cfg, 'GET', 'logbook_entries?select=id,slug,section_id&limit=10000')
+    ]);
+    // Si algo hecho a mano usa el mismo enlace en el mismo lugar, no pisarlo: avisar
+    const clash = (cur, item, parentKey) => (cur || []).some((c) =>
+      c.id !== item.id && c.slug === item.slug && (c[parentKey] || null) === (item[parentKey] || null));
+    const conflicts = [
+      ...sections.filter((s) => clash(curSections, s, 'parent_id')).map((s) => s.slug),
+      ...entries.filter((e) => clash(curEntries, e, 'section_id')).map((e) => e.slug)
+    ];
+    if (conflicts.length) throw new HttpError(409, 'seed_conflict');
+    const upsert = (table, rows) => rest(cfg, 'POST', `${table}?on_conflict=id`, rows, { prefer: 'resolution=merge-duplicates,return=minimal' });
+    const roots = sections.filter((s) => !s.parent_id);
+    const children = sections.filter((s) => s.parent_id);
+    if (roots.length) await upsert('logbook_sections', roots);
+    if (children.length) await upsert('logbook_sections', children);
+    for (let i = 0; i < entries.length; i += 20) await upsert('logbook_entries', entries.slice(i, i + 20));
     return { ok: true, sections: sections.length, entries: entries.length };
   },
 
@@ -372,6 +388,24 @@ const clientIp = (req) =>
   req.socket?.remoteAddress || 'unknown';
 
 /** El navegador siempre manda Origin en un POST con fetch; debe ser este mismo sitio. */
+/** Secciones y entradas del paquete oficial, validadas igual que las del editor. */
+function prepareSeed() {
+  const sections = [];
+  for (const s of LOGBOOK_SEED.sections || []) {
+    const check = validateSectionInput(s);
+    if (!check.ok) throw new HttpError(500, 'seed_invalid');
+    sections.push({ id: s.id, ...check.value });
+  }
+  const now = new Date().toISOString();
+  const entries = [];
+  for (const e of LOGBOOK_SEED.entries || []) {
+    const check = validateEntryInput(e);
+    if (!check.ok) throw new HttpError(500, 'seed_invalid');
+    entries.push({ id: e.id, ...check.value, author: 'Admin', published_at: now });
+  }
+  return { sections, entries };
+}
+
 export function isSameOrigin(req) {
   const origin = String(req.headers?.origin || '');
   const host = String(req.headers?.['x-forwarded-host'] || req.headers?.host || '');

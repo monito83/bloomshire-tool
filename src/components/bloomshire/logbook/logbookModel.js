@@ -9,11 +9,14 @@ export const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 // Rutas dentro del bucket: solo caracteres seguros, sin "..", sin barra inicial.
 export const MEDIA_PATH_RE = /^(?!.*\.\.)(?!\/)[A-Za-z0-9][A-Za-z0-9/_.-]{0,240}$/;
 export const YOUTUBE_ID_RE = /^[A-Za-z0-9_-]{11}$/;
-// Sprites del juego que ya vienen con la app (public/data/bloomshire/...): se
-// guardan como "game/<carpeta>/<archivo>.png" y no ocupan lugar en el bucket.
-export const GAME_MEDIA_RE = /^game\/(beasts|items|portraits)\/[a-z0-9_]{1,80}\.png$/;
+// Imagenes que ya vienen con la app (public/data/bloomshire/...): se guardan como
+// "game/<carpeta>/<archivo>" y no ocupan lugar en el bucket.
+//   - sprites del juego (pixel art): game/beasts|items|portraits/<x>.png
+//   - capturas de la guia de la tool: game/guide/<x>.jpg (scripts/build_tool_guide.mjs)
+export const GAME_MEDIA_RE = /^game\/(?:(?:beasts|items|portraits)\/[a-z0-9_]{1,80}\.png|guide\/[a-z0-9_]{1,80}\.jpg)$/;
+const GAME_SPRITE_RE = /^game\/(?:beasts|items|portraits)\//;
 export const GAME_MEDIA_ROOT = '/data/bloomshire';
-const GAME_MEDIA_URL_RE = /^(?:https?:\/\/[^/]+)?\/data\/bloomshire\/((?:beasts|items|portraits)\/[^?#]+)/;
+const GAME_MEDIA_URL_RE = /^(?:https?:\/\/[^/]+)?\/data\/bloomshire\/((?:beasts|items|portraits|guide)\/[^?#]+)/;
 export const PLACE_KEY_RE = /^(region|sub|npc|door|clue|custom):[A-Za-z0-9_-]{1,80}$/;
 
 export const BLOCK_TYPES = [
@@ -234,8 +237,12 @@ export function isSafeMediaPath(path) {
   return !path.startsWith('game/') || GAME_MEDIA_RE.test(path);
 }
 
-/** true si la ruta apunta a un sprite del juego (pixel art chico). */
+/** true si la ruta apunta a una imagen que sirve la app (sprite o captura de la guia). */
 export const isGameMedia = (path) => typeof path === 'string' && GAME_MEDIA_RE.test(path);
+/** true si es un sprite del juego (pixel art chico: se amplia sin suavizado). */
+export const isGameSprite = (path) => isGameMedia(path) && GAME_SPRITE_RE.test(path);
+/** Ruta de una imagen en el idioma pedido: path_es (opcional) para espanol, si no path. */
+export const imagePath = (img, lang) => (baseLang(lang) === 'es' && img?.path_es ? img.path_es : img?.path);
 
 const PUBLIC_BUCKET_URL_RE = /^https:\/\/[A-Za-z0-9.-]+\/storage\/v1\/object\/(?:public|sign)\/logbook\/([^?#]+)/;
 
@@ -344,8 +351,9 @@ export function sanitizeBlock(raw) {
     case 'image': {
       const path = extractMediaPath(raw.path);
       if (!path) return null;
+      const pathEs = raw.path_es ? extractMediaPath(raw.path_es) : null;
       return {
-        type: t, path,
+        type: t, path, ...(pathEs ? { path_es: pathEs } : {}),
         alt_en: str(raw.alt_en, 300), alt_es: str(raw.alt_es, 300),
         caption_en: str(raw.caption_en, 500), caption_es: str(raw.caption_es, 500),
         width: Number.isFinite(raw.width) ? raw.width : null,

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import {
   BookOpen, ScrollText, Search, X, ChevronRight, ChevronDown, ChevronLeft, ArrowLeft, ArrowRight,
   FileText, LoaderCircle, RefreshCw, Link2, Check, PanelLeft, Tag, Sparkles, Feather, TriangleAlert,
-  LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck, RotateCcw
+  LockKeyhole, LogOut, Pencil, ArrowUp, ArrowDown, FilePlus, FolderPlus, ShieldCheck, RotateCcw, Compass, CloudDownload
 } from 'lucide-react';
 import megaAtlasData from '../../../../public/data/bloomshire/mega_atlas_data.json';
 import LogbookBlocks, { PlaceChip, SpriteStage } from '../logbook/LogbookBlocks';
@@ -19,8 +19,11 @@ import SectionEditorModal from '../logbook/SectionEditorModal';
 import LogbookEditor from '../logbook/LogbookEditor';
 import {
   baseLang, pickLang, buildTree, indexTree, entryPath, flattenEntries, parseLogbookHash, buildLogbookHash,
-  buildPlaceCorpus, placeLabel, entryHasPlace, isMissingTranslation, mediaUrl, isGameMedia, searchEntries
+  buildPlaceCorpus, placeLabel, entryHasPlace, isMissingTranslation, mediaUrl, isGameSprite, imagePath, searchEntries
 } from '../logbook/logbookModel';
+
+// Seccion del recorrido por la tool (contenido oficial): boton destacado en la portada
+export const TOUR_SLUG = 'how-to-use';
 
 const readHashPath = () => {
   if (typeof window === 'undefined') return '';
@@ -181,7 +184,7 @@ function EntryCard({ entry, lang, path, onNavigate, mediaBase, sectionLabel, sni
     >
       {cover && (
         <div className="relative h-32 w-full overflow-hidden">
-          {isGameMedia(entry.cover_path) ? (
+          {isGameSprite(entry.cover_path) ? (
             <SpriteStage path={entry.cover_path} mediaBase={mediaBase} size="card" />
           ) : (
             <img src={cover} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -251,7 +254,7 @@ function Lightbox({ images, index, lang, mediaBase, onClose, onMove }) {
   }, [onClose, onMove]);
   const img = images[index];
   if (!img) return null;
-  const url = mediaUrl(mediaBase, img.path);
+  const url = mediaUrl(mediaBase, imagePath(img, lang));
   const caption = pickLang(img, 'caption', lang) || pickLang(img, 'alt', lang);
   return (
     <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 p-4 backdrop-blur-sm lb-fade" onClick={onClose} role="dialog" aria-modal="true">
@@ -268,7 +271,7 @@ function Lightbox({ images, index, lang, mediaBase, onClose, onMove }) {
           </button>
         </>
       )}
-      {url && (isGameMedia(img.path) ? (
+      {url && (isGameSprite(imagePath(img, lang)) ? (
         <img
           src={url}
           alt={pickLang(img, 'alt', lang)}
@@ -566,14 +569,28 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
     }
   }, [call, refresh, navigate, t]);
 
+  // Actualiza solo el contenido oficial (por id) sin tocar lo escrito a mano
+  const seedUpsert = useCallback(async () => {
+    if (!window.confirm(t('admin.seed.upsertConfirm'))) return;
+    try {
+      const res = await call('seed_upsert', {});
+      entryCache.current.clear();
+      refresh();
+      setAdminNotice({ ok: true, text: t('admin.seed.upsertDone', { count: res?.entries || 0 }) });
+    } catch (err) {
+      setAdminNotice(err);
+    }
+  }, [call, refresh, t]);
+
   const adminActions = useMemo(() => (token ? {
     seedReset,
+    seedUpsert,
     move,
     editSection: (node) => setSectionModal({ initial: node }),
     newSection: (parentId) => setSectionModal({ initial: { parent_id: parentId || null } }),
     newEntry: (sectionId) => setEditing({ initial: { section_id: sectionId, status: 'draft' } }),
     editEntry: openEditor
-  } : null), [token, move, openEditor, seedReset]);
+  } : null), [token, move, openEditor, seedReset, seedUpsert]);
 
   // Despues de crear/guardar: navegar al elemento cuando ya esta en el arbol nuevo
   useEffect(() => {
@@ -641,6 +658,16 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
             {t('hero.title')}
           </h1>
           <p className="text-base leading-relaxed text-slate-300">{t('hero.subtitle')}</p>
+          {tree.some((n) => n.slug === TOUR_SLUG) && (
+            <button
+              type="button"
+              onClick={() => navigate(TOUR_SLUG)}
+              className="group mt-2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 px-4 py-2.5 text-sm font-black text-[#1a1205] shadow-[0_10px_30px_-12px_rgba(245,158,11,0.9)] transition-all hover:-translate-y-0.5 hover:from-amber-300 hover:to-amber-500 cursor-pointer"
+            >
+              <Compass className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" /> {t('hero.tour')}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </button>
+          )}
         </div>
       </section>
 
@@ -749,7 +776,7 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
         <header className="space-y-4">
           {cover && (
             <div className="relative overflow-hidden rounded-3xl border border-slate-800">
-              {isGameMedia(entry.cover_path) ? (
+              {isGameSprite(entry.cover_path) ? (
                 <SpriteStage path={entry.cover_path} mediaBase={mediaBase} size="hero" alt={pickLang(entry, 'title', lang)} />
               ) : (
                 <img src={cover} alt="" className="max-h-80 w-full object-cover" />
@@ -935,11 +962,14 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
           </button>
         </div>
         {adminActions && (
-          <div className="flex items-center gap-2 border-b border-slate-800 bg-amber-500/[0.06] px-4 py-2.5">
-            <span className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-amber-300">
+          <div className="flex flex-wrap items-center gap-2 border-b border-slate-800 bg-amber-500/[0.06] px-4 py-2.5">
+            <span className="flex w-full items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-amber-300">
               <ShieldCheck className="h-3.5 w-3.5" /> {t('admin.mode')}
             </span>
-            <button type="button" onClick={() => adminActions.newSection(null)} className="ml-auto inline-flex items-center gap-1 rounded-lg border border-amber-500/40 px-2 py-1 text-[11px] font-black text-amber-200 hover:bg-amber-500/15 cursor-pointer">
+            <button type="button" onClick={adminActions.seedUpsert} title={t('admin.seed.upsertTitle')} className="inline-flex items-center gap-1 rounded-lg bg-gradient-to-b from-amber-400 to-amber-600 px-2 py-1 text-[11px] font-black text-[#1a1205] hover:from-amber-300 hover:to-amber-500 cursor-pointer">
+              <CloudDownload className="h-3.5 w-3.5" /> {t('admin.seed.upsert')}
+            </button>
+            <button type="button" onClick={() => adminActions.newSection(null)} className="inline-flex items-center gap-1 rounded-lg border border-amber-500/40 px-2 py-1 text-[11px] font-black text-amber-200 hover:bg-amber-500/15 cursor-pointer">
               <FolderPlus className="h-3.5 w-3.5" /> {t('admin.actions.newSection')}
             </button>
             <button type="button" onClick={adminActions.seedReset} title={t('admin.seed.title')} className="inline-flex items-center gap-1 rounded-lg border border-rose-500/40 px-2 py-1 text-[11px] font-black text-rose-200 hover:bg-rose-500/15 cursor-pointer">
@@ -1041,8 +1071,13 @@ export default function LogbookTab({ locateInMegaAtlas, initialData = null, init
         />
       )}
       {adminNotice && (
-        <div className="fixed bottom-5 left-1/2 z-[80] -translate-x-1/2 rounded-xl border border-rose-500/40 bg-[#1a0f18]/95 px-4 py-2.5 text-sm text-rose-200 shadow-2xl backdrop-blur lb-pop" role="status">
-          {errorText(adminNotice)}
+        <div
+          className={`fixed bottom-5 left-1/2 z-[80] -translate-x-1/2 rounded-xl border px-4 py-2.5 text-sm shadow-2xl backdrop-blur lb-pop ${
+            adminNotice.ok ? 'border-emerald-500/40 bg-[#0c1a16]/95 text-emerald-200' : 'border-rose-500/40 bg-[#1a0f18]/95 text-rose-200'
+          }`}
+          role="status"
+        >
+          {adminNotice.ok ? adminNotice.text : errorText(adminNotice)}
         </div>
       )}
 

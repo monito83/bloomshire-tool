@@ -6,6 +6,7 @@
  *   - Jefes: donde esta cada uno, su arma debil y la que no le hace nada, su escolta y sus premios
  *     (rules.js ENEMIES / BOSS_WEAPONS / BOSS_PRIZE, Bestiario oficial).
  *   - Armas y combate: armas forjadas por nivel (rules.js FORGED, recetas del codice), rarezas y la Mazmorra.
+ *   - Como usar la tool: un recorrido por cada modulo con capturas (scripts/build_tool_guide.mjs).
  * Las imagenes son sprites del juego que ya vienen con la app ("game/beasts|items|portraits/<x>.png").
  * El panel de admin lo carga con "Reemplazar por el contenido inicial" (api/logbook-admin.js seed_reset).
  *
@@ -74,6 +75,7 @@ const fmt = (n, lang) => Number(n).toLocaleString(lang === 'es' ? 'es-AR' : 'en-
 const range = (r, lang) => (Array.isArray(r) ? `${fmt(r[0], lang)}–${fmt(r[1], lang)}` : '—');
 
 const sections = [
+  { key: 'how-to-use', icon: '🧭', title_en: 'How to use the tool', title_es: 'Cómo usar la tool', description_en: 'A quick tour of every module: what it does, what it needs and how to get the most out of it.', description_es: 'Un recorrido rápido por cada módulo: qué hace, qué necesita y cómo sacarle el jugo.' },
   { key: 'guides', icon: '📜', title_en: 'Game guides', title_es: 'Guías del juego', description_en: "The game's own guide, topic by topic: energy, farming, cooking, crafting, quests, money and more.", description_es: 'La guía del propio juego, tema por tema: energía, cultivo, cocina, crafteo, misiones, dinero y más.' },
   { key: 'bosses', icon: '👑', title_en: 'Bosses', title_es: 'Jefes', description_en: 'Where each boss lives, the weapon it fears, who fights beside it and what it pays.', description_es: 'Dónde vive cada jefe, el arma que teme, quién pelea a su lado y qué paga.' },
   { key: 'weapons', icon: '⚔️', title_en: 'Weapons and combat', title_es: 'Armas y combate', description_en: 'How to forge every weapon, what rarity does, and the Dungeon.', description_es: 'Cómo forjar cada arma, para qué sirve la rareza y la Mazmorra.' }
@@ -84,6 +86,190 @@ const entries = [];
 const add = (section, slug, e) => entries.push({
   id: uid(`entry:${section}:${slug}`), section_id: sectionId(section), slug, status: 'published', author: 'Admin',
   sort: entries.filter((x) => x.section_id === sectionId(section)).length * 10, tags: [], places: [], cover_path: null, ...e
+});
+
+// ---------------------------------------------------------------- Como usar la tool (capturas de scripts/build_tool_guide.mjs)
+const GUIDE_DIR = path.join(PUBLIC, 'guide');
+/** Captura de la tool en el idioma de quien lee (path en ingles, path_es en espanol). */
+const shot = (id, alt_en, alt_es, caption_en = '', caption_es = '') => {
+  const en = `${id}_en.jpg`;
+  const esFile = `${id}_es.jpg`;
+  if (!fs.existsSync(path.join(GUIDE_DIR, en))) return [];
+  return [{
+    type: 'image', path: `game/guide/${en}`,
+    ...(fs.existsSync(path.join(GUIDE_DIR, esFile)) ? { path_es: `game/guide/${esFile}` } : {}),
+    alt_en, alt_es, caption_en, caption_es
+  }];
+};
+const txt = (md_en, md_es) => ({ type: 'text', md_en, md_es });
+const h2 = (text_en, text_es) => ({ type: 'heading', level: 2, text_en, text_es });
+const ul = (items_en, items_es) => ({ type: 'list', ordered: false, items_en, items_es });
+const ol = (items_en, items_es) => ({ type: 'list', ordered: true, items_en, items_es });
+const note = (variant, md_en, md_es, title_en = '', title_es = '') => ({ type: 'callout', variant, title_en, title_es, md_en, md_es });
+const link = (slug) => `#logbook/how-to-use/${slug}`;
+const NEEDS = {
+  free: ['Nothing: open to everyone', 'Nada: abierto para todos'],
+  ext: ['Extension (for your game data)', 'Extensión (para los datos de tu partida)'],
+  sign: ['Extension + wallet signature', 'Extensión + firma con la wallet']
+};
+const needs = (k) => note('note', `**Needs:** ${NEEDS[k][0]}. See [Connect your game](${link('connect')}).`, `**Necesita:** ${NEEDS[k][1]}. Mirá [Conectá tu partida](${link('connect')}).`);
+const tour = (slug, cover, e) => add('how-to-use', slug, { tags: ['tool', 'tutorial'], cover_path: spriteRef(cover), ...e });
+
+tour('start-here', 'i:starbloom', {
+  title_en: 'Start here: what Bloomshire Tool does', title_es: 'Empezá acá: qué hace Bloomshire Tool',
+  summary_en: 'A free community companion for Bloomshire: maps, guides, recipes, prices and your own game live, all in one place.',
+  summary_es: 'Un compañero gratuito de la comunidad para Bloomshire: mapas, guías, recetas, precios y tu propia partida en vivo, todo en un lugar.',
+  blocks: [
+    txt('Bloomshire Tool puts everything you look up while playing in one place. Most of it works the moment you open it; connect your game to see your own inventory, orders and timers.',
+      'Bloomshire Tool junta en un solo lugar todo lo que buscás mientras jugás. Casi todo funciona apenas la abrís; conectá tu partida para ver tu propio inventario, tus pedidos y tus temporizadores.'),
+    ...shot('atlas', 'The Mega-Atlas with a sub-zone selected', 'El Mega-Atlas con una sub-zona elegida'),
+    h2('Every module at a glance', 'Todos los módulos de un vistazo'),
+    { type: 'table',
+      md_en: `| Module | What it's for | Needs |\n|---|---|---|\n| [Mega-Atlas](${link('mega-atlas')}) | The whole world: zones, villagers, caves, secrets | — |\n| [Logbook](${link('logbook')}) | Guides, bosses, weapons and this tour | — |\n| [Item finder](${link('item-finder')}) | What any item is and where to get it | — |\n| [Crafting & cooking](${link('crafting')}) | Every recipe, by station | — |\n| [Villagers & gifts](${link('villagers')}) | What each villager loves and where they are | — |\n| [XP calculator](${link('xp-calculator')}) | What to plant for XP or gold | — |\n| [Economy](${link('economy')}) | Your inventory's worth, Odette's orders, the market | 🔒 |\n| [Timers](${link('timers')}) | Crops and cooking countdowns, daily tasks | 🔒 |\n| [Quests](${link('quests')}) | Your quests step by step and what's missing | 🔒 |`,
+      md_es: `| Módulo | Para qué sirve | Necesita |\n|---|---|---|\n| [Mega-Atlas](${link('mega-atlas')}) | Todo el mundo: zonas, aldeanos, cuevas, secretos | — |\n| [Bitácora](${link('logbook')}) | Guías, jefes, armas y este recorrido | — |\n| [Buscador de ítems](${link('item-finder')}) | Qué es cualquier ítem y dónde conseguirlo | — |\n| [Crafteo y cocina](${link('crafting')}) | Todas las recetas, por estación | — |\n| [Aldeanos y regalos](${link('villagers')}) | Qué le encanta a cada aldeano y dónde está | — |\n| [Calculadora XP](${link('xp-calculator')}) | Qué plantar para ganar XP u oro | — |\n| [Economía](${link('economy')}) | Cuánto vale tu inventario, pedidos de Odette, el mercado | 🔒 |\n| [Temporizadores](${link('timers')}) | Cuentas regresivas de cultivos y cocina, tareas diarias | 🔒 |\n| [Misiones](${link('quests')}) | Tus misiones paso a paso y lo que te falta | 🔒 |` },
+    note('tip', `The 🔒 modules open when you connect your game: [two quick steps](${link('connect')}).`, `Los módulos con 🔒 se abren cuando conectás tu partida: [dos pasos rápidos](${link('connect')}).`),
+    note('note', 'The tool reads public game data and, if you install the extension, your own game. It never plays for you and never changes anything in your game.', 'La tool lee datos públicos del juego y, si instalás la extensión, tu propia partida. Nunca juega por vos ni cambia nada en tu partida.')
+  ]
+});
+
+tour('connect', 'i:amulet', {
+  title_en: 'Connect your game (2 steps)', title_es: 'Conectá tu partida (2 pasos)',
+  summary_en: 'The extension brings your game data; your wallet signature unlocks the 🔒 modules and the cloud save.',
+  summary_es: 'La extensión trae los datos de tu partida; la firma con tu wallet desbloquea los módulos con 🔒 y la partida en la nube.',
+  blocks: [
+    txt('Press **Connect game** at the top. The window shows both steps and tells you which ones are done.', 'Tocá **Conectar partida** arriba. La ventana muestra los dos pasos y te dice cuáles ya están hechos.'),
+    ...shot('connect', 'The connection window with its two steps', 'La ventana de conexión con sus dos pasos'),
+    h2('Step 1: the Bloomshire Companion extension', 'Paso 1: la extensión Bloomshire Companion'),
+    txt('It reads your game live while you play at bloomshire.xyz/play: inventory, chests, gold, energy, crops and crafting timers. It only reads; it never changes your game.', 'Lee tu partida en vivo mientras jugás en bloomshire.xyz/play: inventario, cofres, oro, energía, cultivos y temporizadores de crafteo. Solo lee; nunca cambia tu partida.'),
+    ol(['In the connection window, press **Download extension (.zip)** and unzip it. You get a folder called **bloomshire-companion**.', 'Open **chrome://extensions** (brave://extensions in Brave, edge://extensions in Edge).', 'Turn on **Developer mode** (top-right switch).', 'Click **Load unpacked** and pick the **bloomshire-companion** folder.', 'Open your game at bloomshire.xyz/play and come back to the tool: it syncs on its own.'],
+      ['En la ventana de conexión, tocá **Descargar extensión (.zip)** y descomprimilo. Te queda una carpeta llamada **bloomshire-companion**.', 'Abrí **chrome://extensions** (brave://extensions en Brave, edge://extensions en Edge).', 'Activá el **Modo de desarrollador** (el interruptor de arriba a la derecha).', 'Tocá **Cargar descomprimida** y elegí la carpeta **bloomshire-companion**.', 'Abrí tu partida en bloomshire.xyz/play y volvé a la tool: se sincroniza sola.']),
+    note('tip', 'When there is a new version, the connection window tells you. To update, replace the folder with the new one and press ↻ on the extension card.', 'Cuando hay una versión nueva, la ventana de conexión te avisa. Para actualizar, reemplazá la carpeta por la nueva y tocá ↻ en la tarjeta de la extensión.', 'Updates', 'Actualizaciones'),
+    h2('Step 2: sign with your wallet', 'Paso 2: firmá con tu wallet'),
+    txt('Press **Connect and sign** and sign the message in your wallet (MetaMask, Rabby…). That proves the game is yours, unlocks the 🔒 modules and saves your game in the cloud so you can see it on any device. The session lasts 24 hours.', 'Tocá **Conectar y firmar** y firmá el mensaje en tu wallet (MetaMask, Rabby…). Eso prueba que la partida es tuya, desbloquea los módulos con 🔒 y guarda tu partida en la nube para verla en cualquier dispositivo. La sesión dura 24 horas.'),
+    note('warning', 'You only sign a text message: there is no gas, no transaction and no approval to move funds. The tool will never ask for your seed phrase or private key; if anything ever does, close it.', 'Solo firmás un mensaje de texto: no hay gas, ni transacción, ni permiso para mover fondos. La tool nunca te va a pedir tu frase semilla ni tu clave privada; si algo te la pide, cerralo.', 'Safe by design', 'Seguro por diseño'),
+    h2('What each step adds', 'Qué suma cada paso'),
+    { type: 'table',
+      md_en: '| | Your game data | 🔒 modules | Cloud save |\n|---|---|---|---|\n| Nothing | — | — | — |\n| Extension | ✅ live | — | — |\n| Wallet signature | only a copy saved before | ✅ | ✅ |\n| **Both** | ✅ | ✅ | ✅ |',
+      md_es: '| | Datos de tu partida | Módulos 🔒 | Partida en la nube |\n|---|---|---|---|\n| Nada | — | — | — |\n| Extensión | ✅ en vivo | — | — |\n| Firma con la wallet | solo una copia guardada antes | ✅ | ✅ |\n| **Las dos** | ✅ | ✅ | ✅ |' }
+  ]
+});
+
+tour('mega-atlas', 'p:ylva', {
+  title_en: 'Mega-Atlas: the whole world on one map', title_es: 'Mega-Atlas: todo el mundo en un mapa',
+  summary_en: 'Every region and sub-zone with its villagers, caves, fishing spots and quest secrets. Other modules send you here with "locate".',
+  summary_es: 'Cada región y sub-zona con sus aldeanos, cuevas, lugares de pesca y secretos de misiones. Los demás módulos te mandan acá con "ubicar".',
+  blocks: [
+    ...shot('atlas', 'The Mega-Atlas', 'El Mega-Atlas'),
+    ul(['**Left list:** every region and its sub-zones. Search by zone, villager, cave, fish or quest.', '**Map:** pick a zone to focus it. Hand, pointer and magnifier tools, zoom and quick travel at the bottom.', '**Layers:** turn on or off the HD art, sub-zones, signs, fishing, caves, villagers and secrets.', "**Right panel:** what's in the zone: villagers, quest clues, and the game's exploration book."],
+      ['**Lista de la izquierda:** cada región y sus sub-zonas. Buscá por zona, aldeano, cueva, pez o misión.', '**Mapa:** elegí una zona para enfocarla. Herramientas de mano, puntero y lupa, zoom y viaje rápido abajo.', '**Capas:** prendé o apagá el arte HD, las sub-zonas, los carteles, la pesca, las cuevas, los aldeanos y los secretos.', '**Panel derecho:** lo que hay en la zona: aldeanos, pistas de misiones y el libro de exploración del juego.']),
+    note('tip', 'With the extension and the game open in another tab, the **Update HD** button (↻, top right of the map) draws the 10 real game maps. They stay saved in your browser.', 'Con la extensión y el juego abierto en otra pestaña, el botón **Actualizar HD** (↻, arriba a la derecha del mapa) dibuja los 10 mapas reales del juego. Quedan guardados en tu navegador.', 'Real maps', 'Mapas reales'),
+    needs('free')
+  ]
+});
+
+tour('logbook', 'p:sylvie', {
+  title_en: 'Logbook & guides', title_es: 'Bitácora y guías',
+  summary_en: "Guides, bosses, weapons and this tour, in English and Spanish, with places you can open on the Mega-Atlas.",
+  summary_es: 'Guías, jefes, armas y este recorrido, en inglés y en español, con lugares que se abren en el Mega-Atlas.',
+  blocks: [
+    ...shot('logbook', 'A boss entry in the Logbook', 'Una ficha de jefe en la Bitácora'),
+    ul(['**Sections** on the left; every entry has a link you can copy and share.', '**Search** finds any word in any entry. **Place** filters entries about one zone.', 'Green place chips open that spot on the Mega-Atlas.', "Entries follow the tool's language; if one isn't translated yet, it says so."],
+      ['**Secciones** a la izquierda; cada entrada tiene un enlace que podés copiar y compartir.', 'El **buscador** encuentra cualquier palabra en cualquier entrada. **Lugar** filtra las entradas de una zona.', 'Las etiquetas verdes de lugar abren ese punto en el Mega-Atlas.', 'Las entradas siguen el idioma de la tool; si alguna todavía no está traducida, lo avisa.']),
+    needs('free')
+  ]
+});
+
+tour('economy', 'p:rowan', {
+  title_en: 'Economy: liquidator, Odette and market radar', title_es: 'Economía: liquidador, Odette y radar de mercado',
+  summary_en: "What your backpack and chests are worth, today's orders from Odette and what sells best at Rowan's Market Hall.",
+  summary_es: 'Cuánto valen tu mochila y tus cofres, los pedidos de hoy de Odette y qué se vende mejor en el Mercado de Rowan.',
+  blocks: [
+    h2('Inventory liquidator', 'Liquidador de inventario'),
+    ...shot('economy_liquidator', 'The inventory liquidator', 'El liquidador de inventario'),
+    ul(['Adds up what your backpack (M), home chest (CC) and town chest (CP) are worth in gold.', 'Shows how many of each you can still sell to the shop today and what is left over for the market or tomorrow.', 'Adjust the quantities to plan a sale.'],
+      ['Suma cuánto oro valen tu mochila (M), el cofre de tu casa (CC) y el cofre del pueblo (CP).', 'Muestra cuántos de cada uno todavía podés vender hoy en la tienda y cuántos te sobran para el mercado o para mañana.', 'Ajustá las cantidades para planear una venta.']),
+    h2("Odette's daily orders", 'Pedidos diarios de Odette'),
+    ...shot('economy_odette', "Odette's orders", 'Los pedidos de Odette'),
+    txt("Odette's board has **6 orders, plus 1 for every 3 Farming levels** (up to 16). Each pays half of what the goods are worth, plus experience. The tool marks the ones you can deliver now and where to get the rest. Orders change at 00:00 UTC.",
+      'El tablero de Odette tiene **6 pedidos, más 1 cada 3 niveles de Cultivo** (hasta 16). Cada uno paga la mitad de lo que valen los productos, más experiencia. La tool marca los que podés entregar ya y dónde conseguir el resto. Los pedidos cambian a las 00:00 UTC.'),
+    h2('Market radar', 'Radar de mercado'),
+    ...shot('economy_radar', 'The market radar', 'El radar de mercado'),
+    txt("Real sales from Rowan's Market Hall: what sells, for how much and how fast, matched against your stock. Press **Refresh sales** with the game open in another tab; while the radar is open it checks again every 5 minutes.",
+      'Ventas reales del Mercado de Rowan: qué se vende, a cuánto y qué tan rápido, comparado con lo que tenés. Tocá **Actualizar ventas** con el juego abierto en otra pestaña; mientras el radar está abierto, vuelve a mirar cada 5 minutos.'),
+    needs('sign')
+  ]
+});
+
+tour('item-finder', 'i:bugnet', {
+  title_en: 'Item finder', title_es: 'Buscador de ítems',
+  summary_en: 'Type any item, fish, ore, recipe or quest to see what it is, where it comes from and where to find it on the map.',
+  summary_es: 'Escribí cualquier ítem, pez, mineral, receta o misión para ver qué es, de dónde sale y dónde está en el mapa.',
+  blocks: [
+    ...shot('items', 'The item finder', 'El buscador de ítems'),
+    ul(['Search in English or Spanish, or browse by category (crops, fish, ores, food, butterflies, quests…).', "Each card shows the game's own codex: effects, experience, where it comes from and what it sells for.", 'With your game connected, it also shows how many you have.'],
+      ['Buscá en inglés o en español, o recorré por categoría (cultivos, peces, minerales, comida, mariposas, misiones…).', 'Cada tarjeta muestra el códice del propio juego: efectos, experiencia, de dónde sale y a cuánto se vende.', 'Con tu partida conectada, también muestra cuántos tenés.']),
+    needs('free')
+  ]
+});
+
+tour('crafting', 'p:bram', {
+  title_en: 'Crafting & cooking', title_es: 'Crafteo y cocina',
+  summary_en: 'Every recipe by station, with materials, time, experience and energy, and what you can make right now.',
+  summary_es: 'Todas las recetas por estación, con materiales, tiempo, experiencia y energía, y lo que podés hacer ahora mismo.',
+  blocks: [
+    ...shot('craft', 'Recipes at a station', 'Las recetas de una estación'),
+    ul(["**Stations:** the stove (Bakery or your cottage), Pell's workbench, Bram's forge, Hollin's mill and dairy, and Tilly's loom. **Locate station** shows each one on the Mega-Atlas.", '**Craftable now** keeps only recipes you have every material for (backpack and chests).', '**My level** hides what you have not unlocked yet. Sort by energy, gold, XP or time.', 'Food cards show the energy you get back minus what the stove costs.'],
+      ['**Estaciones:** la cocina (Panadería o tu cabaña), el banco de Pell, la forja de Bram, el molino y la lechería de Hollin, y el telar de Tilly. **Ubicar estación** muestra cada una en el Mega-Atlas.', '**Crafteables ahora** deja solo las recetas para las que tenés todos los materiales (mochila y cofres).', '**Mi nivel** oculta lo que todavía no desbloqueaste. Ordená por energía, oro, XP o tiempo.', 'Las tarjetas de comida muestran la energía que recuperás menos lo que gasta la cocina.']),
+    needs('free')
+  ]
+});
+
+tour('villagers', 'p:ivy', {
+  title_en: 'Villagers & gifts', title_es: 'Aldeanos y regalos',
+  summary_en: 'What every villager loves, likes and hates, and where to find them.',
+  summary_es: 'Qué le encanta, le gusta y odia a cada aldeano, y dónde encontrarlo.',
+  blocks: [
+    ...shot('npcs', 'The villagers', 'Los aldeanos'),
+    ul(['Search by name, trade, place or gift.', 'One gift a day per villager: what they love counts most for friendship; what they hate costs some.', 'The 📍 line on each card opens them on the Mega-Atlas. At night and in rain they go indoors.'],
+      ['Buscá por nombre, oficio, lugar o regalo.', 'Un regalo por día a cada aldeano: lo que les encanta suma más amistad; lo que odian resta.', 'La línea 📍 de cada tarjeta los abre en el Mega-Atlas. De noche y con lluvia se meten adentro.']),
+    needs('free')
+  ]
+});
+
+tour('xp-calculator', 'i:wheat', {
+  title_en: 'XP calculator', title_es: 'Calculadora XP',
+  summary_en: 'What to plant, mine, forage or fish for the most XP or gold with the energy you have.',
+  summary_es: 'Qué plantar, minar, recolectar o pescar para ganar más XP u oro con la energía que tenés.',
+  blocks: [
+    ...shot('calc', 'The XP calculator', 'La calculadora XP'),
+    ul(['Pick a goal: XP per energy, XP per minute, gold per energy or gold per minute.', 'Filter by skill, season and level, and set how many plots you have.', 'The energy simulator shows what you get with the energy you have left (it starts from your live energy if your game is connected).'],
+      ['Elegí un objetivo: XP por energía, XP por minuto, oro por energía u oro por minuto.', 'Filtrá por habilidad, estación y nivel, y poné cuántas parcelas tenés.', 'El simulador de energía muestra lo que sacás con la energía que te queda (arranca de tu energía en vivo si tu partida está conectada).']),
+    needs('free')
+  ]
+});
+
+tour('timers', 'i:sunflower', {
+  title_en: 'Timers', title_es: 'Temporizadores',
+  summary_en: 'Live countdowns for your crops and cooking, with an alarm, plus daily tasks, missing quest materials and your rest.',
+  summary_es: 'Cuentas regresivas en vivo de tus cultivos y tu cocina, con alarma, y además tareas diarias, materiales que faltan y tu descanso.',
+  blocks: [
+    ...shot('timers', 'Timers', 'Los temporizadores'),
+    ul(['**Crops and production:** every planted plot and cooking or crafting batch with its countdown. An alarm rings when it is ready.', '**Daily tasks:** the Task Center; finish all 6 for 10 premium seeds.', '**Missing materials** for your active quests.', "**Rest and day/night:** today's sleep quota and when villagers go indoors."],
+      ['**Cultivos y producción:** cada parcela sembrada y cada lote de cocina o crafteo con su cuenta regresiva. Suena una alarma cuando está listo.', '**Tareas diarias:** el Task Center; completá las 6 para ganar 10 semillas premium.', '**Materiales que faltan** para tus misiones activas.', '**Descanso y día/noche:** la cuota de sueño de hoy y cuándo los aldeanos se meten adentro.']),
+    needs('sign')
+  ]
+});
+
+tour('quests', 'p:maren', {
+  title_en: 'Quests', title_es: 'Misiones',
+  summary_en: 'Your active quests step by step, what each one still needs, your skills and your progress through the story.',
+  summary_es: 'Tus misiones activas paso a paso, lo que le falta a cada una, tus habilidades y tu avance en la historia.',
+  blocks: [
+    ...shot('quests', 'Quests', 'Las misiones'),
+    ul(['**Materials needed:** what every active quest asks for and how many you have in your backpack (M), home chest (CC) and town chest (CP).', '**Quest guide:** the current step of each quest, who gives it and **See on the Mega-Atlas**.', '**Skills:** your 10 skills and the 3-level rule (no skill can be more than 3 levels above your lowest).', '**Story progress, daily tasks, and bed and energy** in their own boxes. Tap a box to open or close it.'],
+      ['**Insumos necesarios:** lo que pide cada misión activa y cuántos tenés en la mochila (M), el cofre de tu casa (CC) y el del pueblo (CP).', '**Guía de misiones:** el paso actual de cada misión, quién la da y **Ver en el Mega-Atlas**.', '**Habilidades:** tus 10 habilidades y la regla de 3 niveles (ninguna puede estar más de 3 niveles arriba de la más baja).', '**Avance de la historia, tareas diarias y cama y energía**, cada una en su caja. Tocá una caja para abrirla o cerrarla.']),
+    needs('sign')
+  ]
 });
 
 // ---------------------------------------------------------------- Guias del juego (guidetext.js)
