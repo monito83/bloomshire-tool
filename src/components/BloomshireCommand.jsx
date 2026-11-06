@@ -108,6 +108,7 @@ import {
   getSharedAudioContext,
   playChimeAlarm
 } from './bloomshire/bloomshireHelpers';
+import { slimSnapshot, backupFingerprint, backupDecision } from './bloomshire/cloudBackup';
 
 // Re-exportar helpers para máxima compatibilidad hacia atrás
 export {
@@ -325,6 +326,39 @@ export default function BloomshireCommand() {
     }
   }, [lastSyncTime, i18n.language]);
   const lastExtensionSyncAtRef = useRef(0);
+
+  // Respaldo en la nube con freno (ver cloudBackup.js): como mucho cada 5 min y solo si cambio algo importante
+  const cloudBackupRef = useRef({ last: null, pending: null, timer: null });
+  const flushCloudBackup = () => {
+    const box = cloudBackupRef.current;
+    box.timer = null;
+    const p = box.pending;
+    if (!p) return;
+    box.pending = null;
+    box.last = { at: Date.now(), fp: p.fp };
+    let token = p.token;
+    try { token = localStorage.getItem('bloomshire_session_token') || token; } catch (_) {}
+    if (!token) return;
+    fetch('/api/bloomshire-advisor?action=push_snapshot', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({
+        action: 'push_snapshot',
+        wallet: p.wallet,
+        snapshot: { ...slimSnapshot(p.data), wallet: p.wallet, timestamp: Date.now() }
+      })
+    }).catch(() => {});
+  };
+  const queueCloudBackup = (wallet, data, token) => {
+    const box = cloudBackupRef.current;
+    const fp = backupFingerprint(data);
+    const decision = backupDecision(box.last, fp);
+    if (decision.action === 'skip') { box.pending = null; return; }
+    box.pending = { wallet, data, token, fp };
+    if (decision.action === 'now') { clearTimeout(box.timer); flushCloudBackup(); return; }
+    if (!box.timer) box.timer = setTimeout(flushCloudBackup, decision.waitMs);
+  };
+  useEffect(() => () => clearTimeout(cloudBackupRef.current.timer), []);
 
   // Inventory & Liquidation State
   const [inventoryScope, setInventoryScope] = useState('all'); // 'all', 'hotbar', 'chest'
@@ -639,7 +673,6 @@ export default function BloomshireCommand() {
   const [toolVersion] = useState('v2.5.0');
   const [gameBuildStatus, setGameBuildStatus] = useState('synced');
 
-  const [marketTrades, setMarketTrades] = useState(null); // 'liquidation' | 'odette' | 'arbitrage' | 'market_radar'
   const [marketFilter, setMarketFilter] = useState('all'); // 'all' | 'in_stock' | 'ultra' | 'gems' | 'vip'
   const [marketSearch, setMarketSearch] = useState('');
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(() => {
@@ -1280,27 +1313,11 @@ export default function BloomshireCommand() {
         localStorage.removeItem('bloomshire_manual_disconnected');
       } catch (e) {}
 
-      // Respaldo asíncrono inmediato en Supabase (Nube) si está autenticado con firma
+      // Respaldo en Supabase (Nube) si está autenticado con firma: solo lo que llega de la extensión,
+      // con freno (cada 5 min como mucho y solo si cambió algo importante) para no gastar el tráfico de Vercel
       const currentToken = localStorage.getItem('bloomshire_session_token') || sessionToken;
-      if (currentToken) {
-        try {
-          fetch('/api/bloomshire-advisor?action=push_snapshot', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${currentToken}`
-            },
-            body: JSON.stringify({
-              action: 'push_snapshot',
-              wallet: effectiveWallet.toLowerCase(),
-              snapshot: {
-                ...data,
-                wallet: effectiveWallet.toLowerCase(),
-                timestamp: Date.now()
-              }
-            })
-          }).catch(() => {});
-        } catch (_) {}
+      if (currentToken && isFromExtension) {
+        try { queueCloudBackup(effectiveWallet.toLowerCase(), data, currentToken); } catch (_) {}
       }
     }
     if (data.gold !== undefined && data.gold >= 0) setGold(data.gold);
@@ -1384,7 +1401,6 @@ export default function BloomshireCommand() {
     }
     setEnergyMeta(liveEAndBed.energyMeta);
 
-    if (data.marketTrades) setMarketTrades(data.marketTrades);
     if (data.activeGameBuild) {
       setGameBuildHash(data.activeGameBuild);
       setGameBuildStatus(data.activeGameBuild === 'a70eb5dd5113' ? 'synced' : 'patch_detected');

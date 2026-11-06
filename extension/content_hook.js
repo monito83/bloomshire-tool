@@ -85,7 +85,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
   let cmdRefreshTimer = null;
   let lastKnownSave = window.__bloomshire_master_save || null;
   let serverTimeOffset = 0; // Desfase entre el reloj del servidor Bloomshire y el reloj local
-  let latestMarketTrades = null;
   let activeFarmKey = 'farm.home';
   let cachedWallet = (function () {
     try { return localStorage.getItem('bloomshire_wallet'); } catch (_) { return null; }
@@ -911,7 +910,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           })(),
           _activeCrops: extractActiveCrops(save),
           _liveProductionPots: extractActiveProductionPots(save),
-          _marketTrades: latestMarketTrades,
           _activeGameBuild: getDetectedGameBuild(),
           _serverTimeOffset: serverTimeOffset
         }
@@ -1313,7 +1311,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
       } else if (url.includes('api/offers') && resp.ok) {
         ownJson(resp).then(offersData => {
           if (!offersData || (!Array.isArray(offersData.stalls) && !Array.isArray(offersData.recent))) return;
-          latestMarketTrades = offersData;
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT',
             offers: offersData,
@@ -1434,7 +1431,6 @@ function captureLiveDoc(currentRef, data, url, onCaptured) {
           if (!offersData || typeof offersData !== 'object' || (!Array.isArray(offersData.stalls) && !Array.isArray(offersData.recent))) {
             const err = new Error('unexpected_board'); err.reason = 'game_error'; throw err;
           }
-          latestMarketTrades = offersData;
           window.postMessage({
             type: '__BLOOMSHIRE_MARKET_SNAPSHOT',
             offers: offersData,
