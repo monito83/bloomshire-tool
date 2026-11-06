@@ -42,8 +42,12 @@ describe('Respaldo en la nube con freno (Fast Origin Transfer de Vercel)', () =>
     expect(backupDecision({ at: now - BACKUP_MIN_INTERVAL_MS, fp: 'a' }, 'b', now).action).toBe('now');
   });
 
+  // (desde la fase 16 la logica vive en src/components/bloomshire/state/: se lee todo junto)
+  const appSource = () => ['src/components/BloomshireCommand.jsx', 'src/components/bloomshire/state/useCloudBackup.js', 'src/components/bloomshire/state/useCompanionSync.js', 'src/components/bloomshire/app/ProfileModal.jsx']
+    .map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+
   it('la herramienta ya no sube la partida completa en cada mensaje de la extension', () => {
-    const src = fs.readFileSync('src/components/BloomshireCommand.jsx', 'utf8');
+    const src = appSource();
     const autoPushes = src.split("fetch('/api/bloomshire-advisor?action=push_snapshot'").length - 1;
     expect(autoPushes).toBe(2); // el respaldo con freno y el boton manual "Guardar en la nube"
     expect(src).toContain('queueCloudBackup(effectiveWallet.toLowerCase(), data, currentToken)');
@@ -53,7 +57,7 @@ describe('Respaldo en la nube con freno (Fast Origin Transfer de Vercel)', () =>
   it('el respaldo automatico esta apagado por ahora y prendido sube como mucho cada 10 min', () => {
     expect(CLOUD_BACKUP_AUTO).toBe(false);
     expect(BACKUP_MIN_INTERVAL_MS).toBe(10 * 60e3);
-    const src = fs.readFileSync('src/components/BloomshireCommand.jsx', 'utf8');
+    const src = appSource();
     expect(src).toContain('if (!CLOUD_BACKUP_AUTO) return;');
   });
 

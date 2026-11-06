@@ -35,7 +35,10 @@ for (const f of files) {
     const ratio = diff / (ia.width * ia.height);
     report(ratio <= tolerance, `${f}: ${(ratio * 100).toFixed(3)}% de pixeles distintos`);
   } else {
-    const ta = fs.readFileSync(pa, 'utf8'), tb = fs.readFileSync(pb, 'utf8');
+    // Las cuentas regresivas (mm:ss) se comparan al minuto: cada tarjeta avanza de a 1 s desde el momento en que se
+    // monto, y con el reloj simulado ese momento puede caer unos ms antes o despues segun el orden de los efectos.
+    const loose = (t) => (/monitors|timer/.test(f) ? t.replace(/\b(\d{2}):(\d{2})\b/g, '$1:ss') : t);
+    const ta = loose(fs.readFileSync(pa, 'utf8')), tb = loose(fs.readFileSync(pb, 'utf8'));
     report(ta === tb, `${f}${ta === tb ? '' : `: ${firstDiff(ta, tb)}`}`);
   }
 }
