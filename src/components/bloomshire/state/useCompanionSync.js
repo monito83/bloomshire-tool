@@ -55,7 +55,8 @@ export default function useCompanionSync({ wallet, player, timers, tasks, queueC
       handleDisconnect();
       setConnectFeedback({
         type: 'error',
-        text: `Se detectó cambio de cuenta en el juego (${effectiveWallet.slice(0, 6)}...${effectiveWallet.slice(-4)}). Tu sesión anterior fue cerrada por seguridad. Por favor, vuelve a firmar con la nueva wallet.`
+        key: 'feedback.walletChanged',
+        params: { wallet: `${effectiveWallet.slice(0, 6)}...${effectiveWallet.slice(-4)}` }
       });
       setShowConnectModal(true);
       return;

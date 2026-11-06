@@ -1,21 +1,33 @@
 // src/components/bloomshire/state/useSystemUpdates.js
-// Pestaña Ajustes: revisar actualizaciones, forzar descargas y registro del sistema (movido tal cual).
+// Pestaña Ajustes: revisar actualizaciones, forzar descargas y registro del sistema.
+// La version de referencia sale de official/meta.json (la escribe el robot de actualizacion).
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import meta from '../../../../public/data/bloomshire/official/meta.json';
+
+export const DATA_GAME_VERSION = meta.gameVersion || '';
+
+const logLine = (text, type) => ({ id: Date.now() + Math.random(), time: new Date().toLocaleTimeString(), text, type });
 
 export default function useSystemUpdates() {
+  const { t } = useTranslation('session');
   const [isCheckingUpdates, setIsCheckingUpdates] = useState(false);
-  const [updateStatusMessage, setUpdateStatusMessage] = useState('Todos los módulos y catálogos están 100% sincronizados con el juego.');
-  const [systemLogs, setSystemLogs] = useState([
-    { id: 1, time: new Date().toLocaleTimeString(), text: 'Sistema Moni-Bot Companion v2.4 iniciado correctamente.', type: 'info' },
-    { id: 2, time: new Date().toLocaleTimeString(), text: 'Catálogo de misiones validado: 24 capítulos + secundarias activas.', type: 'success' },
-    { id: 3, time: new Date().toLocaleTimeString(), text: 'Mega-Atlas HD: 10 mapas oficiales disponibles en caché local.', type: 'success' },
-    { id: 4, time: new Date().toLocaleTimeString(), text: 'Registro de aldeanos: 67 NPCs indexados con tabla de regalos y horarios.', type: 'info' }
+  const [updateStatusMessage, setUpdateStatusMessage] = useState(() => t('system.idle'));
+  const [systemLogs, setSystemLogs] = useState(() => [
+    logLine(t('system.started'), 'info'),
+    logLine(t('system.data', {
+      version: DATA_GAME_VERSION,
+      items: meta.counts?.codex ?? 0,
+      beasts: meta.counts?.beasts ?? 0,
+      places: meta.counts?.places ?? 0
+    }), 'success')
   ]);
+
+  const pushLog = (text, type) => setSystemLogs(prev => [logLine(text, type), ...prev].slice(0, 50));
 
   const handleCheckUpdates = async () => {
     setIsCheckingUpdates(true);
-    setUpdateStatusMessage('Comprobando versión en vivo con bloomshire.xyz...');
-    const nowStr = new Date().toLocaleTimeString();
+    setUpdateStatusMessage(t('system.checking'));
 
     try {
       window.postMessage({ type: 'FORCE_BLOOMSHIRE_SCAN' }, '*');
@@ -26,54 +38,37 @@ export default function useSystemUpdates() {
       const res = await fetch('/api/bloomshire-version');
       if (res.ok) {
         const info = await res.json();
+        const ours = info.verifiedBuild || DATA_GAME_VERSION;
         setIsCheckingUpdates(false);
         if (info.isUpToDate) {
-          setUpdateStatusMessage(`¡Sistema al día! Servidor Bloomshire en build ${info.liveBuild}.`);
-          setSystemLogs(prev => [
-            { id: Date.now(), time: nowStr, text: `Comprobación completada: Servidor en build ${info.liveBuild}. 100% compatible con Tool ${info.toolVersion}.`, type: 'success' },
-            ...prev
-          ].slice(0, 50));
+          setUpdateStatusMessage(t('system.upToDate', { live: info.liveBuild }));
+          pushLog(t('system.upToDateLog', { live: info.liveBuild }), 'success');
         } else {
-          setUpdateStatusMessage(`⚠️ Nuevo parche detectado en Bloomshire: Build ${info.liveBuild} (Tool en ${info.verifiedBuild})`);
-          setSystemLogs(prev => [
-            { id: Date.now(), time: nowStr, text: `Alerta de Parche: Bloomshire actualizó al build ${info.liveBuild}. Catálogos locales verificados con a70eb5dd5113.`, type: 'warning' },
-            ...prev
-          ].slice(0, 50));
+          setUpdateStatusMessage(t('system.patch', { live: info.liveBuild, ours }));
+          pushLog(t('system.patchLog', { live: info.liveBuild, ours }), 'warning');
         }
         return;
       }
     } catch (err) {
-      console.warn('Fallo chequeo de versión API, usando fallback:', err);
+      console.warn('Fallo chequeo de versión API:', err);
     }
 
-    setTimeout(() => {
-      setIsCheckingUpdates(false);
-      setUpdateStatusMessage('Comprobación exitosa: Servidor y catálogos en build a70eb5dd5113.');
-      setSystemLogs(prev => [
-        { id: Date.now(), time: nowStr, text: 'Comprobación de versión completada: Build a70eb5dd5113 activo.', type: 'info' },
-        ...prev
-      ].slice(0, 50));
-    }, 1000);
+    setIsCheckingUpdates(false);
+    setUpdateStatusMessage(t('system.checkFailed', { ours: DATA_GAME_VERSION }));
+    pushLog(t('system.checkFailed', { ours: DATA_GAME_VERSION }), 'warning');
   };
 
   const handleForceRedownload = (moduleKey) => {
-    const nowStr = new Date().toLocaleTimeString();
     if (moduleKey === 'maps') {
       try {
         window.postMessage({ type: 'SYNC_BLOOMSHIRE_REAL_MAPS' }, '*');
       } catch (e) {}
-      setSystemLogs(prev => [
-        { id: Date.now(), time: nowStr, text: 'Re-renderizado de los 10 mapas Pixel-Art HD iniciado en segundo plano.', type: 'info' },
-        ...prev
-      ].slice(0, 50));
+      pushLog(t('system.mapsLog'), 'info');
     } else {
       try {
         window.postMessage({ type: 'FORCE_BLOOMSHIRE_SCAN' }, '*');
       } catch (e) {}
-      setSystemLogs(prev => [
-        { id: Date.now(), time: nowStr, text: `Sincronización forzada de catálogo (${moduleKey || 'todos'}) ejecutada.`, type: 'info' },
-        ...prev
-      ].slice(0, 50));
+      pushLog(t('system.scanLog', { module: moduleKey || 'all' }), 'info');
     }
   };
 

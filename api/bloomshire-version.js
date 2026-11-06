@@ -1,11 +1,12 @@
 /**
  * api/bloomshire-version.js
- * Endpoint de verificación en vivo del Build Hash de Bloomshire y parches de juego.
+ * Compara la version del juego en vivo con la de los datos que tiene la tool
+ * (public/data/bloomshire/official/meta.json, la escribe el robot de actualizacion).
  */
+import meta from '../public/data/bloomshire/official/meta.json' with { type: 'json' };
 
-const VERIFIED_RULES = 'a70eb5dd5113';
-const VERIFIED_BUILD = '124afc8d9ec7';
-const TOOL_VERSION = 'v2.5.0';
+const VERIFIED_RULES = meta.rulesHash || null;
+const VERIFIED_BUILD = meta.gameVersion || null;
 
 export default async function handler(req, res) {
   const ALLOWED_ORIGINS = new Set([
@@ -71,7 +72,7 @@ export default async function handler(req, res) {
 
   return res.status(200).json({
     ok: true,
-    toolVersion: TOOL_VERSION,
+    dataGeneratedAt: meta.generatedAt || null,
     verifiedBuild: VERIFIED_BUILD,
     verifiedRules: VERIFIED_RULES,
     liveBuild,

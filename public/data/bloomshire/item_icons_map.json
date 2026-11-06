@@ -643,5 +643,7 @@
   "cazamariposas": "/data/bloomshire/items/bugnet.png",
   "red de insectos": "/data/bloomshire/items/bugnet.png",
   "tool:flute": "/data/bloomshire/items/flute.png",
-  "flauta": "/data/bloomshire/items/flute.png"
+  "flauta": "/data/bloomshire/items/flute.png",
+  "honey-glazed bacon": "/data/bloomshire/items/honey_glazed_bacon.png",
+  "tocino glaseado con miel": "/data/bloomshire/items/honey_glazed_bacon.png"
 }
