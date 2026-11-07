@@ -181,6 +181,9 @@ describe('Radar de Mercado: estadisticas', () => {
     expect(parseShopPrice('Sells for 1,950 Gold at a shop')).toBe(1950);
     expect(parseShopPrice('Sells for 545 Gold at a shop')).toBe(545);
     expect(parseShopPrice('')).toBeNull();
+    // los platos tienen valor pero la tienda no los compra (se venden en el Market Hall)
+    expect(parseShopPrice('Worth 25,000 Gold. Trade it with other farmers at the Market Hall')).toBeNull();
+    expect(parseShopPrice('Traded between farmers at the Market Hall and Town Hall')).toBeNull();
   });
 
   it('liquidez', () => {
@@ -330,5 +333,21 @@ describe('Extension: el tablero del mercado llega a la herramienta', () => {
       expect(fs.existsSync(`extension/${manifest.icons[size]}`)).toBe(true);
     }
     expect(manifest.action.default_icon['32']).toBe('icons/icon-32.png');
+  });
+});
+
+describe('Radar: orden de "Todo el mercado"', () => {
+  it('ventas mas recientes: la ultima venta primero y los items sin ventas al final', async () => {
+    const { sortMarketRows, MARKET_SORTS } = await import('../src/components/bloomshire/market/marketModel');
+    const rows = [
+      { item: 'A', lastAt: 1000, units24: 50, sales24: 5 },
+      { item: 'B', lastAt: null, units24: 0, sales24: 0 },
+      { item: 'C', lastAt: 3000, units24: 1, sales24: 1 },
+      { item: 'D', lastAt: 2000, units24: 9, sales24: 2 }
+    ];
+    expect(sortMarketRows(rows, 'recent').map((r) => r.item)).toEqual(['C', 'D', 'A', 'B']);
+    expect(sortMarketRows(rows, 'units24').map((r) => r.item)).toEqual(['A', 'D', 'C', 'B']);
+    expect(rows.map((r) => r.item)).toEqual(['A', 'B', 'C', 'D']);
+    expect(Object.keys(MARKET_SORTS)).toEqual(['units24', 'recent', 'gold24', 'trend', 'price', 'supply']);
   });
 });

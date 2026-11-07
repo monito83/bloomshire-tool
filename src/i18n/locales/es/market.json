@@ -77,6 +77,7 @@
     "sort": "Ordenar",
     "sortBy": {
       "units24": "Más vendidos 24 h",
+      "recent": "Ventas más recientes",
       "gold24": "Más oro movido",
       "trend": "Mayor suba",
       "price": "Precio más alto",

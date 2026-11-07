@@ -77,6 +77,7 @@
     "sort": "Sort",
     "sortBy": {
       "units24": "Most sold 24 h",
+      "recent": "Most recent sales",
       "gold24": "Most gold traded",
       "trend": "Biggest rise",
       "price": "Highest price",
