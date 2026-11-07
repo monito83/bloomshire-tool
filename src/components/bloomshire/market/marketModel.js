@@ -202,6 +202,21 @@ export function marketTable(sales, stalls, now = Date.now()) {
   return [...ids].map((id) => itemStats(id, sales, stalls, now));
 }
 
+/** Ordenes de la tabla "Todo el mercado": valor por fila, de mayor a menor. */
+export const MARKET_SORTS = {
+  units24: (r) => r.units24 * 1e3 + r.sales24,
+  recent: (r) => r.lastAt ?? -1,                // la venta mas reciente primero (en cualquier moneda)
+  gold24: (r) => r.gold24,
+  trend: (r) => (r.trendPct == null ? -1e9 : r.trendPct),
+  price: (r) => r.ref ?? r.cheapest ?? -1,
+  supply: (r) => r.unitsListed
+};
+
+export function sortMarketRows(rows, sortBy) {
+  const key = MARKET_SORTS[sortBy] || MARKET_SORTS.units24;
+  return [...rows].sort((a, b) => key(b) - key(a));
+}
+
 /** Serie por hora (o por dia) de un item: unidades vendidas y precio mediano, para graficos. */
 export function itemSeries(item, sales, { now = Date.now(), buckets = 24, size = HOUR } = {}) {
   const start = Math.floor((now - buckets * size) / size) * size + size;
@@ -232,9 +247,12 @@ export function suggestListPrice(stats) {
 
 export const netAfterFee = (gold) => Math.max(0, gold - Math.max(gold > 1 ? 1 : 0, Math.floor((gold * 250 + 5000) / 10000)));
 
-/** "Sells for 1,950 Gold at a shop" -> 1950 (precio de venta en tienda del Codex). */
+/**
+ * "Sells for 1,950 Gold at a shop" -> 1950 (precio de venta en tienda del Codex).
+ * "Worth 490 Gold. Trade it with other farmers at the Market Hall" (platos) NO es precio de tienda: null.
+ */
 export function parseShopPrice(worthEn) {
-  const m = /([\d,.]+)\s*Gold/i.exec(String(worthEn || ''));
+  const m = /Sells for\s+([\d,.]+)\s*Gold/i.exec(String(worthEn || ''));
   if (!m) return null;
   const n = Number(m[1].replace(/[,.]/g, ''));
   return Number.isFinite(n) && n > 0 ? n : null;

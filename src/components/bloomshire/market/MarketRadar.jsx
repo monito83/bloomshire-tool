@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import useMarketFeed from './useMarketFeed';
 import useOfficialData from '../official/useOfficialData';
-import { DAY, itemStats, itemSeries, quickGoldPlan, mySummary, parseShopPrice, coinAmount } from './marketModel';
+import { DAY, itemStats, itemSeries, quickGoldPlan, mySummary, parseShopPrice, coinAmount, MARKET_SORTS, sortMarketRows } from './marketModel';
 import { makeFormat } from './marketFormat';
 import { Sparkline } from './MarketCharts';
 import MarketItemModal from './MarketItemModal';
@@ -160,14 +160,7 @@ export default function MarketRadar({
     let rows = Object.values(statsById);
     if (onlyMine) rows = rows.filter((r) => stock.total[r.item] > 0);
     if (q) rows = rows.filter((r) => r.item.toLowerCase().includes(q) || nameOf(r.item).toLowerCase().includes(q));
-    const key = {
-      units24: (r) => r.units24 * 1e3 + r.sales24,
-      gold24: (r) => r.gold24,
-      trend: (r) => (r.trendPct == null ? -1e9 : r.trendPct),
-      price: (r) => r.ref ?? r.cheapest ?? -1,
-      supply: (r) => r.unitsListed
-    }[sortBy];
-    return rows.sort((a, b) => key(b) - key(a));
+    return sortMarketRows(rows, sortBy);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statsById, query, onlyMine, sortBy, stock, nameById, lang]);
 
@@ -413,7 +406,7 @@ export default function MarketRadar({
             <label className="flex items-center gap-1.5 text-[11px] text-slate-400 ml-auto">
               {t('table.sort')}
               <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="bg-[#0a1222] border border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-100 cursor-pointer">
-                {['units24', 'gold24', 'trend', 'price', 'supply'].map((k) => <option key={k} value={k}>{t(`table.sortBy.${k}`)}</option>)}
+                {Object.keys(MARKET_SORTS).map((k) => <option key={k} value={k}>{t(`table.sortBy.${k}`)}</option>)}
               </select>
             </label>
           </div>
